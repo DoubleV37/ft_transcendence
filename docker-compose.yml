@@ -1,7 +1,7 @@
 services:
   django:
     restart: always
-    build: backend/django
+    build: Backend/Django
     env_file: .env
     ports:
-      - "8000:8000"
+      - "8080:8000"
