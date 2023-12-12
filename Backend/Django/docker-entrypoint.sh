@@ -4,4 +4,7 @@ django-admin startproject backend
 
 cd /app/backend
 
-exec python3 manage.py runserver 0.0.0.0:8000
+mv /app/settings.py /app/backend/backend/settings.py
+mv /app/urls.py /app/backend/backend/urls.py
+
+exec python3 manage.py runsslserver 0.0.0.0:8000
