@@ -1,6 +1,6 @@
 FROM alpine:3.17
 
-RUN apk update && apk upgrade && apk add python3 py3-pip
+RUN apk update && apk upgrade && apk add python3 py3-pip tzdata
 
 RUN pip3 install django
 
@@ -12,7 +12,13 @@ RUN mkdir /app
 
 WORKDIR /app
 
+COPY --chmod=777 templates /app/templates
+
 COPY --chmod=777 settings.py /app/settings.py
+
+COPY --chmod=777 manage.py /app/manage.py
+
+COPY --chmod=777 views.py /app/views.py
 
 COPY --chmod=777 urls.py /app/urls.py
 
