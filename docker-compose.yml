@@ -7,12 +7,14 @@ services:
       - django_data:/app/backend
     ports:
       - "8080:8000"
+    depends_on:
+      - postgres
   postgres:
     restart: always
     build: Backend/PostgreSQL
     env_file: .env
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
