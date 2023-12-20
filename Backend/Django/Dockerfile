@@ -1,6 +1,6 @@
 FROM alpine:3.17
 
-RUN apk update && apk upgrade && apk add python3 py3-pip tzdata
+RUN apk update && apk upgrade && apk add python3 py3-pip tzdata libpq
 
 COPY --chmod=777 requirements.txt /requirements.txt
 
@@ -13,8 +13,6 @@ RUN mkdir /app
 WORKDIR /app
 
 RUN mkdir /app/backend
-
-# COPY --chmod=777 project_backend /app/backend
 
 EXPOSE 8000
 
