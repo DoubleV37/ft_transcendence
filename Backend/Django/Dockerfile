@@ -12,7 +12,9 @@ RUN mkdir /app
 
 WORKDIR /app
 
-COPY --chmod=777 project_backend /app/backend
+RUN mkdir /app/backend
+
+# COPY --chmod=777 project_backend /app/backend
 
 EXPOSE 8000
 
