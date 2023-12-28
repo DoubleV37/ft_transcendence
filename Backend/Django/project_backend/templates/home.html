@@ -1,0 +1,21 @@
+{% load static %}
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+	<script src={% static "js/singlepage.js" %}></script>
+  </head>
+  <body>
+    <h1>Hello</h1>
+        <button data-section="1">Section 1</button>
+        <button data-section="2">Section 2</button>
+        <button data-section="3">Section 3</button>
+
+        <!-- Contents loaded from server is inserted here by javascript -->
+        <div id="content">
+
+        </div>
+  </body>
+</html>
