@@ -1,0 +1,33 @@
+services:
+  django:
+    restart: always
+    build: Backend/Django
+    env_file: .env
+    volumes:
+      - django_data:/app/backend
+    ports:
+      - "8080:8000"
+    depends_on:
+      - postgres
+  postgres:
+    restart: always
+    build: Backend/PostgreSQL
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Backend/PostgreSQL/data
+  django_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Backend/Django/project_backend

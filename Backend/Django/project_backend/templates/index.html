@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href={% static "css/singlepage.css" %}>
+    <title>Index page</title>
+	<script src={% static "js/singlepage.js" %}></script>
+  </head>
+  <header>
+    <h1>Hello</h1>
+	<nav>
+    <button data-section="1">Section 1</button>
+    <button data-section="2">Section 2</button>
+    <button data-section="3">Section 3</button>
+	</nav>
+  </header>
+  <body>
+		<div id="content">
+		</div>
+  </body>
+  <footer>
+	<p>May the force be with you</p>
+  </footer>
+</html>
