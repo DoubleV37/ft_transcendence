@@ -21,6 +21,6 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         port: ${{ secrets.SERVER_PORT }}
         script: |
-          cd /ft_transcendence
+          cd ft_transcendence
           git pull origin main
           make
