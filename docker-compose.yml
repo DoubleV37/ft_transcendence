@@ -20,12 +20,10 @@ services:
 
 volumes:
   postgres_data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: Backend/PostgreSQL/data
+    name: postgre_data
+
   django_data:
+    name: django_data
     driver: local
     driver_opts:
       type: none
