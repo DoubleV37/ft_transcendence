@@ -1,4 +1,4 @@
-# ft_transcendance
+# ft_transcendence
 
 How to start the project :
   -
