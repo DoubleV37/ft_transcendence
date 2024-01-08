@@ -9,13 +9,28 @@ function showSection(section) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-	document.querySelectorAll('button').forEach(button => {
-		button.onclick = function() {
-			showSection(this.dataset.section)
-			history.pushState({section: this.dataset.section}, '', this.dataset.section)
-			window.onpopstate = function(event) {
-				showSection(event.state.section)
+	if (page == 'index') {
+		document.querySelectorAll('button').forEach(button => {
+			button.onclick = function() {
+				showSection(this.dataset.section)
+				history.pushState({section: this.dataset.section}, '', this.dataset.section)
+				window.onpopstate = function(event) {
+					showSection(event.state.section)
+				}
 			}
-		}
-	})
+		})
+	}
+	else {
+		fetch(`${header}`)
+		.then(response => response.text())
+		.then(text => {
+			document.querySelector('#header').innerHTML = text;
+		});
+		fetch(`${footer}`)
+		.then(response => response.text())
+		.then(text => {
+			document.querySelector('#footer').innerHTML = text;
+		});
+
+	}
 });
