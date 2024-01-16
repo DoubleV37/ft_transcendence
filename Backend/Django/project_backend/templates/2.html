@@ -1,20 +1,12 @@
 {% load static %}
 <!doctype html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home 2</title>
-	<link rel="stylesheet" href={% static "css/singlepage.css" %}>
-	<script src={% static "js/singlepage.js" %}></script>
-  </head>
-
-  <header id="header"></header>
+{% include "head.html" %}
+{% include "header.html" %}
   <body>
 	<div id="content">
     	<h1>Hello 2</h1>
 	</div>
   </body>
-  <footer id="footer"></footer>
-
+{% include "footer.html" %}
 </html>
