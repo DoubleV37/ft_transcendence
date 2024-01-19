@@ -1,5 +1,6 @@
 services:
   django:
+    container_name: Django
     restart: always
     build: Backend/Django
     env_file: .env
@@ -12,6 +13,7 @@ services:
         condition: service_healthy
 
   postgres:
+    container_name: Database
     image: postgres:16.1-alpine3.19
     restart: always
     env_file: .env
@@ -28,11 +30,6 @@ services:
 volumes:
   postgres_data:
     name: postgres_data
-    #driver: local
-    #driver_opts:
-      #type: none
-      #o: bind
-      #device: Backend/PostgreSQL
 
   django_data:
     name: django_data
