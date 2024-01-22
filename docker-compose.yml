@@ -10,14 +10,24 @@ services:
       - "8080:8000"
 
   postgres:
-    container_name: Database
-    image: postgres:16.1-alpine3.19
+    container_name: database
+    image: postgres:16.1-alpine3.18
     restart: always
     env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+  nginx:
+    container_name: nginx
+    build: NginxReverseProxy/
+    restart: always
+    env_file: .env
+    ports:
+    - "8080:8080"
+    volumes:
+      - django_static:/var/lib/nginx/
 
 volumes:
   postgres_data:
