@@ -1,9 +1,7 @@
 services:
   gunicorn:
     container_name: gunicorn
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    build: Backend/Gunicorn
     restart: always
     env_file: .env
     volumes:
@@ -34,3 +32,11 @@ volumes:
       type: none
       o: bind
       device: Django_data
+
+  django_static:
+    name: django_static
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data/staticfiles
