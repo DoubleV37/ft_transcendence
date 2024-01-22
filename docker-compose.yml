@@ -1,15 +1,15 @@
 services:
   gunicorn:
-    container_name: Gunicorn
+    container_name: gunicorn
     build:
       context: ./backend
       dockerfile: Dockerfile
     restart: always
     env_file: .env
     volumes:
-      - django_data:/app
+      - django_data:/app/backend
     ports:
-      - "8000:8000"
+      - "8080:8000"
     depends_on:
       - postgres
 
@@ -23,11 +23,6 @@ services:
     ports:
       - "5432:5432"
 
-network:
-  default:
-    www_network:
-      driver: bridge
-
 volumes:
   postgres_data:
     name: postgres_data
@@ -38,4 +33,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: project_backend
+      device: Django_data
