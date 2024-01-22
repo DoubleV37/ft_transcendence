@@ -1,13 +1,17 @@
 services:
-  django:
-    container_name: Django
+  gunicorn:
+    container_name: Gunicorn
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     restart: always
-    build: Backend/Django
     env_file: .env
     volumes:
-      - django_data:/app/backend
+      - django_data:/app
     ports:
-      - "8080:8000"
+      - "8000:8000"
+    depends_on:
+      - postgres
 
   postgres:
     container_name: Database
@@ -19,6 +23,11 @@ services:
     ports:
       - "5432:5432"
 
+network:
+  default:
+    www_network:
+      driver: bridge
+
 volumes:
   postgres_data:
     name: postgres_data
@@ -29,4 +38,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: Backend/Django/project_backend
+      device: project_backend
