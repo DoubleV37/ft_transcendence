@@ -9,6 +9,16 @@ services:
     depends_on:
       - postgres
 
+  uvicorn:
+    container_name: uvicorn
+    build: Backend/Uvicorn
+    restart: always
+    env_file: .env
+    volumes:
+      - django_data:/app/backend
+    depends_on:
+      - postgres
+
   postgres:
     container_name: database
     image: postgres:16.1-alpine3.18
