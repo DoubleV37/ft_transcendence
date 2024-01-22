@@ -1,13 +1,13 @@
 services:
-  django:
-    container_name: Django
+  gunicorn:
+    container_name: gunicorn
+    build: Backend/Gunicorn
     restart: always
-    build: Backend/Django
     env_file: .env
     volumes:
       - django_data:/app/backend
-    ports:
-      - "8080:8000"
+    depends_on:
+      - postgres
 
   postgres:
     container_name: database
@@ -21,13 +21,13 @@ services:
 
   nginx:
     container_name: nginx
-    build: NginxReverseProxy/
+    build: Backend/NginxReverseProxy/
     restart: always
     env_file: .env
     ports:
     - "8080:8080"
     volumes:
-      - django_static:/var/lib/nginx/
+      - django_static:/var/lib/nginx/static/
 
 volumes:
   postgres_data:
@@ -39,4 +39,12 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: Backend/Django/project_backend
+      device: Django_data
+
+  django_static:
+    name: django_static
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data/staticfiles
