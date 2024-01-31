@@ -1,6 +1,6 @@
 cd /app/backend
 
-if [ ! -d "staticfiles"] ; then
+if [ ! -d "staticfiles" ] ; then
 	mkdir staticfiles
 fi
 
