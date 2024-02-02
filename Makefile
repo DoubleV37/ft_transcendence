@@ -1,6 +1,7 @@
 all: up
 
 up:
+	if [ ! -d "Django_data/staticfiles" ]; then mkdir -p Django_data/staticfiles; fi
 	docker compose up --build -d
 
 down:

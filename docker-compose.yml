@@ -38,6 +38,9 @@ services:
     - "8080:8080"
     volumes:
       - django_static:/var/lib/nginx/static/
+    depends_on:
+      - gunicorn
+      - uvicorn
 
 volumes:
   postgres_data:
