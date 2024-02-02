@@ -1,5 +1,5 @@
 django
-django-sslserver
 python-decouple
 psycopg2-binary
+uvicorn
 
