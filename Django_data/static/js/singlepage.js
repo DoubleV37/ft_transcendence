@@ -13,19 +13,6 @@ function showSection(section) {
 	});
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-	fetch('header')
-	.then(response => response.text())
-	.then(text => {
-		document.querySelector('#header').innerHTML = text;
-	});
-	fetch('footer')
-	.then(response => response.text())
-	.then(text => {
-		document.querySelector('#footer').innerHTML = text;
-	});
-});
-
 function clickButton(button) {
 	showSection(button.dataset.section)
 	history.pushState({section: button.dataset.section}, '', button.dataset.section)

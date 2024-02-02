@@ -1,26 +1,50 @@
 services:
-  django:
+  gunicorn:
+    container_name: gunicorn
+    build: Backend/Gunicorn
     restart: always
-    build: Backend/Django
     env_file: .env
     volumes:
       - django_data:/app/backend
-    ports:
-      - "8080:8000"
     depends_on:
       - postgres
-  postgres:
+
+  uvicorn:
+    container_name: uvicorn
+    build: Backend/Uvicorn
     restart: always
-    build: Backend/PostgreSQL
+    env_file: .env
+    volumes:
+      - django_data:/app/backend
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: database
+    image: postgres:16.1-alpine3.18
+    restart: always
     env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
+  nginx:
+    container_name: nginx
+    build: Backend/NginxReverseProxy/
+    restart: always
+    env_file: .env
+    ports:
+    - "8080:8080"
+    volumes:
+      - django_static:/var/lib/nginx/static/
+    depends_on:
+      - gunicorn
+      - uvicorn
+
 volumes:
   postgres_data:
-    name: postgre_data
+    name: postgres_data
 
   django_data:
     name: django_data
@@ -28,4 +52,12 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: Backend/Django/project_backend
+      device: Django_data
+
+  django_static:
+    name: django_static
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data/staticfiles
