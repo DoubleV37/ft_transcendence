@@ -1,3 +1,5 @@
 __pycache__
 
 Django_data/staticfiles/*
+
+migrations/*

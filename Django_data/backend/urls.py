@@ -22,5 +22,4 @@ from . import views
 
 urlpatterns = [
 	path('', include('apps.website.urls')),
-	
 ]
