@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -89,8 +88,6 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'authUser.User'
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -140,4 +137,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ["https://localhost:8080"]
-LOGIN_REDIRECT_URL = '/'
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"

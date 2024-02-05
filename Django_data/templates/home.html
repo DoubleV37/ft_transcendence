@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html lang="en-US">
+{% include "head.html" %}
+{% include "header.html" %}
+  <body>
+	<div id="content">
+	  <h1>Home</h1>
+	  {% if user.is_authenticated %}
+	    Hi {{ user.username }}!
+	      <form action="{% url 'logout' %}" method="post">
+	       {% csrf_token %}
+	       <button type="submit">Log Out</button>
+	      </form>
+	  {% else %}
+	    <p>You are not logged in</p>
+	    <a href="{% url 'login' %}">Log In</a>
+	  {% endif %}
+	</div>
+  </body>
+{% include "footer.html" %}
+</html>
