@@ -1,5 +1,4 @@
 __pycache__
 
 Django_data/staticfiles/*
-
-migrations/*
+000*
