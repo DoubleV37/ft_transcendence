@@ -22,4 +22,5 @@ from . import views
 
 urlpatterns = [
 	path('', include('apps.website.urls')),
+	path('auth/', include('apps.authUser.urls')),
 ]

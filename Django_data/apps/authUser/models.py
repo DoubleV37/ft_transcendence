@@ -3,11 +3,10 @@ from django.contrib.auth.models import AbstractBaseUser
 
 
 class User(AbstractBaseUser):
-    idUser = models.AutoField(primary_key=True)
-    status = models.BooleanField()
-    username = models.CharField(max_length=50, unique=True, null=False)
-    email = models.CharField(max_length=50, unique=True, null=False)
-    password = models.CharField(max_length=50, null=False)
+    status = models.BooleanField(default=True)
+    username = models.CharField(primary_key=True, max_length=50, unique=True, null=False)
+    email = models.CharField(max_length=50,unique=True, null=False)
+    password = models.CharField(null=False)
     avatar = models.ImageField()
 
     USERNAME_FIELD = 'username'

@@ -1,0 +1,10 @@
+<h2>Inscription</h2>
+<p>Remplissez le formulaire ci-dessous pour vous inscrire.</p>
+{% if form.errors %}
+    {{ form.errors }}
+{% endif %}
+<form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit" >S’inscrire</button>
+</form>
