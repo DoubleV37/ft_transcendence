@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import CustomUserCreationForm, LoginForm
 from django.conf import settings
 
-def register(request):
+def sign_up(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -15,7 +15,7 @@ def register(request):
     context = {
         'form': form
     }
-    return render(request, 'register.html', context)
+    return render(request, 'cygne_up.html', context)
 
 def user_signin(request):
     if request.method == 'POST':

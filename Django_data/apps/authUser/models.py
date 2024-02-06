@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 
 class User(AbstractBaseUser):
-    idUser = models.AutoField(primary_key=True)
+    idUser = models.AutoField(primary_key=True, unique=True, null=False, default=1)
     status = models.BooleanField(default=True)
     username = models.CharField(max_length=50, unique=True, null=False)
     email = models.EmailField(max_length=50, unique=True, null=False)
