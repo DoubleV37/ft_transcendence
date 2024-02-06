@@ -14,7 +14,7 @@
 	      </form>
 	  {% else %}
 	    <p>You are not logged in</p>
-	    <a href="{% url 'signin' %}">Log In</a>
+	    <button data-section="auth/signin" onclick="clickButton(this)">Sign In</button>
 	  {% endif %}
 	</div>
   </body>

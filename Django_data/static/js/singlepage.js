@@ -14,8 +14,10 @@ function showSection(section) {
 }
 
 function clickButton(button) {
+	console.log(button)
 	showSection(button.dataset.section)
-	history.pushState({section: button.dataset.section}, '', button.dataset.section)
+	console.log(button.dataset.section)
+	history.pushState({section: button.dataset.section}, '')
 }
 
 window.onpopstate = function(event) {

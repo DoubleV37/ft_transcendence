@@ -1,8 +1,13 @@
-<!-- templates/registration/login.html -->
-<h1>Log In</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Log In</button>
-  <a href="{% url 'signup' %}">Dont have Account Create</a>
-</form>
+{% load static %}
+{% include "head.html" %}
+{% include "header.html" %}
+<div id="content">
+	<h1>Log In</h1>
+	<form method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Log In</button>
+	<button data-section="auth/signup" onclick="clickButton(this)">Sign Up</button>
+	</form>
+</div>
+{% include "footer.html" %}

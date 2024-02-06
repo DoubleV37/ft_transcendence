@@ -138,7 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ["https://localhost:8080"]
 
-LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = ""
+LOGOUT_REDIRECT_URL = ""
 
 AUTH_USER_MODEL = 'authUser.User'
