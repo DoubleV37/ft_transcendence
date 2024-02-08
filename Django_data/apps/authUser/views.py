@@ -1,9 +1,11 @@
+import logging
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate, logout
 from .forms import CustomUserCreationForm, SignInForm
 
+logger = logging.getLogger(__name__)
 
 def signup(request):
     if request.method == 'POST':
@@ -32,11 +34,15 @@ def sign_in(request):
                 login(request, user)
                 response = JsonResponse({'success': True})
             else:
-                form.add_error(None, 'Invalid username or password')
                 response = JsonResponse({'success': False,
-                                         'errors': form.errors})
+                                         'errors':
+                                         'Invalid username or password'})
         else:
-            response = JsonResponse({'success': False, 'errors': form.errors})
+            response = JsonResponse({'success': False,
+                                     'errors': 'Invalid form'})
+        username = form.cleaned_data.get('username', '')
+        password = form.cleaned_data.get('password', '')
+        logger.debug(f"Form submitted - Username: {username}, password: {password}")
         return response
 
     form = SignInForm()

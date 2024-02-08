@@ -51,24 +51,7 @@ function makeBackendRequest(formData, form) {
 }
 
 function updateFormErrors(errors) {
-  const validationErrors = document.getElementById('validationErrors');
-
-  // Clear previous error messages
-  validationErrors.innerHTML = '';
-
-  // Loop through the errors object and display each error message
-  for (const field in errors) {
-    if (errors.hasOwnProperty(field)) {
-      const errorMessages = errors[field];
-
-      // Display each error message for the field
-      errorMessages.forEach(errorMessage => {
-	const errorDiv = document.createElement('div');
-	errorDiv.textContent = `${field}: ${errorMessage}`;
-	validationErrors.appendChild(errorDiv);
-      });
-    }
-  }
+  validationErrors.innerHTML = `Error: ${errors}`;
 }
 
 // Function to get CSRF token from cookies
