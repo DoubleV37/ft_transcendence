@@ -2,16 +2,13 @@
 {% include "head.html" %}
 {% include "header.html" %}
 <div id="content">
+	<script src="{% static 'js/signup_form.js' %}"></script>
 	<h2>Inscription</h2>
 	<p>Remplissez le formulaire ci-dessous pour vous inscrire.</p>
-	{% if form.errors %}
-		{{ form.errors }}
-	{% endif %}
-	<form method="post">
+	<form id="signup_form" method="post" action="/auth/signup/">
 		{{ form.as_p }}
 		{% csrf_token %}
-		<button type="submit" >S’inscrire</button>
-		
+		<button type="submit" id="sub_register">S’inscrire</button>
 	</form>
 </div>
 {% include "footer.html" %}

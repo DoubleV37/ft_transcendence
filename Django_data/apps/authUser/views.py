@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import CustomUserCreationForm, LoginForm
+from django.http import JsonResponse
 from django.conf import settings
 
 def sign_up(request):
@@ -9,7 +10,8 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect(settings.LOGIN_REDIRECT_URL)
+            return JsonResponse({'status': 'success'})
+        return JsonResponse({'status': 'error', 'message': form.errors})
     else:
         form = CustomUserCreationForm()
     context = {
