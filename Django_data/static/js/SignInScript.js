@@ -1,6 +1,4 @@
-function validateAndSubmit(event) {
-
-  event.preventDefault();
+function validAndSubmit() {
 
   let username = document.getElementById('id_username').value;
   let password = document.getElementById('id_password').value;
@@ -17,33 +15,33 @@ function validateAndSubmit(event) {
   let validationErrorsDiv = document.getElementById('validationErrors');
   validationErrorsDiv.innerHTML = validationErrors.join('<br>');
 
-  if (validationErrors.lengh === 0) {
-    const form = document.getElementById('signin');
+  if (validationErrors.length === 0) {
+    const form = document.getElementById('signinForm');
     let formData = new FormData(form);
     makeBackendRequest(formData, form);
   }
-  return false
+  return false;
 }
 
 function makeBackendRequest(formData, form) {
 // Make a POST request to the backend to validate the login credentials
-  fetch('/auth/signin', {
+  fetch('/auth/signin/', {
       method: 'POST',
       headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': getCookie('csrftoken'),  // Include CSRF token
+	  'Content-Type': 'application/json',
+	  'X-CSRFToken': getCookie('csrftoken'),  // Include CSRF token
       },
       body: formData,
   })
   .then(response => response.json())
   .then(data => {
       if (data.success == true) {
-	let button = document.getElementById('button');
+	let button = document.getElementById('signin');
 
 	clickButton(button);
       }
       else {
-	updateFormErrors(data.erors);
+	updateFormErrors(data.errors);
 	form.reset();
       }
   })
@@ -65,9 +63,9 @@ function updateFormErrors(errors) {
 
       // Display each error message for the field
       errorMessages.forEach(errorMessage => {
-        const errorDiv = document.createElement('div');
-        errorDiv.textContent = `${field}: ${errorMessage}`;
-        validationErrors.appendChild(errorDiv);
+	const errorDiv = document.createElement('div');
+	errorDiv.textContent = `${field}: ${errorMessage}`;
+	validationErrors.appendChild(errorDiv);
       });
     }
   }

@@ -40,7 +40,7 @@ def sign_in(request):
         return response
 
     form = SignInForm()
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'registration/SignIn.html', {'form': form})
 
 
 def user_logout(request):

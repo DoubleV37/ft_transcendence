@@ -7,7 +7,7 @@
 	{% if form.errors %}
 		{{ form.errors }}
 	{% endif %}
-	<form method="post">
+	<form method="post" action="/auth/signup/">
 		{{ form.as_p }}
 		{% csrf_token %}
 		<button type="submit" >S’inscrire</button>

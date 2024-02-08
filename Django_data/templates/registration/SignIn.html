@@ -1,11 +1,12 @@
 {% load static %}
+
 {% include "head.html" %}
 {% include "header.html" %}
 
 <div id="content">
   <h1>Log In</h1>
 
-  <form id="signin" onsubmit="return validateAndSubmit(event)">
+  <form id="signinForm" action="">
     {% csrf_token %}
     {{ form.as_p }}
 
@@ -13,10 +14,12 @@
     <div id="validationErrors" style="color: red;"></div>
 
     <!-- Submit button triggers client-side validation -->
-    <button id="submit" type="submit" data-section="/">Sign In</button>
+    <button id="signin" type="button" data-section="/" onclick="validAndSubmit()">Sign In</button>
   </form>
 
-  <button id="signup" data-section="auth/signup" onclick="clickButton(this)">Sign Up</button>
+  <button id="signup" data-section="auth/signup" onclick="clickButton(this)">
+    Sign Up
+  </button>
 </div>
 
 {% include "footer.html" %}
