@@ -55,30 +55,34 @@
 //     }
 // }
 
-document.getElementById('signup_form').onclick = () => {
-	signupFormSubmitHandler();
-}
-
 function signupFormSubmitHandler() {
     let form = document.getElementById('signup_form');
     let formData = new FormData(form);
 
     try {
-        const response = fetch('/auth/signup/', {
+        fetch('/auth/signup/', {
             method: 'POST',
-            body: formData
-        });
-        const data = response.json();
-
-        if (data["status"] === 'success') {
-            console.log("SUCCESS");
-            // Uncomment the following lines if you want to redirect after successful submission
-            showSection('/');
-            // history.pushState({section: '/'}, '');
-        } else {
-            throw new Error('Error submitting form');
-        }
-    } catch (error) {
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': getCookie('csrftoken'),
+			},
+            body: JSON.stringify(formData)
+        })
+		.then(response => response.json())
+        .then(data => {
+			if (data.status === 'success') {
+				console.log("SUCCESS");
+				// Uncomment the following lines if you want to redirect after successful submission
+				showSection('/');
+				// history.pushState({section: '/'}, '');
+			} else {
+				form.reset();
+				alert('Error submitting form' + data.errors + ' ' + data.status);
+			}
+		}
+		)
+	}
+    catch (error) {
         alert('Erreur lors de l’envoi du formulaire');
         showSection('/');
     }
