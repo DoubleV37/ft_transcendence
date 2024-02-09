@@ -23,7 +23,7 @@ def signup(request):
     return render(request, 'cygne_up.html', context)
 
 
-def sign_in(request):
+def signin(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         form = SignInForm(data)
@@ -48,6 +48,10 @@ def sign_in(request):
     return render(request, 'registration/SignIn.html', {'form': form})
 
 
-def user_logout(request):
-    logout(request)
-    return redirect(settings.LOGIN_REDIRECT_URL)
+def signout(request):
+    if request.method == 'POST':
+        print(request.body)
+        print(request.POST)
+        print(request.META)
+        logout(request)
+    return JsonResponse({'success': True})

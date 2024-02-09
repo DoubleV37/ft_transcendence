@@ -8,10 +8,7 @@
 	  <h1>Home</h1>
 	  {% if user.is_authenticated %}
 	    Hi {{ user.username }}!
-	      <form action="{% url 'logout' %}" method="post">
-	       {% csrf_token %}
-	       <button type="submit">Log Out</button>
-	      </form>
+	    <button id="SignOut" data-section="/" onclick="SignOut()">Sign Out</button>
 	  {% else %}
 	    <p>You are not logged in</p>
 	    <button data-section="auth/signin" onclick="clickButton(this)">Sign In</button>
@@ -19,7 +16,9 @@
 	</div>	
   </body>
 
-<script src={% static "js/SignInScript.js" %}></script>
+<script src={% static "js/Tools/Tools.js" %}></script>
+<script src={% static "js/authUser/SignIn.js" %}></script>
+<script src={% static "js/authUser/SignOut.js" %}></script>
 
 {% include "footer.html" %}
 </html>

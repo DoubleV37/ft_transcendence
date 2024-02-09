@@ -2,11 +2,7 @@
 <header>
     <h1>Hello</h1>
 	<nav>
-	{% if user.is_authenticated %}
-		<a href="{% url 'logout' %}">logout</a>
-	{% else %}
-    	<button data-section="auth/signin" onclick="clickButton(this)">signin</button>
-	{% endif %}
+    <button data-section="auth/signin" onclick="clickButton(this)">signin</button>
     <button data-section="/" onclick="clickButton(this)">LOGO</button>
 	</nav>
 </header>
