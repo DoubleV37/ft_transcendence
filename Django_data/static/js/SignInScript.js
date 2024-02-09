@@ -3,6 +3,8 @@ function validAndSubmit() {
   let username = document.getElementById('id_username').value;
   let password = document.getElementById('id_password').value;
 
+  console.log("username : " + username);
+  console.log("password : " + password);
   let validationErrors = [];
 
   if (!username.trim()) {
@@ -16,22 +18,27 @@ function validAndSubmit() {
   validationErrorsDiv.innerHTML = validationErrors.join('<br>');
 
   if (validationErrors.length === 0) {
-    const form = document.getElementById('signinForm');
-    let formData = new FormData(form);
-    makeBackendRequest(formData, form);
+    let form = document.getElementById('signinForm');
+    makeBackendRequest(form);
   }
-  return false;
 }
 
-function makeBackendRequest(formData, form) {
+function makeBackendRequest(myForm) {
 // Make a POST request to the backend to validate the login credentials
+  let formData = new FormData(myForm);
+  let formDataJSON = {};
+
+  formData.forEach(function(value, key) {
+    formDataJSON[key] = value;
+  });
+
   fetch('/auth/signin/', {
       method: 'POST',
       headers: {
 	  'Content-Type': 'application/json',
 	  'X-CSRFToken': getCookie('csrftoken'),  // Include CSRF token
       },
-      body: formData,
+      body: JSON.stringify(formDataJSON),
   })
   .then(response => response.json())
   .then(data => {
@@ -42,7 +49,7 @@ function makeBackendRequest(formData, form) {
       }
       else {
 	updateFormErrors(data.errors);
-	form.reset();
+	myForm.reset();
       }
   })
   .catch(error => {

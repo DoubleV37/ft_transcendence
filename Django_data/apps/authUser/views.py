@@ -1,3 +1,4 @@
+import json
 import logging
 from django.shortcuts import render, redirect
 from django.conf import settings
@@ -24,7 +25,8 @@ def signup(request):
 
 def sign_in(request):
     if request.method == 'POST':
-        form = SignInForm(request.POST)
+        data = json.loads(request.body)
+        form = SignInForm(data)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -40,9 +42,6 @@ def sign_in(request):
         else:
             response = JsonResponse({'success': False,
                                      'errors': 'Invalid form'})
-        username = form.cleaned_data.get('username', '')
-        password = form.cleaned_data.get('password', '')
-        logger.debug(f"Form submitted - Username: {username}, password: {password}")
         return response
 
     form = SignInForm()
