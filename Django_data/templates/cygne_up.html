@@ -4,7 +4,7 @@
 <div id="content">
 	<h2>Inscription</h2>
 	<p>Remplissez le formulaire ci-dessous pour vous inscrire.</p>
-	<form id="signup_form" method="post" action="/auth/signup/">
+	<form id="form_signup" method="post" action="/auth/signup/">
 		{% csrf_token %}
 		<ul>
 			{{form.username.errors}}
@@ -13,7 +13,7 @@
 			{{form.password1.label_tag}} {{form.password1}}
 			{{form.password2.label_tag}} {{form.password2}}
 		</ul>
-		<button type="submit" id="sub_register" onclick="signupFormSubmitHandler()">S’inscrire</button>
+		<button type="submit" id="btn_signup">S’inscrire</button>
 	</form>
 </div>
 {% include "footer.html" %}

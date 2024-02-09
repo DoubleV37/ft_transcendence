@@ -14,9 +14,7 @@ function showSection(section) {
 }
 
 function clickButton(button) {
-	console.log(button)
 	showSection(button.dataset.section)
-	console.log(button.dataset.section)
 	history.pushState({section: button.dataset.section}, '')
 }
 
@@ -28,15 +26,42 @@ window.onpopstate = function(event) {
 	showSection(event.state.section)
 }
 
-
-
-function callback(mutationsList, observer) {
+function callback(mutationsList) {
     for(let mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            console.log('A child node has been added or removed.');
-        }
-        else if (mutation.type === 'attributes') {
-            console.log('The ' + mutation.attributeName + ' attribute was modified.');
+        if(mutation.addedNodes.length) {
+            const element = document.getElementById('form_signup');
+            if (element) {
+				console.log('Event triggered');
+				let form = document.getElementById('form_signup');
+				form.addEventListener('submit', async event => {
+					signupFormSubmitHandler()
+				}
+
+				// let form = document.getElementById('form_signup');
+				// form.addEventListener('submit', async event => {
+				// 	event.preventDefault();
+				// 	let formData = new FormData(form);
+				// 	try {
+				// 		const response = await fetch('/auth/signup/', {
+				// 			method: 'POST',
+				// 			body: formData
+				// 		});
+				// 		const data = await response.json();
+
+				// 		if (data["status"] === 'success') {
+				// 			console.log("SUCCESS");
+				// 			showSection('/');
+				// 			history.pushState({section: '/'}, '');
+				// 		} else {
+				// 			throw new Error('Error submitting form');
+				// 		}
+				// 	} catch (error) {
+				// 		alert('Erreur lors de l’envoi du formulaire');
+				// 		showSection('/');
+				// 	}
+				// });
+                // Disconnect the observer once the element has been found
+            }
         }
     }
 }
@@ -51,7 +76,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	const observer = new MutationObserver(callback);
 
 	// Specify the configuration to observe
-	const config = { childList: true, attributes: true, subtree: true };
+	const config = { childList: true, subtree: true };
 
 	// Start observing the target node for configured mutations
 	observer.observe(targetNode, config);
