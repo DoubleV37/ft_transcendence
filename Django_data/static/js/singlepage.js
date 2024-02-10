@@ -31,36 +31,11 @@ function callback(mutationsList) {
         if(mutation.addedNodes.length) {
             const element = document.getElementById('form_signup');
             if (element) {
-				console.log('Event triggered');
 				let form = document.getElementById('form_signup');
 				form.addEventListener('submit', async event => {
+					event.preventDefault();
 					signupFormSubmitHandler()
-				}
-
-				// let form = document.getElementById('form_signup');
-				// form.addEventListener('submit', async event => {
-				// 	event.preventDefault();
-				// 	let formData = new FormData(form);
-				// 	try {
-				// 		const response = await fetch('/auth/signup/', {
-				// 			method: 'POST',
-				// 			body: formData
-				// 		});
-				// 		const data = await response.json();
-
-				// 		if (data["status"] === 'success') {
-				// 			console.log("SUCCESS");
-				// 			showSection('/');
-				// 			history.pushState({section: '/'}, '');
-				// 		} else {
-				// 			throw new Error('Error submitting form');
-				// 		}
-				// 	} catch (error) {
-				// 		alert('Erreur lors de l’envoi du formulaire');
-				// 		showSection('/');
-				// 	}
-				// });
-                // Disconnect the observer once the element has been found
+				});
             }
         }
     }
