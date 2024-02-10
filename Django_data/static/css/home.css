@@ -1,0 +1,94 @@
+body {
+	background: url('../images/background.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#content {
+	display: flex;
+	width: 46.875rem;
+	height: 43.125rem;
+	padding: 3.125rem 6.25rem;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 3.4375rem;
+	flex-shrink: 0;
+	margin-top: 1em;
+	margin-bottom: 1em;
+
+	border-radius: 1.5625rem;
+	border: 2px solid #5DC6E8;
+	background: #1C2026;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
+}
+
+.pong {
+	flex: 1 0 0;
+	align-self: stretch;
+
+	border: 1px solid #FFF;
+	background: url('../images/pong.webp');
+	background-size: cover;
+}
+
+.welcome-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1.1875rem;
+	align-self: stretch;
+}
+
+.welcome-to-pong {
+	align-self: stretch;
+
+	color: #FFF;
+	text-align: center;
+
+	/* Title Desktop */
+	font-family: Montserrat;
+	font-size: 2.5rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.please-log-in {
+	align-self: stretch;
+
+	color: #FFF;
+	text-align: center;
+
+	/* Body Tablet */
+	font-family: Montserrat;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+footer {
+	display: flex;
+	width: 100%;
+	height: 3.4375rem;
+	justify-content: flex-end;
+	align-items: center;
+	flex-shrink: 0;
+	margin-bottom: -3.4375rem;
+
+	background: #0F0F10;
+}
+
+header {
+	width: 100%;
+	height: 5.625rem;
+	flex-shrink: 0;
+
+	background: #151821;
+}
