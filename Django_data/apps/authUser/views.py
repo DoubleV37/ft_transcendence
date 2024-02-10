@@ -12,15 +12,14 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect(settings.LOGIN_REDIRECT_URL)
+            form.save()
+            # user = form.save()
+            # login(request, user)
+            return JsonResponse({'status': 'success'})
+        return JsonResponse({'status': 'error', 'message': form.errors})
     else:
         form = CustomUserCreationForm()
-    context = {
-        'form': form
-    }
-    return render(request, 'cygne_up.html', context)
+    return render(request, 'cygne_up.html', {'form': form})
 
 
 def sign_in(request):
