@@ -41,7 +41,7 @@ function callback(mutationsList) {
     }
 }
 
-window.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
 	const targetNode = document.querySelector('#content');
 	if (!targetNode) {
         console.error('Target node not found');

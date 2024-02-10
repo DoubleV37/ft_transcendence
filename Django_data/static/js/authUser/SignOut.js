@@ -1,5 +1,5 @@
-function  SignOut() {
-  let myData = {
+async function  SignOut() {
+  const myData = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -7,6 +7,18 @@ function  SignOut() {
     },
   };
 
-  Tools_RequestBackEnd('/auth/signout/', myData);
-  clickButton(document.getElementById('SignOut'));
+  try {
+    let response = await Tools_RequestBackEnd('/auth/signout/', myData);
+    let data = await response.json();
+
+    if (data.success == true) {
+      showSection('/');
+    }
+    else {
+      alert('Can\'t Sign Out right now');
+    }
+  }
+  catch (err) {
+    console.error('Error:', errors);
+  }
 }

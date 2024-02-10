@@ -1,9 +1,5 @@
 async function  Tools_RequestBackEnd(myUrl, myData) {
-  return fetch(myUrl, myData)
-    .then(response => response.json())
-    .catch(error => {
-      console.error('Error:', error);
-    });
+  return fetch(myUrl, myData);
 }
 
 function Tools_GetCookie(name) {
