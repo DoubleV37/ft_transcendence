@@ -1,6 +1,6 @@
 FROM alpine:3.18
 
-RUN apk update && apk upgrade && apk add python3 py3-pip tzdata libpq
+RUN apk update && apk upgrade && apk add python3 py3-pip tzdata libpq postgresql14-client
 
 COPY --chmod=777 requirements.txt /requirements.txt
 
