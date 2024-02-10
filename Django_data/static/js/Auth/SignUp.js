@@ -17,6 +17,7 @@ async function signupFormSubmitHandler() {
             throw new Error('Error submitting form');
         }
     } catch (error) {
+	console.error('Error:', error);
         alert('Erreur lors de l’envoi du formulaire');
         showSection('/');
     }

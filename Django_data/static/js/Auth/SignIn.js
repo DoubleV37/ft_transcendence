@@ -46,23 +46,23 @@ function SignIn_JsonForm(myForm) {
 function SignIn_EmptyFields() {
   let username = document.getElementById('id_username').value;
   let password = document.getElementById('id_password').value;
-  let validationErrorsDiv = document.getElementById('validationErrors');
+  let SignInErrorsDiv = document.getElementById('SignInErrors');
 
-  let validationErrors = [];
+  let Errors = [];
   let flag = false;
 
   if (!username.trim()) {
-    validationErrors.push('Username cannot be empty.');
+    Errors.push('Username cannot be empty.');
     flag = true;
   }
   if (!password.trim()) {
-    validationErrors.push('Password cannot be empty.');
+    Errors.push('Password cannot be empty.');
     flag = true;
   }
-  validationErrorsDiv.innerHTML = validationErrors.join('<br>');
+  SignInErrorsDiv.innerHTML = Errors.join('<br>');
   return flag;
 }
 
 function SignIn_UpdateErrors(errors) {
-  validationErrors.innerHTML = `Error: ${errors}`;
+  SignInErrors.innerHTML = `Error: ${errors}`;
 }

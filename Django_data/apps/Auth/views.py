@@ -19,7 +19,7 @@ def signup(request):
         return JsonResponse({'status': 'error', 'message': form.errors})
     else:
         form = CustomUserCreationForm()
-    return render(request, 'cygne_up.html', {'form': form})
+    return render(request, 'Auth/SignUp.html', {'form': form})
 
 
 def signin(request):
@@ -44,13 +44,10 @@ def signin(request):
         return response
 
     form = SignInForm()
-    return render(request, 'registration/SignIn.html', {'form': form})
+    return render(request, 'Auth/SignIn.html', {'form': form})
 
 
 def signout(request):
     if request.method == 'POST':
-        print(request.body)
-        print(request.POST)
-        print(request.META)
         logout(request)
     return JsonResponse({'success': True})

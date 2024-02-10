@@ -1,8 +1,9 @@
 {% load static %}
 <!doctype html>
 <html lang="en-US">
-{% include "head.html" %}
-{% include "header.html" %}
+{% include "Home/head.html" %}
+
+{% include "Home/header.html" %}
   <body>
 	<div id="content">
 	  <h1>Home</h1>
@@ -16,9 +17,5 @@
 	</div>	
   </body>
 
-<script src={% static "js/Tools/Tools.js" %}></script>
-<script src={% static "js/authUser/SignIn.js" %}></script>
-<script src={% static "js/authUser/SignOut.js" %}></script>
-
-{% include "footer.html" %}
+{% include "Home/footer.html" %}
 </html>

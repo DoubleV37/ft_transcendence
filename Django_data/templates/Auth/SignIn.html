@@ -1,7 +1,7 @@
 {% load static %}
 
-{% include "head.html" %}
-{% include "header.html" %}
+{% include "Home/head.html" %}
+{% include "Home/header.html" %}
 
 <div id="content">
   <h1>Log In</h1>
@@ -11,7 +11,7 @@
     {{ form.as_p }}
 
     <!-- Display area for client-side validation errors -->
-    <div id="validationErrors" style="color: red;"></div>
+    <div id="SignInErrors" style="color: red;"></div>
 
     <!-- Submit button triggers client-side validation -->
     <button id="signin" type="button" data-section="/" onclick="SignIn()">Sign In</button>
@@ -22,4 +22,4 @@
   </button>
 </div>
 
-{% include "footer.html" %}
+{% include "Home/footer.html" %}
