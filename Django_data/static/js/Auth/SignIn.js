@@ -11,7 +11,7 @@ async function SignIn() {
     let data = await response.json();
 
     if (data.success == true) {
-      showSection('/');
+      showSection('/',);
       history.pushState({section: '/'}, '');
     }
     else {
