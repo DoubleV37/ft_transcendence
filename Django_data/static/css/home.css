@@ -1,25 +1,37 @@
 body {
-	background: url('../images/background.png');
-	background-size: cover;
-	background-repeat: no-repeat;
-
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	min-height: 100vh;
+}
+
+#mid {
+	display: flex;
+	flex-direction: column;
+	background: url('../images/background.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	align-self: stretch;
+	align-items: center;
+	justify-content: center;
+
+	flex-grow: 2;
 }
 
 #content {
 	display: flex;
-	width: 46.875rem;
-	height: 43.125rem;
-	padding: 3.125rem 6.25rem;
+	width: 46.875em;
+	height: 43.125em;
+	padding: 3.125em 6.25em;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 3.4375rem;
+	gap: 3.4375em;
 	flex-shrink: 0;
 	margin-top: 1em;
 	margin-bottom: 1em;
+	color:#FFF;
 
 	border-radius: 1.5625rem;
 	border: 2px solid #5DC6E8;
@@ -71,6 +83,11 @@ body {
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+}
+
+.les-keep {
+	color:#FFF;
+	padding-right: 1.25em;
 }
 
 footer {
