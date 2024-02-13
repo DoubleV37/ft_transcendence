@@ -6,12 +6,15 @@
 	{% include "header.html" %}
 	<div id="mid">
 		<div id="content">
+			<div class="pong">
+				<img id="pong_img" src="{% static 'images/pong.webp' %}" alt="Pong">
+			</div>
 			<div class="welcome-text">
 				<span class="welcome-to-pong">Welcome to Pong !</span>
-				<span class="please-log-in">Please log in to continue</span>
+				<span class="please-log-in">Please <b>log in</b> to continue</span>
 			</div>
-			<div class="pong"></div>
 			<button class="play-button"><span class="play">Play</span></button>
+
 		</div>
 	</div>
 	{% include "footer.html" %}
