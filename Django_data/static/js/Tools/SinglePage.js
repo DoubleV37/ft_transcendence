@@ -1,9 +1,9 @@
 async function showSection(section) {
   try {
-    const response = await fetch(`${section}`);
+    const response = await fetch(section);
 
     if (!response.ok) {
-      throw new Error('Network response failed');
+      throw new Error('Network response failed with status code:' + response.status);
     }
     const text = await response.text();
 
@@ -25,7 +25,7 @@ function clickButton(button) {
 
 window.addEventListener('popstate', function(event) {
   if (event.state == null) {
-    showSection('');
+    showSection('/');
   }
   else {
     showSection(event.state.section);
@@ -33,9 +33,10 @@ window.addEventListener('popstate', function(event) {
 });
 
 function loadPage(url) {
-  if (url === currentUrl) {
+  if (typeof(url) != 'string' || !url || url === currentUrl) {
     return ;
   }
-  history.pushstate({}, '', url);
+  currentUrl = url;
+  history.pushState({section: url}, '', url);
   showSection(url);
 }

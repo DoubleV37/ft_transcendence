@@ -6,13 +6,14 @@
 {% include "Home/header.html" %}
   <body>
 	<div id="content">
+	  <div id="titleContent" data-content="home"></div>
 	  <h1>Home</h1>
 	  {% if user.is_authenticated %}
 	    Hi {{ user.username }}!
 	    <button id="SignOut" data-section="/" onclick="SignOut()">Sign Out</button>
 	  {% else %}
 	    <p>You are not logged in</p>
-	    <button data-section="auth/signin" onclick="clickButton(this)">Sign In</button>
+	    <button data-section="auth/signin" onclick="loadPage('/auth/signin')">Sign In</button>
 	  {% endif %}
 	</div>	
   </body>
