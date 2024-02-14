@@ -1,20 +1,19 @@
-initializeMainPage();
+document.addEventListener('DOMContentLoaded', () => {
+  const targetNode = document.querySelector('#content');
 
-function initializeMainPage() {
-  document.addEventListener('DOMContentLoaded', () => {
-    const targetNode = document.querySelector('#content');
+  if (!targetNode) {
+    console.error('InitMainPage Error: TargetNode not found');
+    return;
+  }
+  
+  createObserver(mainCallback);
 
-    if (!targetNode) {
-      console.error('InitMainPage Error: TargetNode not found');
-      return;
-    }
-    
-    const config = { childList: true, subtree: true };
-    
-    createObserver(mainCallback);
-    startObserver(targetNode, config);
-  });
-}
+  const config = { childList: true, subtree: true };
+
+  startObserver(targetNode, config);
+});
+
+loadPage(window.location.href);
 
 
 function mainCallback(mutationsList) {

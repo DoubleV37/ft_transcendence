@@ -23,10 +23,19 @@ function clickButton(button) {
 	history.pushState({section: button.dataset.section}, '');
 }
 
-window.onpopstate = function(event) {
-	if (event.state == null) {
-		showSection('')
-		return
-	}
-	showSection(event.state.section)
+window.addEventListener('popstate', function(event) {
+  if (event.state == null) {
+    showSection('');
+  }
+  else {
+    showSection(event.state.section);
+  }
+});
+
+function loadPage(url) {
+  if (url === currentUrl) {
+    return ;
+  }
+  history.pushstate({}, '', url);
+  showSection(url);
 }
