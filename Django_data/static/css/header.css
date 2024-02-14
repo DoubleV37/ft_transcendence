@@ -20,6 +20,8 @@ nav {
 .container-fluid {
 	display: flex;
 	align-items: center;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 /* MENU BURGER */
@@ -27,6 +29,7 @@ nav {
 .navbar-toggler {
 	border: none;
 	scale: 135%;
+	padding: 0;
 }
 
 .navbar-toggler-icon {
@@ -52,7 +55,7 @@ nav {
 	padding: 0.625rem;
 	justify-content: center;
 	align-items: center;
-
+	border: none;
 	border-radius: 0.625rem;
 	background: #525793;
 

@@ -4,22 +4,31 @@
 {% include "header.html" %}
 
 <div id="content">
-  <h1>Log In</h1>
-
+  
   <form id="signinForm" action="">
+    <h1 id="login_title">Login Informations</h1>
     {% csrf_token %}
     {{ form.as_p }}
-
+    <div id ="forgot_password">
+      <p>Forgot password?</p>
+    </div>
     <!-- Display area for client-side validation errors -->
     <div id="validationErrors" style="color: red;"></div>
 
     <!-- Submit button triggers client-side validation -->
     <button id="signin" type="button" data-section="/" onclick="validAndSubmit()">Sign In</button>
+    <div id ="or_login_with">
+      <div id="leftline"></div>
+      <p id="text">Or login with</p>
+      <div id="rightline"></div>
+    </div>
+    <button id="ft_auth" data-section="auth/signup" onclick="clickButton(this)">
+      42 account
+    </button>
+    <div id ="signincta">
+      <p>Doesn’t have a Pooong! account ? <b>Create an account</b></p>
+    </div>
   </form>
-
-  <button id="signup" data-section="auth/signup" onclick="clickButton(this)">
-    Sign Up
-  </button>
 </div>
 
 {% include "footer.html" %}
