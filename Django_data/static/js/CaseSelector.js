@@ -1,10 +1,11 @@
 function  caseSelector(content) {
   switch (content) {
-    case 'home':
+    case 'HOME_PAGE':
+      CreateEventListeners(events_Objects[content]);
       console.log('lauch home');
       break;
-    case 'signin':
-      CreateEventListeners(signin_Object);
+    case 'SIGN_IN':
+      CreateEventListeners(events_Objects[content]);
       console.log('lauch signin');
       break;
     case 'signup':

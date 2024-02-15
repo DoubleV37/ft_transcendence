@@ -11,45 +11,57 @@ function Tools_GetCookie(name) {
   }
 }
 
-function addEventListenerById(elementId, eventType, callBackObj) {
+function CreateEventListeners(eventObj) {
+  try {
+    console.log(eventObj);
+    for (let element in eventObj) {
+      addEventListenerById( eventObj[element].Id,
+			    eventObj[element].eventType);
+    }
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
+
+function addEventListenerById(elementId, eventType) {
   const element = document.getElementById(elementId);
-  console.log('aled obj: ' + callBackObj);
-  console.log('aled obj nbrparam: ' + callBackObj.nbrParams);
   
   if (element) {
-    const myfunc = callBackObj.callBack;
-
-    console.log('function = ' + myfunc);
-    switch (callBackObj.nbrParams) {
-      case 0:
-	element.addEventListener(eventType, myfunc());
-	break;
-      case 1:
-	element.addEventListener( eventType,
-				  myfunc(callBackObj.param1));
-	break;
-      default:
-	break;
-     }
+    element.addEventListener(eventType, callBackEvent);
   }
   else {
     throw new Error(`addEventListenerById: Element with ID ${elementId} not found.`);
   }
 }
 
-function CreateEventListeners(param) {
-  try {
-    for (let Event in param) {
-      console.log('Iteration:' + param[Event]);
-      addEventListenerById( param[Event].elementId,
-			    param[Event].eventType,
-			    param[Event].callBackObj);
-      //console.log('Element ID = ' + param[Event].elementId);
-      //console.log('Event Type = ' + param[Event].eventType);
-      //console.log(param[Event].callBack);
-    }
-  }
-  catch (error) {
-    console.error(error);
-  }
+function callBackEvent(event) {
+  event.preventDefault();
+
+  let element = document.getElementById('titleContent');
+  const	titleID = element.getAttribute('data-content');
+
+  element = event.target;
+  const	elementID = element.getAttribute('id');
+  console.log('titleID = ' + titleID);
+  console.log('elementID = ' + elementID);
+
+  const	eventObj = events_Objects[titleID][elementID];
+
+  launchProperCallback(eventObj, event);
+}
+
+function  launchProperCallback(eventObj) {
+  const	properCallBack = eventObj.myFunc;
+
+  switch (eventObj.nbrParam) {
+    case 0:
+      properCallBack();
+      break ;
+    case 1:
+      properCallBack(eventObj.param1);
+      break ;
+    default:
+      console.error('Event handler error on : ' + eventObj.Id);
+  };
 }

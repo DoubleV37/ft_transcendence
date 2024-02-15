@@ -4,23 +4,36 @@ const ROUTE = {
   "SIGNIN":"/auth/signin"
 };
 
-const signin_Object =
+const events_Objects =
   {
-    "event1": {
-      "elementId": "signinForm",
-      "eventType": "submit",
-      "callBackObj": {
-	"nbrParams": 0,
-	"callBack":SignIn
+    "HOME_PAGE": {
+//      "SignOut": {
+//	"Id":"SignOut",
+//	"eventType": "click",
+//	"myFunc": SignOut,
+//	"nbrParam": 0
+ //     },
+      "SignIn": {
+	"Id":"SignIn",
+	"eventType": "click",
+	"myFunc": loadPage,
+	"nbrParam": 1,
+	"param1": `${ROUTE.SIGNIN}`
       }
     },
-    "event2": {
-      "elementId": "signup",
-      "eventType": "click",
-      "callBackObj": {
-	"nbrParams": 1,
-	"callBack": loadPage,
-	"param1": `${ROUTE.HOME}`
+    "SIGN_IN": {
+      "signinForm": {
+	"Id": "signinForm",
+	"eventType": "submit",
+	"myFunc": SignIn,
+	"nbrParam": 0
+	},
+      "signup": {
+	"Id": "signup",
+	"eventType": "click",
+	"myFunc": loadPage,
+	"nbrParam": 1,
+	"param1": `${ROUTE.SIGNUP}`
       }
     }
-  };
+  }
