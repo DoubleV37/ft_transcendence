@@ -1,5 +1,5 @@
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 960px) {
+@media only screen and (min-width : 850px) {
     /* Styles */
 
     #login_title {
@@ -161,8 +161,8 @@
     }
 }
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 480px) and (max-device-width : 960px) {
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 580px) and (max-device-width : 850px) {
     /* Styles */
     
     #login_title {
@@ -322,4 +322,10 @@
         flex:  1; /* Occupation de l'espace disponible */
         border-top:  1px solid rgb(255,  255,  255); /* Ligne horizontale en haut */
     }
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 580px) {
+    /* Styles */	
+
 }

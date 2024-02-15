@@ -8,7 +8,7 @@ scrollbar-width: none;
 }
 
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 810px) {
+@media only screen and (min-width : 850px) {
     /* Styles */
 
 	body {
@@ -159,7 +159,7 @@ scrollbar-width: none;
 	#content {
 		display: flex;
 		width: 35em;
-		height: 43em;
+		height: 41em;
 		padding: 3.125em 5.25em;
 		flex-direction: column;
 		justify-content: center;
@@ -251,8 +251,6 @@ scrollbar-width: none;
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 580px) {
-    /* Styles */
-
-	
+    /* Styles */	
 
 }
