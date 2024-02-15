@@ -9,12 +9,11 @@
     <h1 id="login_title">Login Informations</h1>
     {% csrf_token %}
     {{ form.as_p }}
+    <!-- Display area for client-side validation errors -->
+    <div id="validationErrors" style="color: red;"></div>
     <div id ="forgot_password">
       <p>Forgot password?</p>
     </div>
-    <!-- Display area for client-side validation errors -->
-    <div id="validationErrors" style="color: red;"></div>
-
     <!-- Submit button triggers client-side validation -->
     <button id="signin" type="button" data-section="/" onclick="validAndSubmit()">Sign In</button>
     <div id ="or_login_with">

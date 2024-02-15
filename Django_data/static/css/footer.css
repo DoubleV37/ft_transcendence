@@ -4,7 +4,7 @@ footer {
 	height: 3.4375rem;
 	justify-content: flex-end;
 	align-items: center;
-	flex-shrink: 0;
+	/* flex-shrink: 0; */
 	margin-bottom: -3.4375rem;
 
 	background: #0F0F10;

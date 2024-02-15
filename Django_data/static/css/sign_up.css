@@ -1,93 +1,198 @@
-p {
-    margin-top: 0;
-    margin-bottom: 0;
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 960px) {
+    /* Styles */
+
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #signupForm {
+        display: flex;
+        width: 28rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        flex-shrink: 0;
+    }
+
+    #signupTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: stretch;
+    }
+
+    #signupForm > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.625rem;
+        align-self: stretch;
+    }
+
+    #signupForm p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #signupForm p input {
+        height: 3.125rem;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #btn_signup {
+        display: flex;
+        height: 3.125rem;
+        margin-top: 1.625rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #525695;
+        border: none;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #signupcta {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+    }
+
+    .helptext {
+        display: none;
+    }
+
 }
 
-#signupForm {
-    display: flex;
-    width: 28.27581rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-    flex-shrink: 0;
-}
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 480px) and (max-device-width : 960px) {
+    /* Styles */
 
-#signupTitle {
-    color: #FFF;
-    font-family: Kodchasan;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    align-self: stretch;
-}
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 
-#signupForm > p {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.625rem;
-    align-self: stretch;
-}
+    #signupForm {
+        display: flex;
+        width: 26rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        flex-shrink: 0;
+    }
 
-#signupForm p label {
-    color: #FFF;
-    /* Body text */
-    font-family: Kodchasan;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
+    #signupTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: stretch;
+    }
 
-#signupForm p input {
-    height: 3.125rem;
-    align-self: stretch;
-    border-radius: 0.625rem;
-    background: #D9D9D9;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
-    font-family: Kodchasan;
-    font-size: 1rem;
-    border: none;
-}
+    #signupForm > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.625rem;
+        align-self: stretch;
+    }
 
-#btn_signup {
-    display: flex;
-    height: 3.125rem;
-    margin-top: 1.625rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.625rem;
-    flex-shrink: 0;
-    align-self: stretch;
-    border-radius: 0.625rem;
-    background: #525695;
-    border: none;
+    #signupForm p label {
+        color: #fd0000;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
 
-    /* Body CTA Desktop Text */
-    color: #FFF;
-    font-family: Kodchasan;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
+    #signupForm p input {
+        height: 3.125rem;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
 
-#signupcta {
-    color: #FFF;
-    display: flex;
-    /* Body text */
-    font-family: Kodchasan;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-align: left;
-    align-self: start;
-}
+    #btn_signup {
+        display: flex;
+        height: 3.125rem;
+        margin-top: 1.625rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #525695;
+        border: none;
 
-.helptext {
-    display: none;
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #signupcta {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+    }
+
+    .helptext {
+        display: none;
+    }
 }

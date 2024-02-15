@@ -82,15 +82,15 @@ nav {
 #logo_nav {
     display: flex;
     justify-content: center;
-    flex-shrink: 0;
+    /* flex-shrink: 0; */
     background: #15182100;
     border: none;
 }
 
 #logo_placeholder {
 	display: flex;
-	width: 85%;
-	height: 85%;
+	width: 7%;
+	height: 7%;
 	justify-content: center;
 	align-items: center;
 }
