@@ -1,18 +1,15 @@
+let currentUrl = window.location.pathname;
+let observer;
+
 const ROUTE = {
   "HOME":"/",
   "SIGNUP":"/auth/signup",
   "SIGNIN":"/auth/signin"
 };
 
-const events_Objects =
+const eventData = new EventHandler(
   {
     "HOME_PAGE": {
-//      "SignOut": {
-//	"Id":"SignOut",
-//	"eventType": "click",
-//	"myFunc": SignOut,
-//	"nbrParam": 0
- //     },
       "SignIn": {
 	"Id":"SignIn",
 	"eventType": "click",
@@ -37,3 +34,4 @@ const events_Objects =
       }
     }
   }
+);

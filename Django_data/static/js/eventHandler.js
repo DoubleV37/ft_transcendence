@@ -1,24 +1,23 @@
-async function  Tools_RequestBackEnd(myUrl, myData) {
-  return fetch(myUrl, myData);
-}
-
-function Tools_GetCookie(name) {
-  let value = "; " + document.cookie;
-  let parts = value.split("; " + name + "=");
-
-  if (parts.length === 2){
-    return parts.pop().split(";").shift();
-  }
-}
-
-function CreateEventListeners(eventObj) {
+function HandleEventListeners(eventObj, flag) {
   try {
     if (!eventObj) {
-      throw new Error('CreateEventListeners : eventObj doesn\'t exist'); //DEBUG
+      throw new Error('CreateEventListeners : function parameters error'); //DEBUG
+    }
+    let	eventFunction;
+
+    switch (flag) {
+      case 'create':
+	eventFunction = addEventListenerById;
+	break ;
+      case 'erase':
+	eventFunction = eraseEventListenerById;
+	break ;
+      default:
+	throw new Error(`HandleEventListeners : Wrong flag ${flag}`);
     }
     for (let element in eventObj) {
-      addEventListenerById( eventObj[element].Id,
-			    eventObj[element].eventType);
+      eventFunction(eventObj[element].Id,
+		    eventObj[element].eventType);
     }
   }
   catch (error) {
