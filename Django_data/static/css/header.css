@@ -100,7 +100,7 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 36.25em) and (max-device-width : 53.125em) {
+@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
     /* Styles */
 
 	header {
@@ -200,7 +200,7 @@
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 580px) {
+@media only screen and (min-width : 320px) and (max-width : 580px) {
     /* Styles */
 
 	header {

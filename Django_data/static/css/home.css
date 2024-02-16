@@ -134,7 +134,7 @@ scrollbar-width: none;
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 36.25em) and (max-device-width : 53.125em) {
+@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
     /* Styles */
 
 	body {
@@ -260,7 +260,7 @@ scrollbar-width: none;
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-device-width : 20em) and (max-device-width : 36.25em) {
+@media only screen and (min-width : 20em) and (max-width : 36.25em) {
     /* Styles */	
 	body {
 		display: flex;
