@@ -7,7 +7,7 @@ const ROUTE = {
   "SIGNIN":"/auth/signin"
 };
 
-const eventData = new EventHandler(
+const EventList =
   {
     "HOME_PAGE": {
       "SignIn": {
@@ -34,4 +34,3 @@ const eventData = new EventHandler(
       }
     }
   }
-);

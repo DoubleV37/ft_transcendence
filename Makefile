@@ -18,4 +18,8 @@ re: stop up
 
 fre: fclean up
 
+gre:
+	docker compose stop gunicorn
+	docker compose start gunicorn
+
 .PHONY: up down fclean re fre all stop

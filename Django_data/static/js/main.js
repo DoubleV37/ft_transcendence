@@ -1,6 +1,6 @@
 //----------Run at the load/reload of the website-------------//
 document.addEventListener('DOMContentLoaded', launchWebsite);
-console.log(eventHandler);
+
 
 function  launchWebsite() {
   const targetNode = document.querySelector('#content');
@@ -28,8 +28,7 @@ function  triggerFirstEvent() {
     console.log('Fuck it...');
     return ;
   }
-  const	ID = element.getAttribute('data-content');
-  //CreateEventListeners(ID);
+  launchSectionHandler(element);
 }
 //-----------------------------------------------------------//
 
@@ -39,9 +38,28 @@ function callBack(mutationsList) {
       const element = document.getElementById('titleContent');
 
       if (!element) {
-	continue ;
+	      continue ;
       }
-//      CreateEventListeners(events_Objects[element.dataset.content]);
+      
+      launchSectionHandler(element);
     }
+  }
+}
+
+launchSectionHandler(element) {
+  const elementAttribut = element.getAttribute('data-content');
+
+  switch(elementAttribut) {
+    case 'HOME_PAGE':
+      setHomePage();
+      break ;
+    case 'SIGNIN_PAGE':
+      setSingIn_PAGE();
+      break ;
+//    .
+//    .
+//    .
+    default:
+      throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
   }
 }
