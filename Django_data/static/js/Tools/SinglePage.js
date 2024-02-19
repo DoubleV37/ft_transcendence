@@ -24,9 +24,11 @@ async function changeSection(section) {
 window.addEventListener('popstate', function(event) {
   if (event.state == null) {
     changeSection('/');
+    currentUrl = '/';
   }
   else {
     changeSection(event.state.section);
+    currentUrl = event.state.section;
   }
 });
 

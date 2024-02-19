@@ -12,8 +12,8 @@ function  launchWebsite() {
 
   const config = { childList: true, subtree: true };
 
-  observer = new MutationObserver(callbackFunction);
-  startObserver(targetNode, config);
+  observer = new MutationObserver(mutationCallBack);
+  observer.observe(targetNode, config);
 
   loadPage(currentUrl);
   triggerFirstEvent();
@@ -32,7 +32,7 @@ function  triggerFirstEvent() {
 }
 //-----------------------------------------------------------//
 
-function callBack(mutationsList) {
+function mutationCallBack(mutationsList) {
   for(let mutation of mutationsList) {
     if(mutation.type === 'childList') {
       const element = document.getElementById('titleContent');
@@ -46,20 +46,25 @@ function callBack(mutationsList) {
   }
 }
 
-launchSectionHandler(element) {
+function  launchSectionHandler(element) {
   const elementAttribut = element.getAttribute('data-content');
 
-  switch(elementAttribut) {
-    case 'HOME_PAGE':
-      setHomePage();
-      break ;
-    case 'SIGNIN_PAGE':
-      setSingIn_PAGE();
-      break ;
-//    .
-//    .
-//    .
-    default:
-      throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
+  try {
+    switch(elementAttribut) {
+      case 'HOME_PAGE':
+	setHomeEvents(element);
+	break ;
+      case 'SIGNIN_PAGE':
+	setSignInEvents();
+	break ;
+  //    .
+  //    .
+  //    .
+      default:
+	throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
+    }
+  }
+  catch (err) {
+    console.error('Error: ', err);
   }
 }
