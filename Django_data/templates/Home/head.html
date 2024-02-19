@@ -5,17 +5,25 @@
 	<link rel="stylesheet" href={% static "css/singlepage.css" %}>
    
 
-	<!-- Script tools -->
+	<!-- Global variables-->
+	<script src={% static "js/GLOBAL_Variables.js" %}></script>
+
+	<!-- Scrips tools -->
 	<script src={% static "js/Tools/SinglePage.js" %}></script>
 	<script src={% static "js/Tools/Tools.js" %}></script>
 
-	<!-- Script app -->
-	<script src={% static "js/Auth/SignUp.js" %}></script>
-	<script src={% static "js/Auth/SignIn.js" %}></script>
+	<!-- Scripts Authentication -->
 	<script src={% static "js/Auth/SignOut.js" %}></script>
 
+	<script src={% static "js/Auth/SignUp/SignUp.js" %}></script>
+	<script src={% static "js/Auth/SignUp/SignUp_Events.js" %}></script>
+
+	<script src={% static "js/Auth/SignIn/SignIn.js" %}></script>
+	<script src={% static "js/Auth/SignIn/SignIn_Events.js" %}></script>
+
+	<!-- Script Home Page -->
 	<script src={% static "js/Home/Home.js" %}></script>
-	<script src={% static "js/GLOBAL_Variables.js" %}></script>
+
 	<!-- Script main structure -->
 	<script src={% static "js/main.js" %}></script>
 

@@ -4,21 +4,20 @@
 {% include "Home/header.html" %}
 
 <div id="content">
-  <div id="titleContent" data-content="SIGN_IN"></div>
+  <div id="titleContent" data-content="SIGNIN_PAGE"></div>
   <h1>Log In</h1>
 
-  <form id="signinForm" method="post" action="/auth/signin">
+  <form id="SIGNIN_Form">
     {% csrf_token %}
     {{ form.as_p }}
-
     <!-- Display area for client-side validation errors -->
-    <div id="SignInErrors" style="color: red;"></div>
+    <div id="SIGNIN_Errors" style="color: red;"></div>
 
     <!-- Submit button triggers client-side validation -->
-    <button id="signin" type="submit">Sign In</button>
+    <button type="submit">Sign In</button>
   </form>
 
-  <button id="signup">
+  <button id="SIGNIN_Signup">
     Sign Up
   </button>
 </div>

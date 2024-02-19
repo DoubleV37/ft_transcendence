@@ -40,7 +40,6 @@ function mutationCallBack(mutationsList) {
       if (!element) {
 	      continue ;
       }
-      
       launchSectionHandler(element);
     }
   }
@@ -57,6 +56,10 @@ function  launchSectionHandler(element) {
       case 'SIGNIN_PAGE':
 	setSignInEvents();
 	break ;
+      case 'SIGNUP_PAGE':
+	setSignUpEvents();
+	break ;
+
   //    .
   //    .
   //    .

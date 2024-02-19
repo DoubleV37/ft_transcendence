@@ -42,7 +42,7 @@ function  HomeCallBack(event) {
   switch (elemAttr) {
     case 'Home_signIn':
       deleteHomeEvents('connected');
-      loadPage('/auth/signin');
+      loadPage(`${ROUTE.SIGNIN}`);
       break ;
     default :
       throw new Error(`homeCallBack : element unrecognized : ${element}`);
