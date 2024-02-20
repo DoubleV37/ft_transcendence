@@ -2,34 +2,33 @@
 
 {% include "Home/head.html" %}
 {% include "Home/header.html" %}
-
-<div id="content">
-  <div id="titleContent" data-content="SIGNIN_PAGE"></div>
-  <h1>Log In</h1>
-
-  <form id="SIGNIN_Form" action="">
-    <h1 id="login_title">Login Informations</h1>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <!-- Display area for client-side validation errors -->
-    <div id="validationErrors" style="color: red;"></div>
-    <div id ="forgot_password">
-      <p>Forgot password?</p>
-    </div>
-    <!-- Submit button triggers client-side validation -->
-    <button id="signin" type="submit">Sign In</button>
-    <div id ="or_login_with">
-      <div id="leftline"></div>
-      <p id="text">Or login with</p>
-      <div id="rightline"></div>
-    </div>
-    <button id="ft_auth">
-      42 account
-    </button>
-    <div id ="signincta">
-      <p>Doesn’t have a Pooong! account ? <b>Create an account</b></p>
-    </div>
-  </form>
+<div id="mid">
+	<div id="content">
+	<div id="titleContent" data-content="SIGNIN_PAGE"></div>
+	<form id="SIGNIN_Form" action="">
+		<h1 id="login_title">Login Informations</h1>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<!-- Display area for client-side validation errors -->
+		<div id="validationErrors" style="color: red;"></div>
+		<div id ="forgot_password">
+		<p>Forgot password?</p>
+		</div>
+		<!-- Submit button triggers client-side validation -->
+		<button id="signin" type="submit">Sign In</button>
+		<div id ="or_login_with">
+		<div id="leftline"></div>
+		<p id="text">Or login with</p>
+		<div id="rightline"></div>
+		</div>
+		<button id="ft_auth">
+		42 account
+		</button>
+		<div id ="signincta">
+		<p>Doesn’t have a Pooong! account ? <b>Create an account</b></p>
+		</div>
+	</form>
+	</div>
 </div>
 
 {% include "Home/footer.html" %}
