@@ -44,7 +44,7 @@ function callback(mutationsList) {
 window.addEventListener('DOMContentLoaded', (event) => {
 	const targetNode = document.querySelector('#content');
 	if (!targetNode) {
-        // console.error('Target node not found');
+        console.error('Target node not found');
         return;
     }
 	// Create an instance of MutationObserver with the defined callback

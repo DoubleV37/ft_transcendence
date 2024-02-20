@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'apps.website',
-	'apps.authUser',
+    'apps.Home',
+    'apps.Auth',
 	'bootstrap5'
 ]
 
@@ -142,7 +142,7 @@ CSRF_TRUSTED_ORIGINS = ["https://localhost:8080"]
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
-AUTH_USER_MODEL = 'authUser.User'
+AUTH_USER_MODEL = 'Auth.User'
 
 LOGGING = {
     'version': 1,

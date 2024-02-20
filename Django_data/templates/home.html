@@ -1,21 +1,25 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-US">
 {% include "head.html" %}
-<body>
-	{% include "header.html" %}
-	<div id="mid">
-		<div id="content">
-			<div class="pong">
-				<img id="pong_img" src="{% static 'images/pong.webp' %}" alt="Pong display image">
-			</div>
-			<div class="welcome-text">
-				<h1 class="welcome-to-pong">Welcome to Pong</h1>
-				<p class="please-log-in">Please <b>log in</b> to continue</p>
-			</div>
-			<button class="play-button"><span class="play">Play</span></button>
-		</div>
+{% include "header.html" %}
+  <body>
+	<div id="content">
+	  <h1>Home</h1>
+	  {% if user.is_authenticated %}
+	    Hi {{ user.username }}!
+	      <form action="{% url 'logout' %}" method="post">
+	       {% csrf_token %}
+	       <button type="submit">Log Out</button>
+	      </form>
+	  {% else %}
+	    <p>You are not logged in</p>
+	    <button data-section="auth/signin" onclick="clickButton(this)">Sign In</button>
+	  {% endif %}
 	</div>
-	{% include "footer.html" %}
-</body>
+  </body>
+
+<script src={% static "js/SignInScript.js" %}></script>
+
+{% include "footer.html" %}
 </html>

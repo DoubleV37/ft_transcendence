@@ -1,13 +1,13 @@
 from django.views.generic import TemplateView
 
 class HomeView(TemplateView):
-    template_name = "home.html"
+    template_name = "Home/home.html"
 
 class HeaderView(TemplateView):
-	template_name = "header.html"
+	template_name = "Home/header.html"
 
 class FooterView(TemplateView):
-	template_name = "footer.html"
+	template_name = "Home/footer.html"
 
 def header(request):
 	return HeaderView.as_view()(request)
