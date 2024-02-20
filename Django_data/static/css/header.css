@@ -95,7 +95,7 @@
 
 	#logo_placeholder {
 		display: flex;
-		width: 2.7em;
+		width: 7em;
 		justify-content: center;
 		align-items: center;
 	}
@@ -197,7 +197,7 @@
 
 	#logo_placeholder {
 		display: flex;
-		width: 2.7em;
+		width: 7em;
 		justify-content: center;
 		align-items: center;
 	}
@@ -299,8 +299,7 @@
 
 	#logo_placeholder {
 		display: flex;
-		width: 2.5em;
-		height: 2.5em;
+		width: 7em;
 		justify-content: center;
 		align-items: center;
 	}
