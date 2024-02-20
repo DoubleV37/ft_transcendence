@@ -1,0 +1,25 @@
+{% load static %}
+
+{% include "Home/head.html" %}
+{% include "Home/header.html" %}
+
+<div id="content">
+  <div id="titleContent" data-content="SIGNIN_PAGE"></div>
+  <h1>Log In</h1>
+
+  <form id="SIGNIN_Form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!-- Display area for client-side validation errors -->
+    <div id="SIGNIN_Errors" style="color: red;"></div>
+
+    <!-- Submit button triggers client-side validation -->
+    <button type="submit">Sign In</button>
+  </form>
+
+  <button id="SIGNIN_Signup">
+    Sign Up
+  </button>
+</div>
+
+{% include "Home/footer.html" %}
