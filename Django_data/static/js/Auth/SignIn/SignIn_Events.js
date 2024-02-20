@@ -5,7 +5,7 @@ function  setSignInEvents() {
   element = document.querySelector("#SIGNIN_Signup p");
   element.addEventListener('click', signUpButtonCallBack);
 
-  element = document.getElementById('SIGNIN_Auth42');
+  element = document.getElementById('signintest');
   element.addEventListener('click', authBy42CallBack);
   //  .
   //  .
@@ -19,7 +19,7 @@ function  delSignInEvents() {
   element = document.querySelector("#SIGNIN_Signup p");
   element.removeEventListener('click', signUpButtonCallBack);
 
-  element = document.getElementById('SIGNIN_Auth42');
+  element = document.getElementById('signintest');
   element.removeEventListener('click', authBy42CallBack);
 
 }
