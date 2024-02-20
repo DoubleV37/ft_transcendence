@@ -18,8 +18,7 @@ re: stop up
 
 fre: fclean up
 
-gre:
-	docker compose stop gunicorn
-	docker compose start gunicorn
+site:
+	docker compose restart gunicorn
 
-.PHONY: up down fclean re fre all stop
+.PHONY: up down fclean re fre all stop site

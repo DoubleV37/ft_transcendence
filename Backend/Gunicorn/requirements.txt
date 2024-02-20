@@ -3,4 +3,4 @@ python-decouple
 psycopg2-binary
 gunicorn
 Pillow
-
+django-bootstrap-v5

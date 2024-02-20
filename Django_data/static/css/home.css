@@ -1,0 +1,370 @@
+:root::-webkit-scrollbar{
+	display: none;
+  }
+  
+:root {
+scrollbar-width: none;
+-ms-overflow-style: none;
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 53.125em) {
+    /* Styles */
+
+	body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		scrollbar-width: none;
+		position: relative;
+
+		min-height: 100vh;
+	}
+
+	#mid {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+
+		flex-grow: 2;
+	}
+
+	#content {
+		display: flex;
+		width: 46.875em;
+		height: 43.125em;
+		padding: 3.125em 6.25em;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+		margin-top: 1em;
+		margin-bottom: 1em;
+		color:#FFF;
+
+		border-radius: 25px;
+		border: 2px solid #5DC6E8;
+		background: rgba(28, 32, 38, 0.75);
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
+	}
+
+	.pong {
+		display: flex;
+		align-self: stretch;
+		border: 1px solid #FFF;
+	}
+
+	#pong_img {
+		align-self: stretch;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.welcome-text {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 1.625em;
+		padding-top: 1em;
+		align-self: stretch;
+	}
+
+	.welcome-to-pong {
+		align-self: stretch;
+
+		color: #FFF;
+		text-align: center;
+
+		font-family: Madness;
+		font-size: 6rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	.welcome-to-pong::after {
+		content: '!';
+		padding-left: 0.6rem;
+	}
+
+	.please-log-in {
+		align-self: stretch;
+
+		color: #FFF;
+		text-align: center;
+
+		font-family: Kodchasan;
+		font-size: 1.25rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	.play-button {
+		display: flex;
+		width: 28.125rem;
+		height: 4.375rem;
+		padding: 0.625rem 11.25rem;
+		justify-content: center;
+		align-items: center;
+		gap: 0.625rem;
+		flex-shrink: 0;
+		align-self: center;
+
+		border-radius: 0.625rem;
+		background: #525695;
+	}
+
+	.play {
+		color: #FFF;
+		font-family: Madness;
+		font-size: 2.5rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+}
+
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
+    /* Styles */
+
+	body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		scrollbar-width: none;
+		position: relative;
+
+		min-height: 100vh;
+	}
+
+	#mid {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+
+		flex-grow: 2;
+	}
+
+	#content {
+		display: flex;
+		width: 35em;
+		height: 41em;
+		padding: 3.125em 5.25em;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+		margin-top: 1em;
+		margin-bottom: 1em;
+		color:#FFF;
+
+		border-radius: 25px;
+		border: 2px solid #5DC6E8;
+		background: rgba(28, 32, 38, 0.75);
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
+	}
+
+	.pong {
+		display: flex;
+		align-self: stretch;
+		border: 1px solid #FFF;
+	}
+
+	#pong_img {
+		align-self: stretch;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.welcome-text {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 1.625em;
+		padding-top: 1em;
+		align-self: stretch;
+	}
+
+	.welcome-to-pong {
+		align-self: stretch;
+
+		color: #FFF;
+		text-align: center;
+
+		font-family: Madness;
+		font-size: 5rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	.welcome-to-pong::after {
+		content: '!';
+		padding-left: 0.6rem;
+	}
+
+	.please-log-in {
+		align-self: stretch;
+
+		color: #FFF;
+		text-align: center;
+
+		font-family: Kodchasan;
+		font-size: 1.25rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	.play-button {
+		display: flex;
+		width: 23rem;
+		height: 4.375rem;
+		padding: 0.625rem 11.25rem;
+		justify-content: center;
+		align-items: center;
+		gap: 0.625rem;
+		flex-shrink: 0;
+		align-self: center;
+
+		border-radius: 0.625rem;
+		background: #525695;
+	}
+
+	.play {
+		color: #FFF;
+		font-family: Madness;
+		font-size: 2.5rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-width : 20em) and (max-width : 36.25em) {
+    /* Styles */	
+	body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		scrollbar-width: none;
+		position: relative;
+
+		min-height: 100vh;
+	}
+
+	#mid {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+
+		flex-grow: 1;
+	}
+
+	#content {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		padding: 3vh 4vw;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+
+		border-top: 2px solid #5DC6E8;
+		border-bottom: 2px solid #5DC6E8;
+		background: rgba(28, 32, 38, 0.75);
+	}
+
+	#pong_img {
+		align-self: stretch;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 0.625rem;
+	}
+
+	.welcome-text {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 1em;
+		padding-top: 1em;
+		align-self: stretch;
+	}
+
+	.welcome-to-pong {
+		align-self: stretch;
+
+		color: #FFF;
+		text-align: center;
+
+		font-family: Madness;
+		font-size: 5rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	.welcome-to-pong::after {
+		content: '!';
+		padding-left: 0.6rem;
+	}
+
+	.please-log-in {
+		align-self: stretch;
+
+		color: #FFF;
+		text-align: center;
+
+		font-family: Kodchasan;
+		font-size: 1.25rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	.play-button {
+		width: 100%;
+		height: 4.375rem;
+		padding: 0.625rem;
+
+		border-radius: 0.625rem;
+		background: #525695;
+	}
+
+	.play {
+		color: #FFF;
+		font-family: Madness;
+		font-size: 2.5rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+}
