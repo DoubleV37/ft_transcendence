@@ -121,8 +121,9 @@ scrollbar-width: none;
 		flex-shrink: 0;
 		align-self: center;
 
+		border:none;
 		border-radius: 0.625rem;
-		background: #525695;
+		background: #3e4180;
 	}
 
 	.play {
@@ -249,8 +250,9 @@ scrollbar-width: none;
 		flex-shrink: 0;
 		align-self: center;
 
+		border:none;
 		border-radius: 0.625rem;
-		background: #525695;
+		background: #3e4180;
 	}
 
 	.play {
@@ -359,8 +361,9 @@ scrollbar-width: none;
 		height: 4.375rem;
 		padding: 0.625rem;
 
+		border:none;
 		border-radius: 0.625rem;
-		background: #525695;
+		background: #3e4180;
 	}
 
 	.play {
