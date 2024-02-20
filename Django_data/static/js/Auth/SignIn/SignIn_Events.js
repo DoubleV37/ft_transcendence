@@ -2,8 +2,11 @@ function  setSignInEvents() {
   let element = document.getElementById('SIGNIN_Form');
   element.addEventListener('submit', signInFormCallBack);
 
-  element = document.getElementById('SIGNIN_Signup');
+  element = document.querySelector("#SIGNIN_Signup p");
   element.addEventListener('click', signUpButtonCallBack);
+
+  element = document.getElementById('SIGNIN_Auth42');
+  element.addEventListener('click', authBy42CallBack);
   //  .
   //  .
   //  .
@@ -13,8 +16,11 @@ function  delSignInEvents() {
   let element = document.getElementById('SIGNIN_Form');
   element.removeEventListener('submit', signInFormCallBack);
 
-  element = document.getElementById('SIGNIN_Signup');
+  element = document.querySelector("#SIGNIN_Signup p");
   element.removeEventListener('click', signUpButtonCallBack);
+
+  element = document.getElementById('SIGNIN_Auth42');
+  element.removeEventListener('click', authBy42CallBack);
 
 }
 
@@ -26,6 +32,10 @@ async function signInFormCallBack(event) {
     delSignInEvents();
     loadPage(`${ROUTE.HOME}`);
   }
+}
+
+function  authBy42CallBack() {
+  console.log('authBy42CallBack: Do nothing for now');
 }
 
 function  signUpButtonCallBack() {

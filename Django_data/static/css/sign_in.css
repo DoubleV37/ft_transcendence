@@ -70,7 +70,7 @@
         line-height: normal;
     }
 
-    #ft_auth {
+    #SIGNIN_auth42 {
         display: flex;
         height: 3.125rem;
         justify-content: center;
@@ -104,9 +104,10 @@
         margin-top: -0.4rem;
     }
 
-    #signincta {
+    #SIGNIN_Signup {
         color: #FFF;
         display: flex;
+	cursor: pointer;
         /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
@@ -241,7 +242,7 @@
         line-height: normal;
     }
 
-    #ft_auth {
+    #SIGNIN_auth42 {
         display: flex;
         height: 3.125rem;
         justify-content: center;
@@ -275,9 +276,10 @@
         margin-top: -0.4rem;
     }
 
-    #signincta {
+    #SIGNIN_Signup {
         color: #FFF;
         display: flex;
+	cursor: pointer;
         /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
@@ -403,7 +405,7 @@
         line-height: normal;
     }
 
-    #ft_auth {
+    #SIGNIN_auth42 {
         display: flex;
         height: 3.125rem;
         justify-content: center;
@@ -437,7 +439,7 @@
         margin-top: -0.4rem;
     }
 
-    #signincta {
+    #SIGNIN_Signup {
         color: #FFF;
         display: flex;
         /* Body text */
