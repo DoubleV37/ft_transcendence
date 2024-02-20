@@ -70,28 +70,7 @@
         line-height: normal;
     }
 
-    #SIGNIN_auth {
-        display: flex;
-        height: 3.125rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #00BABC;
-        border: none;
-
-        /* Body CTA Desktop Text */
-        color: #FFF;
-        font-family: Kodchasan;
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    #signintest {
+    #SIGNIN_Auth42 {
         display: flex;
         height: 3.125rem;
         justify-content: center;
@@ -263,28 +242,7 @@
         line-height: normal;
     }
 
-    #SIGNIN_auth {
-        display: flex;
-        height: 3.125rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #00BABC;
-        border: none;
-
-        /* Body CTA Desktop Text */
-        color: #FFF;
-        font-family: Kodchasan;
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    #signintest {
+    #SIGNIN_Auth42 {
         display: flex;
         height: 3.125rem;
         justify-content: center;
@@ -447,28 +405,7 @@
         line-height: normal;
     }
 
-    #SIGNIN_auth {
-        display: flex;
-        height: 3.125rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #00BABC;
-        border: none;
-
-        /* Body CTA Desktop Text */
-        color: #FFF;
-        font-family: Kodchasan;
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    #signintest {
+    #SIGNIN_Auth42 {
         display: flex;
         height: 3.125rem;
         justify-content: center;
