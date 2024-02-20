@@ -6,15 +6,13 @@
 	<h2>Inscription</h2>
 	<p>Remplissez le formulaire ci-dessous pour vous inscrire.</p>
 	<form id="SIGNUP_Form" method="post" action="/auth/signup/">
+		<h1 id ="signupTitle">Sign up !</h1>
 		{% csrf_token %}
-		<ul>
-			{{form.username.errors}}
-			{{form.username.label_tag}} {{form.username}}
-			{{form.email.label_tag}} {{form.email}}
-			{{form.password1.label_tag}} {{form.password1}}
-			{{form.password2.label_tag}} {{form.password2}}
-		</ul>
-		<button type="submit">S’inscrire</button>
+		{{ form.as_p }}
+		<button id="btn_signup" type="submit">S’inscrire</button>
+		<div id ="signupcta">
+			<p>Already have an account ? <b>Log in</b></p>
+		</div>
 	</form>
 </div>
 {% include "Home/footer.html" %}
