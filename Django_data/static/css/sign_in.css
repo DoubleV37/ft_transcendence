@@ -121,7 +121,7 @@
 
     #SIGNIN_Form {
         display: flex;
-        width: 28.27581rem;
+        width: 90%;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.8rem;
@@ -346,7 +346,7 @@
 
     #SIGNIN_Form {
         display: flex;
-        width: 26rem;
+        width: 90%;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.8rem;
@@ -473,6 +473,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        color: #FFF;
     }
 
     #leftline {
