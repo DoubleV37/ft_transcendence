@@ -16,6 +16,27 @@
         line-height: normal;
         align-self: stretch;
     }
+
+    #UserInfo {
+        display: flex;
+        align-items: center; /* Centré verticalement */
+        justify-content: space-between; /* Espacement entre les enfants */
+        width:  100%; /* Largeur complète pour que les lignes s'étendent */
+    }
+
+    #UserInfoText {
+        order:  1; /* Positionnement du texte au milieu */
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
