@@ -70,7 +70,7 @@
         line-height: normal;
     }
 
-    #ft_auth {
+    #SIGNIN_Auth42 {
         display: flex;
         height: 3.125rem;
         justify-content: center;
@@ -88,13 +88,14 @@
         font-size: 1.25rem;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
+        line-height: normal; 
     }
 
     #forgot_password {
         color: #FFF;
         display: flex;
         align-self: end;
+	cursor:pointer;
         /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
@@ -104,7 +105,7 @@
         margin-top: -0.4rem;
     }
 
-    #signincta {
+    #SIGNIN_Signup {
         color: #FFF;
         display: flex;
         /* Body text */
@@ -116,6 +117,11 @@
         text-align: left;
         align-self: start;
         margin-top: 0.7rem;
+    }
+
+
+    #SIGNIN_Signup b:hover {
+      cursor:pointer;
     }
 
     #SIGNIN_Form {
@@ -241,7 +247,7 @@
         line-height: normal;
     }
 
-    #ft_auth {
+    #SIGNIN_Auth42 {
         display: flex;
         height: 3.125rem;
         justify-content: center;
@@ -259,13 +265,14 @@
         font-size: 1.25rem;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
+        line-height: normal; 
     }
 
     #forgot_password {
         color: #FFF;
         display: flex;
         align-self: end;
+	cursor:pointer;
         /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
@@ -275,9 +282,10 @@
         margin-top: -0.4rem;
     }
 
-    #signincta {
+    #SIGNIN_Signup {
         color: #FFF;
         display: flex;
+	    cursor: pointer;
         /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
@@ -289,6 +297,9 @@
         margin-top: 0.7rem;
     }
 
+    #SIGNIN_Signup b:hover {
+      cursor:pointer;
+    }
 
     #or_login_with {
         display: flex;
@@ -403,7 +414,7 @@
         line-height: normal;
     }
 
-    #ft_auth {
+    #SIGNIN_Auth42 {
         display: flex;
         height: 3.125rem;
         justify-content: center;
@@ -421,7 +432,7 @@
         font-size: 1.25rem;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
+        line-height: normal; 
     }
 
     #forgot_password {
@@ -437,7 +448,7 @@
         margin-top: -0.4rem;
     }
 
-    #signincta {
+    #SIGNIN_Signup {
         color: #FFF;
         display: flex;
         /* Body text */

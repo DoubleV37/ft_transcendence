@@ -79,7 +79,7 @@
         line-height: normal;
     }
 
-    #signupcta {
+    #SIGNUP_signin {
         color: #FFF;
         display: flex;
         /* Body text */
@@ -90,6 +90,10 @@
         line-height: normal;
         text-align: left;
         align-self: start;
+    }
+
+    #SIGNUP_signin b:hover {
+      cursor: pointer;
     }
 
     .helptext {
@@ -179,7 +183,7 @@
         line-height: normal;
     }
 
-    #signupcta {
+    #SIGNUP_signin {
         color: #FFF;
         display: flex;
         /* Body text */
@@ -190,6 +194,10 @@
         line-height: normal;
         text-align: left;
         align-self: start;
+    }
+
+    #SIGNUP_signin b:hover {
+      cursor: pointer;
     }
 
     .helptext {
@@ -277,7 +285,7 @@
         line-height: normal;
     }
 
-    #signupcta {
+    #SIGNUP_signin {
         color: #FFF;
         display: flex;
         /* Body text */
