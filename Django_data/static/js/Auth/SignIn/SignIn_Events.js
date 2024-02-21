@@ -36,7 +36,10 @@ async function signin_FormCallBack(event) {
 
   if (response == true) {
     signin_DelEvents();
-    loadPage(`${ROUTE.HOME}`);
+    header_DelEvents();
+    await loadPage(`${ROUTE.HOME}`);
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    header_SetEvents();
   }
 }
 

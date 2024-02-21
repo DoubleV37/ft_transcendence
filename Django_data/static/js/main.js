@@ -16,13 +16,13 @@ function  launchWebsite() {
    observer.observe(targetNode, config);
 
    loadPage(currentUrl);
-   setHeaderEvents();
-   triggerFirstsEvents();
+   header_SetEvents();
+   main_SetFirstsEvents();
 
    document.removeEventListener('DOMContentLoaded', launchWebsite);
  }
 
- function  triggerFirstsEvents() {
+ function  main_SetFirstsEvents() {
    const	element = document.getElementById('titleContent');
 
    if (!element) {

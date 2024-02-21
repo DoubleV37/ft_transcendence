@@ -3,6 +3,8 @@ let observer;
 
 const ROUTE = {
   "HOME":"/",
+  "HEADER":"header",
   "SIGNUP":"/auth/signup/",
-  "SIGNIN":"/auth/signin/"
+  "SIGNIN":"/auth/signin/",
+  "SIGNOUT":"/auth/signout/",
 };
