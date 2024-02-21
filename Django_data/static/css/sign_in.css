@@ -95,6 +95,7 @@
         color: #FFF;
         display: flex;
         align-self: end;
+	cursor:pointer;
         /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
@@ -107,7 +108,6 @@
     #SIGNIN_Signup {
         color: #FFF;
         display: flex;
-	    cursor: pointer;
         /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
@@ -117,6 +117,11 @@
         text-align: left;
         align-self: start;
         margin-top: 0.7rem;
+    }
+
+
+    #SIGNIN_Signup b:hover {
+      cursor:pointer;
     }
 
     #SIGNIN_Form {
@@ -267,6 +272,7 @@
         color: #FFF;
         display: flex;
         align-self: end;
+	cursor:pointer;
         /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
@@ -291,6 +297,9 @@
         margin-top: 0.7rem;
     }
 
+    #SIGNIN_Signup b:hover {
+      cursor:pointer;
+    }
 
     #or_login_with {
         display: flex;

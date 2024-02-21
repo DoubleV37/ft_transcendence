@@ -55,10 +55,10 @@ function  launchSectionHandler(element) {
 	setHomeEvents(element);
 	break ;
       case 'SIGNIN_PAGE':
-	setSignInEvents();
+	signin_SetEvents();
 	break ;
       case 'SIGNUP_PAGE':
-	setSignUpEvents();
+	signup_SetEvents();
 	break ;
 
       default:
