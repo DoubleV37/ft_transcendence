@@ -8,17 +8,18 @@ async function  SignOut() {
   };
 
   try {
-    let response = await Tools_RequestBackEnd('/auth/signout/', myData);
-    let data = await response.json();
+    const response = await fetch(`${ROUTE.SIGNOUT}`, myData);
+    const data = await response.json();
 
     if (data.success == true) {
-      showSection('/');
+      return true;
     }
     else {
-      alert('Can\'t Sign Out right now');
+      throw new Error('SignOut: A problem occured');
     }
   }
   catch (err) {
-    console.error('Error:', errors);
+    console.error('Error:', err);
   }
+  return false;
 }
