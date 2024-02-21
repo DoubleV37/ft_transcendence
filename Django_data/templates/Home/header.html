@@ -1,5 +1,12 @@
 {% load static %}
 <header>
+  <div id="Header_content">
+	{% if user.is_authenticated %}
+	  <div id="HEADER_IsAuth" data-auth="true"></div>
+	{% else %}
+	  <div id="HEADER_IsAuth" data-auth="false"></div>
+	{% endif %}
+
 	<nav class="navbar-dark">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -14,6 +21,9 @@
 					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 						<li class="nav-item">
 							<button id="HEADER_NavLogo">LOGO</button>
+							{% if user.is_authenticated %}
+							    <button id="HEADER_NavSignOut">Sign Out</button>
+							{% endif %}
 						</li>
 					</ul>
 				</div>
@@ -22,8 +32,14 @@
 		<div id="div_logo">
 			<button id="HEADER_Logo"><img id="logo_placeholder" src="{% static 'images/logoV0.5.png' %}" alt="Pong logo"></button>
 		</div>
-		<div id="div_signin">
-			<button id="HEADER_Signin">Sign in</button>
+
+		<div id="div_profile">
+		  {% if user.is_authenticated %}
+		    <button id="HEADER_Profile">Profile hehe</button>
+		  {% else %}
+		    <button id="HEADER_Signin">Sign in</button>
+		  {% endif %}
 		</div>
 	</nav>
+  </div>
 </header>
