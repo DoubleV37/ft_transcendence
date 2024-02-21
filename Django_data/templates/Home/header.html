@@ -13,17 +13,17 @@
 				<div class="offcanvas-body">
 					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 						<li class="nav-item">
-							<button data-section="/" onclick="clickButton(this)">LOGO</button>
+							<button id="HEADER_NavLogo">LOGO</button>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div id="div_logo">
-			<button id="logo_nav" data-section="/" onclick="clickButton(this)"><img id="logo_placeholder" src="{% static 'images/logoV0.5.png' %}" alt="Pong logo"></button>
+			<button id="HEADER_Logo"><img id="logo_placeholder" src="{% static 'images/logoV0.5.png' %}" alt="Pong logo"></button>
 		</div>
 		<div id="div_signin">
-			<button id="button_signin_nav" data-section="auth/signin" onclick="clickButton(this)">Sign in</button>
+			<button id="HEADER_Signin">Sign in</button>
 		</div>
 	</nav>
 </header>

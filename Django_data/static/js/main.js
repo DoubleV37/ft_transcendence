@@ -10,25 +10,26 @@ function  launchWebsite() {
     return;
   }
 
-//   const config = { childList: true, subtree: true };
+   const config = { childList: true, subtree: true };
 
-//   observer = new MutationObserver(mutationCallBack);
-//   observer.observe(targetNode, config);
+   observer = new MutationObserver(mutationCallBack);
+   observer.observe(targetNode, config);
 
-//   loadPage(currentUrl);
-//   triggerFirstEvent();
+   loadPage(currentUrl);
+   setHeaderEvents();
+   triggerFirstsEvents();
 
-//   document.removeEventListener('DOMContentLoaded', launchWebsite);
-// }
+   document.removeEventListener('DOMContentLoaded', launchWebsite);
+ }
 
-// function  triggerFirstEvent() {
-//   const	element = document.getElementById('titleContent');
+ function  triggerFirstsEvents() {
+   const	element = document.getElementById('titleContent');
 
-//   if (!element) {
-//     console.log('Fuck it...');
-//     return ;
-//   }
-//   launchSectionHandler(element);
+   if (!element) {
+     console.log('Fuck it...');
+     return ;
+   }
+   launchSectionHandler(element);
 }
 //-----------------------------------------------------------//
 
@@ -54,15 +55,12 @@ function  launchSectionHandler(element) {
 	setHomeEvents(element);
 	break ;
       case 'SIGNIN_PAGE':
-	setSignInEvents();
+	signin_SetEvents();
 	break ;
       case 'SIGNUP_PAGE':
-	setSignUpEvents();
+	signup_SetEvents();
 	break ;
 
-  //    .
-  //    .
-  //    .
       default:
 	throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
     }

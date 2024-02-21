@@ -52,7 +52,7 @@
 		align-items: center;
 	}
 
-	#button_signin_nav {
+	#HEADER_Signin {
 		display: flex;
 		width: 5.5rem;
 		height: 2rem;
@@ -73,7 +73,7 @@
 		line-height: normal;
 	}
 
-	#button_signin_nav:hover {
+	#HEADER_Signin:hover {
 		background: #525695;
 	}
 
@@ -85,7 +85,7 @@
 		align-items: center;
 	}
 
-	#logo_nav {
+	#HEADER_Logo {
 		display: flex;
 		justify-content: center;
 		/* flex-shrink: 0; */
@@ -154,7 +154,7 @@
 		align-items: center;
 	}
 
-	#button_signin_nav {
+	#HEADER_Signin {
 		display: flex;
 		width: 5.5rem;
 		height: 2rem;
@@ -175,7 +175,7 @@
 		line-height: normal;
 	}
 
-	#button_signin_nav:hover {
+	#HEADER_Signin:hover {
 		background: #525695;
 	}
 
@@ -187,7 +187,7 @@
 		align-items: center;
 	}
 
-	#logo_nav {
+	#HEADER_Logo {
 		display: flex;
 		justify-content: center;
 		/* flex-shrink: 0; */
@@ -256,7 +256,7 @@
 		align-items: center;
 	}
 
-	#button_signin_nav {
+	#HEADER_Signin {
 		display: flex;
 		width: 5rem;
 		height: 2rem;
@@ -277,7 +277,7 @@
 		line-height: normal;
 	}
 
-	#button_signin_nav:hover {
+	#HEADER_Signin:hover {
 		background: #525695;
 	}
 
@@ -289,7 +289,7 @@
 		align-items: center;
 	}
 
-	#logo_nav {
+	#HEADER_Logo {
 		display: flex;
 		justify-content: center;
 		/* flex-shrink: 0; */

@@ -17,7 +17,7 @@ async function signIn() {
     }
   }
   catch (err) {
-    console.error('SignIn Errors:', errors);
+    console.error('SignIn Errors:', err);
     return false;
   }
 }
