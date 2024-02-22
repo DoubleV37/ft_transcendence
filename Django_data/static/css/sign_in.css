@@ -102,7 +102,8 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        margin-top: -0.4rem;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
     }
 
     #SIGNIN_Signup {
@@ -272,14 +273,15 @@
         color: #FFF;
         display: flex;
         align-self: end;
-	cursor:pointer;
+	    cursor:pointer;
         /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        margin-top: -0.4rem;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
     }
 
     #SIGNIN_Signup {
@@ -338,6 +340,11 @@
 /* Smartphones (portrait and landscape) and small tablets ----------- */
 @media only screen and (min-width : 1em) and (max-width : 36.25em) {
     /* Styles */
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
     #login_title {
         color: #FFF;
         font-family: Kodchasan;
@@ -346,11 +353,6 @@
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
-    }
-
-    p {
-        margin-top: 0;
-        margin-bottom: 0;
     }
 
     #SIGNIN_Form {
@@ -445,7 +447,8 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        margin-top: -0.4rem;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
     }
 
     #SIGNIN_Signup {

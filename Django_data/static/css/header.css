@@ -308,7 +308,7 @@
 
 	#HEADER_Signin {
 		display: flex;
-		width: 5rem;
+		width: 4.5rem;
 		height: 2rem;
 		padding: 0.625rem;
 		justify-content: center;
@@ -321,7 +321,7 @@
 
 		color: #FFF;
 		font-family: Kodchasan;
-		font-size: 1em;
+		font-size: 0.8em;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;

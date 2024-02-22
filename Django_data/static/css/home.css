@@ -49,7 +49,7 @@ scrollbar-width: none;
 		color:#FFF;
 
 		border-radius: 25px;
-		border: 2px solid #5DC6E8;
+		border: 1px solid #5DC6E8;
 		background: rgba(28, 32, 38, 0.75);
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
 	}
@@ -74,8 +74,8 @@ scrollbar-width: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 1.625em;
-		padding-top: 1em;
+		padding-bottom: 2.125em;
+		padding-top: 1.5em;
 		align-self: stretch;
 	}
 
@@ -121,9 +121,9 @@ scrollbar-width: none;
 		flex-shrink: 0;
 		align-self: center;
 
-		border:none;
+		border-color: #5DC6E8;
 		border-radius: 0.625rem;
-		background: #3e4180;
+		background: #202532;
 	}
 
 	.play {
@@ -178,9 +178,9 @@ scrollbar-width: none;
 		color:#FFF;
 
 		border-radius: 25px;
-		border: 2px solid #5DC6E8;
+		border: 1px solid #5DC6E8;
 		background: rgba(28, 32, 38, 0.75);
-		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
+		box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.45);
 	}
 
 	.pong {
@@ -203,8 +203,8 @@ scrollbar-width: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 1.625em;
-		padding-top: 1em;
+		padding-bottom: 2.125em;
+		padding-top: 1.5em;
 		align-self: stretch;
 	}
 
@@ -250,9 +250,9 @@ scrollbar-width: none;
 		flex-shrink: 0;
 		align-self: center;
 
-		border:none;
+		border-color: #5DC6E8;
 		border-radius: 0.625rem;
-		background: #3e4180;
+		background: #202532;
 	}
 
 	.play {
@@ -288,23 +288,30 @@ scrollbar-width: none;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-
+		z-index: -2; /* Ensure the overlay is behind the content */
 		flex-grow: 1;
+	}
+
+	#overlay {
+		content: "";
+		display: flex;
+		position: absolute;
+		top:  0;
+		left:  0;
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
+		z-index: -1; /* Ensure the overlay is behind the content */
 	}
 
 	#content {
 		display: flex;
-		width: 100%;
 		height: 100%;
 		padding: 3vh 4vw;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		flex-grow: 1;
-
-		border-top: 2px solid #5DC6E8;
-		border-bottom: 2px solid #5DC6E8;
-		background: rgba(28, 32, 38, 0.75);
 	}
 
 	#pong_img {
@@ -320,8 +327,8 @@ scrollbar-width: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 1em;
-		padding-top: 1em;
+		padding-bottom: 2em;
+		padding-top: 2em;
 		align-self: stretch;
 	}
 
@@ -357,13 +364,13 @@ scrollbar-width: none;
 	}
 
 	.play-button {
-		width: 100%;
+		width: 70%;
 		height: 4.375rem;
 		padding: 0.625rem;
 
-		border:none;
+		border-color: #5DC6E8;
 		border-radius: 0.625rem;
-		background: #3e4180;
+		background: #202532;
 	}
 
 	.play {
@@ -374,4 +381,6 @@ scrollbar-width: none;
 		font-weight: 400;
 		line-height: normal;
 	}
+
+
 }

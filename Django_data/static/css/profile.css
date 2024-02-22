@@ -9,12 +9,12 @@
     }
     #username {
         color: #FFF;
+        text-align: right;
         font-family: Kodchasan;
-        font-size: 2rem;
+        font-size: 1.875rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        align-self: stretch;
     }
 
     #UserInfo {
@@ -31,6 +31,33 @@
         padding-top: 0.7rem;
         padding-bottom: 0.7rem;
         /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #ProfileCardboard {
+        display: flex;
+        width: 25.3125rem;
+        height: 5.625rem;
+        align-items: flex-start;
+        gap: 1.25rem;
+        flex-shrink: 0;
+    }
+
+    #UserStatus {
+        display: flex;
+        height: 4rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    #connectStatus {
+        color: #FFF;
+        text-align: right;
         font-family: Kodchasan;
         font-size: 1rem;
         font-style: normal;

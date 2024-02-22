@@ -213,15 +213,6 @@
         margin-bottom: 0;
     }
 
-    #SIGNUP_Form {
-        display: flex;
-        width: 90%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.8rem;
-        flex-shrink: 0;
-    }
-
     #signupTitle {
         color: #FFF;
         font-family: Kodchasan;
@@ -230,6 +221,15 @@
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
+    }
+
+    #SIGNUP_Form {
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        flex-shrink: 0;
     }
 
     #SIGNUP_Form > p {
