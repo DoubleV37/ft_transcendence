@@ -1,7 +1,7 @@
 services:
   gunicorn:
     container_name: gunicorn
-    build: Backend/Gunicorn
+    build: Services/Gunicorn
     restart: always
     env_file: .env
     volumes:
@@ -12,7 +12,7 @@ services:
 
   uvicorn:
     container_name: uvicorn
-    build: Backend/Uvicorn
+    build: Services/Uvicorn
     restart: always
     env_file: .env
     volumes:
@@ -37,7 +37,7 @@ services:
 
   nginx:
     container_name: nginx
-    build: Backend/NginxReverseProxy/
+    build: Services/NginxReverseProxy/
     restart: always
     env_file: .env
     ports:
