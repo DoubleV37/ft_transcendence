@@ -25,11 +25,11 @@ async function signup_FormCallBack(event) {
   const	response = await signUp();
 
   if (response == true) {
-    signup_SignInCallBack();
+    await signup_SignInCallBack();
   }
 }
 
-function signup_SignInCallBack() {
+async function signup_SignInCallBack() {
     signup_DelEvents();
-    loadPage(`${ROUTE.SIGNIN}`);
+    await loadPage(`${ROUTE.SIGNIN}`);
 }
