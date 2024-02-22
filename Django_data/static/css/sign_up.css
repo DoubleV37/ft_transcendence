@@ -9,11 +9,13 @@
 
     #SIGNUP_Form {
         display: flex;
-        width: 28rem;
+        width: 90%;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.8rem;
         flex-shrink: 0;
+        padding: 3.125em 8em;
+        margin-block-end: 0;
     }
 
     #signupTitle {

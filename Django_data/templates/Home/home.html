@@ -8,15 +8,17 @@
 	<div id="mid">
 		<div id="overlay">
 			<div id="content">
-				<div id="titleContent" data-content="HOME_PAGE" data-status="connected"></div>
-				<div class="pong">
-					<img id="pong_img" src="{% static 'images/pong.webp' %}" alt="Pong display image">
+				<div id="WelcomeScreen">
+					<div id="titleContent" data-content="HOME_PAGE" data-status="connected"></div>
+					<div class="pong">
+						<img id="pong_img" src="{% static 'images/pong.webp' %}" alt="Pong display image">
+					</div>
+					<div class="welcome-text">
+						<h1 class="welcome-to-pong">Welcome to Pong</h1>
+						<p class="please-log-in">Please <b>log in</b> to continue</p>
+					</div>
+					<button class="play-button"><span class="play">Play</span></button>
 				</div>
-				<div class="welcome-text">
-					<h1 class="welcome-to-pong">Welcome to Pong</h1>
-					<p class="please-log-in">Please <b>log in</b> to continue</p>
-				</div>
-				<button class="play-button"><span class="play">Play</span></button>
 			</div>
 		</div>
 	</div>

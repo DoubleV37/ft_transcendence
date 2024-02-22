@@ -4,26 +4,29 @@
 {% include "Home/header.html" %}
 <div id="mid">
 	<div id="content">
-	<div id="titleContent" data-content="PROFILE_PAGE"></div>
-	<img src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-	<div id="ProfileCardboard">
-		<img id="ProfilePic" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
-		<div id="UserStatus">
-			<h1 id="username">DoubleV</h1>
-			<p id="connectStatus">online</p>
+		<img id="BackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+		<div id="titleContent" data-content="PROFILE_PAGE"></div>
+		<div id="ProfilePage">
+			<div id="ProfileCardboard">
+				<img id="ProfilePic" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
+				<div id="UserStatus">
+					<h1 id="username">DoubleV</h1>
+					<p id="connectStatus">online</p>
+				</div>
+			</div>
+			<button class="ButtonLayout ButtonNeon" id="Settings">Settings</button>
+			<button class="ButtonLayout ButtonSalmon" id="Skins">Skins</button>
+			<div id ="UserInfo">
+				<div id="leftline"></div>
+				<p id="UserInfoText">User info</p>
+				<div id="rightline"></div>
+			</div>
+			<button class="ButtonLayout ButtonBlue" id="History">History</button>
+			<button class="ButtonLayout ButtonBlue" id="Stats">Stats</button>
+			<button class="ButtonLayout ButtonBlue" id="42Account">42 Account</button>
 		</div>
-	</div>
-	<button id="UserSettings">Setting</button>
-	<button id="UserSkins">Skins</button>
-	<div id ="UserInfo">
-		<div id="leftline"></div>
-		<p id="UserInfoText">User info</p>
-		<div id="rightline"></div>
-	</div>
-	<button id="UserSettings">History</button>
-	<button id="UserSkins">Stats</button>
-	<button id="UserSkins">42 Account</button>
 	</div>
 </div>
 
 {% include "Home/footer.html" %}
+
