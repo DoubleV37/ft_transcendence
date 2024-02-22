@@ -105,6 +105,10 @@
         flex-shrink: 0;
     }
 
+    #ProfileCardboardMobile {
+        display: none;
+    }
+
     #UserStatus {
         display: flex;
         height: 4rem;
@@ -176,11 +180,12 @@
 
     #ProfilePage {
         display: flex;
-        width: 90%;
+        width: 65%;
         flex-direction: column;
         align-items: flex-start;
         gap: 2rem;
         flex-shrink: 0;
+        margin-block-end: 0;
     }
 
     #ProfilePic {
@@ -230,6 +235,10 @@
         flex-shrink: 0;
     }
 
+    #ProfileCardboardMobile {
+        display: none;
+    }
+
     #UserStatus {
         display: flex;
         height: 4rem;
@@ -253,10 +262,11 @@
 @media only screen and (min-width : 1em) and (max-width : 36.25em) {
     /* Styles */
     #BackArrow {
-        position: absolute;
-        top: 2em;
-        right: 2em;
-        width: 7%;
+        display: none;
+    }
+
+    #BackArrowMobile {
+        width: 2em;
     }
 
     .ButtonLayout {
@@ -300,27 +310,28 @@
 
     #ProfilePage {
         display: flex;
-        width: 90%;
+        width: 80%;
         flex-direction: column;
         align-items: flex-start;
         gap: 2rem;
         flex-shrink: 0;
-        padding: 3.125em 8em;
     }
 
     #ProfilePic {
         border-radius: 100%;
-        width: 14%;
+        width: 6em;
         border: 1px solid #5DC6E8;
     }
+
     #username {
         color: #FFF;
         text-align: right;
         font-family: Kodchasan;
-        font-size: 1.875rem;
+        font-size: 1.4rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        margin-bottom: 0.2em;
     }
 
     #UserInfo {
@@ -344,15 +355,35 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        color: #FFF;
     }
 
     #ProfileCardboard {
+        display: none;
+    }
+
+    #ProfileCardboardMobile {
         display: flex;
-        width: 100%;
-        height: 5.625rem;
-        align-items: flex-start;
+        align-items: center;
+        padding: 4vw;
         gap: 1.25rem;
         flex-shrink: 0;
+        position: absolute;
+        height: 8em;
+        width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
+        background-color: #202532;
+        border-bottom: 1px solid #828282;
+        justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
+    }
+
+    #test {
+        width: 80%;
+    }
+
+    #UserPictureInfo {
+        display: flex;
+        align-items: center;
+        gap: 1em;
     }
 
     #UserStatus {
