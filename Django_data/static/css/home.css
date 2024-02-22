@@ -178,7 +178,6 @@ scrollbar-width: none;
 		display: flex;
 		width: 35em;
 		height: 41em;
-		padding: 3.125em 5.25em;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;

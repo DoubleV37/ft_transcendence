@@ -115,11 +115,12 @@
 
     #SIGNUP_Form {
         display: flex;
-        width: 26rem;
+        width: 65%;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.8rem;
         flex-shrink: 0;
+        margin-block-end: 0;
     }
 
     #signupTitle {
