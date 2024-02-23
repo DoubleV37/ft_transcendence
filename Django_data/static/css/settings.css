@@ -1,0 +1,58 @@
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 53.125em) {
+    /* Styles */
+    #leftcolumn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #rightcolumn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #Settings {
+        display: flex;
+        width: 70%;
+        flex-direction: column;
+        gap: 2rem;
+        flex-shrink: 0;
+    }
+
+    #test {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 90%;
+    }
+}
+
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
+    /* Styles */
+    #leftcolumn {
+        display: flex;
+        justify-content: left;
+    }
+
+    #rightcolumn {
+        display: flex;
+        justify-content: right;
+    }
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+    /* Styles */
+    #leftcolumn {
+        display: flex;
+        justify-content: left;
+    }
+
+    #rightcolumn {
+        display: flex;
+        justify-content: right;
+    }
+}

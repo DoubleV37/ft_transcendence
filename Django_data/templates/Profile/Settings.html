@@ -1,0 +1,43 @@
+{% load static %}
+
+{% include "Home/head.html" %}
+{% include "Home/header.html" %}
+<div id="contentFullscreen">
+	<div id="titleContent" data-content="SETTINGS"></div>
+	<div id="ProfileCardboardFullscreen">
+		<div id="UserPictureInfoFullscreen">
+			<img id="ProfilePicFullscreen" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
+			<div id="UserStatusFullscreen">
+				<h1 id="usernameFullscreen">DoubleV</h1>
+				<p id="connectStatusFullscreen">online</p>
+			</div>
+		</div>
+		<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+	</div>
+	<div id="overlayFullscreen">
+		<div class="midFullscreen midrow">
+			<div id="test">
+				<div id="leftcolumn">
+					<div id="Settings">
+						<button class="ButtonLayout ButtonNeon">Account Settings</button>
+						<button class="ButtonLayout ButtonBlue">History</button>
+						<button class="ButtonLayout ButtonBlue">Stats</button>
+						<button class="ButtonLayout ButtonBlue">42 Account</button>
+					</div>
+				</div>
+				<div id="rightcolumn">
+					<div id="titleContent" data-content="PROFILE_PAGE"></div>
+					<div id="Settings">
+						<button class="ButtonLayout ButtonNeon">Display Settings</button>
+						<button class="ButtonLayout ButtonSalmon">Skins</button>
+						<button class="ButtonLayout ButtonBlue">History</button>
+						<button class="ButtonLayout ButtonBlue">Stats</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include "Home/footer.html" %}
+

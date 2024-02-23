@@ -9,6 +9,13 @@
         width: 5%;
     }
 
+    #BackArrowFullscreen {
+        width: 2em;
+        position: absolute;
+        top: 1.2em;
+        right: 1.2em;
+    }
+
     #DoubleButton {
         display: flex;
         width: 100%;
@@ -31,6 +38,13 @@
         width: 20%;
         border: 1px solid #5DC6E8;
     }
+    
+    #UserPictureInfo {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+    }
+
     #username {
         color: #FFF;
         text-align: right;
@@ -77,6 +91,7 @@
         display: none;
     }
 
+    
     #UserStatus {
         display: flex;
         height: 4rem;
@@ -84,7 +99,7 @@
         justify-content: center;
         align-items: flex-start;
     }
-
+    
     #connectStatus {
         color: #FFF;
         text-align: right;
@@ -93,6 +108,61 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+    }
+    
+    #ProfileCardboardFullscreen {
+        display: flex;
+        align-items: center;
+        padding-left: 4vw;
+        gap: 1.25rem;
+        flex-shrink: 0;
+        position: relative;
+        height: 8em;
+        width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
+        background-color: #202532;
+        border-bottom: 1px solid #828282;
+        justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
+    }
+
+    #usernameFullscreen {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1.4rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.2em;
+    }
+    
+    #UserPictureInfoFullscreen {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+    }
+
+    #UserStatusFullscreen {
+        display: flex;
+        height: 4rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    #connectStatusFullscreen {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #ProfilePicFullscreen {
+        border-radius: 100%;
+        width: 5.5em;
+        border: 1px solid #5DC6E8;
     }
 }
 
@@ -105,6 +175,13 @@
         top: 2em;
         right: 2em;
         width: 7%;
+    }
+
+    #BackArrowFullscreen {
+        width: 2em;
+        position: absolute;
+        top: 1.2em;
+        right: 1.2em;
     }
 
     #DoubleButton {
@@ -129,6 +206,13 @@
         width: 20%;
         border: 1px solid #5DC6E8;
     }
+
+    #UserPictureInfo {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+    }
+
     #username {
         color: #FFF;
         text-align: right;
@@ -192,6 +276,61 @@
         font-weight: 400;
         line-height: normal;
     }
+
+    #ProfileCardboardFullscreen {
+        display: flex;
+        align-items: center;
+        padding-left: 4vw;
+        gap: 1.25rem;
+        flex-shrink: 0;
+        position: relative;
+        height: 8em;
+        width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
+        background-color: #202532;
+        border-bottom: 1px solid #828282;
+        justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
+    }
+
+    #usernameFullscreen {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1.4rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.2em;
+    }
+
+    #UserPictureInfoFullscreen {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+    }
+
+    #UserStatusFullscreen {
+        display: flex;
+        height: 4rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    #connectStatusFullscreen {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #ProfilePicFullscreen {
+        border-radius: 100%;
+        width: 5.5em;
+        border: 1px solid #5DC6E8;
+    }
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -200,19 +339,37 @@
     #BackArrow {
         display: none;
     }
-
+    
     #BackArrowMobile {
         width: 2em;
         position: absolute;
         top: 1.2em;
         right: 1.2em;
     }
-
+    
+    #BackArrowFullscreen {
+        width: 2em;
+        position: absolute;
+        top: 1.2em;
+        right: 1.2em;
+    }
+    
     #DoubleButton {
         display: flex;
         width: 100%;
         align-items: flex-start;
         gap: 1.25rem; 
+    }
+    
+    #overlayProfile {
+        content: "";
+        display: flex;
+        top:  0;
+        left:  0;
+        width:  100%;
+        height:  100%;
+        background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
+        z-index: -1; /* Ensure the overlay is behind the content */
     }
 
     #ProfilePage {
@@ -301,7 +458,7 @@
         justify-content: center;
         align-items: flex-start;
     }
-
+    
     #connectStatus {
         color: #FFF;
         text-align: right;
@@ -311,15 +468,60 @@
         font-weight: 400;
         line-height: normal;
     }
+    
+    #ProfileCardboardFullscreen {
+        display: flex;
+        align-items: center;
+        padding-left: 4vw;
+        gap: 1.25rem;
+        flex-shrink: 0;
+        position: relative;
+        height: 8em;
+        width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
+        background-color: #202532;
+        border-bottom: 1px solid #828282;
+        justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
+    }
 
-    #overlayProfile {
-		content: "";
-		display: flex;
-		top:  0;
-		left:  0;
-		width:  100%;
-		height:  100%;
-		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
-		z-index: -1; /* Ensure the overlay is behind the content */
-	}
+    #usernameFullscreen {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1.4rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.2em;
+    }
+
+    #UserPictureInfoFullscreen {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+    }
+
+    #UserStatusFullscreen {
+        display: flex;
+        height: 4rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    #connectStatusFullscreen {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #ProfilePicFullscreen {
+        border-radius: 100%;
+        width: 5.5em;
+        border: 1px solid #5DC6E8;
+    }
+
 }

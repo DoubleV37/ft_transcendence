@@ -6,3 +6,6 @@ def profile(request):
 
 def profilext(request):
     return render(request, "Profile/ForeignProfile.html")
+
+def settings(request):
+    return render(request, "Profile/Settings.html")

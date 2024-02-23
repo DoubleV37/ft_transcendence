@@ -35,11 +35,9 @@ scrollbar-width: none;
 		flex-grow: 2;
 	}
 
-	#mid {
+.mid {
 		display: flex;
-		width: 47em;
-		height: 90vh;
-		flex-direction: column;
+		height: 50em;
 		justify-content: center;
 		align-items: center;
 		flex-shrink: 0;
@@ -52,6 +50,52 @@ scrollbar-width: none;
 		background: rgba(28, 32, 38, 0.75);
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
 		position: relative;
+	}
+
+	.midFullscreen {
+		display: flex;
+		height: 100%;
+		padding: 3vh 4vw;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+	}
+
+	#overlayFullscreen {
+		content: "";
+		display: flex;
+		position: absolute;
+		top:  0;
+		left:  0;
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
+		z-index: -1; /* Ensure the overlay is behind the content */
+	}
+
+	#contentFullscreen {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		/* justify-content: center; */
+		position: relative;
+		z-index: -2; /* Ensure the overlay is behind the content */
+		flex-grow: 1;
+	}
+
+	.midrow {
+		flex-direction: column;
+		width: 80em;
+	}
+
+	.midcolumn {
+		flex-direction: column;
+		width: 47em;
 	}
 
 	#WelcomeScreen {
@@ -174,11 +218,11 @@ scrollbar-width: none;
 		flex-grow: 2;
 	}
 
-	#mid {
+	.mid {
 		display: flex;
-		width: 35em;
-		height: 90vh;
 		flex-direction: column;
+		width: 35em;
+		height: 50em;
 		justify-content: center;
 		align-items: center;
 		flex-shrink: 0;
@@ -191,6 +235,50 @@ scrollbar-width: none;
 		background: rgba(28, 32, 38, 0.75);
 		box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.45);
 		position: relative;
+	}
+
+	.midrow {
+		flex-direction: row;
+	}
+
+	.midcolumn {
+		flex-direction: column;
+	}
+
+	.midFullscreen {
+		display: flex;
+		height: 100%;
+		padding: 3vh 4vw;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+	}
+
+	#overlayFullscreen {
+		content: "";
+		display: flex;
+		position: absolute;
+		top:  0;
+		left:  0;
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
+		z-index: -1; /* Ensure the overlay is behind the content */
+	}
+
+	#contentFullscreen {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		/* justify-content: center; */
+		position: relative;
+		z-index: -2; /* Ensure the overlay is behind the content */
+		flex-grow: 1;
 	}
 
 	.pong {
@@ -324,13 +412,49 @@ scrollbar-width: none;
 		z-index: -1; /* Ensure the overlay is behind the content */
 	}
 
-	#mid {
+	.mid {
 		display: flex;
 		height: 100%;
 		padding: 3vh 4vw;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		flex-grow: 1;
+	}
+
+	.midFullscreen {
+		display: flex;
+		height: 100%;
+		padding: 3vh 4vw;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+	}
+
+	#overlayFullscreen {
+		content: "";
+		display: flex;
+		position: absolute;
+		top:  0;
+		left:  0;
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
+		z-index: -1; /* Ensure the overlay is behind the content */
+	}
+
+	#contentFullscreen {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		/* justify-content: center; */
+		position: relative;
+		z-index: -2; /* Ensure the overlay is behind the content */
 		flex-grow: 1;
 	}
 
