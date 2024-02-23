@@ -60,7 +60,7 @@
 
     #ProfilePic {
         border-radius: 100%;
-        width: 14%;
+        width: 20%;
         border: 1px solid #5DC6E8;
     }
     #username {
@@ -190,7 +190,7 @@
 
     #ProfilePic {
         border-radius: 100%;
-        width: 14%;
+        width: 20%;
         border: 1px solid #5DC6E8;
     }
     #username {
@@ -267,6 +267,9 @@
 
     #BackArrowMobile {
         width: 2em;
+        position: absolute;
+        top: 1.2em;
+        right: 1.2em;
     }
 
     .ButtonLayout {
@@ -319,7 +322,7 @@
 
     #ProfilePic {
         border-radius: 100%;
-        width: 6em;
+        width: 5.5em;
         border: 1px solid #5DC6E8;
     }
 
@@ -365,10 +368,10 @@
     #ProfileCardboardMobile {
         display: flex;
         align-items: center;
-        padding: 4vw;
+        padding-left: 4vw;
         gap: 1.25rem;
         flex-shrink: 0;
-        position: absolute;
+        position: relative;
         height: 8em;
         width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
         background-color: #202532;
@@ -403,4 +406,15 @@
         font-weight: 400;
         line-height: normal;
     }
+
+    #overlayProfile {
+		content: "";
+		display: flex;
+		top:  0;
+		left:  0;
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
+		z-index: -1; /* Ensure the overlay is behind the content */
+	}
 }
