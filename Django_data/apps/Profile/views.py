@@ -3,3 +3,6 @@ from django.conf import settings
 
 def profile(request):
     return render(request, "Profile/Profile.html")
+
+def profilext(request):
+    return render(request, "Profile/ForeignProfile.html")

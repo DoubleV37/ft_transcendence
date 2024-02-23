@@ -1,0 +1,48 @@
+{% load static %}
+
+{% include "Home/head.html" %}
+{% include "Home/header.html" %}
+<div id="content">
+	<div id="ProfileCardboardMobile">
+		<div id="UserPictureInfo">
+			<img id="ProfilePic" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
+			<div id="UserStatus">
+				<h1 id="username">DoubleV</h1>
+				<p id="connectStatus">online</p>
+			</div>
+		</div>
+		<img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+	</div>
+	<div id="overlayProfile">
+		<div id="mid">
+			<img id="BackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+			<div id="titleContent" data-content="PROFILE_PAGE"></div>
+			<div id="ProfilePage">
+				<div id="ProfileCardboard">
+					<img id="ProfilePic" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
+					<div id="UserStatus">
+						<h1 id="username">DoubleV</h1>
+						<p id="connectStatus">online</p>
+					</div>
+				</div>
+				<div id="DoubleButton">
+					<button class="MediumButtonLayout left ButtonNeon" id="Settings">Add Friend</button>
+					<button class="MediumButtonLayout right ButtonNeon" id="Settings">Message</button>
+				</div>
+				<button class="ButtonLayout ButtonSalmon" id="Skins">Invite to game</button>
+				<div id ="UserInfo">
+					<div id="leftline"></div>
+					<p id="UserInfoText">User info</p>
+					<div id="rightline"></div>
+				</div>
+				<button class="ButtonLayout ButtonBlue" id="History">History</button>
+				<button class="ButtonLayout ButtonBlue" id="Stats">Stats</button>
+				<button class="ButtonLayout ButtonBlue" id="42Account">42 Account</button>
+				<button class="ButtonLayout ButtonDark" id="BlockUser">Block User</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include "Home/footer.html" %}
+

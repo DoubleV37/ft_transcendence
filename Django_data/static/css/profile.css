@@ -9,43 +9,11 @@
         width: 5%;
     }
 
-    .ButtonLayout {
+    #DoubleButton {
         display: flex;
-        height: 3.125rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        border-radius: 0.625rem;
-
-        /* Body CTA Desktop Text */
-        color: #FFF;
-        font-family: Kodchasan;
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    .ButtonBlue {
-        background: #525695;
-        border: none;
-    }
-
-    .ButtonNeon {
-        background: #202532;
-        border-color: #5DC6E8;
-    }
-
-    .ButtonSalmon {
-        border: none;
-        background: #C1706C;
-    }
-
-    .Button42 {
-        border: none;
-        background: #00BABC;
+        width: 100%;
+        align-items: flex-start;
+        gap: 1.25rem; 
     }
 
     #ProfilePage {
@@ -139,43 +107,11 @@
         width: 7%;
     }
 
-    .ButtonLayout {
+    #DoubleButton {
         display: flex;
-        height: 3.125rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        border-radius: 0.625rem;
-
-        /* Body CTA Desktop Text */
-        color: #FFF;
-        font-family: Kodchasan;
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    .ButtonBlue {
-        background: #525695;
-        border: none;
-    }
-
-    .ButtonNeon {
-        background: #202532;
-        border-color: #5DC6E8;
-    }
-
-    .ButtonSalmon {
-        border: none;
-        background: #C1706C;
-    }
-
-    .Button42 {
-        border: none;
-        background: #00BABC;
+        width: 100%;
+        align-items: flex-start;
+        gap: 1.25rem; 
     }
 
     #ProfilePage {
@@ -272,52 +208,21 @@
         right: 1.2em;
     }
 
-    .ButtonLayout {
+    #DoubleButton {
         display: flex;
-        height: 3.125rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        border-radius: 0.625rem;
-
-        /* Body CTA Desktop Text */
-        color: #FFF;
-        font-family: Kodchasan;
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    .ButtonBlue {
-        background: #525695;
-        border: none;
-    }
-
-    .ButtonNeon {
-        background: #202532;
-        border-color: #5DC6E8;
-    }
-
-    .ButtonSalmon {
-        border: none;
-        background: #C1706C;
-    }
-
-    .Button42 {
-        border: none;
-        background: #00BABC;
+        width: 100%;
+        align-items: flex-start;
+        gap: 1.25rem; 
     }
 
     #ProfilePage {
         display: flex;
-        width: 80%;
+        width: 90%;
         flex-direction: column;
         align-items: flex-start;
         gap: 2rem;
         flex-shrink: 0;
+        max-width: 20em;
     }
 
     #ProfilePic {

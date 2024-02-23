@@ -364,6 +364,7 @@
         align-items: flex-start;
         gap: 0.8rem;
         flex-shrink: 0;
+        max-width: 20em;
     }
 
     #SIGNIN_Form > p {

@@ -38,7 +38,7 @@ scrollbar-width: none;
 	#mid {
 		display: flex;
 		width: 47em;
-		height: 45em;
+		height: 90vh;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -177,7 +177,7 @@ scrollbar-width: none;
 	#mid {
 		display: flex;
 		width: 35em;
-		height: 41em;
+		height: 90vh;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
