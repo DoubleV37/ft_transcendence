@@ -1,12 +1,14 @@
 import json
 import logging
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required, permission_required
 
-from .forms import CustomUserCreationForm, SignInForm, InfoName, InfoMail, InfoPsswd
+from .forms import (
+        CustomUserCreationForm, SignInForm, InfoName, InfoMail, InfoPsswd, InfoAvatar
+    )
 from . import forms
 
 from .models import User
@@ -53,6 +55,31 @@ def signin(request):
 
     form = SignInForm()
     return render(request, 'Auth/SignIn.html', {'form': form})
+
+def edit_avatar(request):
+    user = User.objects.get(username=request.user.username)
+    logger.debug("edit_avatar")
+    if request.method == 'POST' and 'avatar' in request.FILES:
+        logger.debug("first condition in")
+        avatar = InfoAvatar(request.POST, request.FILES)
+        if avatar.is_valid():
+            logger.debug("is_valid=True")
+            user.avatar = avatar.save(commit=False)
+            user.save()
+            response = JsonResponse({'success': True})
+            return response
+        else:
+            logger.debug("is_valid=False")
+            response = JsonResponse(
+                {'success': False,
+                'errors': 'Invalid form'}
+            )
+            return response
+    else:
+        avatar = InfoAvatar(instance=user)
+        return render(request, 'edit_avatar.html', {'avatar': avatar})
+    logger.debug("Che ne pas comprende")
+    return HttpResponse("Exception", status=400)
 
 def edit_name(request):
     user = User.objects.get(username=request.user.username)
@@ -111,9 +138,13 @@ def edit_mail(request):
         mail = InfoMail(instance=user)
         return render(request, 'edit_mail.html', {'mail': mail})
 
+# @login_required
 def info(request):
-    user = User.objects.get(username=request.user.username)
-    return render(request, 'Info.html', {'user': user})
+    try:
+        user = User.objects.get(username=request.user.username)
+        return render(request, 'Info.html', {'user': user})
+    except:
+        return HttpResponse("Exception", status=400)
 
 def signout(request):
     if request.method == 'POST':

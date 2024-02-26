@@ -44,50 +44,31 @@ class SignInForm(forms.Form):
             help_text=password_validation.password_validators_help_text_html(),
             )
 
-class InfoPsswd(UserCreationForm):
+#_____________________________________________________________________________#
+#_MODIFICATION FORMS__________________________________________________________#
+class InfoAvatar(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('avatar',)
 
+    def save(self, *args, **kwargs):
+        self.avatar = self.cleaned_data['avatar']
+        user = super().save(*args, **kwargs)
+
+
+class InfoPsswd(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('password1',)
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data['password1'])
-        if commit:
-            user.save()
-        return user
 
 class InfoName(UserCreationForm):
-
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('username',)
 
-    # def clean_username(self):
-    #     username = self.cleaned_data.get('username')
-    #     if User.objects.filter(username=username).exists():
-    #         raise forms.ValidationError("Username is already taken.")
-    #     return username
-    #
-    # def save(self, *args, **kwargs):
-    #     username = self.cleaned_data.get('username')
-    #     user = super().save(*args, **kwargs)
-    #     return user
-
 
 class InfoMail(UserCreationForm):
-
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('email',)
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError("Email is already taken.")
-        return email
-
-    def save(self, *args, **kwargs):
-        user.email = self.cleaned_data['email']
-        user = super().save(*args, **kwargs)
-        return user

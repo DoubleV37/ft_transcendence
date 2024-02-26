@@ -4,7 +4,10 @@
 {% include "Home/header.html" %}
 
   <body>
-    {% csrf_token %}
+      {% csrf_token %}
+      <p>Avatar:</p>
+      <img src="{{ user.avatar.url }}"></img>
+      <a href="{% url 'edit_avatar' %}">[Update]</a>
       Name: {{ user.username }}<a href="{% url 'edit_name' %}">[Update]</a>
       Password: *********<a href="{% url 'edit_psswd' %}">[Update]</a>
       Email: {{ user.email }}<a href="{% url 'edit_mail' %}">[Update]</a>

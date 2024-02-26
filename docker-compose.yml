@@ -44,6 +44,7 @@ services:
     - "8080:8080"
     volumes:
       - django_static:/var/lib/nginx/static/
+      - django_media:/var/lib/nginx/avatars/
     depends_on:
       - gunicorn
       - uvicorn
@@ -67,3 +68,11 @@ volumes:
       type: none
       o: bind
       device: Django_data/staticfiles
+
+  django_media:
+    name: django_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data/avatars
