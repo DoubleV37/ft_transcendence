@@ -1,5 +1,5 @@
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 58em) {
+@media only screen and (min-width : 60em) {
     /* Styles */
 
     #BackArrow {
@@ -169,7 +169,7 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 58em) {
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
     /* Styles */
 
     #BackArrow {

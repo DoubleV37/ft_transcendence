@@ -2,27 +2,30 @@
 
 {% include "Home/head.html" %}
 {% include "Home/header.html" %}
-<div id="contentFullscreen">
-	<div id="ProfileCardboardFullscreen">
-		<div id="UserPictureInfoFullscreen">
-			<img id="ProfilePicFullscreen" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
-			<div id="UserStatusFullscreen">
-				<h1 id="usernameFullscreen">DoubleV</h1>
-				<p id="connectStatusFullscreen">online</p>
-			</div>
+
+<!-- Voir avec les autres si on peut le laisser dehors -->
+<div id="ProfileCardboardFullscreen">
+	<div id="UserPictureInfoFullscreen">
+		<img id="ProfilePicFullscreen" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
+		<div id="UserStatusFullscreen">
+			<h1 id="usernameFullscreen">DoubleV</h1>
+			<p id="connectStatusFullscreen">online</p>
 		</div>
-		<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
 	</div>
+	<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+</div>
+
+<div id="contentFullscreen">
 	<div id="titleContent" data-content="SETTINGS"></div>
 	<div id="overlayFullscreen">
 		<div class="midFullscreen midrow">
-			<div id="test">
+			<div id="section">
 				<div id="headerTextRow">
 					<h1 id="settingsTitle">Settings</h1>
 					<p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
 				</div>
 			</div>
-			<div id="test">
+			<div id="section">
 				<div id="leftcolumn">
 					<div id="Settings">
 						<button class="ButtonLayout ButtonNeon">Account Settings</button>
