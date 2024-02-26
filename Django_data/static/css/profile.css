@@ -10,10 +10,10 @@
     }
 
     #BackArrowFullscreen {
-        width: 2em;
+        width: 2.5em;
         position: absolute;
-        top: 1.2em;
-        right: 1.2em;
+        top: 2em;
+        right: 2em;
     }
 
     #DoubleButton {
@@ -116,7 +116,8 @@
         padding-left: 4vw;
         gap: 1.25rem;
         flex-shrink: 0;
-        position: relative;
+        top: 3.4375em;
+        position: sticky;
         height: 8em;
         width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
         background-color: #202532;
@@ -172,13 +173,13 @@
 
     #BackArrow {
         position: absolute;
-        top: 2em;
+        top: 2.5em;
         right: 2em;
         width: 7%;
     }
 
     #BackArrowFullscreen {
-        width: 2em;
+        width: 2.5em;
         position: absolute;
         top: 1.5em;
         right: 1.8em;
@@ -283,7 +284,8 @@
         padding-left: 4vw;
         gap: 1.25rem;
         flex-shrink: 0;
-        position: relative;
+        top: 3.4375em;
+        position: sticky;
         height: 8em;
         width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
         background-color: #202532;
@@ -475,7 +477,8 @@
         padding-left: 4vw;
         gap: 1.25rem;
         flex-shrink: 0;
-        position: relative;
+        position: sticky;
+        top: 3.4375em;
         height: 8em;
         width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
         background-color: #202532;

@@ -10,6 +10,7 @@
 		align-items: center;
 		/* flex-shrink: 0; */
 		margin-bottom: -3.4375rem;
+		margin-top: auto;
 
 		background: #0F0F10;
 	}
@@ -36,6 +37,7 @@
 		align-items: center;
 		/* flex-shrink: 0; */
 		margin-bottom: -3.4375rem;
+		margin-top: auto;
 
 		background: #0F0F10;
 	}
@@ -62,6 +64,7 @@
 		align-items: center;
 		/* flex-shrink: 0; */
 		margin-bottom: -3.4375rem;
+		margin-top: auto;
 
 		background: #0F0F10;
 	}
