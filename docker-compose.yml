@@ -5,7 +5,7 @@ services:
     restart: always
     env_file: .env
     volumes:
-      - django_data:/app/backend
+      - django_data:/app/Project
     depends_on:
       postgres:
         condition: service_healthy
@@ -16,7 +16,7 @@ services:
     restart: always
     env_file: .env
     volumes:
-      - django_data:/app/backend
+      - django_data:/app/Project
     depends_on:
       - postgres
 

@@ -1,4 +1,4 @@
-cd /app/backend
+cd /app/Project
 
 if [ ! -d "staticfiles" ]; then
 	mkdir staticfiles

@@ -8,9 +8,9 @@ RUN pip3 install -r requirements.txt
 
 COPY --chmod=777 entrypoint.sh /entrypoint.sh
 
-RUN mkdir -p /app/backend
+RUN mkdir -p /app/Project
 
-WORKDIR /app/backend
+WORKDIR /app/Project
 
 EXPOSE 8000
 

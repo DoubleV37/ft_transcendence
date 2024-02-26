@@ -1,0 +1,16 @@
+<html lang="en">
+{% load static %}
+{% include "Home/head.html" %}
+{% include "Home/header.html" %}
+
+  <body>
+    {% csrf_token %}
+    {% if request.user.is_authenticated %}
+      {{ user.username }}<a href="{% url 'edit_name' %}">[Update]</a>
+    {% else %}
+      <h2> TEST caca </h2>
+    {% endif %}
+  </body>
+
+  {% include "Home/footer.html" %}
+</html>
