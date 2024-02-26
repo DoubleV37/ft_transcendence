@@ -63,16 +63,16 @@ class InfoName(UserCreationForm):
         model = User
         fields = ('username',)
 
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-        if User.objects.filter(username=username).exists():
-            raise forms.ValidationError("Username is already taken.")
-        return username
-
-    def save(self, *args, **kwargs):
-        username = self.cleaned_data.get('username')
-        user = super().save(*args, **kwargs)
-        return user
+    # def clean_username(self):
+    #     username = self.cleaned_data.get('username')
+    #     if User.objects.filter(username=username).exists():
+    #         raise forms.ValidationError("Username is already taken.")
+    #     return username
+    #
+    # def save(self, *args, **kwargs):
+    #     username = self.cleaned_data.get('username')
+    #     user = super().save(*args, **kwargs)
+    #     return user
 
 
 class InfoMail(UserCreationForm):

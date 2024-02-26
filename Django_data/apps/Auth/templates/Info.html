@@ -5,11 +5,9 @@
 
   <body>
     {% csrf_token %}
-    {% if request.user.is_authenticated %}
-      {{ user.username }}<a href="{% url 'edit_name' %}">[Update]</a>
-    {% else %}
-      <h2> TEST caca </h2>
-    {% endif %}
+      Name: {{ user.username }}<a href="{% url 'edit_name' %}">[Update]</a>
+      Password: *********<a href="{% url 'edit_psswd' %}">[Update]</a>
+      Email: {{ user.email }}<a href="{% url 'edit_mail' %}">[Update]</a>
   </body>
 
   {% include "Home/footer.html" %}
