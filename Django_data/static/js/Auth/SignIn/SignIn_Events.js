@@ -47,9 +47,9 @@ function  signin_auth42CallBack() {
   console.log('signin_auth42CallBack: Do nothing for now');
 }
 
-function  signin_SignUpCallBack() {
+async function  signin_SignUpCallBack() {
   signin_DelEvents();
-  loadPage(`${ROUTE.SIGNUP}`);
+  await loadPage(`${ROUTE.SIGNUP}`);
 }
 
 function  signin_ForgotPasswdCallBack() {
