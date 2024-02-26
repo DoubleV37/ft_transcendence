@@ -1,5 +1,5 @@
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 53.125em) {
+@media only screen and (min-width : 58em) {
     /* Styles */
 
     #BackArrow {
@@ -167,7 +167,7 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
+@media only screen and (min-width : 36.25em) and (max-width : 58em) {
     /* Styles */
 
     #BackArrow {
@@ -180,8 +180,8 @@
     #BackArrowFullscreen {
         width: 2em;
         position: absolute;
-        top: 1.2em;
-        right: 1.2em;
+        top: 1.5em;
+        right: 1.8em;
     }
 
     #DoubleButton {
@@ -353,7 +353,7 @@
         top: 1.2em;
         right: 1.2em;
     }
-    
+
     #DoubleButton {
         display: flex;
         width: 100%;

@@ -1,21 +1,21 @@
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 53.125em) {
+@media only screen and (min-width : 58em) {
     /* Styles */
     #leftcolumn {
         display: flex;
         justify-content: center;
-        width: 100%;
+        width: 30em;
     }
 
     #rightcolumn {
         display: flex;
         justify-content: center;
-        width: 100%;
+        width: 30em;
     }
 
     #Settings {
         display: flex;
-        width: 70%;
+        width: 80%;
         flex-direction: column;
         gap: 2rem;
         flex-shrink: 0;
@@ -25,21 +25,100 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 90%;
+        width: 100%;
+    }
+
+    #headerTextRow {
+        width: 54em;
+    }
+
+    #settingsTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: flex-start;
+        display: flex;
+        width: 70%;
+    }
+
+    #settingsText {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+        padding-bottom: 3.5em;
     }
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
+@media only screen and (min-width : 36.25em) and (max-width : 58em) {
     /* Styles */
     #leftcolumn {
         display: flex;
-        justify-content: left;
+        justify-content: center;
+        width: 18em;
     }
 
     #rightcolumn {
         display: flex;
-        justify-content: right;
+        justify-content: center;
+        width: 18em;
+    }
+
+    #Settings {
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        gap: 2rem;
+        flex-shrink: 0;
+    }
+
+    #test {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #headerTextRow {
+        width: 32em;
+    }
+
+    #settingsTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: flex-start;
+        display: flex;
+        width: 70%;
+    }
+
+    #settingsText {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+        padding-bottom: 3.5em;
     }
 }
 
@@ -48,11 +127,59 @@
     /* Styles */
     #leftcolumn {
         display: flex;
-        justify-content: left;
+        justify-content: center;
+        width: 30em;
     }
 
     #rightcolumn {
         display: flex;
-        justify-content: right;
+        justify-content: center;
+        width: 30em;
+    }
+
+    #Settings {
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        gap: 2rem;
+        flex-shrink: 0;
+    }
+
+    #test {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #headerTextRow {
+        width: 54em;
+    }
+
+    #settingsTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: flex-start;
+        display: flex;
+        width: 70%;
+    }
+
+    #settingsText {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+        padding-bottom: 3.5em;
     }
 }

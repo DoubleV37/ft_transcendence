@@ -8,7 +8,7 @@ scrollbar-width: none;
 }
 
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 53.125em) {
+@media only screen and (min-width : 58em) {
     /* Styles */
 
 	body {
@@ -55,7 +55,6 @@ scrollbar-width: none;
 	.midFullscreen {
 		display: flex;
 		height: 100%;
-		padding: 3vh 4vw;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -191,7 +190,7 @@ scrollbar-width: none;
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
+@media only screen and (min-width : 36.25em) and (max-width : 58em) {
     /* Styles */
 
 	body {
@@ -248,7 +247,6 @@ scrollbar-width: none;
 	.midFullscreen {
 		display: flex;
 		height: 100%;
-		padding: 3vh 4vw;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
