@@ -17,7 +17,7 @@
         display: flex;
         width: 80%;
         flex-direction: column;
-        gap: 2rem;
+        gap: 2.5em;
         flex-shrink: 0;
     }
 
@@ -25,11 +25,21 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 100%;
     }
 
     #headerTextRow {
         width: 54em;
+    }
+
+    #settingsTitle::before {
+        content: url('../images/gear-11-svgrepo-com.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 2rem; /* Adds some space between the icon and the text */
+        vertical-align: middle; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
     }
 
     #settingsTitle {
@@ -56,12 +66,12 @@
         text-align: left;
         align-self: start;
         margin-top: 0.7rem;
-        padding-bottom: 1.5em;
+        padding-bottom: 4em;
     }
 
     #separator {
         flex:  1; /* Occupation de l'espace disponible */
-        border-top:  1px solid rgb(255,  255,  255); /* Ligne horizontale en haut */
+        border-top:  1px solid #828282; /* Ligne horizontale en haut */
         padding-bottom: 4em;
     }
 }
@@ -85,7 +95,7 @@
         display: flex;
         width: 80%;
         flex-direction: column;
-        gap: 2rem;
+        gap: 2.5em;
         flex-shrink: 0;
     }
 
@@ -93,11 +103,21 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 100%;
     }
 
     #headerTextRow {
         width: 32em;
+    }
+
+    #settingsTitle::before {
+        content: url('../images/gear-11-svgrepo-com.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right:  2rem; /* Adds some space between the icon and the text */
+        vertical-align: middle; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
     }
 
     #settingsTitle {
@@ -124,12 +144,12 @@
         text-align: left;
         align-self: start;
         margin-top: 0.7rem;
-        padding-bottom: 1.5em;
+        padding-bottom: 4em;
     }
 
     #separator {
         flex:  1; /* Occupation de l'espace disponible */
-        border-top:  1px solid rgb(255,  255,  255); /* Ligne horizontale en haut */
+        border-top:  1px solid #828282; /* Ligne horizontale en haut */
         padding-bottom: 4em;
     }
 }

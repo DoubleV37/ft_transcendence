@@ -113,7 +113,6 @@
     #ProfileCardboardFullscreen {
         display: flex;
         align-items: center;
-        padding-left: 4vw;
         gap: 1.25rem;
         flex-shrink: 0;
         top: 3.4375em;
@@ -140,6 +139,8 @@
         display: flex;
         align-items: center;
         gap: 1em;
+        position: absolute;
+        left: 2vw;
     }
 
     #UserStatusFullscreen {
@@ -281,7 +282,7 @@
     #ProfileCardboardFullscreen {
         display: flex;
         align-items: center;
-        padding-left: 4vw;
+        left: 2.5vw;
         gap: 1.25rem;
         flex-shrink: 0;
         top: 3.4375em;
@@ -308,6 +309,8 @@
         display: flex;
         align-items: center;
         gap: 1em;
+        position: absolute;
+        left: 2vw;
     }
 
     #UserStatusFullscreen {

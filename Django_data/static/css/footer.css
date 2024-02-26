@@ -9,10 +9,10 @@
 		justify-content: flex-end;
 		align-items: center;
 		/* flex-shrink: 0; */
-		margin-bottom: -3.4375rem;
 		margin-top: auto;
-
-		background: #0F0F10;
+		background: #151821;
+		position: relative;
+		bottom: 0;
 	}
 
 	.les-keep {
@@ -36,10 +36,10 @@
 		justify-content: flex-end;
 		align-items: center;
 		/* flex-shrink: 0; */
-		margin-bottom: -3.4375rem;
 		margin-top: auto;
-
-		background: #0F0F10;
+		background: #151821;
+		position: relative;
+		bottom: 0;
 	}
 
 	.les-keep {
@@ -65,8 +65,7 @@
 		/* flex-shrink: 0; */
 		margin-bottom: -3.4375rem;
 		margin-top: auto;
-
-		background: #0F0F10;
+		background: #151821;
 	}
 
 	.les-keep {
