@@ -4,33 +4,33 @@
 {% include "Home/header.html" %}
 
 <div id="content">
-	<div id="overlay">
-	<div class="mid midcolumn">
-	<div id="titleContent" data-content="SIGNIN_PAGE"></div>
-	<img id="BackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-		<form id="SIGNIN_Form" action="">
-			<h1 id="login_title">Login Informations</h1>
-			{% csrf_token %}
-			{{ form.as_p }}
-			<!-- Display area for client-side validation errors -->
-			<div id="SIGNIN_Errors" style="color: red;"></div>
-			<div id ="forgot_password">
-			<p>Forgot password?</p>
-			</div>
-			<!-- Submit button triggers client-side validation -->
-			<button class="ButtonLayout ButtonBlue" type="submit">Sign In</button>
-			<div id ="or_login_with">
-			<div id="leftline"></div>
-			<p id="text">Or login with</p>
-			<div id="rightline"></div>
-			</div>
-			<button class="ButtonLayout Button42" type="button">42 account</button>
-			<div id ="SIGNIN_Signup">
-				<p>Doesn’t have a Pooong! account ? <b>Create an account</b></p>
-			</div>
-		</form>
+  <div id="overlay">
+    <div class="mid midcolumn">
+      <div id="titleContent" data-content="SIGNIN_PAGE"></div>
+      <img id="BackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+      <form id="SIGNIN_Form" action="">
+	<h1 id="login_title">Login Informations</h1>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<!-- Display area for client-side validation errors -->
+	<div id="SIGNIN_Errors" style="color: red;"></div>
+	<div id ="forgot_password">
+	  <p>Forgot password?</p>
 	</div>
+	<!-- Submit button triggers client-side validation -->
+	<button class="ButtonLayout ButtonBlue" type="submit">Sign In</button>
+	<div id ="or_login_with">
+	  <div id="leftline"></div>
+	  <p id="text">Or login with</p>
+	  <div id="rightline"></div>
 	</div>
+	<button id="SIGNIN_Auth42" class="ButtonLayout Button42" type="button">42 account</button>
+	<div id="SIGNIN_Signup">
+	  <p>Doesn’t have a Pooong! account ? <b>Create an account</b></p>
+	</div>
+      </form>
+    </div>
+  </div>
 </div>
 
 {% include "Home/footer.html" %}
