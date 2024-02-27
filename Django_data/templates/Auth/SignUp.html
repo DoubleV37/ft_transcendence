@@ -10,6 +10,7 @@
 			<h1 id ="signupTitle">Sign up !</h1>
 			{% csrf_token %}
 			{{ form.as_p }}
+			<div id="SIGNUP_Errors" style="color: red;"></div>
 			<button id="btn_signup" type="submit">S’inscrire</button>
 			<div id ="SIGNUP_signin">
 				<p>Already have an account ? <b>Log in</b></p>
