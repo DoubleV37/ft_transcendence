@@ -1,12 +1,9 @@
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 60em) {
+@media only screen and (min-width : 60.063em) {
     /* Styles */
 
     #BackArrow {
-        position: absolute;
-        top: 2.5em;
-        right: 2.5em;
-        width: 5%;
+        width: 8%;
     }
 
     #BackArrowFullscreen {
@@ -25,12 +22,11 @@
 
     #ProfilePage {
         display: flex;
-        width: 90%;
+        width: 70%;
         flex-direction: column;
         align-items: flex-start;
-        gap: 2rem;
+        gap: 1.8rem;
         flex-shrink: 0;
-        padding: 3.125em 8em;
     }
 
     #ProfilePic {
@@ -76,6 +72,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        color: #FFF;
     }
 
     #ProfileCardboard {
@@ -219,7 +216,7 @@
         color: #FFF;
         text-align: right;
         font-family: Kodchasan;
-        font-size: 1.875rem;
+        font-size: 1.475rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;

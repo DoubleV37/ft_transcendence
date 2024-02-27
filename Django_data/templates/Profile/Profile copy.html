@@ -1,13 +1,22 @@
 {% load static %}
-<!-- Modal -->
-<div class="modal fade" id="ProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+{% include "Home/head.html" %}
+{% include "Home/header.html" %}
+<div id="content">
+	<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+	Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
+	  <div class="modal-content">
 		<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-			<button id='modalButton' data-bs-dismiss="modal">
+		  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+		  <button id='modalButton' data-bs-dismiss="modal" id="openModal">
 			<img id="BackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-			</button>
+		  </button>
 		</div>
 		<div class="modal-body">
 					<div id="titleContent" data-content="PROFILE_PAGE"></div>
@@ -33,6 +42,20 @@
 		</div>
 		<div class="modal-footer">
 		</div>
+	  </div>
+	</div>
+  </div>
+	<div id="ProfileCardboardMobile">
+		<div id="UserPictureInfo">
+			<img id="ProfilePic" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
+			<div id="UserStatus">
+				<h1 id="username">DoubleV</h1>
+				<p id="connectStatus">online</p>
+			</div>
 		</div>
+		<img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
 	</div>
 </div>
+
+{% include "Home/footer.html" %}
+

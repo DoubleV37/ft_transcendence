@@ -4,7 +4,7 @@
 {% include "Home/header.html" %}
 
 <!-- Voir avec les autres si on peut le laisser dehors -->
-<div id="ProfileCardboardFullscreen">
+{% comment %} <div id="ProfileCardboardFullscreen">
 	<div id="UserPictureInfoFullscreen">
 		<img id="ProfilePicFullscreen" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
 		<div id="UserStatusFullscreen">
@@ -12,12 +12,12 @@
 			<p id="connectStatusFullscreen">online</p>
 		</div>
 	</div>
-	<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-</div>
+</div> {% endcomment %}
 
 <div id="contentFullscreen">
 	<div id="titleContent" data-content="SETTINGS"></div>
 	<div id="overlayFullscreen">
+		<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
 		<div class="midFullscreen midrow">
 			<div id="section">
 				<div id="headerTextRow">
