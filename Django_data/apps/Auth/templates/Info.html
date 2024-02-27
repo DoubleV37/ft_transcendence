@@ -6,7 +6,11 @@
   <body>
       {% csrf_token %}
       <p>Avatar:</p>
-      <img src="{{ user.avatar.url }}"></img>
+      {% if user.avatar.url is not None %}
+       <img src="{{ user.avatar.url }}"></img>
+      {% else %}
+        Empty
+      {% endif %}
       <a href="{% url 'edit_avatar' %}">[Update]</a>
       Name: {{ user.username }}<a href="{% url 'edit_name' %}">[Update]</a>
       Password: *********<a href="{% url 'edit_psswd' %}">[Update]</a>

@@ -7,7 +7,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .forms import (
-        CustomUserCreationForm, SignInForm, InfoName, InfoMail, InfoPsswd, InfoAvatar
+        CustomUserCreationForm, SignInForm, InfoName, InfoMail, InfoPsswd, InfoAvatar,
+        AllInfo
     )
 from . import forms
 
@@ -61,10 +62,11 @@ def edit_avatar(request):
     logger.debug("edit_avatar")
     if request.method == 'POST' and 'avatar' in request.FILES:
         logger.debug("first condition in")
-        avatar = InfoAvatar(request.POST, request.FILES)
-        if avatar.is_valid():
+        avatar_form = InfoAvatar(request.POST, request.FILES, instance=user)
+        if avatar_form.is_valid():
             logger.debug("is_valid=True")
-            user.avatar = avatar.save(commit=False)
+            avatar = avatar_form.save(commit=False)
+            user.avatar = avatar.avatar
             user.save()
             response = JsonResponse({'success': True})
             return response
@@ -76,8 +78,8 @@ def edit_avatar(request):
             )
             return response
     else:
-        avatar = InfoAvatar(instance=user)
-        return render(request, 'edit_avatar.html', {'avatar': avatar})
+        avatar_form = InfoAvatar(instance=user)
+        return render(request, 'edit_avatar.html', {'avatar_form': avatar_form})
     logger.debug("Che ne pas comprende")
     return HttpResponse("Exception", status=400)
 
@@ -103,7 +105,7 @@ def edit_name(request):
 def edit_psswd(request):
     user = User.objects.get(username=request.user.username)
     if request.method == 'POST':
-        if 'passeword1' in request.POST:
+        if 'password1' in request.POST:
             psswd = InfoPsswd(request.POST, instance=user)
             if psswd.is_valid():
                 psswd.save()
@@ -145,6 +147,37 @@ def info(request):
         return render(request, 'Info.html', {'user': user})
     except:
         return HttpResponse("Exception", status=400)
+
+def infoAll(request):
+    try:
+        user = User.objects.get(username=request.user.username)
+        form = AllInfo(instance=user)
+        if request.method == 'POST' and 'avatar' in request.FILES:
+            form = AllInfo(request.POST, request.FILES, instance=user)
+            if form.is_valid():
+                avatar = form.save(commit=False)
+                user.avatar = avatar.avatar
+                user.save()
+                response = JsonResponse({'success': True})
+                return response
+        if request.method == 'POST':
+            form = AllInfo(request.POST, instance=user)
+            if form.is_valid():
+                form.save()
+                return response
+        else:
+            response = JsonResponse(
+                {'success': False,
+                 'errors': 'Invalid form'}
+            )
+            return response
+
+        # TODO here afternoon
+
+        return render(request, 'Info.html', {'user': user})
+    except:
+        return HttpResponse("Exception", status=400)
+
 
 def signout(request):
     if request.method == 'POST':

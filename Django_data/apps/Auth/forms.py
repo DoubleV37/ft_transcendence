@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
+import os
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -46,15 +47,45 @@ class SignInForm(forms.Form):
 
 #_____________________________________________________________________________#
 #_MODIFICATION FORMS__________________________________________________________#
+
+
+class AllInfo(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('avatar', 'username', 'password1', 'email',)
+    def clean_avatar(self):
+        avatar = self.cleaned_data.get('avatar')
+        # If avatar is changed, delete the previous image
+        if self.instance.avatar and self.instance.avatar != avatar:
+            return avatar
+        return self.instance.avatar
+    def save(self, commit=True, *args, **kwargs):
+        instance = super().save(commit=False)
+        instance.avatar = self.cleaned_data['avatar']
+        if commit:
+            instance.save()
+        return instance
+
+
+
 class InfoAvatar(forms.ModelForm):
     class Meta:
         model = User
         fields = ('avatar',)
 
-    def save(self, *args, **kwargs):
-        self.avatar = self.cleaned_data['avatar']
-        user = super().save(*args, **kwargs)
+    def clean_avatar(self):
+        avatar = self.cleaned_data.get('avatar')
+        # If avatar is changed, delete the previous image
+        if self.instance.avatar and self.instance.avatar != avatar:
+            return avatar
+        return self.instance.avatar
 
+    def save(self, commit=True, *args, **kwargs):
+        instance = super().save(commit=False)
+        instance.avatar = self.cleaned_data['avatar']
+        if commit:
+            instance.save()
+        return instance
 
 class InfoPsswd(UserCreationForm):
     class Meta(UserCreationForm.Meta):
