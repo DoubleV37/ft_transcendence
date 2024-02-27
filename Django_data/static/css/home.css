@@ -99,7 +99,7 @@ scrollbar-width: none;
 
 	/* MAIN CONTENT */
 
-.mid {
+	.mid {
 		display: flex;
 		height: 47em;
 		justify-content: center;
@@ -172,7 +172,7 @@ scrollbar-width: none;
 
 	.midcolumn {
 		flex-direction: column;
-		width: 50em;
+		width: 48em;
 	}
 
 	#WelcomeScreen {
