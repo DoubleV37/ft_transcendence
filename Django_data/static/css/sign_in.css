@@ -136,7 +136,7 @@
     }
 
 
-    #or_login_with {
+    #infoSeparator {
         display: flex;
         align-items: center; /* Centré verticalement */
         justify-content: space-between; /* Espacement entre les enfants */
@@ -305,7 +305,7 @@
       cursor:pointer;
     }
 
-    #or_login_with {
+    #infoSeparator {
         display: flex;
         align-items: center; /* Centré verticalement */
         justify-content: space-between; /* Espacement entre les enfants */
@@ -350,7 +350,7 @@
     #login_title {
         color: #FFF;
         font-family: Kodchasan;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -469,7 +469,7 @@
     }
 
 
-    #or_login_with {
+    #infoSeparator {
         display: flex;
         align-items: center; /* Centré verticalement */
         justify-content: space-between; /* Espacement entre les enfants */
