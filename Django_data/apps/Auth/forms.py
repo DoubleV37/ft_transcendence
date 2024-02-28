@@ -55,7 +55,7 @@ class SignInForm(forms.Form):
 class AllInfo(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ('username', 'password', 'email',)
+        fields = ('username', 'email',)
 
     def clean_username(self):
         username = self.cleaned_data['username']

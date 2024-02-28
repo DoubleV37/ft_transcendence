@@ -166,13 +166,6 @@ def allinfo(request):
                 'success': False,
                 'errors': 'BAAAAAAAADDDDD'
             })
-            if  form.is_valid():
-                logger.debug("Second requset if")
-                form.save()
-                response = JsonResponse({
-                    'success': True,
-                    'key': 'User...',
-                })
             if 'avatar' in request.FILES:
                 avatar_form = InfoAvatar(request.POST, request.FILES, instance=user)
                 if  avatar_form.is_valid():
@@ -188,6 +181,13 @@ def allinfo(request):
                         'success': True,
                         'key': 'Photo',
                     })
+            if  form.is_valid():
+                logger.debug("Second requset if")
+                form.save()
+                response = JsonResponse({
+                    'success': True,
+                    'key': 'User...',
+                })
             logger.debug(form.errors)
             return response
         logger.debug("Displaying html")
