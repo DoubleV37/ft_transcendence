@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
+import os
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -43,3 +44,61 @@ class SignInForm(forms.Form):
                                               'Password'}),
             help_text=password_validation.password_validators_help_text_html(),
             )
+
+#_____________________________________________________________________________#
+#_MODIFICATION FORMS__________________________________________________________#
+
+
+class AllInfo(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password', 'email',)
+    # def clean_avatar(self):
+    #     avatar = self.cleaned_data.get('avatar')
+    #     # If avatar is changed, delete the previous image
+    #     if self.instance.avatar and self.instance.avatar != avatar:
+    #         return avatar
+        # return self.instance.avatar
+    # def save(self, commit=True, *args, **kwargs):
+    #     instance = super().save(commit=False)
+    #     instance.avatar = self.cleaned_data['avatar']
+    #     if commit:
+    #         instance.save()
+    #     return instance
+
+
+
+class InfoAvatar(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('avatar',)
+    def clean_avatar(self):
+        avatar = self.cleaned_data['avatar']
+        # If avatar is changed, delete the previous image
+        if self.instance.avatar and self.instance.avatar != avatar:
+            return avatar
+        return self.instance.avatar
+    def save(self, commit=True, *args, **kwargs):
+        instance = super().save(commit=False)
+        instance.avatar = self.cleaned_data['avatar']
+        if commit:
+            instance.save()
+        return instance
+
+
+class InfoPsswd(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ('password1',)
+
+
+class InfoName(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ('username',)
+
+
+class InfoMail(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ('email',)
