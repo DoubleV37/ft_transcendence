@@ -148,34 +148,48 @@ def info(request):
     except:
         return HttpResponse("Exception", status=400)
 
-def infoAll(request):
+def allinfo(request):
     try:
         user = User.objects.get(username=request.user.username)
         form = AllInfo(instance=user)
-        if request.method == 'POST' and 'avatar' in request.FILES:
-            form = AllInfo(request.POST, request.FILES, instance=user)
-            if form.is_valid():
-                avatar = form.save(commit=False)
-                user.avatar = avatar.avatar
-                user.save()
-                response = JsonResponse({'success': True})
-                return response
+        avatar_form = InfoAvatar(instance=user)
+        context={
+            'user': user,
+            'form': form,
+            'avatar_form': avatar_form,
+        }
+        logger.debug("Inside try")
         if request.method == 'POST':
+            logger.debug("First requset if")
             form = AllInfo(request.POST, instance=user)
-            if form.is_valid():
-                form.save()
+            avatar_form = InfoAvatar(request.POST, request.FILES,instance=user)
+            if all([form.is_valid(), avatar_form.is_valid()]):
+                logger.debug("Second requset if: valid form")
+                logger.debug("avatar_form")
+                logger.debug(avatar_form.cleaned_data.get('avatar'))
+                avatar = avatar_form.save(commit=False)
+                logger.debug("Second requset if: avatar_form save")
+                logger.debug(avatar.avatar.url)
+                user.avatar = avatar.avatar
+                logger.debug("Second requset if: user = avatar_form")
+                user.save()
+                logger.debug("Second requset if: user.save()")
+                # form.save()
+                # logger.debug("Second requset if: form.save()")
+                response = JsonResponse({'success': True})
+                logger.debug("Second requset if:JSON")
                 return response
-        else:
-            response = JsonResponse(
-                {'success': False,
-                 'errors': 'Invalid form'}
-            )
-            return response
-
-        # TODO here afternoon
-
-        return render(request, 'Info.html', {'user': user})
+            else:
+                logger.debug("Second requset else: not valid form")
+                response = JsonResponse({
+                    'success': False,
+                    'errors': 'POST FILES'
+                })
+                return response
+        logger.debug("Displaying html")
+        return render(request, 'AllInfo.html', context=context)
     except:
+        logger.debug("Exception")
         return HttpResponse("Exception", status=400)
 
 

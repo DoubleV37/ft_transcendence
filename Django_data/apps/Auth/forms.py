@@ -52,19 +52,19 @@ class SignInForm(forms.Form):
 class AllInfo(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('avatar', 'username', 'password1', 'email',)
-    def clean_avatar(self):
-        avatar = self.cleaned_data.get('avatar')
-        # If avatar is changed, delete the previous image
-        if self.instance.avatar and self.instance.avatar != avatar:
-            return avatar
-        return self.instance.avatar
-    def save(self, commit=True, *args, **kwargs):
-        instance = super().save(commit=False)
-        instance.avatar = self.cleaned_data['avatar']
-        if commit:
-            instance.save()
-        return instance
+        fields = ('username', 'password', 'email',)
+    # def clean_avatar(self):
+    #     avatar = self.cleaned_data.get('avatar')
+    #     # If avatar is changed, delete the previous image
+    #     if self.instance.avatar and self.instance.avatar != avatar:
+    #         return avatar
+        # return self.instance.avatar
+    # def save(self, commit=True, *args, **kwargs):
+    #     instance = super().save(commit=False)
+    #     instance.avatar = self.cleaned_data['avatar']
+    #     if commit:
+    #         instance.save()
+    #     return instance
 
 
 
@@ -72,20 +72,19 @@ class InfoAvatar(forms.ModelForm):
     class Meta:
         model = User
         fields = ('avatar',)
-
     def clean_avatar(self):
         avatar = self.cleaned_data.get('avatar')
         # If avatar is changed, delete the previous image
         if self.instance.avatar and self.instance.avatar != avatar:
             return avatar
         return self.instance.avatar
-
     def save(self, commit=True, *args, **kwargs):
         instance = super().save(commit=False)
         instance.avatar = self.cleaned_data['avatar']
         if commit:
             instance.save()
         return instance
+
 
 class InfoPsswd(UserCreationForm):
     class Meta(UserCreationForm.Meta):
