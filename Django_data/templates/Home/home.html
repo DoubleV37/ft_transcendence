@@ -5,6 +5,8 @@
 
 <body>
   {% include "Home/header.html" %}
+  <a href="{% url 'info' %}">Info</a>
+  <a href="{% url 'allinfo' %}">Info</a>
 	<div id="content">
 		{% include "Profile/Profile.html" %}
 		<div id="overlay">
