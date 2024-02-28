@@ -9,11 +9,14 @@ function  header_SetEvents() {
   const	IsAuthenticated = element.getAttribute('data-auth');
 
   if (IsAuthenticated === 'true') {
-    element = document.getElementById('HEADER_Profile');
-    element.addEventListener('click', header_UserProfilCallBack);
-
     element = document.getElementById('HEADER_NavSignOut');
     element.addEventListener('click', header_SignOutCallBack);
+
+    element = document.getElementById('HEADER_NavProfile');
+    element.addEventListener('click', header_ModProfilCallBack);
+
+    element = document.getElementById('HEADER_Profile');
+    element.addEventListener('click', header_ModProfilCallBack);
   }
   else if (IsAuthenticated === 'false') {
     element = document.getElementById('HEADER_Signin');
@@ -39,7 +42,10 @@ function  header_DelEvents() {
 
   if (IsAuthenticated === 'true') {
     element = document.getElementById('HEADER_Profile');
-    element.removeEventListener('click', header_UserProfilCallBack);
+    element.removeEventListener('click', header_ModProfilCallBack);
+
+    element = document.getElementById('HEADER_NavProfile');
+    element.removeEventListener('click', header_ModProfilCallBack);
 
     element = document.getElementById('HEADER_NavSignOut');
     element.removeEventListener('click', header_SignOutCallBack);
@@ -65,8 +71,16 @@ function  header_SignInCallBack() {
   loadPage(`${ROUTE.SIGNIN}`);
 }
 
-function  header_UserProfilCallBack() {
-  console.log('Integrer la modal je sais pas comment encore');
+function  header_ModProfilCallBack() {
+  const offcanvasElement = document.getElementById('offcanvasNavbar');
+  const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
+
+  if (offcanvas) {
+      offcanvas.hide();
+  }
+
+  profileModal = new bootstrap.Modal(document.getElementById('ProfileModal'));
+  profileModal._element.addEventListener('shown.bs.modal', profile_SetEvents);
 }
 
 async function  header_SignOutCallBack() {

@@ -21,7 +21,7 @@
 					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 						<li class="nav-item">
 							{% comment %} {% if user.is_authenticated %} {% endcomment %}
-								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProfileModal" id="openModal">
+								<button id="HEADER_NavProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProfileModal">
 									Profile
 								</button>
 							{% comment %} {% endif %} {% endcomment %}
@@ -40,7 +40,9 @@
 		
 		<div id="div_profile">
 		  {% if user.is_authenticated %}
-		    <button id="HEADER_Profile">Profile hehe</button>
+		    <button id="HEADER_Profile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProfileModal">
+		      Profile
+		    </button>
 		  {% else %}
 		    <button id="HEADER_Signin">Sign in</button>
 		  {% endif %}
@@ -48,17 +50,3 @@
 	</nav>
   </div>
 </header>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		var offcanvasElement = document.getElementById('offcanvasNavbar');
-		var modalButton = document.getElementById('openModal');
-	
-		modalButton.addEventListener('click', function () {
-			var offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
-			if (offcanvas) {
-				offcanvas.hide();
-			}
-		});
-	});
-</script>
