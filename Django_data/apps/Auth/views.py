@@ -158,34 +158,39 @@ def allinfo(request):
             'form': form,
             'avatar_form': avatar_form,
         }
-        logger.debug("Inside try")
         if request.method == 'POST':
             logger.debug("First requset if")
             form = AllInfo(request.POST, instance=user)
-            avatar_form = InfoAvatar(request.POST, request.FILES,instance=user)
-            if all([form.is_valid(), avatar_form.is_valid()]):
-                logger.debug("Second requset if: valid form")
-                logger.debug("avatar_form")
-                logger.debug(avatar_form.cleaned_data.get('avatar'))
-                avatar = avatar_form.save(commit=False)
-                logger.debug("Second requset if: avatar_form save")
-                logger.debug(avatar.avatar.url)
-                user.avatar = avatar.avatar
-                logger.debug("Second requset if: user = avatar_form")
-                user.save()
-                logger.debug("Second requset if: user.save()")
-                # form.save()
-                # logger.debug("Second requset if: form.save()")
+            response = JsonResponse({
+                'success': False,
+                'errors': 'Initial',
+            })
+            if  form.is_valid():
+                logger.debug("Second requset if")
+                form.save()
                 response = JsonResponse({'success': True})
-                logger.debug("Second requset if:JSON")
-                return response
             else:
-                logger.debug("Second requset else: not valid form")
+                logger.debug("Second requset else")
                 response = JsonResponse({
                     'success': False,
-                    'errors': 'POST FILES'
+                    'errors': 'FORM'
                 })
-                return response
+            if 'avatar' in request.POST :
+                logger.debug("third requset if")
+                avatar_form = InfoAvatar(request.POST, request.FILES,instance=user)
+                if  avatar_form.is_valid():
+                    avatar = avatar_form.save(commit=False)
+                    logger.debug(avatar_form.cleaned_data['avatar'])
+                    user.avatar = avatar.avatar
+                    user.save()
+                    response = JsonResponse({'success': True})
+            else:
+                logger.debug("third requset else")
+                response = JsonResponse({
+                    'success': False,
+                    'errors': 'Photo'
+                })
+            return response
         logger.debug("Displaying html")
         return render(request, 'AllInfo.html', context=context)
     except:

@@ -5,10 +5,15 @@
 
   <body>
 
-      <img src="{{ user.avatar.url }}">
+      <img src="{{ user.avatar.url }}"></img>
       <form action="" method='post' enctype="multipart/from-data">
         {% csrf_token %}
         {{ avatar_form.as_p }}
+        <button type="submit">Update Photo</button>
+      </form>
+
+      <form action="" method='post'>
+        {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Update</button>
       </form>

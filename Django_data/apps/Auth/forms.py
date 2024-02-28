@@ -73,7 +73,7 @@ class InfoAvatar(forms.ModelForm):
         model = User
         fields = ('avatar',)
     def clean_avatar(self):
-        avatar = self.cleaned_data.get('avatar')
+        avatar = self.cleaned_data['avatar']
         # If avatar is changed, delete the previous image
         if self.instance.avatar and self.instance.avatar != avatar:
             return avatar
