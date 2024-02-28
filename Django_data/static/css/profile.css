@@ -33,10 +33,10 @@
         width: 70%;
     }
 
-    .offcanvas-profile {
+    /* .offcanvas-profile {
         width: 80%;
         padding-top: 5vh;
-    }
+    } */
 
     .ProfilePic {
         border-radius: 100%;
@@ -45,10 +45,6 @@
 
     .modal-profilePic {
         width: 25%;
-    }
-
-    .offcanvas-profilePic {
-        width: 30%;
     }
     
     #UserPictureInfo {
@@ -215,6 +211,14 @@
         margin-block-end: 0;
     }
 
+    .ProfileCardboard {
+        display: flex;
+        height: 5.625rem;
+        align-items: center;
+        gap: 1.25rem;
+        flex-shrink: 0;
+    }
+
     .modal-profile {
         width: 65%;
     }
@@ -223,9 +227,8 @@
         width: 80%;
     }
 
-    #ProfilePic {
+    .ProfilePic {
         border-radius: 100%;
-        width: 20%;
         border: 1px solid #5DC6E8;
     }
 
@@ -398,7 +401,7 @@
         z-index: -1; /* Ensure the overlay is behind the content */
     }
 
-    #ProfilePage {
+    .ProfilePage {
         display: flex;
         width: 90%;
         flex-direction: column;
@@ -408,7 +411,7 @@
         max-width: 20em;
     }
 
-    #ProfilePic {
+    .ProfilePic {
         border-radius: 100%;
         width: 5.5em;
         border: 1px solid #5DC6E8;
