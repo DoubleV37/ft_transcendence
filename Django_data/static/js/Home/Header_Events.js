@@ -66,7 +66,7 @@ function  header_SignInCallBack() {
 }
 
 function  header_UserProfilCallBack() {
-  console.log('header_UserProfilCallBack: Do nothing for now');
+  console.log('Integrer la modal je sais pas comment encore');
 }
 
 async function  header_SignOutCallBack() {
