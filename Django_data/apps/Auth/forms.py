@@ -2,7 +2,10 @@ from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
-import os
+from django.contrib.auth.hashers import make_password
+
+
+# Now you can use `hashed_password` to store in your database
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -49,10 +52,29 @@ class SignInForm(forms.Form):
 #_MODIFICATION FORMS__________________________________________________________#
 
 
-class AllInfo(forms.ModelForm):
-    class Meta:
+class AllInfo(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
         model = User
         fields = ('username', 'password', 'email',)
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        # if User.objects.filter(username=username).exists():
+        #     # Check if the username belongs to the current user
+        #     if username != self.instance.username:
+        #         raise forms.ValidationError("User with this Username already exists.")
+        return username
+    def hashing(self):
+        password = self.cleaned_data['password']
+        return make_password(password)
+
+    def save(self, commit=True, *args, **kwargs):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+        return instance
+
+
     # def clean_avatar(self):
     #     avatar = self.cleaned_data.get('avatar')
     #     # If avatar is changed, delete the previous image

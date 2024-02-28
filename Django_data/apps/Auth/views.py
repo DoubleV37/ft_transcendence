@@ -164,39 +164,36 @@ def allinfo(request):
             form = AllInfo(request.POST, instance=user)
             response = JsonResponse({
                 'success': False,
-                'errors': 'Initial',
+                'errors': 'BAAAAAAAADDDDD'
             })
             if  form.is_valid():
                 logger.debug("Second requset if")
                 form.save()
-                response = JsonResponse({'success': True})
-            else:
-                logger.debug("Second requset else")
                 response = JsonResponse({
-                    'success': False,
-                    'errors': 'FORM'
+                    'success': True,
+                    'key': 'User...',
                 })
-            if request.method == 'POST' and 'avatar' in request.FILES:
-                logger.debug("third requset if")
+            if 'avatar' in request.FILES:
                 avatar_form = InfoAvatar(request.POST, request.FILES, instance=user)
-                # logger.debug(avatar_form.cleaned_data['avatar'])
                 if  avatar_form.is_valid():
                     logger.debug("forth requset if")
                     avatar = avatar_form.save(commit=False)
                     logger.debug(avatar_form.cleaned_data['avatar'])
                     user.avatar = avatar.avatar
+                    logger.debug("0")
+                    user.username = request.user.username
                     user.save()
-                    response = JsonResponse({'success': True})
-            else:
-                logger.debug("third requset else")
-                response = JsonResponse({
-                    'success': False,
-                    'errors': 'Photo'
-                })
+                    logger.debug("1")
+                    response = JsonResponse({
+                        'success': True,
+                        'key': 'Photo',
+                    })
+            logger.debug(form.errors)
             return response
         logger.debug("Displaying html")
         return render(request, 'AllInfo.html', context=context)
-    except:
+    except Exception as e:
+        logger.error(f"Exception occurred: {e}")
         logger.debug("Exception")
         return HttpResponse("Exception", status=400)
 
