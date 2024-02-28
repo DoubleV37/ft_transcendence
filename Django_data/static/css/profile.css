@@ -116,7 +116,7 @@
         position: sticky;
         height: 8em;
         width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
-        background-color: #202532;
+        background-color: #212529;
         border-bottom: 1px solid #828282;
         justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
     }
@@ -170,10 +170,7 @@
     /* Styles */
 
     #BackArrow {
-        position: absolute;
-        top: 2.5em;
-        right: 2em;
-        width: 7%;
+        width: 8%;
     }
 
     #BackArrowFullscreen {
@@ -195,7 +192,7 @@
         width: 65%;
         flex-direction: column;
         align-items: flex-start;
-        gap: 2rem;
+        gap: 1.8rem;
         flex-shrink: 0;
         margin-block-end: 0;
     }
@@ -243,6 +240,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        color: #FFF;
     }
 
     #ProfileCardboard {
@@ -339,7 +337,7 @@
 @media only screen and (min-width : 1em) and (max-width : 36.25em) {
     /* Styles */
     #BackArrow {
-        display: none;
+        width: 8%;
     }
     
     #BackArrowMobile {
@@ -426,10 +424,15 @@
     }
 
     #ProfileCardboard {
-        display: none;
+        display: flex;
+        width: 100%;
+        height: 5.625rem;
+        align-items: flex-start;
+        gap: 1.25rem;
+        flex-shrink: 0;
     }
 
-    #ProfileCardboardMobile {
+    /* #ProfileCardboardMobile {
         display: flex;
         align-items: center;
         padding-left: 4vw;
@@ -437,11 +440,11 @@
         flex-shrink: 0;
         position: relative;
         height: 8em;
-        width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
+        width:  100%;
         background-color: #202532;
         border-bottom: 1px solid #828282;
-        justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
-    }
+        justify-content: space-between;
+    } */
 
     #test {
         width: 80%;

@@ -62,7 +62,6 @@
     #btn_signup {
         display: flex;
         height: 3.125rem;
-        margin-top: 1.625rem;
         justify-content: center;
         align-items: center;
         gap: 0.625rem;
@@ -92,6 +91,7 @@
         line-height: normal;
         text-align: left;
         align-self: start;
+        margin-top: 0.7rem;
     }
 
     #SIGNUP_signin b:hover {
@@ -115,7 +115,7 @@
 
     #SIGNUP_Form {
         display: flex;
-        width: 65%;
+        width: 60%;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.8rem;
@@ -126,7 +126,7 @@
     #signupTitle {
         color: #FFF;
         font-family: Kodchasan;
-        font-size: 2rem;
+        font-size: 1.9rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -167,7 +167,6 @@
     #btn_signup {
         display: flex;
         height: 3.125rem;
-        margin-top: 1.625rem;
         justify-content: center;
         align-items: center;
         gap: 0.625rem;
@@ -197,6 +196,7 @@
         line-height: normal;
         text-align: left;
         align-self: start;
+        margin-top: 0.7rem;
     }
 
     #SIGNUP_signin b:hover {
@@ -219,7 +219,7 @@
     #signupTitle {
         color: #FFF;
         font-family: Kodchasan;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -270,7 +270,6 @@
     #btn_signup {
         display: flex;
         height: 3.125rem;
-        margin-top: 1.625rem;
         justify-content: center;
         align-items: center;
         gap: 0.625rem;
@@ -300,6 +299,7 @@
         line-height: normal;
         text-align: left;
         align-self: start;
+        margin-top: 0.7rem;
     }
 
     .helptext {

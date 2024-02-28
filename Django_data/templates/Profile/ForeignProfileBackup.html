@@ -1,14 +1,21 @@
 {% load static %}
-<!-- Modal -->
-<div class="modal fade" id="ProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-		<div class="modal-header">
-			<button id='modalButton' data-bs-dismiss="modal">
-			<img id="BackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-			</button>
+
+{% include "Home/head.html" %}
+{% include "Home/header.html" %}
+<div id="content">
+	<div id="ProfileCardboardMobile">
+		<div id="UserPictureInfo">
+			<img id="ProfilePic" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
+			<div id="UserStatus">
+				<h1 id="username">DoubleV</h1>
+				<p id="connectStatus">online</p>
+			</div>
 		</div>
-		<div class="modal-body">
+		<img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+	</div>
+	<div id="overlayProfile">
+		<div class="mid midcolumn">
+			<img id="BackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
 			<div id="titleContent" data-content="PROFILE_PAGE"></div>
 			<div id="ProfilePage">
 				<div id="ProfileCardboard">
@@ -34,8 +41,8 @@
 				<button class="ButtonLayout ButtonDark">Block User</button>
 			</div>
 		</div>
-		<div class="modal-footer">
-		</div>
-		</div>
 	</div>
 </div>
+
+{% include "Home/footer.html" %}
+

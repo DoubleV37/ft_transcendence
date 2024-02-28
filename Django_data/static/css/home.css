@@ -35,14 +35,15 @@ scrollbar-width: none;
 		flex-grow: 2;
 	}
 
+	/* MODAL WINDOW */
 	.modal-header {
 		display: flex;
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: space-between;
-		padding-top: 0;
+		padding-top: 1.3rem;
 		padding-bottom: 0;
-		padding-right: 1rem;
+		padding-right: 1.3rem;
 		border: none;
 		border-top-left-radius: calc(0.3rem - 1px);
 		border-top-right-radius: calc(0.3rem - 1px);
@@ -55,8 +56,10 @@ scrollbar-width: none;
 		width: 100%;
 		pointer-events: auto;
 		background-clip: padding-box;
-		background: rgba(28, 32, 38, 0.75);
-		border-radius: 0.3rem;
+		background: #151821;
+		border-color: #5DC6E8;
+		border-width: 1px;
+		border-radius: 2;
 		outline: 0;
 	}
 
@@ -94,9 +97,11 @@ scrollbar-width: none;
 		justify-content: flex-end;
     }
 
-.mid {
+	/* MAIN CONTENT */
+
+	.mid {
 		display: flex;
-		height: 50em;
+		height: 47em;
 		justify-content: center;
 		align-items: center;
 		flex-shrink: 0;
@@ -104,7 +109,7 @@ scrollbar-width: none;
 		margin-bottom: 1em;
 		color:#FFF;
 
-		border-radius: 25px;
+		border-radius: 15px;
 		border: 1px solid #5DC6E8;
 		background: rgba(28, 32, 38, 0.75);
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
@@ -133,7 +138,7 @@ scrollbar-width: none;
 		/* Pour faire une fenetre */
 		/* width: 60em;
     	height: 40em; */
-		background-color: rgba(28,  32,  38,  0.20); /* Adjust the color and opacity as needed */
+		background-color: rgba(28,  32,  38,  0.85); /* Adjust the color and opacity as needed */
 		z-index: 0; /* Ensure the overlay is behind the content */
 		justify-content: center;
 		/* border: 1px solid #5DC6E8;
@@ -167,7 +172,7 @@ scrollbar-width: none;
 
 	.midcolumn {
 		flex-direction: column;
-		width: 50em;
+		width: 48em;
 	}
 
 	#WelcomeScreen {
@@ -289,6 +294,70 @@ scrollbar-width: none;
 		flex-grow: 2;
 	}
 
+	/* MODAL WINDOW */
+	.modal-header {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 1.3rem;
+		padding-bottom: 0;
+		padding-right: 1.3rem;
+		border: none;
+		border-top-left-radius: calc(0.3rem - 1px);
+		border-top-right-radius: calc(0.3rem - 1px);
+	}
+
+	.modal-content {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		pointer-events: auto;
+		background-clip: padding-box;
+		background: #151821;
+		border-color: #5DC6E8;
+		border-width: 1px;
+		border-radius: 2;
+		outline: 0;
+	}
+
+	.modal-body {
+		display: flex;
+		height: 100%;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+		position: relative;
+	}
+
+
+	.modal-footer {
+		display: flex;
+		flex-wrap: wrap;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 2rem;
+		border: none;
+		border-bottom-right-radius: calc(0.3rem - 1px);
+		border-bottom-left-radius: calc(0.3rem - 1px);
+	}
+
+	#modalButton
+	{
+		font-size: 0px;
+		padding: 0;
+		background: transparent;
+		color: transparent;
+		border: none;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	/* MAIN CONTENT */
+
 	.mid {
 		display: flex;
 		flex-direction: column;
@@ -301,7 +370,7 @@ scrollbar-width: none;
 		margin-bottom: 1em;
 		color:#FFF;
 
-		border-radius: 25px;
+		border-radius: 15px;
 		border: 1px solid #5DC6E8;
 		background: rgba(28, 32, 38, 0.75);
 		box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.45);
@@ -480,37 +549,77 @@ scrollbar-width: none;
 		align-items: center;
 		/* justify-content: center; */
 		position: relative;
-		z-index: -2; /* Ensure the overlay is behind the content */
 		flex-grow: 1;
 	}
 
-	#overlay {
-		content: "";
+	/* MODAL WINDOW */
+	.modal-header {
 		display: flex;
-		position: absolute;
-		top:  0;
-		left:  0;
-		width:  100%;
-		height:  100%;
-		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
-		z-index: -1; /* Ensure the overlay is behind the content */
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 1.3rem;
+		padding-bottom: 0;
+		padding-right: 1.3rem;
+		border: none;
+		border-top-left-radius: calc(0.3rem - 1px);
+		border-top-right-radius: calc(0.3rem - 1px);
 	}
 
-	#overlayMobile {
-		content: "";
+	.modal-content {
+		position: relative;
 		display: flex;
-		top:  0;
-		left:  0;
-		width:  100%;
-		height:  100%;
-		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
-		z-index: -1; /* Ensure the overlay is behind the content */
+		flex-direction: column;
+		width: 100%;
+		pointer-events: auto;
+		background-clip: padding-box;
+		background: #151821;
+		border-color: #5DC6E8;
+		border-width: 1px;
+		border-radius: 2;
+		outline: 0;
 	}
+
+	.modal-body {
+		display: flex;
+		height: 100%;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+		position: relative;
+	}
+
+
+	.modal-footer {
+		display: flex;
+		flex-wrap: wrap;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 2rem;
+		border: none;
+		border-bottom-right-radius: calc(0.3rem - 1px);
+		border-bottom-left-radius: calc(0.3rem - 1px);
+	}
+
+	#modalButton
+	{
+		font-size: 0px;
+		padding: 0;
+		background: transparent;
+		color: transparent;
+		border: none;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	/* MAIN CONTENT */
 
 	.mid {
 		display: flex;
 		height: 100%;
-		padding: 3vh 4vw;
+		padding: 5vh 4vw;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -537,9 +646,31 @@ scrollbar-width: none;
 		flex-grow: 1;
 	}
 
-	#overlayFullscreen {
+	#overlay {
 		content: "";
 		display: flex;
+		top:  0;
+		left:  0;
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
+		z-index: 0; /* Ensure the overlay is behind the content */
+	}
+
+	#overlayMobile {
+		content: "";
+		display: flex;
+		top:  0;
+		left:  0;
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.85); /* Adjust the color and opacity as needed */
+		z-index: -1; /* Ensure the overlay is behind the content */
+	}
+
+	#overlayFullscreen {
+		content: "";
+		display: none;
 		top:  0;
 		left:  0;
 		/* Overlay complet */
