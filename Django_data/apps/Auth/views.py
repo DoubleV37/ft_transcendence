@@ -65,6 +65,7 @@ def edit_avatar(request):
         avatar_form = InfoAvatar(request.POST, request.FILES, instance=user)
         if avatar_form.is_valid():
             logger.debug("is_valid=True")
+            logger.debug(avatar_form.cleaned_data['avatar'])
             avatar = avatar_form.save(commit=False)
             user.avatar = avatar.avatar
             user.save()
@@ -175,10 +176,12 @@ def allinfo(request):
                     'success': False,
                     'errors': 'FORM'
                 })
-            if 'avatar' in request.POST :
+            if request.method == 'POST' and 'avatar' in request.FILES:
                 logger.debug("third requset if")
-                avatar_form = InfoAvatar(request.POST, request.FILES,instance=user)
+                avatar_form = InfoAvatar(request.POST, request.FILES, instance=user)
+                # logger.debug(avatar_form.cleaned_data['avatar'])
                 if  avatar_form.is_valid():
+                    logger.debug("forth requset if")
                     avatar = avatar_form.save(commit=False)
                     logger.debug(avatar_form.cleaned_data['avatar'])
                     user.avatar = avatar.avatar
