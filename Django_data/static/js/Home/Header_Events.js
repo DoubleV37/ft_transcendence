@@ -2,9 +2,6 @@ function  header_SetEvents() {
   let element = document.getElementById('HEADER_Logo');
   element.addEventListener('click', header_LogoCallback);
 
-  element = document.getElementById('HEADER_NavLogo');
-  element.addEventListener('click', header_LogoCallback);
-
   element = document.getElementById('HEADER_IsAuth');
   const	IsAuthenticated = element.getAttribute('data-auth');
 
@@ -32,9 +29,6 @@ function  header_SetEvents() {
 
 function  header_DelEvents() {
   let element = document.getElementById('HEADER_Logo');
-  element.removeEventListener('click', header_LogoCallback);
-
-  element = document.getElementById('HEADER_NavLogo');
   element.removeEventListener('click', header_LogoCallback);
 
   element = document.getElementById('HEADER_IsAuth');
