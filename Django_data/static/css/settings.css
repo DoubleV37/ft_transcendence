@@ -189,6 +189,23 @@
         width: 100%;
     }
 
+    #headerTextRowMobile {
+        width: 100%;
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
+
+    #settingsTitle::before {
+        content: url('../images/gear-11-svgrepo-com.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 2rem; /* Adds some space between the icon and the text */
+        vertical-align: middle; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
     #settingsTitle {
         color: #FFF;
         font-family: Kodchasan;
@@ -213,6 +230,5 @@
         text-align: left;
         align-self: start;
         margin-top: 0.7rem;
-        padding-bottom: 3.5em;
     }
 }
