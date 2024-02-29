@@ -1,49 +1,11 @@
 {% load static %}
 <header>
-  {% comment %} <div id="Header_content">
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-			  <div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-				<button id='modalButton' data-bs-dismiss="modal">
-				  <img id="BackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-				</button>
-			  </div>
-			  <div class="modal-body">
-						  <div id="titleContent" data-content="PROFILE_PAGE"></div>
-						  <div id="ProfilePage">
-							  <div id="ProfileCardboard">
-								  <img id="ProfilePic" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
-								  <div id="UserStatus">
-									  <h1 id="username">DoubleV</h1>
-									  <p id="connectStatus">online</p>
-								  </div>
-							  </div>
-							  <button class="ButtonLayout ButtonNeon">Settings</button>
-							  <button class="ButtonLayout ButtonSalmon">Skins</button>
-							  <div id ="UserInfo">
-								  <div id="leftline"></div>
-								  <p id="UserInfoText">User info</p>
-								  <div id="rightline"></div>
-							  </div>
-							  <button class="ButtonLayout ButtonBlue">History</button>
-							  <button class="ButtonLayout ButtonBlue">Stats</button>
-							  <button class="ButtonLayout ButtonBlue">42 Account</button>
-						  </div>
-			  </div>
-			  <div class="modal-footer">
-			  </div>
-			</div>
-		  </div>
-		</div> {% endcomment %}
+  <div id="Header_content">
 	{% if user.is_authenticated %}
 	  <div id="HEADER_IsAuth" data-auth="true"></div>
 	{% else %}
 	  <div id="HEADER_IsAuth" data-auth="false"></div>
 	{% endif %}
-
 
 	<nav class="navbar-dark">
 		<div class="container-fluid">
@@ -57,6 +19,7 @@
 				<div class="offcanvas-body">
 					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 						<li class="nav-item">
+						  {% if user.is_authenticated %}
 							<div class="offcanvas-section offcanvas-section-border ">
 								<div class="ProfileCardboard offcanvas-profileCardboard">
 									<img class="ProfilePic offcanvas-profilePic" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
@@ -75,20 +38,16 @@
 							</div>
 							<div class="offcanvas-section">
 								<div class="ProfilePage offcanvas-profile">
-									<button type="button" class="ButtonLayout ButtonNeon" data-bs-toggle="modal" data-bs-target="#ProfileModal" id="openModal">Profile</button>
-									<button class="ButtonLayout ButtonNeon">Chat</button>
+									<button id="HEADER_NavProfile" type="button" class="ButtonLayout ButtonNeon">Profile</button>
+									<button id="HEADER_NavChat" class="ButtonLayout ButtonNeon">Chat</button>
 								</div>
 							</div>
 							<div class="offcanvas-section offcanvas-section-bottom">
 								<div class="ProfilePage offcanvas-profile">
-									<button class="ButtonLayout ButtonDark">Log out</button>
+									<button id="HEADER_NavSignOut" class="ButtonLayout ButtonDark">Sign out</button>
 								</div>
 							</div>
-							{% comment %} {% if user.is_authenticated %} {% endcomment %}
-							{% comment %} {% endif %} {% endcomment %}
-							{% if user.is_authenticated %}
-							    <button id="HEADER_NavSignOut">Sign Out</button>
-							{% endif %}
+						  {% endif %}
 						</li>
 					</ul>
 				</div>
@@ -100,7 +59,9 @@
 		
 		<div id="div_profile">
 		  {% if user.is_authenticated %}
-		    <button id="HEADER_Profile">Profile hehe</button>
+		    <button id="HEADER_Profile" type="button" class="btn btn-primary">
+		      Profile
+		    </button>
 		  {% else %}
 		    <button id="HEADER_Signin">Sign in</button>
 		  {% endif %}
@@ -108,17 +69,3 @@
 	</nav>
   </div>
 </header>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		var offcanvasElement = document.getElementById('offcanvasNavbar');
-		var modalButton = document.getElementById('openModal');
-	
-		modalButton.addEventListener('click', function () {
-			var offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
-			if (offcanvas) {
-				offcanvas.hide();
-			}
-		});
-	});
-</script>
