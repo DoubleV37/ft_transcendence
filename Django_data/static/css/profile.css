@@ -20,19 +20,31 @@
         gap: 1.25rem; 
     }
 
-    #ProfilePage {
+    .ProfilePage {
         display: flex;
-        width: 70%;
         flex-direction: column;
         align-items: flex-start;
         gap: 1.8rem;
         flex-shrink: 0;
+        margin-block-end: 0;
     }
 
-    #ProfilePic {
+    .modal-profile {
+        width: 70%;
+    }
+
+    /* .offcanvas-profile {
+        width: 80%;
+        padding-top: 5vh;
+    } */
+
+    .ProfilePic {
         border-radius: 100%;
-        width: 20%;
         border: 1px solid #5DC6E8;
+    }
+
+    .modal-profilePic {
+        width: 25%;
     }
     
     #UserPictureInfo {
@@ -75,13 +87,16 @@
         color: #FFF;
     }
 
-    #ProfileCardboard {
+    .ProfileCardboard {
         display: flex;
-        width: 100%;
         height: 5.625rem;
-        align-items: flex-start;
+        align-items: center;
         gap: 1.25rem;
         flex-shrink: 0;
+    }
+
+    .modal-profileCardboard {
+        width: 100%;
     }
 
     #ProfileCardboardMobile {
@@ -187,9 +202,8 @@
         gap: 1.25rem; 
     }
 
-    #ProfilePage {
+    .ProfilePage {
         display: flex;
-        width: 65%;
         flex-direction: column;
         align-items: flex-start;
         gap: 1.8rem;
@@ -197,9 +211,24 @@
         margin-block-end: 0;
     }
 
-    #ProfilePic {
+    .ProfileCardboard {
+        display: flex;
+        height: 5.625rem;
+        align-items: center;
+        gap: 1.25rem;
+        flex-shrink: 0;
+    }
+
+    .modal-profile {
+        width: 65%;
+    }
+
+    .offcanvas-profile {
+        width: 80%;
+    }
+
+    .ProfilePic {
         border-radius: 100%;
-        width: 20%;
         border: 1px solid #5DC6E8;
     }
 
@@ -372,7 +401,7 @@
         z-index: -1; /* Ensure the overlay is behind the content */
     }
 
-    #ProfilePage {
+    .ProfilePage {
         display: flex;
         width: 90%;
         flex-direction: column;
@@ -382,7 +411,7 @@
         max-width: 20em;
     }
 
-    #ProfilePic {
+    .ProfilePic {
         border-radius: 100%;
         width: 5.5em;
         border: 1px solid #5DC6E8;

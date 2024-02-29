@@ -2,20 +2,16 @@
 {% include "Home/head.html" %}
 {% include "Home/header.html" %}
 <div id="content">
+	{% include "Profile/Profile.html" %}
 	<div id="overlay">
-	<div class="mid midcolumn">
+	<div class="mid midcolumn flowAnimation">
 	<div id="titleContent" data-content="SIGNUP_PAGE"></div>
 		<form id="SIGNUP_Form" method="post" action="/auth/signup/">
-			<h1 id ="signupTitle">Create your account!</h1>
+			<h1 id ="signupTitle">Account creation</h1>
 			{% csrf_token %}
 			{{ form.as_p }}
-			{% comment %} <div id="SIGNUP_Errors" style="color: red;"></div> {% endcomment %}
-			<div id ="infoSeparator">
-				<div id="leftline"></div>
-				<p id="text">Sign up</p>
-				<div id="rightline"></div>
-			</div>
-			<button id="btn_signup" type="submit">Create Account</button>
+			<div id="SIGNUP_Errors" style="color: red;"></div>
+			<button id="btn_signup" type="submit">Sign up!</button>
 			<div id ="SIGNUP_signin">
 				<p>Already have an account ? <b>Log in</b></p>
 			</div>

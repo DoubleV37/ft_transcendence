@@ -21,6 +21,7 @@ scrollbar-width: none;
 		min-height: 100vh;
 	}
 
+	
 	#content {
 		display: flex;
 		flex-direction: column;
@@ -31,9 +32,117 @@ scrollbar-width: none;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-
+		
 		flex-grow: 2;
 	}
+	
+	/* OFF CANVAS */
+	
+	.pe-3 {
+		padding-right: 0rem!important;
+	}
+	
+	.nav-item {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.offcanvas-header {
+		height: 3.4375em;
+		background: #08090c;
+		justify-content: flex-end;
+	}
+
+	.offcanvas-body {
+		flex-grow: 1;
+		padding: 0rem;
+		overflow-y: auto;
+		background-color: #151821;
+	}
+
+	.offcanvas-profile {
+        width: 80%;
+        padding-top: 5vh;
+    }
+
+	.offcanvas-profileCardboard {
+        width: 80%;
+        margin: 1em 0em;
+    }
+
+	.offcanvas-profilePic {
+        width: 30%;
+    }
+
+    .offcanvas-section {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+	.offcanvas-section-border {
+        border-bottom: 1px solid #828282;
+    }
+
+	.offcanvas-section-bottom {
+        bottom: 5vh;
+		position: absolute;
+    }
+
+	#userStats {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 2em 0em;
+		gap: 1em;
+	}
+
+	#WR::before {
+        content: url('../images/WRcrown.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 0.5rem; /* Adds some space between the icon and the text */
+        vertical-align: top; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
+	#WR {
+        color: #FFC130;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#gamesPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#tournamentsPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
 
 	/* MODAL WINDOW */
 	.modal-header {
@@ -59,7 +168,7 @@ scrollbar-width: none;
 		background: #151821;
 		border-color: #5DC6E8;
 		border-width: 1px;
-		border-radius: 2;
+		border-radius: 15px;
 		outline: 0;
 	}
 
@@ -293,6 +402,113 @@ scrollbar-width: none;
 
 		flex-grow: 2;
 	}
+
+	/* OFF CANVAS */
+
+	.pe-3 {
+		padding-right: 0rem!important;
+	}
+
+	.nav-item {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.offcanvas-header {
+		height: 3.4375em;
+		background: #08090c;
+		justify-content: flex-end;
+	}
+
+	.offcanvas-body {
+		flex-grow: 1;
+		padding: 0rem;
+		overflow-y: auto;
+		background-color: #151821;
+	}
+
+	.offcanvas-profile {
+        width: 80%;
+        padding-top: 5vh;
+    }
+
+	.offcanvas-profileCardboard {
+        width: 80%;
+        margin: 1em 0em;
+    }
+
+	.offcanvas-profilePic {
+        width: 30%;
+    }
+
+    .offcanvas-section {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+	.offcanvas-section-border {
+        border-bottom: 1px solid #828282;
+    }
+
+	.offcanvas-section-bottom {
+        bottom: 5vh;
+		position: absolute;
+    }
+
+	#userStats {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 2em 0em;
+		gap: 1em;
+	}
+
+	#WR::before {
+        content: url('../images/WRcrown.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 0.5rem; /* Adds some space between the icon and the text */
+        vertical-align: top; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
+	#WR {
+        color: #FFC130;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#gamesPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#tournamentsPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
 
 	/* MODAL WINDOW */
 	.modal-header {
@@ -552,6 +768,113 @@ scrollbar-width: none;
 		flex-grow: 1;
 	}
 
+	/* OFF CANVAS */
+
+	.pe-3 {
+		padding-right: 0rem!important;
+	}
+
+	.nav-item {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.offcanvas-header {
+		height: 3.4375em;
+		background: #08090c;
+		justify-content: flex-end;
+	}
+
+	.offcanvas-body {
+		flex-grow: 1;
+		padding: 0rem;
+		overflow-y: auto;
+		background-color: #151821;
+	}
+
+	.offcanvas-profile {
+        width: 80%;
+        padding-top: 5vh;
+    }
+
+	.offcanvas-profileCardboard {
+        width: 80%;
+        margin: 1em 0em;
+    }
+
+	.offcanvas-profilePic {
+        width: 30%;
+    }
+
+    .offcanvas-section {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+	.offcanvas-section-border {
+        border-bottom: 1px solid #828282;
+    }
+
+	.offcanvas-section-bottom {
+        bottom: 5vh;
+		position: absolute;
+    }
+
+	#userStats {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 2em 0em;
+		gap: 1em;
+	}
+
+	#WR::before {
+        content: url('../images/WRcrown.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 0.5rem; /* Adds some space between the icon and the text */
+        vertical-align: top; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
+	#WR {
+        color: #FFC130;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#gamesPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#tournamentsPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
 	/* MODAL WINDOW */
 	.modal-header {
 		display: flex;
@@ -655,6 +978,8 @@ scrollbar-width: none;
 		height:  100%;
 		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
 		z-index: 0; /* Ensure the overlay is behind the content */
+		flex-grow: 1;
+    	align-items: center;
 	}
 
 	#overlayMobile {

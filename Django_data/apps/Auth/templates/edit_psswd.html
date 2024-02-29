@@ -1,0 +1,17 @@
+{% load static %}
+{% include "Home/head.html" %}
+{% include "Home/header.html" %}
+<html lang="en">
+
+  <body>
+
+      <form action="" method='post'>
+        {% csrf_token %}
+        {{ psswd.as_p }}
+        <button type="submit" id="Update">Update</button>
+      </form>
+
+  </body>
+
+  {% include "Home/footer.html" %}
+
