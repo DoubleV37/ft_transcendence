@@ -149,6 +149,12 @@ class My_Psswd(forms.ModelForm):
     class Meta:
         model = User
         fields = ('password',)
+        labels = {
+            "password": "Password",
+        }
+        widgets = {
+            "password": forms.PasswordInput(attrs={'placeholder':'********','autocomplete': 'off','data-toggle': 'password'}),
+        }
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password'])
