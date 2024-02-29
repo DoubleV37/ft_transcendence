@@ -29,19 +29,6 @@
         margin-block-end: 0;
     }
 
-    .modal-profile {
-        width: 70%;
-    }
-
-    .modal-profilePic {
-        width: 5em;
-    }
-
-    /* .offcanvas-profile {
-        width: 80%;
-        padding-top: 5vh;
-    } */
-
     .ProfilePic {
         border-radius: 100%;
         border: 1px solid #5DC6E8;
@@ -94,15 +81,9 @@
         gap: 1.25rem;
         flex-shrink: 0;
     }
-
-    .modal-profileCardboard {
-        width: 100%;
-    }
-
     #ProfileCardboardMobile {
         display: none;
     }
-
     
     #UserStatus {
         display: flex;
@@ -218,10 +199,6 @@
         gap: 1.25rem;
         flex-shrink: 0;
     }
-
-    .modal-profileCardboard {
-        width: 100%;
-    }
     
     .offcanvas-profile {
         width: 80%;
@@ -230,14 +207,6 @@
     .ProfilePic {
         border-radius: 100%;
         border: 1px solid #5DC6E8;
-    }
-    
-    .modal-profile {
-        width: 65%;
-    }
-
-    .modal-profilePic {
-        width: 5em;
     }
 
     #UserPictureInfo {
@@ -425,14 +394,6 @@
         border: 1px solid #5DC6E8;
     }
 
-    .modal-profile {
-        width: 65%;
-    }
-
-    .modal-profilePic {
-        width: 5em;
-    }
-
     #username {
         color: #FFF;
         text-align: right;
@@ -475,24 +436,6 @@
         gap: 1.25rem;
         flex-shrink: 0;
     }
-
-    .modal-profileCardboard {
-        width: 100%;
-    }
-
-    /* #ProfileCardboardMobile {
-        display: flex;
-        align-items: center;
-        padding-left: 4vw;
-        gap: 1.25rem;
-        flex-shrink: 0;
-        position: relative;
-        height: 8em;
-        width:  100%;
-        background-color: #202532;
-        border-bottom: 1px solid #828282;
-        justify-content: space-between;
-    } */
 
     #test {
         width: 80%;
