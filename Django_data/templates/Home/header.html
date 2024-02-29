@@ -20,15 +20,15 @@
 				<div class="offcanvas-body">
 					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 						<li class="nav-item">
-							{% comment %} {% if user.is_authenticated %} {% endcomment %}
-								<button id="HEADER_NavProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProfileModal">
-									Profile
-								</button>
-							{% comment %} {% endif %} {% endcomment %}
-							<button id="HEADER_NavLogo">LOGO</button>
-							{% if user.is_authenticated %}
-							    <button id="HEADER_NavSignOut">Sign Out</button>
-							{% endif %}
+						  {% if user.is_authenticated %}
+						    <button id="HEADER_NavProfile" type="button" class="btn btn-primary">
+						      Profile
+						    </button>
+						  {% endif %}
+						  <button id="HEADER_NavLogo">LOGO</button>
+						  {% if user.is_authenticated %}
+						    <button id="HEADER_NavSignOut">Sign Out</button>
+						  {% endif %}
 						</li>
 					</ul>
 				</div>

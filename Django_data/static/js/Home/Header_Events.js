@@ -72,21 +72,15 @@ function  header_SignInCallBack() {
 }
 
 function  header_ModProfilCallBack() {
-  const offcanvasElement = document.getElementById('offcanvasNavbar');
-  const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
-
-  if (offcanvas) {
-      offcanvas.hide();
-  }
-
-  profileModal = new bootstrap.Modal(document.getElementById('ProfileModal'));
-  profileModal._element.addEventListener('shown.bs.modal', profile_SetEvents);
+  offcanvas_Hide()
+  profileModal.show();
 }
 
 async function  header_SignOutCallBack() {
   const	response = await SignOut();
 
   if (response == true) {
+    await loadPage(`${ROUTE.HOME}`);
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     header_SetEvents();

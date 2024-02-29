@@ -10,19 +10,20 @@ function  launchWebsite() {
     return;
   }
 
-   const config = { childList: true, subtree: true };
+  const config = { childList: true, subtree: true };
 
-   observer = new MutationObserver(mutationCallBack);
-   observer.observe(targetNode, config);
+  observer = new MutationObserver(mutationCallBack);
+  observer.observe(targetNode, config);
 
-   loadPage(currentUrl);
-   header_SetEvents();
-   main_SetFirstsEvents();
+  loadPage(currentUrl);
+  modal_ProfileInit(); 
+  header_SetEvents();
+  main_SetFirstsEvents();
 
-   document.removeEventListener('DOMContentLoaded', launchWebsite);
+  document.removeEventListener('DOMContentLoaded', launchWebsite);
  }
 
- function  main_SetFirstsEvents() {
+function  main_SetFirstsEvents() {
    const	element = document.getElementById('titleContent');
 
    if (!element) {
