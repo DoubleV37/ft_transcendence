@@ -2,8 +2,16 @@
 @media only screen and (min-width : 60.063em) {
     /* Styles */
 
-    #BackArrow {
+    #ModalBackArrow {
         width: 8%;
+        font-size: 0px;
+	padding: 0;
+	background: transparent;
+	color: transparent;
+	border: none;
+	display: flex;
+	justify-content: flex-end;
+	cursor: pointer;
     }
 
     #BackArrowFullscreen {
@@ -165,8 +173,16 @@
 @media only screen and (min-width : 36.25em) and (max-width : 60em) {
     /* Styles */
 
-    #BackArrow {
+    #ModalBackArrow {
         width: 8%;
+        font-size: 0px;
+	padding: 0;
+	background: transparent;
+	color: transparent;
+	border: none;
+	display: flex;
+	justify-content: flex-end;
+	cursor: pointer;
     }
 
     #BackArrowFullscreen {
@@ -342,8 +358,16 @@
 /* Smartphones (portrait and landscape) and small tablets ----------- */
 @media only screen and (min-width : 1em) and (max-width : 36.25em) {
     /* Styles */
-    #BackArrow {
+
+    #ModalBackArrow {
         width: 8%;
+        font-size: 0px;
+	padding: 0;
+	background: transparent;
+	color: transparent;
+	border: none;
+	display: flex;
+	justify-content: flex-end;
     }
     
     #BackArrowMobile {

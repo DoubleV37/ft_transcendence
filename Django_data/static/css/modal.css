@@ -16,7 +16,7 @@ scrollbar-width: none;
 		display: flex;
 		flex-shrink: 0;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: flex-end;
 		padding-top: 1.3rem;
 		padding-bottom: 0;
 		padding-right: 1.3rem;
@@ -62,17 +62,6 @@ scrollbar-width: none;
         border-bottom-left-radius: calc(0.3rem - 1px);
     }
 
-	#modalButton
-	{
-        font-size: 0px;
-		padding: 0;
-		background: transparent;
-		color: transparent;
-		border: none;
-		display: flex;
-		justify-content: flex-end;
-    }
-
 	.modal-profile {
         width: 70%;
     }
@@ -96,7 +85,7 @@ scrollbar-width: none;
 		display: flex;
 		flex-shrink: 0;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: flex-end;
 		padding-top: 1.3rem;
 		padding-bottom: 0;
 		padding-right: 1.3rem;
@@ -115,7 +104,7 @@ scrollbar-width: none;
 		background: #151821;
 		border-color: #5DC6E8;
 		border-width: 1px;
-		border-radius: 2;
+		border-radius: 15px;
 		outline: 0;
 	}
 
@@ -140,17 +129,6 @@ scrollbar-width: none;
 		border: none;
 		border-bottom-right-radius: calc(0.3rem - 1px);
 		border-bottom-left-radius: calc(0.3rem - 1px);
-	}
-
-	#modalButton
-	{
-		font-size: 0px;
-		padding: 0;
-		background: transparent;
-		color: transparent;
-		border: none;
-		display: flex;
-		justify-content: flex-end;
 	}
 
 	.modal-profile {
@@ -194,7 +172,7 @@ scrollbar-width: none;
 		background: #151821;
 		border-color: #5DC6E8;
 		border-width: 1px;
-		border-radius: 2;
+		border-radius: 15px;
 		outline: 0;
 	}
 
@@ -219,17 +197,6 @@ scrollbar-width: none;
 		border: none;
 		border-bottom-right-radius: calc(0.3rem - 1px);
 		border-bottom-left-radius: calc(0.3rem - 1px);
-	}
-
-	#modalButton
-	{
-		font-size: 0px;
-		padding: 0;
-		background: transparent;
-		color: transparent;
-		border: none;
-		display: flex;
-		justify-content: flex-end;
 	}
 
 	.modal-profile {
