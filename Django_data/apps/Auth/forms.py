@@ -124,3 +124,46 @@ class InfoMail(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('email',)
+
+#_____________________________________________________________________________#
+#___SETTINGS__________________________________________________________________#
+
+class My_Avatar(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('avatar',)
+    def clean_avatar(self):
+        avatar = self.cleaned_data['avatar']
+        # If avatar is changed, delete the previous image
+        if self.instance.avatar and self.instance.avatar != avatar:
+            return avatar
+        return self.instance.avatar
+    def save(self, commit=True, *args, **kwargs):
+        instance = super().save(commit=False)
+        instance.avatar = self.cleaned_data['avatar']
+        if commit:
+            instance.save()
+        return instance
+
+class My_Psswd(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('password',)
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
+
+
+class My_Name(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username',)
+
+
+class My_Mail(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email',)

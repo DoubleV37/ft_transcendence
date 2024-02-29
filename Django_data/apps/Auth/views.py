@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from .forms import (
         CustomUserCreationForm, SignInForm, InfoName, InfoMail, InfoPsswd, InfoAvatar,
-        AllInfo
+        AllInfo, My_Psswd, My_Avatar, My_Name, My_Mail
     )
 from . import forms
 
@@ -202,3 +202,86 @@ def signout(request):
     if request.method == 'POST':
         logout(request)
     return JsonResponse({'success': True})
+
+
+def my_settings(request):
+    try:
+        user = User.objects.get(username=request.user.username)
+        name = My_Name(instance=user)
+        mail = My_Mail(instance=user)
+        pswd = My_Psswd(instance=user)
+        avatar = My_Avatar(instance=user)
+        response = JsonResponse({
+            'success': False,
+            'errors': 'BAAAAAAAADDDDD'
+        })
+        context = {
+            'user': user,
+            'name': name,
+            'mail': mail,
+            'avatar': avatar,
+            'pswd': pswd,
+        }
+        if request.method == 'POST':
+            name = My_Name(request.POST, instance=user)
+            mail = My_Mail(request.POST, instance=user)
+            pswd = My_Psswd(request.POST, instance=user)
+            avatar = My_Avatar(request.POST, request.FILES, instance=user)
+            if avatar.is_valid():
+                logger.debug("avatar")
+                save = avatar.save(commit=False)
+                user.username = request.user.username
+                user.avatar = save.avatar
+                user.save()
+                response = JsonResponse({
+                    'success': True,
+                    'key': 'avatar'
+                })
+            else:
+                logger.debug("else avatar")
+                errors = mail.errors
+                response = JsonResponse({'success': False, 'errors': errors})
+            if name.is_valid():
+                logger.debug("name")
+                name.save()
+                response = JsonResponse({
+                    'success': True,
+                    'key': 'name'
+                })
+            else:
+                logger.debug("else name")
+                errors = mail.errors
+                response = JsonResponse({'success': False, 'errors': errors})
+            if mail.is_valid():
+                logger.debug("mail")
+                mail.save()
+                response = JsonResponse({
+                    'success': True,
+                    'key': 'mail'
+                })
+            else:
+                logger.debug("else mail")
+                errors = mail.errors
+                response = JsonResponse({'success': False, 'errors': errors})
+
+
+            if pswd.is_valid():
+                logger.debug("pswd")
+                pswd.save()
+                response = JsonResponse({
+                    'success': True,
+                    'key': 'pswd'
+                })
+            else:
+                logger.debug("else pswd")
+                errors = mail.errors
+                response = JsonResponse({'success': False, 'errors': errors})
+
+            return response
+        return render(request, 'My_Settings.html', context=context)
+    except Exception as e:
+        logger.error(f"Exception occurred: {e}")
+        logger.debug("Exception")
+        return HttpResponse("Exception", status=400)
+
+

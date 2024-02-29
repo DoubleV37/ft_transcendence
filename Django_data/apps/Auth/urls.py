@@ -11,4 +11,6 @@ urlpatterns = [
     path('edit_mail/', views.edit_mail, name='edit_mail'),
     path('edit_avatar/', views.edit_avatar, name='edit_avatar'),
     path('edit_allInfo/', views.allinfo, name='allinfo'),
+
+    path('settings/', views.my_settings, name='my_settings'),
 ]
