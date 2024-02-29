@@ -39,95 +39,15 @@ class CustomUserCreationForm(UserCreationForm):
 class SignInForm(forms.Form):
     username = forms.CharField(
             max_length=30,
-            widget=forms.TextInput(attrs={'placeholder':
-                                          'Username'}),
-            )
+            widget=forms.TextInput(attrs={'placeholder': 'Username'}),
+    )
     password = forms.CharField(
-            widget=forms.PasswordInput(attrs={'placeholder':
-                                              'Password'}),
+            widget=forms.PasswordInput(attrs={'placeholder': 'Password'}),
             help_text=password_validation.password_validators_help_text_html(),
-            )
+    )
 
 #_____________________________________________________________________________#
-#_MODIFICATION FORMS__________________________________________________________#
-
-
-class AllInfo(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = ('username', 'email',)
-
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        # if User.objects.filter(username=username).exists():
-        #     # Check if the username belongs to the current user
-        #     if username != self.instance.username:
-        #         raise forms.ValidationError("User with this Username already exists.")
-        return username
-    def hashing(self):
-        password = self.cleaned_data['password']
-        return make_password(password)
-
-    def save(self, commit=True, *args, **kwargs):
-        instance = super().save(commit=False)
-        if commit:
-            instance.save()
-        return instance
-
-
-    # def clean_avatar(self):
-    #     avatar = self.cleaned_data.get('avatar')
-    #     # If avatar is changed, delete the previous image
-    #     if self.instance.avatar and self.instance.avatar != avatar:
-    #         return avatar
-        # return self.instance.avatar
-    # def save(self, commit=True, *args, **kwargs):
-    #     instance = super().save(commit=False)
-    #     instance.avatar = self.cleaned_data['avatar']
-    #     if commit:
-    #         instance.save()
-    #     return instance
-
-
-
-class InfoAvatar(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('avatar',)
-    def clean_avatar(self):
-        avatar = self.cleaned_data['avatar']
-        # If avatar is changed, delete the previous image
-        if self.instance.avatar and self.instance.avatar != avatar:
-            return avatar
-        return self.instance.avatar
-    def save(self, commit=True, *args, **kwargs):
-        instance = super().save(commit=False)
-        instance.avatar = self.cleaned_data['avatar']
-        if commit:
-            instance.save()
-        return instance
-
-
-class InfoPsswd(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = ('password1',)
-
-
-class InfoName(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = ('username',)
-
-
-class InfoMail(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = ('email',)
-
-#_____________________________________________________________________________#
-#___SETTINGS__________________________________________________________________#
-
+#_SETTINGS FORMS______________________________________________________________#
 class My_Avatar(forms.ModelForm):
     class Meta:
         model = User
@@ -153,7 +73,11 @@ class My_Psswd(forms.ModelForm):
             "password": "Password",
         }
         widgets = {
-            "password": forms.PasswordInput(attrs={'placeholder':'********','autocomplete': 'off','data-toggle': 'password'}),
+            "password": forms.PasswordInput(attrs={
+                    'placeholder':'********',
+                    'autocomplete': 'off',
+                    'data-toggle': 'password'}
+                ),
         }
     def save(self, commit=True):
         user = super().save(commit=False)
