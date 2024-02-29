@@ -143,69 +143,6 @@ scrollbar-width: none;
         line-height: normal;
     }
 
-
-	/* MODAL WINDOW */
-	.modal-header {
-		display: flex;
-		flex-shrink: 0;
-		align-items: center;
-		justify-content: space-between;
-		padding-top: 1.3rem;
-		padding-bottom: 0;
-		padding-right: 1.3rem;
-		border: none;
-		border-top-left-radius: calc(0.3rem - 1px);
-		border-top-right-radius: calc(0.3rem - 1px);
-	}
-
-	.modal-content {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		pointer-events: auto;
-		background-clip: padding-box;
-		background: #151821;
-		border-color: #5DC6E8;
-		border-width: 1px;
-		border-radius: 15px;
-		outline: 0;
-	}
-
-	.modal-body {
-		display: flex;
-		height: 100%;
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-		flex-shrink: 0;
-		position: relative;
-	}
-
-
-    .modal-footer {
-        display: flex;
-        flex-wrap: wrap;
-        flex-shrink: 0;
-        align-items: center;
-        justify-content: flex-end;
-        padding: 2rem;
-		border: none;
-        border-bottom-right-radius: calc(0.3rem - 1px);
-        border-bottom-left-radius: calc(0.3rem - 1px);
-    }
-
-	#modalButton
-	{
-        font-size: 0px;
-		padding: 0;
-		background: transparent;
-		color: transparent;
-		border: none;
-		display: flex;
-		justify-content: flex-end;
-    }
-
 	/* MAIN CONTENT */
 
 	.mid {
@@ -250,6 +187,8 @@ scrollbar-width: none;
 		background-color: rgba(28,  32,  38,  0.85); /* Adjust the color and opacity as needed */
 		z-index: 0; /* Ensure the overlay is behind the content */
 		justify-content: center;
+		flex-grow: 1;
+    	align-items: center;
 		/* border: 1px solid #5DC6E8;
 		border-radius: 10px;
 		margin-top: 2em;
@@ -510,68 +449,6 @@ scrollbar-width: none;
         line-height: normal;
     }
 
-	/* MODAL WINDOW */
-	.modal-header {
-		display: flex;
-		flex-shrink: 0;
-		align-items: center;
-		justify-content: space-between;
-		padding-top: 1.3rem;
-		padding-bottom: 0;
-		padding-right: 1.3rem;
-		border: none;
-		border-top-left-radius: calc(0.3rem - 1px);
-		border-top-right-radius: calc(0.3rem - 1px);
-	}
-
-	.modal-content {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		pointer-events: auto;
-		background-clip: padding-box;
-		background: #151821;
-		border-color: #5DC6E8;
-		border-width: 1px;
-		border-radius: 2;
-		outline: 0;
-	}
-
-	.modal-body {
-		display: flex;
-		height: 100%;
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-		flex-shrink: 0;
-		position: relative;
-	}
-
-
-	.modal-footer {
-		display: flex;
-		flex-wrap: wrap;
-		flex-shrink: 0;
-		align-items: center;
-		justify-content: flex-end;
-		padding: 2rem;
-		border: none;
-		border-bottom-right-radius: calc(0.3rem - 1px);
-		border-bottom-left-radius: calc(0.3rem - 1px);
-	}
-
-	#modalButton
-	{
-		font-size: 0px;
-		padding: 0;
-		background: transparent;
-		color: transparent;
-		border: none;
-		display: flex;
-		justify-content: flex-end;
-	}
-
 	/* MAIN CONTENT */
 
 	.mid {
@@ -627,6 +504,8 @@ scrollbar-width: none;
 		background-color: rgba(28,  32,  38,  0.85); /* Adjust the color and opacity as needed */
 		z-index: 0; /* Ensure the overlay is behind the content */
 		justify-content: center;
+		flex-grow: 1;
+    	align-items: center;
 		/* border: 1px solid #5DC6E8;
 		border-radius: 10px;
 		margin-top: 2em;
@@ -875,68 +754,6 @@ scrollbar-width: none;
         line-height: normal;
     }
 
-	/* MODAL WINDOW */
-	.modal-header {
-		display: flex;
-		flex-shrink: 0;
-		align-items: center;
-		justify-content: space-between;
-		padding-top: 1.3rem;
-		padding-bottom: 0;
-		padding-right: 1.3rem;
-		border: none;
-		border-top-left-radius: calc(0.3rem - 1px);
-		border-top-right-radius: calc(0.3rem - 1px);
-	}
-
-	.modal-content {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		pointer-events: auto;
-		background-clip: padding-box;
-		background: #151821;
-		border-color: #5DC6E8;
-		border-width: 1px;
-		border-radius: 2;
-		outline: 0;
-	}
-
-	.modal-body {
-		display: flex;
-		height: 100%;
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-		flex-shrink: 0;
-		position: relative;
-	}
-
-
-	.modal-footer {
-		display: flex;
-		flex-wrap: wrap;
-		flex-shrink: 0;
-		align-items: center;
-		justify-content: flex-end;
-		padding: 2rem;
-		border: none;
-		border-bottom-right-radius: calc(0.3rem - 1px);
-		border-bottom-left-radius: calc(0.3rem - 1px);
-	}
-
-	#modalButton
-	{
-		font-size: 0px;
-		padding: 0;
-		background: transparent;
-		color: transparent;
-		border: none;
-		display: flex;
-		justify-content: flex-end;
-	}
-
 	/* MAIN CONTENT */
 
 	.mid {
@@ -1012,6 +829,8 @@ scrollbar-width: none;
 		background-color: rgba(28,  32,  38,  0.85); /* Adjust the color and opacity as needed */
 		z-index: 0; /* Ensure the overlay is behind the content */
 		justify-content: center;
+		flex-grow: 1;
+    	align-items: center;
 		/* border: 1px solid #5DC6E8;
 		border-radius: 10px;
 		margin-top: 2em;
