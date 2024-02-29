@@ -33,6 +33,10 @@
         width: 70%;
     }
 
+    .modal-profilePic {
+        width: 25%;
+    }
+
     /* .offcanvas-profile {
         width: 80%;
         padding-top: 5vh;
@@ -41,10 +45,6 @@
     .ProfilePic {
         border-radius: 100%;
         border: 1px solid #5DC6E8;
-    }
-
-    .modal-profilePic {
-        width: 25%;
     }
     
     #UserPictureInfo {
@@ -219,17 +219,25 @@
         flex-shrink: 0;
     }
 
+    .modal-profileCardboard {
+        width: 100%;
+    }
+    
+    .offcanvas-profile {
+        width: 80%;
+    }
+    
+    .ProfilePic {
+        border-radius: 100%;
+        border: 1px solid #5DC6E8;
+    }
+    
     .modal-profile {
         width: 65%;
     }
 
-    .offcanvas-profile {
-        width: 80%;
-    }
-
-    .ProfilePic {
-        border-radius: 100%;
-        border: 1px solid #5DC6E8;
+    .modal-profilePic {
+        width: 25%;
     }
 
     #UserPictureInfo {
@@ -276,7 +284,7 @@
         display: flex;
         width: 100%;
         height: 5.625rem;
-        align-items: flex-start;
+        align-items: center;
         gap: 1.25rem;
         flex-shrink: 0;
     }
@@ -413,8 +421,16 @@
 
     .ProfilePic {
         border-radius: 100%;
-        width: 5.5em;
+        width: 4.5em;
         border: 1px solid #5DC6E8;
+    }
+
+    .modal-profile {
+        width: 65%;
+    }
+
+    .modal-profilePic {
+        width: 25%;
     }
 
     #username {
@@ -452,13 +468,17 @@
         color: #FFF;
     }
 
-    #ProfileCardboard {
+    .ProfileCardboard {
         display: flex;
         width: 100%;
         height: 5.625rem;
-        align-items: flex-start;
+        align-items: center;
         gap: 1.25rem;
         flex-shrink: 0;
+    }
+
+    .modal-profileCardboard {
+        width: 100%;
     }
 
     /* #ProfileCardboardMobile {
