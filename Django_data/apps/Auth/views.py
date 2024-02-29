@@ -45,12 +45,15 @@ def signin(request):
                 login(request, user)
                 response = JsonResponse({'success': True})
             else:
-                response = JsonResponse({'success': False,
-                                         'errors':
-                                         'Invalid username or password'})
+                response = JsonResponse({
+                    'success': False,
+                   'errors': 'Invalid username or password'
+                })
         else:
-            response = JsonResponse({'success': False,
-                                     'errors': 'Invalid form'})
+            response = JsonResponse({
+                'success': False,
+                'errors': 'Invalid form'
+            })
         return response
 
     form = SignInForm()
@@ -66,10 +69,12 @@ def my_settings(request):
     try:
         user = User.objects.get(username=request.user.username)
 
+        rtrn = 0
         name = My_Name(instance=user)
         mail = My_Mail(instance=user)
         pswd = My_Psswd(instance=user)
         avatar = My_Avatar(instance=user)
+
 
         response = JsonResponse({
             'success': False,
@@ -86,41 +91,47 @@ def my_settings(request):
             mail = My_Mail(request.POST, instance=user)
             pswd = My_Psswd(request.POST, instance=user)
             avatar = My_Avatar(request.POST, request.FILES, instance=user)
+            logger.debug(request.POST)
 
             if avatar.is_valid():
                 save = avatar.save(commit=False)
                 user.username = request.user.username
                 user.avatar = save.avatar
                 user.save()
-                response = JsonResponse({'success': True})
+            elif pswd.is_valid():
+                pswd.save()
             else:
                 pass
 
             if name.is_valid():
                 name.save()
                 response = JsonResponse({'success': True})
+            elif name.username is not None:
+                errors = name.errors
+                logger.error(f"Exception occurred: {errors}")
+                rtrn = 1
             else:
-                response = JsonResponse({
-                    'success': False,
-                    'errors': 'bad name'
-                })
+                pass
 
             if mail.is_valid():
                 mail.save()
                 response = JsonResponse({'success': True})
-            else:
-                response = JsonResponse({
-                    'success': False,
-                    'errors': 'bad mail'
-                })
-
-            if pswd.is_valid():
-                pswd.save()
-                response = JsonResponse({'success': True})
+            elif rtrn == 0:
+                rtrn = 2
             else:
                 pass
 
-            return response
+            match rtrn:
+                case 1:
+                    return JsonResponse({ 'success': False,
+                        'errors': 'username already taken'
+                    })
+                case 2:
+                    return JsonResponse({ 'success': False,
+                        'errors': 'email already taken'
+                    })
+                case _:
+                    return JsonResponse({'success': True})
 
         return render(request, 'My_Settings.html', context=context)
 
