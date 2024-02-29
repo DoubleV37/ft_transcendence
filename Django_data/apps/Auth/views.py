@@ -71,7 +71,7 @@ def my_settings(request):
         avatar = My_Avatar(instance=user)
         response = JsonResponse({
             'success': False,
-            'errors': 'BAAAAAAAADDDDD'
+            'errors': 'unexpected'
         })
         context = {
             'user': user,
@@ -87,45 +87,35 @@ def my_settings(request):
             avatar = My_Avatar(request.POST, request.FILES, instance=user)
 
             if avatar.is_valid():
-                logger.debug("avatar")
                 save = avatar.save(commit=False)
                 user.username = request.user.username
                 user.avatar = save.avatar
                 user.save()
-                response = JsonResponse({
-                    'success': True,
-                    'key': 'avatar'
-                })
+                response = JsonResponse({'success': True})
             else:
                 pass
 
             if name.is_valid():
-                logger.debug("name")
                 name.save()
-                response = JsonResponse({
-                    'success': True,
-                    'key': 'name'
-                })
+                response = JsonResponse({'success': True})
             else:
-                pass
+                response = JsonResponse({
+                    'success': False,
+                    'errors': 'bad name'
+                })
 
             if mail.is_valid():
-                logger.debug("mail")
                 mail.save()
-                response = JsonResponse({
-                    'success': True,
-                    'key': 'mail'
-                })
+                response = JsonResponse({'success': True})
             else:
-                pass
+                response = JsonResponse({
+                    'success': False,
+                    'errors': 'bad mail'
+                })
 
             if pswd.is_valid():
-                logger.debug("pswd")
                 pswd.save()
-                response = JsonResponse({
-                    'success': True,
-                    'key': 'pswd'
-                })
+                response = JsonResponse({'success': True})
             else:
                 pass
 
@@ -134,8 +124,8 @@ def my_settings(request):
         return render(request, 'My_Settings.html', context=context)
 
     except Exception as e:
-        logger.error(f"Exception occurred: {e}")
         logger.debug("Exception")
+        logger.error(f"Exception occurred: {e}")
         return HttpResponse("Exception", status=400)
 
 
