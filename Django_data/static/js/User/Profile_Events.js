@@ -21,5 +21,5 @@ function  profile_DelEvents() {
 
 async function  profile_SettingsCallBack() {
   profileModal.hide();
-  loadPage(`${ROUTE.SETTINGS}`);
+  await loadPage(`${ROUTE.SETTINGS}`);
 }

@@ -61,6 +61,9 @@ function  launchSectionHandler(element) {
       case 'SIGNUP_PAGE':
 	signup_SetEvents();
 	break ;
+      case 'SETTINGS':
+	console.log('?????????');
+	break ;
 
       default:
 	throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
