@@ -65,21 +65,22 @@ def signout(request):
 def my_settings(request):
     try:
         user = User.objects.get(username=request.user.username)
+
         name = My_Name(instance=user)
         mail = My_Mail(instance=user)
         pswd = My_Psswd(instance=user)
         avatar = My_Avatar(instance=user)
+
         response = JsonResponse({
             'success': False,
             'errors': 'unexpected'
         })
+
         context = {
-            'user': user,
-            'name': name,
-            'mail': mail,
-            'avatar': avatar,
-            'pswd': pswd,
+            'user': user, 'name': name, 'mail': mail,
+            'avatar': avatar, 'pswd': pswd,
         }
+
         if request.method == 'POST':
             name = My_Name(request.POST, instance=user)
             mail = My_Mail(request.POST, instance=user)
