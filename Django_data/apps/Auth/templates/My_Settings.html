@@ -3,39 +3,136 @@
 {% include "Home/head.html" %}
 {% include "Home/header.html" %}
 
-  <body>
 
-      <form action="" method='post' enctype="multipart/form-data">
-        {% csrf_token %}
-        <img src="{{ user.avatar.url }}"></img>
-        {{ avatar.as_p }}
-        <button type="submit" name='avatar_button'>Update Avatar</button>
-      </form>
+<body>
+  <div id="content">
+    <div id="titleContent" data-content="SETTINGS"></div>
+    <div id="overlayFullscreen">
+      <img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+      <div class="midFullscreen midrow">
+        <div id="section">
+          <div id="headerTextRow">
+            <h1 id="settingsTitle">Settings</h1>
+            <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
+          </div>
+        </div>
+        <div id="section">
+          <div id="leftcolumn">
+            <div id="Settings">
+              <button class="SectionLayout SectionGrey">Account Settings</button>
+              <form id="NAME_Form" action="" method='post'>
+                {% csrf_token %}
+                  <div class="field-container">
+                    {{ name.as_p }}
+                    <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
+                  </div>
+               </form>
+               <form id="MAIL_Form" action="" method='post'>
+                 {% csrf_token %}
+                  <div class="field-container">
+                    {{ mail.as_p }}
+                    <button class="UpdateButtonLayout ButtonDark" type="submit" name="mail_button">Update</button>
+                  </div>
+              </form>
+              <form id="PASS_Form" action="" method='post' name="pswd_button">
+                 {% csrf_token %}
+                  <div class="field-container">
+                    {{ pswd.as_p }}
+                    <button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+          <div id="rightcolumn">
+            <div id="titleContent" data-content="PROFILE_PAGE"></div>
+            <div id="Settings">
+              <button class="SectionLayout SectionGrey">Display Settings</button>
+              <form id="NAME_Form" action="" method='post'>
+                {% csrf_token %}
+                  <div class="field-container">
+                    {{ name.as_p }}
+                    <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
+                  </div>
+               </form>
+              <img src="{{ user.avatar.url }}"></img>
+              <form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ avatar.as_p }}
+                <button type="button" id="customFileButton" class="custom-file-button">Choisir un fichier</button>
+                <button type="submit" name='avatar_button'>Update Avatar</button>
 
-      <form action="" method='post'>
-        {% csrf_token %}
-        {{ name.as_p }}
-        <button type="submit" name="name_button">Update Name</button>
-      </form>
+              <!--Avatar-->
+              <div>
+                <div class="d-flex justify-content-center mb-4">
+                    <img id="selectedAvatar" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                    class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;" alt="example placeholder" />
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="btn btn-primary btn-rounded">
+                        <label class="form-label text-white m-1" for="customFile2">Choose file</label>
+                        <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                    </div>
+                </div>
+              </div>
 
-      <form action="" method='post'>
-        {% csrf_token %}
-        {{ mail.as_p }}
-        <button type="submit" name="mail_button" >Update mail</button>
-      </form>
-
-      <form action="" method='post' name="pswd_button">
-        {% csrf_token %}
-        {{ pswd.as_p }}
-        <button type="submit">Update pswd</button>
-      </form>
-
-
-  </body>
-
+              </form>
+            </div>
+          </div>
+			  </div>
+		  </div>
+	  </div>
+    <div id="overlayMobile">
+      <div class="midMobile midcolumn">
+        <div id="titleContent" data-content="SIGNUP_PAGE"></div>
+        <img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+        <div id="headerTextRowMobile">
+          <h1 id="settingsTitle">Settings</h1>
+          <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
+        </div>
+        <form action="" method='post' enctype="multipart/form-data">
+          {% csrf_token %}
+          {% comment %} <img src="{{ user.avatar.url }}"></img> {% endcomment %}
+          {{ avatar.as_p }}
+          <button type="submit" name='avatar_button'>Update Avatar</button>
+        </form>
+      </div>
+    </div>
   {% include "Home/footer.html" %}
+</body>
+
 </html>
 
+<script>
+  // Fonction pour déclencher le sélecteur de fichiers
+  document.getElementById('customFileButton').addEventListener('click', function() {
+       document.getElementById('id_avatar').click();
+  });
+   
+  // Fonction pour afficher l'image sélectionnée
+  function displaySelectedImage(event) {
+       const fileInput = event.target;
+       const selectedImage = document.getElementById('selectedAvatar');
+       
+       if (fileInput.files && fileInput.files[0]) {
+           const reader = new FileReader();
+           
+           reader.onload = function(e) {
+               selectedImage.src = e.target.result;
+           };
+           
+           reader.readAsDataURL(fileInput.files[0]);
+       }
+  }
+   
+  // Ajoutez un écouteur d'événements 'change' à l'input 'id_avatar'
+  document.getElementById('id_avatar').addEventListener('change', displaySelectedImage);
+ </script>
 
-
-
+{% comment %} document.addEventListener('DOMContentLoaded', function() {
+  var paragraph = document.querySelector('#AVATAR_Form p');
+  var content = paragraph.innerHTML;
+  content = content.replace(/Avatar:/g, '<span class="hide-text">Avatar:</span>');
+  content = content.replace(/Change:/g, '<span class="hide-text">Change:</span>');
+  content = content.replace(/Currently:/g, '<span class="hide-text">Change:</span>');
+  paragraph.innerHTML = content;
+}); {% endcomment %}
