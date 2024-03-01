@@ -10,19 +10,20 @@ function  launchWebsite() {
     return;
   }
 
-   const config = { childList: true, subtree: true };
+  const config = { childList: true, subtree: true };
 
-   observer = new MutationObserver(mutationCallBack);
-   observer.observe(targetNode, config);
+  observer = new MutationObserver(mutationCallBack);
+  observer.observe(targetNode, config);
 
-   loadPage(currentUrl);
-   setHeaderEvents();
-   triggerFirstsEvents();
+  loadPage(currentUrl);
+  modal_ProfileInit(); 
+  header_SetEvents();
+  main_SetFirstsEvents();
 
-   document.removeEventListener('DOMContentLoaded', launchWebsite);
+  document.removeEventListener('DOMContentLoaded', launchWebsite);
  }
 
- function  triggerFirstsEvents() {
+function  main_SetFirstsEvents() {
    const	element = document.getElementById('titleContent');
 
    if (!element) {
@@ -59,6 +60,9 @@ function  launchSectionHandler(element) {
 	break ;
       case 'SIGNUP_PAGE':
 	signup_SetEvents();
+	break ;
+      case 'SETTINGS':
+	console.log('?????????');
 	break ;
 
       default:

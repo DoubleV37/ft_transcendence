@@ -13,7 +13,7 @@ async function signUp() {
 	return true;
       }
       else {
-	console.log('Faut gerer la gestion d\'erreur la...');
+	SignUp_UpdateErrors(data["message"]);
 	form.reset();
 	return false;
       }
@@ -21,5 +21,14 @@ async function signUp() {
   catch (err) {
     console.error('SignUp Errors:', err);
     return false;
+  }
+}
+
+function SignUp_UpdateErrors(errors) {
+  let element = document.getElementById('SIGNUP_Errors');
+  element.innerHTML = '';
+
+  for (let key in errors) {
+    element.innerHTML += `${errors[key]}<br>`;
   }
 }

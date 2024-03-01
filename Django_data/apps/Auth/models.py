@@ -7,7 +7,7 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True, null=False)
     email = models.EmailField(max_length=50, unique=True, null=False)
     password = models.CharField(max_length=128, null=False)
-    avatar = models.ImageField(upload_to='avatars/')
+    avatar = models.ImageField(default="default.png")
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -16,4 +16,7 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.username
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 

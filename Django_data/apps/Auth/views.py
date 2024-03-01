@@ -1,10 +1,20 @@
 import json
 import logging
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate, logout
-from .forms import CustomUserCreationForm, SignInForm
+from django.contrib.auth.decorators import login_required, permission_required
+
+from .forms import (
+        CustomUserCreationForm, SignInForm, My_Psswd, My_Avatar, My_Name, My_Mail
+    )
+from . import forms
+
+from .models import User
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
+
 
 logger = logging.getLogger(__name__)
 
@@ -35,19 +45,97 @@ def signin(request):
                 login(request, user)
                 response = JsonResponse({'success': True})
             else:
-                response = JsonResponse({'success': False,
-                                         'errors':
-                                         'Invalid username or password'})
+                response = JsonResponse({
+                    'success': False,
+                   'errors': 'Invalid username or password'
+                })
         else:
-            response = JsonResponse({'success': False,
-                                     'errors': 'Invalid form'})
+            response = JsonResponse({
+                'success': False,
+                'errors': 'Invalid form'
+            })
         return response
 
     form = SignInForm()
     return render(request, 'Auth/SignIn.html', {'form': form})
 
-
 def signout(request):
     if request.method == 'POST':
         logout(request)
     return JsonResponse({'success': True})
+
+
+def my_settings(request):
+    try:
+        user = User.objects.get(username=request.user.username)
+
+        rtrn = 0
+        name = My_Name(instance=user)
+        mail = My_Mail(instance=user)
+        pswd = My_Psswd(instance=user)
+        avatar = My_Avatar(instance=user)
+
+
+        response = JsonResponse({
+            'success': False,
+            'errors': 'unexpected'
+        })
+
+        context = {
+            'user': user, 'name': name, 'mail': mail,
+            'avatar': avatar, 'pswd': pswd,
+        }
+
+        if request.method == 'POST':
+            name = My_Name(request.POST, instance=user)
+            mail = My_Mail(request.POST, instance=user)
+            pswd = My_Psswd(request.POST, instance=user)
+            avatar = My_Avatar(request.POST, request.FILES, instance=user)
+            logger.debug(request.POST)
+
+            if avatar.is_valid():
+                save = avatar.save(commit=False)
+                user.username = request.user.username
+                user.avatar = save.avatar
+                user.save()
+            elif pswd.is_valid():
+                pswd.save()
+            else:
+                pass
+
+            if name.is_valid():
+                name.save()
+            elif 'name_button' in request.POST:
+                errors = name.errors
+                logger.error(f"Exception occurred: {errors}")
+                rtrn = 1
+            else:
+                pass
+
+            if mail.is_valid():
+                mail.save()
+            elif 'mail_button' in request.POST:
+                rtrn = 2
+            else:
+                pass
+
+            match rtrn:
+                case 1:
+                    return JsonResponse({ 'success': False,
+                        'errors': 'username already taken'
+                    })
+                case 2:
+                    return JsonResponse({ 'success': False,
+                        'errors': 'email already taken'
+                    })
+                case _:
+                    return JsonResponse({'success': True})
+
+        return render(request, 'My_Settings.html', context=context)
+
+    except Exception as e:
+        logger.debug("Exception")
+        logger.error(f"Exception occurred: {e}")
+        return HttpResponse("Exception", status=400)
+
+

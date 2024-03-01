@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.Home',
     'apps.Auth',
+    'apps.Profile',
 	'bootstrap5'
 ]
 
@@ -52,7 +53,7 @@ MIDDLEWARE = [
 
 ]
 
-ROOT_URLCONF = 'backend.urls'
+ROOT_URLCONF = 'Project.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+WSGI_APPLICATION = 'Project.wsgi.application'
 
 # ASGI_APPLICATION = 'backend.asgi.application'
 
@@ -139,8 +140,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ["https://localhost:8080"]
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "/"
+
+MEDIA_URL = '/avatars/'
+
+MEDIA_ROOT = BASE_DIR.joinpath('avatars/')
+
 
 AUTH_USER_MODEL = 'Auth.User'
 

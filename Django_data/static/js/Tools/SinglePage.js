@@ -13,30 +13,34 @@ async function fetchSection(section) {
   }
 }
 
-async function changeSection(section) {
+async function changeSection(section, content) {
   let	tempDiv = document.createElement('div');
   tempDiv.innerHTML = await fetchSection(section);
 
-  let fetchedContent = tempDiv.querySelector('#content');
-  document.querySelector(`#content`).innerHTML = fetchedContent.innerHTML;
+  let fetchedContent = await tempDiv.querySelector(content);
+  document.querySelector(content).innerHTML = await fetchedContent.innerHTML;
 }
 
-window.addEventListener('popstate', function(event) {
+window.addEventListener('popstate', async function(event) {
+  header_DelEvents();
   if (event.state == null) {
-    changeSection('/');
-    currentUrl = '/';
+    await changeSection(`${ROUTE.HOME}`, '#content');
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    currentUrl = `${ROUTE.HOME}`;
   }
   else {
-    changeSection(event.state.section);
+    await changeSection(event.state.section, '#content');
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content'); //add sonme handler event here
     currentUrl = event.state.section;
   }
+  header_SetEvents();
 });
 
-function loadPage(url) {
+async function loadPage(url) {
   if (typeof(url) != 'string' || !url || url === currentUrl) {
     return ;
   }
   currentUrl = url;
   history.pushState({section: url}, '', url);
-  changeSection(url);
+  await changeSection(url, '#content');
 }

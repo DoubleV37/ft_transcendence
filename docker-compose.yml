@@ -1,22 +1,22 @@
 services:
   gunicorn:
     container_name: gunicorn
-    build: Backend/Gunicorn
+    build: Services/Gunicorn
     restart: always
     env_file: .env
     volumes:
-      - django_data:/app/backend
+      - django_data:/app/Project
     depends_on:
       postgres:
         condition: service_healthy
 
   uvicorn:
     container_name: uvicorn
-    build: Backend/Uvicorn
+    build: Services/Uvicorn
     restart: always
     env_file: .env
     volumes:
-      - django_data:/app/backend
+      - django_data:/app/Project
     depends_on:
       - postgres
 
@@ -37,13 +37,14 @@ services:
 
   nginx:
     container_name: nginx
-    build: Backend/NginxReverseProxy/
+    build: Services/NginxReverseProxy/
     restart: always
     env_file: .env
     ports:
     - "8080:8080"
     volumes:
       - django_static:/var/lib/nginx/static/
+      - django_media:/var/lib/nginx/avatars/
     depends_on:
       - gunicorn
       - uvicorn
@@ -67,3 +68,11 @@ volumes:
       type: none
       o: bind
       device: Django_data/staticfiles
+
+  django_media:
+    name: django_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data/avatars

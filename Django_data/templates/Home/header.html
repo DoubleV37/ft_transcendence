@@ -1,5 +1,12 @@
 {% load static %}
 <header>
+  <div id="Header_content">
+	{% if user.is_authenticated %}
+	  <div id="HEADER_IsAuth" data-auth="true"></div>
+	{% else %}
+	  <div id="HEADER_IsAuth" data-auth="false"></div>
+	{% endif %}
+
 	<nav class="navbar-dark">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -7,13 +14,40 @@
 			</button>
 			<div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 				<div class="offcanvas-header">
-					<h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Offcanvas</h5>
-					<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					<button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
 				<div class="offcanvas-body">
 					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 						<li class="nav-item">
-							<button id="HEADER_NavLogo">LOGO</button>
+						  {% if user.is_authenticated %}
+							<div class="offcanvas-section offcanvas-section-border ">
+								<div class="ProfileCardboard offcanvas-profileCardboard">
+									<img class="ProfilePic offcanvas-profilePic" src="{% static 'images/User_Test_Val.jpg' %}" alt="Very basic user"></img>
+									<div id="UserStatus">
+										<h1 id="username">DoubleV</h1>
+										<p id="connectStatus">online</p>
+									</div>
+								</div>
+							</div>
+							<div class="offcanvas-section offcanvas-section-border">
+								<div id="userStats">
+									<p id="WR">Win Rate: 1.8</p>
+									<p id="gamesPlayed">Games played : <b>28</b></p>
+									<p id="tournamentsPlayed">Tournaments played : <b>2</b></p>
+								</div>
+							</div>
+							<div class="offcanvas-section">
+								<div class="ProfilePage offcanvas-profile">
+									<button id="HEADER_NavProfile" type="button" class="ButtonLayout ButtonNeon">Profile</button>
+									<button id="HEADER_NavChat" class="ButtonLayout ButtonNeon">Chat</button>
+								</div>
+							</div>
+							<div class="offcanvas-section offcanvas-section-bottom">
+								<div class="ProfilePage offcanvas-profile">
+									<button id="HEADER_NavSignOut" class="ButtonLayout ButtonDark">Sign out</button>
+								</div>
+							</div>
+						  {% endif %}
 						</li>
 					</ul>
 				</div>
@@ -22,8 +56,16 @@
 		<div id="div_logo">
 			<button id="HEADER_Logo"><img id="logo_placeholder" src="{% static 'images/logoV0.5.png' %}" alt="Pong logo"></button>
 		</div>
-		<div id="div_signin">
-			<button id="HEADER_Signin">Sign in</button>
+		
+		<div id="div_profile">
+		  {% if user.is_authenticated %}
+		    <button id="HEADER_Profile" type="button" class="btn btn-primary">
+		      Profile
+		    </button>
+		  {% else %}
+		    <button id="HEADER_Signin">Sign in</button>
+		  {% endif %}
 		</div>
 	</nav>
+  </div>
 </header>

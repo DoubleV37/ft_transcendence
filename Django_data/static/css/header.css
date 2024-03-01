@@ -1,12 +1,14 @@
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 53.125em) {
+@media only screen and (min-width : 60.063em) {
     /* Styles */
 
 	header {
 		width: 100%;
 		flex-shrink: 0;
-
 		background: #151821;
+		top: 0;
+		position: sticky;
+		z-index: 1;
 	}
 
 	/* NAVBAR */
@@ -46,7 +48,7 @@
 
 	/* SIGN IN BUTTON */
 
-	#div_signin {
+	#div_profile {
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
@@ -77,6 +79,31 @@
 		background: #525695;
 	}
 
+	#HEADER_Profile {
+		display: flex;
+		width: 5.5rem;
+		height: 2rem;
+		padding: 0.625rem;
+		justify-content: center;
+		align-items: center;
+		border: solid;
+		border-width: 1px;
+		border-color: #5DC6E8;
+		border-radius: 0.625rem;
+		background: none;
+
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 1em;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	#HEADER_Profile:hover {
+		background: #525695;
+	}
+
 	/* LOGO */
 
 	#div_logo{
@@ -102,13 +129,16 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
     /* Styles */
 
 	header {
 		width: 100%;
 		flex-shrink: 0;
 		background: #151821;
+		top: 0;
+		position: sticky;
+		z-index: 1;
 	}
 
 	/* NAVBAR */
@@ -148,7 +178,7 @@
 
 	/* SIGN IN BUTTON */
 
-	#div_signin {
+	#div_profile {
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
@@ -176,6 +206,31 @@
 	}
 
 	#HEADER_Signin:hover {
+		background: #525695;
+	}
+
+	#HEADER_Profile {
+		display: flex;
+		width: 5.5rem;
+		height: 2rem;
+		padding: 0.625rem;
+		justify-content: center;
+		align-items: center;
+		border: solid;
+		border-width: 1px;
+		border-color: #5DC6E8;
+		border-radius: 0.625rem;
+		background: none;
+
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 1em;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	#HEADER_Profile:hover {
 		background: #525695;
 	}
 
@@ -211,6 +266,9 @@
 		width: 100%;
 		flex-shrink: 0;
 		background: #151821;
+		top: 0;
+		position: sticky;
+		z-index: 1;
 	}
 
 	/* NAVBAR */
@@ -250,13 +308,38 @@
 
 	/* SIGN IN BUTTON */
 
-	#div_signin {
+	#div_profile {
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
 	}
 
 	#HEADER_Signin {
+		display: flex;
+		width: 4.5rem;
+		height: 2rem;
+		padding: 0.625rem;
+		justify-content: center;
+		align-items: center;
+		border: solid;
+		border-width: 1px;
+		border-color: #5DC6E8;
+		border-radius: 0.625rem;
+		background: none;
+
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 0.8em;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	#HEADER_Signin:hover {
+		background: #525695;
+	}
+
+	#HEADER_Profile {
 		display: flex;
 		width: 5rem;
 		height: 2rem;
@@ -277,7 +360,7 @@
 		line-height: normal;
 	}
 
-	#HEADER_Signin:hover {
+	#HEADER_Profile:hover {
 		background: #525695;
 	}
 

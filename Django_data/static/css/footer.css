@@ -1,5 +1,5 @@
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 53.125em) {
+@media only screen and (min-width : 60.063em) {
     /* Styles */
 
 	footer {
@@ -9,20 +9,27 @@
 		justify-content: flex-end;
 		align-items: center;
 		/* flex-shrink: 0; */
-		margin-bottom: -3.4375rem;
-
-		background: #0F0F10;
+		margin-top: auto;
+		/* Rendre le footer accessible uniquement en scrollant
+		margin-bottom: 3.4375; */
+		background: #151821;
+		position: relative;
+		bottom: 0;
 	}
 
 	.les-keep {
 		font-family: Kodchasan;
 		color:#FFF;
 		padding-right: 1.25em;
+		font-size: 0.8rem;
+		font-style: normal;
+		font-weight: 300;
+		line-height: normal;
 	}
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
     /* Styles */
 		footer {
 		display: flex;
@@ -31,15 +38,22 @@
 		justify-content: flex-end;
 		align-items: center;
 		/* flex-shrink: 0; */
-		margin-bottom: -3.4375rem;
-
-		background: #0F0F10;
+		margin-top: auto;
+		/* Rendre le footer accessible uniquement en scrollant
+		margin-bottom: 3.4375; */
+		background: #151821;
+		position: relative;
+		bottom: 0;
 	}
 
 	.les-keep {
 		font-family: Kodchasan;
 		color:#FFF;
 		padding-right: 1.25em;
+		font-size: 0.8rem;
+		font-style: normal;
+		font-weight: 300;
+		line-height: normal;
 	}
 }
 
@@ -54,13 +68,17 @@
 		align-items: center;
 		/* flex-shrink: 0; */
 		margin-bottom: -3.4375rem;
-
-		background: #0F0F10;
+		margin-top: auto;
+		background: #151821;
 	}
 
 	.les-keep {
 		font-family: Kodchasan;
 		color:#FFF;
 		padding-right: 1.25em;
+		font-size: 0.8rem;
+		font-style: normal;
+		font-weight: 300;
+		line-height: normal;
 	}
 }
