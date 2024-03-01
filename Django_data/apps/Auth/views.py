@@ -7,8 +7,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .forms import (
-        CustomUserCreationForm, SignInForm, InfoName, InfoMail, InfoPsswd, InfoAvatar,
-        AllInfo
+        CustomUserCreationForm, SignInForm, My_Psswd, My_Avatar, My_Name, My_Mail
     )
 from . import forms
 
@@ -46,159 +45,97 @@ def signin(request):
                 login(request, user)
                 response = JsonResponse({'success': True})
             else:
-                response = JsonResponse({'success': False,
-                                         'errors':
-                                         'Invalid username or password'})
+                response = JsonResponse({
+                    'success': False,
+                   'errors': 'Invalid username or password'
+                })
         else:
-            response = JsonResponse({'success': False,
-                                     'errors': 'Invalid form'})
+            response = JsonResponse({
+                'success': False,
+                'errors': 'Invalid form'
+            })
         return response
 
     form = SignInForm()
     return render(request, 'Auth/SignIn.html', {'form': form})
 
-def edit_avatar(request):
-    user = User.objects.get(username=request.user.username)
-    logger.debug("edit_avatar")
-    if request.method == 'POST' and 'avatar' in request.FILES:
-        logger.debug("first condition in")
-        avatar_form = InfoAvatar(request.POST, request.FILES, instance=user)
-        if avatar_form.is_valid():
-            logger.debug("is_valid=True")
-            avatar = avatar_form.save(commit=False)
-            user.avatar = avatar.avatar
-            user.save()
-            response = JsonResponse({'success': True})
-            return response
-        else:
-            logger.debug("is_valid=False")
-            response = JsonResponse(
-                {'success': False,
-                'errors': 'Invalid form'}
-            )
-            return response
-    else:
-        avatar_form = InfoAvatar(instance=user)
-        return render(request, 'edit_avatar.html', {'avatar_form': avatar_form})
-    logger.debug("Che ne pas comprende")
-    return HttpResponse("Exception", status=400)
-
-def edit_name(request):
-    user = User.objects.get(username=request.user.username)
-    if request.method == 'POST':
-        if 'username' in request.POST:
-            name = InfoName(request.POST, instance=user)
-            if name.is_valid():
-                name.save()
-                response = JsonResponse({'success': True})
-                return response
-        else:
-            response = JsonResponse(
-                {'success': False,
-                 'errors': 'Invalid form'}
-            )
-            return response
-    else:
-        name = InfoName(instance=user)
-        return render(request, 'edit_name.html', {'name': name})
-
-def edit_psswd(request):
-    user = User.objects.get(username=request.user.username)
-    if request.method == 'POST':
-        if 'password1' in request.POST:
-            psswd = InfoPsswd(request.POST, instance=user)
-            if psswd.is_valid():
-                psswd.save()
-                response = JsonResponse({'success': True})
-                return response
-        else:
-            response = JsonResponse(
-                {'success': False,
-                 'errors': 'Invalid form'}
-            )
-            return response
-    else:
-        psswd = InfoPsswd(instance=user)
-        return render(request, 'edit_psswd.html', {'psswd': psswd})
-
-def edit_mail(request):
-    user = User.objects.get(username=request.user.username)
-    if request.method == 'POST':
-        if 'email' in request.POST:
-            mail = InfoMail(request.POST, instance=user)
-            if mail.is_valid():
-                mail.save()
-                response = JsonResponse({'success': True})
-                return response
-        else:
-            response = JsonResponse(
-                {'success': False,
-                 'errors': 'Invalid form'}
-            )
-            return response
-    else:
-        mail = InfoMail(instance=user)
-        return render(request, 'edit_mail.html', {'mail': mail})
-
-# @login_required
-def info(request):
-    try:
-        user = User.objects.get(username=request.user.username)
-        return render(request, 'Info.html', {'user': user})
-    except:
-        return HttpResponse("Exception", status=400)
-
-def allinfo(request):
-    try:
-        user = User.objects.get(username=request.user.username)
-        form = AllInfo(instance=user)
-        avatar_form = InfoAvatar(instance=user)
-        context={
-            'user': user,
-            'form': form,
-            'avatar_form': avatar_form,
-        }
-        if request.method == 'POST':
-            logger.debug("First requset if")
-            form = AllInfo(request.POST, instance=user)
-            response = JsonResponse({
-                'success': False,
-                'errors': 'Initial',
-            })
-            if  form.is_valid():
-                logger.debug("Second requset if")
-                form.save()
-                response = JsonResponse({'success': True})
-            else:
-                logger.debug("Second requset else")
-                response = JsonResponse({
-                    'success': False,
-                    'errors': 'FORM'
-                })
-            if 'avatar' in request.POST :
-                logger.debug("third requset if")
-                avatar_form = InfoAvatar(request.POST, request.FILES,instance=user)
-                if  avatar_form.is_valid():
-                    avatar = avatar_form.save(commit=False)
-                    logger.debug(avatar_form.cleaned_data['avatar'])
-                    user.avatar = avatar.avatar
-                    user.save()
-                    response = JsonResponse({'success': True})
-            else:
-                logger.debug("third requset else")
-                response = JsonResponse({
-                    'success': False,
-                    'errors': 'Photo'
-                })
-            return response
-        logger.debug("Displaying html")
-        return render(request, 'AllInfo.html', context=context)
-    except:
-        logger.debug("Exception")
-        return HttpResponse("Exception", status=400)
-
-
 def signout(request):
     if request.method == 'POST':
         logout(request)
     return JsonResponse({'success': True})
+
+
+def my_settings(request):
+    try:
+        user = User.objects.get(username=request.user.username)
+
+        rtrn = 0
+        name = My_Name(instance=user)
+        mail = My_Mail(instance=user)
+        pswd = My_Psswd(instance=user)
+        avatar = My_Avatar(instance=user)
+
+
+        response = JsonResponse({
+            'success': False,
+            'errors': 'unexpected'
+        })
+
+        context = {
+            'user': user, 'name': name, 'mail': mail,
+            'avatar': avatar, 'pswd': pswd,
+        }
+
+        if request.method == 'POST':
+            name = My_Name(request.POST, instance=user)
+            mail = My_Mail(request.POST, instance=user)
+            pswd = My_Psswd(request.POST, instance=user)
+            avatar = My_Avatar(request.POST, request.FILES, instance=user)
+            logger.debug(request.POST)
+
+            if avatar.is_valid():
+                save = avatar.save(commit=False)
+                user.username = request.user.username
+                user.avatar = save.avatar
+                user.save()
+            elif pswd.is_valid():
+                pswd.save()
+            else:
+                pass
+
+            if name.is_valid():
+                name.save()
+            elif 'name_button' in request.POST:
+                errors = name.errors
+                logger.error(f"Exception occurred: {errors}")
+                rtrn = 1
+            else:
+                pass
+
+            if mail.is_valid():
+                mail.save()
+            elif 'mail_button' in request.POST:
+                rtrn = 2
+            else:
+                pass
+
+            match rtrn:
+                case 1:
+                    return JsonResponse({ 'success': False,
+                        'errors': 'username already taken'
+                    })
+                case 2:
+                    return JsonResponse({ 'success': False,
+                        'errors': 'email already taken'
+                    })
+                case _:
+                    return JsonResponse({'success': True})
+
+        return render(request, 'My_Settings.html', context=context)
+
+    except Exception as e:
+        logger.debug("Exception")
+        logger.error(f"Exception occurred: {e}")
+        return HttpResponse("Exception", status=400)
+
+
