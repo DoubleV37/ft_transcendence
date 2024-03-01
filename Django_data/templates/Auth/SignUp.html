@@ -1,19 +1,22 @@
 {% load static %}
 {% include "Home/head.html" %}
 {% include "Home/header.html" %}
-<div id="mid">
-	<div id="content">
+<div id="content">
+	{% include "Profile/Profile.html" %}
+	<div id="overlay">
+	<div class="mid midcolumn flowAnimation">
 	<div id="titleContent" data-content="SIGNUP_PAGE"></div>
 		<form id="SIGNUP_Form" method="post" action="/auth/signup/">
-			<h1 id ="signupTitle">Sign up !</h1>
+			<h1 id ="signupTitle">Account creation</h1>
 			{% csrf_token %}
 			{{ form.as_p }}
 			<div id="SIGNUP_Errors" style="color: red;"></div>
-			<button id="btn_signup" type="submit">S’inscrire</button>
+			<button id="btn_signup" type="submit">Sign up!</button>
 			<div id ="SIGNUP_signin">
 				<p>Already have an account ? <b>Log in</b></p>
 			</div>
 		</form>
+	</div>
 	</div>
 </div>
 {% include "Home/footer.html" %}

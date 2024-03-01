@@ -8,7 +8,7 @@ scrollbar-width: none;
 }
 
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 53.125em) {
+@media only screen and (min-width : 60.063em) {
     /* Styles */
 
 	body {
@@ -21,7 +21,8 @@ scrollbar-width: none;
 		min-height: 100vh;
 	}
 
-	#mid {
+	
+	#content {
 		display: flex;
 		flex-direction: column;
 		background: url('../images/background.jpeg');
@@ -31,16 +32,122 @@ scrollbar-width: none;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-
+		
 		flex-grow: 2;
 	}
-
-	#content {
+	
+	/* OFF CANVAS */
+	
+	.pe-3 {
+		padding-right: 0rem!important;
+	}
+	
+	.nav-item {
 		display: flex;
-		width: 47em;
-		height: 45em;
-		padding: 3.125em 6.25em;
+		justify-content: center;
 		flex-direction: column;
+		align-items: center;
+	}
+
+	.offcanvas-header {
+		height: 3.4375em;
+		background: #08090c;
+		justify-content: flex-end;
+	}
+
+	.offcanvas-body {
+		flex-grow: 1;
+		padding: 0rem;
+		overflow-y: auto;
+		background-color: #151821;
+	}
+
+	.offcanvas-profile {
+        width: 80%;
+        padding-top: 5vh;
+    }
+
+	.offcanvas-profileCardboard {
+        width: 80%;
+        margin: 1em 0em;
+    }
+
+	.offcanvas-profilePic {
+        width: 30%;
+    }
+
+    .offcanvas-section {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+	.offcanvas-section-border {
+        border-bottom: 1px solid #828282;
+    }
+
+	.offcanvas-section-bottom {
+        bottom: 5vh;
+		position: absolute;
+    }
+
+	#userStats {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 2em 0em;
+		gap: 1em;
+	}
+
+	#WR::before {
+        content: url('../images/WRcrown.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 0.5rem; /* Adds some space between the icon and the text */
+        vertical-align: top; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
+	#WR {
+        color: #FFC130;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#gamesPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#tournamentsPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	/* MAIN CONTENT */
+
+	.mid {
+		display: flex;
+		height: 47em;
 		justify-content: center;
 		align-items: center;
 		flex-shrink: 0;
@@ -48,10 +155,82 @@ scrollbar-width: none;
 		margin-bottom: 1em;
 		color:#FFF;
 
-		border-radius: 25px;
-		border: 2px solid #5DC6E8;
+		border-radius: 15px;
+		border: 1px solid #5DC6E8;
 		background: rgba(28, 32, 38, 0.75);
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
+		position: relative;
+	}
+
+	.midFullscreen {
+		display: flex;
+		height: 100%;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+		padding-top: 2em;
+		padding-bottom: 2em;
+	}
+
+	#overlayFullscreen {
+		content: "";
+		display: flex;
+		top:  0;
+		left:  0;
+		/* Overlay complet */
+		width:  100%;
+		height:  100%;
+		/* Pour faire une fenetre */
+		/* width: 60em;
+    	height: 40em; */
+		background-color: rgba(28,  32,  38,  0.85); /* Adjust the color and opacity as needed */
+		z-index: 0; /* Ensure the overlay is behind the content */
+		justify-content: center;
+		flex-grow: 1;
+    	align-items: center;
+		/* border: 1px solid #5DC6E8;
+		border-radius: 10px;
+		margin-top: 2em;
+		margin-bottom: 2em; */
+	}
+
+	#overlayMobile {
+		display: none;
+	}
+
+	#contentFullscreen {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		z-index: -2; /* Ensure the overlay is behind the content */
+		flex-grow: 1;
+	}
+
+	.midrow {
+		flex-direction: column;
+		width: 100vw;
+	}
+
+	.midcolumn {
+		flex-direction: column;
+		width: 48em;
+	}
+
+	#WelcomeScreen {
+		display: flex;
+		width: 80%;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.8rem;
+		flex-shrink: 0;
+		margin-block-end: 0;
 	}
 
 	.pong {
@@ -74,8 +253,8 @@ scrollbar-width: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 1.625em;
-		padding-top: 1em;
+		padding-bottom: 2.125em;
+		padding-top: 1.5em;
 		align-self: stretch;
 	}
 
@@ -114,16 +293,15 @@ scrollbar-width: none;
 		display: flex;
 		width: 28.125rem;
 		height: 4.375rem;
-		padding: 0.625rem 11.25rem;
 		justify-content: center;
 		align-items: center;
 		gap: 0.625rem;
 		flex-shrink: 0;
 		align-self: center;
 
-		border:none;
+		border-color: #5DC6E8;
 		border-radius: 0.625rem;
-		background: #3e4180;
+		background: #202532;
 	}
 
 	.play {
@@ -137,7 +315,7 @@ scrollbar-width: none;
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 53.125em) {
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
     /* Styles */
 
 	body {
@@ -150,7 +328,7 @@ scrollbar-width: none;
 		min-height: 100vh;
 	}
 
-	#mid {
+	#content {
 		display: flex;
 		flex-direction: column;
 		background: url('../images/background.jpeg');
@@ -164,12 +342,120 @@ scrollbar-width: none;
 		flex-grow: 2;
 	}
 
-	#content {
+	/* OFF CANVAS */
+
+	.pe-3 {
+		padding-right: 0rem!important;
+	}
+
+	.nav-item {
 		display: flex;
-		width: 35em;
-		height: 41em;
-		padding: 3.125em 5.25em;
+		justify-content: center;
 		flex-direction: column;
+		align-items: center;
+	}
+
+	.offcanvas-header {
+		height: 3.4375em;
+		background: #08090c;
+		justify-content: flex-end;
+	}
+
+	.offcanvas-body {
+		flex-grow: 1;
+		padding: 0rem;
+		overflow-y: auto;
+		background-color: #151821;
+	}
+
+	.offcanvas-profile {
+        width: 80%;
+        padding-top: 5vh;
+    }
+
+	.offcanvas-profileCardboard {
+        width: 80%;
+        margin: 1em 0em;
+    }
+
+	.offcanvas-profilePic {
+        width: 30%;
+    }
+
+    .offcanvas-section {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+	.offcanvas-section-border {
+        border-bottom: 1px solid #828282;
+    }
+
+	.offcanvas-section-bottom {
+        bottom: 5vh;
+		position: absolute;
+    }
+
+	#userStats {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 2em 0em;
+		gap: 1em;
+	}
+
+	#WR::before {
+        content: url('../images/WRcrown.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 0.5rem; /* Adds some space between the icon and the text */
+        vertical-align: top; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
+	#WR {
+        color: #FFC130;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#gamesPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#tournamentsPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	/* MAIN CONTENT */
+
+	.mid {
+		display: flex;
+		flex-direction: column;
+		width: 35em;
+		height: 45em;
 		justify-content: center;
 		align-items: center;
 		flex-shrink: 0;
@@ -177,10 +463,71 @@ scrollbar-width: none;
 		margin-bottom: 1em;
 		color:#FFF;
 
-		border-radius: 25px;
-		border: 2px solid #5DC6E8;
+		border-radius: 15px;
+		border: 1px solid #5DC6E8;
 		background: rgba(28, 32, 38, 0.75);
-		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
+		box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.45);
+		position: relative;
+	}
+
+	.midrow {
+		flex-direction: row;
+		width: 100vw;
+	}
+
+	.midcolumn {
+		flex-direction: column;
+	}
+
+	.midFullscreen {
+		display: flex;
+		height: 100%;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+		padding-top: 2em;
+		padding-bottom: 2em;
+	}
+
+	#overlayFullscreen {
+		content: "";
+		display: flex;
+		top:  0;
+		left:  0;
+		/* Overlay complet */
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.85); /* Adjust the color and opacity as needed */
+		z-index: 0; /* Ensure the overlay is behind the content */
+		justify-content: center;
+		flex-grow: 1;
+    	align-items: center;
+		/* Pour faire une fenetre */
+		/* width: 60em;
+    	height: 40em; */
+		/* border: 1px solid #5DC6E8;
+		border-radius: 10px;
+		margin-top: 2em;
+		margin-bottom: 2em; */
+	}
+
+	#overlayMobile {
+		display: none;
+	}
+
+	#contentFullscreen {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		/* justify-content: center; */
+		position: relative;
+		z-index: -2; /* Ensure the overlay is behind the content */
+		flex-grow: 1;
 	}
 
 	.pong {
@@ -198,13 +545,23 @@ scrollbar-width: none;
 		border-radius: 1rem;
 	}
 
+	#WelcomeScreen {
+		display: flex;
+		width: 75%;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.8rem;
+		flex-shrink: 0;
+		margin-block-end: 0;
+	}
+
 	.welcome-text {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 1.625em;
-		padding-top: 1em;
+		padding-bottom: 2.125em;
+		padding-top: 1.5em;
 		align-self: stretch;
 	}
 
@@ -243,16 +600,15 @@ scrollbar-width: none;
 		display: flex;
 		width: 23rem;
 		height: 4.375rem;
-		padding: 0.625rem 11.25rem;
 		justify-content: center;
 		align-items: center;
 		gap: 0.625rem;
 		flex-shrink: 0;
 		align-self: center;
 
-		border:none;
+		border-color: #5DC6E8;
 		border-radius: 0.625rem;
-		background: #3e4180;
+		background: #202532;
 	}
 
 	.play {
@@ -274,11 +630,11 @@ scrollbar-width: none;
 		align-items: center;
 		scrollbar-width: none;
 		position: relative;
-
 		min-height: 100vh;
+		min-width: fit-content;
 	}
 
-	#mid {
+	#content {
 		display: flex;
 		flex-direction: column;
 		background: url('../images/background.jpeg');
@@ -286,25 +642,213 @@ scrollbar-width: none;
 		background-repeat: no-repeat;
 		align-self: stretch;
 		align-items: center;
-		justify-content: center;
+		/* justify-content: center; */
 		position: relative;
-
 		flex-grow: 1;
 	}
 
-	#content {
+	/* OFF CANVAS */
+
+	.pe-3 {
+		padding-right: 0rem!important;
+	}
+
+	.nav-item {
 		display: flex;
-		width: 100%;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.offcanvas-header {
+		height: 3.4375em;
+		background: #08090c;
+		justify-content: flex-end;
+	}
+
+	.offcanvas-body {
+		flex-grow: 1;
+		padding: 0rem;
+		overflow-y: auto;
+		background-color: #151821;
+	}
+
+	.offcanvas-profile {
+        width: 80%;
+        padding-top: 5vh;
+    }
+
+	.offcanvas-profileCardboard {
+        width: 80%;
+        margin: 1em 0em;
+    }
+
+	.offcanvas-profilePic {
+        width: 30%;
+    }
+
+    .offcanvas-section {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+	.offcanvas-section-border {
+        border-bottom: 1px solid #828282;
+    }
+
+	.offcanvas-section-bottom {
+        bottom: 5vh;
+		position: absolute;
+    }
+
+	#userStats {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 2em 0em;
+		gap: 1em;
+	}
+
+	#WR::before {
+        content: url('../images/WRcrown.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 0.5rem; /* Adds some space between the icon and the text */
+        vertical-align: top; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
+	#WR {
+        color: #FFC130;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#gamesPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	#tournamentsPlayed {
+        color: #FFF;
+        text-align: right;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+	/* MAIN CONTENT */
+
+	.mid {
+		display: flex;
+		height: 100%;
+		padding: 5vh 4vw;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+	}
+
+	/* .midcolumn {
+		flex-direction: column;
+		width: 48em;
+	} */
+
+	.midMobile {
+		display: flex;
 		height: 100%;
 		padding: 3vh 4vw;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		flex-grow: 1;
+	}
 
-		border-top: 2px solid #5DC6E8;
-		border-bottom: 2px solid #5DC6E8;
-		background: rgba(28, 32, 38, 0.75);
+	.midFullscreen {
+		display: flex;
+		height: 100%;
+		padding: 3vh 4vw;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+	}
+
+	#overlay {
+		content: "";
+		display: flex;
+		top:  0;
+		left:  0;
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
+		z-index: 0; /* Ensure the overlay is behind the content */
+		flex-grow: 1;
+    	align-items: center;
+	}
+
+	#overlayMobile {
+		content: "";
+		display: flex;
+		top:  0;
+		left:  0;
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.85); /* Adjust the color and opacity as needed */
+		z-index: 0; /* Ensure the overlay is behind the content */
+	}
+
+	#overlayFullscreen {
+		content: "";
+		display: none;
+		top:  0;
+		left:  0;
+		/* Overlay complet */
+		width:  100%;
+		height:  100%;
+		background-color: rgba(28,  32,  38,  0.85); /* Adjust the color and opacity as needed */
+		z-index: 0; /* Ensure the overlay is behind the content */
+		justify-content: center;
+		flex-grow: 1;
+    	align-items: center;
+		/* Pour faire une fenetre */
+		/* width: 60em;
+    	height: 40em; */
+		/* border: 1px solid #5DC6E8;
+		border-radius: 10px;
+		margin-top: 2em;
+		margin-bottom: 2em; */
+	}
+
+	#contentFullscreen {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		/* justify-content: center; */
+		position: relative;
+		z-index: -2; /* Ensure the overlay is behind the content */
+		flex-grow: 1;
 	}
 
 	#pong_img {
@@ -315,13 +859,23 @@ scrollbar-width: none;
 		border-radius: 0.625rem;
 	}
 
+	#WelcomeScreen {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.8rem;
+		flex-shrink: 0;
+		margin-block-end: 0;
+	}
+
 	.welcome-text {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 1em;
-		padding-top: 1em;
+		padding-bottom: 2em;
+		padding-top: 2em;
 		align-self: stretch;
 	}
 
@@ -332,7 +886,7 @@ scrollbar-width: none;
 		text-align: center;
 
 		font-family: Madness;
-		font-size: 5rem;
+		font-size: 4rem;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
@@ -357,13 +911,13 @@ scrollbar-width: none;
 	}
 
 	.play-button {
-		width: 100%;
+		width: 75%;
 		height: 4.375rem;
 		padding: 0.625rem;
 
-		border:none;
+		border-color: #5DC6E8;
 		border-radius: 0.625rem;
-		background: #3e4180;
+		background: #202532;
 	}
 
 	.play {
@@ -374,4 +928,6 @@ scrollbar-width: none;
 		font-weight: 400;
 		line-height: normal;
 	}
+
+
 }

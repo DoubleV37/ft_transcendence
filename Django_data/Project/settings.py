@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.Home',
     'apps.Auth',
+    'apps.Profile',
 	'bootstrap5'
 ]
 
