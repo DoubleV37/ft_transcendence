@@ -17,6 +17,8 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.username
 
+    tournament_name = models.CharField(max_length=50, unique=True, null=False, default=username)
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
