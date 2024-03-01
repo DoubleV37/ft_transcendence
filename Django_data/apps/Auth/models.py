@@ -17,3 +17,6 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.username
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
