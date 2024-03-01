@@ -105,8 +105,7 @@ def my_settings(request):
 
             if name.is_valid():
                 name.save()
-                response = JsonResponse({'success': True})
-            elif name.username is not None:
+            elif 'name_button' in request.POST:
                 errors = name.errors
                 logger.error(f"Exception occurred: {errors}")
                 rtrn = 1
@@ -115,8 +114,7 @@ def my_settings(request):
 
             if mail.is_valid():
                 mail.save()
-                response = JsonResponse({'success': True})
-            elif rtrn == 0:
+            elif 'mail_button' in request.POST:
                 rtrn = 2
             else:
                 pass
