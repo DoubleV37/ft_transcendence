@@ -1,9 +1,6 @@
 {% load static %}
 <header>
   <div id="Header_content">
-    <a href="{% url 'info' %}">Info</a>
-    <a href="{% url 'allinfo' %}">Info</a>
-
 	{% if user.is_authenticated %}
 	  <div id="HEADER_IsAuth" data-auth="true"></div>
 	{% else %}
