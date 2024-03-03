@@ -169,6 +169,16 @@
         border: none;
     }
 
+    #PASS_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
     #AVATAR_Form p label {
         color: #FFF;
         /* Body text */
