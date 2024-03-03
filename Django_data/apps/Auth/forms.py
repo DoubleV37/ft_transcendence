@@ -85,6 +85,15 @@ class My_Psswd(forms.ModelForm):
             user.save()
         return user
 
+class My_Tournamentname(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('tournament_name',)
+    def clean_name(self):
+        tournament_name = self.cleaned_data.get('tournament_name')
+        if User.objects.filter(tournament_name=tournament_name).exists():
+            raise forms.ValidationError("tournament_name is already taken.")
+        return tournament_name
 
 class My_Name(forms.ModelForm):
     class Meta:
