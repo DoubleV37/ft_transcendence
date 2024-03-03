@@ -16,7 +16,7 @@ function  launchWebsite() {
   observer.observe(targetNode, config);
 
   loadPage(currentUrl);
-  modal_ProfileInit(); 
+  modal_ProfileInit();
   header_SetEvents();
   main_SetFirstsEvents();
 
@@ -62,6 +62,9 @@ function  launchSectionHandler(element) {
 	signup_SetEvents();
 	break ;
       case 'SETTINGS':
+  // VOIR AVEC JEAN
+  modal_AvatarInit();
+  settings_SetEvents();
 	console.log('?????????');
 	break ;
 

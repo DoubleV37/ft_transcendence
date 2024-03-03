@@ -155,16 +155,6 @@
         align-self: stretch;
     }
 
-    #PASS_Form p label {
-        color: #FFF;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
     #PASS_Form p input {
         height: 3.125rem;
         align-self: stretch;
@@ -179,11 +169,22 @@
         border: none;
     }
 
-    #AVATAR_Form p .hide-text {
+    #AVATAR_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+    }
+
+    #AVATAR_Form a {
         display: none;
     }
 
-    #AVATAR_Form p a {
+    #AVATAR_Form p .hide-element {
         display: none;
     }
 
@@ -197,9 +198,14 @@
         align-items: center;
     }
 
+    #avatar_button_hidden {
+        display: none;
+    }
+
     #selectedAvatar {
         margin-bottom: 2em;
     }
+    
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */

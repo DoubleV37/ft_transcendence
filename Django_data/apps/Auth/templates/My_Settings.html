@@ -1,10 +1,10 @@
 <html lang="en">
 {% load static %}
 {% include "Home/head.html" %}
-{% include "Home/header.html" %}
-
 
 <body>
+  {% include "Home/header.html" %}
+  {% include "Profile/Profile.html" %}
   <div id="content">
     <div id="titleContent" data-content="SETTINGS"></div>
     <div id="overlayFullscreen">
@@ -54,34 +54,35 @@
                     <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
                   </div>
                </form>
-              <img src="{{ user.avatar.url }}"></img>
-              <form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ avatar.as_p }}
-                <button type="button" id="customFileButton" class="custom-file-button">Choisir un fichier</button>
-                <button type="submit" name='avatar_button'>Update Avatar</button>
+               <form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
+                 {% csrf_token %}
+                 {{ avatar.as_p }}
+                <img class="ProfilePic modal-profilePic" src="{{ user.avatar.url }}"></img>
+                <button class="UpdateButtonLayout ButtonDark" type="submit" id='avatar_button_hidden'>Update</button>
 
-              <!--Avatar-->
+              <!-- Avatar
               <div>
                 <div class="d-flex justify-content-center mb-4">
                     <img id="selectedAvatar" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
                     class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;" alt="example placeholder" />
                 </div>
                 <div class="d-flex justify-content-center">
-                    <div class="btn btn-primary btn-rounded">
-                        <label class="form-label text-white m-1" for="customFile2">Choose file</label>
-                        <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedAvatar')" />
-                    </div>
+                  <button type="button" id="customFileButton" class="SelectButtonLayout ButtonNeon">Choisir un fichier</button>
+                  <button class="UpdateButtonLayout ButtonDark" type="submit" name='avatar_button'>Update</button>
                 </div>
-              </div>
+              </div> -->
 
               </form>
+              <div id="DoubleButton">
+                <button id="AVATAR_Change" class="MediumButtonLayout left ButtonNeon">Change</button>
+                <button id="AVATAR_Delete" class="MediumButtonLayout right ButtonNeon">Delete</button>
+              </div>
             </div>
           </div>
 			  </div>
 		  </div>
 	  </div>
-    <div id="overlayMobile">
+    <!-- <div id="overlayMobile">
       <div class="midMobile midcolumn">
         <div id="titleContent" data-content="SIGNUP_PAGE"></div>
         <img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
@@ -96,15 +97,44 @@
           <button type="submit" name='avatar_button'>Update Avatar</button>
         </form>
       </div>
-    </div>
-  {% include "Home/footer.html" %}
-</body>
+    </div> -->
+    {% include "Home/footer.html" %}
+  </body>
 
 </html>
 
+
+<!-- Modal -->
+<div class="modal fade" id="AvatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			  <img id="ModalBackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+		</div>
+		<div class="modal-body">
+      <div id="ModalContent" data-content="AVATAR_CHANGE"></div>
+      <!--Avatar-->
+      <div>
+        <div class="d-flex justify-content-center mb-4">
+            <img id="selectedAvatar" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+            class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;" alt="example placeholder" />
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" id="customFileButton" class="SelectButtonLayout ButtonNeon">Choisir un fichier</button>
+          <button class="UpdateButtonLayout ButtonDark" type="submit" id="submitAvatar">Update</button>
+        </div>
+      </div>
+		</div>
+		<div class="modal-footer">
+		</div>
+		</div>
+	</div>
+</div>
+
+  
 <script>
-  // Fonction pour déclencher le sélecteur de fichiers
-  document.getElementById('customFileButton').addEventListener('click', function() {
+    // Fonction pour déclencher le sélecteur de fichiers
+    document.getElementById('customFileButton').addEventListener('click', function() {
        document.getElementById('id_avatar').click();
   });
    
@@ -123,16 +153,31 @@
            reader.readAsDataURL(fileInput.files[0]);
        }
   }
+
+  document.getElementById('submitAvatar').addEventListener('click', function() {
+        document.getElementById('AVATAR_Form').submit();
+    });
    
   // Ajoutez un écouteur d'événements 'change' à l'input 'id_avatar'
   document.getElementById('id_avatar').addEventListener('change', displaySelectedImage);
- </script>
 
-{% comment %} document.addEventListener('DOMContentLoaded', function() {
-  var paragraph = document.querySelector('#AVATAR_Form p');
-  var content = paragraph.innerHTML;
-  content = content.replace(/Avatar:/g, '<span class="hide-text">Avatar:</span>');
-  content = content.replace(/Change:/g, '<span class="hide-text">Change:</span>');
-  content = content.replace(/Currently:/g, '<span class="hide-text">Change:</span>');
-  paragraph.innerHTML = content;
-}); {% endcomment %}
+  document.addEventListener('DOMContentLoaded', function() {
+ var paragraph = document.querySelector('#AVATAR_Form p');
+ // Assuming you want to hide specific text nodes within the paragraph
+ // This example is simplified; you might need to adjust based on your actual structure
+ var textNodes = paragraph.childNodes;
+ for (var i = 0; i < textNodes.length; i++) {
+    var node = textNodes[i];
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent.includes('Change:') || node.textContent.includes('Currently:')) {
+        // Wrap the text node in a span and add the class to hide it
+        var span = document.createElement('span');
+        span.className = 'hide-element';
+        span.textContent = node.textContent;
+        paragraph.replaceChild(span, node);
+      }
+    }
+ }
+});
+
+</script>
