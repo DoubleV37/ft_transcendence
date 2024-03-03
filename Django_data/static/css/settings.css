@@ -205,6 +205,18 @@
     #selectedAvatar {
         margin-bottom: 2em;
     }
+
+    #AvatarBackArrow {
+        width: 8%;
+        font-size: 0px;
+        padding: 0;
+        background: transparent;
+        color: transparent;
+        border: none;
+        display: flex;
+        justify-content: flex-end;
+        cursor: pointer;
+    }
     
 }
 

@@ -1,34 +1,30 @@
 function  settings_SetEvents() {
   let element = document.getElementById('AVATAR_Change');
     element.addEventListener('click', settings_ModAvatarCallBack);
+
+  element = document.getElementById('AvatarBackArrow');
+  element.addEventListener('click', settings_closeModal);
 }
 
 function  settings_DelEvents() {
   let element = document.getElementById('AVATAR_Change');
     element.removeEventListener('click', settings_ModAvatarCallBack);
+
+  element = document.getElementById('AvatarBackArrow');
+  element.removeEventListener('click', settings_closeModal);
 }
 
 function  settings_ModAvatarCallBack() {
   avatarModal.show();
 }
 
-// function  avatar_SetEvents() {
-//   let element = document.getElementById('AVATAR_Change');
+function  settings_closeModal() {
+  avatarModal.hide();
+}
 
-//   element.addEventListener('click', profile_SettingsCallBack);
-// }
-
-// function  avatar_DelEvents() {
-//   let element = document.getElementById('AVATAR_Change');
-
-//   element.removeEventListener('click', profile_SettingsCallBack);
-// }
-
-// async function  avatar_SettingsCallBack() {
-//   profileModal.hide();
-//   await loadPage(`${ROUTE.SETTINGS}`);
-// }
-
-// function  avatar_closeModal() {
-//   profileModal.hide();
-// }
+document.addEventListener('hidden.bs.modal', function (event) {
+  // Vérifiez si l'événement provient de la modale d'avatar
+  if (event.target.id === 'AvatarModal') {
+     settings_SetEvents();
+  }
+ });

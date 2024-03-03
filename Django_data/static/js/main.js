@@ -63,8 +63,8 @@ function  launchSectionHandler(element) {
 	break ;
       case 'SETTINGS':
   // VOIR AVEC JEAN
-  modal_AvatarInit();
   settings_SetEvents();
+  modal_AvatarInit();
 	console.log('?????????');
 	break ;
 

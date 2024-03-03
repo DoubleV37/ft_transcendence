@@ -58,20 +58,8 @@
                  {% csrf_token %}
                  {{ avatar.as_p }}
                 <img class="ProfilePic modal-profilePic" src="{{ user.avatar.url }}"></img>
+                <!-- Le bouton ci dessous est caché et set juste à référencer le submit du formulaire -->
                 <button class="UpdateButtonLayout ButtonDark" type="submit" id='avatar_button_hidden'>Update</button>
-
-              <!-- Avatar
-              <div>
-                <div class="d-flex justify-content-center mb-4">
-                    <img id="selectedAvatar" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-                    class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;" alt="example placeholder" />
-                </div>
-                <div class="d-flex justify-content-center">
-                  <button type="button" id="customFileButton" class="SelectButtonLayout ButtonNeon">Choisir un fichier</button>
-                  <button class="UpdateButtonLayout ButtonDark" type="submit" name='avatar_button'>Update</button>
-                </div>
-              </div> -->
-
               </form>
               <div id="DoubleButton">
                 <button id="AVATAR_Change" class="MediumButtonLayout left ButtonNeon">Change</button>
@@ -82,7 +70,7 @@
 			  </div>
 		  </div>
 	  </div>
-    <!-- <div id="overlayMobile">
+    <div id="overlayMobile">
       <div class="midMobile midcolumn">
         <div id="titleContent" data-content="SIGNUP_PAGE"></div>
         <img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
@@ -97,7 +85,7 @@
           <button type="submit" name='avatar_button'>Update Avatar</button>
         </form>
       </div>
-    </div> -->
+    </div>
     {% include "Home/footer.html" %}
   </body>
 
@@ -109,7 +97,7 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 		<div class="modal-header">
-			  <img id="ModalBackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+			  <img id="AvatarBackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
 		</div>
 		<div class="modal-body">
       <div id="ModalContent" data-content="AVATAR_CHANGE"></div>
@@ -133,51 +121,54 @@
 
   
 <script>
-    // Fonction pour déclencher le sélecteur de fichiers
-    document.getElementById('customFileButton').addEventListener('click', function() {
-       document.getElementById('id_avatar').click();
+  // Fonction pour déclencher le sélecteur de fichiers
+  document.getElementById('customFileButton').addEventListener('click', function() {
+      document.getElementById('id_avatar').click();
   });
-   
+    
   // Fonction pour afficher l'image sélectionnée
-  function displaySelectedImage(event) {
+  function displaySelectedImage(event) 
+  {
        const fileInput = event.target;
        const selectedImage = document.getElementById('selectedAvatar');
        
-       if (fileInput.files && fileInput.files[0]) {
-           const reader = new FileReader();
-           
+       if (fileInput.files && fileInput.files[0]) 
+       {
+           const reader = new FileReader();   
            reader.onload = function(e) {
                selectedImage.src = e.target.result;
-           };
-           
+           };     
            reader.readAsDataURL(fileInput.files[0]);
        }
   }
 
+  // Target la soumission de formulaire
   document.getElementById('submitAvatar').addEventListener('click', function() {
         document.getElementById('AVATAR_Form').submit();
     });
    
-  // Ajoutez un écouteur d'événements 'change' à l'input 'id_avatar'
+  // Ajoute un écouteur d'événements 'change' à l'input 'id_avatar'
   document.getElementById('id_avatar').addEventListener('change', displaySelectedImage);
 
+  // Cherche et cache certains mots non-balisés
   document.addEventListener('DOMContentLoaded', function() {
- var paragraph = document.querySelector('#AVATAR_Form p');
- // Assuming you want to hide specific text nodes within the paragraph
- // This example is simplified; you might need to adjust based on your actual structure
- var textNodes = paragraph.childNodes;
- for (var i = 0; i < textNodes.length; i++) {
-    var node = textNodes[i];
-    if (node.nodeType === Node.TEXT_NODE) {
-      if (node.textContent.includes('Change:') || node.textContent.includes('Currently:')) {
-        // Wrap the text node in a span and add the class to hide it
-        var span = document.createElement('span');
-        span.className = 'hide-element';
-        span.textContent = node.textContent;
-        paragraph.replaceChild(span, node);
+    var paragraph = document.querySelector('#AVATAR_Form p');
+    var textNodes = paragraph.childNodes;
+    for (var i = 0; i < textNodes.length; i++) 
+    {
+      var node = textNodes[i];
+      if (node.nodeType === Node.TEXT_NODE) 
+      {
+        if (node.textContent.includes('Change:') || node.textContent.includes('Currently:')) 
+        {
+          // Enrobe le texte dans une balise span pour le cacher
+          var span = document.createElement('span');
+          span.className = 'hide-element';
+          span.textContent = node.textContent;
+          paragraph.replaceChild(span, node);
+        }
       }
     }
- }
-});
+  });
 
 </script>
