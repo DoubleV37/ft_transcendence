@@ -5,6 +5,7 @@
 <body>
   {% include "Home/header.html" %}
   {% include "Profile/Profile.html" %}
+  {% include "Profile/Avatar.html" %}
   <div id="content">
     <div id="titleContent" data-content="SETTINGS"></div>
     <div id="overlayFullscreen">
@@ -55,6 +56,7 @@
                     <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
                   </div>
                </form>
+               <p id="AvatarText">Avatar:</p>
                <form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
                  {% csrf_token %}
                  {{ avatar.as_p }}
@@ -86,91 +88,63 @@
         </form>
       </div>
     </div>
-    {% include "Home/footer.html" %}
-  </body>
-
-</html>
-
-
-<!-- Modal -->
-<div class="modal fade" id="AvatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-		<div class="modal-header">
-			  <img id="AvatarBackArrow" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-		</div>
-		<div class="modal-body">
-      <div id="ModalContent" data-content="AVATAR_CHANGE"></div>
-      <!--Avatar-->
-      <div>
-        <div class="d-flex justify-content-center mb-4">
-            <img id="selectedAvatar" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-            class="rounded-circle" style="width: 12em; height: 12em; object-fit: cover;" alt="example placeholder" />
-        </div>
-        <div class="d-flex justify-content-center">
-          <div id="DoubleButton">
-            <button type="button" id="customFileButton" class="SelectButtonLayout ButtonNeon">Choose file</button>
-            <button type="submit" id="submitAvatar" class="SelectButtonLayout ButtonDark">Update</button>
-          </div>
-        </div>
-      </div>
-		</div>
-		<div class="modal-footer">
-		</div>
-		</div>
-	</div>
-</div>
-
-  
-<script>
-  // Fonction pour déclencher le sélecteur de fichiers
-  document.getElementById('customFileButton').addEventListener('click', function() {
-      document.getElementById('id_avatar').click();
-  });
     
-  // Fonction pour afficher l'image sélectionnée
-  function displaySelectedImage(event) 
-  {
-       const fileInput = event.target;
-       const selectedImage = document.getElementById('selectedAvatar');
-       
-       if (fileInput.files && fileInput.files[0]) 
-       {
-           const reader = new FileReader();   
-           reader.onload = function(e) {
-               selectedImage.src = e.target.result;
-           };     
-           reader.readAsDataURL(fileInput.files[0]);
-       }
-  }
-
-  // Target la soumission de formulaire
-  document.getElementById('submitAvatar').addEventListener('click', function() {
-        document.getElementById('AVATAR_Form').submit();
+  </body>
+  
+  {% include "Home/footer.html" %}
+  </html>
+  
+  
+  <script>
+    // Cherche et cache certains mots non-balisés
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   var paragraph = document.querySelector('#AVATAR_Form p');
+    //   var textNodes = paragraph.childNodes;
+    //   for (var i = 0; i < textNodes.length; i++) 
+    //   {
+    //     var node = textNodes[i];
+    //     if (node.nodeType === Node.TEXT_NODE) 
+    //     {
+    //       if (node.textContent.includes('Change:') || node.textContent.includes('Currently:')) 
+    //       {
+    //         // Enrobe le texte dans une balise span pour le cacher
+    //         var span = document.createElement('span');
+    //         span.className = 'hide-element';
+    //         span.textContent = node.textContent;
+    //         paragraph.replaceChild(span, node);
+    //       }
+    //     }
+    //   }
+    // });
+    
+    // Fonction pour déclencher le sélecteur de fichiers
+    document.getElementById('customFileButton').addEventListener('click', function() {
+      document.getElementById('id_avatar').click();
     });
-   
-  // Ajoute un écouteur d'événements 'change' à l'input 'id_avatar'
-  document.getElementById('id_avatar').addEventListener('change', displaySelectedImage);
-
-  // Cherche et cache certains mots non-balisés
-  document.addEventListener('DOMContentLoaded', function() {
-    var paragraph = document.querySelector('#AVATAR_Form p');
-    var textNodes = paragraph.childNodes;
-    for (var i = 0; i < textNodes.length; i++) 
+    
+    // Fonction pour afficher l'image sélectionnée
+    function displaySelectedImage(event) 
     {
-      var node = textNodes[i];
-      if (node.nodeType === Node.TEXT_NODE) 
+      const fileInput = event.target;
+      const selectedImage = document.getElementById('selectedAvatar');
+      
+      if (fileInput.files && fileInput.files[0]) 
       {
-        if (node.textContent.includes('Change:') || node.textContent.includes('Currently:')) 
-        {
-          // Enrobe le texte dans une balise span pour le cacher
-          var span = document.createElement('span');
-          span.className = 'hide-element';
-          span.textContent = node.textContent;
-          paragraph.replaceChild(span, node);
-        }
+        const reader = new FileReader();   
+        reader.onload = function(e) {
+          selectedImage.src = e.target.result;
+        };     
+        reader.readAsDataURL(fileInput.files[0]);
       }
     }
-  });
-
-</script>
+    
+    // Target la soumission de formulaire
+    document.getElementById('submitAvatar').addEventListener('click', function() {
+      document.getElementById('AVATAR_Form').submit();
+    });
+    
+    // Ajoute un écouteur d'événements 'change' à l'input 'id_avatar'
+    document.getElementById('id_avatar').addEventListener('change', displaySelectedImage);
+    
+    
+  </script>

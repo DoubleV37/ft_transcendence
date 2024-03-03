@@ -17,6 +17,7 @@ function  launchWebsite() {
 
   loadPage(currentUrl);
   modal_ProfileInit();
+  modal_AvatarInit();
   header_SetEvents();
   main_SetFirstsEvents();
 
@@ -64,7 +65,6 @@ function  launchSectionHandler(element) {
       case 'SETTINGS':
   // VOIR AVEC JEAN
   settings_SetEvents();
-  modal_AvatarInit();
 	console.log('?????????');
 	break ;
 

@@ -33,7 +33,7 @@
         width: 100%;
         padding-left: 4em;
         padding-right: 4em;
-        margin-top: 2.5em;
+        margin-top: 1em;
     }
 
     #settingsTitle::before {
@@ -198,11 +198,30 @@
         margin-bottom: 0.5rem;
     }
 
-    #AVATAR_Form a {
+    #AVATAR_Form p {
         display: none;
     }
 
-    #AVATAR_Form p .hide-element {
+    /* #AVATAR_Form p .hide-element {
+        display: none;
+    }
+
+    #AVATAR_Form a {
+        display: none;
+    } */
+
+    #AvatarText {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+    }
+
+    #avatar_button_hidden {
         display: none;
     }
 
@@ -216,9 +235,6 @@
         align-items: center;
     }
 
-    #avatar_button_hidden {
-        display: none;
-    }
 
     #selectedAvatar {
         margin-bottom: 2em;
@@ -237,8 +253,8 @@
     }
 
     .settings-profilePic {
-		height: 8em;
-        width: 8em;
+		height: 6em;
+        width: 6em;
     }
     
 }

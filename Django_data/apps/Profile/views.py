@@ -9,3 +9,6 @@ def profilext(request):
 
 def settings(request):
     return render(request, "Profile/Settings.html")
+
+def avatar(request):
+    return render(request, "Profile/Avatar.html")
