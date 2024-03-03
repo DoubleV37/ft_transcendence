@@ -33,6 +33,7 @@
         width: 100%;
         padding-left: 4em;
         padding-right: 4em;
+        margin-top: 2.5em;
     }
 
     #settingsTitle::before {
@@ -103,6 +104,7 @@
 
     #NAME_Form p input {
         height: 3.125rem;
+        width: 95%;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -135,6 +137,7 @@
 
     #MAIL_Form p input {
         height: 3.125rem;
+        width: 95%;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -157,6 +160,7 @@
 
     #PASS_Form p input {
         height: 3.125rem;
+        width: 95%;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -177,6 +181,10 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+    }
+
+    #AVATAR_Form {
+        margin-bottom: 0;
     }
 
     #AVATAR_Form p label {
@@ -226,6 +234,11 @@
         display: flex;
         justify-content: flex-end;
         cursor: pointer;
+    }
+
+    .settings-profilePic {
+		height: 8em;
+        width: 8em;
     }
     
 }

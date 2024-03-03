@@ -10,6 +10,7 @@
     <div id="overlayFullscreen">
       <img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
       <div class="midFullscreen midrow">
+        <img class="ProfilePic settings-profilePic" src="{{ user.avatar.url }}"></img>
         <div id="section">
           <div id="headerTextRow">
             <h1 id="settingsTitle">Settings</h1>
@@ -57,7 +58,6 @@
                <form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
                  {% csrf_token %}
                  {{ avatar.as_p }}
-                <img class="ProfilePic modal-profilePic" src="{{ user.avatar.url }}"></img>
                 <!-- Le bouton ci dessous est caché et set juste à référencer le submit du formulaire -->
                 <button class="UpdateButtonLayout ButtonDark" type="submit" id='avatar_button_hidden'>Update</button>
               </form>
@@ -105,11 +105,13 @@
       <div>
         <div class="d-flex justify-content-center mb-4">
             <img id="selectedAvatar" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-            class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;" alt="example placeholder" />
+            class="rounded-circle" style="width: 12em; height: 12em; object-fit: cover;" alt="example placeholder" />
         </div>
         <div class="d-flex justify-content-center">
-          <button type="button" id="customFileButton" class="SelectButtonLayout ButtonNeon">Choisir un fichier</button>
-          <button class="UpdateButtonLayout ButtonDark" type="submit" id="submitAvatar">Update</button>
+          <div id="DoubleButton">
+            <button type="button" id="customFileButton" class="SelectButtonLayout ButtonNeon">Choose file</button>
+            <button type="submit" id="submitAvatar" class="SelectButtonLayout ButtonDark">Update</button>
+          </div>
         </div>
       </div>
 		</div>
