@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from Auth.models import User
+from apps.Auth.models import User
 
 def profile(request):
     return render(request, "Profile/Profile.html")
@@ -51,5 +51,7 @@ def get_one_info(request, user_id, info_id):
     except NameError as e:
         return JsonResponse({'success': False, 'error': str(e.args[0])})
 
+"""
 def avatar(request):
     return render(request, "Profile/Avatar.html")
+"""
