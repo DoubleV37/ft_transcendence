@@ -110,7 +110,6 @@ def my_settings(request):
                 t_name.save()
             elif 't_name_button' in request.POST:
                 errors = t_name.errors
-                logger.debug("111111")
                 logger.error(f"Exception occurred: {errors}")
                 rtrn = 3
             else:
@@ -120,7 +119,6 @@ def my_settings(request):
                 name.save()
             elif 'name_button' in request.POST:
                 errors = name.errors
-                logger.debug("222222")
                 logger.error(f"Exception occurred: {errors}")
                 rtrn = 1
             else:
