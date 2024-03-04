@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.Home',
     'apps.Auth',
+	'apps.Chat',
 	'bootstrap5'
 ]
 
@@ -72,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Project.wsgi.application'
 
-# ASGI_APPLICATION = 'backend.asgi.application'
+ASGI_APPLICATION = 'Project.asgi.application'
 
 
 # Database
