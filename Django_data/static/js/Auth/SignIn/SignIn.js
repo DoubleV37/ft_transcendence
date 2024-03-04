@@ -8,6 +8,7 @@ async function signIn() {
     let data = await response.json();
 
     if (data.success == true) {
+      sessionStorage.setItem("ID", data.id);
       return true;
     }
     else {

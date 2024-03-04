@@ -11,4 +11,5 @@ const ROUTE = {
   "SIGNOUT":"/auth/signout/",
   // "SETTINGS":"/user/settings/",
   "SETTINGS":"/auth/settings/",
+  "PROFILE":"/user/profile/",
 };

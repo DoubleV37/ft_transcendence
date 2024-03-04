@@ -65,7 +65,10 @@ function  header_SignInCallBack() {
   loadPage(`${ROUTE.SIGNIN}`);
 }
 
-function  header_ModProfilCallBack() {
+async function  header_ModProfilCallBack() {
+  const ID = sessionStorage.getItem("ID");
+  console.log(ID);
+  await changeSection(`${ROUTE.PROFILE}${ID}`, '#ProfileModal');
   offcanvas_Hide()
   profileModal.show();
 }
