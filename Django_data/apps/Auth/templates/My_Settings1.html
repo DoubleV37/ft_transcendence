@@ -30,6 +30,11 @@
         <button type="submit">Update pswd</button>
       </form>
 
+      <form action="" method='post'>
+        {% csrf_token %}
+        {{ t_name.as_p }}
+        <button type="submit" name="t_name_button">Update t_Name</button>
+      </form>
 
   </body>
 

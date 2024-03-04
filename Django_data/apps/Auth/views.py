@@ -7,7 +7,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .forms import (
-        CustomUserCreationForm, SignInForm, My_Psswd, My_Avatar, My_Name, My_Mail
+        CustomUserCreationForm, SignInForm, My_Psswd,
+        My_Avatar, My_Name, My_Mail, My_Tournamentname
     )
 from . import forms
 
@@ -74,6 +75,7 @@ def my_settings(request):
         mail = My_Mail(instance=user)
         pswd = My_Psswd(instance=user)
         avatar = My_Avatar(instance=user)
+        t_name = My_Tournamentname(instance=user)
 
 
         response = JsonResponse({
@@ -83,7 +85,7 @@ def my_settings(request):
 
         context = {
             'user': user, 'name': name, 'mail': mail,
-            'avatar': avatar, 'pswd': pswd,
+            'avatar': avatar, 'pswd': pswd, 't_name': t_name
         }
 
         if request.method == 'POST':
@@ -91,6 +93,7 @@ def my_settings(request):
             mail = My_Mail(request.POST, instance=user)
             pswd = My_Psswd(request.POST, instance=user)
             avatar = My_Avatar(request.POST, request.FILES, instance=user)
+            t_name = My_Tournamentname(request.POST, instance=user)
             logger.debug(request.POST)
 
             if avatar.is_valid():
@@ -103,10 +106,21 @@ def my_settings(request):
             else:
                 pass
 
+            if t_name.is_valid():
+                t_name.save()
+            elif 't_name_button' in request.POST:
+                errors = t_name.errors
+                logger.debug("111111")
+                logger.error(f"Exception occurred: {errors}")
+                rtrn = 3
+            else:
+                pass
+
             if name.is_valid():
                 name.save()
             elif 'name_button' in request.POST:
                 errors = name.errors
+                logger.debug("222222")
                 logger.error(f"Exception occurred: {errors}")
                 rtrn = 1
             else:
@@ -128,10 +142,14 @@ def my_settings(request):
                     return JsonResponse({ 'success': False,
                         'errors': 'email already taken'
                     })
+                case 3:
+                    return JsonResponse({ 'success': False,
+                        'errors': 'tournament name already taken'
+                    })
                 case _:
                     return JsonResponse({'success': True})
 
-        return render(request, 'My_Settings.html', context=context)
+        return render(request, 'My_Settings1.html', context=context)
 
     except Exception as e:
         logger.debug("Exception")
