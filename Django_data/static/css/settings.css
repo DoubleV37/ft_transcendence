@@ -84,6 +84,10 @@
         display: flex;
     }
 
+    #NAME_Form {
+        margin-bottom: 1em;
+    }
+
     #NAME_Form > p {
         display: flex;
         justify-content: center;
@@ -115,6 +119,10 @@
         font-family: Kodchasan;
         font-size: 1rem;
         border: none;
+    }
+
+    #MAIL_Form {
+        margin-bottom: 1em;
     }
 
     #MAIL_Form > p {
@@ -150,6 +158,10 @@
         border: none;
     }
 
+    #PASS_Form {
+        margin-bottom: 1em;
+    }
+
     #PASS_Form > p {
         display: flex;
         justify-content: center;
@@ -183,10 +195,7 @@
         line-height: normal;
     }
 
-    #AVATAR_Form {
-        margin-bottom: 0;
-    }
-
+    
     #AVATAR_Form p label {
         color: #FFF;
         /* Body text */
@@ -196,6 +205,10 @@
         font-weight: 400;
         line-height: normal;
         margin-bottom: 0.5rem;
+    }
+    
+    #AVATAR_Form {
+        margin-bottom: 0em;
     }
 
     #AVATAR_Form p {
