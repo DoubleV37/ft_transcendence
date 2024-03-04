@@ -71,6 +71,7 @@ scrollbar-width: none;
     }
 
     .modal-profilePic {
+		height: 5em;
         width: 5em;
     }
 
