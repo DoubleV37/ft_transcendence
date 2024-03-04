@@ -135,17 +135,18 @@ while running:
         pygame.draw.circle(screen, "white", ball_old_pos[i], raptici)
 
 
-    player_target = path_estimation( 2 )
-    if player_pos > player_target + paddle_speed:
-        player_pos -= paddle_speed
-        playerdistances[1] += paddle_speed
-    elif player_pos < player_target - paddle_speed:
-        player_pos += paddle_speed
-        playerdistances[1] += paddle_speed
+    # player_target = path_estimation( 2 )
+    # if player_pos > player_target + paddle_speed and player_pos > 0:
+    #     player_pos -= paddle_speed
+    #     playerdistances[1] += paddle_speed
+    # elif player_pos < player_target - paddle_speed and player_pos < 720:
+    #     player_pos += paddle_speed
+    #     playerdistances[1] += paddle_speed
 
     # ball move
     ball_pos += ball_speed
-    if ball.colliderect(IA) and ball_speed.x < 0:
+
+    if ball_pos.x < 58 and ball_pos.x > (58 - ( 2 * ball_speed.x)) and ball_speed.x < 0 and ball_pos.y > IA_pos - (paddle_size / 2) and ball_pos.y < IA_pos + (paddle_size / 2):
         ball_speed.x *= -1
         ball_speed.x += ball_acceleration
         ball_speed.y = (ball_pos.y - IA_pos) / paddle_radius
@@ -156,7 +157,7 @@ while running:
         if math.sqrt( ball_speed.x ** 2 + ball_speed.y ** 2 ) > ball_max_speed[0]:
             ball_max_speed[0] = math.sqrt( ball_speed.x ** 2 + ball_speed.y ** 2 )
 
-    if ball.colliderect(player) and ball_speed.x > 0:
+    if ball_pos.x > 1222 and ball_pos.x < (1222 + ( 2 * ball_speed.x)) and ball_speed.x > 0 and ball_pos.y > player_pos - (paddle_size / 2) and ball_pos.y < player_pos + (paddle_size / 2):
         ball_speed.x *= -1
         ball_speed.x -= ball_acceleration
         ball_speed.y = (ball_pos.y - player_pos) / paddle_radius
@@ -201,22 +202,23 @@ while running:
         IA_target = path_estimation( 1 )
 
     
-    IA_counter += 1
+    # IA_counter += 1
 
-    if IA_counter > 240:
-        IA_counter = 0
+    # if IA_counter > 240:
+    #     IA_counter = 0
 
     # IA move
     
-    if IA_pos > IA_target + paddle_speed:
+    if IA_pos > IA_target + paddle_speed and IA_pos > 0:
         IA_pos -= paddle_speed
         playerdistances[0] += paddle_speed
-    elif IA_pos < IA_target - paddle_speed:
+    elif IA_pos < IA_target - paddle_speed and IA_pos < 720:
         IA_pos += paddle_speed
         playerdistances[0] += paddle_speed
 
     pygame.display.flip()
 
+    # dt = clock.tick(1000) / 1000
     dt = clock.tick(240) / 1000
 
 pygame.quit()
