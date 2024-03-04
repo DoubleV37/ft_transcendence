@@ -1,0 +1,46 @@
+<html lang="en">
+{% load static %}
+{% include "Home/head.html" %}
+{% include "Home/header.html" %}
+
+  <body>
+
+      <form action="" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        <img src="{{ user.avatar.url }}"></img>
+        {{ avatar.as_p }}
+        <button type="submit" name='avatar_button'>Update Avatar</button>
+      </form>
+
+      <form action="" method='post'>
+        {% csrf_token %}
+        {{ name.as_p }}
+        <button type="submit" name="name_button">Update Name</button>
+      </form>
+
+      <form action="" method='post'>
+        {% csrf_token %}
+        {{ mail.as_p }}
+        <button type="submit" name="mail_button" >Update mail</button>
+      </form>
+
+      <form action="" method='post' name="pswd_button">
+        {% csrf_token %}
+        {{ pswd.as_p }}
+        <button type="submit">Update pswd</button>
+      </form>
+
+      <form action="" method='post'>
+        {% csrf_token %}
+        {{ t_name.as_p }}
+        <button type="submit" name="t_name_button">Update t_Name</button>
+      </form>
+
+  </body>
+
+  {% include "Home/footer.html" %}
+</html>
+
+
+
+

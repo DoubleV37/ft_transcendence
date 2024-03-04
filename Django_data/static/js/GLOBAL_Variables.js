@@ -1,4 +1,5 @@
 let currentUrl = window.location.pathname;
+let profileModal = null;
 let observer;
 
 const ROUTE = {
@@ -7,4 +8,5 @@ const ROUTE = {
   "SIGNUP":"/auth/signup/",
   "SIGNIN":"/auth/signin/",
   "SIGNOUT":"/auth/signout/",
+  "SETTINGS":"/user/settings/",
 };
