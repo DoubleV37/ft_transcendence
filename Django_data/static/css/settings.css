@@ -278,6 +278,10 @@
         display: flex;
     }
 
+    #TEXT_Form {
+        margin-bottom: 1em;
+    }
+
     #TEXT_Form > p {
         display: flex;
         justify-content: center;
@@ -547,5 +551,8 @@
     .settings-profilePic {
 		height: 6em;
         width: 6em;
+
+    #TEXT_Form {
+        margin-bottom: 1em;
     }
 }
