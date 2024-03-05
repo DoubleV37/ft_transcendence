@@ -109,6 +109,18 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        display: flex;
+        align-items: center;
+    }
+
+    .dotOnline {
+        height: 0.6em;
+        width: 0.6em;
+        margin-top: 0.25em;
+        margin-left: 0.35em;
+        background-color: #25e613;
+        border-radius: 50%;
+        display: inline-block;
     }
     
     #ProfileCardboardFullscreen {
@@ -294,6 +306,18 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        display: flex;
+        align-items: center;
+    }
+
+    .dotOnline {
+        height: 0.6em;
+        width: 0.6em;
+        margin-top: 0.25em;
+        margin-left: 0.35em;
+        background-color: #25e613;
+        border-radius: 50%;
+        display: inline-block;
     }
 
     #ProfileCardboardFullscreen {

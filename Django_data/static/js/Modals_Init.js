@@ -13,5 +13,5 @@ function  modal_AvatarInit() {
     keyboard: true,
     focus: true});
   avatarModal._element.addEventListener('shown.bs.modal', settings_SetEvents);
-  avatarModal._element.addEventListener('hide.bs.modal', settings_DelEvents);
+  // avatarModal._element.addEventListener('hide.bs.modal', settings_DelEvents);
 }
