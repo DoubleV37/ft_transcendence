@@ -4,16 +4,16 @@ async function signIn() {
   let myData = SignIn_JsonForm(myForm);
 
   try {
-    let response = await fetch(`${ROUTE.SIGNIN}`, myData);
-    let data = await response.json();
+    const response = await fetch(`${ROUTE.SIGNIN}`, myData);
 
-    if (data.success == true) {
+    if (response.ok) {
       return true;
     }
     else {
-	SignIn_UpdateErrors(data.errors);
-	myForm.reset();
-	return false;
+      const data = response.json();
+      SignIn_UpdateErrors(data.errors);
+      myForm.reset();
+      return false;
     }
   }
   catch (err) {

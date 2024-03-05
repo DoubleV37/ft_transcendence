@@ -1,21 +1,15 @@
 import json
 import logging
-from django.shortcuts import render, redirect, get_object_or_404
-from django.conf import settings
-from django.http import JsonResponse
+from django.shortcuts import render
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required, permission_required
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .forms import (
         CustomUserCreationForm, SignInForm, My_Psswd,
         My_Avatar, My_Name, My_Mail, My_Tournamentname
     )
-from . import forms
-
 from .models import User
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse
-
 
 logger = logging.getLogger(__name__)
 
@@ -28,8 +22,7 @@ def signup(request):
             # login(request, user)
             return JsonResponse({'status': 'success'})
         return JsonResponse({'status': 'error', 'message': form.errors})
-    else:
-        form = CustomUserCreationForm()
+    form = CustomUserCreationForm()
     return render(request, 'Auth/SignUp.html', {'form': form})
 
 
@@ -44,13 +37,17 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                _id = user.idUser;
-                response = JsonResponse({'success': True,
-                                         'id': _id})
+                jwt_token = get_tokens_for_user(user)
+                response = HttpResponse()
+                response.set_cookie(key='access_token',
+                                    value=str(jwt_token),
+                                    httponly=True,
+                                    secure=True,
+                                    samesite='Lax')
             else:
                 response = JsonResponse({
                     'success': False,
-                   'errors': 'Invalid username or password'
+                    'errors': 'Invalid username or password'
                 })
         else:
             response = JsonResponse({
@@ -62,10 +59,22 @@ def signin(request):
     form = SignInForm()
     return render(request, 'Auth/SignIn.html', {'form': form})
 
+
+def get_tokens_for_user(user):
+    refresh = RefreshToken.for_user(user)
+
+    return {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+    }
+
+
 def signout(request):
     if request.method == 'POST':
         logout(request)
-    return JsonResponse({'success': True})
+        response = HttpResponse()
+        response.delete_cookie('access_token')
+    return response
 
 
 def my_settings(request):

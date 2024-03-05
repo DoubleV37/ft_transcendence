@@ -9,9 +9,8 @@ async function  SignOut() {
 
   try {
     const response = await fetch(`${ROUTE.SIGNOUT}`, myData);
-    const data = await response.json();
 
-    if (data.success == true) {
+    if (response.ok) {
       return true;
     }
     else {
