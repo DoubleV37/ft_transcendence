@@ -73,7 +73,8 @@ scrollbar-width: none;
     }
 
 	.offcanvas-profilePic {
-        width: 30%;
+        width: 5em;
+		height: 5em;
     }
 
     .offcanvas-section {
@@ -379,7 +380,8 @@ scrollbar-width: none;
     }
 
 	.offcanvas-profilePic {
-        width: 30%;
+        width: 4.5em;
+		height: 4.5em;
     }
 
     .offcanvas-section {
@@ -684,7 +686,8 @@ scrollbar-width: none;
     }
 
 	.offcanvas-profilePic {
-        width: 30%;
+        width: 4.5em;
+		height: 4.5em;
     }
 
     .offcanvas-section {
