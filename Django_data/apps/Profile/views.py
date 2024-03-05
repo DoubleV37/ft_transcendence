@@ -6,65 +6,30 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def profile(request):
-    return render(request, "Profile/Profile.html")
-
-
-def profilext(request):
-    return render(request, "Profile/ForeignProfile.html")
-
 
 def settings(request):
     return render(request, "Profile/Settings.html")
 
 
-def get_profil_infos(request, user_id):
-    logger.debug(f"aled --- {request}--------{user_id}")
-    if request.method != 'GET':
-        return JsonResponse({'success': False})
+def profile_infos(request, _id=None):
     try:
-        user = User.objects.get(idUser=user_id)
-        status = user.status
-        username = user.username
-        avatar = user.avatar.url
-        profile_type = ''
-        if request.user.idUser == user.idUser:
-            profile_type = 'himself'
+        if _id is None:
+            _user = request.user
+            _type = 'himself'
         else:
-            profile_type = 'foreign'
+            _user = User.objects.get(idUser=_id)
+            _type = 'foreign'
+        _status = 'online' if _user.status is True else 'offline'
+        _username = _user.username
+        _avatar = _user.avatar.url
         return render(request, 'Profile/Profile.html',
-                      {'profile': profile_type,
-                       'profil_picture': avatar,
-                       'username': username,
-                       'status': status})
+                      {'profile': _type,
+                       'profil_picture': _avatar,
+                       'username': _username,
+                       'status': _status})
     except User.objects.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Wrong ID'})
 
-
-def get_one_info(request, user_id, info_id):
-    logger.info("I\'M HERE ???")
-    if request.method != 'GET':
-        return JsonResponse({'success': False})
-    try:
-        user = User.objects.get(idUser=user_id)
-        match info_id:
-            case 0:
-                info = 'status'
-                data = user.status
-            case 1:
-                info = 'username'
-                data = user.username
-            case 2:
-                info = 'avatar'
-                data = user.avatar.url
-            case _:
-                raise NameError('Info doesn\'t exist !')
-        return JsonResponse({'success': True,
-                             info: data})
-    except User.objects.DoesNotExist:
-        return JsonResponse({'success': False, 'error': 'Wrong ID'})
-    except NameError as e:
-        return JsonResponse({'success': False, 'error': str(e.args[0])})
 
 
 def avatar(request):

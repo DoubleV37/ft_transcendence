@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', launchWebsite);
 
 
-function  launchWebsite() {
+async function  launchWebsite() {
   const targetNode = document.querySelector('#content');
 
   if (!targetNode) {
@@ -15,7 +15,8 @@ function  launchWebsite() {
   observer = new MutationObserver(mutationCallBack);
   observer.observe(targetNode, config);
 
-  loadPage(currentUrl);
+  await loadPage(currentUrl);
+  await changeSection(`${ROUTE.HEADER}`, '#Header_content');
   modal_ProfileInit();
   modal_AvatarInit();
   header_SetEvents();
@@ -54,7 +55,7 @@ function  launchSectionHandler(element) {
   try {
     switch(elementAttribut) {
       case 'HOME_PAGE':
-	setHomeEvents(element);
+	home_SetEvents();
 	break ;
       case 'SIGNIN_PAGE':
 	signin_SetEvents();

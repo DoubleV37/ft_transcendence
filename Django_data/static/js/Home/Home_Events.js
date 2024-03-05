@@ -1,81 +1,22 @@
-function  setHomeEvents(element) {
-  console.log('No event on HomeContent for now');
-//  const	status = element.getAttribute('data-status');
-//
-//  switch (status) {
-//    case 'connected':
-//      setConnectedHomeEvents();
-//      break ;
-//    case 'anonymous':
-//      setAnonymousHomeEvents();
-//      break ;
-//
-//    default:
-//      throw new Error(`setHomeEvents : status : ${status} not recognised`)
-//  }
+function  home_SetEvents() {
+  let element = document.getElementById('PlayButton');
+
+  element.addEventListener('click', PlayCallBack);
 }
 
-//function  setConnectedHomeEvents() {
-//  let	element = document.getElementById('Home_signIn');
+function  home_DelEvents() {
+  let element = document.getElementById('PlayButton');
 
-//  element.addEventListener('click', HomeCallBack);
-  //  .
-  //  .
-  //  .
+  element.removeEventListener('click', PlayCallBack);
+}
 
-//}
+function  PlayCallBack() {
+  const	data = sessionStorage.getItem("ID");
 
-//function  setAnonymousHomeEvents() {
-//  console.log(`Well do nothing for now. Element : ${element}`);
-  //  .
-  //  .
-  //  .
-
-//}
-
-//function  HomeCallBack(event) {
-//  const	targetElem = event.target;
-//  const	elemAttr = targetElem.getAttribute('id');
-//
-//  switch (elemAttr) {
-//    case 'Home_signIn':
-//      deleteHomeEvents('connected');
-//      loadPage(`${ROUTE.SIGNIN}`);
-//      break ;
-//    default :
-//      throw new Error(`homeCallBack : element unrecognized : ${element}`);
-//  }
-//}
-
-//function  deleteHomeEvents(status) {
-//  switch (status) {
-//    case 'connected':
-//      delConnectedHomeEvents();
-//      break ;
-//    case 'anonymous':
-//      delAnonymousHomeEvents();
-//      break ;
-//  //  .
-//  //  .
-//  //  . 
-//    default :
-//      throw new Error(`deleteHomeEvents : status unrecognized : ${status}`);
-//  }
-//}
-
-
-//function  delConnectedHomeEvents() {
-//  let element = document.getElementById('Home_signIn');
-
-//  element.removeEventListener('click', HomeCallBack);
-  //  .
-  //  .
-  //  . 
-//}
-
-//function  delAnonymousHomeEvents() {
-//  console.log(`delAnonymousHomeEvents: Well do nothing for now.`);
-  //  .
-  //  .
-  //  .
-//}
+  if (!data) {
+    console.log("sessionStorage:ID -> empty");
+  }
+  else {
+    console.log("sessionStorage:ID -> " + data);
+  }
+}
