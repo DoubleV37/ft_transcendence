@@ -9,8 +9,8 @@
     <div id="content">
       <div id="titleContent" data-content="SETTINGS"></div>
       <div id="overlayFullscreen">
-	<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-	<div class="midFullscreen midrow">
+		<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+		<div class="midFullscreen midrow">
 	  <img class="ProfilePic settings-profilePic" src="{{ user.avatar.url }}"></img>
 	  <div id="section">
 	    <div id="headerTextRow">
@@ -71,22 +71,22 @@
 	    </div>
 	  </div>
 	</div>
-      </div>
+    </div>
       <div id="overlayMobile">
-	<div class="midMobile midcolumn">
-	  <div id="titleContent" data-content="SIGNUP_PAGE"></div>
-	  <img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-	  <div id="headerTextRowMobile">
-	    <h1 id="settingsTitle">Settings</h1>
-	    <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
-	  </div>
-	  <form action="" method='post' enctype="multipart/form-data">
-	    {% csrf_token %}
-	    {% comment %} <img src="{{ user.avatar.url }}"></img> {% endcomment %}
-	    {{ avatar.as_p }}
-	    <button type="submit" name='avatar_button'>Update Avatar</button>
-	  </form>
-	</div>
+			<div class="midMobile midcolumn">
+			<div id="titleContent" data-content="SIGNUP_PAGE"></div>
+			<img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+			<div id="headerTextRowMobile">
+				<h1 id="settingsTitle">Settings</h1>
+				<p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
+			</div>
+			<form action="" method='post' enctype="multipart/form-data">
+				{% csrf_token %}
+				{% comment %} <img src="{{ user.avatar.url }}"></img> {% endcomment %}
+				{{ avatar.as_p }}
+				<button type="submit" name='avatar_button'>Update Avatar</button>
+			</form>
+		</div>
       </div>
     </div>
   </body>
