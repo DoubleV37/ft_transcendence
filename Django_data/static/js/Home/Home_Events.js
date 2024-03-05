@@ -11,12 +11,5 @@ function  home_DelEvents() {
 }
 
 function  PlayCallBack() {
-  const	data = sessionStorage.getItem("ID");
-
-  if (!data) {
-    console.log("sessionStorage:ID -> empty");
-  }
-  else {
-    console.log("sessionStorage:ID -> " + data);
-  }
+    console.log("Do nothing for now");
 }
