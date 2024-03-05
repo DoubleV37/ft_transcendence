@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'apps.Home',
     'apps.Auth',
     'apps.Profile',
-	'bootstrap5'
+	'bootstrap5',
+    'apps.Twofa',
 ]
 
 MIDDLEWARE = [
