@@ -50,7 +50,7 @@ paddle_speed = 3
 ball_start_speed = [3, random.uniform(-1, 1)]
 ball_acceleration = 0.2
 paddle_radius = 8
-IA_lvl = 50
+IA_lvl = 20
 IA_dumb = 10
 
 # ball move
@@ -146,7 +146,7 @@ while running:
     # ball move
     ball_pos += ball_speed
 
-    if ball_pos.x < 58 and ball_pos.x > (58 - ( 2 * ball_speed.x)) and ball_speed.x < 0 and ball_pos.y > IA_pos - (paddle_size / 2) and ball_pos.y < IA_pos + (paddle_size / 2):
+    if ball_pos.x < 58 and ball_pos.x > (58 + ( 2 * ball_speed.x)) and ball_speed.x < 0 and ball_pos.y > IA_pos - (paddle_size / 2) and ball_pos.y < IA_pos + (paddle_size / 2):
         ball_speed.x *= -1
         ball_speed.x += ball_acceleration
         ball_speed.y = (ball_pos.y - IA_pos) / paddle_radius
@@ -202,10 +202,10 @@ while running:
         IA_target = path_estimation( 1 )
 
     
-    # IA_counter += 1
+    IA_counter += 1
 
-    # if IA_counter > 240:
-    #     IA_counter = 0
+    if IA_counter > 240:
+        IA_counter = 0
 
     # IA move
     
