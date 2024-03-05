@@ -278,6 +278,10 @@
         display: flex;
     }
 
+    #TEXT_Form {
+        margin-bottom: 1em;
+    }
+
     #TEXT_Form > p {
         display: flex;
         justify-content: center;
@@ -448,5 +452,9 @@
         text-align: left;
         align-self: start;
         margin-top: 0.7rem;
+    }
+
+    #TEXT_Form {
+        margin-bottom: 1em;
     }
 }
