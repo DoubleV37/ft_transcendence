@@ -17,7 +17,6 @@ function  launchWebsite() {
 
   loadPage(currentUrl);
   modal_ProfileInit();
-  modal_AvatarInit();
   header_SetEvents();
   main_SetFirstsEvents();
 
@@ -54,18 +53,19 @@ function  launchSectionHandler(element) {
   try {
     switch(elementAttribut) {
       case 'HOME_PAGE':
-	setHomeEvents(element);
-	break ;
+        setHomeEvents(element);
+	      break ;
       case 'SIGNIN_PAGE':
-	signin_SetEvents();
-	break ;
+        signin_SetEvents();
+        break ;
       case 'SIGNUP_PAGE':
-	signup_SetEvents();
-	break ;
+        signup_SetEvents();
+        break ;
       case 'SETTINGS':
   // VOIR AVEC JEAN
-  settings_SetEvents();
-	console.log('?????????');
+        settings_SetEvents();
+        modal_AvatarInit();
+        console.log('?????????');
 	break ;
 
       default:
