@@ -21,28 +21,28 @@
 	  <div id="section">
 	    <div id="leftcolumn">
 	      <div id="Settings">
-		<button class="SectionLayout SectionGrey">Account Settings</button>
-		<form id="TEXT_Form" action="" method='post'>
-		  {% csrf_token %}
-		    <div class="field-container">
-		      {{ name.as_p }}
-		      <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
-		    </div>
-		 </form>
-		 <form id="TEXT_Form" action="" method='post'>
-		   {% csrf_token %}
-		    <div class="field-container">
-		      {{ mail.as_p }}
-		      <button class="UpdateButtonLayout ButtonDark" type="submit" name="mail_button">Update</button>
-		    </div>
-		</form>
-		<form id="TEXT_Form" action="" method='post' name="pswd_button">
-		   {% csrf_token %}
-		    <div class="field-container">
-		      {{ pswd.as_p }}
-		      <button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
-		    </div>
-		</form>
+			<button class="SectionLayout SectionGrey">Account Settings</button>
+			<form id="TEXT_Form" action="" method='post'>
+			{% csrf_token %}
+				<div class="field-container">
+				{{ name.as_p }}
+				<button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
+				</div>
+			</form>
+			<form id="TEXT_Form" action="" method='post'>
+			{% csrf_token %}
+				<div class="field-container">
+				{{ mail.as_p }}
+				<button class="UpdateButtonLayout ButtonDark" type="submit" name="mail_button">Update</button>
+				</div>
+			</form>
+			<form id="TEXT_Form" action="" method='post' name="pswd_button">
+			{% csrf_token %}
+				<div class="field-container">
+				{{ pswd.as_p }}
+				<button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
+				</div>
+			</form>
 	      </div>
 	    </div>
 	    <div id="rightcolumn">
