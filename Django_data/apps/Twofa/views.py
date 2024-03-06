@@ -5,6 +5,8 @@ from datetime import timedelta
 from django.utils import timezone
 from django.contrib.auth import authenticate, login as django_login
 
+from django.http import HttpResponse
+
 from django.core.mail import send_mail
 
 from rest_framework import status, generics
@@ -16,6 +18,9 @@ from .serializers import UserTwoFASerializer
 
 from django.core.exceptions import ValidationError
 from django.views.generic import TemplateView
+
+from apps.Auth.models import User
+from .forms import My_2fa
 
 import pyotp
 
@@ -138,3 +143,14 @@ class create_qrcode(TemplateView):
 
     except ValidationError as exc:
         context["form_errors"] = exc.messages
+
+def enable_2fa(request):
+    _user = User.objects.get(username=request.user.username)
+    profile_2fa = My_2fa(instance=_user.twofa)
+    if request.method == 'POST':
+        profile_2fa = My_2fa(request.POST, instance=_user)
+        if profile_2fa.is_valid():
+            profile_2fa.save()
+            return HttpResponse('<h1>Success</h1>')
+    return render(request, 'enabling_2fa.html', {'profile_2fa': profile_2fa})
+

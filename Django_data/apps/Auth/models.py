@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.utils.text import slugify
+from apps.Twofa.models import UserTwoFA
 
 class User(AbstractBaseUser):
     idUser = models.AutoField(auto_created = True, primary_key=True, unique=True, null=False)
@@ -11,6 +12,9 @@ class User(AbstractBaseUser):
     avatar = models.ImageField(default="default.png")
 
     tournament_name = models.CharField(max_length=50, unique=True, null=False)
+    twofa = models.OneToOneField(
+        UserTwoFA, related_name='toUser', on_delete=models.CASCADE
+    )
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -24,5 +28,7 @@ class User(AbstractBaseUser):
     def save(self, *args, **kwargs):
         if not self.tournament_name:
             self.tournament_name = slugify(self) + "_tournament"
+        if self.twofa is None:
+            self.twofa = UserTwoFA()
         super().save(*args, **kwargs)
 

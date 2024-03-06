@@ -100,8 +100,8 @@ class My_Name(forms.ModelForm):
         model = User
         fields = ('username',)
 
-
 class My_Mail(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email',)
+

@@ -1,0 +1,14 @@
+<html>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ profile_2fa.as_p }}
+
+    {% if profile_2fa is True %}
+      <button type="submite">Disable</button>
+    {% else %}
+      <button type="submite">Enable</button>
+    {% endif %}
+  </form>
+
+</html>
