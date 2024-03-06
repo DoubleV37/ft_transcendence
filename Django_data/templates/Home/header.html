@@ -47,7 +47,19 @@
 		    <button id="HEADER_NavSignOut" class="ButtonLayout ButtonDark">Sign out</button>
 		  </div>
 		</div>
+
+		{% else %}
+
+		  <div class="offcanvas-section">
+			<div class="ProfilePage offcanvas-profile">
+				<button id="HEADER_Logo"><img id="logo_placeholder" src="{% static 'images/logoV0.5.png' %}" alt="Pong logo"></button>
+				<button id="HEADER_NavProfile" type="button" class="ButtonLayout ButtonNeon">Sign in</button>
+				<button id="HEADER_NavProfile" type="button" class="ButtonLayout ButtonNeon">Sign up</button>
+			</div>
+		  </div>
+
 		{% endif %}
+
 	      </li>
 	    </ul>
 	  </div>

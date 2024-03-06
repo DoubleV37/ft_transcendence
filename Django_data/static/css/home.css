@@ -885,7 +885,7 @@ scrollbar-width: none;
 
 	#overlayMobile {
 		content: "";
-		display: flex;
+		display: none;
 		top:  0;
 		left:  0;
 		width:  100%;
@@ -896,7 +896,7 @@ scrollbar-width: none;
 
 	#overlayFullscreen {
 		content: "";
-		display: none;
+		/* display: none; */
 		top:  0;
 		left:  0;
 		/* Overlay complet */

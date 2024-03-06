@@ -31,7 +31,7 @@
     .ProfilePage {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 1.8rem;
         flex-shrink: 0;
         margin-block-end: 0;
