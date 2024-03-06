@@ -57,7 +57,7 @@
 			</div>
 		</form>
 		 <p id="AvatarText">Avatar:</p>
-		 <form class="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
+		 <form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
 		   {% csrf_token %}
 		   {{ avatar.as_p }}
 		  <!-- Le bouton ci dessous est caché et set juste à référencer le submit du formulaire -->

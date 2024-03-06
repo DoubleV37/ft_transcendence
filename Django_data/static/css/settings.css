@@ -121,7 +121,7 @@
         border: none;
     }
 
-    .AVATAR_Form p label {
+    #AVATAR_Form p label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -132,11 +132,11 @@
         margin-bottom: 0.5rem;
     }
     
-    .AVATAR_Form {
+    #AVATAR_Form {
         margin-bottom: 0em;
     }
 
-    .AVATAR_Form p {
+    #AVATAR_Form p {
         display: none;
     }
 
@@ -314,7 +314,7 @@
         border: none;
     }
 
-    .AVATAR_Form p label {
+    #AVATAR_Form p label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -325,11 +325,11 @@
         margin-bottom: 0.5rem;
     }
     
-    .AVATAR_Form {
+    #AVATAR_Form {
         margin-bottom: 0em;
     }
 
-    .AVATAR_Form p {
+    #AVATAR_Form p {
         display: none;
     }
 
@@ -487,7 +487,7 @@
         border: none;
     }
 
-    .AVATAR_Form p label {
+    #AVATAR_Form p label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -498,11 +498,11 @@
         margin-bottom: 0.5rem;
     }
     
-    .AVATAR_Form {
+    #AVATAR_Form {
         margin-bottom: 0em;
     }
 
-    .AVATAR_Form p {
+    #AVATAR_Form p {
         display: none;
     }
 
