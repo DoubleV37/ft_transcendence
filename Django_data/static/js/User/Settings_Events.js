@@ -38,14 +38,6 @@ function  settings_DelEvents() {
   element.removeEventListener('click', submitAvatar);
 }
 
-function  settings_ModAvatarCallBack() {
-  avatarModal.show();
-}
-
-function  settings_closeModal() {
-  avatarModal.hide();
-}
-
  function displaySelectedImage(event) 
  {
    const fileInput = event.target;
