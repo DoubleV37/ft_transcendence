@@ -15,3 +15,11 @@ function  modal_AvatarInit() {
   avatarModal._element.addEventListener('shown.bs.modal', settings_SetEvents);
   // avatarModal._element.addEventListener('hide.bs.modal', settings_DelEvents);
 }
+
+function  settings_ModAvatarCallBack() {
+  avatarModal.show();
+}
+
+function  settings_closeModal() {
+  avatarModal.hide();
+}
