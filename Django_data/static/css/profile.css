@@ -19,6 +19,7 @@
         position: absolute;
         top: 2em;
         right: 2em;
+        display: none;
     }
 
     #DoubleButton {
@@ -202,6 +203,7 @@
         position: absolute;
         top: 1.5em;
         right: 1.8em;
+        display: none;
     }
 
     #DoubleButton {

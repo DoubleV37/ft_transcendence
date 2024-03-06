@@ -19,7 +19,9 @@
 	  <div class="offcanvas-body">
 	    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 	      <li class="nav-item">
+
 		{% if user.is_authenticated %}
+
 		<div class="offcanvas-section offcanvas-section-border ">
 		  <div class="ProfileCardboard offcanvas-profileCardboard">
 		    <img class="ProfilePic offcanvas-profilePic" src="{{ profil_picture }}" alt="Very basic user"></img>
@@ -71,9 +73,10 @@
 
       <div id="div_profile">
       {% if user.is_authenticated %}
-	<button id="HEADER_Profile" type="button" class="btn btn-primary">
-	  Profile
-	</button>
+	  <div id="HEADER_user">
+			<h1 id="HEADER_username">{{ username }}</h1>
+			<img id="HEADER_ProfilePic" class="ProfilePic header-profilePic" src="{{ profil_picture }}" alt="Very basic user"></img>
+	  </div>
       {% else %}
 	<button id="HEADER_Signin">Sign in</button>
       {% endif %}

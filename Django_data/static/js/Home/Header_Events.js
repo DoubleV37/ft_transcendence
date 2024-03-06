@@ -12,7 +12,7 @@ function  header_SetEvents() {
     element = document.getElementById('HEADER_NavProfile');
     element.addEventListener('click', header_ModProfilCallBack);
 
-    element = document.getElementById('HEADER_Profile');
+    element = document.getElementById('HEADER_user');
     element.addEventListener('click', header_ModProfilCallBack);
   }
   else if (IsAuthenticated === 'false') {
@@ -35,7 +35,7 @@ function  header_DelEvents() {
   const	IsAuthenticated = element.getAttribute('data-auth');
 
   if (IsAuthenticated === 'true') {
-    element = document.getElementById('HEADER_Profile');
+    element = document.getElementById('HEADER_user');
     element.removeEventListener('click', header_ModProfilCallBack);
 
     element = document.getElementById('HEADER_NavProfile');
