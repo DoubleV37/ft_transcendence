@@ -73,7 +73,8 @@ scrollbar-width: none;
     }
 
 	.offcanvas-profilePic {
-        width: 30%;
+        width: 5em;
+		height: 5em;
     }
 
     .offcanvas-section {
@@ -227,7 +228,7 @@ scrollbar-width: none;
 		display: flex;
 		width: 80%;
 		flex-direction: column;
-		align-items: flex-start;
+		align-items: center;
 		gap: 0.8rem;
 		flex-shrink: 0;
 		margin-block-end: 0;
@@ -253,7 +254,7 @@ scrollbar-width: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 2.125em;
+		padding-bottom: 1.5em;
 		padding-top: 1.5em;
 		align-self: stretch;
 	}
@@ -277,10 +278,9 @@ scrollbar-width: none;
 	}
 
 	.please-log-in {
-		align-self: stretch;
-
 		color: #FFF;
 		text-align: center;
+		align-self: center;
 
 		font-family: Kodchasan;
 		font-size: 1.25rem;
@@ -302,6 +302,45 @@ scrollbar-width: none;
 		border-color: #5DC6E8;
 		border-radius: 0.625rem;
 		background: #202532;
+	}
+
+	#SigninButton {
+		display: flex;
+		width: 12rem;
+		height: 4.375rem;
+		justify-content: center;
+		align-items: center;
+		gap: 0.625rem;
+		flex-shrink: 0;
+		align-self: center;
+		margin-right: 1em;
+
+		border-color: #5DC6E8;
+		border-radius: 0.625rem;
+		background: #202532;
+	}
+
+	#SignupButton {
+		display: flex;
+		width: 12rem;
+		height: 4.375rem;
+		justify-content: center;
+		align-items: center;
+		gap: 0.625rem;
+		flex-shrink: 0;
+		align-self: center;
+		margin-left: 1em;
+
+		border-color: #5DC6E8;
+		border-radius: 0.625rem;
+		background: #202532;
+	}
+
+	#HomeDualButton {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		justify-content: center;
 	}
 
 	.play {
@@ -379,7 +418,8 @@ scrollbar-width: none;
     }
 
 	.offcanvas-profilePic {
-        width: 30%;
+        width: 4.5em;
+		height: 4.5em;
     }
 
     .offcanvas-section {
@@ -584,10 +624,9 @@ scrollbar-width: none;
 	}
 
 	.please-log-in {
-		align-self: stretch;
-
 		color: #FFF;
 		text-align: center;
+		align-self: center;
 
 		font-family: Kodchasan;
 		font-size: 1.25rem;
@@ -618,6 +657,45 @@ scrollbar-width: none;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
+	}
+
+	#SigninButton {
+		display: flex;
+		width: 10rem;
+		height: 4.375rem;
+		justify-content: center;
+		align-items: center;
+		gap: 0.625rem;
+		flex-shrink: 0;
+		align-self: center;
+		margin-right: 1em;
+
+		border-color: #5DC6E8;
+		border-radius: 0.625rem;
+		background: #202532;
+	}
+
+	#SignupButton {
+		display: flex;
+		width: 10rem;
+		height: 4.375rem;
+		justify-content: center;
+		align-items: center;
+		gap: 0.625rem;
+		flex-shrink: 0;
+		align-self: center;
+		margin-left: 1em;
+
+		border-color: #5DC6E8;
+		border-radius: 0.625rem;
+		background: #202532;
+	}
+
+	#HomeDualButton {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		justify-content: center;
 	}
 }
 
@@ -684,7 +762,8 @@ scrollbar-width: none;
     }
 
 	.offcanvas-profilePic {
-        width: 30%;
+        width: 4.5em;
+		height: 4.5em;
     }
 
     .offcanvas-section {
@@ -874,8 +953,8 @@ scrollbar-width: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 2em;
-		padding-top: 2em;
+		padding-bottom: 1em;
+		padding-top: 1em;
 		align-self: stretch;
 	}
 
@@ -886,7 +965,7 @@ scrollbar-width: none;
 		text-align: center;
 
 		font-family: Madness;
-		font-size: 4rem;
+		font-size: 5rem;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
@@ -898,10 +977,9 @@ scrollbar-width: none;
 	}
 
 	.please-log-in {
-		align-self: stretch;
-
 		color: #FFF;
 		text-align: center;
+		align-self: center;
 
 		font-family: Kodchasan;
 		font-size: 1.25rem;
@@ -927,6 +1005,45 @@ scrollbar-width: none;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
+	}
+
+	#SigninButton {
+		display: flex;
+		width: 8.5rem;
+		height: 4.375rem;
+		justify-content: center;
+		align-items: center;
+		gap: 0.625rem;
+		flex-shrink: 0;
+		align-self: center;
+		margin-right: 0.5em;
+
+		border-color: #5DC6E8;
+		border-radius: 0.625rem;
+		background: #202532;
+	}
+
+	#SignupButton {
+		display: flex;
+		width: 8.5rem;
+		height: 4.375rem;
+		justify-content: center;
+		align-items: center;
+		gap: 0.625rem;
+		flex-shrink: 0;
+		align-self: center;
+		margin-left: 0.5em;
+
+		border-color: #5DC6E8;
+		border-radius: 0.625rem;
+		background: #202532;
+	}
+
+	#HomeDualButton {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		justify-content: center;
 	}
 
 

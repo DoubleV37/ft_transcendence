@@ -6,56 +6,56 @@
   {% include "Home/header.html" %}
   {% include "Profile/Profile.html" %}
   {% include "Profile/Avatar.html" %}
-    <div id="content">
-      <div id="titleContent" data-content="SETTINGS"></div>
-      <div id="overlayFullscreen">
-	<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-	<div class="midFullscreen midrow">
+	<div id="content">
+	  <div id="titleContent" data-content="SETTINGS"></div>
+	  <div id="overlayFullscreen">
+		<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+		<div class="midFullscreen midrow">
 	  <img class="ProfilePic settings-profilePic" src="{{ user.avatar.url }}"></img>
 	  <div id="section">
-	    <div id="headerTextRow">
-	      <h1 id="settingsTitle">Settings</h1>
-	      <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
-	    </div>
+		<div id="headerTextRow">
+		  <h1 id="settingsTitle">Settings</h1>
+		  <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
+		</div>
 	  </div>
 	  <div id="section">
-	    <div id="leftcolumn">
-	      <div id="Settings">
+		<div id="leftcolumn">
+		  <div id="Settings">
 		<button class="SectionLayout SectionGrey">Account Settings</button>
-		<form id="NAME_Form" action="" method='post'>
+		<form id="TEXT_Form" action="" method='post'>
 		  {% csrf_token %}
-		    <div class="field-container">
-		      {{ name.as_p }}
-		      <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
-		    </div>
+			<div class="field-container">
+			  {{ name.as_p }}
+			  <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
+			</div>
 		 </form>
-		 <form id="MAIL_Form" action="" method='post'>
+		 <form id="TEXT_Form" action="" method='post'>
 		   {% csrf_token %}
-		    <div class="field-container">
-		      {{ mail.as_p }}
-		      <button class="UpdateButtonLayout ButtonDark" type="submit" name="mail_button">Update</button>
-		    </div>
+			<div class="field-container">
+			  {{ mail.as_p }}
+			  <button class="UpdateButtonLayout ButtonDark" type="submit" name="mail_button">Update</button>
+			</div>
 		</form>
-		<form id="PASS_Form" action="" method='post' name="pswd_button">
+		<form id="TEXT_Form" action="" method='post' name="pswd_button">
 		   {% csrf_token %}
-		    <div class="field-container">
-		      {{ pswd.as_p }}
-		      <button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
-		    </div>
+			<div class="field-container">
+			  {{ pswd.as_p }}
+			  <button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
+			</div>
 		</form>
-	      </div>
-	    </div>
-	    <div id="rightcolumn">
-	      <div id="titleContent" data-content="PROFILE_PAGE"></div>
-	      <div id="Settings">
+		  </div>
+		</div>
+		<div id="rightcolumn">
+		  <div id="titleContent" data-content="PROFILE_PAGE"></div>
+		  <div id="Settings">
 		<button class="SectionLayout SectionGrey">Display Settings</button>
-		<form id="NAME_Form" action="" method='post'>
-		  {% csrf_token %}
-		    <div class="field-container">
-		      {{ name.as_p }}
-		      <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
-		    </div>
-		 </form>
+		<form id="TEXT_Form" action="" method='post'>
+			{% csrf_token %}
+			<div class="field-container">
+				{{ t_name.as_p }}
+				<button class="UpdateButtonLayout ButtonDark" type="submit" name="t_name_button">Update</button>
+			</div>
+		</form>
 		 <p id="AvatarText">Avatar:</p>
 		 <form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
 		   {% csrf_token %}
@@ -63,32 +63,80 @@
 		  <!-- Le bouton ci dessous est caché et set juste à référencer le submit du formulaire -->
 		  <button class="UpdateButtonLayout ButtonDark" type="submit" id='avatar_button_hidden'>Update</button>
 		</form>
-		<div id="DoubleButton">
+		<div class="DoubleButtonSettings">
 		  <button id="AVATAR_Change" class="MediumButtonLayout left ButtonNeon">Change</button>
 		  <button id="AVATAR_Delete" class="MediumButtonLayout right ButtonNeon">Delete</button>
 		</div>
-	      </div>
-	    </div>
+		  </div>
+		</div>
 	  </div>
 	</div>
-      </div>
-      <div id="overlayMobile">
-	<div class="midMobile midcolumn">
-	  <div id="titleContent" data-content="SIGNUP_PAGE"></div>
-	  <img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-	  <div id="headerTextRowMobile">
-	    <h1 id="settingsTitle">Settings</h1>
-	    <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
-	  </div>
-	  <form action="" method='post' enctype="multipart/form-data">
-	    {% csrf_token %}
-	    {% comment %} <img src="{{ user.avatar.url }}"></img> {% endcomment %}
-	    {{ avatar.as_p }}
-	    <button type="submit" name='avatar_button'>Update Avatar</button>
-	  </form>
 	</div>
-      </div>
-    </div>
+	  <div id="overlayMobile">
+			<div class="midMobile midcolumn">
+			<div id="titleContent" data-content="SIGNUP_PAGE"></div>
+			<img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+			<div id="headerTextRowMobile">
+				<h1 id="settingsTitle">Settings</h1>
+				<p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
+			</div>
+			<div id="section">
+				  <div id="Settings">
+				<button class="SectionLayout SectionGrey">Account Settings</button>
+				<form id="TEXT_Form" action="" method='post'>
+				  {% csrf_token %}
+					<div class="field-container">
+					  {{ name.as_p }}
+					  <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
+					</div>
+				 </form>
+				 <form id="TEXT_Form" action="" method='post'>
+				   {% csrf_token %}
+					<div class="field-container">
+					  {{ mail.as_p }}
+					  <button class="UpdateButtonLayout ButtonDark" type="submit" name="mail_button">Update</button>
+					</div>
+				</form>
+				<form id="TEXT_Form" action="" method='post' name="pswd_button">
+				   {% csrf_token %}
+					<div class="field-container">
+					  {{ pswd.as_p }}
+					  <button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
+					</div>
+				</form>
+				  </div>
+				  <div id="titleContent" data-content="PROFILE_PAGE"></div>
+				  <div id="Settings">
+				<button class="SectionLayout SectionGrey">Display Settings</button>
+				<form id="TEXT_Form" action="" method='post'>
+					{% csrf_token %}
+					<div class="field-container">
+						{{ t_name.as_p }}
+						<button class="UpdateButtonLayout ButtonDark" type="submit" name="t_name_button">Update</button>
+					</div>
+				</form>
+				 <p id="AvatarText">Avatar:</p>
+				 <form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
+				   {% csrf_token %}
+				   {{ avatar.as_p }}
+				  <!-- Le bouton ci dessous est caché et set juste à référencer le submit du formulaire -->
+				  <button class="UpdateButtonLayout ButtonDark" type="submit" id='avatar_button_hidden'>Update</button>
+				</form>
+				<div class="DoubleButtonSettings">
+				  <button id="AVATAR_Change" class="MediumButtonLayout left ButtonNeon">Change</button>
+				  <button id="AVATAR_Delete" class="MediumButtonLayout right ButtonNeon">Delete</button>
+				</div>
+				  </div>
+			  </div>
+			<form action="" method='post' enctype="multipart/form-data">
+				{% csrf_token %}
+				{% comment %} <img src="{{ user.avatar.url }}"></img> {% endcomment %}
+				{{ avatar.as_p }}
+				<button type="submit" name='avatar_button'>Update Avatar</button>
+			</form>
+		</div>
+	  </div>
+	</div>
   </body>
   
 {% include "Home/footer.html" %}

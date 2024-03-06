@@ -75,7 +75,12 @@ async function  header_SignOutCallBack() {
   const	response = await SignOut();
 
   if (response == true) {
-    await loadPage(`${ROUTE.HOME}`);
+    if (currentUrl == ROUTE.HOME) {
+      await changeSection(`${ROUTE.HOME}`, '#content');
+    }
+    else {
+      await loadPage(`${ROUTE.HOME}`);
+    }
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     header_SetEvents();

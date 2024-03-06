@@ -84,11 +84,11 @@
         display: flex;
     }
 
-    #NAME_Form {
+    #TEXT_Form {
         margin-bottom: 1em;
     }
 
-    #NAME_Form > p {
+    #TEXT_Form > p {
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -96,7 +96,7 @@
         align-self: stretch;
     }
 
-    #NAME_Form p label {
+    #TEXT_Form p label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -106,7 +106,7 @@
         line-height: normal;
     }
 
-    #NAME_Form p input {
+    #TEXT_Form p input {
         height: 3.125rem;
         width: 95%;
         align-self: stretch;
@@ -121,81 +121,6 @@
         border: none;
     }
 
-    #MAIL_Form {
-        margin-bottom: 1em;
-    }
-
-    #MAIL_Form > p {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: flex-start;
-        align-self: stretch;
-    }
-
-    #MAIL_Form p label {
-        color: #FFF;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    #MAIL_Form p input {
-        height: 3.125rem;
-        width: 95%;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #D9D9D9;
-        margin-right: 0.8em;
-        margin-top: 0.5em;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        border: none;
-    }
-
-    #PASS_Form {
-        margin-bottom: 1em;
-    }
-
-    #PASS_Form > p {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: flex-start;
-        align-self: stretch;
-    }
-
-    #PASS_Form p input {
-        height: 3.125rem;
-        width: 95%;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #D9D9D9;
-        margin-right: 0.8em;
-        margin-top: 0.5em;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        border: none;
-    }
-
-    #PASS_Form p label {
-        color: #FFF;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    
     #AVATAR_Form p label {
         color: #FFF;
         /* Body text */
@@ -302,6 +227,7 @@
 
     #headerTextRow {
         width: 32em;
+        margin-top: 1em;
     }
 
     #settingsTitle::before {
@@ -352,7 +278,11 @@
         display: flex;
     }
 
-    #NAME_Form > p {
+    #TEXT_Form {
+        margin-bottom: 1em;
+    }
+
+    #TEXT_Form > p {
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -360,7 +290,7 @@
         align-self: stretch;
     }
 
-    #NAME_Form p label {
+    #TEXT_Form p label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -370,73 +300,9 @@
         line-height: normal;
     }
 
-    #NAME_Form p input {
+    #TEXT_Form p input {
         height: 3.125rem;
-        width: 10em;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #D9D9D9;
-        margin-top: 0.5em;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        border: none;
-    }
-
-    #MAIL_Form > p {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: flex-start;
-        align-self: stretch;
-    }
-
-    #MAIL_Form p label {
-        color: #FFF;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    #MAIL_Form p input {
-        height: 3.125rem;
-        width: 10em;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #D9D9D9;
-        margin-top: 0.5em;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        border: none;
-    }
-
-    #PASS_Form > p {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: flex-start;
-        align-self: stretch;
-    }
-
-    #PASS_Form p label {
-        color: #FFF;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    #PASS_Form p input {
-        height: 3.125rem;
-        width: 10em;
+        width: 10.8em;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -449,25 +315,75 @@
     }
 
     #AVATAR_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+    }
+    
+    #AVATAR_Form {
+        margin-bottom: 0em;
+    }
+
+    #AVATAR_Form p {
         display: none;
+    }
+
+    #AvatarText {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+    }
+
+    #avatar_button_hidden {
+        display: none;
+    }
+
+    #id_avatar {
+        display: none;
+    }
+
+    .AVATAR_selection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    #selectedAvatar {
+        margin-bottom: 2em;
+    }
+
+    #AvatarBackArrow {
+        width: 8%;
+        font-size: 0px;
+        padding: 0;
+        background: transparent;
+        color: transparent;
+        border: none;
+        display: flex;
+        justify-content: flex-end;
+        cursor: pointer;
+    }
+
+    .settings-profilePic {
+		height: 6em;
+        width: 6em;
     }
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
 @media only screen and (min-width : 1em) and (max-width : 36.25em) {
     /* Styles */
-    #leftcolumn {
-        display: flex;
-        justify-content: center;
-        width: 30em;
-    }
-
-    #rightcolumn {
-        display: flex;
-        justify-content: center;
-        width: 30em;
-    }
-
     #Settings {
         display: flex;
         width: 80%;
@@ -478,7 +394,7 @@
 
     #section {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         width: 100%;
     }
@@ -487,6 +403,9 @@
         width: 100%;
         margin-top: 3em;
         margin-bottom: 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     #settingsTitle::before {
@@ -507,7 +426,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        justify-content: flex-start;
+        justify-content: center;
         display: flex;
         width: 70%;
     }
@@ -521,8 +440,119 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        text-align: left;
+        text-align: center;
         align-self: start;
         margin-top: 0.7rem;
+    }
+
+    #separator {
+        flex:  1; /* Occupation de l'espace disponible */
+        border-top:  1px solid #828282; /* Ligne horizontale en haut */
+        padding-bottom: 4em;
+    }
+
+    .field-container {
+        display: flex;
+    }
+
+    #TEXT_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    #TEXT_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #TEXT_Form p input {
+        height: 3.125rem;
+        width: 10.8em;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #AVATAR_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+    }
+    
+    #AVATAR_Form {
+        margin-bottom: 0em;
+    }
+
+    #AVATAR_Form p {
+        display: none;
+    }
+
+    #AvatarText {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+    }
+
+    #avatar_button_hidden {
+        display: none;
+    }
+
+    #id_avatar {
+        display: none;
+    }
+
+    .AVATAR_selection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    #selectedAvatar {
+        margin-bottom: 2em;
+    }
+
+    #AvatarBackArrow {
+        width: 8%;
+        font-size: 0px;
+        padding: 0;
+        background: transparent;
+        color: transparent;
+        border: none;
+        display: flex;
+        justify-content: flex-end;
+        cursor: pointer;
+    }
+
+    .settings-profilePic {
+		height: 6em;
+        width: 6em;
+
+    #TEXT_Form {
+        margin-bottom: 1em;
     }
 }

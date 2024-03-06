@@ -49,13 +49,15 @@
 	      <div id="titleContent" data-content="PROFILE_PAGE"></div>
 	      <div id="Settings">
 		<button class="SectionLayout SectionGrey">Display Settings</button>
+
 		<form id="NAME_Form" action="" method='post'>
-		  {% csrf_token %}
-		    <div class="field-container">
-		      {{ name.as_p }}
-		      <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
-		    </div>
-		 </form>
+			{% csrf_token %}
+			<div class="field-container">
+				{{ t_name.as_p }}
+				<button class="UpdateButtonLayout ButtonDark" type="submit" name="t_name_button">Update t_Name</button>
+			</div>
+		</form>
+		
 		 <p id="AvatarText">Avatar:</p>
 		 <form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
 		   {% csrf_token %}
