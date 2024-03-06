@@ -50,14 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    'Project.middleware.UserPermission',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
 
 ROOT_URLCONF = 'Project.urls'
 
@@ -88,11 +83,11 @@ WSGI_APPLICATION = 'Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-		'NAME': config('POSTGRES_DB'),
-		'USER': config('PGUSER'),
-		'PASSWORD': config('POSTGRES_PASSWORD'),
-		'HOST': config('POSTGRES_HOST'),
-		'PORT': config('POSTGRES_PORT')
+        'NAME': config('POSTGRES_DB'),
+        'USER': config('PGUSER'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('POSTGRES_HOST'),
+        'PORT': config('POSTGRES_PORT')
     }
 }
 

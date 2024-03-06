@@ -3,7 +3,8 @@ import logging
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, authenticate, logout
-from rest_framework_simplejwt.tokens import RefreshToken
+
+from Project.middleware import create_jwt
 
 from .forms import (
         CustomUserCreationForm, SignInForm, My_Psswd,
@@ -12,6 +13,7 @@ from .forms import (
 from .models import User
 
 logger = logging.getLogger(__name__)
+
 
 def signup(request):
     if request.method == 'POST':
@@ -37,9 +39,9 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                jwt_token = get_tokens_for_user(user)
+                jwt_token = create_jwt(user)
                 response = HttpResponse()
-                response.set_cookie(key='access_token',
+                response.set_cookie(key='jwt_token',
                                     value=str(jwt_token),
                                     httponly=True,
                                     secure=True,
@@ -60,20 +62,13 @@ def signin(request):
     return render(request, 'Auth/SignIn.html', {'form': form})
 
 
-def get_tokens_for_user(user):
-    refresh = RefreshToken.for_user(user)
-
-    return {
-        'refresh': str(refresh),
-        'access': str(refresh.access_token),
-    }
-
-
 def signout(request):
-    if request.method == 'POST':
-        logout(request)
-        response = HttpResponse()
-        response.delete_cookie('access_token')
+    user = request.user
+    user.refresh_token = None
+    user.save()
+    logout(request)
+    response = HttpResponse()
+    response.delete_cookie('access_token')
     return response
 
 

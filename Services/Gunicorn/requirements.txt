@@ -6,3 +6,4 @@ Pillow
 django-bootstrap-v5
 djangorestframework
 djangorestframework_simplejwt
+pyjwt

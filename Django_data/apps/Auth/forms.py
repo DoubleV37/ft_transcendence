@@ -1,7 +1,9 @@
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.hashers import make_password
 from .models import User
+from Project.middleware import create_jwt
 
 
 # Now you can use `hashed_password` to store in your database
@@ -30,6 +32,7 @@ class CustomUserCreationForm(UserCreationForm):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password1'])
         user.email = self.cleaned_data['email']
+        user.refresh_token = make_password(create_jwt(user, "refresh"))
         if commit:
             user.save()
         return user
