@@ -3,27 +3,29 @@ from django.shortcuts import render, redirect
 from datetime import timedelta
 
 from django.utils import timezone
-from django.contrib.auth import logout, authenticate, login as django_login
+from django.contrib.auth import logout, authenticate, login
 
 from django.http import HttpResponse
 
-from django.core.mail import send_mail
+# from django.core.mail import send_mail
 
 import logging
 logger = logging.getLogger(__name__)
 
-from rest_framework import status, generics
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
+# from rest_framework import status, generics
+# from rest_framework.decorators import api_view, permission_classes
+# from rest_framework.permissions import AllowAny
+# from rest_framework.response import Response
 from .models import UserTwoFA
 from .serializers import UserTwoFASerializer
 
+from django import forms
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, FormView
 from django.core.exceptions import ValidationError
-from django.views.generic import TemplateView
 
 from apps.Auth.models import User
-from .forms import My_2fa
+from .forms import My_2fa, TwoFAForm
 
 import pyotp
 
@@ -170,4 +172,19 @@ def enable_2fa(request):
             return redirect ('qrcode')
             # return HttpResponse('<h1>Success</h1>')
     return render(request, 'enable_2fa.html', {'profile_2fa': profile_2fa})
+
+class TwoFactorConfirmationView(FormView):
+    template_name = "confirm_2fa.html"
+    success_url = reverse_lazy("home")
+    form = TwoFAForm()
+
+    def get(self, request):
+        return render(request, self.template_name, {'form': self.form})
+
+    def post(self, request):
+        if self.form.is_valid():
+            login(request, request.user)
+            return render(request, self.success_url)
+        else:
+            return HttpResponse('<h1>Pleurer</h1>')
 

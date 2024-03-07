@@ -26,7 +26,7 @@ def signup(request):
             # form.save()
             user = form.save()
             user.save()
-            login(request, user)
+            # login(request, user)
             return JsonResponse({'status': 'success'})
         return JsonResponse({'status': 'error', 'message': form.errors})
     else:
@@ -47,12 +47,12 @@ def signin(request):
                 #TODO testing
                 logger.info(f"{user.username} activated 2fa: {user.to2fa.enable}")
                 if user.to2fa.enable == True:       #TODO testing
-                    #TODO adding field to recieve 2fa code
-                    pass
+                    return redirect ("confirm_2fa")
+                    return HttpResponse('<h1>Pleurer</h1>')
                 else:                               #TODO testing
                     login(request, user)
+                    response = JsonResponse({'success': True})
 
-                response = JsonResponse({'success': True})
             else:
                 response = JsonResponse({
                     'success': False,
