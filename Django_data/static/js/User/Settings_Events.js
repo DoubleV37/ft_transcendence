@@ -26,6 +26,9 @@ function  settings_SetEvents() {
 
   element = document.getElementById('PASS_Form');
   element.addEventListener('submit', pass_FormCallBack);
+
+  element = document.getElementById('TNAME_Form');
+  element.addEventListener('submit', tname_FormCallBack);
 }
 
 function  settings_DelEvents() {
@@ -54,6 +57,9 @@ function  settings_DelEvents() {
 
   element = document.getElementById('PASS_Form');
   element.removeEventListener('submit', pass_FormCallBack);
+
+  element = document.getElementById('TNAME_Form');
+  element.removeEventListener('submit', tname_FormCallBack);
 }
 
 async function name_FormCallBack(event) 
@@ -83,6 +89,17 @@ async function pass_FormCallBack(event)
 {
   event.preventDefault();
   const	response = await passSubmit();
+
+  if (response == true) {
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    await changeSection(`${ROUTE.HOME}`, '#content');
+  }
+}
+
+async function tname_FormCallBack(event) 
+{
+  event.preventDefault();
+  const	response = await tnameSubmit();
 
   if (response == true) {
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');

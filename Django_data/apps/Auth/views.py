@@ -97,14 +97,15 @@ def my_settings(request):
             avatar = My_Avatar(request.POST, request.FILES, instance=user)
             t_name = My_Tournamentname(request.POST, instance=user)
             logger.debug(request.POST)
-
-            if avatar.is_valid():
+ 
+            if pswd.is_valid():
+                pswd.save()
+            elif avatar.is_valid():
                 save = avatar.save(commit=False)
                 user.username = request.user.username
                 user.avatar = save.avatar
                 user.save()
-            elif pswd.is_valid():
-                pswd.save()
+                logger.info("coucou")
             else:
                 pass
 
