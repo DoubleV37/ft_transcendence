@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.utils.text import slugify
 from apps.Twofa.models import UserTwoFA
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class User(AbstractBaseUser):
     idUser = models.AutoField(auto_created = True, primary_key=True, unique=True, null=False)
@@ -12,9 +14,10 @@ class User(AbstractBaseUser):
     avatar = models.ImageField(default="default.png")
 
     tournament_name = models.CharField(max_length=50, unique=True, null=False)
-    twofa = models.OneToOneField(
-        UserTwoFA, related_name='toUser', on_delete=models.CASCADE
-    )
+
+    # twofa = models.OneToOneField(
+    #     UserTwoFA, related_name='toUser', on_delete=models.CASCADE, null=False
+    # )
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -24,11 +27,13 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.username
 
-
     def save(self, *args, **kwargs):
         if not self.tournament_name:
             self.tournament_name = slugify(self) + "_tournament"
-        if self.twofa is None:
-            self.twofa = UserTwoFA()
         super().save(*args, **kwargs)
 
+@receiver(post_save, sender=User)
+def update_profile_signal(sender, instance, created, **kwargs):
+    if created:
+        UserTwoFA.objects.create(user=instance)
+    instance.to2fa.save()

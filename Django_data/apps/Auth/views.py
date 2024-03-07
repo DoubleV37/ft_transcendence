@@ -15,6 +15,7 @@ from . import forms
 from .models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
+from apps.Twofa.models import UserTwoFA
 
 
 logger = logging.getLogger(__name__)
@@ -23,9 +24,10 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            # user = form.save()
-            # login(request, user)
+            # form.save()
+            user = form.save()
+            user.save()
+            login(request, user)
             return JsonResponse({'status': 'success'})
         return JsonResponse({'status': 'error', 'message': form.errors})
     else:
