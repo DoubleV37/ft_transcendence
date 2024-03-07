@@ -15,10 +15,6 @@ class User(AbstractBaseUser):
 
     tournament_name = models.CharField(max_length=50, unique=True, null=False)
 
-    # twofa = models.OneToOneField(
-    #     UserTwoFA, related_name='toUser', on_delete=models.CASCADE, null=False
-    # )
-
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 

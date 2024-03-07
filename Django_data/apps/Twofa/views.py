@@ -146,11 +146,11 @@ class create_qrcode(TemplateView):
 
 def enable_2fa(request):
     _user = User.objects.get(username=request.user.username)
-    profile_2fa = My_2fa(instance=_user.twofa)
+    profile_2fa = My_2fa(instance=_user.to2fa)
     if request.method == 'POST':
         profile_2fa = My_2fa(request.POST, instance=_user)
         if profile_2fa.is_valid():
             profile_2fa.save()
             return HttpResponse('<h1>Success</h1>')
-    return render(request, 'enabling_2fa.html', {'profile_2fa': profile_2fa})
+    return render(request, 'enable_2fa.html', {'profile_2fa': profile_2fa})
 

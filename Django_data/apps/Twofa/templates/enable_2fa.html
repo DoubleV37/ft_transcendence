@@ -4,7 +4,7 @@
     {% csrf_token %}
     {{ profile_2fa.as_p }}
 
-    {% if profile_2fa is True %}
+    {% if profile_2fa.enable is True %}
       <button type="submite">Disable</button>
     {% else %}
       <button type="submite">Enable</button>
