@@ -22,21 +22,21 @@
 		<div id="leftcolumn">
 		  <div id="Settings">
 		<button class="SectionLayout SectionGrey">Account Settings</button>
-		<form class="TEXT_Form" action="" method='post'>
-		  {% csrf_token %}
+		<form id="NAME_Form" action="" method='post'>
+		  	{% csrf_token %}
 			<div class="field-container">
 			  {{ name.as_p }}
 			  <button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
 			</div>
 		 </form>
-		 <form class="TEXT_Form" action="" method='post'>
+		 <form id="MAIL_Form" action="" method='post'>
 		   {% csrf_token %}
 			<div class="field-container">
 			  {{ mail.as_p }}
 			  <button class="UpdateButtonLayout ButtonDark" type="submit" name="mail_button">Update</button>
 			</div>
 		</form>
-		<form class="TEXT_Form" action="" method='post' name="pswd_button">
+		<form id="PASS_Form" action="" method='post' name="pswd_button">
 		   {% csrf_token %}
 			<div class="field-container">
 			  {{ pswd.as_p }}
@@ -49,7 +49,7 @@
 		  <div id="titleContent" data-content="PROFILE_PAGE"></div>
 		  <div id="Settings">
 		<button class="SectionLayout SectionGrey">Display Settings</button>
-		<form class="TEXT_Form" action="" method='post'>
+		<form id="TNAME_Form" action="" method='post'>
 			{% csrf_token %}
 			<div class="field-container">
 				{{ t_name.as_p }}

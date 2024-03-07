@@ -17,6 +17,15 @@ function  settings_SetEvents() {
   // Target la soumission de formulaire
   element = document.getElementById('submitAvatar');
   element.addEventListener('click', submitAvatar);
+
+  element = document.getElementById('NAME_Form');
+  element.addEventListener('submit', name_FormCallBack);
+
+  element = document.getElementById('MAIL_Form');
+  element.addEventListener('submit', mail_FormCallBack);
+
+  element = document.getElementById('PASS_Form');
+  element.addEventListener('submit', pass_FormCallBack);
 }
 
 function  settings_DelEvents() {
@@ -36,6 +45,49 @@ function  settings_DelEvents() {
   // Target la soumission de formulaire
   element = document.getElementById('submitAvatar');
   element.removeEventListener('click', submitAvatar);
+
+  element = document.getElementById('NAME_Form');
+  element.removeEventListener('submit', name_FormCallBack);
+
+  element = document.getElementById('MAIL_Form');
+  element.removeEventListener('submit', mail_FormCallBack);
+
+  element = document.getElementById('PASS_Form');
+  element.removeEventListener('submit', pass_FormCallBack);
+}
+
+async function name_FormCallBack(event) 
+{
+  event.preventDefault();
+  const	response = await nameSubmit();
+
+  if (response == true) {
+    changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    changeSection(`${ROUTE.SETTINGS}`, '#content');
+    console.log("PUTAIN - Cordialement");
+  }
+}
+
+async function mail_FormCallBack(event) 
+{
+  event.preventDefault();
+  const	response = await mailSubmit();
+
+  if (response == true) {
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    await changeSection(`${ROUTE.SETTINGS}`, '#content');
+  }
+}
+
+async function pass_FormCallBack(event) 
+{
+  event.preventDefault();
+  const	response = await passSubmit();
+
+  if (response == true) {
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    await changeSection(`${ROUTE.SETTINGS}`, '#content');
+  }
 }
 
  function displaySelectedImage(event) 

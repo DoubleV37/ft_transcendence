@@ -18,6 +18,12 @@ function  header_SetEvents() {
   else if (IsAuthenticated === 'false') {
     element = document.getElementById('HEADER_Signin');
     element.addEventListener('click', header_SignInCallBack);
+
+    element = document.getElementById('HEADER_NavSignUp');
+    element.addEventListener('click', header_SignUpCallBack);
+
+    element = document.getElementById('HEADER_NavSignIn');
+    element.addEventListener('click', header_SignInCallBack);
   }
   else {
     console.error(`header_SetEvents: error: ${element} unrecognised`);
@@ -47,6 +53,12 @@ function  header_DelEvents() {
   else if (IsAuthenticated === 'false') {
     element = document.getElementById('HEADER_Signin');
     element.removeEventListener('click', header_SignInCallBack);
+
+    element = document.getElementById('HEADER_NavSignUp');
+    element.addEventListener('click', header_SignUpCallBack);
+
+    element = document.getElementById('HEADER_NavSignIn');
+    element.addEventListener('click', header_SignInCallBack);
   }
 
   else {
@@ -62,7 +74,13 @@ function  header_LogoCallback() {
 }
 
 function  header_SignInCallBack() {
+  offcanvas_Hide()
   loadPage(`${ROUTE.SIGNIN}`);
+}
+
+function  header_SignUpCallBack() {
+  offcanvas_Hide()
+  loadPage(`${ROUTE.SIGNUP}`);
 }
 
 async function  header_ModProfilCallBack() {
