@@ -30,8 +30,7 @@ def signup(request):
 
 def signin(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        form = SignInForm(data)
+        form = SignInForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -47,15 +46,10 @@ def signin(request):
                                     secure=True,
                                     samesite='Lax')
             else:
-                response = JsonResponse({
-                    'success': False,
-                    'errors': 'Invalid username or password'
-                })
+                response = HttpResponse('incorrect username or password',
+                                        status=401)
         else:
-            response = JsonResponse({
-                'success': False,
-                'errors': 'Invalid form'
-            })
+            response = HttpResponse('Invalid Form', status=401)
         return response
 
     form = SignInForm()

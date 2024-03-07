@@ -71,7 +71,8 @@ async function  header_ModProfilCallBack() {
   profileModal.show();
 }
 
-async function  header_SignOutCallBack() {
+async function  header_SignOutCallBack(event) {
+  event.preventDefault();
   const	response = await SignOut();
 
   if (response == true) {

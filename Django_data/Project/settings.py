@@ -138,6 +138,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ["https://localhost:8080"]
 

@@ -1,18 +1,22 @@
 async function signIn() {
 
-  let myForm = document.getElementById('SIGNIN_Form');
-  let myData = SignIn_JsonForm(myForm);
+  const formData = new FormData(document.getElementById('SIGNIN_Form'));
 
   try {
+    const myData = {
+      method: 'POST',
+      body: formData
+    };
+
     const response = await fetch(`${ROUTE.SIGNIN}`, myData);
 
     if (response.ok) {
       return true;
     }
     else {
-      const data = response.json();
-      SignIn_UpdateErrors(data.errors);
-      myForm.reset();
+      const data = await response.text();
+      SignIn_UpdateErrors(data);
+      document.getElementById('SIGNIN_Form').reset();
       return false;
     }
   }
@@ -32,10 +36,6 @@ function SignIn_JsonForm(myForm) {
 
   let myData = {
     method: 'POST',
-    headers: {
-	'Content-Type': 'application/json',
-	'X-CSRFToken': Tools_GetCookie('csrftoken'),  // Include CSRF token
-    },
     body: JSON.stringify(formDataJSON),
   };
   return myData;

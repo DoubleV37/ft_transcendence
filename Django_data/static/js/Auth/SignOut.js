@@ -1,10 +1,10 @@
-async function  SignOut() {
+ async function  SignOut() {
+  let form = document.getElementById('SignOutForm');
+  let formData = new FormData(form);
+
   const myData = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRFToken': Tools_GetCookie('csrftoken'),
-    },
+    body: formData
   };
 
   try {

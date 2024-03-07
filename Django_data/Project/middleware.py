@@ -1,10 +1,7 @@
-import jwt
 import datetime
-from decouple import config
-from asgiref.sync import iscoroutinefunction
-from django.utils.decorators import sync_and_async_middleware
-
 import logging
+import jwt
+from decouple import config
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +24,9 @@ class UserPermission:
 
     def __call__(self, request):
         response = self.get_response(request)
-
-        logger.info(request.META.get('HTTP_AUTHORIZATION'))
+        my_cookie = request.COOKIES.get('jwt_token')
+        logger.info(f"1- Cookie : {my_cookie}")
+        logger.info(f"2- Path : {request.path}")
+        logger.info(f"3- User : {request.user}\n")
 
         return response

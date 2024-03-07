@@ -43,9 +43,10 @@
 		  </div>
 		</div>
 		<div class="offcanvas-section offcanvas-section-bottom">
-		  <div class="ProfilePage offcanvas-profile">
-		    <button id="HEADER_NavSignOut" class="ButtonLayout ButtonDark">Sign out</button>
-		  </div>
+		    <form id="SignOutForm" action="" method="post" class="ProfilePage offcanvas-profile">
+		      {% csrf_token %}
+		      <button id="HEADER_NavSignOut" class="ButtonLayout ButtonDark" type="submit">Sign Out</button>
+		    </form>
 		</div>
 		{% endif %}
 	      </li>
