@@ -3,3 +3,4 @@ python-decouple
 psycopg2-binary
 uvicorn
 django-bootstrap-v5
+channels

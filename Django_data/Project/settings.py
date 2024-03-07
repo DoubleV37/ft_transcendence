@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+	'channels',
+	'bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +42,6 @@ INSTALLED_APPS = [
     'apps.Auth',
     'apps.Profile',
 	'apps.Chat',
-	'bootstrap5'
 ]
 
 MIDDLEWARE = [
