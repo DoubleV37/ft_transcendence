@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from datetime import timedelta
 
 from django.utils import timezone
-from django.contrib.auth import authenticate, login as django_login
+from django.contrib.auth import logout, authenticate, login as django_login
 
 from django.http import HttpResponse
 
 from django.core.mail import send_mail
+
+import logging
+logger = logging.getLogger(__name__)
 
 from rest_framework import status, generics
 from rest_framework.decorators import api_view, permission_classes
@@ -96,18 +99,26 @@ import pyotp
 #     return Response({'detail': 'Invalid verification code or credentials.'}, status=status.HTTP_401_UNAUTHORIZED)
 
 def user_two_factor_auth_data_create(*, user):
-    if hasattr(user, 'two_factor'):
+    if hasattr(user, 'to2fa'):
         # raise ValidationError(
         #     'Can not have more than one 2FA related data.'
         # )
+        user.to2fa.otp = pyotp.random_base32()
+        user.save()
         return UserTwoFA.objects.get(user=user)
 
-    two_factor_auth_data = UserTwoFA.objects.create(
-        user=user,
-        otp=pyotp.random_base32()
-    )
+    # two_factor_auth_data = UserTwoFA.objects.create(
+    #     user=user,
+    #     otp=pyotp.random_base32()
+    # )
+    #
+    # return two_factor_auth_data
 
-    return two_factor_auth_data
+#return user.to2fa
+
+    # user.to2fa.otp = pyotp.random_base32()
+    # user.save()
+    # return UserTwoFA.objects.get(user=user)
 
 class create_qrcode(TemplateView):
     template_name = "setup_2fa.html"
@@ -115,29 +126,30 @@ class create_qrcode(TemplateView):
     try:
         def post(self, request):
             context = {}
-            user = request.user
-
-            # user_profile = UserTwoFA.objects.get(user=user)
-            two_factor_auth_data = user_two_factor_auth_data_create(user=user)
-            otp_secret = two_factor_auth_data.otp
-
-            context["otp"] = otp_secret
-            context["qr_code"] = two_factor_auth_data.generate_qr_code(
-                name=user.email
-            )
+            # user = request.user
+            #
+            # # user_profile = UserTwoFA.objects.get(user=user)
+            # two_factor_auth_data = user_two_factor_auth_data_create(user=user)
+            # otp_secret = two_factor_auth_data.otp
+            #
+            # context["otp"] = otp_secret
+            # context["qr_code"] = two_factor_auth_data.generate_qr_code(
+            #     name=user.email
+            # )
+            logout(request)
 
             return self.render_to_response(context)
 
         def get(self, request):
             context = {}
-            user = request.user
+            _user = request.user
 
-            two_factor_auth_data = user_two_factor_auth_data_create(user=user)
-            otp_secret = two_factor_auth_data.otp
+            _user2fa = user_two_factor_auth_data_create(user=_user)
+            otp_secret = _user2fa.otp
 
             context["otp"] = otp_secret
-            context["qr_code"] = two_factor_auth_data.generate_qr_code(
-                name=user.email
+            context["qr_code"] = _user.to2fa.generate_qr_code(
+                name=_user.email
             )
             return render(request, self.template_name, context=context)
 
@@ -150,7 +162,12 @@ def enable_2fa(request):
     if request.method == 'POST':
         profile_2fa = My_2fa(request.POST, instance=_user)
         if profile_2fa.is_valid():
-            profile_2fa.save()
-            return HttpResponse('<h1>Success</h1>')
+            if _user.to2fa.enable == True:
+                _user.to2fa.enable = False
+            else:
+                _user.to2fa.enable = True
+            _user.save()
+            return redirect ('qrcode')
+            # return HttpResponse('<h1>Success</h1>')
     return render(request, 'enable_2fa.html', {'profile_2fa': profile_2fa})
 

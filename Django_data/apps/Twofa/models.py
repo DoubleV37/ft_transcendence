@@ -22,7 +22,7 @@ class UserTwoFA(models.Model):
         totp = pyotp.TOTP(self.otp)
         qr_uri = totp.provisioning_uri(
             name=name,
-            issuer_name='Styleguide Example Admin 2FA Demo'
+            issuer_name='Pooong'
         )
 
         image_factory = qrcode.image.svg.SvgPathImage

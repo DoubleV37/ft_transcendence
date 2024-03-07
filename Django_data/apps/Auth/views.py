@@ -17,7 +17,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from apps.Twofa.models import UserTwoFA
 
-
 logger = logging.getLogger(__name__)
 
 def signup(request):
@@ -45,7 +44,14 @@ def signin(request):
 
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                login(request, user)
+                #TODO testing
+                logger.info(f"{user.username} activated 2fa: {user.to2fa.enable}")
+                if user.to2fa.enable == True:       #TODO testing
+                    #TODO adding field to recieve 2fa code
+                    pass
+                else:                               #TODO testing
+                    login(request, user)
+
                 response = JsonResponse({'success': True})
             else:
                 response = JsonResponse({
