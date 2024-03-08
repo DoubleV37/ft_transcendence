@@ -4,98 +4,14 @@ from apps.Auth.models import User
 from django.core.exceptions import ValidationError
 from django.views.generic import TemplateView, FormView
 from django.urls import reverse_lazy
-from .serializers import UserTwoFASerializer
 from .models import UserTwoFA
 from django.shortcuts import render, redirect
-
-from datetime import timedelta
-
-from django.utils import timezone
-from django.contrib.auth import logout, authenticate, login
-
+from django.contrib.auth import logout, login
 from django.http import HttpResponse
 
-# from django.core.mail import send_mail
 
 import logging
 logger = logging.getLogger(__name__)
-
-# from rest_framework import status, generics
-# from rest_framework.decorators import api_view, permission_classes
-# from rest_framework.permissions import AllowAny
-# from rest_framework.response import Response
-
-
-#
-#
-# def generate_random_digits(n=6):
-#     return "".join(map(str, random.sample(range(0, 10), n)))
-#
-# @api_view(['POST'])
-# @permission_classes([AllowAny])
-# def twofa_login(request):
-#     username = request.data.get('username')
-#     password = request.data.get('password')
-#
-#     user = authenticate(request, username=username, password=password)
-#
-#     if user is not None:
-#         # User credentials are valid, proceed with code generation and email sending
-#         user_profile = UserTwoFA.objects.get(user=user)
-#
-#         # Generate a 6-digit code and set the expiry time to 1 hour from now
-#         verification_code = generate_random_digits
-#         user_profile.otp = verification_code
-#         user_profile.otp_expiry_time = timezone.now() + timedelta(hours=1)
-#         user_profile.save()
-#
-#         # Send the code via email (use Django's send_mail function)
-#         send_mail(
-#             'Verification Code',
-#             f'Your verification code is: {otp}',
-#             'from@example.com',
-#             [email],
-#             fail_silently=False,
-#         )
-#
-#         return Response({'detail': 'Verification code sent successfully.'}, status=status.HTTP_200_OK)
-#
-#     return Response({'detail': 'Invalid credentials.'}, status=status.HTTP_401_UNAUTHORIZED)
-#
-# @api_view(['POST'])
-# @permission_classes([AllowAny])
-# def twofa_verify(request):
-#     email = request.data.get('email')
-#     password = request.data.get('password')
-#     otp = request.data.get('otp')
-#
-#     user = authenticate(request, email=email, password=password)
-#
-#     if user is not None:
-#         user_profile = UserTwoFA.objects.get(user=user)
-#
-#         # Check if the verification code is valid and not expired
-#         if (
-#             user_profile.verification_code == otp and
-#             user_profile.otp_expiry_time is not None and
-#             user_profile.otp_expiry_time > timezone.now()
-#         ):
-#             # Verification successful, generate access and refresh tokens
-#             django_login(request, user)
-#             # Implement your token generation logic here
-#
-#             # Use djangorestframework_simplejwt to generate tokens
-#             refresh = RefreshToken.for_user(user)
-#             access_token = str(refresh.access_token)
-#
-#             # Reset verification code and expiry time
-#             user_profile.otp = ''
-#             user_profile.otp_expiry_time = None
-#             user_profile.save()
-#
-#             return Response({'access_token': access_token, 'refresh_token': str(refresh)}, status=status.HTTP_200_OK)
-#
-#     return Response({'detail': 'Invalid verification code or credentials.'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 def user_two_factor_set(*, user):
@@ -103,19 +19,6 @@ def user_two_factor_set(*, user):
         user.to2fa.otp = pyotp.random_base32()
         user.save()
         return UserTwoFA.objects.get(user=user)
-
-    # two_factor_auth_data = UserTwoFA.objects.create(
-    #     user=user,
-    #     otp=pyotp.random_base32()
-    # )
-    #
-    # return two_factor_auth_data
-
-# return user.to2fa
-
-    # user.to2fa.otp = pyotp.random_base32()
-    # user.save()
-    # return UserTwoFA.objects.get(user=user)
 
 
 class create_qrcode(TemplateView):
@@ -170,40 +73,17 @@ class TwoFactorConfirmationView(FormView):
         return render(request, self.template_name, {'form': self.form})
 
     def post(self, request):
-
+        key: str = ''
         self.form = TwoFAForm(request.POST)
         _user = User.objects.get(username=request.user.username)
-        # logger.info(f'{"":_<10}{_user.username = }{"":_>10}')
-        # logger.info(f'{_user.to2fa.enable = }')
-        # logger.info(f'{_user.to2fa.otp = }')
-        # logger.info(f"{'request.POST':_^20}")
-        # logger.info(f'{self.form =}')
-
-        key: str = ''
-
-        value = _user.to2fa.otp
+        value = pyotp.TOTP(_user.to2fa.otp).now()
         logger.info(f" {type(value) = } {value = }")
 
         if self.form.is_valid():
-            key = pyotp.TOTP(self.form.cleaned_data.get('otp'))
-            logger.info(f"{str(key) = }")
-        else:
-            logger.warn("Else result")
+            key = self.form.cleaned_data.get('otp')
+            logger.info(f"{key = }")
 
         if key == value:
             return HttpResponse('<h1>Ouai</h1>')
         else:
             return HttpResponse('<h1>Nooon</h1>')
-
-        # if self.form.clean_otp:
-        #     return HttpResponse('<h1>Ouai</h1>')
-        # else:
-        #     return HttpResponse('<h1>Nooon</h1>')
-        #
-        # if self.form.is_valid():
-        #     logger.info(f"{'is_valid = true':#^20}")
-        #     self.form.clean_otp
-        #     return render(request, self.success_url)
-        # else:
-        #     # logout
-        #     return HttpResponse('<h1>Pleurer</h1>')
