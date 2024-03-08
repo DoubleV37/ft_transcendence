@@ -18,13 +18,6 @@ class TwoFAForm(forms.ModelForm):
         model = UserTwoFA
         fields = ('otp',)
 
-    def clean_otp(self) -> bool:
-        otp = self.cleaned_data.get('otp')
-        logger.info(f"{'clean_otp':@^20}")
-        logger.info(f"{self.cleaned_data.get('otp') = }")
-        logger.info(f"{otp = }")
-        if not self.instance.validate_otp(otp):
-            raise 'Invalid 2FA code.'
         # return True
 
     # def get_form_class(self):

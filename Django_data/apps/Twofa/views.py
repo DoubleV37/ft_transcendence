@@ -171,22 +171,39 @@ class TwoFactorConfirmationView(FormView):
 
     def post(self, request):
 
+        self.form = TwoFAForm(request.POST)
         _user = User.objects.get(username=request.user.username)
-        logger.info(f'{"":_<10}{_user.username = }{"":_>10}')
-        logger.info(f'{_user.to2fa.enable = }')
-        logger.info(f'{_user.to2fa.otp = }')
-        logger.info(f"{'request.POST':_^20}")
-        logger.info(f'{self.form =}')
+        # logger.info(f'{"":_<10}{_user.username = }{"":_>10}')
+        # logger.info(f'{_user.to2fa.enable = }')
+        # logger.info(f'{_user.to2fa.otp = }')
+        # logger.info(f"{'request.POST':_^20}")
+        # logger.info(f'{self.form =}')
 
-        if self.form.clean_otp:
+        key: str = ''
+
+        value = _user.to2fa.otp
+        logger.info(f" {type(value) = } {value = }")
+
+        if self.form.is_valid():
+            key = pyotp.TOTP(self.form.cleaned_data.get('otp'))
+            logger.info(f"{str(key) = }")
+        else:
+            logger.warn("Else result")
+
+        if key == value:
             return HttpResponse('<h1>Ouai</h1>')
         else:
             return HttpResponse('<h1>Nooon</h1>')
 
-        if self.form.is_valid():
-            logger.info(f"{'is_valid = true':#^20}")
-            self.form.clean_otp
-            return render(request, self.success_url)
-        else:
-            # logout
-            return HttpResponse('<h1>Pleurer</h1>')
+        # if self.form.clean_otp:
+        #     return HttpResponse('<h1>Ouai</h1>')
+        # else:
+        #     return HttpResponse('<h1>Nooon</h1>')
+        #
+        # if self.form.is_valid():
+        #     logger.info(f"{'is_valid = true':#^20}")
+        #     self.form.clean_otp
+        #     return render(request, self.success_url)
+        # else:
+        #     # logout
+        #     return HttpResponse('<h1>Pleurer</h1>')
