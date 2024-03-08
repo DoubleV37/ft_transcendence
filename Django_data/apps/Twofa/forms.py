@@ -1,6 +1,10 @@
 from django import forms
 from .models import UserTwoFA
 
+import logging
+logger = logging.getLogger(__name__)
+
+
 class My_2fa(forms.ModelForm):
     class Meta:
         model = UserTwoFA
@@ -14,10 +18,14 @@ class TwoFAForm(forms.ModelForm):
         model = UserTwoFA
         fields = ('otp',)
 
-    def clean_otp(self):
+    def clean_otp(self) -> bool:
         otp = self.cleaned_data.get('otp')
+        logger.info(f"{'clean_otp':@^20}")
+        logger.info(f"{self.cleaned_data.get('otp') = }")
+        logger.info(f"{otp = }")
         if not self.instance.validate_otp(otp):
-            raise ValidationError('Invalid 2FA code.')
+            raise 'Invalid 2FA code.'
+        # return True
 
     # def get_form_class(self):
     #     return self.Form
@@ -31,7 +39,6 @@ class TwoFAForm(forms.ModelForm):
 
     # def form_valid(self, form):
     #     return super().form_valid(form)
-
 
     # def clean_otp(self):
     #     self.two_factor_auth_data = UserTwoFactorAuthData.objects.filter(

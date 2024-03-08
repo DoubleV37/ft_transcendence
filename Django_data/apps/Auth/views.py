@@ -7,9 +7,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .forms import (
-        CustomUserCreationForm, SignInForm, My_Psswd,
-        My_Avatar, My_Name, My_Mail, My_Tournamentname
-    )
+    CustomUserCreationForm, SignInForm, My_Psswd,
+    My_Avatar, My_Name, My_Mail, My_Tournamentname
+)
 from . import forms
 
 from .models import User
@@ -18,6 +18,7 @@ from django.http import HttpResponse
 from apps.Twofa.models import UserTwoFA
 
 logger = logging.getLogger(__name__)
+
 
 def signup(request):
     if request.method == 'POST':
@@ -44,19 +45,22 @@ def signin(request):
 
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                #TODO testing
-                logger.info(f"{user.username} activated 2fa: {user.to2fa.enable}")
-                if user.to2fa.enable == True:       #TODO testing
-                    return redirect ("confirm_2fa")
-                    return HttpResponse('<h1>Pleurer</h1>')
-                else:                               #TODO testing
+                # TODO testing
+                logger.info(
+                    f"{user.username} activated 2fa: {user.to2fa.enable}")
+                if user.to2fa.enable:  # TODO testing
+                    login(request, user)
+                    # return redirect("confirm_2fa")
+                    # return HttpResponse('<h1>Pleurer</h1>')
+                    response = JsonResponse({'success': True})
+                else:  # TODO testing
                     login(request, user)
                     response = JsonResponse({'success': True})
 
             else:
                 response = JsonResponse({
                     'success': False,
-                   'errors': 'Invalid username or password'
+                    'errors': 'Invalid username or password'
                 })
         else:
             response = JsonResponse({
@@ -67,6 +71,7 @@ def signin(request):
 
     form = SignInForm()
     return render(request, 'Auth/SignIn.html', {'form': form})
+
 
 def signout(request):
     if request.method == 'POST':
@@ -84,7 +89,6 @@ def my_settings(request):
         pswd = My_Psswd(instance=user)
         avatar = My_Avatar(instance=user)
         t_name = My_Tournamentname(instance=user)
-
 
         response = JsonResponse({
             'success': False,
@@ -143,17 +147,17 @@ def my_settings(request):
 
             match rtrn:
                 case 1:
-                    return JsonResponse({ 'success': False,
-                        'errors': 'username already taken'
-                    })
+                    return JsonResponse({'success': False,
+                                         'errors': 'username already taken'
+                                         })
                 case 2:
-                    return JsonResponse({ 'success': False,
-                        'errors': 'email already taken'
-                    })
+                    return JsonResponse({'success': False,
+                                         'errors': 'email already taken'
+                                         })
                 case 3:
-                    return JsonResponse({ 'success': False,
-                        'errors': 'tournament name already taken'
-                    })
+                    return JsonResponse({'success': False,
+                                         'errors': 'tournament name already taken'
+                                         })
                 case _:
                     return JsonResponse({'success': True})
 
@@ -163,5 +167,3 @@ def my_settings(request):
         logger.debug("Exception")
         logger.error(f"Exception occurred: {e}")
         return HttpResponse("Exception", status=400)
-
-

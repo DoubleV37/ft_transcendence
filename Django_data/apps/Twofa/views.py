@@ -1,3 +1,11 @@
+import pyotp
+from .forms import My_2fa, TwoFAForm
+from apps.Auth.models import User
+from django.core.exceptions import ValidationError
+from django.views.generic import TemplateView, FormView
+from django.urls import reverse_lazy
+from .serializers import UserTwoFASerializer
+from .models import UserTwoFA
 from django.shortcuts import render, redirect
 
 from datetime import timedelta
@@ -16,18 +24,7 @@ logger = logging.getLogger(__name__)
 # from rest_framework.decorators import api_view, permission_classes
 # from rest_framework.permissions import AllowAny
 # from rest_framework.response import Response
-from .models import UserTwoFA
-from .serializers import UserTwoFASerializer
 
-from django import forms
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView, FormView
-from django.core.exceptions import ValidationError
-
-from apps.Auth.models import User
-from .forms import My_2fa, TwoFAForm
-
-import pyotp
 
 #
 #
@@ -47,7 +44,7 @@ import pyotp
 #         user_profile = UserTwoFA.objects.get(user=user)
 #
 #         # Generate a 6-digit code and set the expiry time to 1 hour from now
-#         verification_code = generate_random_digits  
+#         verification_code = generate_random_digits
 #         user_profile.otp = verification_code
 #         user_profile.otp_expiry_time = timezone.now() + timedelta(hours=1)
 #         user_profile.save()
@@ -100,11 +97,9 @@ import pyotp
 #
 #     return Response({'detail': 'Invalid verification code or credentials.'}, status=status.HTTP_401_UNAUTHORIZED)
 
-def user_two_factor_auth_data_create(*, user):
+
+def user_two_factor_set(*, user):
     if hasattr(user, 'to2fa'):
-        # raise ValidationError(
-        #     'Can not have more than one 2FA related data.'
-        # )
         user.to2fa.otp = pyotp.random_base32()
         user.save()
         return UserTwoFA.objects.get(user=user)
@@ -116,47 +111,39 @@ def user_two_factor_auth_data_create(*, user):
     #
     # return two_factor_auth_data
 
-#return user.to2fa
+# return user.to2fa
 
     # user.to2fa.otp = pyotp.random_base32()
     # user.save()
     # return UserTwoFA.objects.get(user=user)
 
+
 class create_qrcode(TemplateView):
     template_name = "setup_2fa.html"
+    context: dict() = {}
 
     try:
-        def post(self, request):
-            context = {}
-            # user = request.user
-            #
-            # # user_profile = UserTwoFA.objects.get(user=user)
-            # two_factor_auth_data = user_two_factor_auth_data_create(user=user)
-            # otp_secret = two_factor_auth_data.otp
-            #
-            # context["otp"] = otp_secret
-            # context["qr_code"] = two_factor_auth_data.generate_qr_code(
-            #     name=user.email
-            # )
-            logout(request)
 
-            return self.render_to_response(context)
+        def post(self, request):
+            logout(request)
+            return self.render_to_response(self.context)
 
         def get(self, request):
-            context = {}
             _user = request.user
 
-            _user2fa = user_two_factor_auth_data_create(user=_user)
+            _user2fa = user_two_factor_set(user=_user)
             otp_secret = _user2fa.otp
 
-            context["otp"] = otp_secret
-            context["qr_code"] = _user.to2fa.generate_qr_code(
-                name=_user.email
+            self.context["otp"] = otp_secret
+            self.context["qr_code"] = _user.to2fa.generate_qr_code(
+                name=_user.username
             )
-            return render(request, self.template_name, context=context)
+            return render(request, self.template_name, context=self.context)
 
     except ValidationError as exc:
+        context: dict() = {}
         context["form_errors"] = exc.messages
+
 
 def enable_2fa(request):
     _user = User.objects.get(username=request.user.username)
@@ -164,14 +151,15 @@ def enable_2fa(request):
     if request.method == 'POST':
         profile_2fa = My_2fa(request.POST, instance=_user)
         if profile_2fa.is_valid():
-            if _user.to2fa.enable == True:
+            if _user.to2fa.enable:
                 _user.to2fa.enable = False
             else:
                 _user.to2fa.enable = True
             _user.save()
-            return redirect ('qrcode')
+            return redirect('qrcode')
             # return HttpResponse('<h1>Success</h1>')
     return render(request, 'enable_2fa.html', {'profile_2fa': profile_2fa})
+
 
 class TwoFactorConfirmationView(FormView):
     template_name = "confirm_2fa.html"
@@ -182,9 +170,23 @@ class TwoFactorConfirmationView(FormView):
         return render(request, self.template_name, {'form': self.form})
 
     def post(self, request):
+
+        _user = User.objects.get(username=request.user.username)
+        logger.info(f'{"":_<10}{_user.username = }{"":_>10}')
+        logger.info(f'{_user.to2fa.enable = }')
+        logger.info(f'{_user.to2fa.otp = }')
+        logger.info(f"{'request.POST':_^20}")
+        logger.info(f'{self.form =}')
+
+        if self.form.clean_otp:
+            return HttpResponse('<h1>Ouai</h1>')
+        else:
+            return HttpResponse('<h1>Nooon</h1>')
+
         if self.form.is_valid():
-            login(request, request.user)
+            logger.info(f"{'is_valid = true':#^20}")
+            self.form.clean_otp
             return render(request, self.success_url)
         else:
+            # logout
             return HttpResponse('<h1>Pleurer</h1>')
-
