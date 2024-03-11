@@ -81,8 +81,6 @@ def signout(request):
 # _ MY SETTINGS _____________________________________________________________ #
 
 def validator_fct(form, button: str, request, response: dict()) -> dict():
-    if response.__len__ == 0:
-        return response
     if button in request.POST:
         if form.is_valid():
             form.save()
@@ -121,7 +119,7 @@ def my_settings(request):
             if 'avatar_button' in request.POST:
                 if avatar.is_valid():
                     save = avatar.save(commit=False)
-                    _user._username = request._user._username
+                    _user.username = request.user.username
                     _user.avatar = save.avatar
                     _user.save()
                     response = {'success': True}
