@@ -15,9 +15,9 @@ import json
 import logging
 logger = logging.getLogger(__name__)
 
+
 # ___________________________________________________________________________ #
 # _ SINGNUP _________________________________________________________________ #
-
 
 def signup(request):
     if request.method == 'POST':
@@ -35,7 +35,6 @@ def signup(request):
 
 # ___________________________________________________________________________ #
 # _ SINGNIN _________________________________________________________________ #
-
 
 def signin(request):
     if request.method == 'POST':
@@ -56,7 +55,7 @@ def signin(request):
                 else:
                     response = {'success': True, '2fa': False}
             else:
-                response = { 'success': False,
+                response = {'success': False,
                     'errors': 'Invalid username or password'
                 }
         else:
@@ -69,7 +68,6 @@ def signin(request):
 
 # ___________________________________________________________________________ #
 # _ SINGNOUT ________________________________________________________________ #
-
 
 def signout(request):
     if request.method == 'POST':
@@ -86,10 +84,7 @@ def validator_fct(form, button: str, request, response: dict()) -> dict():
             form.save()
             response = {'success': True}
         else:
-            response = {
-                'success': False,
-                'logs': f'{button} Error'
-            }
+            response = {'success': False, 'logs': f'{button} Error'}
     return response
 
 
