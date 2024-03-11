@@ -1,15 +1,13 @@
-import json
-import logging
+import logging, datetime, jwt
+from decouple import config
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, authenticate, logout
-from Project.middleware import create_jwt
 from .forms import (
     CustomUserCreationForm, SignInForm, My_Psswd,
     My_Avatar, My_Name, My_Mail, My_Tournamentname
 )
 from .models import User
-from django.http import HttpResponse
 
 
 logger = logging.getLogger(__name__)
@@ -141,3 +139,21 @@ def my_settings(request):
         logger.debug("Exception")
         logger.error(f"Exception occurred: {e}")
         return HttpResponse("Exception", status=400)
+
+
+# ___________________________________________________________________________ #
+# _  JWT ____________________________________________________________________ #
+
+
+def create_jwt(_user, _type="access"):
+    payload = {'id': _user.id,
+               'username': _user.username,
+               'email': _user.email}
+    secret_key = config('DJANGO_SECRET_KEY')
+    algorithm = config('HASH')
+    if _type == "access":
+        time_now = datetime.datetime.utcnow()
+        payload = {"exp": time_now + datetime.timedelta(minutes=30),
+                   "iss": config('NAME')}
+    token = jwt.encode(payload, secret_key, algorithm=algorithm)
+    return token
