@@ -75,8 +75,6 @@ def signout(request):
 # _ MY SETTINGS _____________________________________________________________ #
 
 def validator_fct(form, button: str, request, response: dict()) -> dict():
-    if response.__len__ == 0:
-        return response
     if button in request.POST:
         if form.is_valid():
             form.save()
