@@ -21,8 +21,8 @@ class UserTwoFA(models.Model):
     def generate_qr_code(self, name: Optional[str] = None) -> str:
         totp = pyotp.TOTP(self.otp_secret)
         qr_uri = totp.provisioning_uri(
-            name='Pooog',
-            issuer_name=name
+            name=name,
+            issuer_name='Pooong'
         )
 
         image_factory = qrcode.image.svg.SvgPathImage

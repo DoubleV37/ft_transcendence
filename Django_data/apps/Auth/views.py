@@ -41,35 +41,28 @@ def signin(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         form = SignInForm(data)
+        response: dict() = {}
+
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-
             user = authenticate(request, username=username, password=password)
-            if user is not None:
-                # TODO testing
-                logger.info(
-                    f"{user.username} activated 2fa: {user.to2fa.enable}")
-                if user.to2fa.enable:  # TODO testing
-                    login(request, user)
-                    # return redirect("confirm_2fa")
-                    # return HttpResponse('<h1>Pleurer</h1>')
-                    response = JsonResponse({'success': True})
-                else:  # TODO testing
-                    login(request, user)
-                    response = JsonResponse({'success': True})
 
+            if user is not None:
+                login(request, user)
+
+                if user.to2fa.enable:
+                    response = {'success': True, '2fa': True}
+                else:
+                    response = {'success': True, '2fa': False}
             else:
-                response = JsonResponse({
-                    'success': False,
+                response = { 'success': False,
                     'errors': 'Invalid username or password'
-                })
+                }
         else:
-            response = JsonResponse({
-                'success': False,
-                'errors': 'Invalid form'
-            })
-        return response
+            response = {'success': False, 'errors': 'Invalid form'}
+
+        return JsonResponse(response)
 
     form = SignInForm()
     return render(request, 'Auth/SignIn.html', {'form': form})

@@ -32,8 +32,7 @@ class create_qrcode(TemplateView):
 
         def post(self, request):
             logout(request)
-            return self.render_to_response(self.context)
-            # TODO investigate comportement here.
+            return redirect("/")
 
         def get(self, request):
             _user = request.user
@@ -63,10 +62,12 @@ def enable_2fa(request):
         if profile_2fa.is_valid():
             if _user.to2fa.enable:
                 _user.to2fa.enable = False
+                _user.save()
+                return redirect('/')
             else:
                 _user.to2fa.enable = True
-            _user.save()
-            return redirect('qrcode')
+                _user.save()
+                return redirect('qrcode')
     return render(request, 'enable_2fa.html', {'profile_2fa': profile_2fa})
 
 
@@ -87,20 +88,14 @@ class TwoFactorConfirmationView(FormView):
         self.form = TwoFAForm(request.POST)
         _user = User.objects.get(username=request.user.username)
         value = pyotp.TOTP(_user.to2fa.otp_secret).now()
-        logger.info(f" {type(value) = } {value = }")
-        # TODO logger
 
         if self.form.is_valid():
             key = self.form.cleaned_data.get('otp')
-            logger.info(f"{key = }")
-            # TODO logger
 
         if key == value:
             self.response["success"] = True
             return JsonResponse(self.response)
-            # return HttpResponse('<h1>Ouai</h1>')
         else:
             self.response["success"] = False
             self.response["logs"] = "Wrong 2fa code"
             return JsonResponse(self.response)
-            # return HttpResponse('<h1>Nooon</h1>')
