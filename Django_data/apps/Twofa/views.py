@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from .models import UserTwoFA
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 
 import logging
@@ -77,6 +77,7 @@ class TwoFactorConfirmationView(FormView):
     template_name = "confirm_2fa.html"
     success_url = reverse_lazy("home")
     form = TwoFAForm()
+    response: dict() = {}
 
     def get(self, request):
         return render(request, self.template_name, {'form': self.form})
@@ -95,6 +96,11 @@ class TwoFactorConfirmationView(FormView):
             # TODO logger
 
         if key == value:
-            return HttpResponse('<h1>Ouai</h1>')
+            self.response["success"] = True
+            return JsonResponse(self.response)
+            # return HttpResponse('<h1>Ouai</h1>')
         else:
-            return HttpResponse('<h1>Nooon</h1>')
+            self.response["success"] = False
+            self.response["logs"] = "Wrong 2fa code"
+            return JsonResponse(self.response)
+            # return HttpResponse('<h1>Nooon</h1>')
