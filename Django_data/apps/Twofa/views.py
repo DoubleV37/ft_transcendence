@@ -1,14 +1,15 @@
-import pyotp
-from .forms import My_2fa, TwoFAForm
-from apps.Auth.models import User
-from django.core.exceptions import ValidationError
-from django.views.generic import TemplateView, FormView
-from django.urls import reverse_lazy
-from .models import UserTwoFA
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.http import HttpResponse, JsonResponse
+from django.core.exceptions import ValidationError
+from django.views.generic import TemplateView, FormView
+from django.urls import reverse_lazy
 
+from .models import UserTwoFA
+from .forms import My_2fa, TwoFAForm
+from apps.Auth.models import User
+
+import pyotp
 
 import logging
 logger = logging.getLogger(__name__)
