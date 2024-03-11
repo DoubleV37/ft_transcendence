@@ -12,6 +12,13 @@
         <button type="submit" name='avatar_button'>Update Avatar</button>
       </form>
 
+      <h3>Delete avatar</h3>
+      <form method="post">
+        {{ delete_avatar }}
+        {% csrf_token %}
+        <button type="submit" name="avatar_delete">Delete Avatar</button>
+      </form>
+
       <form action="" method='post'>
         {% csrf_token %}
         {{ name.as_p }}

@@ -9,6 +9,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(max_length=50, unique=True, null=False)
     password = models.CharField(max_length=128, null=False)
     avatar = models.ImageField(default="default.png")
+    backup_avatar = models.ImageField(default="default.png")
 
     tournament_name = models.CharField(max_length=50, unique=True, null=False)
 

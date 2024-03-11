@@ -5,7 +5,8 @@ from django.http import JsonResponse
 from django.contrib.auth import login, authenticate, logout
 from .forms import (
     CustomUserCreationForm, SignInForm, My_Psswd,
-    My_Avatar, My_Name, My_Mail, My_Tournamentname
+    My_Avatar, My_Name, My_Mail, My_Tournamentname,
+    DeleteAvatar
 )
 from .models import User
 from django.http import HttpResponse
@@ -96,11 +97,13 @@ def my_settings(request):
         pswd = My_Psswd(instance=_user)
         avatar = My_Avatar(instance=_user)
         t_name = My_Tournamentname(instance=_user)
+        delete_avatar = DeleteAvatar(instance=_user)
 
         response: dict() = {}
         context: dict() = {
             '_user': _user, 'name': name, 'mail': mail,
-            'avatar': avatar, 'pswd': pswd, 't_name': t_name
+            'avatar': avatar, 'pswd': pswd, 't_name': t_name,
+            'delete_avatar': delete_avatar,
         }
 
         if request.method == 'POST':
@@ -109,6 +112,7 @@ def my_settings(request):
             pswd = My_Psswd(request.POST, instance=_user)
             avatar = My_Avatar(request.POST, request.FILES, instance=_user)
             t_name = My_Tournamentname(request.POST, instance=_user)
+            delete_avatar = DeleteAvatar(request.POST)
 
             if 'avatar_button' in request.POST:
                 if avatar.is_valid():
@@ -122,6 +126,20 @@ def my_settings(request):
                         'success': False,
                         'logs': 'Avatar Error'
                     }
+
+            if 'avatar_delete' in request.POST:
+                error: str = delete_avatar.errors
+                if delete_avatar.is_valid():
+                    _user.avatar.delete()
+                    _user.avatar = _user.backup_avatar
+                    _user.save()
+                    response = {'success': True}
+                else:
+                    response = {
+                        'success': False,
+                        'logs': 'Avatar not deleted'
+                    }
+                logger.info(f"{error = }")
 
             response = validator_fct(name, 'name_button', request, response)
             response = validator_fct(
