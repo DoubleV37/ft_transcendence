@@ -115,7 +115,7 @@ def my_settings(request):
             if 'avatar_button' in request.POST:
                 if avatar.is_valid():
                     save = avatar.save(commit=False)
-                    _user._username = request._user._username
+                    _user.username = request.user.username
                     _user.avatar = save.avatar
                     _user.save()
                     response = {'success': True}
