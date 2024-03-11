@@ -24,10 +24,10 @@
         <button type="submit" name="mail_button" >Update mail</button>
       </form>
 
-      <form action="" method='post' name="pswd_button">
+      <form action="" method='post'>
         {% csrf_token %}
         {{ pswd.as_p }}
-        <button type="submit">Update pswd</button>
+        <button type="submit" name="pswd_button">Update pswd</button>
       </form>
 
       <form action="" method='post'>
