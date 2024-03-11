@@ -53,8 +53,7 @@ def signin(request):
                     'errors': 'Invalid username or password'
                 })
         else:
-            response = JsonResponse({
-                'success': False,
+            response = JsonResponse({ 'success': False,
                 'errors': 'Invalid form'
             })
         return response
@@ -81,10 +80,7 @@ def validator_fct(form, button: str, request, response: dict()) -> dict():
             form.save()
             response = {'success': True}
         else:
-            response = {
-                'success': False,
-                'logs': f'{button} Error'
-            }
+            response = {'success': False, 'logs': f'{button} Error'}
     return response
 
 
@@ -97,7 +93,7 @@ def my_settings(request):
         pswd = My_Psswd(instance=_user)
         avatar = My_Avatar(instance=_user)
         t_name = My_Tournamentname(instance=_user)
-        delete_avatar = DeleteAvatar(instance=_user)
+        delete_avatar = DeleteAvatar()
 
         response: dict() = {}
         context: dict() = {
@@ -122,24 +118,16 @@ def my_settings(request):
                     _user.save()
                     response = {'success': True}
                 else:
-                    response = {
-                        'success': False,
-                        'logs': 'Avatar Error'
-                    }
+                    response = {'success': False, 'logs': 'Avatar Error'}
 
             if 'avatar_delete' in request.POST:
-                error: str = delete_avatar.errors
                 if delete_avatar.is_valid():
                     _user.avatar.delete()
                     _user.avatar = _user.backup_avatar
                     _user.save()
                     response = {'success': True}
                 else:
-                    response = {
-                        'success': False,
-                        'logs': 'Avatar not deleted'
-                    }
-                logger.info(f"{error = }")
+                    response = {'success': False, 'logs': 'Avatar not deleted'}
 
             response = validator_fct(name, 'name_button', request, response)
             response = validator_fct(

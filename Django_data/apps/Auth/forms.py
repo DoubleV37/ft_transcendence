@@ -64,11 +64,8 @@ class My_Avatar(forms.ModelForm):
             instance.save()
         return instance
 
-class DeleteAvatar(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['avatar']
-    delete_avatar = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+class DeleteAvatar(forms.Form):
+    pass
 
 class My_Psswd(forms.ModelForm):
     class Meta:
