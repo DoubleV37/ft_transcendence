@@ -181,6 +181,22 @@
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
     }
 
+    .SelectButtonLayout {
+        display: flex;
+        height:  3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap:  0.625rem;
+        border-radius:  0.625rem;
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size:  1rem;
+        font-style: normal;
+        font-weight:  400;
+        line-height: normal;
+        padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+    }
+
     .UpdateButtonLayout {
         display: flex;
         height:  3.125rem;
@@ -309,6 +325,22 @@
         gap:  0.625rem;
         flex-shrink:  0;  
         align-self: stretch;
+        border-radius:  0.625rem;
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size:  1rem;
+        font-style: normal;
+        font-weight:  400;
+        line-height: normal;
+        padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+    }
+
+    .SelectButtonLayout {
+        display: flex;
+        height:  3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap:  0.625rem;
         border-radius:  0.625rem;
         color: #FFF;
         font-family: Kodchasan;

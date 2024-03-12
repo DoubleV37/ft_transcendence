@@ -69,6 +69,7 @@ def signout(request):
 
 
 def my_settings(request):
+    
     try:
         user = User.objects.get(username=request.user.username)
 
