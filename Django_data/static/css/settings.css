@@ -304,6 +304,8 @@
     .settings-profilePic {
 		height: 6em;
         width: 6em;
+        object-fit: cover;
+        cursor: pointer;
     }
     
 }
@@ -597,6 +599,8 @@
     .settings-profilePic {
 		height: 6em;
         width: 6em;
+        object-fit: cover;
+        cursor: pointer;
     }
 }
 
@@ -905,6 +909,8 @@
     .settings-profilePic {
 		height: 6em;
         width: 6em;
+        object-fit: cover;
+        cursor: pointer;
     }
 
     #TEXT_Form {

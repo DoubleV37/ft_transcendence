@@ -2,7 +2,10 @@
 
 function  settings_SetEvents() {
   let element = document.getElementById('AVATAR_Change');
-    element.addEventListener('click', settings_ModAvatarCallBack);
+  element.addEventListener('click', settings_ModAvatarCallBack);
+
+  element = document.getElementById('AVATAR_Change_Pic');
+  element.addEventListener('click', settings_ModAvatarCallBack);
 
   element = document.getElementById('AvatarBackArrow');
   element.addEventListener('click', settings_closeModal);
@@ -16,7 +19,7 @@ function  settings_SetEvents() {
 
   // Target la soumission de formulaire
   element = document.getElementById('submitAvatar');
-  element.addEventListener('click', submitAvatar);
+  element.addEventListener('click', avatar_FormCallBack);
 
   element = document.getElementById('NAME_Form');
   element.addEventListener('submit', name_FormCallBack);
@@ -29,11 +32,17 @@ function  settings_SetEvents() {
 
   element = document.getElementById('TNAME_Form');
   element.addEventListener('submit', tname_FormCallBack);
+
+  element = document.getElementById('AVATAR_Form');
+  element.addEventListener('submit', avatar_FormCallBack);
 }
 
 function  settings_DelEvents() {
   let element = document.getElementById('AVATAR_Change');
-    element.removeEventListener('click', settings_ModAvatarCallBack);
+  element.removeEventListener('click', settings_ModAvatarCallBack);
+
+  element = document.getElementById('AVATAR_Change_Pic');
+  element.removeEventListener('click', settings_ModAvatarCallBack);
 
   element = document.getElementById('AvatarBackArrow');
   element.removeEventListener('click', settings_closeModal);
@@ -47,7 +56,7 @@ function  settings_DelEvents() {
 
   // Target la soumission de formulaire
   element = document.getElementById('submitAvatar');
-  element.removeEventListener('click', submitAvatar);
+  element.removeEventListener('click', avatar_FormCallBack);
 
   element = document.getElementById('NAME_Form');
   element.removeEventListener('submit', name_FormCallBack);
@@ -60,6 +69,9 @@ function  settings_DelEvents() {
 
   element = document.getElementById('TNAME_Form');
   element.removeEventListener('submit', tname_FormCallBack);
+
+  element = document.getElementById('AVATAR_Form');
+  element.removeEventListener('submit', avatar_FormCallBack);
 }
 
 async function name_FormCallBack(event) 
@@ -70,7 +82,6 @@ async function name_FormCallBack(event)
   if (response == true) {
     changeSection(`${ROUTE.HEADER}`, '#Header_content');
     changeSection(`${ROUTE.SETTINGS}`, '#content');
-    console.log("PUTAIN - Cordialement");
   }
 }
 
@@ -107,6 +118,18 @@ async function tname_FormCallBack(event)
   }
 }
 
+async function avatar_FormCallBack(event) 
+{
+  event.preventDefault();
+  const	response = await avatarSubmit();
+
+  if (response == true) {
+    settings_closeModal();
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    await changeSection(`${ROUTE.SETTINGS}`, '#content');
+  }
+}
+
  function displaySelectedImage(event) 
  {
    const fileInput = event.target;
@@ -124,8 +147,4 @@ async function tname_FormCallBack(event)
 
 function selectAvatar() {
   document.getElementById('id_avatar').click();
-}
-
-function submitAvatar() {
-  document.getElementById('AVATAR_Form').submit();
 }

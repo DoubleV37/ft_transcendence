@@ -114,6 +114,33 @@ async function tnameSubmit() {
   }
 }
 
+async function avatarSubmit() {
+  let myForm = document.getElementById('AVATAR_Form');
+  let formData = new FormData(myForm);
+  
+  try {
+    let response = await fetch(`${ROUTE.SETTINGS}`, {
+      // let data = await response.json();
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+    
+    if (data.success == true) {
+      return true;
+    }
+    else {
+	// settings_UpdateErrors(data.errors);
+	myForm.reset();
+	return false;
+    }
+  }
+  catch (err) {
+    console.error('Avatar Errors:', err);
+    return false;
+  }
+}
+
 function settings_JsonForm(myForm) {
   let formData = new FormData(myForm);
   let formDataJSON = {};

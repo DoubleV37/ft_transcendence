@@ -41,6 +41,7 @@
     .ProfilePic {
         border-radius: 100%;
         border: 2px solid #6c757d;
+        object-fit: cover;
     }
     
     #UserPictureInfo {
@@ -237,6 +238,7 @@
     .ProfilePic {
         border-radius: 100%;
         border: 2px solid #6c757d;
+        object-fit: cover;
     }
 
     #UserPictureInfo {
@@ -404,10 +406,10 @@
     }
     
     #BackArrowFullscreen {
-        width: 2em;
+        width: 2.5em;
         position: absolute;
-        top: 1.2em;
-        right: 1.2em;
+        top: 2rem;
+        right: 1.1rem;
     }
 
     #DoubleButton {
@@ -441,6 +443,7 @@
     .ProfilePic {
         border-radius: 100%;
         border: 2px solid #6c757d;
+        object-fit: cover;
     }
 
     #username {
