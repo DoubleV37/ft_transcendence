@@ -695,7 +695,7 @@
     }
 
     #NAME_Form {
-
+        margin-bottom: 1em;
     }
 
     #NAME_Form .field-container > p {
@@ -731,6 +731,10 @@
         border: none;
     }
 
+    #MAIL_Form {
+        margin-bottom: 1em;
+    }
+
     #MAIL_Form .field-container > p {
         display: flex;
         justify-content: center;
@@ -764,6 +768,10 @@
         border: none;
     }
 
+    #PASS_Form {
+        margin-bottom: 1em;
+    }
+
     #PASS_Form .field-container > p {
         display: flex;
         justify-content: center;
@@ -795,6 +803,10 @@
         font-family: Kodchasan;
         font-size: 1rem;
         border: none;
+    }
+
+    #TNAME_Form {
+        margin-bottom: 1em;
     }
 
     #TNAME_Form .field-container > p {
