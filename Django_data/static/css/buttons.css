@@ -136,6 +136,23 @@
         background: #202532;
         border: 1px solid #828282; 
     }
+
+    /* Switch Button */
+    .form-check-label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #switchCheckLabelTop {
+        width: 4em;
+        height: 2em;
+        border-radius: 0.6em;
+    }
     
 }
 
@@ -291,6 +308,24 @@
         background: #202532;
         border: 1px solid #828282; 
     }
+
+     /* Switch Button */
+     .form-check-label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #switchCheckLabelTop {
+        width: 4em;
+        height: 2em;
+        border-radius: 0.6em;
+    }
+    
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -446,4 +481,22 @@
         width: 100%;
         align-items: flex-start;
     }
+
+     /* Switch Button */
+     .form-check-label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #switchCheckLabelTop {
+        width: 4em;
+        height: 2em;
+        border-radius: 0.6em;
+    }
+    
 }
