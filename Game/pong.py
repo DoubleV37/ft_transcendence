@@ -3,38 +3,80 @@ import random
 import math
 
 
-def path_estimation( pos ):
-    cpball = ball_pos.copy()
-    cpball_speed = ball_speed.copy()
-    if IA_rand_dumb == 0:
-        cpball.x += random.choice([-50, 50])
+# pygame setup
+pygame.init()
 
-    if pos == 1:
-        if cpball_speed.x > 0:
-            return 360
-        while cpball.x > 50:
-            cpball += cpball_speed
-            if cpball.y < 6 or cpball.y > 714:
-                cpball_speed.y *= -1
-            if cpball.x > 1230:
-                break
-        return cpball.y + IA_random
+window_width = 1200
+window_height = 900
+screen = pygame.display.set_mode((window_width, window_height))
+
+
+clock = pygame.time.Clock()
+pygame.display.set_caption("PONG")
+running = True
+dt = 0
+player_pos = window_height / 2
+point = [0, 0]
+
+#rules
+paddle_height = 100
+paddle_width = 10
+paddle_padding = 50
+paddle_speed = 3
+ball_start_speed = [3, random.uniform(-1, 1)]
+ball_acceleration = 0.2
+paddle_radius = 8
+IA_lvl = 20
+IA_dumb = 4
+
+# ball move
+ball_radius = 5
+ball_speed = pygame.Vector2( ball_start_speed )
+ball_pos = pygame.Vector2( paddle_padding, window_height / 2)
+ball_old_pos = []
+
+# IA move
+IA_pos = window_height / 2
+IA_target = window_height / 2
+IA_counter = 0
+IA_random = random.randint( -IA_lvl, IA_lvl )
+IA_rand_dumb = random.randint( 0, IA_dumb )
+
+
+#stats
+ball_max_speed = [0, 0]
+ball_bonce = 0
+max_exchange = 0
+exchange = 0
+
+def path_estimation( player, pos , speed ):
+
+    if IA_rand_dumb == 0:
+        pos.x += random.choice([-paddle_padding, paddle_padding])
+
+    if player == 1:
+        if speed.x > 0:
+            return window_height / 2
+        while pos.x > paddle_padding + paddle_width:
+            pos += speed
+            if pos.y < ball_radius or pos.y > window_height - ball_radius:
+                speed.y *= -1
+        return pos.y + IA_random
 
     else:
-        if cpball_speed.x < 0:
-            return 360
-        while cpball.x < 1230:
-            cpball += cpball_speed
-            if cpball.y < 6 or cpball.y > 714:
-                cpball_speed.y *= -1
-            if cpball.x < 50:
-                break
-        return cpball.y + IA_random
+        if speed.x < 0:
+            return window_height / 2
+        while pos.x < window_width - paddle_padding:
+            pos += speed
+            if pos.y < ball_radius or pos.y > window_height - ball_radius:
+                speed.y *= -1
+        return pos.y + IA_random
+
 
 def paddle_move( pos, target, speed ):
     if 0 < pos > target + speed:
         pos -= speed
-    elif 720 > pos < target - speed:
+    elif window_height > pos < target - speed:
         pos += speed
     return pos
 
@@ -47,46 +89,6 @@ def print_stat():
     print("max speed: ", round(ball_max_speed[0] * 10, 1), " - ", round(ball_max_speed[1] * 10, 1))
     print("bounce: ", ball_bonce)
     print("max exchange: ", max_exchange)
-
-# pygame setup
-pygame.init()
-resolution = (1280, 720)
-screen = pygame.display.set_mode(resolution)
-clock = pygame.time.Clock()
-pygame.display.set_caption("PONG")
-running = True
-dt = 0
-player_pos = 360
-point = [0, 0]
-
-#rules
-paddle_size = 100
-paddle_speed = 3
-ball_start_speed = [3, random.uniform(-1, 1)]
-ball_acceleration = 0.2
-paddle_radius = 8
-IA_lvl = 20
-IA_dumb = 10
-
-# ball move
-ball_speed = pygame.Vector2( ball_start_speed )
-ball_pos = pygame.Vector2(100, 360)
-ball_old_pos = []
-
-# IA move
-IA_pos = 360
-IA_target = 360
-IA_counter = 0
-IA_random = random.randint( -IA_lvl, IA_lvl )
-IA_rand_dumb = random.randint( 0, IA_dumb )
-
-
-#stats
-ball_max_speed = [0, 0]
-ball_bonce = 0
-max_exchange = 0
-exchange = 0
-
 
 while running:
 
@@ -104,23 +106,22 @@ while running:
     if keys[pygame.K_UP] and player_pos > 0:
         player_pos -= paddle_speed
 
-    elif keys[pygame.K_DOWN] and player_pos < 720:
+    elif keys[pygame.K_DOWN] and player_pos < window_height:
         player_pos += paddle_speed
 
     screen.fill("black")
     
     # draw middle line
-    for i in range(0, 17):
-        pygame.draw.rect(screen, "white", (638, 33 + i * 40, 4, 15))
+    pygame.draw.rect(screen, "white", (window_width / 2 - 2, 0, 4, window_height))
 
     # draw IA
-    IA = pygame.draw.rect(screen, "white", (50, IA_pos - 50, 10, paddle_size))
+    IA = pygame.draw.rect(screen, "white", ( paddle_padding - paddle_width, IA_pos - (paddle_height / 2), paddle_width, paddle_height))
 
     # draw ball
-    ball = pygame.draw.circle(screen, "white", ball_pos, 12)
+    ball = pygame.draw.circle(screen, "white", ball_pos, 2 * ball_radius)
 
     # draw player
-    player = pygame.draw.rect(screen, "white", (1230, (player_pos - 50), 10, paddle_size))
+    player = pygame.draw.rect(screen, "white", ( window_width - paddle_padding, player_pos - (paddle_height / 2), paddle_width, paddle_height))
 
     # draw ball trail
     ball_old_pos.append(ball_pos.copy())
@@ -135,7 +136,7 @@ while running:
     # ball move
     ball_pos += ball_speed
 
-    if 58 > ball_pos.x > (58 + ( 2 * ball_speed.x)) and ball_speed.x < 0 and IA_pos - ((paddle_size + 16) / 2) < ball_pos.y < IA_pos + ((paddle_size + 16) / 2):
+    if (paddle_padding + ball_radius) > ball_pos.x > ((paddle_padding + ball_radius) + ( 2 * ball_speed.x)) and ball_speed.x < 0 and IA_pos - (paddle_height / 2 + ball_radius) < ball_pos.y < IA_pos + (paddle_height / 2 + ball_radius):
         ball_speed.x *= -1
         ball_speed.x += ball_acceleration
         ball_speed.y = (ball_pos.y - IA_pos) / paddle_radius
@@ -146,7 +147,7 @@ while running:
         if math.sqrt( ball_speed.x ** 2 + ball_speed.y ** 2 ) > ball_max_speed[0]:
             ball_max_speed[0] = math.sqrt( ball_speed.x ** 2 + ball_speed.y ** 2 )
 
-    elif 1222 < ball_pos.x < (1222 + ( 2 * ball_speed.x)) and ball_speed.x > 0 and player_pos - ((paddle_size + 16) / 2) < ball_pos.y < player_pos + ((paddle_size + 16) / 2):
+    elif (window_width - paddle_padding - paddle_width + ball_radius) < ball_pos.x < ((window_width - paddle_padding - paddle_width + ball_radius) + ( 2 * ball_speed.x)) and ball_speed.x > 0 and player_pos - (paddle_height / 2 + ball_radius) < ball_pos.y < player_pos + (paddle_height / 2 + ball_radius):
         ball_speed.x *= -1
         ball_speed.x -= ball_acceleration
         ball_speed.y = (ball_pos.y - player_pos) / paddle_radius
@@ -157,15 +158,15 @@ while running:
         if math.sqrt( ball_speed.x ** 2 + ball_speed.y ** 2 ) > ball_max_speed[1]:
             ball_max_speed[1] = math.sqrt( ball_speed.x ** 2 + ball_speed.y ** 2 )
 
-    if ball_pos.y < 10 and ball_speed.y < 0 or ball_pos.y > 710 and ball_speed.y > 0:
+    if ball_pos.y < ball_radius and ball_speed.y < 0 or ball_pos.y > window_height - ball_radius and ball_speed.y > 0:
         ball_speed.y *= -1
         ball_bonce += 1
     
-    if ball_pos.x > 1280:
-        ball_pos = pygame.Vector2(1180, 360)
+    if ball_pos.x > window_width:
+        ball_pos = pygame.Vector2( window_width - paddle_padding, window_height / 2 )
         ball_speed = pygame.Vector2(-3, random.uniform(-1, 1))
-        IA_pos = 360
-        player_pos = 360
+        IA_pos = window_height / 2
+        player_pos = window_height / 2
         point[0] += 1
         pygame.display.set_caption(f"{point[0]} IA | Player {point[1]}")
         screen.fill("black")
@@ -175,10 +176,10 @@ while running:
         pygame.time.delay(500)
 
     if ball_pos.x < 0:
-        ball_pos = pygame.Vector2(100, 360)
+        ball_pos = pygame.Vector2( paddle_padding, window_height / 2 )
         ball_speed = pygame.Vector2(3, random.uniform(-1, 1))
-        IA_pos = 360
-        player_pos = 360
+        IA_pos = window_height / 2
+        player_pos = window_height / 2
         point[1] += 1
         pygame.display.set_caption(f"{point[0]} IA | Player {point[1]}")
         screen.fill("black")
@@ -187,17 +188,18 @@ while running:
         exchange = 0
         pygame.time.delay(500)
 
-    if IA_counter == 0:
-        IA_target = path_estimation( 1 )
+    # IA move
 
-    
+    if IA_counter == 0:
+        IA_target = path_estimation( 1, ball_pos.copy(), ball_speed.copy() )
+
     IA_counter += 1
 
     if IA_counter > 240:
         IA_counter = 0
-
-    # IA move
     
+    # player_pos = paddle_move( player_pos, path_estimation( 0, ball_pos.copy(), ball_speed.copy()), paddle_speed)
+
     IA_pos = paddle_move( IA_pos, IA_target, paddle_speed )
 
     pygame.display.flip()
