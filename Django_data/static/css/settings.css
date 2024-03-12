@@ -605,26 +605,29 @@
     /* Styles */
     #Settings {
         display: flex;
-        width: 80%;
         flex-direction: column;
-        gap: 2rem;
         flex-shrink: 0;
+    }
+
+    .margin_bottom {
+        margin-bottom: 2000px;
     }
 
     #section {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        align-items: center;
         width: 100%;
     }
 
-    #headerTextRowMobile {
-        width: 100%;
+    #headerTextRow {
+        display: none
+        /* width: 100%;
         margin-top: 3em;
         margin-bottom: 3em;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center; */
     }
 
     #settingsTitle::before {
@@ -674,7 +677,7 @@
         display: flex;
     }
 
-    .TEXT_Form > p {
+    .TEXT_Form .field-container > p {
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -694,7 +697,7 @@
 
     .TEXT_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 95%;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -727,7 +730,6 @@
 
     #AvatarText {
         color: #FFF;
-        /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
         font-style: normal;
