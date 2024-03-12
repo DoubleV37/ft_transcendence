@@ -65,6 +65,7 @@ function  launchSectionHandler(element) {
       case 'SETTINGS':
         settings_SetEvents();
         modal_AvatarInit();
+        header_SetEvents();
 	break ;
 
       default:
