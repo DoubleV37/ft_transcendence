@@ -603,14 +603,29 @@
 /* Smartphones (portrait and landscape) and small tablets ----------- */
 @media only screen and (min-width : 1em) and (max-width : 36.25em) {
     /* Styles */
+
+    #leftcolumn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #rightcolumn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
     #Settings {
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
+        width: 90%;
+        max-width: 20em;
     }
 
     .margin_bottom {
-        margin-bottom: 2000px;
+        margin-bottom: 4em;
     }
 
     #section {
@@ -675,17 +690,24 @@
 
     .field-container {
         display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
 
-    .TEXT_Form .field-container > p {
+    #NAME_Form {
+
+    }
+
+    #NAME_Form .field-container > p {
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: flex-start;
         align-self: stretch;
+        width: 100%;
     }
 
-    .TEXT_Form p label {
+    #NAME_Form p label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -695,7 +717,106 @@
         line-height: normal;
     }
 
-    .TEXT_Form p input {
+    #NAME_Form p input {
+        height: 3.125rem;
+        width: 95%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #MAIL_Form .field-container > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        width: 100%;
+    }
+
+    #MAIL_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #MAIL_Form p input {
+        height: 3.125rem;
+        width: 95%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #PASS_Form .field-container > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        width: 100%;
+    }
+
+    #PASS_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #PASS_Form p input {
+        height: 3.125rem;
+        width: 95%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #TNAME_Form .field-container > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        width: 100%;
+    }
+
+    #TNAME_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #TNAME_Form p input {
         height: 3.125rem;
         width: 95%;
         align-self: stretch;
@@ -777,4 +898,6 @@
     #TEXT_Form {
         margin-bottom: 1em;
     }
+
+    
 }
