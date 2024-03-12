@@ -58,24 +58,38 @@ function  header_DelEvents() {
 }
 
 function  header_LogoCallback() {
-  loadPage(`${ROUTE.HOME}`);
+  try {
+    loadPage(`${ROUTE.HOME}`);
+  }
+  catch (error) {
+    console.log(`Error - hL: ${error}`);
+  }
 }
 
 function  header_SignInCallBack() {
-  loadPage(`${ROUTE.SIGNIN}`);
+  try {
+    loadPage(`${ROUTE.SIGNIN}`);
+  }
+  catch (error) {
+    console.log(`Error - hS: ${error}`);
+  }
 }
 
 async function  header_ModProfilCallBack() {
-  await changeSection(`${ROUTE.PROFILE}`, '#ProfileModal');
-  offcanvas_Hide()
-  profileModal.show();
+  try {
+    await changeSection(`${ROUTE.PROFILE}`, '#ProfileModal');
+    offcanvas_Hide();
+    profileModal.show();
+  }
+  catch (error) {
+    console.log(`Error - hM: ${error}`);
+  }
 }
 
-async function  header_SignOutCallBack(event) {
-  event.preventDefault();
-  const	response = await SignOut();
+async function  header_SignOutCallBack() {
+  try {
+    await MakeRequest(`${ROUTE.SIGNOUT}`);
 
-  if (response == true) {
     if (currentUrl == ROUTE.HOME) {
       await changeSection(`${ROUTE.HOME}`, '#content');
     }
@@ -85,5 +99,8 @@ async function  header_SignOutCallBack(event) {
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     header_SetEvents();
+  }
+  catch (err) {
+    console.log(`Error - hSO: ${error}`);
   }
 }

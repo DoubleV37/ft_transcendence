@@ -8,5 +8,5 @@ urlpatterns = [
 
     path('settings/', views.my_settings, name='my_settings'),
 
-#     path('jwt/refresh', views.refresh_jwt, name='refresh'),
+    path('jwt/refresh/', views.refresh_jwt, name='refresh'),
 ]

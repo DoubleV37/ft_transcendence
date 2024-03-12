@@ -50,7 +50,12 @@ function  profile_DelEvents() {
 
 async function  profile_SettingsCallBack() {
   profileModal.hide();
-  await loadPage(`${ROUTE.SETTINGS}`);
+  try {
+    await loadPage(`${ROUTE.SETTINGS}`);
+  }
+  catch (err) {
+    console.log(`error profile_settings: ${err}`);
+  }
 }
 
 function  profile_closeModal() {

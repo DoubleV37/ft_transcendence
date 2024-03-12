@@ -61,14 +61,13 @@ def signin(request):
 # ___________________________________________________________________________ #
 # _ SINGNOUT ________________________________________________________________ #
 
+from django.views.decorators.csrf import csrf_exempt
+
 
 def signout(request):
-    user = request.user
-    user.refresh_token = None
-    user.save()
     logout(request)
-    response = HttpResponse()
-    response.delete_cookie('access_token')
+    response = HttpResponse(status=200)
+    response.delete_cookie('jwt_token')
     return response
 
 
@@ -145,6 +144,28 @@ def my_settings(request):
 # _  JWT ____________________________________________________________________ #
 
 
+def refresh_jwt(request):
+    logger.info(request.method)
+    if request.method == 'GET':
+        logger.info('aled 1')
+        user = request.user
+        logger.info('aled 2')
+        logger.info(user.refresh_token)
+        if user.refresh_token is None:
+            logger.info('aled 3')
+            return HttpResponse("Bad Token", status=498)
+        logger.info('aled 4')
+        jwt_token = create_jwt(user)
+        response = HttpResponse()
+        response.set_cookie(key='jwt_token',
+                            value=str(jwt_token),
+                            httponly=True,
+                            secure=True,
+                            samesite='Lax')
+        return response
+    return HttpResponse("Exception", status=400)
+
+
 def create_jwt(_user, _type="access"):
     payload = {'id': _user.id,
                'username': _user.username,
@@ -153,7 +174,7 @@ def create_jwt(_user, _type="access"):
     algorithm = config('HASH')
     if _type == "access":
         time_now = datetime.datetime.utcnow()
-        payload = {"exp": time_now + datetime.timedelta(minutes=30),
+        payload = {"exp": time_now + datetime.timedelta(hours=1),
                    "iss": config('NAME')}
     token = jwt.encode(payload, secret_key, algorithm=algorithm)
     return token
