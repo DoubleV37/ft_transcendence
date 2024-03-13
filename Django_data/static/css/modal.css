@@ -141,6 +141,7 @@ scrollbar-width: none;
     }
 
     .modal-profilePic {
+		height: 5em;
         width: 5em;
     }
 
@@ -185,6 +186,10 @@ scrollbar-width: none;
 		align-items: center;
 		flex-shrink: 0;
 		position: relative;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		padding-left: 0rem;
+		padding-right: 0rem;
 	}
 
 
@@ -209,6 +214,7 @@ scrollbar-width: none;
     }
 
     .modal-profilePic {
+		height: 5em;
         width: 5em;
     }
 }

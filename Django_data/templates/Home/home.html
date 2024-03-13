@@ -19,11 +19,11 @@
 					</div>
 					<div class="welcome-text">
 						<h1 class="welcome-to-pong">Welcome to Pong</h1>
-						<p class="please-log-in">Before you begin, please:</p>
 					</div>
 					{% if user.is_authenticated %}
-						<button id="PlayButton" class="play-button"><span class="play">Play!</span></button>
+					<button id="PlayButton" class="play-button"><span class="play">Play!</span></button>
 					{% else %}
+						<p class="please-log-in">Before you begin, please:</p>
 						<div id="HomeDualButton">
 							<button id="SigninButton"><span class="play">Sign in</span></button>
 							<p class='please-log-in'>or</p>

@@ -4,6 +4,7 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.hashers import make_password
 from .models import User
+from apps.Twofa.models import UserTwoFA
 
 
 
@@ -110,8 +111,8 @@ class My_Name(forms.ModelForm):
         model = User
         fields = ('username',)
 
-
 class My_Mail(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email',)
+

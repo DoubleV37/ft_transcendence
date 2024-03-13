@@ -84,11 +84,11 @@
         display: flex;
     }
 
-    #TEXT_Form {
+    #NAME_Form {
         margin-bottom: 1em;
     }
 
-    #TEXT_Form > p {
+    #NAME_Form > p {
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -96,7 +96,7 @@
         align-self: stretch;
     }
 
-    #TEXT_Form p label {
+    #NAME_Form p label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -106,7 +106,118 @@
         line-height: normal;
     }
 
-    #TEXT_Form p input {
+    #NAME_Form p input {
+        height: 3.125rem;
+        width: 95%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-right: 0.8em;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #MAIL_Form {
+        margin-bottom: 1em;
+    }
+
+    #MAIL_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    #MAIL_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #MAIL_Form p input {
+        height: 3.125rem;
+        width: 95%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-right: 0.8em;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #PASS_Form {
+        margin-bottom: 1em;
+    }
+
+    #PASS_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    #PASS_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #PASS_Form p input {
+        height: 3.125rem;
+        width: 95%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-right: 0.8em;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #TNAME_Form {
+        margin-bottom: 1em;
+    }
+
+    #TNAME_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    #TNAME_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #TNAME_Form p input {
         height: 3.125rem;
         width: 95%;
         align-self: stretch;
@@ -179,7 +290,7 @@
     }
 
     #AvatarBackArrow {
-        width: 8%;
+        width: 3rem;
         font-size: 0px;
         padding: 0;
         background: transparent;
@@ -193,6 +304,8 @@
     .settings-profilePic {
 		height: 6em;
         width: 6em;
+        object-fit: cover;
+        cursor: pointer;
     }
     
 }
@@ -278,11 +391,11 @@
         display: flex;
     }
 
-    #TEXT_Form {
+    #NAME_Form {
         margin-bottom: 1em;
     }
 
-    #TEXT_Form > p {
+    #NAME_Form > p {
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -290,7 +403,7 @@
         align-self: stretch;
     }
 
-    #TEXT_Form p label {
+    #NAME_Form p label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -300,7 +413,115 @@
         line-height: normal;
     }
 
-    #TEXT_Form p input {
+    #NAME_Form p input {
+        height: 3.125rem;
+        width: 10.8em;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #MAIL_Form {
+        margin-bottom: 1em;
+    }
+
+    #MAIL_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    #MAIL_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #MAIL_Form p input {
+        height: 3.125rem;
+        width: 10.8em;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #PASS_Form {
+        margin-bottom: 1em;
+    }
+
+    #PASS_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    #PASS_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #PASS_Form p input {
+        height: 3.125rem;
+        width: 10.8em;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #TNAME_Form {
+        margin-bottom: 1em;
+    }
+
+    #TNAME_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    #TNAME_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #TNAME_Form p input {
         height: 3.125rem;
         width: 10.8em;
         align-self: stretch;
@@ -364,7 +585,7 @@
     }
 
     #AvatarBackArrow {
-        width: 8%;
+        width: 3rem;
         font-size: 0px;
         padding: 0;
         background: transparent;
@@ -376,36 +597,56 @@
     }
 
     .settings-profilePic {
-		height: 6em;
+	height: 6em;
         width: 6em;
+        object-fit: cover;
+        cursor: pointer;
     }
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
 @media only screen and (min-width : 1em) and (max-width : 36.25em) {
     /* Styles */
+
+    #leftcolumn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #rightcolumn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
     #Settings {
         display: flex;
-        width: 80%;
         flex-direction: column;
-        gap: 2rem;
         flex-shrink: 0;
+        width: 90%;
+        max-width: 20em;
+    }
+
+    .margin_bottom {
+        margin-bottom: 4em;
     }
 
     #section {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        align-items: center;
         width: 100%;
     }
 
-    #headerTextRowMobile {
-        width: 100%;
+    #headerTextRow {
+        display: none
+        /* width: 100%;
         margin-top: 3em;
         margin-bottom: 3em;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center; */
     }
 
     #settingsTitle::before {
@@ -453,17 +694,24 @@
 
     .field-container {
         display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
 
-    #TEXT_Form > p {
+    #NAME_Form {
+        margin-bottom: 1em;
+    }
+
+    #NAME_Form .field-container > p {
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: flex-start;
         align-self: stretch;
+        width: 100%;
     }
 
-    #TEXT_Form p label {
+    #NAME_Form p label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -473,9 +721,120 @@
         line-height: normal;
     }
 
-    #TEXT_Form p input {
+    #NAME_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 95%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #MAIL_Form {
+        margin-bottom: 1em;
+    }
+
+    #MAIL_Form .field-container > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        width: 100%;
+    }
+
+    #MAIL_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #MAIL_Form p input {
+        height: 3.125rem;
+        width: 95%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #PASS_Form {
+        margin-bottom: 1em;
+    }
+
+    #PASS_Form .field-container > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        width: 100%;
+    }
+
+    #PASS_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #PASS_Form p input {
+        height: 3.125rem;
+        width: 95%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-top: 0.5em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #TNAME_Form {
+        margin-bottom: 1em;
+    }
+
+    #TNAME_Form .field-container > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        width: 100%;
+    }
+
+    #TNAME_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #TNAME_Form p input {
+        height: 3.125rem;
+        width: 95%;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -508,7 +867,6 @@
 
     #AvatarText {
         color: #FFF;
-        /* Body text */
         font-family: Kodchasan;
         font-size: 1rem;
         font-style: normal;
@@ -537,7 +895,7 @@
     }
 
     #AvatarBackArrow {
-        width: 8%;
+        width: 3rem;
         font-size: 0px;
         padding: 0;
         background: transparent;
@@ -551,6 +909,9 @@
     .settings-profilePic {
 		height: 6em;
         width: 6em;
+        object-fit: cover;
+        cursor: pointer;
+    }
 
     #TEXT_Form {
         margin-bottom: 1em;

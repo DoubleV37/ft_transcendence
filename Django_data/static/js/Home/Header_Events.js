@@ -12,11 +12,17 @@ function  header_SetEvents() {
     element = document.getElementById('HEADER_NavProfile');
     element.addEventListener('click', header_ModProfilCallBack);
 
-    element = document.getElementById('HEADER_Profile');
+    element = document.getElementById('HEADER_user');
     element.addEventListener('click', header_ModProfilCallBack);
   }
   else if (IsAuthenticated === 'false') {
     element = document.getElementById('HEADER_Signin');
+    element.addEventListener('click', header_SignInCallBack);
+
+    element = document.getElementById('HEADER_NavSignUp');
+    element.addEventListener('click', header_SignUpCallBack);
+
+    element = document.getElementById('HEADER_NavSignIn');
     element.addEventListener('click', header_SignInCallBack);
   }
   else {
@@ -35,7 +41,7 @@ function  header_DelEvents() {
   const	IsAuthenticated = element.getAttribute('data-auth');
 
   if (IsAuthenticated === 'true') {
-    element = document.getElementById('HEADER_Profile');
+    element = document.getElementById('HEADER_user');
     element.removeEventListener('click', header_ModProfilCallBack);
 
     element = document.getElementById('HEADER_NavProfile');
@@ -47,6 +53,12 @@ function  header_DelEvents() {
   else if (IsAuthenticated === 'false') {
     element = document.getElementById('HEADER_Signin');
     element.removeEventListener('click', header_SignInCallBack);
+
+    element = document.getElementById('HEADER_NavSignUp');
+    element.addEventListener('click', header_SignUpCallBack);
+
+    element = document.getElementById('HEADER_NavSignIn');
+    element.addEventListener('click', header_SignInCallBack);
   }
 
   else {
@@ -83,6 +95,16 @@ async function  header_ModProfilCallBack() {
   }
   catch (error) {
     console.log(`Error - header_M: ${error}`);
+  }
+}
+
+function  header_SignUpCallBack() {
+  offcanvas_Hide()
+  try {
+    loadPage(`${ROUTE.SIGNUP}`);
+  }
+  catch (error) {
+    console.log(`Error - header_SU: ${error}`);
   }
 }
 

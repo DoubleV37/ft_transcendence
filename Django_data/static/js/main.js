@@ -66,7 +66,7 @@ function  launchSectionHandler(element) {
   // VOIR AVEC JEAN
         settings_SetEvents();
         modal_AvatarInit();
-        console.log('?????????');
+        header_SetEvents();
 	break ;
 
       default:
