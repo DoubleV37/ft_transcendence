@@ -5,66 +5,68 @@
 {% include "Home/head.html" %}
 <body>
   {% include "Profile/Profile.html" %}
+  {% include "Profile/Avatar.html" %}
   {% include "Home/header.html" %}
   <div id="content">
-	  <div id="titleContent" data-content="SETTINGS"></div>
-	  <div id="overlayFullscreen">
-		  <img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-		  <div class="midFullscreen midrow">
-			  <div id="section">
-				  <div id="headerTextRow">
-					  <h1 id="settingsTitle">Settings</h1>
-					  <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
-				  </div>
-			  </div>
-			  <div id="section">
-				  <div id="leftcolumn">
-					  <div id="Settings">
-						  <button class="ButtonLayout ButtonNeon">Account Settings</button>
-						  <button class="ButtonLayout ButtonBlue">History</button>
-						  <button class="ButtonLayout ButtonBlue">Stats</button>
-						  <button class="ButtonLayout ButtonBlue">42 Account</button>
-					  </div>
-				  </div>
-				  <div id="rightcolumn">
-					  <div id="titleContent" data-content="PROFILE_PAGE"></div>
-					  <div id="Settings">
-						  <button class="ButtonLayout ButtonNeon">Display Settings</button>
-						  <button class="ButtonLayout ButtonSalmon">Skins</button>
-						  <button class="ButtonLayout ButtonBlue">History</button>
-					  </div>
-				  </div>
-			  </div>
-		  </div>
+    <div id="titleContent" data-content="SETTINGS"></div>
+      <div id="overlayFullscreen">
+	<img id="BackArrowFullscreen" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+	<div class="midFullscreen midrow margin_button" >
+	  <div id="section">
+	    <div id="headerTextRow">
+	      <h1 id="settingsTitle">Settings</h1>
+	      <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
+	    </div>
 	  </div>
-	  <div id="overlayMobile">
-		  <div class="midMobile midcolumn">
-		    <div id="titleContent" data-content="SIGNUP_PAGE"></div>
-		  <img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
-			  <div id="headerTextRowMobile">
-				  <h1 id="settingsTitle">Settings</h1>
-				  <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
-			  </div>
-			  <button class="ButtonLayout ButtonNeon">Display Settings</button>
-			  <button class="ButtonLayout ButtonSalmon">Skins</button>
-			  <button class="ButtonLayout ButtonBlue">History</button>
-			  <button class="ButtonLayout ButtonNeon">Display Settings</button>
-			  <button class="ButtonLayout ButtonSalmon">Skins</button>
-			  <button class="ButtonLayout ButtonBlue">History</button>
-			  <button class="ButtonLayout ButtonNeon">Display Settings</button>
-			  <button class="ButtonLayout ButtonSalmon">Skins</button>
-			  <button class="ButtonLayout ButtonBlue">History</button>
-			  <button class="ButtonLayout ButtonNeon">Display Settings</button>
-			  <button class="ButtonLayout ButtonSalmon">Skins</button>
-			  <button class="ButtonLayout ButtonBlue">History</button>
-			  <button class="ButtonLayout ButtonNeon">Display Settings</button>
-			  <button class="ButtonLayout ButtonSalmon">Skins</button>
-			  <button class="ButtonLayout ButtonBlue">History</button>
-			  <button class="ButtonLayout ButtonNeon">Display Settings</button>
-			  <button class="ButtonLayout ButtonSalmon">Skins</button>
-			  <button class="ButtonLayout ButtonBlue">History</button>
-		  </div>
+	  <div id="section">
+	    <div id="leftcolumn">
+	      <div id="Settings">
+		<button class="ButtonLayout ButtonNeon">Account Settings</button>
+		<button class="ButtonLayout ButtonBlue">History</button>
+		<button class="ButtonLayout ButtonBlue">Stats</button>
+		<button class="ButtonLayout ButtonBlue">42 Account</button>
+	      </div>
+	    </div>
+	    <div id="rightcolumn">
+	      <div id="titleContent" data-content="PROFILE_PAGE"></div>
+	      <div id="Settings">
+		<button class="ButtonLayout ButtonNeon">Display Settings</button>
+		<button class="ButtonLayout ButtonSalmon">Skins</button>
+		<button class="ButtonLayout ButtonBlue">History</button>
+	      </div>
+	    </div>
 	  </div>
+	</div>
+      </div>
+      <div id="overlayMobile">
+	<div class="midMobile midcolumn">
+	  <div id="titleContent" data-content="SIGNUP_PAGE"></div>
+	  <img id="BackArrowMobile" src="{% static 'images/Arrow.png' %}" alt="Shitty back arrow"></img>
+	  <div id="headerTextRowMobile">
+	    <h1 id="settingsTitle">Settings</h1>
+	    <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
+	  </div>
+	  <button class="ButtonLayout ButtonNeon">Display Settings</button>
+	  <button class="ButtonLayout ButtonSalmon">Skins</button>
+	  <button class="ButtonLayout ButtonBlue">History</button>
+	  <button class="ButtonLayout ButtonNeon">Display Settings</button>
+	  <button class="ButtonLayout ButtonSalmon">Skins</button>
+	  <button class="ButtonLayout ButtonBlue">History</button>
+	  <button class="ButtonLayout ButtonNeon">Display Settings</button>
+	  <button class="ButtonLayout ButtonSalmon">Skins</button>
+	  <button class="ButtonLayout ButtonBlue">History</button>
+	  <button class="ButtonLayout ButtonNeon">Display Settings</button>
+	  <button class="ButtonLayout ButtonSalmon">Skins</button>
+	  <button class="ButtonLayout ButtonBlue">History</button>
+	  <button class="ButtonLayout ButtonNeon">Display Settings</button>
+	  <button class="ButtonLayout ButtonSalmon">Skins</button>
+	  <button class="ButtonLayout ButtonBlue">History</button>
+	  <button class="ButtonLayout ButtonNeon">Display Settings</button>
+	  <button class="ButtonLayout ButtonSalmon">Skins</button>
+	  <button class="ButtonLayout ButtonBlue">History</button>
+	</div>
+      </div>
+    </div>
   </div>
   {% include "Home/footer.html" %}
 </body>

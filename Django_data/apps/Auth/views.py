@@ -23,10 +23,8 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            # form.save()
             user = form.save()
             user.save()
-            # login(request, user)
             return JsonResponse({'status': 'success'})
         return JsonResponse({'status': 'error', 'message': form.errors})
     else:
@@ -49,7 +47,6 @@ def signin(request):
 
             if user is not None:
                 login(request, user)
-
                 if user.to2fa.enable:
                     response = {'success': True, '2fa': True}
                 else:
@@ -89,6 +86,7 @@ def validator_fct(form, button: str, request, response: dict()) -> dict():
 
 
 def my_settings(request):
+    
     try:
         my_user = User.objects.get(username=request.user.username)
 

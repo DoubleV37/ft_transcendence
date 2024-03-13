@@ -1,81 +1,25 @@
-function  setHomeEvents(element) {
-  console.log('No event on HomeContent for now');
-//  const	status = element.getAttribute('data-status');
-//
-//  switch (status) {
-//    case 'connected':
-//      setConnectedHomeEvents();
-//      break ;
-//    case 'anonymous':
-//      setAnonymousHomeEvents();
-//      break ;
-//
-//    default:
-//      throw new Error(`setHomeEvents : status : ${status} not recognised`)
-//  }
+function  home_SetEvents() {
+
+  let element = document.getElementById('SigninButton');
+  element.addEventListener('click', SigninCallBack);
+
+  element = document.getElementById('SignupButton');
+  element.addEventListener('click', SignupCallBack);
 }
 
-//function  setConnectedHomeEvents() {
-//  let	element = document.getElementById('Home_signIn');
+function  home_DelEvents() {
 
-//  element.addEventListener('click', HomeCallBack);
-  //  .
-  //  .
-  //  .
+  let element = document.getElementById('SigninButton');
+  element.removeEventListener('click', SigninCallBack);
 
-//}
+  element = document.getElementById('SignupButton');
+  element.removeEventListener('click', SignupCallBack);
+}
 
-//function  setAnonymousHomeEvents() {
-//  console.log(`Well do nothing for now. Element : ${element}`);
-  //  .
-  //  .
-  //  .
+function  SigninCallBack() {
+  loadPage(`${ROUTE.SIGNIN}`);
+}
 
-//}
-
-//function  HomeCallBack(event) {
-//  const	targetElem = event.target;
-//  const	elemAttr = targetElem.getAttribute('id');
-//
-//  switch (elemAttr) {
-//    case 'Home_signIn':
-//      deleteHomeEvents('connected');
-//      loadPage(`${ROUTE.SIGNIN}`);
-//      break ;
-//    default :
-//      throw new Error(`homeCallBack : element unrecognized : ${element}`);
-//  }
-//}
-
-//function  deleteHomeEvents(status) {
-//  switch (status) {
-//    case 'connected':
-//      delConnectedHomeEvents();
-//      break ;
-//    case 'anonymous':
-//      delAnonymousHomeEvents();
-//      break ;
-//  //  .
-//  //  .
-//  //  . 
-//    default :
-//      throw new Error(`deleteHomeEvents : status unrecognized : ${status}`);
-//  }
-//}
-
-
-//function  delConnectedHomeEvents() {
-//  let element = document.getElementById('Home_signIn');
-
-//  element.removeEventListener('click', HomeCallBack);
-  //  .
-  //  .
-  //  . 
-//}
-
-//function  delAnonymousHomeEvents() {
-//  console.log(`delAnonymousHomeEvents: Well do nothing for now.`);
-  //  .
-  //  .
-  //  .
-//}
+function  SignupCallBack() {
+  loadPage(`${ROUTE.SIGNUP}`);
+}
