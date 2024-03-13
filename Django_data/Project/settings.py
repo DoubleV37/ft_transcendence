@@ -152,6 +152,12 @@ MEDIA_ROOT = BASE_DIR.joinpath('avatars/')
 
 AUTH_USER_MODEL = 'Auth.User'
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
