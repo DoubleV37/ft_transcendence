@@ -54,7 +54,7 @@ async function  profile_SettingsCallBack() {
     await loadPage(`${ROUTE.SETTINGS}`);
   }
   catch (err) {
-    console.log(`error profile_settings: ${err}`);
+    console.log(`Error - profile_S: ${err}`);
   }
 }
 

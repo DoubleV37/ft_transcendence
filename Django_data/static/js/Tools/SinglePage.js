@@ -12,14 +12,11 @@ async function fetchSection(section, request=null) {
     const _status = response.status;
     if (_status == 498 || _status == 499)
       throw new Error(_status + ':' + await response.text());
-    else
-      throw new Error(await response.text());
   }
   return response;
 }
 
 async function changeSection(section, content) {
-  //tempDiv.innerHTML = await fetchSection(section);
   try {
     let	tempDiv = document.createElement('div');
     let response =  await MakeRequest(section);
@@ -59,7 +56,7 @@ async function loadPage(url) {
 
 async function	MakeRequest(url, request=null) {
   try {
-    let response = await fetchSection(url, request);
+    const response = await fetchSection(url, request);
     return response;
   }
   catch (err) {

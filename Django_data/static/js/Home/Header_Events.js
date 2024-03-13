@@ -62,7 +62,7 @@ function  header_LogoCallback() {
     loadPage(`${ROUTE.HOME}`);
   }
   catch (error) {
-    console.log(`Error - hL: ${error}`);
+    console.log(`Error - header_L: ${error}`);
   }
 }
 
@@ -71,7 +71,7 @@ function  header_SignInCallBack() {
     loadPage(`${ROUTE.SIGNIN}`);
   }
   catch (error) {
-    console.log(`Error - hS: ${error}`);
+    console.log(`Error - header_S: ${error}`);
   }
 }
 
@@ -82,7 +82,7 @@ async function  header_ModProfilCallBack() {
     profileModal.show();
   }
   catch (error) {
-    console.log(`Error - hM: ${error}`);
+    console.log(`Error - header_M: ${error}`);
   }
 }
 
@@ -101,6 +101,6 @@ async function  header_SignOutCallBack() {
     header_SetEvents();
   }
   catch (err) {
-    console.log(`Error - hSO: ${error}`);
+    console.log(`Error - header_SO: ${error}`);
   }
 }

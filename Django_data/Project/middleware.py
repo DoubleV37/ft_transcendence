@@ -39,14 +39,11 @@ class UserPermission:
 
 
     def logged_handler(self, request):
-        _user = request.user
-
-        if _user.is_anonymous is True:
-            if request.method == 'GET':
-                return signin(request)
-            # ah je sais pas encore pour les POST et autres
-            return None
         try:
+            _user = request.user
+            if _user.is_anonymous is True:
+                return signin(request)
+
             encoded_token = request.COOKIES.get('jwt_token')
             if encoded_token is None:
                 signout(request)

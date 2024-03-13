@@ -8,7 +8,7 @@ async function signIn() {
       body: formData
     };
 
-    const response = await fetch(`${ROUTE.SIGNIN}`, myData);
+    const response = await MakeRequest(`${ROUTE.SIGNIN}`, myData);
 
     if (response.ok) {
       return true;
