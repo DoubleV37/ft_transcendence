@@ -21,20 +21,32 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("PONG")
 
 # Global variables
+
 running = True
-player_pos = window_height / 2
+lplayer_pos = window_height / 2
 point = [0, 0]
 ball_max_speed = [0, 0]
 ball_bonce = 0
 max_exchange = 0
 exchange = 0
-IA_pos = window_height / 2
+rplayer_pos = window_height / 2
 IA_target = window_height / 2
 IA_counter = 0
 ball_speed = pygame.Vector2( [3, random.uniform(-1, 1)] )
 ball_pos = pygame.Vector2( paddle_padding, window_height / 2)
 ball_old_pos = []
 IA_random = random.randint( -IA_lvl, IA_lvl )
+
+
+for_json = {}
+for_json["running"] = True
+for_json["point"] = point
+for_json["lplayer_pos"] = lplayer_pos
+for_json["rplayer_pos"] = rplayer_pos
+for_json["player_speed"] = paddle_speed
+for_json["ball_pos"] = ball_pos
+for_json["ball_speed"] = ball_speed
+
 
 def path_estimation( player, pos , speed ):
 
@@ -86,11 +98,11 @@ while running:
         running = False
         print_stat()
     
-    if keys[pygame.K_UP] and player_pos > 0:
-        player_pos -= paddle_speed
+    if keys[pygame.K_UP] and lplayer_pos > 0:
+        lplayer_pos -= paddle_speed
 
-    elif keys[pygame.K_DOWN] and player_pos < window_height:
-        player_pos += paddle_speed
+    elif keys[pygame.K_DOWN] and lplayer_pos < window_height:
+        lplayer_pos += paddle_speed
 
     screen.fill("black")
     
@@ -104,7 +116,7 @@ while running:
     ball = pygame.draw.circle(screen, "white", ball_pos, 2 * ball_radius)
 
     # draw player
-    player = pygame.draw.rect(screen, "white", ( window_width - paddle_padding, player_pos - (paddle_height / 2), paddle_width, paddle_height))
+    player = pygame.draw.rect(screen, "white", ( window_width - paddle_padding, lplayer_pos - (paddle_height / 2), paddle_width, paddle_height))
 
     # draw ball trail
     ball_old_pos.append(ball_pos.copy())
@@ -129,10 +141,10 @@ while running:
         if math.sqrt( ball_speed.x ** 2 + ball_speed.y ** 2 ) > ball_max_speed[0]:
             ball_max_speed[0] = math.sqrt( ball_speed.x ** 2 + ball_speed.y ** 2 )
 
-    elif (window_width - paddle_padding - paddle_width + ball_radius) < ball_pos.x < ((window_width - paddle_padding - paddle_width + ball_radius) + ( 2 * ball_speed.x)) and ball_speed.x > 0 and player_pos - (paddle_height / 2 + ball_radius) < ball_pos.y < player_pos + (paddle_height / 2 + ball_radius):
+    elif (window_width - paddle_padding - paddle_width + ball_radius) < ball_pos.x < ((window_width - paddle_padding - paddle_width + ball_radius) + ( 2 * ball_speed.x)) and ball_speed.x > 0 and lplayer_pos - (paddle_height / 2 + ball_radius) < ball_pos.y < lplayer_pos + (paddle_height / 2 + ball_radius):
         ball_speed.x *= -1
         ball_speed.x -= ball_acceleration
-        ball_speed.y = (ball_pos.y - player_pos) / paddle_radius
+        ball_speed.y = (ball_pos.y - lplayer_pos) / paddle_radius
         IA_random = random.randint( -IA_lvl, IA_lvl )
         exchange += 1
         ball_bonce += 1
@@ -147,7 +159,7 @@ while running:
         ball_pos = pygame.Vector2( window_width - paddle_padding, window_height / 2 )
         ball_speed = pygame.Vector2(-3, random.uniform(-1, 1))
         IA_pos = window_height / 2
-        player_pos = window_height / 2
+        lplayer_pos = window_height / 2
         point[0] += 1
         print(f"{point[0]} IA | Player {point[1]}")
         screen.fill("black")
@@ -160,7 +172,7 @@ while running:
         ball_pos = pygame.Vector2( paddle_padding, window_height / 2 )
         ball_speed = pygame.Vector2(3, random.uniform(-1, 1))
         IA_pos = window_height / 2
-        player_pos = window_height / 2
+        lplayer_pos = window_height / 2
         point[1] += 1
         print(f"{point[0]} IA | Player {point[1]}")
         screen.fill("black")
@@ -183,6 +195,6 @@ while running:
 
     pygame.display.flip()
 
-    # clock.tick(240) / 1000
+    clock.tick(240) / 1000
 
 pygame.quit()
