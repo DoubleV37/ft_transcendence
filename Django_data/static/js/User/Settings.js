@@ -3,6 +3,7 @@ async function nameSubmit() {
   let myForm = document.getElementById('NAME_Form');
   // let myData = settings_JsonForm(myForm);
   let formData = new FormData(myForm);
+  formData.append('name_button', 'name_button');
 
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
@@ -11,7 +12,6 @@ async function nameSubmit() {
 	  body: formData
     });
     const data = await response.json();
-
     if (data.success == true) {
       return true;
     }
@@ -32,6 +32,7 @@ async function mailSubmit() {
   let myForm = document.getElementById('MAIL_Form');
   // let myData = settings_JsonForm(myForm);
   let formData = new FormData(myForm);
+  formData.append('mail_button', 'mail_button');
 
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
@@ -61,6 +62,7 @@ async function passSubmit() {
   let myForm = document.getElementById('PASS_Form');
   // let myData = settings_JsonForm(myForm);
   let formData = new FormData(myForm);
+  formData.append('pswd_button', 'pswd_button');
 
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
@@ -90,6 +92,7 @@ async function tnameSubmit() {
   let myForm = document.getElementById('TNAME_Form');
   // let myData = settings_JsonForm(myForm);
   let formData = new FormData(myForm);
+  formData.append('tname_button', 'tname_button');
 
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
@@ -117,6 +120,7 @@ async function tnameSubmit() {
 async function avatarSubmit() {
   let myForm = document.getElementById('AVATAR_Form');
   let formData = new FormData(myForm);
+  formData.append('avatar_button', 'avatar_button');
   
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
