@@ -14,9 +14,14 @@ async function signIn() {
       return true;
     }
     else {
-      const data = await response.text();
-      SignIn_UpdateErrors(data);
-      document.getElementById('SIGNIN_Form').reset();
+      if (response.status == 403) {
+	Access_Denied(await response.text());
+      }
+      else {
+	const data = await response.text();
+	SignIn_UpdateErrors(data);
+	document.getElementById('SIGNIN_Form').reset();
+      }
       return false;
     }
   }

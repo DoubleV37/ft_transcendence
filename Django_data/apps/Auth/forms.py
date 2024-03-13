@@ -6,8 +6,6 @@ from django.contrib.auth.hashers import make_password
 from .models import User
 from apps.Twofa.models import UserTwoFA
 
-
-
 # Now you can use `hashed_password` to store in your database
 logger = logging.getLogger(__name__)
 

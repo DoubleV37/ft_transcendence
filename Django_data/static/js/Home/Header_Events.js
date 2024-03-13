@@ -2,6 +2,9 @@ function  header_SetEvents() {
   let element = document.getElementById('HEADER_Logo');
   element.addEventListener('click', header_LogoCallback);
 
+  element = document.getElementById('div_logo');
+  element.addEventListener('click', header_LogoCallback);
+
   element = document.getElementById('HEADER_IsAuth');
   const	IsAuthenticated = element.getAttribute('data-auth');
 
@@ -35,6 +38,9 @@ function  header_SetEvents() {
 
 function  header_DelEvents() {
   let element = document.getElementById('HEADER_Logo');
+  element.removeEventListener('click', header_LogoCallback);
+  
+  element = document.getElementById('div_logo');
   element.removeEventListener('click', header_LogoCallback);
 
   element = document.getElementById('HEADER_IsAuth');
@@ -72,6 +78,7 @@ function  header_DelEvents() {
 function  header_LogoCallback() {
   try {
     loadPage(`${ROUTE.HOME}`);
+    offcanvas_Hide()
   }
   catch (error) {
     console.log(`Error - header_L: ${error}`);
@@ -81,6 +88,7 @@ function  header_LogoCallback() {
 function  header_SignInCallBack() {
   try {
     loadPage(`${ROUTE.SIGNIN}`);
+    offcanvas_Hide()
   }
   catch (error) {
     console.log(`Error - header_S: ${error}`);
@@ -99,9 +107,9 @@ async function  header_ModProfilCallBack() {
 }
 
 function  header_SignUpCallBack() {
-  offcanvas_Hide()
   try {
     loadPage(`${ROUTE.SIGNUP}`);
+    offcanvas_Hide()
   }
   catch (error) {
     console.log(`Error - header_SU: ${error}`);
@@ -111,16 +119,12 @@ function  header_SignUpCallBack() {
 async function  header_SignOutCallBack() {
   try {
     await MakeRequest(`${ROUTE.SIGNOUT}`);
-
-    if (currentUrl == ROUTE.HOME) {
-      await changeSection(`${ROUTE.HOME}`, '#content');
-    }
-    else {
-      await loadPage(`${ROUTE.HOME}`);
-    }
+    //Need to delete the actual event before change the header and set the new home event
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     header_SetEvents();
+    
+    await changeSection(`${ROUTE.HOME}`, '#content');
   }
   catch (err) {
     console.log(`Error - header_SO: ${error}`);

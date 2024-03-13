@@ -7,6 +7,10 @@ async function signUp() {
 	  method: 'POST',
 	  body: formData
       });
+      if (response.status == 403) {
+	Access_Denied(await response.text());
+	return false;
+      }
       const data = await response.json();
 
       if (data["status"] === 'success') {

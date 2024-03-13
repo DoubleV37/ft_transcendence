@@ -31,15 +31,18 @@ async function changeSection(section, content) {
 }
 
 window.addEventListener('popstate', async function(event) {
-  header_DelEvents();
   if (event.state == null) {
+    //delcurrenteventfunction
+    header_DelEvents();
     await changeSection(`${ROUTE.HOME}`, '#content');
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     currentUrl = `${ROUTE.HOME}`;
   }
   else {
+    //de]lcurrenteventfunction
+    header_DelEvents();
     await changeSection(event.state.section, '#content');
-    await changeSection(`${ROUTE.HEADER}`, '#Header_content'); //add sonme handler event here
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content'); //add some handler event here
     currentUrl = event.state.section;
   }
   header_SetEvents();
@@ -57,6 +60,7 @@ async function loadPage(url) {
 async function	MakeRequest(url, request=null) {
   try {
     const response = await fetchSection(url, request);
+
     return response;
   }
   catch (err) {
