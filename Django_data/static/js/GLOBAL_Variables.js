@@ -12,4 +12,5 @@ const ROUTE = {
   // "SETTINGS":"/user/settings/",
   "SETTINGS":"/auth/settings/",
   "PROFILE":"/user/profile/",
+  "JWTREFRESH":"/auth/jwt/refresh/",
 };

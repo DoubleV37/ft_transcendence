@@ -63,6 +63,7 @@ function  launchSectionHandler(element) {
         signup_SetEvents();
         break ;
       case 'SETTINGS':
+  // VOIR AVEC JEAN
         settings_SetEvents();
         modal_AvatarInit();
         header_SetEvents();

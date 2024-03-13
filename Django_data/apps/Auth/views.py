@@ -1,5 +1,7 @@
+import logging, datetime, jwt, json
+from decouple import config
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
 
@@ -11,8 +13,6 @@ from .forms import (
 from .models import User
 from apps.Twofa.models import UserTwoFA
 
-import json
-import logging
 logger = logging.getLogger(__name__)
 
 
@@ -27,8 +27,7 @@ def signup(request):
             user.save()
             return JsonResponse({'status': 'success'})
         return JsonResponse({'status': 'error', 'message': form.errors})
-    else:
-        form = CustomUserCreationForm()
+    form = CustomUserCreationForm()
     return render(request, 'Auth/SignUp.html', {'form': form})
 
 # ___________________________________________________________________________ #
@@ -36,9 +35,9 @@ def signup(request):
 
 def signin(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        form = SignInForm(data)
-        response: dict() = {}
+        #data = json.loads(request.body)
+        form = SignInForm(request.POST)
+        data_response: dict() = {}
 
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -48,18 +47,23 @@ def signin(request):
             if user is not None:
                 login(request, user)
                 if user.to2fa.enable:
-                    response = {'success': True, '2fa': True}
+                    data_response = {'success': True, '2fa': True}
                 else:
-                    response = {'success': True, '2fa': False}
+                    data_response = {'success': True, '2fa': False}
+
+                jwt_token = create_jwt(user)
+                response = JsonResponse(data_response)
+                response.set_cookie(key='jwt_token',
+                                    value=str(jwt_token),
+                                    httponly=True,
+                                    secure=True,
+                                    samesite='Lax')
             else:
-                response = {'success': False,
-                    'errors': 'Invalid username or password'
-                }
+                response = HttpResponse('incorrect username or password',
+                                        status=401)
         else:
-            response = {'success': False, 'errors': 'Invalid form'}
-
-        return JsonResponse(response)
-
+            response = HttpResponse('Invalid Form', status=401)
+        return response
     form = SignInForm()
     return render(request, 'Auth/SignIn.html', {'form': form})
 
@@ -67,9 +71,10 @@ def signin(request):
 # _ SINGNOUT ________________________________________________________________ #
 
 def signout(request):
-    if request.method == 'POST':
-        logout(request)
-    return JsonResponse({'success': True})
+    logout(request)
+    response = HttpResponse(status=200)
+    response.delete_cookie('jwt_token')
+    return response
 
 
 # ___________________________________________________________________________ #
@@ -135,3 +140,43 @@ def my_settings(request):
         logger.debug("Exception")
         logger.error(f"Exception occurred: {e}")
         return HttpResponse("Exception", status=400)
+
+
+# ___________________________________________________________________________ #
+# _  JWT ____________________________________________________________________ #
+
+
+def refresh_jwt(request):
+    logger.info(request.method)
+    if request.method == 'GET':
+        logger.info('aled 1')
+        user = request.user
+        logger.info('aled 2')
+        logger.info(user.refresh_token)
+        if user.refresh_token is None:
+            logger.info('aled 3')
+            return HttpResponse("Bad Token", status=498)
+        logger.info('aled 4')
+        jwt_token = create_jwt(user)
+        response = HttpResponse()
+        response.set_cookie(key='jwt_token',
+                            value=str(jwt_token),
+                            httponly=True,
+                            secure=True,
+                            samesite='Lax')
+        return response
+    return HttpResponse("Exception", status=400)
+
+
+def create_jwt(_user, _type="access"):
+    payload = {'id': _user.id,
+               'username': _user.username,
+               'email': _user.email}
+    secret_key = config('DJANGO_SECRET_KEY')
+    algorithm = config('HASH')
+    if _type == "access":
+        time_now = datetime.datetime.utcnow()
+        payload = {"exp": time_now + datetime.timedelta(hours=1),
+                   "iss": config('NAME')}
+    token = jwt.encode(payload, secret_key, algorithm=algorithm)
+    return token

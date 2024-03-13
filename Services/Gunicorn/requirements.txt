@@ -4,6 +4,8 @@ psycopg2-binary
 gunicorn
 Pillow
 django-bootstrap-v5
+djangorestframework
+pyjwt
 
 django-crontab
 pyotp>=2.6.0

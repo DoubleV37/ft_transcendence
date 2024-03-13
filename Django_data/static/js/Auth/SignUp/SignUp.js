@@ -3,7 +3,7 @@ async function signUp() {
   let formData = new FormData(form);
 
   try {
-      const response = await fetch(`${ROUTE.SIGNUP}`, {
+      const response = await MakeRequest(`${ROUTE.SIGNUP}`, {
 	  method: 'POST',
 	  body: formData
       });

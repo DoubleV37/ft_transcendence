@@ -1,11 +1,15 @@
+import logging
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.hashers import make_password
 from .models import User
 from apps.Twofa.models import UserTwoFA
 
 
+
 # Now you can use `hashed_password` to store in your database
+logger = logging.getLogger(__name__)
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -17,12 +21,16 @@ class CustomUserCreationForm(UserCreationForm):
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
+        if len(username) > 49:
+            raise forms.ValidationError("Username is too long.")
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError("Username is already taken.")
         return username
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
+        if len(email) > 319:
+            raise forms.ValidationError("Email invalid.")
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Email is already taken.")
         return email
@@ -31,6 +39,8 @@ class CustomUserCreationForm(UserCreationForm):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password1'])
         user.email = self.cleaned_data['email']
+        from .views import create_jwt
+        user.refresh_token = make_password(create_jwt(user, "refresh"))
         if commit:
             user.save()
         return user

@@ -3,7 +3,7 @@ python-decouple
 psycopg2-binary
 uvicorn
 django-bootstrap-v5
-
+djangorestframework
 
 django-crontab
 pyotp>=2.6.0

@@ -70,32 +70,59 @@ function  header_DelEvents() {
 }
 
 function  header_LogoCallback() {
-  loadPage(`${ROUTE.HOME}`);
+  try {
+    loadPage(`${ROUTE.HOME}`);
+  }
+  catch (error) {
+    console.log(`Error - header_L: ${error}`);
+  }
 }
 
 function  header_SignInCallBack() {
-  offcanvas_Hide()
-  loadPage(`${ROUTE.SIGNIN}`);
+  try {
+    loadPage(`${ROUTE.SIGNIN}`);
+  }
+  catch (error) {
+    console.log(`Error - header_S: ${error}`);
+  }
+}
+
+async function  header_ModProfilCallBack() {
+  try {
+    await changeSection(`${ROUTE.PROFILE}`, '#ProfileModal');
+    offcanvas_Hide();
+    profileModal.show();
+  }
+  catch (error) {
+    console.log(`Error - header_M: ${error}`);
+  }
 }
 
 function  header_SignUpCallBack() {
   offcanvas_Hide()
-  loadPage(`${ROUTE.SIGNUP}`);
-}
-
-async function  header_ModProfilCallBack() {
-  await changeSection(`${ROUTE.PROFILE}`, '#ProfileModal');
-  offcanvas_Hide()
-  profileModal.show();
+  try {
+    loadPage(`${ROUTE.SIGNUP}`);
+  }
+  catch (error) {
+    console.log(`Error - header_SU: ${error}`);
+  }
 }
 
 async function  header_SignOutCallBack() {
-  const	response = await SignOut();
+  try {
+    await MakeRequest(`${ROUTE.SIGNOUT}`);
 
-  if (response == true) {
-    await loadPage(`${ROUTE.HOME}`);
+    if (currentUrl == ROUTE.HOME) {
+      await changeSection(`${ROUTE.HOME}`, '#content');
+    }
+    else {
+      await loadPage(`${ROUTE.HOME}`);
+    }
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     header_SetEvents();
+  }
+  catch (err) {
+    console.log(`Error - header_SO: ${error}`);
   }
 }
