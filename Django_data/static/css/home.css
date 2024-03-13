@@ -254,7 +254,6 @@ scrollbar-width: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 1.5em;
 		padding-top: 1.5em;
 		align-self: stretch;
 	}
@@ -287,6 +286,8 @@ scrollbar-width: none;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
+		margin-top: -0.8em;
+		padding-bottom: 1em;
 	}
 
 	.play-button {
@@ -600,8 +601,8 @@ scrollbar-width: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 2.125em;
 		padding-top: 1.5em;
+		padding-bottom: 0.5em;
 		align-self: stretch;
 	}
 
@@ -633,6 +634,8 @@ scrollbar-width: none;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
+		margin-top: -0.8em;
+		padding-bottom: 1.2em;
 	}
 
 	.play-button {
@@ -953,7 +956,6 @@ scrollbar-width: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 1em;
 		padding-top: 1em;
 		align-self: stretch;
 	}
@@ -986,6 +988,8 @@ scrollbar-width: none;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
+		margin-top: -0.8em;
+		padding-bottom: 1em;
 	}
 
 	.play-button {
