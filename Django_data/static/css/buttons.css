@@ -20,6 +20,10 @@
         line-height: normal;
     }
 
+    .CTA {
+        font-size: 1.25rem;
+    }
+
     .MediumButtonLayout {
         display: flex;
         height:  3.125rem;
@@ -177,6 +181,10 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+    }
+
+    .CTA {
+        font-size: 1.25rem;
     }
 
     .MediumButtonLayout {
@@ -349,6 +357,10 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+    }
+
+    .CTA {
+        font-size: 1.25rem;
     }
 
     .MediumButtonLayout {
