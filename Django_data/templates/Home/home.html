@@ -4,8 +4,11 @@
 {%include "Home/head.html" %}
 
 <body>
-  {% include "Profile/Profile.html" %}
-  {% include "Home/header.html" %}
+  {% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
+    {% include "Profile/Profile.html" %}<!-- TODO load the modal only if the user is connected -->
+  <header>
+    <div id="Header_content"></div>
+  </header> 
 	<div id="content">
 		<div id="overlay">
 			<div class="mid midcolumn fadeinAnimation">
@@ -16,9 +19,17 @@
 					</div>
 					<div class="welcome-text">
 						<h1 class="welcome-to-pong">Welcome to Pong</h1>
-						<p class="please-log-in">Please log in to continue</p>
 					</div>
-					<button class="play-button"><span class="play">Log in</span></button>
+					{% if user.is_authenticated %}
+					<button id="PlayButton" class="play-button"><span class="play">Play!</span></button>
+					{% else %}
+						<p class="please-log-in">Before you begin, please:</p>
+						<div id="HomeDualButton">
+							<button id="SigninButton"><span class="play">Sign in</span></button>
+							<p class='please-log-in'>or</p>
+							<button id="SignupButton"><span class="play">Sign up</span></button>
+						</div>
+					{% endif %}
 				</div>
 			</div>
 		</div>

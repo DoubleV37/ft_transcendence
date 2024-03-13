@@ -45,7 +45,9 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                response = JsonResponse({'success': True})
+                _id = user.idUser
+                response = JsonResponse({'success': True,
+                                         'id': _id})
             else:
                 response = JsonResponse({
                     'success': False,
@@ -88,6 +90,7 @@ def validator_fct(form, button: str, request, response: dict()) -> dict():
 
 
 def my_settings(request):
+    
     try:
         _user = User.objects.get(username=request.user.username)
 

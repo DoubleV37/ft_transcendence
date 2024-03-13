@@ -12,11 +12,17 @@ function  header_SetEvents() {
     element = document.getElementById('HEADER_NavProfile');
     element.addEventListener('click', header_ModProfilCallBack);
 
-    element = document.getElementById('HEADER_Profile');
+    element = document.getElementById('HEADER_user');
     element.addEventListener('click', header_ModProfilCallBack);
   }
   else if (IsAuthenticated === 'false') {
     element = document.getElementById('HEADER_Signin');
+    element.addEventListener('click', header_SignInCallBack);
+
+    element = document.getElementById('HEADER_NavSignUp');
+    element.addEventListener('click', header_SignUpCallBack);
+
+    element = document.getElementById('HEADER_NavSignIn');
     element.addEventListener('click', header_SignInCallBack);
   }
   else {
@@ -35,7 +41,7 @@ function  header_DelEvents() {
   const	IsAuthenticated = element.getAttribute('data-auth');
 
   if (IsAuthenticated === 'true') {
-    element = document.getElementById('HEADER_Profile');
+    element = document.getElementById('HEADER_user');
     element.removeEventListener('click', header_ModProfilCallBack);
 
     element = document.getElementById('HEADER_NavProfile');
@@ -47,6 +53,12 @@ function  header_DelEvents() {
   else if (IsAuthenticated === 'false') {
     element = document.getElementById('HEADER_Signin');
     element.removeEventListener('click', header_SignInCallBack);
+
+    element = document.getElementById('HEADER_NavSignUp');
+    element.addEventListener('click', header_SignUpCallBack);
+
+    element = document.getElementById('HEADER_NavSignIn');
+    element.addEventListener('click', header_SignInCallBack);
   }
 
   else {
@@ -62,10 +74,17 @@ function  header_LogoCallback() {
 }
 
 function  header_SignInCallBack() {
+  offcanvas_Hide()
   loadPage(`${ROUTE.SIGNIN}`);
 }
 
-function  header_ModProfilCallBack() {
+function  header_SignUpCallBack() {
+  offcanvas_Hide()
+  loadPage(`${ROUTE.SIGNUP}`);
+}
+
+async function  header_ModProfilCallBack() {
+  await changeSection(`${ROUTE.PROFILE}`, '#ProfileModal');
   offcanvas_Hide()
   profileModal.show();
 }
