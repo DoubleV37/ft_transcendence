@@ -77,7 +77,6 @@ def enable_2fa(request):
 
 class TwoFactorConfirmationView(FormView):
     template_name = "confirm_2fa.html"
-    success_url = reverse_lazy("home")
     form = TwoFAForm()
     response: dict() = {}
 
