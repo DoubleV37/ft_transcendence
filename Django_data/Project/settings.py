@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'apps.Home',
     'apps.Auth',
     'apps.Profile',
-	'apps.Chat',
+	'apps.Game',
 ]
 
 MIDDLEWARE = [

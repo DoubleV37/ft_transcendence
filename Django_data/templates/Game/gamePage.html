@@ -3,9 +3,6 @@
   <body>
     <center><h1>Hello , Welcome to my chat site ! {{request.user}}</h1></center>
     <br>
-    {% if request.user.is_authenticated  %}
-    <center> Logout the chat Page <a href = "{% url 'logout-user' %}">Logout</a></center>
-    {% endif %}
     <div
       class="chat__item__container"
       id="id_chat_item_container"
@@ -17,8 +14,11 @@
       <br />
       <br />
     </div>
+	<canvas width="320" height="240">
+		<p>Description of the canvas for those unable to view it.</p>
+	</canvas>
     <script>
-      const chatSocket = new WebSocket("ws://" + window.location.host + "/");
+      const chatSocket = new WebSocket("wss://" + window.location.host + "/wss/game/room");
       chatSocket.onopen = function (e) {
         console.log("The connection was setup successfully !");
       };
@@ -44,6 +44,10 @@
         document.querySelector("#id_message_send_input").value = "";
         document.querySelector("#id_chat_item_container").appendChild(div);
       };
+	  const canvas = document.querySelector("canvas");
+	  const ctx = canvas.getContext("2d");
+	  ctx.fillStyle = "rgb(200,0,0)";
+	  ctx.fillRect (10, 10, 55, 50);
     </script>
   </body>
 </html>
