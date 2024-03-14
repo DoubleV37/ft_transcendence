@@ -41,9 +41,14 @@
 										<button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
 									</div>
 								</form>
+								<form id="2FA_Form" method="post">
+								  {% csrf_token %}
+								  {{ profile_2fa.as_p }}
+								  <button type="submit">Enable</button>
+								</form>
 								<div class="form-check form-switch p-0">
 									<div class="d-flex flex-column-reverse gap-1">
-									  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" />
+									  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" {% if enabled == True %}checked{% endif%} />
 									  <label class="form-check-label" for="switchCheckLabelTop">Two-Factor Authentication:</label>
 									</div>
 								</div>

@@ -19,6 +19,7 @@ async function signIn() {
       }
       else {
 	const data = await response.text();
+	console.log(`response -> {data}`);
 	SignIn_UpdateErrors(data);
 	document.getElementById('SIGNIN_Form').reset();
       }

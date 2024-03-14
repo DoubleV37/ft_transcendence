@@ -96,11 +96,13 @@ def my_settings(request):
         pswd = My_Psswd(instance=my_user)
         avatar = My_Avatar(instance=my_user)
         t_name = My_Tournamentname(instance=my_user)
+        enabled = my_user.to2fa.enable
 
         response: dict() = {}
         context: dict() = {
             'my_user': my_user, 'name': name, 'mail': mail,
-            'avatar': avatar, 'pswd': pswd, 't_name': t_name
+            'avatar': avatar, 'pswd': pswd, 't_name': t_name,
+            'enabled': enabled,
         }
 
         if request.method == 'POST':
@@ -128,8 +130,6 @@ def my_settings(request):
                 t_name, 't_name_button', request, response)
             response = validator_fct(pswd, 'pswd_button', request, response)
             response = validator_fct(mail, 'mail_button', request, response)
-            
-            logger.info(f"response => {response}")
             return JsonResponse(response)
         return render(request, 'My_Settings1.html', context=context)
 

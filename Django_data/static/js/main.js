@@ -66,6 +66,7 @@ function  launchSectionHandler(element) {
   // VOIR AVEC JEAN
         settings_SetEvents();
         modal_AvatarInit();
+	modal_2FaInit();
         header_SetEvents();
 	break ;
 

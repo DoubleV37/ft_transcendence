@@ -35,6 +35,10 @@ function  settings_SetEvents() {
 
   element = document.getElementById('AVATAR_Form');
   element.addEventListener('submit', avatar_FormCallBack);
+
+  element = document.getElementById('switchCheckLabelTop');
+  //element.addEventListener('click', settings_TwoFaCallBack);
+  element.addEventListener('click', settings_aled);
 }
 
 function  settings_DelEvents() {
@@ -72,6 +76,16 @@ function  settings_DelEvents() {
 
   element = document.getElementById('AVATAR_Form');
   element.removeEventListener('submit', avatar_FormCallBack);
+
+  element = document.getElementById('switchCheckLabelTop');
+  //element.removeEventListener('click', settings_TwoFaCallBack);
+  element.removeEventListener('click', settings_aled);
+}
+
+function  settings_aled(event) {
+  const	element = event.target;
+
+  console.log(`hello ? -> ${element.checked}`);
 }
 
 async function name_FormCallBack(event) 

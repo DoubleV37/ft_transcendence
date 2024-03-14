@@ -113,4 +113,3 @@ class My_Mail(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email',)
-

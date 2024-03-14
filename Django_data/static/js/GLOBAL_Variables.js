@@ -9,8 +9,8 @@ const ROUTE = {
   "SIGNUP":"/auth/signup/",
   "SIGNIN":"/auth/signin/",
   "SIGNOUT":"/auth/signout/",
-  // "SETTINGS":"/user/settings/",
   "SETTINGS":"/auth/settings/",
   "PROFILE":"/user/profile/",
+  "TWOFA_E":"/2fa/enable/",
   "JWTREFRESH":"/auth/jwt/refresh/",
 };
