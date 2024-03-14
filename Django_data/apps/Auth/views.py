@@ -3,9 +3,7 @@ from decouple import config
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, authenticate, logout
-from django.http import HttpResponse
 
-from . import forms
 from .forms import (
     CustomUserCreationForm, SignInForm, My_Psswd,
     My_Avatar, My_Name, My_Mail, My_Tournamentname
@@ -14,7 +12,6 @@ from .models import User
 from apps.Twofa.models import UserTwoFA
 
 logger = logging.getLogger(__name__)
-
 
 # ___________________________________________________________________________ #
 # _ SINGNUP _________________________________________________________________ #
@@ -35,7 +32,6 @@ def signup(request):
 
 def signin(request):
     if request.method == 'POST':
-        #data = json.loads(request.body)
         form = SignInForm(request.POST)
         data_response: dict() = {}
 
@@ -132,7 +128,8 @@ def my_settings(request):
                 t_name, 't_name_button', request, response)
             response = validator_fct(pswd, 'pswd_button', request, response)
             response = validator_fct(mail, 'mail_button', request, response)
-
+            
+            logger.info(f"response => {response}")
             return JsonResponse(response)
         return render(request, 'My_Settings1.html', context=context)
 

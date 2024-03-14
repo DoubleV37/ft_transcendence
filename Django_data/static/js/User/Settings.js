@@ -1,13 +1,11 @@
 async function nameSubmit() {
 
   let myForm = document.getElementById('NAME_Form');
-  // let myData = settings_JsonForm(myForm);
   let formData = new FormData(myForm);
   formData.append('name_button', 'name_button');
 
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
-    // let data = await response.json();
     method: 'POST',
 	  body: formData
     });
@@ -16,7 +14,6 @@ async function nameSubmit() {
       return true;
     }
     else {
-	// settings_UpdateErrors(data.errors);
 	myForm.reset();
 	return false;
     }
@@ -30,13 +27,11 @@ async function nameSubmit() {
 async function mailSubmit() {
 
   let myForm = document.getElementById('MAIL_Form');
-  // let myData = settings_JsonForm(myForm);
   let formData = new FormData(myForm);
   formData.append('mail_button', 'mail_button');
 
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
-    // let data = await response.json();
     method: 'POST',
 	  body: formData
     });
@@ -46,7 +41,6 @@ async function mailSubmit() {
       return true;
     }
     else {
-	// settings_UpdateErrors(data.errors);
 	myForm.reset();
 	return false;
     }
@@ -60,13 +54,11 @@ async function mailSubmit() {
 async function passSubmit() {
 
   let myForm = document.getElementById('PASS_Form');
-  // let myData = settings_JsonForm(myForm);
   let formData = new FormData(myForm);
   formData.append('pswd_button', 'pswd_button');
 
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
-    // let data = await response.json();
     method: 'POST',
 	  body: formData
     });
@@ -76,7 +68,6 @@ async function passSubmit() {
       return true;
     }
     else {
-	// settings_UpdateErrors(data.errors);
 	myForm.reset();
 	return false;
     }
@@ -90,13 +81,11 @@ async function passSubmit() {
 async function tnameSubmit() {
 
   let myForm = document.getElementById('TNAME_Form');
-  // let myData = settings_JsonForm(myForm);
   let formData = new FormData(myForm);
-  formData.append('tname_button', 'tname_button');
+  formData.append('t_name_button', 't_name_button');
 
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
-    // let data = await response.json();
     method: 'POST',
 	  body: formData
     });
@@ -106,7 +95,6 @@ async function tnameSubmit() {
       return true;
     }
     else {
-	// settings_UpdateErrors(data.errors);
 	myForm.reset();
 	return false;
     }
@@ -124,7 +112,6 @@ async function avatarSubmit() {
   
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
-      // let data = await response.json();
       method: 'POST',
       body: formData
     });
@@ -134,7 +121,6 @@ async function avatarSubmit() {
       return true;
     }
     else {
-	// settings_UpdateErrors(data.errors);
 	myForm.reset();
 	return false;
     }
@@ -144,28 +130,3 @@ async function avatarSubmit() {
     return false;
   }
 }
-
-function settings_JsonForm(myForm) {
-  let formData = new FormData(myForm);
-  let formDataJSON = {};
-
-  formData.forEach(function(value, key) {
-    formDataJSON[key] = value;
-  });
-
-  let myData = {
-    method: 'POST',
-    headers: {
-	'Content-Type': 'application/json',
-	'X-CSRFToken': Tools_GetCookie('csrftoken'),  // Include CSRF token
-    },
-    body: JSON.stringify(formDataJSON),
-  };
-  return myData;
-}
-
-// function settings_UpdateErrors(errors) {
-//   let element = document.getElementById('SIGNIN_Errors');
-
-//   element.innerHTML = `Error: ${errors}`;
-// }
