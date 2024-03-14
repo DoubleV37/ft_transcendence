@@ -128,7 +128,8 @@ def my_settings(request):
                 t_name, 't_name_button', request, response)
             response = validator_fct(pswd, 'pswd_button', request, response)
             response = validator_fct(mail, 'mail_button', request, response)
-
+            
+            logger.info(f"response => {response}")
             return JsonResponse(response)
         return render(request, 'My_Settings1.html', context=context)
 

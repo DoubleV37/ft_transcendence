@@ -31,29 +31,25 @@ async function changeSection(section, content) {
 }
 
 window.addEventListener('popstate', async function(event) {
+  del_current_event();
+  header_DelEvents();
   if (event.state == null) {
-    //delcurrenteventfunction
-    header_DelEvents();
     await changeSection(`${ROUTE.HOME}`, '#content');
-    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     currentUrl = `${ROUTE.HOME}`;
   }
   else {
-    //de]lcurrenteventfunction
-    header_DelEvents();
     await changeSection(event.state.section, '#content');
-    await changeSection(`${ROUTE.HEADER}`, '#Header_content'); //add some handler event here
     currentUrl = event.state.section;
   }
+  await changeSection(`${ROUTE.HEADER}`, '#Header_content'); //add some handler event here
   header_SetEvents();
 });
 
 async function loadPage(url) {
-  if (typeof(url) != 'string' || !url || url === currentUrl) {
-    return ;
+  if (url !== currentUrl) {
+    currentUrl = url;
+    history.pushState({section: url}, '', url);
   }
-  currentUrl = url;
-  history.pushState({section: url}, '', url);
   await changeSection(url, '#content');
 }
 

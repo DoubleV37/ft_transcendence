@@ -12,20 +12,20 @@ async function  launchWebsite() {
 
   const config = { childList: true, subtree: true };
 
-  observer = new MutationObserver(mutationCallBack);
-  observer.observe(targetNode, config);
-
   await loadPage(currentUrl);
   await changeSection(`${ROUTE.HEADER}`, '#Header_content');
   modal_ProfileInit();
   header_SetEvents();
   main_SetFirstsEvents();
 
+  observer = new MutationObserver(mutationCallBack);
+  observer.observe(targetNode, config);
+
   document.removeEventListener('DOMContentLoaded', launchWebsite);
  }
 
 function  main_SetFirstsEvents() {
-   const	element = document.getElementById('titleContent');
+   const  element = document.getElementById('titleContent');
 
    if (!element) {
      console.log('Fuck it...');

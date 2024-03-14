@@ -102,8 +102,10 @@ async function pass_FormCallBack(event)
   const	response = await passSubmit();
 
   if (response == true) {
+    header_DelEvents()
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
-    await changeSection(`${ROUTE.HOME}`, '#content');
+    header_SetEvents()
+    await loadPage(`${ROUTE.HOME}`);
   }
 }
 

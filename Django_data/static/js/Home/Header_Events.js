@@ -118,15 +118,16 @@ function  header_SignUpCallBack() {
 
 async function  header_SignOutCallBack() {
   try {
+    offcanvas_Hide();
     await MakeRequest(`${ROUTE.SIGNOUT}`);
-    //Need to delete the actual event before change the header and set the new home event
+    del_current_event(currentUrl);
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     header_SetEvents();
+    await loadPage(`${ROUTE.HOME}`);
     
-    await changeSection(`${ROUTE.HOME}`, '#content');
   }
-  catch (err) {
+  catch (error) {
     console.log(`Error - header_SO: ${error}`);
   }
 }

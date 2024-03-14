@@ -7,4 +7,23 @@ function  offcanvas_Hide() {
   }
 }
 
+function  del_current_event() {
+  const page_name =  document.getElementById('content').getAttribute('data-content');
 
+  switch (page_name) {
+    case 'HOME_PAGE':
+      home_DelEvents();
+      break;
+    case 'SIGNIN_PAGE':
+      signin_DelEvents(); 
+      break;
+    case 'SIGNUP_PAGE':
+      signup_DelEvents();
+      break;
+    case 'SETTINGS':
+      settings_DelEvents();
+      break;
+    default:
+      break;
+  }
+}
