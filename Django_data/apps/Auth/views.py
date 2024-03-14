@@ -1,74 +1,76 @@
-import json
-import logging
+import logging, datetime, jwt, json
+from decouple import config
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, authenticate, logout
+
 from .forms import (
     CustomUserCreationForm, SignInForm, My_Psswd,
     My_Avatar, My_Name, My_Mail, My_Tournamentname
 )
 from .models import User
-from django.http import HttpResponse
-
+from apps.Twofa.models import UserTwoFA
 
 logger = logging.getLogger(__name__)
 
 # ___________________________________________________________________________ #
 # _ SINGNUP _________________________________________________________________ #
 
-
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            # user = form.save()
-            # login(request, user)
+            user = form.save()
+            user.save()
             return JsonResponse({'status': 'success'})
         return JsonResponse({'status': 'error', 'message': form.errors})
-    else:
-        form = CustomUserCreationForm()
+    form = CustomUserCreationForm()
     return render(request, 'Auth/SignUp.html', {'form': form})
 
 # ___________________________________________________________________________ #
 # _ SINGNIN _________________________________________________________________ #
 
-
 def signin(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        form = SignInForm(data)
+        form = SignInForm(request.POST)
+        data_response: dict() = {}
+
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-
             user = authenticate(request, username=username, password=password)
+
             if user is not None:
                 login(request, user)
-                response = JsonResponse({'success': True})
-            else:
-                response = JsonResponse({
-                    'success': False,
-                    'errors': 'Invalid username or password'
-                })
-        else:
-            response = JsonResponse({
-                'success': False,
-                'errors': 'Invalid form'
-            })
-        return response
+                if user.to2fa.enable:
+                    data_response = {'success': True, '2fa': True}
+                else:
+                    data_response = {'success': True, '2fa': False}
 
+                jwt_token = create_jwt(user)
+                response = JsonResponse(data_response)
+                response.set_cookie(key='jwt_token',
+                                    value=str(jwt_token),
+                                    httponly=True,
+                                    secure=True,
+                                    samesite='Lax')
+            else:
+                response = HttpResponse('incorrect username or password',
+                                        status=401)
+        else:
+            response = HttpResponse('Invalid Form', status=401)
+        return response
     form = SignInForm()
     return render(request, 'Auth/SignIn.html', {'form': form})
 
 # ___________________________________________________________________________ #
 # _ SINGNOUT ________________________________________________________________ #
 
-
 def signout(request):
-    if request.method == 'POST':
-        logout(request)
-    return JsonResponse({'success': True})
+    logout(request)
+    response = HttpResponse(status=200)
+    response.delete_cookie('jwt_token')
+    return response
 
 
 # ___________________________________________________________________________ #
@@ -80,42 +82,40 @@ def validator_fct(form, button: str, request, response: dict()) -> dict():
             form.save()
             response = {'success': True}
         else:
-            response = {
-                'success': False,
-                'logs': f'{button} Error'
-            }
+            response = {'success': False, 'logs': f'{button} Error'}
     return response
 
 
 def my_settings(request):
+    
     try:
-        _user = User.objects.get(username=request.user.username)
+        my_user = User.objects.get(username=request.user.username)
 
-        name = My_Name(instance=_user)
-        mail = My_Mail(instance=_user)
-        pswd = My_Psswd(instance=_user)
-        avatar = My_Avatar(instance=_user)
-        t_name = My_Tournamentname(instance=_user)
+        name = My_Name(instance=my_user)
+        mail = My_Mail(instance=my_user)
+        pswd = My_Psswd(instance=my_user)
+        avatar = My_Avatar(instance=my_user)
+        t_name = My_Tournamentname(instance=my_user)
 
         response: dict() = {}
         context: dict() = {
-            '_user': _user, 'name': name, 'mail': mail,
+            'my_user': my_user, 'name': name, 'mail': mail,
             'avatar': avatar, 'pswd': pswd, 't_name': t_name
         }
 
         if request.method == 'POST':
-            name = My_Name(request.POST, instance=_user)
-            mail = My_Mail(request.POST, instance=_user)
-            pswd = My_Psswd(request.POST, instance=_user)
-            avatar = My_Avatar(request.POST, request.FILES, instance=_user)
-            t_name = My_Tournamentname(request.POST, instance=_user)
+            name = My_Name(request.POST, instance=my_user)
+            mail = My_Mail(request.POST, instance=my_user)
+            pswd = My_Psswd(request.POST, instance=my_user)
+            avatar = My_Avatar(request.POST, request.FILES, instance=my_user)
+            t_name = My_Tournamentname(request.POST, instance=my_user)
 
             if 'avatar_button' in request.POST:
                 if avatar.is_valid():
                     save = avatar.save(commit=False)
-                    _user.username = request.user.username
-                    _user.avatar = save.avatar
-                    _user.save()
+                    my_user.username = request.user.username
+                    my_user.avatar = save.avatar
+                    my_user.save()
                     response = {'success': True}
                 else:
                     response = {
@@ -128,7 +128,8 @@ def my_settings(request):
                 t_name, 't_name_button', request, response)
             response = validator_fct(pswd, 'pswd_button', request, response)
             response = validator_fct(mail, 'mail_button', request, response)
-
+            
+            logger.info(f"response => {response}")
             return JsonResponse(response)
         return render(request, 'My_Settings1.html', context=context)
 
@@ -136,3 +137,43 @@ def my_settings(request):
         logger.debug("Exception")
         logger.error(f"Exception occurred: {e}")
         return HttpResponse("Exception", status=400)
+
+
+# ___________________________________________________________________________ #
+# _  JWT ____________________________________________________________________ #
+
+
+def refresh_jwt(request):
+    logger.info(request.method)
+    if request.method == 'GET':
+        logger.info('aled 1')
+        user = request.user
+        logger.info('aled 2')
+        logger.info(user.refresh_token)
+        if user.refresh_token is None:
+            logger.info('aled 3')
+            return HttpResponse("Bad Token", status=498)
+        logger.info('aled 4')
+        jwt_token = create_jwt(user)
+        response = HttpResponse()
+        response.set_cookie(key='jwt_token',
+                            value=str(jwt_token),
+                            httponly=True,
+                            secure=True,
+                            samesite='Lax')
+        return response
+    return HttpResponse("Exception", status=400)
+
+
+def create_jwt(_user, _type="access"):
+    payload = {'id': _user.id,
+               'username': _user.username,
+               'email': _user.email}
+    secret_key = config('DJANGO_SECRET_KEY')
+    algorithm = config('HASH')
+    if _type == "access":
+        time_now = datetime.datetime.utcnow()
+        payload = {"exp": time_now + datetime.timedelta(hours=1),
+                   "iss": config('NAME')}
+    token = jwt.encode(payload, secret_key, algorithm=algorithm)
+    return token
