@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'apps.Auth',
     'apps.Profile',
     'apps.Game_tbl',
-	'bootstrap5'
+	'bootstrap5',
     'apps.Twofa',
 ]
 
