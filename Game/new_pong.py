@@ -51,12 +51,21 @@ for_json["player_speed"] = paddle_speed
 for_json["ball_pos"] = ball_pos
 for_json["ball_speed"] = ball_speed
 
+
+ball_old_pos = []
 def widow(data, screen, clock):
     screen.fill("black")
     pygame.draw.rect(screen, "white", (598, 0, 4, 900))
     pygame.draw.rect(screen, "white", (40, data["lplayer_pos"] - (data["lplayer_size"] / 2), 10, data["lplayer_size"]))
     pygame.draw.rect(screen, "white", (1150, data["rplayer_pos"] - (data["rplayer_size"] / 2), 10, data["rplayer_size"]))
     pygame.draw.circle(screen, "white", data["ball_pos"], 10)
+    ball_old_pos.append(ball_pos.copy())
+    if len(ball_old_pos) > 30:
+        ball_old_pos.pop(0)
+    raptici = 0
+    for i in range(1, len(ball_old_pos)):
+        raptici += 12/30 
+        pygame.draw.circle(screen, "white", ball_old_pos[i], raptici)
     pygame.display.flip()
 
 
