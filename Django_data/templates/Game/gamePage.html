@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
 <style>
+	body {
+		background-color: #f2f2f2;
+		display: flex;
+		flex-direction: column;
+	}
 	canvas {
 		border: 2px solid black;
-		background-color: #f2f2f2;
+		background-color: #f2f2f2b0;
+		align-self: center;
+		aspect-ratio: 2/1;
+		width: 90%;
+		max-height: 80%;
 	}
 </style>
   <body>
-    <center><h1>Hello , Welcome to my chat site ! {{request.user}}</h1></center>
+    <center><h1>Hello , Welcome to Pong ! {{request.user}}</h1></center>
     <!-- <div
       class="chat__item__container"
       id="id_chat_item_container"
@@ -20,7 +29,7 @@
 	<canvas id="MyCanvas">
 		<p>Description of the canvas for those unable to view it.</p>
 	</canvas>
-	
+
     <script>
     //   const chatSocket = new WebSocket("wss://" + window.location.host + "/wss/game/room");
     //   chatSocket.onopen = function (e) {
@@ -49,38 +58,90 @@
     //     document.querySelector("#id_chat_item_container").appendChild(div);
     //   };
 
-	var canvas = document.getElementById("MyCanvas");
-	var ctx = canvas.getContext("2d");
-	var ballRadius = 10;
-	var x = canvas.width/2;
-	var y = canvas.height-30;
-	var dx = 2;
-	var dy = -2;
 
-	function drawBall() {
-		ctx.beginPath();
-		ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-		ctx.fillStyle = "#0095DD";
-		ctx.fill();
-		ctx.closePath();
-	}
 
-	function draw() {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		drawBall();
+		var canvas = document.getElementById("MyCanvas");
+		var ctx = canvas.getContext("2d");
 
-		if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-			dx = -dx;
+
+		const style = getComputedStyle(canvas);
+		const width = parseInt(style.getPropertyValue('width'), 10);
+		const height = parseInt(style.getPropertyValue('height'), 10);
+		canvas.width = width;
+		canvas.height = height;
+
+		var ballRadius = width/20;
+		var paddleHeight = width/10;
+		var x = canvas.width/2;
+		var y = canvas.height-30;
+		var dx = 2;
+		var dy = -2;
+
+		addEventListener('resize', () => {
+			const style = getComputedStyle(canvas);
+			const width = parseInt(style.getPropertyValue('width'), 10);
+			const height = parseInt(style.getPropertyValue('height'), 10);
+			canvas.width = width;
+			canvas.height = height;
+			paddleHeight = width/10;
+			ballRadius = width/20;
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			draw();
+		});
+
+		function drawPaddleR(y) {
+			ctx.beginPath();
+			ctx.rect(canvas.width-15, y*canvas.height-paddleHeight/2, 10, paddleHeight);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.closePath();
 		}
-		if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
-			dy = -dy;
+
+		function drawPaddleL(y) {
+			ctx.beginPath();
+			ctx.rect(5, y*canvas.height-paddleHeight/2, 10, paddleHeight);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.closePath();
 		}
 
-		x += dx;
-		y += dy;
-	}
+		function drawBallXY(x, y) {
+			ctx.beginPath();
+			ctx.arc(x*canvas.width, y*canvas.height, ballRadius, 0, Math.PI*2);
+			ctx.fillStyle = "#FF95DD";
+			ctx.fill();
+			ctx.closePath();
+		}
 
-	setInterval(draw, 10);
+		function drawBall() {
+			ctx.beginPath();
+			ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		function draw() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			// ctx.fillStyle = "rgba(242,242,242,0.50)";
+			// ctx.fillRect(0, 0, canvas.width, canvas.height);
+			drawBall();
+			drawPaddleR(0.5);
+			drawPaddleL(0.5);
+			drawBallXY(0.5, 0.5);
+
+			if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+				dx = -dx;
+			}
+			if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+				dy = -dy;
+			}
+
+			x += dx;
+			y += dy;
+		}
+
+		setInterval(draw, 10);
     </script>
   </body>
 </html>
