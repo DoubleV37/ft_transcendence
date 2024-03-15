@@ -18,16 +18,11 @@ function  modal_AvatarInit() {
 
 function  modal_2FaInit() {
   TwofaModal = new bootstrap.Modal(document.getElementById('TwofaModal'), {
-    backdrop: true,
-    keyboard: true,
+    backdrop: 'static',
+    keyboard: false,
     focus: true});
   TwofaModal._element.addEventListener('shown.bs.modal', Twofa_SetModalEvents);
   // avatarModal._element.addEventListener('hide.bs.modal', settings_DelEvents);
-}
-
-async function  settings_TwoFaCallBack() {
-  await	changeSection(`${ROUTE.TWOFA_E}`, '#TwofaModal');
-  TwofaModal.show();
 }
 
 function  settings_ModAvatarCallBack() {

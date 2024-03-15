@@ -1,21 +1,67 @@
 function  Twofa_SetModalEvents() {
-  let element = document.getElementById('2FA_Form');
+  let element = document.getElementById('form_2FA');
   element.addEventListener('submit', Twofa_EnableSubmit);
+
+  element = document.getElementById('cancel_2fa');
+  element.addEventListener('click', Twofa_CancelSubmit);
 }
 
 function  Twofa_DelModalEvents() {
-  let element = document.getElementById('2FA_Form');
+  let element = document.getElementById('form_2FA');
   element.removeEventListener('submit', Twofa_EnableSubmit);
+
+  element = document.getElementById('cancel_2fa');
+  element.removeEventListener('click', Twofa_CancelSubmit);
+}
+
+async function	Twofa_CancelSubmit() {
+    let form = document.getElementById('2FA_Form');
+    let formData = new FormData(form);
+    await MakeRequest(`${ROUTE.TWOFA_E}`, {
+      method: 'POST',
+      body: formData
+    });
+    Twofa_DelModalEvents();
+    TwofaModal.hide();
+    settings_DelEvents();
+    changeSection(`${ROUTE.SETTINGS}`, `#content`);
+}
+
+function sleep(ms) {
+ return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function  Twofa_EnableSubmit(event) {
   event.preventDefault();
-  let form = document.getElementById('2FA_Form');
+  restore_message();
+  let form = document.getElementById('form_2FA');
   let formData = new FormData(form);
-  const	response = await MakeRequest(`${ROUTE.TWOFA_E}`, {
+  const	response = await MakeRequest(`${ROUTE.TWOFA_C}`, {
     method: 'POST',
     body: formData
   });
-  const data = await response.text();
-  console.log(`${data}`);
+  const data = await response.json();
+  console.log(`conf response => ${data.success}`);
+  if (data.success == true) {
+    let element = document.getElementById('success_2FA');
+
+    element.innerHTML = `2FA authentication successfully enabled.`;
+    Twofa_DelModalEvents();
+    await sleep(2000);
+    TwofaModal.hide();
+  }
+  else {
+    let element = document.getElementById('failure_2FA');
+
+    element.innerHTML = `Error: Wrong code submitted. Please try again.`;
+  }
+}
+
+function  restore_message() {
+  let element = document.getElementById('failure_2FA');
+
+  element.innerHTML = ``;
+  element = document.getElementById('success_2FA');
+
+  element.innerHTML = ``;
 }

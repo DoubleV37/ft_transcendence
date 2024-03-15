@@ -10,6 +10,7 @@ from .forms import (
 )
 from .models import User
 from apps.Twofa.models import UserTwoFA
+from apps.Twofa.forms import My_2fa
 
 logger = logging.getLogger(__name__)
 
@@ -97,12 +98,13 @@ def my_settings(request):
         avatar = My_Avatar(instance=my_user)
         t_name = My_Tournamentname(instance=my_user)
         enabled = my_user.to2fa.enable
+        profile_2fa = My_2fa(instance=my_user.to2fa)
 
         response: dict() = {}
         context: dict() = {
             'my_user': my_user, 'name': name, 'mail': mail,
             'avatar': avatar, 'pswd': pswd, 't_name': t_name,
-            'enabled': enabled,
+            'enabled': enabled, 'profile_2fa': profile_2fa,
         }
 
         if request.method == 'POST':

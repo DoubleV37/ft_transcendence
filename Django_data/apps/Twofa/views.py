@@ -45,7 +45,8 @@ class create_qrcode(TemplateView):
             self.context["qr_code"] = _user.to2fa.generate_qr_code(
                 name=_user.username
             )
-            return render(request, self.template_name, context=self.context)
+            #return render(request, self.template_name, context=self.context)
+            return render(request, 'Profile/enable_2fa.html', context=self.context)
 
     except ValidationError as exc:
         context: dict() = {}
@@ -56,7 +57,6 @@ class create_qrcode(TemplateView):
 # _Enable 2fa_______________________________________________________________ #
 
 def enable_2fa(request):
-    logger.info("-------------Aled---------------")
     _user = User.objects.get(username=request.user.username)
     profile_2fa = My_2fa(instance=_user.to2fa)
     if request.method == 'POST':
@@ -67,11 +67,10 @@ def enable_2fa(request):
                 _user.save()
                 # return redirect('/')
                 return JsonResponse({'status': 'return'})
-            else:
-                _user.to2fa.enable = True
-                _user.save()
-                # return redirect('qrcode')
-                return JsonResponse({'status': 'continue'})
+            _user.to2fa.enable = True
+            _user.save()
+            # return redirect('qrcode')
+            return JsonResponse({'status': 'continue'})
     return render(request, 'Profile/enable_2fa.html', {'profile_2fa': profile_2fa})
 
 
@@ -84,7 +83,7 @@ class TwoFactorConfirmationView(FormView):
     response: dict() = {}
 
     def get(self, request):
-        return render(request, self.template_name, {'form': self.form})
+        return render(request, 'Auth/confirm_2fa.html', {'form': self.form})
 
     def post(self, request):
         key: str = ''

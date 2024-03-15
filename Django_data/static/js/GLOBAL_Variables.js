@@ -12,5 +12,7 @@ const ROUTE = {
   "SETTINGS":"/auth/settings/",
   "PROFILE":"/user/profile/",
   "TWOFA_E":"/2fa/enable/",
+  "TWOFA_Q":"/2fa/qrcode/",
+  "TWOFA_C":"/2fa/confirm/",
   "JWTREFRESH":"/auth/jwt/refresh/",
 };

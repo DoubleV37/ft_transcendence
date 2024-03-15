@@ -1,3 +1,4 @@
+<div id="confirm_2fa">  
   {% if form.non_field_errors %}
     {% for error in form.non_field_errors %}
       <p class="errornote">
@@ -6,7 +7,7 @@
     {% endfor %}
   {% endif %}
 
-  <form action="" method="post">
+  <form id="form_2FA" action="" method="post">
     {% csrf_token %}
 
     <div class="form-row">
@@ -17,4 +18,8 @@
     <div class="submit-row">
       <input type="submit" value="Submit">
     </div>
+    <button id="cancel_2fa">Cancel</button>
+    <div id="success_2FA" style="color: green;"></div>
+    <div id="failure_2FA" style="color: red;"></div>
   </form>
+</div>
