@@ -25,6 +25,15 @@ function  modal_2FaInit() {
   // avatarModal._element.addEventListener('hide.bs.modal', settings_DelEvents);
 }
 
+function  modal_2FaCodeInit() {
+  TwofaCodeModal = new bootstrap.Modal(document.getElementById('TwofaCodeModal'), {
+    backdrop: true,
+    keyboard: true,
+    focus: true});
+  TwofaCodeModal._element.addEventListener('shown.bs.modal', Code_SetModalEvents);
+  // avatarModal._element.addEventListener('hide.bs.modal', settings_DelEvents);
+}
+
 function  settings_ModAvatarCallBack() {
   avatarModal.show();
 }

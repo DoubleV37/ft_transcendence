@@ -27,10 +27,6 @@ async function	Twofa_CancelSubmit() {
     changeSection(`${ROUTE.SETTINGS}`, `#content`);
 }
 
-function sleep(ms) {
- return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 async function  Twofa_EnableSubmit(event) {
   event.preventDefault();
   restore_message();

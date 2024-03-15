@@ -1,5 +1,4 @@
 // BIEN SEPARER EVENEMENTS MODAL ET EVENTS SETTINGS
-
 function  settings_SetEvents() {
   let element = document.getElementById('AVATAR_Change');
   element.addEventListener('click', settings_ModAvatarCallBack);
@@ -37,8 +36,7 @@ function  settings_SetEvents() {
   element.addEventListener('submit', avatar_FormCallBack);
 
   element = document.getElementById('switchCheckLabelTop');
-  //element.addEventListener('click', settings_TwoFaCallBack);
-  element.addEventListener('click', settings_aled);
+  element.addEventListener('click', settings_TwoFaCallBack);
 }
 
 function  settings_DelEvents() {
@@ -78,14 +76,43 @@ function  settings_DelEvents() {
   element.removeEventListener('submit', avatar_FormCallBack);
 
   element = document.getElementById('switchCheckLabelTop');
-  //element.removeEventListener('click', settings_TwoFaCallBack);
-  element.removeEventListener('click', settings_aled);
+  element.removeEventListener('click', settings_TwoFaCallBack);
 }
 
-function  settings_aled(event) {
+async function  settings_TwoFaCallBack(event) {
+  event.preventDefault();
   const	element = event.target;
 
-  console.log(`hello ? -> ${element.checked}`);
+  //console.log(`hello ? -> ${element.checked}`);
+  if (element.checked == true) {
+    let form = document.getElementById('2FA_Form');
+    let formData = new FormData(form);
+    const	response = await MakeRequest(`${ROUTE.TWOFA_E}`, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+
+    console.log(`data => ${data.status}`);
+    if (data.status == 'continue') {
+      await changeSection(`${ROUTE.TWOFA_Q}`, '#TwofaModal');
+      await changeSection(`${ROUTE.TWOFA_C}`, '#confirm_2fa');
+      TwofaModal.show();
+    }
+    else {
+      // modal.show()
+      console.log("2FA - succesfully disabled"); //TODO create the modal in JS a la mano
+    }
+  }
+  else {
+    let form = document.getElementById('2FA_Form');
+    let formData = new FormData(form);
+     MakeRequest(`${ROUTE.TWOFA_E}`, {
+      method: 'POST',
+      body: formData
+    });
+
+  }
 }
 
 async function name_FormCallBack(event) 

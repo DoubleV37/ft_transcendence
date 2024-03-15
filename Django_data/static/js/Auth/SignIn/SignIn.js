@@ -11,17 +11,28 @@ async function signIn() {
     const response = await MakeRequest(`${ROUTE.SIGNIN}`, myData);
 
     if (response.ok) {
-      return true;
+      const data = await response.json();
+
+      if (data.success == true) {
+	if (data.Twofa == true) {
+	  if (document.getElementById('code_2fa')) {
+	    console.log("fuuuuuuuuuuuuuuuck");
+	  }
+	  await changeSection(`${ROUTE.TWOFA_C}`, '#code_2fa');
+	  TwofaCodeModal.show();
+	}
+	else {
+	  return true;
+	}
+      }
+      else {
+	SignIn_UpdateErrors(data.error);
+	document.getElementById('SIGNIN_Form').reset();
+      }
     }
     else {
       if (response.status == 403) {
 	Access_Denied(await response.text());
-      }
-      else {
-	const data = await response.text();
-	console.log(`response -> {data}`);
-	SignIn_UpdateErrors(data);
-	document.getElementById('SIGNIN_Form').reset();
       }
       return false;
     }

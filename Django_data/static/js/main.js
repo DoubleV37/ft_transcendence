@@ -15,6 +15,9 @@ async function  launchWebsite() {
   await loadPage(currentUrl);
   await changeSection(`${ROUTE.HEADER}`, '#Header_content');
   modal_ProfileInit();
+  modal_2FaCodeInit();
+  modal_2FaInit();
+
   header_SetEvents();
   main_SetFirstsEvents();
 
@@ -64,9 +67,9 @@ function  launchSectionHandler(element) {
         break ;
       case 'SETTINGS':
   // VOIR AVEC JEAN
+	modal_AvatarInit();
+	//modal_2FaInit();
         settings_SetEvents();
-        modal_AvatarInit();
-	modal_2FaInit();
         header_SetEvents();
 	break ;
 

@@ -20,7 +20,8 @@ class UserPermission:
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         home_path = ('/', '/header', '/footer')
-        auth_path = ('/auth/signin/', '/auth/signup/', '/auth/jwt/refresh/')
+        auth_path = ('/auth/signin/', '/auth/signup/', '/auth/jwt/refresh/',
+                     '/2fa/confirm/')
         if request.path in home_path:  # look if path is ok for all type of user
             response = None
         elif request.path in auth_path:  # look if user is already logged or not

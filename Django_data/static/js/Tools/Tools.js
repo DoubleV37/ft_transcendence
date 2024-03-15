@@ -27,3 +27,7 @@ function  del_current_event() {
       break;
   }
 }
+
+function sleep(ms) {
+ return new Promise(resolve => setTimeout(resolve, ms));
+}
