@@ -31,32 +31,29 @@
 	</canvas>
 
     <script>
-    //   const chatSocket = new WebSocket("wss://" + window.location.host + "/wss/game/room");
-    //   chatSocket.onopen = function (e) {
-    //     console.log("The connection was setup successfully !");
-    //   };
-    //   chatSocket.onclose = function (e) {
-    //     console.log("Something unexpected happened !");
-    //   };
-    //   document.querySelector("#id_message_send_input").focus();
-    //   document.querySelector("#id_message_send_input").onkeyup = function (e) {
-    //     if (e.keyCode == 13) {
-    //       document.querySelector("#id_message_send_button").click();
-    //     }
-    //   };
-    //   document.querySelector("#id_message_send_button").onclick = function (e) {
-    //     var messageInput = document.querySelector(
-    //       "#id_message_send_input"
-    //     ).value;
-    //     chatSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
-    //   };
-    //   chatSocket.onmessage = function (e) {
-    //     const data = JSON.parse(e.data);
-    //     var div = document.createElement("div");
-    //     div.innerHTML = data.username + " : " + data.message;
-    //     document.querySelector("#id_message_send_input").value = "";
-    //     document.querySelector("#id_chat_item_container").appendChild(div);
-    //   };
+		const gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/room");
+		gameSocket.onopen = function (e) {
+			console.log("The connection was setup successfully !");
+		};
+		gameSocket.onclose = function (e) {
+			console.log("Something unexpected happened !");
+		};
+		// document.querySelector("#id_message_send_input").focus();
+		// document.querySelector("#id_message_send_input").onkeyup = function (e) {
+		// 	if (e.keyCode == 13) {
+		// 		document.querySelector("#id_message_send_button").click();
+		// 	}
+		// };
+		// document.querySelector("#id_message_send_button").onclick = function (e) {
+		// 	var messageInput = document.querySelector(
+		// 		"#id_message_send_input"
+		// 	).value;
+		// 	gameSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
+		// };
+		gameSocket.onmessage = function (e) {
+			const data = JSON.parse(e.data);
+			draw(data);
+		};
 
 
 
@@ -72,10 +69,6 @@
 
 		var ballRadius = width/20;
 		var paddleHeight = width/10;
-		var x = canvas.width/2;
-		var y = canvas.height-30;
-		var dx = 2;
-		var dy = -2;
 
 		addEventListener('resize', () => {
 			const style = getComputedStyle(canvas);
@@ -113,35 +106,23 @@
 			ctx.closePath();
 		}
 
-		function drawBall() {
-			ctx.beginPath();
-			ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-			ctx.fillStyle = "#0095DD";
-			ctx.fill();
-			ctx.closePath();
-		}
-
-		function draw() {
+		function draw(data) {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			// ctx.fillStyle = "rgba(242,242,242,0.50)";
 			// ctx.fillRect(0, 0, canvas.width, canvas.height);
-			drawBall();
-			drawPaddleR(0.5);
-			drawPaddleL(0.5);
-			drawBallXY(0.5, 0.5);
-
-			if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-				dx = -dx;
-			}
-			if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
-				dy = -dy;
-			}
-
-			x += dx;
-			y += dy;
+			drawPaddleR(data.paddleR);
+			drawPaddleL(data.paddleL);
+			drawBallXY(data.ballX, data.ballY);
 		}
 
-		setInterval(draw, 10);
+		addEventListener('keydown', (e) => {
+			if (e.key === 'ArrowUp') {
+				gameSocket.send(JSON.stringify({ message: "up", username : "{{request.user.username}}" }));
+			}
+			if (e.key === 'ArrowDown') {
+				gameSocket.send(JSON.stringify({ message: "down", username : "{{request.user.username}}" }));
+			}
+		});
     </script>
   </body>
 </html>
