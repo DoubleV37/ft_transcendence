@@ -26,6 +26,8 @@ class UserPermission:
                            '/auth/signup/',
                            '/auth/jwt/refresh/',
                            '/2fa/confirm/')
+        logger.info(f"path -> {request.path}")
+        logger.info(f"request =>\n {request}")
         if request.path in authorised_path:
             response = None
         else:
