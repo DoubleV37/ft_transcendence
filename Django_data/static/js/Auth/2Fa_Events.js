@@ -30,8 +30,8 @@ async function	Twofa_CancelSubmit() {
 async function  Twofa_EnableSubmit(event) {
   event.preventDefault();
   restore_message();
-  let form = document.getElementById('form_2FA');
-  let formData = new FormData(form);
+  const form = document.getElementById('form_2FA');
+  const formData = new FormData(form);
   const	response = await MakeRequest(`${ROUTE.TWOFA_C}`, {
     method: 'POST',
     body: formData

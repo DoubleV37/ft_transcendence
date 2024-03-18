@@ -38,16 +38,7 @@ window.addEventListener('popstate', async function(event) {
     currentUrl = `${ROUTE.HOME}`;
   }
   else {
-    if (_2faOngoing == true) {
-      const elemform = document.getElementById('form_2FA');
-      const form2FA = new FormData(elemform);
-
-      await MakeRequest(`${ROUTE.TWOFA_E}`, {
-        method: 'POST',
-	body: form2FA
-      });
-      TwofaModal.hide();
-    }
+    await del_modal_2FA();
     await changeSection(event.state.section, '#content');
     currentUrl = event.state.section;
   }
@@ -109,4 +100,21 @@ async function put_signinPage() {
   header_DelEvents();
   await changeSection(`${ROUTE.HEADER}`, '#Header_content');
   header_SetEvents();
+}
+
+async function  del_modal_2FA() {
+    if (_2faOngoing == true) {
+      const elemform = document.getElementById('form_2FA');
+      const form2FA = new FormData(elemform);
+
+      await MakeRequest(`${ROUTE.TWOFA_E}`, {
+        method: 'POST',
+	body: form2FA
+      });
+      TwofaModal.hide();
+    }
+  if (_2faSignIn == true) {
+    signin_DelModalEvents();
+    TwofaCodeModal.hide();
+  }
 }

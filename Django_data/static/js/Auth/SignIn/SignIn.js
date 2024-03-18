@@ -15,8 +15,10 @@ async function signIn() {
 
       if (data.success == true) {
 	if (data.Twofa == true) {
+	  _2faSignIn = true;
 	  await changeSection(`${ROUTE.TWOFA_C}`, '#code_2fa');
 	  TwofaCodeModal.show();
+	  return '2fa';
 	}
 	else {
 	  return true;
@@ -40,19 +42,37 @@ async function signIn() {
   }
 }
 
-function SignIn_JsonForm(myForm) {
-  let formData = new FormData(myForm);
-  let formDataJSON = {};
+async function	confirm_2FA_SignIn() {
+  const form2FA = document.getElementById('form_2FA');
+  const formSIGNIN = document.getElementById('SIGNIN_Form');
 
-  formData.forEach(function(value, key) {
-    formDataJSON[key] = value;
-  });
+  let CombinedForm = new FormData();
 
-  let myData = {
+  for (const pair of new FormData(form2FA)) {
+    CombinedForm.append(pair[0], pair[1]);
+  }
+  for (const pair of new FormData(formSIGNIN)) {
+    CombinedForm.append(pair[0], pair[1]);
+  }
+
+  const	response = await MakeRequest(`${ROUTE.TWOFA_C}`, {
     method: 'POST',
-    body: JSON.stringify(formDataJSON),
-  };
-  return myData;
+    body: CombinedForm
+  });
+  const data = await response.json();
+
+  if (data.success == true) {
+    let element = document.getElementById('success_2FA');
+
+    element.innerHTML = `2FA authentication succeed.`;
+    return (true);
+  }
+  else {
+    let element = document.getElementById('failure_2FA');
+
+    element.innerHTML = `Error: Wrong code submitted. Please try again.`;
+    return (false);
+  }
 }
 
 function SignIn_UpdateErrors(errors) {

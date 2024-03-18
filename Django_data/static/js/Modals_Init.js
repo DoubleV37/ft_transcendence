@@ -28,5 +28,5 @@ function  modal_2FaCodeInit() {
     backdrop: true,
     keyboard: true,
     focus: true});
-  TwofaCodeModal._element.addEventListener('shown.bs.modal', Code_SetModalEvents);
+  TwofaCodeModal._element.addEventListener('shown.bs.modal', signin_SetModalEvents);
 }

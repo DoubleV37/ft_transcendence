@@ -1,3 +1,4 @@
+console.log('Hello motherfucker !');
 let currentUrl = window.location.pathname;
 let profileModal = null;
 let avatarModal = null;
@@ -5,6 +6,7 @@ let TwofaModal = null;
 let TwofaCodeModal = null;
 let observer;
 let _2faOngoing = false;
+let _2faSignIn = false;
 
 const ROUTE = {
   "HOME":"/",
