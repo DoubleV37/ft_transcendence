@@ -1,10 +1,12 @@
 {% load static %}
 
 <body>
-  {% include "Profile/Profile.html" %}
   {% include "Home/head.html" %}
   {% include "Home/header.html" %}
+  {% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
+  {% include "Profile/Profile.html" %}
   {% include "Auth/code_validation.html" %}
+  {% include "Profile/enable_2fa.html" %}<!-- TODO load the modal only if the user is connected -->
 
   <div id="content">
     <div id="overlay">

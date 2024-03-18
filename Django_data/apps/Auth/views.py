@@ -57,9 +57,11 @@ def signin(request):
                                         samesite='Lax')
             else:
                 response = JsonResponse({'success': False,
-                                        'error': 'incorrect username or password'})
+                                        'error':
+                                            'incorrect username or password'})
         else:
-            response = HttpResponse('Invalid Form', status=401)
+            response = JsonResponse({'success': False,
+                                     'error': 'Wrong form'})
         return response
     form = SignInForm()
     return render(request, 'Auth/SignIn.html', {'form': form})

@@ -19,24 +19,18 @@ class UserPermission:
 
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        home_path = ('/', '/header', '/footer')
-        auth_path = ('/auth/signin/', '/auth/signup/', '/auth/jwt/refresh/',
-                     '/2fa/confirm/')
-        if request.path in home_path:  # look if path is ok for all type of user
+        authorised_path = ('/',
+                           '/header',
+                           '/footer',
+                           '/auth/signin/',
+                           '/auth/signup/',
+                           '/auth/jwt/refresh/',
+                           '/2fa/confirm/')
+        if request.path in authorised_path:
             response = None
-        elif request.path in auth_path:  # look if user is already logged or not
-            response = self.auth_handler(request)
         else:
             response = self.logged_handler(request)
         return response
-
-
-    def auth_handler(self, request):
-        _user = request.user
-
-        if _user.is_anonymous is False and request.path != '/auth/jwt/refresh/':
-            return home(request)
-        return None
 
 
     def logged_handler(self, request):
@@ -56,25 +50,12 @@ class UserPermission:
             return None
         except jwt.InvalidIssuerError:
             signout(request)
-            #self.log_error(encoded_token, "iss")
-            logger.error(encoded_token)
+            logger.error(f" Invalid Issuer : {encoded_token}")
             return HttpResponse("Bad Issuer", status=498)
         except jwt.ExpiredSignatureError:
-            logger.error(encoded_token)
-            #self.log_error(encoded_token, 'exp')
+            logger.error(f"expired token {encoded_token}")
             return HttpResponse("Expired", status=498)
         except jwt.exceptions.InvalidTokenError:
-            logger.error(encoded_token)
+            logger.error(f"Invalid token : {encoded_token}")
             signout(request)
-            #self.log_error(encoded_token)
             return HttpResponse("Bad Token", status=498)
-
-
-    def log_error(self, encoded_token, key=None):
-        token_error = jwt.decode(encoded_token, config('DJANGO_SECRET_KEY'),
-                                 algorithm=config('HASH'),
-                                 options={"verify_signature": False})
-        if key is None:
-            logger.info("Invalid Token - %s", token_error)
-        else:
-            logger.info("Invalid Token - %s - %s", key, token_error.get(key))

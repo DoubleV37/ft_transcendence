@@ -15,9 +15,6 @@ async function signIn() {
 
       if (data.success == true) {
 	if (data.Twofa == true) {
-	  if (document.getElementById('code_2fa')) {
-	    console.log("fuuuuuuuuuuuuuuuck");
-	  }
 	  await changeSection(`${ROUTE.TWOFA_C}`, '#code_2fa');
 	  TwofaCodeModal.show();
 	}

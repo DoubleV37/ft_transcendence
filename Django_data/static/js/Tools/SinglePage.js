@@ -38,6 +38,16 @@ window.addEventListener('popstate', async function(event) {
     currentUrl = `${ROUTE.HOME}`;
   }
   else {
+    if (_2faOngoing == true) {
+      const elemform = document.getElementById('form_2FA');
+      const form2FA = new FormData(elemform);
+
+      await MakeRequest(`${ROUTE.TWOFA_E}`, {
+        method: 'POST',
+	body: form2FA
+      });
+      TwofaModal.hide();
+    }
     await changeSection(event.state.section, '#content');
     currentUrl = event.state.section;
   }

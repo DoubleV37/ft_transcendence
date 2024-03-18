@@ -15,6 +15,20 @@ function  signin_SetEvents() {
   //  .
 }
 
+function  signin_DelEvents() {
+  let element = document.getElementById('SIGNIN_Form');
+  element.removeEventListener('submit', signin_FormCallBack);
+
+  element = document.querySelector("#SIGNIN_Signup b");
+  element.removeEventListener('click', signin_SignUpCallBack);
+
+  element = document.getElementById('SIGNIN_Auth42');
+  element.removeEventListener('click', signin_auth42CallBack);
+
+  element = document.getElementById('forgot_password');
+  element.removeEventListener('click', signin_ForgotPasswdCallBack);
+}
+
 function Code_SetModalEvents() {
   let element = document.getElementById('form_2FA');
   element.addEventListener('click', code2FACallBack);
@@ -31,21 +45,6 @@ function Code_DelModalEvents() {
   element.removeEventListener('click', cancelcode2FACallBack);
 }
 
-function  signin_DelEvents() {
-  let element = document.getElementById('SIGNIN_Form');
-  element.removeEventListener('submit', signin_FormCallBack);
-
-  element = document.querySelector("#SIGNIN_Signup b");
-  element.removeEventListener('click', signin_SignUpCallBack);
-
-  element = document.getElementById('SIGNIN_Auth42');
-  element.removeEventListener('click', signin_auth42CallBack);
-
-  element = document.getElementById('forgot_password');
-  element.removeEventListener('click', signin_ForgotPasswdCallBack);
-
-}
-
 function  cancelcode2FACallBack(event) {
   event.preventDefault;
   Code_DelModalEvents();
@@ -56,7 +55,6 @@ async function	code2FACallBack(event) {
   event.preventDefault();
   restore_message();
 
-  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   const form2FA = document.getElementById('form_2FA');
   const formSIGNIN = document.getElementById('SIGNIN_Form');
 
@@ -78,10 +76,13 @@ async function	code2FACallBack(event) {
   if (data.success == true) {
     let element = document.getElementById('success_2FA');
 
-    element.innerHTML = `2FA authentication successfully enabled.`;
+    element.innerHTML = `2FA authentication succeed.`;
     Code_DelModalEvents();
+    signin_DelEvents();
     await sleep(2000);
     TwofaCodeModal.hide();
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content'); //add some handler event here
+    header_SetEvents();
     loadPage(`${ROUTE.HOME}`);
   }
   else {

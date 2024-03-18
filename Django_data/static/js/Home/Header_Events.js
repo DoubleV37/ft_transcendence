@@ -31,9 +31,6 @@ function  header_SetEvents() {
   else {
     console.error(`header_SetEvents: error: ${element} unrecognised`);
   }
-//  .
-//  .
-//  .
 }
 
 function  header_DelEvents() {
@@ -97,8 +94,8 @@ function  header_SignInCallBack() {
 
 async function  header_ModProfilCallBack() {
   try {
-    await changeSection(`${ROUTE.PROFILE}`, '#ProfileModal');
     offcanvas_Hide();
+    await changeSection(`${ROUTE.PROFILE}`, '#ProfileModal');
     profileModal.show();
   }
   catch (error) {

@@ -1,7 +1,10 @@
 let currentUrl = window.location.pathname;
 let profileModal = null;
 let avatarModal = null;
+let TwofaModal = null;
+let TwofaCodeModal = null;
 let observer;
+let _2faOngoing = false;
 
 const ROUTE = {
   "HOME":"/",

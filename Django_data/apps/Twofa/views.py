@@ -97,7 +97,10 @@ class TwoFactorConfirmationView(FormView):
     def post(self, request):
         key: str = ''
         self.form = TwoFAForm(request.POST)
-        if request.user.is_authenticated is False:
+        _logged = True
+
+        if request.user.is_anonymous is True:
+            _logged = False
             signin_form = SignInForm(request.POST)
             if signin_form.is_valid():
                 username = signin_form.cleaned_data['username']
@@ -111,19 +114,19 @@ class TwoFactorConfirmationView(FormView):
                                      'logs': 'Bad identificators'})
 
         else:
-            _user = User.objects.get(username=request.POST.get('username'))
-        value = pyotp.TOTP(_user.to2fa.otp_secret).now()
+            _user = User.objects.get(username=request.user.username)
 
+        value = pyotp.TOTP(_user.to2fa.otp_secret).now()
         if self.form.is_valid():
             key = self.form.cleaned_data.get('otp')
-
             if key == value:
+
                 self.response["success"] = True
                 response = JsonResponse(self.response)
-                if _user.is_authenticated is False:
-                    logger.info("Am i fucking here ?")
+                if _logged is False:
+
                     login(request, _user)
-                    from Project.apps.Auth import create_jwt
+                    from apps.Auth.views import create_jwt
                     jwt_token = create_jwt(_user)
                     response.set_cookie(key='jwt_token',
                                         value=str(jwt_token),

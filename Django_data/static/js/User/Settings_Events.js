@@ -80,10 +80,8 @@ function  settings_DelEvents() {
 }
 
 async function  settings_TwoFaCallBack(event) {
-  event.preventDefault();
   const	element = event.target;
 
-  //console.log(`hello ? -> ${element.checked}`);
   if (element.checked == true) {
     let form = document.getElementById('2FA_Form');
     let formData = new FormData(form);
@@ -91,6 +89,7 @@ async function  settings_TwoFaCallBack(event) {
       method: 'POST',
       body: formData
     });
+    _2faOngoing = true;
     const data = await response.json();
 
     console.log(`data => ${data.status}`);
@@ -111,7 +110,6 @@ async function  settings_TwoFaCallBack(event) {
       method: 'POST',
       body: formData
     });
-
   }
 }
 
@@ -173,21 +171,29 @@ async function avatar_FormCallBack(event)
   }
 }
 
- function displaySelectedImage(event) 
+function displaySelectedImage(event) 
+{
+ const fileInput = event.target;
+ const selectedImage = document.getElementById('selectedAvatar');
+ 
+ if (fileInput.files && fileInput.files[0]) 
  {
-   const fileInput = event.target;
-   const selectedImage = document.getElementById('selectedAvatar');
-   
-   if (fileInput.files && fileInput.files[0]) 
-   {
-     const reader = new FileReader();   
-     reader.onload = function(e) {
-       selectedImage.src = e.target.result;
-     };     
-     reader.readAsDataURL(fileInput.files[0]);
-   }
+   const reader = new FileReader();   
+   reader.onload = function(e) {
+     selectedImage.src = e.target.result;
+   };     
+   reader.readAsDataURL(fileInput.files[0]);
  }
+}
 
 function selectAvatar() {
   document.getElementById('id_avatar').click();
+}
+
+function  settings_ModAvatarCallBack() {
+  avatarModal.show();
+}
+
+function  settings_closeModal() {
+  avatarModal.hide();
 }

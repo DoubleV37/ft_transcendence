@@ -15,7 +15,7 @@ function  Twofa_DelModalEvents() {
 }
 
 async function	Twofa_CancelSubmit() {
-    let form = document.getElementById('2FA_Form');
+    let form = document.getElementById('form_2FA');
     let formData = new FormData(form);
     await MakeRequest(`${ROUTE.TWOFA_E}`, {
       method: 'POST',
@@ -42,6 +42,7 @@ async function  Twofa_EnableSubmit(event) {
     let element = document.getElementById('success_2FA');
 
     element.innerHTML = `2FA authentication successfully enabled.`;
+    _2faOngoing = false;
     Twofa_DelModalEvents();
     await sleep(2000);
     TwofaModal.hide();

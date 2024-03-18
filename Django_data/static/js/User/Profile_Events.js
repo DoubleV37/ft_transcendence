@@ -1,11 +1,3 @@
-//  button  //
-//  PROFIL_Settings --- Ongoing//
-//  PROFIL_Skins  //
-
-//  PROFIL_HISTORY //
-//  PROFIL_STATS" //
-//  PROFIL_42Account //
-
 function  profile_SetEvents() {
   let element = document.getElementById('PROFIL_Settings');
 

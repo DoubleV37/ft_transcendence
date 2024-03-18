@@ -13,7 +13,6 @@ function  modal_AvatarInit() {
     keyboard: true,
     focus: true});
   avatarModal._element.addEventListener('shown.bs.modal', settings_SetEvents);
-  // avatarModal._element.addEventListener('hide.bs.modal', settings_DelEvents);
 }
 
 function  modal_2FaInit() {
@@ -22,7 +21,6 @@ function  modal_2FaInit() {
     keyboard: false,
     focus: true});
   TwofaModal._element.addEventListener('shown.bs.modal', Twofa_SetModalEvents);
-  // avatarModal._element.addEventListener('hide.bs.modal', settings_DelEvents);
 }
 
 function  modal_2FaCodeInit() {
@@ -31,13 +29,4 @@ function  modal_2FaCodeInit() {
     keyboard: true,
     focus: true});
   TwofaCodeModal._element.addEventListener('shown.bs.modal', Code_SetModalEvents);
-  // avatarModal._element.addEventListener('hide.bs.modal', settings_DelEvents);
-}
-
-function  settings_ModAvatarCallBack() {
-  avatarModal.show();
-}
-
-function  settings_closeModal() {
-  avatarModal.hide();
 }
