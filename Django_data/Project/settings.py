@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'apps.Home',
     'apps.Auth',
     'apps.Profile',
-	'apps.Game',
+	'apps.Game',,
+    'apps.Twofa',
 ]
 
 MIDDLEWARE = [
@@ -52,8 +53,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    'Project.middleware.UserPermission',
 ]
+
 
 ROOT_URLCONF = 'Project.urls'
 
@@ -84,11 +86,11 @@ ASGI_APPLICATION = 'Project.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-		'NAME': config('POSTGRES_DB'),
-		'USER': config('PGUSER'),
-		'PASSWORD': config('POSTGRES_PASSWORD'),
-		'HOST': config('POSTGRES_HOST'),
-		'PORT': config('POSTGRES_PORT')
+        'NAME': config('POSTGRES_DB'),
+        'USER': config('PGUSER'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('POSTGRES_HOST'),
+        'PORT': config('POSTGRES_PORT')
     }
 }
 
@@ -139,6 +141,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ["https://localhost:8080"]
 

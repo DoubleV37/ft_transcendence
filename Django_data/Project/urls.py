@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include('apps.Home.urls')),
     path('auth/', include('apps.Auth.urls')),
     path('user/', include('apps.Profile.urls')),
+    path('2fa/', include('apps.Twofa.urls')),
 	path('game/', include('apps.Game.urls')),
     path('admin/', admin.site.urls),
 ]
