@@ -93,26 +93,26 @@ def my_settings(request):
     try:
         my_user = User.objects.get(username=request.user.username)
 
-        name = My_Name(instance=_user)
-        mail = My_Mail(instance=_user)
-        pswd = My_Psswd(instance=_user)
-        avatar = My_Avatar(instance=_user)
-        t_name = My_Tournamentname(instance=_user)
+        name = My_Name(instance=my_user)
+        mail = My_Mail(instance=my_user)
+        pswd = My_Psswd(instance=my_user)
+        avatar = My_Avatar(instance=my_user)
+        t_name = My_Tournamentname(instance=my_user)
         delete_avatar = DeleteAvatar()
 
         response: dict() = {}
         context: dict() = {
-            '_user': _user, 'name': name, 'mail': mail,
+            'my_user': my_user, 'name': name, 'mail': mail,
             'avatar': avatar, 'pswd': pswd, 't_name': t_name,
             'delete_avatar': delete_avatar,
         }
 
         if request.method == 'POST':
-            name = My_Name(request.POST, instance=_user)
-            mail = My_Mail(request.POST, instance=_user)
-            pswd = My_Psswd(request.POST, instance=_user)
-            avatar = My_Avatar(request.POST, request.FILES, instance=_user)
-            t_name = My_Tournamentname(request.POST, instance=_user)
+            name = My_Name(request.POST, instance=my_user)
+            mail = My_Mail(request.POST, instance=my_user)
+            pswd = My_Psswd(request.POST, instance=my_user)
+            avatar = My_Avatar(request.POST, request.FILES, instance=my_user)
+            t_name = My_Tournamentname(request.POST, instance=my_user)
             delete_avatar = DeleteAvatar(request.POST)
 
             if 'avatar_button' in request.POST:
@@ -127,10 +127,10 @@ def my_settings(request):
 
             if 'avatar_delete' in request.POST:
                 if delete_avatar.is_valid():
-                    if _user.avatar.url.find("ForbiddenDeletion/") == -1:
-                        _user.avatar.delete()
-                        _user.avatar = _user.backup_avatar
-                        _user.save()
+                    if my_user.avatar.url.find("ForbiddenDeletion/") == -1:
+                        my_user.avatar.delete()
+                        my_user.avatar = my_user.backup_avatar
+                        my_user.save()
                         response = {'success': True}
                     else:
                         response = {'success': False, 'logs': 'default.png'}
@@ -142,7 +142,7 @@ def my_settings(request):
                 t_name, 't_name_button', request, response)
             response = validator_fct(pswd, 'pswd_button', request, response)
             response = validator_fct(mail, 'mail_button', request, response)
-            
+
             return JsonResponse(response)
         return render(request, 'My_Settings1.html', context=context)
 
