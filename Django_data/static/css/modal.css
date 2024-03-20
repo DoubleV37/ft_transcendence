@@ -25,6 +25,10 @@ scrollbar-width: none;
 		border-top-right-radius: calc(0.3rem - 1px);
 	}
 
+	.modal-header-2FA {
+		padding-top: 0.5rem;
+	}
+
 	.modal-content {
 		position: relative;
 		display: flex;
@@ -110,6 +114,10 @@ scrollbar-width: none;
 		border-top-right-radius: calc(0.3rem - 1px);
 	}
 
+	.modal-header-2FA {
+		padding-top: 0.5rem;
+	}
+
 	.modal-content {
 		position: relative;
 		display: flex;
@@ -192,6 +200,10 @@ scrollbar-width: none;
 		border: none;
 		border-top-left-radius: calc(0.3rem - 1px);
 		border-top-right-radius: calc(0.3rem - 1px);
+	}
+
+	.modal-header-2FA {
+		padding-top: 0.5rem;
 	}
 
 	.modal-content {
