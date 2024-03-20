@@ -83,7 +83,7 @@ async function  settings_TwoFaCallBack(event) {
   const	element = event.target;
 
   if (element.checked == true) {
-    let form = document.getElementById('2FA_Form');
+    let form = document.getElementById('TWOFA_Form');
     let formData = new FormData(form);
     const	response = await MakeRequest(`${ROUTE.TWOFA_E}`, {
       method: 'POST',
@@ -104,7 +104,7 @@ async function  settings_TwoFaCallBack(event) {
     }
   }
   else {
-    let form = document.getElementById('2FA_Form');
+    let form = document.getElementById('TWOFA_Form');
     let formData = new FormData(form);
      MakeRequest(`${ROUTE.TWOFA_E}`, {
       method: 'POST',

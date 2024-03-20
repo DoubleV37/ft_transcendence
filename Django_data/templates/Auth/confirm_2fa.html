@@ -10,14 +10,15 @@
   <form id="form_2FA" action="" method="post">
     {% csrf_token %}
 
+    <p id="otp">Please enter your Authenticator code:</p>
     {{ form.otp.errors }}
     {{ form.otp.label_tag }} {{ form.otp }}
 
     <!--<div class="submit-row">-->
-      <input type="submit" value="Submit">
+      <button type="submit" id="Submit2FA" class="SelectButtonLayout ButtonNeon" value="Submit">Submit</button>
+      <button class="SelectButtonLayout ButtonDark" id={{ cancel }}>Cancel</button>
     <!--</div>-->
     <div id="success_2FA" style="color: green;"></div>
     <div id="failure_2FA" style="color: red;"></div>
   </form>
-  <button id={{ cancel }}>Cancel</button>
 </div>

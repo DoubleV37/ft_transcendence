@@ -5,19 +5,21 @@
 
 <div class="modal fade" id="TwofaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <div class="modal-content modal-content-2FA">
       <div class="modal-header"></div>
-      <div class="modal-body">
+      <div class="modal-body modal-body-2FA">
 	<div id="ModalContent" data-content="TwoFa_ENABLE"></div>
 	  <div class="d-flex justify-content-center mb-4">
-	    <form action="" method="post">
+	    <form id="TWOFA_modal" action="" method="post">
 		{% csrf_token %}
 
 		{% if otp %}
-		  <p><strong>OTP Secret:</strong></p>
-		  <p>{{ otp }}</p>
-		  <p>Enter it inside a 2FA app (Google Authenticator, Authy) or scan the QR code below.</p>
-		  {{ qr_code|safe }}
+		<div id="QR_Code">
+			<p><strong>OTP Secret:</strong></p>
+			<p>{{ otp }}</p>
+			<p>Enter it inside a 2FA app (Google Authenticator, Authy) or scan the QR code below.</p>
+			{{ qr_code|safe }}
+		</div>
 		{% else %}
 		  {% if form_errors %}
 		    {% for error in form_errors %}
@@ -30,9 +32,9 @@
 		  {% endif %}
 		{% endif %}
 	      </form>
-	      <div id="confirm_2fa"></div>
-	  </div>
+		</div>
 	</div>
+	<div id="confirm_2fa"></div>
       </div>
       <div class="modal-footer"></div>
     </div>

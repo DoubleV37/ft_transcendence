@@ -41,7 +41,7 @@
 										<button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
 									</div>
 								</form>
-								<form id="2FA_Form" method="post">
+								<form id="TWOFA_Form" method="post">
 								  {% csrf_token %}
 								  {{ profile_2fa.as_p }}
 								  <button type="submit">Enable</button>

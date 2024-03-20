@@ -251,14 +251,6 @@
         display: none;
     }
 
-    /* #AVATAR_Form p .hide-element {
-        display: none;
-    }
-
-    #AVATAR_Form a {
-        display: none;
-    } */
-
     #AvatarText {
         color: #FFF;
         /* Body text */
@@ -299,6 +291,101 @@
         display: flex;
         justify-content: flex-end;
         cursor: pointer;
+    }
+
+    #TWOFA_Form {
+        display: none;
+    }
+
+    #QR_Code > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    #QR_Code > svg {
+        display: block;
+        margin: auto;
+        margin-top: 1rem;
+        background-color:#ffffff;
+    }
+
+    #form_2FA {
+        margin-bottom: 1em;
+        flex-direction: column;
+        width: 90%;
+        display: flex;
+    }
+
+    #form_2FA > p {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+    }
+
+    #form_2FA > label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: flex-start !important;
+    }
+
+    #form_2FA > input {
+        height: 3.125rem;
+        width: 100%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-right: 0.8em;
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #confirm_2fa {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label[for="id_otp"]  {
+        display: none !important; /* Force l'application du style */
+    }
+
+    #otp {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #Submit2FA {
+        margin-bottom: 1rem;
     }
 
     .settings-profilePic {
@@ -594,6 +681,97 @@
         display: flex;
         justify-content: flex-end;
         cursor: pointer;
+    }
+
+    #QR_Code > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    #QR_Code > svg {
+        display: block;
+        margin: auto;
+        margin-top: 1rem;
+        background-color:#ffffff;
+    }
+
+    #form_2FA {
+        margin-bottom: 1em;
+        flex-direction: column;
+        width: 90%;
+        display: flex;
+    }
+
+    #form_2FA > p {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+    }
+
+    #form_2FA > label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: flex-start !important;
+    }
+
+    #form_2FA > input {
+        height: 3.125rem;
+        width: 100%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-right: 0.8em;
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #confirm_2fa {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label[for="id_otp"]  {
+        display: none !important; /* Force l'application du style */
+    }
+
+    #otp {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #Submit2FA {
+        margin-bottom: 1rem;
     }
 
     .settings-profilePic {
@@ -904,6 +1082,97 @@
         display: flex;
         justify-content: flex-end;
         cursor: pointer;
+    }
+
+    #QR_Code > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    #QR_Code > svg {
+        display: block;
+        margin: auto;
+        margin-top: 1rem;
+        background-color:#ffffff;
+    }
+
+    #form_2FA {
+        margin-bottom: 1em;
+        flex-direction: column;
+        width: 90%;
+        display: flex;
+    }
+
+    #form_2FA > p {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+    }
+
+    #form_2FA > label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: flex-start !important;
+    }
+
+    #form_2FA > input {
+        height: 3.125rem;
+        width: 100%;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        margin-right: 0.8em;
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #confirm_2fa {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label[for="id_otp"]  {
+        display: none !important; /* Force l'application du style */
+    }
+
+    #otp {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #Submit2FA {
+        margin-bottom: 1rem;
     }
 
     .settings-profilePic {
