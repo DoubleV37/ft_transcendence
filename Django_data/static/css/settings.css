@@ -1117,7 +1117,6 @@
         word-break: break-word; /* Utilisation de word-break pour les navigateurs modernes */
         overflow-wrap: break-word; /* Utilisation de overflow-wrap pour une meilleure compatibilité */
         width: 100%; /* Assurez-vous que le conteneur a une largeur définie */
-       }
     }
 
     #QR_Code > svg {
