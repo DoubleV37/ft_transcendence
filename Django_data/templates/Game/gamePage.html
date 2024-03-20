@@ -29,6 +29,8 @@
 	<canvas id="MyCanvas">
 		<p>Description of the canvas for those unable to view it.</p>
 	</canvas>
+	<div id="score1div"></div>
+	<div id="score2div"></div>
 
     <script>
 		const gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/room");
@@ -50,8 +52,19 @@
 		// 	).value;
 		// 	gameSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
 		// };
+		var paddle1size = 10;
+		var paddle2size = 10;
+		var ballsize = 10;
+
 		gameSocket.onmessage = function (e) {
 			const data = JSON.parse(e.data);
+			var score1div = document.getElementById("score1div");
+			score1div.innerHTML = "Score 1 : " + data.score1;
+			var score2div = document.getElementById("score2div");
+			score2div.innerHTML = "Score 2 : " + data.score2;
+			ballsize = data.ballsize;
+			paddle1size = data.paddle1size;
+			paddle2size = data.paddle2size;
 			draw(data);
 		};
 
@@ -66,9 +79,9 @@
 		const height = parseInt(style.getPropertyValue('height'), 10);
 		canvas.width = width;
 		canvas.height = height;
-
-		var ballRadius = width/20;
-		var paddleHeight = width/10;
+		var paddle1Height = width/paddle1size;
+		var paddle2Height = width/paddle2size;
+		var ballRadius = ballsize;
 
 		addEventListener('resize', () => {
 			const style = getComputedStyle(canvas);
@@ -76,15 +89,16 @@
 			const height = parseInt(style.getPropertyValue('height'), 10);
 			canvas.width = width;
 			canvas.height = height;
-			paddleHeight = width/10;
-			ballRadius = width/20;
+			paddle1Height = width/paddle1size;
+			paddle2Height = width/paddle2size;
+			ballRadius = ballsize;
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			draw();
 		});
 
 		function drawPaddleR(y) {
 			ctx.beginPath();
-			ctx.rect(canvas.width-15, y*canvas.height-paddleHeight/2, 10, paddleHeight);
+			ctx.rect(canvas.width-50, y*canvas.height-paddle2Height/2, 10, paddle2Height);
 			ctx.fillStyle = "#0095DD";
 			ctx.fill();
 			ctx.closePath();
@@ -92,7 +106,7 @@
 
 		function drawPaddleL(y) {
 			ctx.beginPath();
-			ctx.rect(5, y*canvas.height-paddleHeight/2, 10, paddleHeight);
+			ctx.rect(50, y*canvas.height-paddle1Height/2, 10, paddle1Height);
 			ctx.fillStyle = "#0095DD";
 			ctx.fill();
 			ctx.closePath();
