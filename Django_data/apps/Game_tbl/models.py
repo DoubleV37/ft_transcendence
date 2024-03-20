@@ -1,21 +1,30 @@
 from django.db import models
 from django.conf import settings
 
-class Game(models.Model):
+class PlayerInfo(models.Model):
 
-    me = models.ManyToManyField(settings.AUTH_USER_MODEL)
-
-    enemy = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name='toGame',
-        on_delete=models.SET_NULL, null=True, blank=True
+    me = models.OneToOneField(
+        settings.AUTH_USER_MODEL, related_name='toPlayerInfo',
+        on_delete=models.CASCADE, primary_key=True,
     )
 
     ball_touched = models.IntegerField(default=0)
     victory = models.BooleanField()
-    date = models.DateTimeField(auto_now_add=True)
-    my_score = models.IntegerField(default=0)
-    enemy_score = models.IntegerField(default=0)
+    score = models.IntegerField(default=0)
     rebounds = models.IntegerField(default=0)
-    my_max_ball_speed = models.IntegerField(default=0)
-    enemy_max_ball_speed = models.IntegerField(default=0)
+    max_ball_speed = models.IntegerField(default=0)
+
+class GameHistory(models.Model):
+
+    Player1 = models.OneToOneField(
+        PlayerInfo, related_name='Player1toGameHistory',
+        on_delete=models.CASCADE,
+    )
+
+    Player2 = models.OneToOneField(
+        PlayerInfo, related_name='Palyer2toGameHistory',
+        on_delete=models.CASCADE,
+    )
+
+    date = models.DateTimeField(auto_now_add=True)
     max_exchange = models.IntegerField(default=0)
