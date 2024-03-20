@@ -1,0 +1,10 @@
+<html>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ profile_2fa.as_p }}
+      <button type="submite">Enable</button>
+    {% endif %}
+  </form>
+
+</html>
