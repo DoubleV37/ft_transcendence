@@ -122,10 +122,13 @@ def my_settings(request):
 
             if 'avatar_delete' in request.POST:
                 if delete_avatar.is_valid():
-                    _user.avatar.delete()
-                    _user.avatar = _user.backup_avatar
-                    _user.save()
-                    response = {'success': True}
+                    if _user.avatar.url.find("ForbiddenDeletion/") == -1:
+                        _user.avatar.delete()
+                        _user.avatar = _user.backup_avatar
+                        _user.save()
+                        response = {'success': True}
+                    else:
+                        response = {'success': False, 'logs': 'default.png'}
                 else:
                     response = {'success': False, 'logs': 'Avatar not deleted'}
 
