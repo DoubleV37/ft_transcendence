@@ -2,37 +2,40 @@ import pygame
 import random
 import math
 
-def widow(Pong, screen, clock):
+def display_game(Pong, screen):
     screen.fill("black")
     pygame.draw.rect(screen, "white", (598, 0, 4, 900))
     pygame.draw.rect(screen, "white", (40, Pong.player_pos[0] - (Pong.player_size[0] / 2), 10, Pong.player_size[0]))
     pygame.draw.rect(screen, "white", (1150, Pong.player_pos[1] - (Pong.player_size[1] / 2), 10, Pong.player_size[1]))
     pygame.draw.circle(screen, "white", (Pong.ball_pos[0], Pong.ball_pos[1]), 12)
     pygame.display.flip()
-    clock.tick(240)
-
+    
 
 def ai_brain( Pong, player, lvl ):
 
     lvl = random.randint( -lvl, lvl )
-    if player == 0:
-        if Pong.ball_speed[0] > 0:
+    speedx = Pong.ball_speed[0]
+    speedy = Pong.ball_speed[1]
+    ballx = Pong.ball_pos[0]
+    bally = Pong.ball_pos[1]
+    if player == 1:
+        if speedx > 0:
             return 450
-        while Pong.ball_pos[1] > 60:
-            Pong.ball_pos[0] += Pong.ball_speed[0]
-            Pong.ball_pos[1] += Pong.ball_speed[1]
-            if 5 > Pong.ball_pos[1] or Pong.ball_pos[1] > 895:
-                Pong.ball_speed[1] *= -1
-        return Pong.ball_pos[1] + lvl
+        while ballx > 60:
+            ballx += speedx
+            bally += speedy
+            if 5 > bally or bally > 895:
+                speedy *= -1
+        return bally + lvl
 
-    if Pong.ball_speed[0] < 0:
+    if speedx < 0:
         return 450
-    while Pong.ball_pos[1] < 1150:
-        Pong.ball_pos[0] += Pong.ball_speed[0]
-        Pong.ball_pos[1] += Pong.ball_speed[1]
-        if 5 > Pong.ball_pos[1] or Pong.ball_pos[1] > 895:
-            Pong.ball_speed[1] *= -1
-    return Pong.ball_pos[1] + lvl
+    while ballx < 1150:
+        ballx += speedx
+        bally += speedy
+        if 5 > bally or bally > 895:
+            speedy *= -1
+    return bally + lvl
 
 
 class Pong():
@@ -103,6 +106,9 @@ class Pong():
                 self.ball_speed[1] = (self.ball_pos[1] - self.player_pos[1]) / self.paddle_radius
         self.stats(player)
 
+    def ball_walk(self):
+        self.ball_pos[0] += self.ball_speed[0]
+        self.ball_pos[1] += self.ball_speed[1]
 
     def run(self):
         pygame.init()
@@ -119,11 +125,12 @@ class Pong():
                 self.player_pos[1] -= self.player_speed
             elif keys[pygame.K_DOWN] and self.player_pos[1] < 900:
                 self.player_pos[1] += self.player_speed
+
             # ia move
-            self.player_pos[0] = ai_brain(self, 0, 20)
+            self.player_pos[0] = ai_brain(self, 1, 50)
+            self.player_pos[1] = ai_brain(self, 2, 50)
             # ball move
-            self.ball_pos[0] += self.ball_speed[0]
-            self.ball_pos[1] += self.ball_speed[1]
+            self.ball_walk()
             # paddle bounce
             if self.ball_pos[0] < 60 and self.ball_speed[0] < 0:
                 self.paddle_bounce(0)
@@ -139,13 +146,13 @@ class Pong():
             if self.ball_pos[0] < 0:
                 self.update_score(1)
             # pygame display #
-            widow(self, screen, clock)
+            display_game(self, screen)
+            clock.tick(240)
         pygame.quit()
             
 
 def main():
-
-    game = Pong(1, 5, 10)
+    game = Pong(1, 2, 10)
     game.run()
 
 

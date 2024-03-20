@@ -183,6 +183,6 @@ while running:
 
     pygame.display.flip()
 
-    # clock.tick(240) / 1000
+    clock.tick(240)
 
 pygame.quit()
