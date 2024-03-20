@@ -33,12 +33,12 @@ async function changeSection(section, content) {
 window.addEventListener('popstate', async function(event) {
   del_current_event();
   header_DelEvents();
+  await del_modal_2FA();
   if (event.state == null) {
     await changeSection(`${ROUTE.HOME}`, '#content');
     currentUrl = `${ROUTE.HOME}`;
   }
   else {
-    await del_modal_2FA();
     await changeSection(event.state.section, '#content');
     currentUrl = event.state.section;
   }
@@ -103,7 +103,7 @@ async function put_signinPage() {
 }
 
 async function  del_modal_2FA() {
-    if (_2faOngoing == true) {
+    if (TwofaModal.classList.contains('show')) {
       const elemform = document.getElementById('form_2FA');
       const form2FA = new FormData(elemform);
 

@@ -12,7 +12,8 @@ function  modal_AvatarInit() {
     backdrop: true,
     keyboard: true,
     focus: true});
-  avatarModal._element.addEventListener('shown.bs.modal', settings_SetEvents);
+  avatarModal._element.addEventListener('shown.bs.modal', avatar_SetEvents);
+  avatarModal._element.addEventListener('hide.bs.modal', avatar_DelEvents);
 }
 
 function  modal_2FaInit() {
