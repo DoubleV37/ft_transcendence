@@ -73,6 +73,9 @@ class My_Avatar(forms.ModelForm):
             instance.save()
         return instance
 
+class DeleteAvatar(forms.Form):
+    pass
+
 class My_Psswd(forms.ModelForm):
     class Meta:
         model = User

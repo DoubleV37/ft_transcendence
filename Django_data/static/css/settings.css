@@ -266,6 +266,10 @@
         display: none;
     }
 
+    #DEL_AVATAR_Form {
+        display: none;
+    }
+
     #id_avatar {
         display: none;
     }
@@ -657,6 +661,10 @@
     }
 
     #avatar_button_hidden {
+        display: none;
+    }
+
+    #DEL_AVATAR_Form {
         display: none;
     }
 
@@ -1067,6 +1075,10 @@
     }
 
     #avatar_button_hidden {
+        display: none;
+    }
+
+    #DEL_AVATAR_Form {
         display: none;
     }
 

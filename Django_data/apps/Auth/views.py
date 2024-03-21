@@ -6,7 +6,8 @@ from django.contrib.auth import login, authenticate, logout
 
 from .forms import (
     CustomUserCreationForm, SignInForm, My_Psswd,
-    My_Avatar, My_Name, My_Mail, My_Tournamentname
+    My_Avatar, My_Name, My_Mail, My_Tournamentname,
+    DeleteAvatar
 )
 from .models import User
 from apps.Twofa.models import UserTwoFA
@@ -42,19 +43,21 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
 
             if user is not None:
+                login(request, user)
+
                 if user.to2fa.enable:
                     data_response = {'success': True, 'Twofa': True}
                     response = JsonResponse(data_response)
                 else:
-                    data_response = {'success': True, 'Twofa': False}
-                    login(request, user)
-                    jwt_token = create_jwt(user)
-                    response = JsonResponse(data_response)
-                    response.set_cookie(key='jwt_token',
-                                        value=str(jwt_token),
-                                        httponly=True,
-                                        secure=True,
-                                        samesite='Lax')
+                    data_response = {'success': True, '2fa': False}
+
+                jwt_token = create_jwt(user)
+                response = JsonResponse(data_response)
+                response.set_cookie(
+                    key='jwt_token', value=str(jwt_token),
+                    httponly=True, secure=True,
+                    samesite='Lax'
+                )
             else:
                 response = JsonResponse({'success': False,
                                         'error':
@@ -90,7 +93,7 @@ def validator_fct(form, button: str, request, response: dict()) -> dict():
 
 
 def my_settings(request):
-    
+
     try:
         my_user = User.objects.get(username=request.user.username)
 
@@ -99,14 +102,13 @@ def my_settings(request):
         pswd = My_Psswd(instance=my_user)
         avatar = My_Avatar(instance=my_user)
         t_name = My_Tournamentname(instance=my_user)
-        enabled = my_user.to2fa.enable
-        profile_2fa = My_2fa(instance=my_user.to2fa)
+        delete_avatar = DeleteAvatar()
 
         response: dict() = {}
         context: dict() = {
             'my_user': my_user, 'name': name, 'mail': mail,
             'avatar': avatar, 'pswd': pswd, 't_name': t_name,
-            'enabled': enabled, 'profile_2fa': profile_2fa,
+            'delete_avatar': delete_avatar,
         }
 
         if request.method == 'POST':
@@ -115,6 +117,7 @@ def my_settings(request):
             pswd = My_Psswd(request.POST, instance=my_user)
             avatar = My_Avatar(request.POST, request.FILES, instance=my_user)
             t_name = My_Tournamentname(request.POST, instance=my_user)
+            delete_avatar = DeleteAvatar(request.POST)
 
             if 'avatar_button' in request.POST:
                 if avatar.is_valid():
@@ -124,16 +127,26 @@ def my_settings(request):
                     my_user.save()
                     response = {'success': True}
                 else:
-                    response = {
-                        'success': False,
-                        'logs': 'Avatar Error'
-                    }
+                    response = {'success': False, 'logs': 'Avatar Error'}
+
+            if 'avatar_delete' in request.POST:
+                if delete_avatar.is_valid():
+                    if my_user.avatar.url.find("ForbiddenDeletion/") == -1:
+                        my_user.avatar.delete()
+                        my_user.avatar = my_user.backup_avatar
+                        my_user.save()
+                        response = {'success': True}
+                    else:
+                        response = {'success': False, 'logs': 'default.png'}
+                else:
+                    response = {'success': False, 'logs': 'Avatar not deleted'}
 
             response = validator_fct(name, 'name_button', request, response)
             response = validator_fct(
                 t_name, 't_name_button', request, response)
             response = validator_fct(pswd, 'pswd_button', request, response)
             response = validator_fct(mail, 'mail_button', request, response)
+
             return JsonResponse(response)
         return render(request, 'My_Settings1.html', context=context)
 

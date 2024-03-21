@@ -35,6 +35,9 @@ function  settings_SetEvents() {
   element = document.getElementById('AVATAR_Form');
   element.addEventListener('submit', avatar_FormCallBack);
 
+  element = document.getElementById('AVATAR_Delete');
+  element.addEventListener('click', del_avatar_FormCallBack);
+
   element = document.getElementById('switchCheckLabelTop');
   element.addEventListener('click', settings_TwoFaCallBack);
 }
@@ -74,6 +77,9 @@ function  settings_DelEvents() {
 
   element = document.getElementById('AVATAR_Form');
   element.removeEventListener('submit', avatar_FormCallBack);
+
+  element = document.getElementById('AVATAR_Delete');
+  element.removeEventListener('click', del_avatar_FormCallBack);
 
   element = document.getElementById('switchCheckLabelTop');
   element.removeEventListener('click', settings_TwoFaCallBack);
@@ -166,6 +172,17 @@ async function avatar_FormCallBack(event)
 
   if (response == true) {
     settings_closeModal();
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    await changeSection(`${ROUTE.SETTINGS}`, '#content');
+  }
+}
+
+async function del_avatar_FormCallBack(event) 
+{
+  event.preventDefault();
+  const	response = await del_avatarSubmit();
+
+  if (response == true) {
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     await changeSection(`${ROUTE.SETTINGS}`, '#content');
   }

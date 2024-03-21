@@ -72,6 +72,11 @@
 									<!-- Le bouton ci dessous est caché et set juste à référencer le submit du formulaire -->
 									<button class="UpdateButtonLayout ButtonDark" type="submit" id='avatar_button_hidden'>Update</button>
 								</form>
+								<form id="DEL_AVATAR_Form" method="post">
+									{{ delete_avatar }}
+									{% csrf_token %}
+									<button type="submit" name="avatar_delete" id='del_avatar_button_hidden'>Delete Avatar</button>
+								</form>
 								<div class="DoubleButtonSettings">
 									<button id="AVATAR_Change" class="MediumButtonLayout left ButtonNeon">Change</button>
 									<button id="AVATAR_Delete" class="MediumButtonLayout right ButtonNeon">Delete</button>

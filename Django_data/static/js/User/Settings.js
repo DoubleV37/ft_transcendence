@@ -130,3 +130,29 @@ async function avatarSubmit() {
     return false;
   }
 }
+
+async function del_avatarSubmit() {
+  let myForm = document.getElementById('DEL_AVATAR_Form');
+  let formData = new FormData(myForm);
+  formData.append('avatar_delete', 'avatar_delete');
+  
+  try {
+    let response = await fetch(`${ROUTE.SETTINGS}`, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+    
+    if (data.success == true) {
+      return true;
+    }
+    else {
+	myForm.reset();
+	return false;
+    }
+  }
+  catch (err) {
+    console.error('Avatar Delete Errors:', err);
+    return false;
+  }
+}
