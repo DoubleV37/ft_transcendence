@@ -290,6 +290,17 @@ scrollbar-width: none;
 		padding-bottom: 1em;
 	}
 
+	.or {
+		color: #FFF;
+		text-align: center;
+		align-self: center;
+		font-family: Kodchasan;
+		font-size: 1.25rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
 	.play-button {
 		display: flex;
 		width: 28.125rem;
@@ -636,6 +647,17 @@ scrollbar-width: none;
 		line-height: normal;
 		margin-top: -0.8em;
 		padding-bottom: 1.2em;
+	}
+
+	.or {
+		color: #FFF;
+		text-align: center;
+		align-self: center;
+		font-family: Kodchasan;
+		font-size: 1.25rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
 	}
 
 	.play-button {
@@ -990,6 +1012,17 @@ scrollbar-width: none;
 		line-height: normal;
 		margin-top: -0.8em;
 		padding-bottom: 1em;
+	}
+
+	.or {
+		color: #FFF;
+		text-align: center;
+		align-self: center;
+		font-family: Kodchasan;
+		font-size: 1.25rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
 	}
 
 	.play-button {

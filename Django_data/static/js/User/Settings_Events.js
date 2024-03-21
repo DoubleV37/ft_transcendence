@@ -18,9 +18,6 @@ function  settings_SetEvents() {
   element = document.getElementById('TNAME_Form');
   element.addEventListener('submit', tname_FormCallBack);
 
-  element = document.getElementById('AVATAR_Form');
-  element.addEventListener('submit', avatar_FormCallBack);
-
   element = document.getElementById('AVATAR_Delete');
   element.addEventListener('click', del_avatar_FormCallBack);
 

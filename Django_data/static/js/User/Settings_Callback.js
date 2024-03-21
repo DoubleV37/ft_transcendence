@@ -58,6 +58,16 @@ async function tname_FormCallBack(event) {
   }
 }
 
+async function del_avatar_FormCallBack(event) {
+  event.preventDefault();
+  const	response = await del_avatarSubmit();
+
+  if (response == true) {
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    await changeSection(`${ROUTE.SETTINGS}`, '#content');
+  }
+}
+
 function  settings_ModAvatarCallBack() {
   avatarModal.show();
 }
