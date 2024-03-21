@@ -20,6 +20,7 @@ function  settings_SetEvents() {
 
   element = document.getElementById('AVATAR_Delete');
   element.addEventListener('click', del_avatar_FormCallBack);
+  element.addEventListener('click', restoreSelectedImage);
 
   element = document.getElementById('switchCheckLabelTop');
   element.addEventListener('click', settings_TwoFaCallBack);
@@ -46,7 +47,16 @@ function  settings_DelEvents() {
 
   element = document.getElementById('AVATAR_Delete');
   element.removeEventListener('click', del_avatar_FormCallBack);
+  element.removeEventListener('click', restoreSelectedImage);
 
   element = document.getElementById('switchCheckLabelTop');
   element.removeEventListener('click', settings_TwoFaCallBack);
 }
+
+function restoreSelectedImage(event) {
+  const fileInput = event.target;
+  const selectedImage = document.getElementById('selectedAvatar'); // Assurez-vous d'avoir un élément <img> avec l'ID 'selectedImage' dans votre HTML
+
+  // Si aucun fichier n'est sélectionné, utilisez l'image par défaut
+  selectedImage.src = "/static/images/logoIcon.png";
+  }
