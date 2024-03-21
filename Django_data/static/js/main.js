@@ -17,6 +17,7 @@ async function  launchWebsite() {
   modal_ProfileInit();
   modal_2FaCodeInit();
   modal_2FaInit();
+  modal_AvatarInit();
 
   header_SetEvents();
   main_SetFirstsEvents();
@@ -66,11 +67,8 @@ function  launchSectionHandler(element) {
         signup_SetEvents();
         break ;
       case 'SETTINGS':
-  // VOIR AVEC JEAN
-	modal_AvatarInit();
-	//modal_2FaInit();
         settings_SetEvents();
-        header_SetEvents();
+        //header_SetEvents();
 	break ;
 
       default:

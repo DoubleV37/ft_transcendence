@@ -42,7 +42,6 @@ async function  Twofa_EnableSubmit(event) {
     let element = document.getElementById('success_2FA');
 
     element.innerHTML = `2FA authentication successfully enabled.`;
-    _2faOngoing = false;
     Twofa_DelModalEvents();
     await sleep(2000);
     TwofaModal.hide();
