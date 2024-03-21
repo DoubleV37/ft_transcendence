@@ -1,8 +1,9 @@
 django
 python-decouple
 psycopg2-binary
-uvicorn
+uvicorn[standard]
 django-bootstrap-v5
+channels
 djangorestframework
 
 django-crontab

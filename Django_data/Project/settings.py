@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+	'channels',
+	'bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +41,7 @@ INSTALLED_APPS = [
     'apps.Home',
     'apps.Auth',
     'apps.Profile',
-	'bootstrap5',
+	'apps.Game',
     'apps.Twofa',
 ]
 
@@ -75,7 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Project.wsgi.application'
 
-# ASGI_APPLICATION = 'backend.asgi.application'
+ASGI_APPLICATION = 'Project.asgi.application'
 
 
 # Database
@@ -152,6 +154,12 @@ MEDIA_ROOT = BASE_DIR.joinpath('avatars/')
 
 
 AUTH_USER_MODEL = 'Auth.User'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 LOGGING = {
     'version': 1,

@@ -20,6 +20,7 @@ fre: fclean up
 
 site:
 	docker compose restart gunicorn
+	docker compose restart uvicorn
 
 update:
 	rm -rf `find ./Django_data/ -type f -name "0*"`
