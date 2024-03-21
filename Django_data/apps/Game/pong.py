@@ -45,7 +45,7 @@ class Pong():
 		self.point = [0, 0]
 		self.point_limit = point_limit
 		self.player_pos = [450, 450]
-		self.player_size = [100, 100]
+		self.player_size = [100, 450]
 		self.player_speed = 30
 		self.paddle_radius = difficulty
 		self.ball_acceleration = 0.05
@@ -60,7 +60,7 @@ class Pong():
 		self.ball_bonce = 0
 		self.max_exchange = 0
 		self.exchange = 0
-		self.ball_size = 1
+		self.ball_size = 10
 
 
 	def stats(self, player):
