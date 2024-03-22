@@ -4,5 +4,6 @@ from . import views
 app_name = "apps.Game"
 
 urlpatterns = [
-	path("room/" , views.gamePage, name="room-page") ,
+	path("solo/" , views.gamePage, name="solo-game-page") ,
+	path("matchmaking/" , views.matchmakingPage, name="matchmaking-page")
 ]

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matchmaking Example</title>
+</head>
+<body>
+    <button id="searchBtn">Rechercher un adversaire</button>
+
+    <script>
+        // Fonction pour se connecter au WebSocket
+        function connectWebSocket() {
+            const socket = new WebSocket("wss://" + window.location.host + "/wss/game/matchmaking");
+
+            socket.onopen = function(event) {
+                console.log('WebSocket connection established.');
+            };
+
+            socket.onmessage = function(event) {
+                console.log('Message received from server:', event.data);
+            };
+
+            socket.onerror = function(error) {
+                console.error('WebSocket error:', error);
+            };
+
+            socket.onclose = function(event) {
+                console.log('WebSocket connection closed:', event);
+            };
+
+            // Logique pour envoyer une demande de matchmaking
+            document.getElementById('searchBtn').addEventListener('click', function() {
+                socket.send('search');
+            });
+        }
+
+        // Appel de la fonction pour se connecter au WebSocket au chargement de la page
+        connectWebSocket();
+    </script>
+</body>
+</html>

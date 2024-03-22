@@ -2,7 +2,7 @@ import json, asyncio
 from channels.generic.websocket import AsyncWebsocketConsumer
 from .pong import Pong, ai_brain
 
-class PongConsumer(AsyncWebsocketConsumer):
+class SoloPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
 		self.roomGroupName = "pong_game"
 		await self.channel_layer.group_add(
@@ -63,3 +63,29 @@ class PongConsumer(AsyncWebsocketConsumer):
 				self.pong.update_score(1)
 			await self.sendMessage()
 			await asyncio.sleep(1/240)
+
+class MatchmakingPongConsumer(AsyncWebsocketConsumer):
+	async def connect(self):
+		await self.accept()
+
+	async def receive(self, text_data):
+		if text_data == 'search':
+			await self.channel_layer.group_add("matchmaking_group", self.channel_name)
+			await self.send(text_data="Searching for opponent...")
+
+			# Vérifie si le groupe de matchmaking contient deux utilisateurs
+			if len(await self.channel_layer.group_members("matchmaking_group")) == 2:
+				# Récupère les deux utilisateurs du groupe
+				users = await self.channel_layer.group_pop("matchmaking_group")
+				# Crée une salle de jeu pour eux
+				room_name = f"game_room_{self.channel_name}"
+				await self.channel_layer.group_add(room_name, users[0])
+				await self.channel_layer.group_add(room_name, users[1])
+				# Informe chaque utilisateur de la création de la salle de jeu
+				await self.channel_layer.group_send(room_name, {
+					"type": "matchmaking.success",
+					"room_name": room_name
+				})
+
+	async def disconnect(self, close_code):
+		await self.channel_layer.group_discard("matchmaking_group", self.channel_name)

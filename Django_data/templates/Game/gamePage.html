@@ -33,7 +33,7 @@
 	<div id="score2div"></div>
 
     <script>
-		const gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/room");
+		const gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/solo");
 		gameSocket.onopen = function (e) {
 			console.log("The connection was setup successfully !");
 		};
