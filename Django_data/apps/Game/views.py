@@ -5,3 +5,6 @@ def gamePage(request, *args, **kwargs):
         return redirect("/")
     context = {}
     return render(request, "Game/gamePage.html", context)
+
+def gameParameters(request):
+    return render(request, "Game/Parameters.html")

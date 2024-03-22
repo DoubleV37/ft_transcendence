@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+
+<body>
+  {% include "Home/head.html" %}
+  {% include "Home/header.html" %}
+  {% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
+  {% include "Profile/Profile.html" %}
+  {% include "Auth/code_validation.html" %}
+  {% include "Profile/enable_2fa.html" %}<!-- TODO load the modal only if the user is connected -->
+
+	<div id="content">
+		<div id="overlay">
+			<div class="mid midcolumn flowAnimation">
+				<div id="titleContent" data-content="GAME_PARAMETERS"></div>
+				<div class="section">
+					<h1 class="gameTitle">Custom Game</h1>
+					<div class="pong">
+						<img id="pong_img" src="{% static 'images/pong.webp' %}" alt="Pong display image">
+					</div>
+				</div>
+				<div class="section">
+					<p class="bodyText">Opponent type:</p>
+						<div class="DoubleButtonSettings">
+							<button id="SELECT_Player" class="MediumButtonLayout left ButtonDark">Player</button>
+							<button id="SELECT_ai" class="MediumButtonLayout right ButtonDark">AI</button>
+						</div>
+				</div>
+				<div class="section">
+					<div class="conteneur">
+							<div class="flex-column">
+								<p class="bodyText">Score to win:</p>
+								<div class="quantity">
+									<button class="minus" aria-label="Decrease">&minus;</button>
+									<input type="number" class="input-box" value="1" min="1" max="10">
+									<button class="plus" aria-label="Increase">&plus;</button>
+								</div>
+							</div>
+
+							<div class="flex-column">
+								<p class="bodyText">Difficulty:</p>
+								<div class="quantity">
+									<button class="minus" aria-label="Decrease">&minus;</button>
+									<input type="number" class="input-box" value="1" min="1" max="10">
+									<button class="plus" aria-label="Increase">&plus;</button>
+								</div>
+							</div>
+							<div class="flex-column">
+								<p class="bodyText">Power ups:</p>
+								<div class="form-check form-switch p-0">
+									<div class="d-flex flex-column-reverse gap-1">
+									  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" {% if enabled == True %}checked{% endif%} />
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+				<div class="section">
+					<button id="StartButton" class="play-button"><span class="play">Create game</span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+  {% include "Home/footer.html" %}
+</body>
+
+		<script>
+
+			document.addEventListener('DOMContentLoaded', function() {
+				const minusBtn = document.getElementById("minusBtn");
+				const plusBtn = document.getElementById("plusBtn");
+				const inputBox = document.getElementById("inputBox");
+
+				minusBtn.addEventListener("click", decreaseValue);
+				plusBtn.addEventListener("click", increaseValue);
+				inputBox.addEventListener("input", handleQuantityChange);
+				 
+				updateButtonStates();
+				 
+				function updateButtonStates() {
+					console.log("updateButtonStates");
+				   const value = parseInt(inputBox.value);
+				   minusBtn.disabled = value <= 1;
+				   plusBtn.disabled = value >= parseInt(inputBox.max);
+				}
+				
+				function decreaseValue() {
+					console.log("decreaseValue");
+				   let value = parseInt(inputBox.value);
+				   value = isNaN(value) ? 1 : Math.max(value - 1, 1);
+				   inputBox.value = value;
+				   updateButtonStates();
+				   handleQuantityChange();
+				}
+				 
+				function increaseValue() {
+					console.log("increaseValue");
+				   let value = parseInt(inputBox.value);
+				   value = isNaN(value) ? 1 : Math.min(value + 1, parseInt(inputBox.max));
+				   inputBox.value = value;
+				   updateButtonStates();
+				   handleQuantityChange();
+				}
+				 
+				function handleQuantityChange() {
+					console.log("QTYChange");
+				   let value = parseInt(inputBox.value);
+				   value = isNaN(value) ? 1 : value;
+				   console.log("Quantity changed:", value);
+				}
+			   })();
+		
+		</script>
+	</body>
+</html>

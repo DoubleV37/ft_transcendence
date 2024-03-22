@@ -69,6 +69,9 @@ function  launchSectionHandler(element) {
       case 'SETTINGS':
         settings_SetEvents();
         //header_SetEvents();
+      case 'GAME_PARAMETERS':
+        parameters_SetEvents();
+        //header_SetEvents();
 	break ;
 
       default:

@@ -19,4 +19,5 @@ const ROUTE = {
   "TWOFA_Q":"/2fa/qrcode/",
   "TWOFA_C":"/2fa/confirm/",
   "JWTREFRESH":"/auth/jwt/refresh/",
+  "GAME_PARAMETERS":"/game/parameters/",
 };

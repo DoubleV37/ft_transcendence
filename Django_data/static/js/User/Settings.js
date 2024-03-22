@@ -136,6 +136,7 @@ async function del_avatarSubmit() {
   let formData = new FormData(myForm);
   formData.append('avatar_delete', 'avatar_delete');
   
+
   try {
     let response = await fetch(`${ROUTE.SETTINGS}`, {
       method: 'POST',
