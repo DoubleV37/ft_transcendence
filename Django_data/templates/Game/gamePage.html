@@ -68,9 +68,9 @@
 		gameSocket.onmessage = function (e) {
 			const data = JSON.parse(e.data);
 			var score1div = document.getElementById("score1div");
-			score1div.innerHTML = "Score 1 : " + data.score1;
+			score1div.innerHTML = "Score AI : " + data.score1;
 			var score2div = document.getElementById("score2div");
-			score2div.innerHTML = "Score 2 : " + data.score2;
+			score2div.innerHTML = "Score {{request.user}} : " + data.score2;
 			ballRadius = data.ballsize*height*2;
 			paddle1Height = data.paddle1size*height;
 			paddle2Height = data.paddle2size*height;
