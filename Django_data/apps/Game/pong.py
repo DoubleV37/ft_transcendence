@@ -55,12 +55,22 @@ class Pong():
 		else:
 			self.ball_speed = [-3, random.uniform(-1, 1)]
 			self.ball_pos = [1100, 450]
+		# powerup
+		self.powerup = 0
+		self.powerup_size = 50
+		self.powerup_time = 0
+		self.powerup_pos = [450, -50]
+		self.powerup_speed = 0
 		#stats
 		self.ball_max_speed = [0, 0]
 		self.ball_bonce = 0
 		self.max_exchange = 0
 		self.exchange = 0
 		self.ball_size = 10
+
+
+	def powerup_spawn(self):
+		
 
 
 	def stats(self, player):
