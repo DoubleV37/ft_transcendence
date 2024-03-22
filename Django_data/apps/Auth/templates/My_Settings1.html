@@ -1,16 +1,16 @@
 <html lang="en">
 {% load static %}
-{% include "Home/head.html" %}
   <body>
+    {% include "Home/head.html" %}
+	  {% include "Home/header.html" %}
+	  {% include "Profile/Profile.html" %}
+	  {% include "Profile/Avatar.html" %}
       <h3>Delete avatar</h3>
       <form method="post">
         {{ delete_avatar }}
         {% csrf_token %}
         <button type="submit" name="avatar_delete">Delete Avatar</button>
       </form>
-	  {% include "Home/header.html" %}
-	  {% include "Profile/Profile.html" %}
-	  {% include "Profile/Avatar.html" %}
 	  <div id="content">
 		  <div id="titleContent" data-content="SETTINGS"></div>
 		  <div id="overlayFullscreen">

@@ -2,6 +2,8 @@ from django.views.generic import TemplateView
 from apps.Auth.models import User
 from django.shortcuts import render
 
+import logging
+logger = logging.getLogger(__name__)
 
 class HomeView(TemplateView):
     template_name = "Home/home.html"
@@ -17,10 +19,16 @@ def header(request):
         _username = _user.username
         _avatar = _user.avatar.url
         _status = 'online' if _user.status is True else 'offline'
-        return render(request, 'Home/header.html',
-                      {'profil_picture': _avatar,
-                       'username': _username,
-                       'status': _status})
+
+        # TODO debug
+        logger.info(f"{'header':_^20}")
+        logger.info(f"{_avatar = :_^20}")
+        # TODO debug
+
+        return render(
+            request, 'Home/header.html', {'profil_picture': _avatar,
+            'username': _username, 'status': _status}
+        )
     return render(request, "Home/header.html")
 
 
