@@ -63,13 +63,6 @@ class My_Avatar(forms.ModelForm):
         model = User
         fields = ('avatar',)
 
-    # def clean_avatar(self):
-    #     avatar = self.cleaned_data['avatar']
-    #     # If avatar is changed, delete the previous image
-    #     if self.instance.avatar and self.instance.avatar != avatar:
-    #         return avatar
-    #     return self.instance.avatar
-
     def save(self, commit=True, *args, **kwargs):
         instance = super().save(commit=False)
         instance.avatar = self.cleaned_data['avatar']

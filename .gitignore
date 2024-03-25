@@ -3,4 +3,4 @@ __pycache__
 Django_data/staticfiles/*
 000*
 Django_data/avatars/*
-!Django_data/avatars/ForbiddenDeletion
+!Django_data/avatars/ForbiddenDeletion/default.png
