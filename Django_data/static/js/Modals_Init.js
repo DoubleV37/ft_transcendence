@@ -26,9 +26,10 @@ function  modal_2FaInit() {
 }
 
 function  modal_2FaCodeInit() {
-  TwofaCodeModal = new bootstrap.Modal(document.getElementById('TwofaCodeModal'), {
+  TwofaCodeModal['modal'] = new bootstrap.Modal(document.getElementById('TwofaCodeModal'), {
     backdrop: true,
     keyboard: true,
     focus: true});
-  TwofaCodeModal._element.addEventListener('shown.bs.modal', signin_SetModalEvents);
+  TwofaCodeModal['modal']._element.addEventListener('shown.bs.modal', signin_SetModalEvents);
+  TwofaCodeModal['modal']._element.addEventListener('hide.bs.modal', signin_DelModalEvents);
 }

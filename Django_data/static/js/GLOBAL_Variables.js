@@ -12,8 +12,10 @@ let TwofaModal = {
   'active': false,
 };
 
-let TwofaCodeModal = null;
-let _2faSignIn = false;
+let TwofaCodeModal = {
+  'modal': null,
+  'active': false,
+};
 
 const ROUTE = {
   "HOME":"/",
