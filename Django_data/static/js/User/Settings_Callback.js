@@ -1,15 +1,16 @@
 async function  settings_TwoFaCallBack() {
-  let form = document.getElementById('TWOFA_Form');
-  let formData = new FormData(form);
+  const form = document.getElementById('TWOFA_Form');
+  const formData = new FormData(form);
   const	response = await MakeRequest(`${ROUTE.TWOFA_E}`, {
     method: 'POST',
     body: formData
   });
   const data = await response.json();
+
   if (data.status == 'continue') {
     await changeSection(`${ROUTE.TWOFA_Q}`, '#TwofaModal');
     await changeSection(`${ROUTE.TWOFA_C}`, '#confirm_2fa');
-    TwofaModal.show();
+    TwofaModal['modal'].show();
   }
   else {
     console.log("2FA - succesfully disabled");
@@ -69,5 +70,5 @@ async function del_avatar_FormCallBack(event) {
 }
 
 function  settings_ModAvatarCallBack() {
-  avatarModal.show();
+  avatarModal['modal'].show();
 }

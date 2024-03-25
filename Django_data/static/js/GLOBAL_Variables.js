@@ -1,10 +1,18 @@
 console.log('Hello motherfucker !');
 let currentUrl = window.location.pathname;
-let profileModal = null;
-let avatarModal = null;
-let TwofaModal = null;
-let TwofaCodeModal = null;
 let observer;
+
+let profileModal = null;
+let avatarModal = {
+  'modal': null,
+  'active': false,
+};
+let TwofaModal = {
+  'modal': null,
+  'active': false,
+};
+
+let TwofaCodeModal = null;
 let _2faSignIn = false;
 
 const ROUTE = {

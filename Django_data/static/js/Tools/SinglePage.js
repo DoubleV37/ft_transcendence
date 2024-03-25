@@ -33,7 +33,7 @@ async function changeSection(section, content) {
 window.addEventListener('popstate', async function(event) {
   del_current_event();
   header_DelEvents();
-  await del_modal_2FA();
+  await del_modal();
   if (event.state == null) {
     await changeSection(`${ROUTE.HOME}`, '#content');
     currentUrl = `${ROUTE.HOME}`;
@@ -102,19 +102,18 @@ async function put_signinPage() {
   header_SetEvents();
 }
 
-async function  del_modal_2FA() {
-    if (TwofaModal.classList.contains('show')) {
-      const elemform = document.getElementById('form_2FA');
-      const form2FA = new FormData(elemform);
-
-      await MakeRequest(`${ROUTE.TWOFA_E}`, {
-        method: 'POST',
-	body: form2FA
-      });
-      TwofaModal.hide();
-    }
-  if (_2faSignIn == true) {
-    signin_DelModalEvents();
-    TwofaCodeModal.hide();
+async function  del_modal() {
+  if (avatarModal['active'] === true) {
+    avatarModal['modal'].hide();
+  }
+  if (TwofaModal['active'] === true) {
+    console.log("oh no please");
+    const form = document.getElementById('TWOFA_Form');
+    const formData = new FormData(form);
+    await MakeRequest(`${ROUTE.TWOFA_E}`, {
+      method: 'POST',
+      body: formData
+    });
+    TwofaModal['modal'].hide();
   }
 }
