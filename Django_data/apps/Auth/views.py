@@ -43,21 +43,19 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
 
             if user is not None:
-                login(request, user)
 
                 if user.to2fa.enable:
-                    data_response = {'success': True, 'Twofa': True}
-                    response = JsonResponse(data_response)
+                    response = JsonResponse({'success': True, 'Twofa': True})
                 else:
                     data_response = {'success': True, '2fa': False}
-
-                jwt_token = create_jwt(user)
-                response = JsonResponse(data_response)
-                response.set_cookie(
-                    key='jwt_token', value=str(jwt_token),
-                    httponly=True, secure=True,
-                    samesite='Lax'
-                )
+                    login(request, user)
+                    jwt_token = create_jwt(user)
+                    response = JsonResponse(data_response)
+                    response.set_cookie(
+                        key='jwt_token', value=str(jwt_token),
+                        httponly=True, secure=True,
+                        samesite='Lax')
+                return response
             else:
                 response = JsonResponse({'success': False,
                                         'error':

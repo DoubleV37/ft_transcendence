@@ -16,13 +16,13 @@ async function fetchSection(section, request=null) {
   return response;
 }
 
-async function changeSection(section, content) {
+async function changeSection(section, content, otherContent = content) {
   try {
     let	tempDiv = document.createElement('div');
     let response =  await MakeRequest(section);
     tempDiv.innerHTML = await response.text();
 
-    let fetchedContent = await tempDiv.querySelector(content);
+    let fetchedContent = await tempDiv.querySelector(otherContent);
     document.querySelector(content).innerHTML = await fetchedContent.innerHTML;
   }
   catch (error) {

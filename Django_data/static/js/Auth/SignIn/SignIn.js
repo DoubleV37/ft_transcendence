@@ -14,9 +14,8 @@ async function signIn() {
 
       if (data.success == true) {
 	      if (data.Twofa == true) {
-	        _2faSignIn = true;
-	        await changeSection(`${ROUTE.TWOFA_C}`, '#code_2fa');
-	        TwofaCodeModal.show();
+	        await changeSection(`${ROUTE.TWOFA_C}`, '#code_2fa', );
+	        TwofaCodeModal['modal'].show();
 	        return '2fa';
         }
 	      else {
