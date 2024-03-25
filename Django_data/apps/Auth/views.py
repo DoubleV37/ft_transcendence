@@ -112,16 +112,20 @@ def my_settings(request):
             'avatar': avatar, 'pswd': pswd, 't_name': t_name,
             'delete_avatar': delete_avatar,
         }
+        logger.info(f"{'FIRST PRINT':^50}")
 
         if request.method == 'POST':
             name = My_Name(request.POST, instance=my_user)
             mail = My_Mail(request.POST, instance=my_user)
             pswd = My_Psswd(request.POST, instance=my_user)
             avatar = My_Avatar(request.POST, request.FILES, instance=my_user)
+            logger.info(f"{'SECOND PRINT':^50}")
             t_name = My_Tournamentname(request.POST, instance=my_user)
             delete_avatar = DeleteAvatar(request.POST)
+            logger.info(f"{'THIRD PRINT':^50}")
 
             if 'avatar_button' in request.POST:
+                logger.info(f"{'FORTH PRINT':^50}")
 
                 # TODO debug
                 error = my_user.avatar.url.find("ForbiddenDeletion/")
@@ -130,16 +134,33 @@ def my_settings(request):
                 logger.info(f"{my_user.avatar.url = }")
                 # TODO debug
 
-                if avatar.is_valid():
-                    if my_user.avatar.url.find("ForbiddenDeletion/") == -1:
-                        my_user.avatar.delete()
+                if my_user.avatar.url.find("ForbiddenDeletion/") == -1:
 
-                    save = avatar.save(commit=False)
-                    my_user.username = request.user.username
-                    my_user.avatar = save.avatar
-                    my_user.save()
+                    logger.info(
+                        f"Before new if deletion line: {my_user.avatar.url = }")
+                    if avatar.is_valid():
+                        my_user.avatar.delete()
+                    logger.info(
+                        f"After in New if deletion line: {my_user.avatar.url = }")
+
+                if avatar.is_valid():
+                    logger.info(f"{' SURCHING THROW TOP ':*^50}")
+
+                    # TODO DEBUG
+                    logger.info(
+                        f"Before deletion line: {my_user.avatar.url = }")
+
+                    # TODO DEBUG
+                    logger.info(
+                        f"After deletion line: {my_user.avatar.url = }")
+
+                    # save = avatar.save(commit=False)
+                    # my_user.username = request.user.username
+                    # my_user.avatar = save.avatar
+                    # my_user.save()
+                    avatar.save()
                     response = {'success': True}
-                    logger.info(f"{' SURCHING THROW ':*^50}")
+                    logger.info(f"{' SURCHING THROW BOT ':*^50}")
                 else:
                     response = {'success': False, 'logs': 'Avatar Error'}
 
