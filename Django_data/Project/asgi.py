@@ -9,7 +9,7 @@ from apps.Game import routing
 
 application = ProtocolTypeRouter(
     {
-        "http" : get_asgi_application() ,
+		"http": get_asgi_application(),
         "websocket" : AuthMiddlewareStack(
             URLRouter(
                 routing.websocket_urlpatterns

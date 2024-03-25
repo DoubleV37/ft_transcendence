@@ -35,6 +35,11 @@ services:
       timeout:  5s
       retries:  5
 
+  redis:
+    container_name: redis
+    image: redis:6.2.6-alpine
+    restart: always
+
   nginx:
     container_name: nginx
     build: Services/NginxReverseProxy/
