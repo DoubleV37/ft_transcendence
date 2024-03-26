@@ -1,6 +1,8 @@
 import json, asyncio
 from channels.generic.websocket import AsyncWebsocketConsumer
 from .pong import Pong, ai_brain
+from asgiref.sync import sync_to_async
+from django_redis import get_redis_connection
 
 class SoloPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
@@ -64,21 +66,69 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			await self.sendMessage()
 			await asyncio.sleep(1/240)
 
+# class MatchmakingPongConsumer(AsyncWebsocketConsumer):
+# 	groups = ["matchmaking_group"]
+
+# 	async def connect(self):
+# 		await self.accept()
+
+# 	async def receive(self, text_data):
+# 		if text_data == 'search':
+# 			await self.channel_layer.group_add("matchmaking_group", self.channel_name)
+# 			await self.send(text_data="Searching for opponent...")
+
+# 			# Vérifie si le groupe de matchmaking contient deux utilisateurs
+# 			members_count = await self.get_group_members_count("matchmaking_group")
+# 			if members_count == 2:
+# 				# Récupère les deux utilisateurs du groupe
+# 				users = await self.get_group_members("matchmaking_group")
+# 				# Crée une salle de jeu pour eux
+# 				room_name = f"game_room_{self.channel_name}"
+# 				await self.channel_layer.group_add(room_name, users[0])
+# 				await self.channel_layer.group_add(room_name, users[1])
+# 				# Informe chaque utilisateur de la création de la salle de jeu
+# 				await self.channel_layer.group_send(room_name, {
+# 					"type": "matchmaking.success",
+# 					"room_name": room_name
+# 				})
+
+# 	async def disconnect(self, close_code):
+# 		await self.channel_layer.group_discard("matchmaking_group", self.channel_name)
+
+# 	@sync_to_async
+# 	def get_group_members_count(self, group_name):
+# 		redis_conn = get_redis_connection("default")
+# 		return redis_conn.zcard(group_name)
+
+# 	@sync_to_async
+# 	def get_group_members(self, group_name):
+# 		redis_conn = get_redis_connection("default")
+# 		return redis_conn.zrange(group_name, 0, -1)
+
+import threading
+import hashlib
+
+matchmaking_pool = set()  # Ensemble Python pour stocker les utilisateurs en attente
+matchmaking_lock = threading.Lock()  # Verrou pour protéger l'accès à matchmaking_pool
+
+
 class MatchmakingPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
 		await self.accept()
 
 	async def receive(self, text_data):
 		if text_data == 'search':
-			await self.channel_layer.group_add("matchmaking_group", self.channel_name)
-			await self.send(text_data="Searching for opponent...")
+			await self.add_to_matchmaking_pool()
+			await self.send(text_data=json.dumps({"type": "searching"}))
 
-			# Vérifie si le groupe de matchmaking contient deux utilisateurs
-			if len(await self.channel_layer.group_members("matchmaking_group")) == 2:
-				# Récupère les deux utilisateurs du groupe
-				users = await self.channel_layer.group_pop("matchmaking_group")
+			# Vérifie si le pool de matchmaking contient deux utilisateurs
+			num = await self.len_pool()
+			await self.send(text_data=str(num))
+			if await self.len_pool() >= 2:
+				# Récupère les deux utilisateurs du pool
+				users = await self.get_pool_members()
 				# Crée une salle de jeu pour eux
-				room_name = f"game_room_{self.channel_name}"
+				room_name = "game_room_" + hashlib.md5(self.channel_name.encode()).hexdigest()
 				await self.channel_layer.group_add(room_name, users[0])
 				await self.channel_layer.group_add(room_name, users[1])
 				# Informe chaque utilisateur de la création de la salle de jeu
@@ -88,4 +138,38 @@ class MatchmakingPongConsumer(AsyncWebsocketConsumer):
 				})
 
 	async def disconnect(self, close_code):
-		await self.channel_layer.group_discard("matchmaking_group", self.channel_name)
+		await self.remove_from_matchmaking_pool()
+
+	@sync_to_async
+	def add_to_matchmaking_pool(self):
+		with matchmaking_lock:
+			matchmaking_pool.add(self.channel_name)
+
+	@sync_to_async
+	def remove_from_matchmaking_pool(self):
+		with matchmaking_lock:
+			matchmaking_pool.discard(self.channel_name)
+
+	@sync_to_async
+	def len_pool(self):
+		with matchmaking_lock:
+			return len(matchmaking_pool)
+
+	@sync_to_async
+	def get_pool_members(self):
+		two_users = {}
+		with matchmaking_lock:
+			users = list(matchmaking_pool)
+			if len(users) >= 2:
+				two_users = users[:2]
+				matchmaking_pool.difference_update(two_users)
+			return two_users
+
+	async def matchmaking_success(self, event):
+		# Gestionnaire de message pour le type "matchmaking.success"
+		room_name = event['room_name']
+		await self.send(text_data=json.dumps({
+			"type": "match_found",
+			"room_name": room_name
+		}))
+

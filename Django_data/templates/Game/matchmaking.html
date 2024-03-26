@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matchmaking Example</title>
+    <title>Matchmaking</title>
 </head>
 <body>
+	<h1>Matchmaking {{ request.user }}</h1>
     <button id="searchBtn">Rechercher un adversaire</button>
 
     <script>
@@ -19,6 +20,10 @@
 
             socket.onmessage = function(event) {
                 console.log('Message received from server:', event.data);
+				data = JSON.parse(event.data);
+				if (data.type == "match_found") {
+					window.location.href = '/';
+				}
             };
 
             socket.onerror = function(error) {
