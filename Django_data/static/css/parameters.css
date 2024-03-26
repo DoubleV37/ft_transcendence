@@ -239,6 +239,8 @@
 
     .quantity button {
         background-color: #202532;
+        width: auto;
+        white-space: nowrap;
     }
 
     .quantity button:hover {
