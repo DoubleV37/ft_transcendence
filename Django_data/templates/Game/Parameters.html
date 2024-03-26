@@ -64,52 +64,20 @@
   {% include "Home/footer.html" %}
 </body>
 
-		<script>
+		{% comment %} <script>
 
-			document.addEventListener('DOMContentLoaded', function() {
-				const minusBtn = document.getElementById("minusBtn");
-				const plusBtn = document.getElementById("plusBtn");
-				const inputBox = document.getElementById("inputBox");
-
-				minusBtn.addEventListener("click", decreaseValue);
-				plusBtn.addEventListener("click", increaseValue);
-				inputBox.addEventListener("input", handleQuantityChange);
-				 
-				updateButtonStates();
-				 
-				function updateButtonStates() {
-					console.log("updateButtonStates");
-				   const value = parseInt(inputBox.value);
-				   minusBtn.disabled = value <= 1;
-				   plusBtn.disabled = value >= parseInt(inputBox.max);
+				function setViewportHeight() {
+				   // Calculate the viewport height
+				   var vh = window.innerHeight * 0.01;
+				   // Set the height of the #content and .mid elements
+				   document.documentElement.style.setProperty('--vh', `${vh}px`);
 				}
-				
-				function decreaseValue() {
-					console.log("decreaseValue");
-				   let value = parseInt(inputBox.value);
-				   value = isNaN(value) ? 1 : Math.max(value - 1, 1);
-				   inputBox.value = value;
-				   updateButtonStates();
-				   handleQuantityChange();
-				}
-				 
-				function increaseValue() {
-					console.log("increaseValue");
-				   let value = parseInt(inputBox.value);
-				   value = isNaN(value) ? 1 : Math.min(value + 1, parseInt(inputBox.max));
-				   inputBox.value = value;
-				   updateButtonStates();
-				   handleQuantityChange();
-				}
-				 
-				function handleQuantityChange() {
-					console.log("QTYChange");
-				   let value = parseInt(inputBox.value);
-				   value = isNaN(value) ? 1 : value;
-				   console.log("Quantity changed:", value);
-				}
-			   })();
+			   
+				// Listen for the resize event to adjust the height when the window size changes
+				window.addEventListener('resize', setViewportHeight);
+				// Call the function initially to set the height
+				setViewportHeight();
 		
-		</script>
+		</script> {% endcomment %}
 	</body>
 </html>
