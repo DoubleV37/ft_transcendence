@@ -1,43 +1,64 @@
 function signin_SetModalEvents() {
   TwofaCodeModal['active'] = true;
-  let element = document.getElementById('form_2FA');
+  signin_DelEvents();
+  let element = document.getElementById('form_2FAcode');
   element.addEventListener('submit', signin_Code2FACallBack);
 
   element = document.getElementById('cancel_code2fa');
   element.addEventListener('click', signin_Cancelcode2FACallBack);
+
+  element = document.getElementById('SIGNIN_Form');
+  element.addEventListener('submit', signin_PreventSubmit);
 }
 
 function signin_DelModalEvents() {
   TwofaCodeModal['active'] = false;
-  let element = document.getElementById('form_2FA');
+  let element = document.getElementById('form_2FAcode');
   element.removeEventListener('submit', signin_Code2FACallBack);
 
   element = document.getElementById('cancel_code2fa');
   element.removeEventListener('click', signin_Cancelcode2FACallBack);
+
+  element = document.getElementById('SIGNIN_Form');
+  element.removeEventListener('submit', signin_PreventSubmit);
+  signin_SetEvents();
+}
+
+function  signin_PreventSubmit(event) {
+  event.preventDefault();
+  console.log('Nique ta mere le bug');
 }
 
 function signin_Cancelcode2FACallBack() {
-  signin_DelModalEvents();
+  TwofaCodeModal['modal'].hide();
 }
 
 async function	signin_Code2FACallBack(event) {
   event.preventDefault();
-  restore_message();
+  restore_message('success_2FAcode', 'failure_2FAcode');
   
   const	response = await confirm_2FA_SignIn();
 
   if (response == true) {
+    let element = document.getElementById('success_2FAcode');
+
+    element.innerHTML = `2FA authentication succeed.`;
+    await sleep(1000);
     TwofaCodeModal['modal'].hide();
-    signin_DelEvents();
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
     header_SetEvents();
     loadPage(`${ROUTE.HOME}`);
   }
+  else {
+    let element = document.getElementById('failure_2FAcode');
+
+    element.innerHTML = `Error: Wrong code submitted. Please try again.`;
+  }
 }
 
 async function	confirm_2FA_SignIn() {
-  const form2FA = document.getElementById('form_2FA');
+  const form2FA = document.getElementById('form_2FAcode');
   const formSIGNIN = document.getElementById('SIGNIN_Form');
 
   let CombinedForm = new FormData();
@@ -55,16 +76,5 @@ async function	confirm_2FA_SignIn() {
   });
   const data = await response.json();
 
-  if (data.success == true) {
-    let element = document.getElementById('success_2FA');
-
-    element.innerHTML = `2FA authentication succeed.`;
-    return (true);
-  }
-  else {
-    let element = document.getElementById('failure_2FA');
-
-    element.innerHTML = `Error: Wrong code submitted. Please try again.`;
-    return (false);
-  }
+  return data.success;
 }

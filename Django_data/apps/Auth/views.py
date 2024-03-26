@@ -35,6 +35,7 @@ def signup(request):
 def signin(request):
     if request.method == 'POST':
         form = SignInForm(request.POST)
+        logger.info(f"request => \n{request}")
         data_response: dict() = {}
 
         if form.is_valid():

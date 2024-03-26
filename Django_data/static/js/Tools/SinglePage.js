@@ -31,6 +31,7 @@ async function changeSection(section, content, otherContent = content) {
 }
 
 window.addEventListener('popstate', async function(event) {
+  console.log("oh no please");
   del_current_event();
   header_DelEvents();
   await del_modal();
@@ -107,7 +108,6 @@ async function  del_modal() {
     avatarModal['modal'].hide();
   }
   if (TwofaModal['active'] === true) {
-    console.log("oh no please");
     const form = document.getElementById('TWOFA_Form');
     const formData = new FormData(form);
     await MakeRequest(`${ROUTE.TWOFA_E}`, {
@@ -115,5 +115,11 @@ async function  del_modal() {
       body: formData
     });
     TwofaModal['modal'].hide();
+  }
+  if (TwofaCodeModal['active'] === true) {
+    TwofaCodeModal['modal'].hide();
+  }
+  if (profileModal['active'] === true) {
+    profileModal['modal'].hide();
   }
 }

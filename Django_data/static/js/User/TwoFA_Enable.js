@@ -31,7 +31,7 @@ async function	Twofa_CancelSubmit() {
 
 async function  Twofa_EnableSubmit(event) {
   event.preventDefault();
-  restore_message();
+  restore_message('success_2FA', 'failure_2FA');
 
   const form = document.getElementById('form_2FA');
   const formData = new FormData(form);
@@ -53,13 +53,4 @@ async function  Twofa_EnableSubmit(event) {
 
     element.innerHTML = `Error: Wrong code submitted. Please try again.`;
   }
-}
-
-function  restore_message() {
-  let element = document.getElementById('failure_2FA');
-
-  element.innerHTML = ``;
-  element = document.getElementById('success_2FA');
-
-  element.innerHTML = ``;
 }

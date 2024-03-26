@@ -24,6 +24,7 @@ function  signin_DelEvents() {
 
   element = document.getElementById('forgot_password');
   element.removeEventListener('click', signin_ForgotPasswdCallBack);
+
 }
 
 async function signin_FormCallBack(event) {

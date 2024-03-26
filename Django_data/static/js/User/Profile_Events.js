@@ -1,4 +1,5 @@
 function  profile_SetEvents() {
+  profileModal['active'] = true;
   let element = document.getElementById('PROFIL_Settings');
   element.addEventListener('click', profile_SettingsCallBack);
 
@@ -19,6 +20,7 @@ function  profile_SetEvents() {
 }
 
 function  profile_DelEvents() {
+  profileModal['active'] = false;
   let element = document.getElementById('PROFIL_Settings');
   element.removeEventListener('click', profile_SettingsCallBack);
 

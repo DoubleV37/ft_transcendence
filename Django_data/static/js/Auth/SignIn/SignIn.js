@@ -13,23 +13,23 @@ async function signIn() {
       const data = await response.json();
 
       if (data.success == true) {
-	      if (data.Twofa == true) {
-	        await changeSection(`${ROUTE.TWOFA_C}`, '#code_2fa', );
-	        TwofaCodeModal['modal'].show();
-	        return '2fa';
-        }
-	      else {
-	        return true;
-	      }
+	if (data.Twofa == true) {
+	  await changeSection(`${ROUTE.TWOFA_C}`, '#code_2fa', );
+	  TwofaCodeModal['modal'].show();
+	  return '2fa';
+	}
+	else {
+	  return true;
+	}
       }
       else {
-	      SignIn_UpdateErrors(data.error);
-	      document.getElementById('SIGNIN_Form').reset();
+	SignIn_UpdateErrors(data.error);
+	document.getElementById('SIGNIN_Form').reset();
       }
     }
     else {
       if (response.status == 403) {
-	      Access_Denied(await response.text());
+	Access_Denied(await response.text());
       }
       return false;
     }

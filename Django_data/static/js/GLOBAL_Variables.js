@@ -1,8 +1,11 @@
-console.log('Hello motherfucker !');
 let currentUrl = window.location.pathname;
 let observer;
 
-let profileModal = null;
+let profileModal = {
+  'modal': null,
+  'active': false,
+};
+
 let avatarModal = {
   'modal': null,
   'active': false,
