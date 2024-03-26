@@ -39,6 +39,8 @@ class PongConsumer(AsyncWebsocketConsumer):
 												"ballsize" : self.pong.ball_size/900 ,
 												"paddle1size" : self.pong.player_size[0]/900 ,
 												"paddle2size" : self.pong.player_size[1]/900 ,
+												"powerupY" : self.pong.powerup_pos[1]/900 ,
+												"powerupsize" : self.pong.powerup_size/900 ,
 												"type" : "sendMessage"}))
 
 	async def runGame(self):
@@ -47,6 +49,7 @@ class PongConsumer(AsyncWebsocketConsumer):
 			self.pong.player_pos[0] = ai_brain(self.pong, 1, 20)
 			# ball move
 			self.pong.ball_walk()
+			self.pong.powerup_run()
 			# paddle bounce
 			if self.pong.ball_pos[0] < 60 and self.pong.ball_speed[0] < 0:
 				self.pong.paddle_bounce(0)

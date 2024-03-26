@@ -56,22 +56,47 @@ class Pong():
 			self.ball_speed = [-3, random.uniform(-1, 1)]
 			self.ball_pos = [1100, 450]
 		# powerup
-		self.powerup = 0
+		self.powerup = True
 		self.powerup_size = 50
-		self.powerup_time = 0
-		self.powerup_pos = [450, -50]
+		self.powerup_time = 5 * 240
+		self.powerup_pos = [575, -50]
 		self.powerup_speed = 0
 		#stats
 		self.ball_max_speed = [0, 0]
+		self.powerup_count = [0, 0]
 		self.ball_bonce = 0
 		self.max_exchange = 0
 		self.exchange = 0
 		self.ball_size = 10
 
 
-	def powerup_spawn(self):
-		
-
+	def powerup_run(self):
+		if self.powerup == False:
+			return
+		self.powerup_pos[1] += self.powerup_speed
+		if self.powerup_time > 0:
+			self.powerup_time -= 1
+			if self.powerup_time == 10 * 240:
+				self.player_size[0] = 100
+				self.player_size[1] = 100
+		else:
+			seld.powerup_speed = 2
+			if self.powerup_pos[1] > 950:
+				self.powerup_pos[1] = -50
+				self.powerup_time = 15 * 240
+				self.powerup_speed = 0
+			elif self.powerup_pos[0] < self.ball_pos[0] < self.powerup_pos[0] + self.powerup_size and self.powerup_pos[1] < self.ball_pos[1] < self.powerup_pos[1] + self.powerup_size:
+				self.powerup_pos[1] = -50
+				self.powerup_time = 15 * 240
+				self.powerup_speed = 0
+				if self.ball_speed[0] > 0:
+					self.powerup_count[0] += 1
+					self.player_size[0] = 150
+					self.player_size[1] = 80
+				else:
+					self.powerup_count[1] += 1
+					self.player_size[0] = 80
+					self.player_size[1] = 150
 
 	def stats(self, player):
 		self.exchange += 1
