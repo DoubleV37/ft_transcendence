@@ -37,7 +37,9 @@ def signin(request):
         form = SignInForm(request.POST)
         logger.info(f"request => \n{request}")
         data_response: dict() = {}
-
+        if request.user.is_anonymous is False:
+            return JsonResponse({'success': False,
+                                'error': 'You are already connected !'})
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -57,10 +59,8 @@ def signin(request):
                         httponly=True, secure=True,
                         samesite='Lax')
                 return response
-            else:
-                response = JsonResponse({'success': False,
-                                        'error':
-                                            'incorrect username or password'})
+            response = JsonResponse({'success': False,
+                                     'error': 'incorrect username or password'})
         else:
             response = JsonResponse({'success': False,
                                      'error': 'Wrong form'})
@@ -102,12 +102,13 @@ def my_settings(request):
         avatar = My_Avatar(instance=my_user)
         t_name = My_Tournamentname(instance=my_user)
         delete_avatar = DeleteAvatar()
+        enabled = my_user.to2fa.enable
 
         response: dict() = {}
         context: dict() = {
             'my_user': my_user, 'name': name, 'mail': mail,
             'avatar': avatar, 'pswd': pswd, 't_name': t_name,
-            'delete_avatar': delete_avatar,
+            'delete_avatar': delete_avatar, 'enabled': enabled,
         }
 
         if request.method == 'POST':
