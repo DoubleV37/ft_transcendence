@@ -1,0 +1,234 @@
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 60.063em) {
+    /* Styles */
+    #leftcolumn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #rightcolumn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #Settings {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 2.5em;
+        flex-shrink: 0;
+        padding-left: 4em;
+        padding-right: 4em;
+    }
+
+    #section {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 60em;
+    }
+
+    #headerTextRow {
+        width: 100%;
+        padding-left: 4em;
+        padding-right: 4em;
+    }
+
+    #settingsTitle::before {
+        content: url('../images/gear-11-svgrepo-com.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 2rem; /* Adds some space between the icon and the text */
+        vertical-align: middle; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
+    #settingsTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: flex-start;
+        display: flex;
+        width: 70%;
+    }
+
+    #settingsText {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+        padding-bottom: 4em;
+    }
+
+    #separator {
+        flex:  1; /* Occupation de l'espace disponible */
+        border-top:  1px solid #828282; /* Ligne horizontale en haut */
+        padding-bottom: 4em;
+    }
+}
+
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+    /* Styles */
+    #leftcolumn {
+        display: flex;
+        justify-content: center;
+        width: 18em;
+    }
+
+    #rightcolumn {
+        display: flex;
+        justify-content: center;
+        width: 18em;
+    }
+
+    #Settings {
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        gap: 2.5em;
+        flex-shrink: 0;
+    }
+
+    #section {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #headerTextRow {
+        width: 32em;
+    }
+
+    #settingsTitle::before {
+        content: url('../images/gear-11-svgrepo-com.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right:  2rem; /* Adds some space between the icon and the text */
+        vertical-align: middle; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
+    #settingsTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: flex-start;
+        display: flex;
+        width: 70%;
+    }
+
+    #settingsText {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+        padding-bottom: 4em;
+    }
+
+    #separator {
+        flex:  1; /* Occupation de l'espace disponible */
+        border-top:  1px solid #828282; /* Ligne horizontale en haut */
+        padding-bottom: 4em;
+    }
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+    /* Styles */
+    #leftcolumn {
+        display: flex;
+        justify-content: center;
+        width: 30em;
+    }
+
+    #rightcolumn {
+        display: flex;
+        justify-content: center;
+        width: 30em;
+    }
+
+    #Settings {
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        gap: 2rem;
+        flex-shrink: 0;
+    }
+
+    #section {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #headerTextRowMobile {
+        width: 100%;
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
+
+    #settingsTitle::before {
+        content: url('../images/gear-11-svgrepo-com.svg'); /* Replace with the actual path to your SVG */
+        display: inline-block; /* Allows for width and height settings */
+        width:  1em; /* Adjust the size as needed */
+        height:  1em; /* Adjust the size as needed */
+        margin-right: 2rem; /* Adds some space between the icon and the text */
+        vertical-align: middle; /* Aligns the icon vertically with the text */
+        background-size: contain; /* Ensures the SVG scales properly */
+        background-repeat: no-repeat; /* Prevents the SVG from repeating */
+    }
+
+    #settingsTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: flex-start;
+        display: flex;
+        width: 70%;
+    }
+
+    #settingsText {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+    }
+}

@@ -1,0 +1,226 @@
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 60.063em) {
+    /* Styles */
+    .ButtonLayout {
+        display: flex;
+        height: 3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .MediumButtonLayout {
+        display: flex;
+        height:  3.125rem;
+        width:  47%;
+        justify-content: center;
+        align-items: center;
+        gap:  0.625rem;
+        flex-shrink:  0;  
+        align-self: stretch;
+        border-radius:  0.625rem;
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size:  1rem;
+        font-style: normal;
+        font-weight:  400;
+        line-height: normal;
+        padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+    }
+    
+    .MediumButtonLayout.right {
+        margin-left: auto;
+    }
+
+    .MediumButtonLayout.left {
+        margin-right: auto;
+    }
+
+    .ButtonBlue {
+        background: #525695;
+        border: none;
+    }
+
+    .ButtonNeon {
+        background: #202532;
+        border: 1px solid #5DC6E8; 
+    }
+
+    .ButtonSalmon {
+        border: none;
+        background: #C1706C;
+    }
+
+    .ButtonDark {
+        border: 1px solid #AE473B;
+        background: #1C2026;
+    }
+
+    .Button42 {
+        border: none;
+        background: #00BABC;
+    }
+}
+
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+    /* Styles */
+
+    .ButtonLayout {
+        display: flex;
+        height: 3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .MediumButtonLayout {
+        display: flex;
+        height:  3.125rem;
+        width:  47%;
+        justify-content: center;
+        align-items: center;
+        gap:  0.625rem;
+        flex-shrink:  0;  
+        align-self: stretch;
+        border-radius:  0.625rem;
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size:  1rem;
+        font-style: normal;
+        font-weight:  400;
+        line-height: normal;
+        padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+    }
+    
+    .MediumButtonLayout.right {
+        margin-left: auto;
+    }
+
+    .MediumButtonLayout.left {
+        margin-right: auto;
+    }
+
+    .ButtonBlue {
+        background: #525695;
+        border: none;
+    }
+
+    .ButtonNeon {
+        background: #202532;
+        border: 1px solid #5DC6E8; 
+    }
+
+    .ButtonSalmon {
+        border: none;
+        background: #C1706C;
+    }
+
+    .ButtonDark {
+        border: 1px solid #AE473B;
+        background: #1C2026;
+    }
+
+    .Button42 {
+        border: none;
+        background: #00BABC;
+    }
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+    /* Styles */
+
+    .ButtonLayout {
+        display: flex;
+        height: 3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .MediumButtonLayout {
+        display: flex;
+        height:  3.125rem;
+        width:  47%;
+        justify-content: center;
+        align-items: center;
+        gap:  0.625rem;
+        flex-shrink:  0;  
+        align-self: stretch;
+        border-radius:  0.625rem;
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size:  1rem;
+        font-style: normal;
+        font-weight:  400;
+        line-height: normal;
+        padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+    }
+    
+    .MediumButtonLayout.right {
+        margin-left: auto;
+    }
+
+    .MediumButtonLayout.left {
+        margin-right: auto;
+    }
+
+    .ButtonBlue {
+        background: #525695;
+        border: none;
+    }
+
+    .ButtonNeon {
+        background: #202532;
+        border: 1px solid #5DC6E8; 
+    }
+
+    .ButtonSalmon {
+        border: none;
+        background: #C1706C;
+    }
+
+    .ButtonDark {
+        border: 1px solid #AE473B;
+        background: #1C2026;
+    }
+
+    .Button42 {
+        border: none;
+        background: #00BABC;
+    }
+}
