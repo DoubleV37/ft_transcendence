@@ -25,8 +25,11 @@ async function name_FormCallBack(event) {
   const	response = await nameSubmit();
 
   if (response == true) {
-    changeSection(`${ROUTE.HEADER}`, '#Header_content');
-    changeSection(`${ROUTE.SETTINGS}`, '#content');
+    header_DelEvents()
+    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    header_SetEvents()
+    await changeSection(`${ROUTE.SETTINGS}`, '#content');
+
   }
 }
 
@@ -35,7 +38,9 @@ async function mail_FormCallBack(event) {
   const	response = await mailSubmit();
 
   if (response == true) {
+    header_DelEvents()
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    header_SetEvents()
     await changeSection(`${ROUTE.SETTINGS}`, '#content');
   }
 }
@@ -57,8 +62,11 @@ async function tname_FormCallBack(event) {
   const	response = await tnameSubmit();
 
   if (response == true) {
+    header_DelEvents()
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    header_SetEvents()
     await changeSection(`${ROUTE.SETTINGS}`, '#content');
+
   }
 }
 
@@ -67,8 +75,11 @@ async function del_avatar_FormCallBack(event) {
   const	response = await del_avatarSubmit();
 
   if (response == true) {
+    header_DelEvents()
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+    header_SetEvents()
     await changeSection(`${ROUTE.SETTINGS}`, '#content');
+
   }
 }
 

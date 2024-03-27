@@ -53,10 +53,8 @@ function  settings_DelEvents() {
   element.removeEventListener('click', settings_TwoFaCallBack);
 }
 
-function restoreSelectedImage(event) {
-  const fileInput = event.target;
-  const selectedImage = document.getElementById('selectedAvatar'); // Assurez-vous d'avoir un élément <img> avec l'ID 'selectedImage' dans votre HTML
+function restoreSelectedImage() {
+  const selectedImage = document.getElementById('selectedAvatar');
 
-  // Si aucun fichier n'est sélectionné, utilisez l'image par défaut
   selectedImage.src = "/static/images/logoIcon.png";
-  }
+}
