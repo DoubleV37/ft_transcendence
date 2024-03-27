@@ -1,5 +1,7 @@
+console.log('Hello motherfucker !');
 let currentUrl = window.location.pathname;
 let observer;
+let _2faSignIn = false;
 
 let error403 = false;
 
@@ -35,4 +37,5 @@ const ROUTE = {
   "TWOFA_Q":"/2fa/qrcode/",
   "TWOFA_C":"/2fa/confirm/",
   "JWTREFRESH":"/auth/jwt/refresh/",
+  "GAME_PARAMETERS":"/game/parameters/",
 };

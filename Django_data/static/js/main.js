@@ -19,6 +19,10 @@ async function  launchWebsite() {
   modal_2FaInit();
   modal_AvatarInit();
 
+  modal_2FaCodeInit();
+  modal_2FaInit();
+  modal_AvatarInit();
+
   main_SetFirstsEvents();
 
   observer = new MutationObserver(mutationCallBack);
@@ -67,6 +71,8 @@ function  launchSectionHandler(element) {
         break ;
       case 'SETTINGS':
         settings_SetEvents();
+      case 'GAME_PARAMETERS':
+        parameters_SetEvents();
 	break ;
       default:
 	throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
