@@ -115,7 +115,7 @@
 
 		function drawPowerup(y) {
 			ctx.beginPath();
-			ctx.rect((canvas.width/2) - (powerupsize/2), y*canvas.height, powerupsize, powerupsize);
+			ctx.rect(canvas.width*575/1200, y*canvas.height, canvas.height*powerupsize, canvas.height*powerupsize);
 			ctx.fillStyle = "#FF95DD";
 			ctx.fill();
 			ctx.closePath();
