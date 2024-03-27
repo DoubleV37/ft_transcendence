@@ -1,4 +1,3 @@
-import logging, datetime, jwt, json
 from decouple import config
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
@@ -13,10 +12,15 @@ from .models import User
 from apps.Twofa.models import UserTwoFA
 from apps.Twofa.forms import My_2fa
 
+import logging
+import datetime
+import jwt
+import json
 logger = logging.getLogger(__name__)
 
 # ___________________________________________________________________________ #
 # _ SINGNUP _________________________________________________________________ #
+
 
 def signup(request):
     if request.method == 'POST':
@@ -34,6 +38,7 @@ def signup(request):
 
 # ___________________________________________________________________________ #
 # _ SINGNIN _________________________________________________________________ #
+
 
 def signin(request):
     if request.method == 'POST':
@@ -73,6 +78,7 @@ def signin(request):
 
 # ___________________________________________________________________________ #
 # _ SINGNOUT ________________________________________________________________ #
+
 
 def signout(request):
     logout(request)
@@ -124,11 +130,9 @@ def my_settings(request):
 
             if 'avatar_button' in request.POST:
                 if avatar.is_valid():
-                    save = avatar.save(commit=False)
-                    my_user.username = request.user.username
-                    my_user.avatar = save.avatar
-                    my_user.save()
+                    avatar.save()
                     response = {'success': True}
+                    logger.info(f"{' SURCHING THROW BOT ':*^50}")
                 else:
                     response = {'success': False, 'logs': 'Avatar Error'}
 
@@ -150,11 +154,13 @@ def my_settings(request):
             response = validator_fct(pswd, 'pswd_button', request, response)
             response = validator_fct(mail, 'mail_button', request, response)
 
+            logger.info(f"{' RETURN THROW ':*^50}")
+            logger.info(f"{ response = }")
             return JsonResponse(response)
         return render(request, 'Profile/User_Settings.html', context=context)
 
     except Exception as e:
-        logger.debug("Exception")
+        logger.debug(f"{' Exception ':~^30}")
         logger.error(f"Exception occurred: {e}")
         return HttpResponse("Exception", status=400)
 
