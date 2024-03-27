@@ -1,4 +1,5 @@
 function  avatar_SetEvents() {
+  avatarModal['active'] = true;
   let element = document.getElementById('AvatarBackArrow');
   element.addEventListener('click', avatar_QuitModal);
 
@@ -18,6 +19,7 @@ function  avatar_SetEvents() {
 
 
 function  avatar_DelEvents() {
+  avatarModal['active'] = false;
   let element = document.getElementById('AvatarBackArrow');
   element.removeEventListener('click', avatar_QuitModal);
 
@@ -37,7 +39,7 @@ function  avatar_DelEvents() {
 }
 
 function  avatar_QuitModal() {
-  avatarModal.hide();
+  avatarModal['modal'].hide();
 }
 
 function avatar_SubmitAvatar() {

@@ -24,12 +24,15 @@ logger = logging.getLogger(__name__)
 
 def signup(request):
     if request.method == 'POST':
+        if request.user.is_anonymous is False:
+            return JsonResponse({'success': False,
+                                 'error': 'You are already connected !'})
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             user.save()
-            return JsonResponse({'status': 'success'})
-        return JsonResponse({'status': 'error', 'message': form.errors})
+            return JsonResponse({'success': True})
+        return JsonResponse({'status': False, 'error': form.errors})
     form = CustomUserCreationForm()
     return render(request, 'Auth/SignUp.html', {'form': form})
 
@@ -40,33 +43,32 @@ def signup(request):
 def signin(request):
     if request.method == 'POST':
         form = SignInForm(request.POST)
+        logger.info(f"request => \n{request}")
         data_response: dict() = {}
-
+        if request.user.is_anonymous is False:
+            return JsonResponse({'success': False,
+                                'error': 'You are already connected !'})
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
 
             if user is not None:
-                login(request, user)
 
                 if user.to2fa.enable:
-                    data_response = {'success': True, 'Twofa': True}
-                    response = JsonResponse(data_response)
+                    response = JsonResponse({'success': True, 'Twofa': True})
                 else:
                     data_response = {'success': True, '2fa': False}
-
-                jwt_token = create_jwt(user)
-                response = JsonResponse(data_response)
-                response.set_cookie(
-                    key='jwt_token', value=str(jwt_token),
-                    httponly=True, secure=True,
-                    samesite='Lax'
-                )
-            else:
-                response = JsonResponse({'success': False,
-                                        'error':
-                                            'incorrect username or password'})
+                    login(request, user)
+                    jwt_token = create_jwt(user)
+                    response = JsonResponse(data_response)
+                    response.set_cookie(
+                        key='jwt_token', value=str(jwt_token),
+                        httponly=True, secure=True,
+                        samesite='Lax')
+                return response
+            response = JsonResponse({'success': False,
+                                     'error': 'incorrect username or password'})
         else:
             response = JsonResponse({'success': False,
                                      'error': 'Wrong form'})
@@ -109,12 +111,13 @@ def my_settings(request):
         avatar = My_Avatar(instance=my_user)
         t_name = My_Tournamentname(instance=my_user)
         delete_avatar = DeleteAvatar()
+        enabled = my_user.to2fa.enable
 
         response: dict() = {}
         context: dict() = {
             'my_user': my_user, 'name': name, 'mail': mail,
             'avatar': avatar, 'pswd': pswd, 't_name': t_name,
-            'delete_avatar': delete_avatar,
+            'delete_avatar': delete_avatar, 'enabled': enabled,
         }
 
         if request.method == 'POST':
@@ -154,7 +157,7 @@ def my_settings(request):
             logger.info(f"{' RETURN THROW ':*^50}")
             logger.info(f"{ response = }")
             return JsonResponse(response)
-        return render(request, 'My_Settings1.html', context=context)
+        return render(request, 'Profile/User_Settings.html', context=context)
 
     except Exception as e:
         logger.debug(f"{' Exception ':~^30}")

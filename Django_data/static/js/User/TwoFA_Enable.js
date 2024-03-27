@@ -1,4 +1,5 @@
 function  Twofa_SetModalEvents() {
+  TwofaModal['active'] = true;
   let element = document.getElementById('form_2FA');
   element.addEventListener('submit', Twofa_EnableSubmit);
 
@@ -7,6 +8,7 @@ function  Twofa_SetModalEvents() {
 }
 
 function  Twofa_DelModalEvents() {
+  TwofaModal['active'] = false;
   let element = document.getElementById('form_2FA');
   element.removeEventListener('submit', Twofa_EnableSubmit);
 
@@ -17,12 +19,12 @@ function  Twofa_DelModalEvents() {
 async function	Twofa_CancelSubmit() {
     let form = document.getElementById('form_2FA');
     let formData = new FormData(form);
+
     await MakeRequest(`${ROUTE.TWOFA_E}`, {
       method: 'POST',
       body: formData
     });
-    Twofa_DelModalEvents();
-    TwofaModal.hide();
+    TwofaModal['modal'].hide();
     settings_DelEvents();
     changeSection(`${ROUTE.SETTINGS}`, `#content`);
 }
@@ -30,6 +32,7 @@ async function	Twofa_CancelSubmit() {
 async function  Twofa_EnableSubmit(event) {
   event.preventDefault();
   restore_message('success_2FA', 'failure_2FA');
+
   const form = document.getElementById('form_2FA');
   const formData = new FormData(form);
   const	response = await MakeRequest(`${ROUTE.TWOFA_C}`, {
@@ -37,14 +40,13 @@ async function  Twofa_EnableSubmit(event) {
     body: formData
   });
   const data = await response.json();
-  console.log(`conf response => ${data.success}`);
+
   if (data.success == true) {
     let element = document.getElementById('success_2FA');
 
     element.innerHTML = `2FA authentication successfully enabled.`;
-    Twofa_DelModalEvents();
     await sleep(2000);
-    TwofaModal.hide();
+    TwofaModal['modal'].hide();
   }
   else {
     let element = document.getElementById('failure_2FA');

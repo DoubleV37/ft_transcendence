@@ -16,13 +16,13 @@ async function fetchSection(section, request=null) {
   return response;
 }
 
-async function changeSection(section, content) {
+async function changeSection(section, content, otherContent = content) {
   try {
     let	tempDiv = document.createElement('div');
     let response =  await MakeRequest(section);
     tempDiv.innerHTML = await response.text();
 
-    let fetchedContent = await tempDiv.querySelector(content);
+    let fetchedContent = await tempDiv.querySelector(otherContent);
     document.querySelector(content).innerHTML = await fetchedContent.innerHTML;
   }
   catch (error) {
@@ -31,9 +31,12 @@ async function changeSection(section, content) {
 }
 
 window.addEventListener('popstate', async function(event) {
+  if (error403 == true) {
+    return ;
+  }
   del_current_event();
   header_DelEvents();
-  await del_modal_2FA();
+  await del_modal();
   if (event.state == null) {
     await changeSection(`${ROUTE.HOME}`, '#content');
     currentUrl = `${ROUTE.HOME}`;
@@ -42,7 +45,7 @@ window.addEventListener('popstate', async function(event) {
     await changeSection(event.state.section, '#content');
     currentUrl = event.state.section;
   }
-  await changeSection(`${ROUTE.HEADER}`, '#Header_content'); //add some handler event here
+  await changeSection(`${ROUTE.HEADER}`, '#Header_content');
   header_SetEvents();
 });
 
@@ -58,6 +61,9 @@ async function	MakeRequest(url, request=null) {
   try {
     const response = await fetchSection(url, request);
 
+    if (response.status === 403) {
+      Access_Denied();
+    }
     return response;
   }
   catch (err) {
@@ -102,19 +108,23 @@ async function put_signinPage() {
   header_SetEvents();
 }
 
-async function  del_modal_2FA() {
-    if (TwofaModal.classList.contains('show')) {
-      const elemform = document.getElementById('form_2FA');
-      const form2FA = new FormData(elemform);
-
-      await MakeRequest(`${ROUTE.TWOFA_E}`, {
-        method: 'POST',
-	body: form2FA
-      });
-      TwofaModal.hide();
-    }
-  if (_2faSignIn == true) {
-    signin_DelModalEvents();
-    TwofaCodeModal.hide();
+async function  del_modal() {
+  if (avatarModal['active'] === true) {
+    avatarModal['modal'].hide();
+  }
+  if (TwofaModal['active'] === true) {
+    const form = document.getElementById('TWOFA_Form');
+    const formData = new FormData(form);
+    await MakeRequest(`${ROUTE.TWOFA_E}`, {
+      method: 'POST',
+      body: formData
+    });
+    TwofaModal['modal'].hide();
+  }
+  if (TwofaCodeModal['active'] === true) {
+    TwofaCodeModal['modal'].hide();
+  }
+  if (profileModal['active'] === true) {
+    profileModal['modal'].hide();
   }
 }

@@ -1,42 +1,42 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-{%include "Home/head.html" %}
+  {%include "Home/head.html" %}
 
-<body>
-  {% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
-  {% include "Profile/Profile.html" %}<!-- TODO load the modal only if the user is connected -->
-  {% include "Profile/enable_2fa.html" %}<!-- TODO load the modal only if the user is connected -->
-  {% include "Auth/code_validation.html" %}
-  <header>
-    <div id="Header_content"></div>
-  </header> 
-	<div id="content">
-		<div id="overlay">
-			<div class="mid midcolumn fadeinAnimation">
-				<div id="WelcomeScreen">
-					<div id="titleContent" data-content="HOME_PAGE" data-status="connected"></div>
-					<div class="pong">
-						<img id="pong_img" src="{% static 'images/pong.webp' %}" alt="Pong display image">
-					</div>
-					<div class="welcome-text">
-						<h1 class="welcome-to-pong">Welcome to Pong</h1>
-					</div>
-					{% if user.is_authenticated %}
-					<button id="PlayButton" class="play-button"><span class="play">Play!</span></button>
-					{% else %}
-						<p class="please-log-in">Before you begin, please:</p>
-						<div id="HomeDualButton">
-							<button id="SigninButton"><span class="play">Sign in</span></button>
-							<p class='or'>or</p>
-							<button id="SignupButton"><span class="play">Sign up</span></button>
-						</div>
-					{% endif %}
-				</div>
-			</div>
-		</div>
-	</div>
-	{% include "Home/footer.html" %}
-</body>
+  <body>
+    {% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
+    {% include "Profile/Profile.html" %}<!-- TODO load the modal only if the user is connected -->
+    {% include "Profile/enable_2fa.html" %}<!-- TODO load the modal only if the user is connected -->
+    {% include "Auth/code_validation.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header> 
+	  <div id="content">
+		  <div id="overlay">
+			  <div class="mid midcolumn fadeinAnimation">
+				  <div id="WelcomeScreen">
+					  <div id="titleContent" data-content="HOME_PAGE" data-status="connected"></div>
+					  <div class="pong">
+						  <img id="pong_img" src="{% static 'images/pong.webp' %}" alt="Pong display image">
+					  </div>
+					  <div class="welcome-text">
+						  <h1 class="welcome-to-pong">Welcome to Pong</h1>
+					  </div>
+					  {% if user.is_authenticated %}
+					  <button id="PlayButton" class="play-button"><span class="play">Play!</span></button>
+					  {% else %}
+						  <p class="please-log-in">Before you begin, please:</p>
+						  <div id="HomeDualButton">
+							  <button id="SigninButton"><span class="play">Sign in</span></button>
+							  <p class='or'>or</p>
+							  <button id="SignupButton"><span class="play">Sign up</span></button>
+						  </div>
+					  {% endif %}
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+	  {% include "Home/footer.html" %}
+  </body>
 
 </html>

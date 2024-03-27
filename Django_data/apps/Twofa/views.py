@@ -85,14 +85,25 @@ class TwoFactorConfirmationView(FormView):
 
     def get(self, request):
         if request.user.is_authenticated is True:
+            logger.info("100% c'est ca")
             _id = "confirm_2fa"
             _cancel = "cancel_2fa"
+            _form = "form_2FA"
+            _failure = "failure_2FA"
+            _success = "success_2FA"
         else:
+            logger.info("The fuuuuuuuck ???") 
             _id = "code_2fa"
             _cancel = "cancel_code2fa"
+            _form = "form_2FAcode"
+            _failure = "failure_2FAcode"
+            _success = "success_2FAcode"
         return render(request, 'Auth/confirm_2fa.html', {'form': self.form,
                                                          'div_ID': _id,
-                                                         'cancel': _cancel})
+                                                         'cancel': _cancel,
+                                                         'form_id': _form,
+                                                         'success': _success,
+                                                         'failure': _failure})
 
     def post(self, request):
         key: str = ''
