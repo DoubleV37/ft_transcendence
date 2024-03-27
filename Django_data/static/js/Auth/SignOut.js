@@ -12,6 +12,7 @@ async function  SignOut() {
     const data = await response.json();
 
     if (data.success == true) {
+      changeSection(`${ROUTE.HOME}`, '#content');
       return true;
     }
     else {

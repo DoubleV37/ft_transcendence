@@ -3,8 +3,8 @@
     /* Styles */
 
     #ModalBackArrow {
-        width: 8%;
-        font-size: 0px;
+    width: 3rem;
+    font-size: 0px;
 	padding: 0;
 	background: transparent;
 	color: transparent;
@@ -19,6 +19,7 @@
         position: absolute;
         top: 2em;
         right: 2em;
+        display: none;
     }
 
     #DoubleButton {
@@ -31,7 +32,7 @@
     .ProfilePage {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 1.8rem;
         flex-shrink: 0;
         margin-block-end: 0;
@@ -39,7 +40,8 @@
 
     .ProfilePic {
         border-radius: 100%;
-        border: 1px solid #5DC6E8;
+        border: 2px solid #6c757d;
+        object-fit: cover;
     }
     
     #UserPictureInfo {
@@ -109,6 +111,18 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        display: flex;
+        align-items: center;
+    }
+
+    .dotOnline {
+        height: 0.6em;
+        width: 0.6em;
+        margin-top: 0.25em;
+        margin-left: 0.35em;
+        background-color: #25e613;
+        border-radius: 50%;
+        display: inline-block;
     }
     
     #ProfileCardboardFullscreen {
@@ -174,8 +188,8 @@
     /* Styles */
 
     #ModalBackArrow {
-        width: 8%;
-        font-size: 0px;
+    width: 3rem;
+    font-size: 0px;
 	padding: 0;
 	background: transparent;
 	color: transparent;
@@ -190,6 +204,7 @@
         position: absolute;
         top: 1.5em;
         right: 1.8em;
+        display: none;
     }
 
     #DoubleButton {
@@ -222,7 +237,8 @@
     
     .ProfilePic {
         border-radius: 100%;
-        border: 1px solid #5DC6E8;
+        border: 2px solid #6c757d;
+        object-fit: cover;
     }
 
     #UserPictureInfo {
@@ -294,6 +310,18 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        display: flex;
+        align-items: center;
+    }
+
+    .dotOnline {
+        height: 0.6em;
+        width: 0.6em;
+        margin-top: 0.25em;
+        margin-left: 0.35em;
+        background-color: #25e613;
+        border-radius: 50%;
+        display: inline-block;
     }
 
     #ProfileCardboardFullscreen {
@@ -360,8 +388,8 @@
     /* Styles */
 
     #ModalBackArrow {
-        width: 8%;
-        font-size: 0px;
+    width: 3rem;
+    font-size: 0px;
 	padding: 0;
 	background: transparent;
 	color: transparent;
@@ -378,10 +406,10 @@
     }
     
     #BackArrowFullscreen {
-        width: 2em;
+        width: 2.5em;
         position: absolute;
-        top: 1.2em;
-        right: 1.2em;
+        top: 2rem;
+        right: 1.1rem;
     }
 
     #DoubleButton {
@@ -414,8 +442,8 @@
 
     .ProfilePic {
         border-radius: 100%;
-        width: 4.5em;
-        border: 1px solid #5DC6E8;
+        border: 2px solid #6c757d;
+        object-fit: cover;
     }
 
     #username {

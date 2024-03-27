@@ -1,81 +1,56 @@
-function  setHomeEvents(element) {
-  console.log('No event on HomeContent for now');
-//  const	status = element.getAttribute('data-status');
-//
-//  switch (status) {
-//    case 'connected':
-//      setConnectedHomeEvents();
-//      break ;
-//    case 'anonymous':
-//      setAnonymousHomeEvents();
-//      break ;
-//
-//    default:
-//      throw new Error(`setHomeEvents : status : ${status} not recognised`)
-//  }
+function  home_SetEvents() {
+  let element = document.getElementById('HEADER_IsAuth');
+  const	IsAuthenticated = element.getAttribute('data-auth');
+
+  if (IsAuthenticated === 'false') {
+    element = document.getElementById('SigninButton');
+    element.addEventListener('click', home_SigninCallBack);
+
+    element = document.getElementById('SignupButton');
+    element.addEventListener('click', home_SignupCallBack);
+  }
+  else {
+    element = document.getElementById('PlayButton');
+    element.addEventListener('click', home_PlayCallBack);
+
+  }
 }
 
-//function  setConnectedHomeEvents() {
-//  let	element = document.getElementById('Home_signIn');
+function  home_DelEvents() {
+  let element = document.getElementById('HEADER_IsAuth');
+  const	IsAuthenticated = element.getAttribute('data-auth');
 
-//  element.addEventListener('click', HomeCallBack);
-  //  .
-  //  .
-  //  .
+  if (IsAuthenticated === 'false') {
+    element = document.getElementById('SigninButton');
+    element.removeEventListener('click', home_SigninCallBack);
 
-//}
+    element = document.getElementById('SignupButton');
+    element.removeEventListener('click', home_SignupCallBack);
+  }
+  else {
+    element = document.getElementById('PlayButton');
+    element.removeEventListener('click', home_PlayCallBack);
+  }
+}
 
-//function  setAnonymousHomeEvents() {
-//  console.log(`Well do nothing for now. Element : ${element}`);
-  //  .
-  //  .
-  //  .
+function  home_PlayCallBack() {
+  console.log("PlayCallBack : Don nothing for now");
+}
 
-//}
+function  home_SigninCallBack() {
+  try {
+    loadPage(`${ROUTE.SIGNIN}`);
+  }
+  catch (error) {
+    console.log(`Error - home_S: ${error}`);
+  }
+}
 
-//function  HomeCallBack(event) {
-//  const	targetElem = event.target;
-//  const	elemAttr = targetElem.getAttribute('id');
-//
-//  switch (elemAttr) {
-//    case 'Home_signIn':
-//      deleteHomeEvents('connected');
-//      loadPage(`${ROUTE.SIGNIN}`);
-//      break ;
-//    default :
-//      throw new Error(`homeCallBack : element unrecognized : ${element}`);
-//  }
-//}
-
-//function  deleteHomeEvents(status) {
-//  switch (status) {
-//    case 'connected':
-//      delConnectedHomeEvents();
-//      break ;
-//    case 'anonymous':
-//      delAnonymousHomeEvents();
-//      break ;
-//  //  .
-//  //  .
-//  //  . 
-//    default :
-//      throw new Error(`deleteHomeEvents : status unrecognized : ${status}`);
-//  }
-//}
-
-
-//function  delConnectedHomeEvents() {
-//  let element = document.getElementById('Home_signIn');
-
-//  element.removeEventListener('click', HomeCallBack);
-  //  .
-  //  .
-  //  . 
-//}
-
-//function  delAnonymousHomeEvents() {
-//  console.log(`delAnonymousHomeEvents: Well do nothing for now.`);
-  //  .
-  //  .
-  //  .
-//}
+function  home_SignupCallBack() {
+  try {
+    loadPage(`${ROUTE.SIGNUP}`);
+  }
+  catch (error) {
+    console.log(`Error - home_S: ${error}`);
+  }
+}

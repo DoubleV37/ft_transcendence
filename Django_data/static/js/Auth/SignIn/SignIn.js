@@ -1,19 +1,28 @@
 async function signIn() {
 
-  let myForm = document.getElementById('SIGNIN_Form');
-  let myData = SignIn_JsonForm(myForm);
+  const formData = new FormData(document.getElementById('SIGNIN_Form'));
 
   try {
-    let response = await fetch(`${ROUTE.SIGNIN}`, myData);
-    let data = await response.json();
+    const myData = {
+      method: 'POST',
+      body: formData
+    };
 
-    if (data.success == true) {
+    const response = await MakeRequest(`${ROUTE.SIGNIN}`, myData);
+
+    if (response.ok) {
       return true;
     }
     else {
-	SignIn_UpdateErrors(data.errors);
-	myForm.reset();
-	return false;
+      if (response.status == 403) {
+	Access_Denied(await response.text());
+      }
+      else {
+	const data = await response.text();
+	SignIn_UpdateErrors(data);
+	document.getElementById('SIGNIN_Form').reset();
+      }
+      return false;
     }
   }
   catch (err) {
@@ -32,10 +41,6 @@ function SignIn_JsonForm(myForm) {
 
   let myData = {
     method: 'POST',
-    headers: {
-	'Content-Type': 'application/json',
-	'X-CSRFToken': Tools_GetCookie('csrftoken'),  // Include CSRF token
-    },
     body: JSON.stringify(formDataJSON),
   };
   return myData;

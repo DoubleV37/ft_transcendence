@@ -79,29 +79,27 @@
 		background: #525695;
 	}
 
-	#HEADER_Profile {
+	#HEADER_user {
 		display: flex;
-		width: 5.5rem;
-		height: 2rem;
-		padding: 0.625rem;
-		justify-content: center;
-		align-items: center;
-		border: solid;
-		border-width: 1px;
-		border-color: #5DC6E8;
-		border-radius: 0.625rem;
-		background: none;
+		flex-direction: row;
+		align-items: flex-end;
+		cursor: pointer;
+	}
 
+	#HEADER_username {
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 1em;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
+		cursor: pointer;
 	}
 
-	#HEADER_Profile:hover {
-		background: #525695;
+	.header-profilePic {
+		width: 2.3em;
+		height: 2.3em;
+		margin-left: 0.7em;
 	}
 
 	/* LOGO */
@@ -209,19 +207,14 @@
 		background: #525695;
 	}
 
-	#HEADER_Profile {
+	#HEADER_user {
 		display: flex;
-		width: 5.5rem;
-		height: 2rem;
-		padding: 0.625rem;
-		justify-content: center;
-		align-items: center;
-		border: solid;
-		border-width: 1px;
-		border-color: #5DC6E8;
-		border-radius: 0.625rem;
-		background: none;
+		flex-direction: row;
+		align-items: flex-end;
+		cursor: pointer;
+	}
 
+	#HEADER_username {
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 1em;
@@ -230,8 +223,10 @@
 		line-height: normal;
 	}
 
-	#HEADER_Profile:hover {
-		background: #525695;
+	.header-profilePic {
+		width: 2.3em;
+		height: 2.3em;
+		margin-left: 0.7em;
 	}
 
 	/* LOGO */
@@ -339,29 +334,20 @@
 		background: #525695;
 	}
 
-	#HEADER_Profile {
+	#HEADER_user {
 		display: flex;
-		width: 5rem;
-		height: 2rem;
-		padding: 0.625rem;
-		justify-content: center;
+		flex-direction: row;
 		align-items: center;
-		border: solid;
-		border-width: 1px;
-		border-color: #5DC6E8;
-		border-radius: 0.625rem;
-		background: none;
-
-		color: #FFF;
-		font-family: Kodchasan;
-		font-size: 1em;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
 	}
 
-	#HEADER_Profile:hover {
-		background: #525695;
+	#HEADER_username {
+		display: none;
+	}
+
+	.header-profilePic {
+		width: 2.3em;
+		height: 2.3em;
+		margin-left: 0.7em;
 	}
 
 	/* LOGO */

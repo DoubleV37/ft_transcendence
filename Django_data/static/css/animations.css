@@ -2,7 +2,7 @@
 @media only screen and (min-width : 60.063em) {
 
     /* Define the animation */
-    @keyframes easeInAnimation {
+    @keyframes flowAnimation {
     from {
        opacity: 0;
        transform: translateX(100px);
@@ -15,11 +15,11 @@
    
    /* Apply the animation to the #content div */
    .flowAnimation {
-    animation: easeInAnimation 0.4s ease-in forwards;
+    animation: flowAnimation 0.4s ease-in forwards;
    }
 
     /* Define the animation */
-    @keyframes easeInAnimation {
+    @keyframes fadeinAnimation {
     from {
         opacity: 0;
     }
@@ -30,7 +30,7 @@
     
     /* Apply the animation to the #content div */
     .fadeinAnimation {
-    animation: easeInAnimation 0.4s ease-in forwards;
+    animation: fadeinAnimation 0.4s ease-in forwards;
     }
 
 }
@@ -39,7 +39,7 @@
 @media only screen and (min-width : 36.25em) and (max-width : 60em) {
 
     /* Define the animation */
-    @keyframes easeInAnimation {
+    @keyframes flowAnimation {
         from {
             opacity: 0;
             transform: translateX(100px);
@@ -52,11 +52,11 @@
         
     /* Apply the animation to the #content div */
     .flowAnimation {
-    animation: easeInAnimation 0.3s ease-in forwards;
+    animation: flowAnimation 0.3s ease-in forwards;
     }
 
     /* Define the animation */
-    @keyframes easeInAnimation {
+    @keyframes fadeinAnimation{
         from {
             opacity: 0;
         }
@@ -67,7 +67,7 @@
         
         /* Apply the animation to the #content div */
         .fadeinAnimation {
-        animation: easeInAnimation 0.3s ease-in forwards;
+        animation: fadeinAnimation 0.3s ease-in forwards;
     }
 }
 
