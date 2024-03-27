@@ -5,6 +5,9 @@ async function  settings_TwoFaCallBack() {
     method: 'POST',
     body: formData
   });
+  if (response.status == 403) {
+    return ;
+  }
   const data = await response.json();
 
   if (data.status == 'continue') {

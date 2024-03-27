@@ -9,6 +9,9 @@ async function signIn() {
 
     const response = await MakeRequest(`${ROUTE.SIGNIN}`, myData);
 
+    if (response.status == 403) {
+      return false;
+    }
     if (response.ok) {
       const data = await response.json();
 

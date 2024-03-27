@@ -31,7 +31,9 @@ async function changeSection(section, content, otherContent = content) {
 }
 
 window.addEventListener('popstate', async function(event) {
-  console.log("oh no please");
+  if (error403 == true) {
+    return ;
+  }
   del_current_event();
   header_DelEvents();
   await del_modal();
@@ -43,7 +45,7 @@ window.addEventListener('popstate', async function(event) {
     await changeSection(event.state.section, '#content');
     currentUrl = event.state.section;
   }
-  await changeSection(`${ROUTE.HEADER}`, '#Header_content'); //add some handler event here
+  await changeSection(`${ROUTE.HEADER}`, '#Header_content');
   header_SetEvents();
 });
 
@@ -59,6 +61,9 @@ async function	MakeRequest(url, request=null) {
   try {
     const response = await fetchSection(url, request);
 
+    if (response.status === 403) {
+      Access_Denied();
+    }
     return response;
   }
   catch (err) {

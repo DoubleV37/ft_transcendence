@@ -1,14 +1,17 @@
 async function nameSubmit() {
-
   let myForm = document.getElementById('NAME_Form');
   let formData = new FormData(myForm);
   formData.append('name_button', 'name_button');
 
   try {
-    let response = await fetch(`${ROUTE.SETTINGS}`, {
+    let response = await MakeRequest(`${ROUTE.SETTINGS}`, {
     method: 'POST',
 	  body: formData
     });
+
+    if (response.status == 403) {
+      return false;
+    }
     const data = await response.json();
     if (data.success == true) {
       return true;
@@ -31,10 +34,14 @@ async function mailSubmit() {
   formData.append('mail_button', 'mail_button');
 
   try {
-    let response = await fetch(`${ROUTE.SETTINGS}`, {
+    let response = await MakeRequest(`${ROUTE.SETTINGS}`, {
     method: 'POST',
 	  body: formData
     });
+
+    if (response.status == 403) {
+      return false;
+    }
     const data = await response.json();
 
     if (data.success == true) {
@@ -58,10 +65,15 @@ async function passSubmit() {
   formData.append('pswd_button', 'pswd_button');
 
   try {
-    let response = await fetch(`${ROUTE.SETTINGS}`, {
+    let response = await MakeRequest(`${ROUTE.SETTINGS}`, {
     method: 'POST',
 	  body: formData
     });
+
+    if (response.status == 403) {
+      return false;
+    }
+
     const data = await response.json();
 
     if (data.success == true) {
@@ -85,10 +97,14 @@ async function tnameSubmit() {
   formData.append('t_name_button', 't_name_button');
 
   try {
-    let response = await fetch(`${ROUTE.SETTINGS}`, {
+    let response = await MakeRequest(`${ROUTE.SETTINGS}`, {
     method: 'POST',
 	  body: formData
     });
+
+    if (response.status == 403) {
+      return false;
+    }
     const data = await response.json();
 
     if (data.success == true) {
@@ -111,10 +127,14 @@ async function avatarSubmit() {
   formData.append('avatar_button', 'avatar_button');
   
   try {
-    let response = await fetch(`${ROUTE.SETTINGS}`, {
-      method: 'POST',
-      body: formData
+    let response = await MakeRequest(`${ROUTE.SETTINGS}`, {
+    method: 'POST',
+	  body: formData
     });
+
+    if (response.status == 403) {
+      return false;
+    }
     const data = await response.json();
     
     if (data.success == true) {
@@ -137,10 +157,14 @@ async function del_avatarSubmit() {
   formData.append('avatar_delete', 'avatar_delete');
   
   try {
-    let response = await fetch(`${ROUTE.SETTINGS}`, {
-      method: 'POST',
-      body: formData
+    let response = await MakeRequest(`${ROUTE.SETTINGS}`, {
+    method: 'POST',
+	  body: formData
     });
+
+    if (response.status == 403) {
+      return false;
+    }
     const data = await response.json();
     
     if (data.success == true) {

@@ -1,6 +1,8 @@
 let currentUrl = window.location.pathname;
 let observer;
 
+let error403 = false;
+
 let profileModal = {
   'modal': null,
   'active': false,
@@ -23,6 +25,7 @@ let TwofaCodeModal = {
 const ROUTE = {
   "HOME":"/",
   "HEADER":"/header",
+  "FOOTER":"/footer",
   "SIGNUP":"/auth/signup/",
   "SIGNIN":"/auth/signin/",
   "SIGNOUT":"/auth/signout/",

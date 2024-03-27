@@ -20,12 +20,15 @@ logger = logging.getLogger(__name__)
 
 def signup(request):
     if request.method == 'POST':
+        if request.user.is_anonymous is False:
+            return JsonResponse({'success': False,
+                                 'error': 'You are already connected !'})
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             user.save()
-            return JsonResponse({'status': 'success'})
-        return JsonResponse({'status': 'error', 'message': form.errors})
+            return JsonResponse({'success': True})
+        return JsonResponse({'status': False, 'error': form.errors})
     form = CustomUserCreationForm()
     return render(request, 'Auth/SignUp.html', {'form': form})
 
@@ -148,7 +151,7 @@ def my_settings(request):
             response = validator_fct(mail, 'mail_button', request, response)
 
             return JsonResponse(response)
-        return render(request, 'My_Settings1.html', context=context)
+        return render(request, 'Profile/User_Settings.html', context=context)
 
     except Exception as e:
         logger.debug("Exception")
