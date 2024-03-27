@@ -47,6 +47,16 @@
         margin-bottom: 1.6rem;
     }
 
+    .modesTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: stretch;
+    }
+
     .quantity {
         border: 1px solid #5dc6e8;
         border-radius: 0.6em;
@@ -135,6 +145,16 @@
         line-height: normal;
         align-self: stretch;
         margin-bottom: 1.6rem;
+    }
+
+    .modesTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: stretch;
     }
 
     .quantity {
@@ -227,6 +247,16 @@
         line-height: normal;
         align-self: stretch;
         margin-bottom: 1.6rem;
+    }
+
+    .modesTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: stretch;
     }
 
     .quantity {

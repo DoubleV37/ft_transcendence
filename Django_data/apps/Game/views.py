@@ -8,3 +8,9 @@ def gamePage(request, *args, **kwargs):
 
 def gameParameters(request):
     return render(request, "Game/Parameters.html")
+
+def modes(request):
+    return render(request, "Game/Modes.html")
+
+def tournament(request):
+    return render(request, "Game/Tournament.html")
