@@ -1,10 +1,12 @@
 <html lang="en">
 {% load static %}
-{% include "Home/head.html" %}
   <body>
 	  {% include "Home/header.html" %}
 	  {% include "Profile/Profile.html" %}
 	  {% include "Profile/Avatar.html" %}
+	  {% include "Auth/code_validation.html" %}
+	  {% include "Profile/enable_2fa.html" %}
+
 	  <div id="content">
 		  <div id="titleContent" data-content="SETTINGS"></div>
 		  <div id="overlayFullscreen">
@@ -41,9 +43,14 @@
 										<button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
 									</div>
 								</form>
+								<form id="TWOFA_Form" method="post">
+								  {% csrf_token %}
+								  {{ profile_2fa.as_p }}
+								  <button type="submit">Enable</button>
+								</form>
 								<div class="form-check form-switch p-0">
 									<div class="d-flex flex-column-reverse gap-1">
-									  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" />
+									  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" {% if enabled == True %}checked{% endif%} />
 									  <label class="form-check-label" for="switchCheckLabelTop">Two-Factor Authentication:</label>
 									</div>
 								</div>
@@ -66,6 +73,11 @@
 									{{ avatar.as_p }}
 									<!-- Le bouton ci dessous est caché et set juste à référencer le submit du formulaire -->
 									<button class="UpdateButtonLayout ButtonDark" type="submit" id='avatar_button_hidden'>Update</button>
+								</form>
+								<form id="DEL_AVATAR_Form" method="post">
+									{{ delete_avatar }}
+									{% csrf_token %}
+									<button type="submit" name="avatar_delete" id='del_avatar_button_hidden'>Delete Avatar</button>
 								</form>
 								<div class="DoubleButtonSettings">
 									<button id="AVATAR_Change" class="MediumButtonLayout left ButtonNeon">Change</button>

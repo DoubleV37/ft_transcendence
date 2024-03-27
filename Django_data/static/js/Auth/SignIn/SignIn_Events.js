@@ -10,9 +10,6 @@ function  signin_SetEvents() {
 
   element = document.getElementById('forgot_password');
   element.addEventListener('click', signin_ForgotPasswdCallBack);
-  //  .
-  //  .
-  //  .
 }
 
 function  signin_DelEvents() {
@@ -34,7 +31,10 @@ async function signin_FormCallBack(event) {
   event.preventDefault();
   const	response = await signIn();
 
-  if (response == true) {
+  if (response === '2fa') {
+    return ;
+  }
+  else if (response == true) {
     signin_DelEvents();
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, '#Header_content');
@@ -54,6 +54,4 @@ async function  signin_SignUpCallBack() {
 
 function  signin_ForgotPasswdCallBack() {
   console.log('signin_ForgotPasswdCallBack: Do nothing for now');
-//  delSignInEvents();
-//  loadPage(`${ROUTE.FORGOTPASSWORD}`);
 }

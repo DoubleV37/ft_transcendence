@@ -1,7 +1,6 @@
 //----------Run at the load/reload of the website-------------//
 document.addEventListener('DOMContentLoaded', launchWebsite);
 
-
 async function  launchWebsite() {
   const targetNode = document.querySelector('#content');
 
@@ -12,10 +11,14 @@ async function  launchWebsite() {
 
   const config = { childList: true, subtree: true };
 
-  await loadPage(currentUrl);
   await changeSection(`${ROUTE.HEADER}`, '#Header_content');
-  modal_ProfileInit();
   header_SetEvents();
+
+  modal_ProfileInit();
+  modal_2FaCodeInit();
+  modal_2FaInit();
+  modal_AvatarInit();
+
   main_SetFirstsEvents();
 
   observer = new MutationObserver(mutationCallBack);
@@ -41,7 +44,7 @@ function mutationCallBack(mutationsList) {
       const element = document.getElementById('titleContent');
 
       if (!element) {
-	      continue ;
+	continue ;
       }
       launchSectionHandler(element);
     }
@@ -63,12 +66,8 @@ function  launchSectionHandler(element) {
         signup_SetEvents();
         break ;
       case 'SETTINGS':
-  // VOIR AVEC JEAN
         settings_SetEvents();
-        modal_AvatarInit();
-        header_SetEvents();
 	break ;
-
       default:
 	throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
     }
