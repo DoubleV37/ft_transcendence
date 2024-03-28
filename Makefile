@@ -2,6 +2,7 @@ all: up
 
 up:
 	if [ ! -d "Profile/staticfiles" ]; then mkdir -p Profile/staticfiles; fi
+	if [ ! -d "Game/staticfiles" ]; then mkdir -p Game/staticfiles; fi
 	docker compose up --build -d
 
 down:
@@ -19,10 +20,12 @@ re: stop up
 fre: fclean up
 
 site:
-	docker compose restart gunicorn
+	docker compose restart guni_profile
+	docker compose restart guni_game
 	docker compose restart uvicorn
 
 update:
 	rm -rf `find ./Profile/ -type f -name "0*"`
+	rm -rf `find ./Game/ -type f -name "0*"`
 
 .PHONY: up down fclean re fre all stop site update
