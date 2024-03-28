@@ -1,0 +1,74 @@
+{% load static %}
+
+{% load bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href={% static "css/singlepage.css" %}>
+	<link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href={% static "css/home.css" %} />
+	<link rel="stylesheet" href={% static "css/header.css" %} />
+	<link rel="stylesheet" href={% static "css/footer.css" %} />
+	<link rel="stylesheet" href={% static "css/font.css" %} />
+	<link rel="stylesheet" href={% static "css/sign_in.css" %} />
+	<link rel="stylesheet" href={% static "css/sign_up.css" %} />
+	<link rel="stylesheet" href={% static "css/profile.css" %} />
+	<link rel="stylesheet" href={% static "css/buttons.css" %} />
+	<link rel="stylesheet" href={% static "css/settings.css" %} />
+	<link rel="stylesheet" href={% static "css/modal.css" %} />
+	<link rel="stylesheet" href={% static "css/animations.css" %} />
+	<link rel="stylesheet" href={% static "css/parameters.css" %} />
+
+	<!-- Fav Icon -->
+	<link rel="shortcut icon" type="image/png" href="{% static 'images/favIcon.png' %}" >
+
+	<!-- Global variables -->
+	<script src={% static "js/GLOBAL_Variables.js" %}></script>
+
+	<!-- Scrips tools -->
+	<script src={% static "js/Tools/SinglePage.js" %}></script>
+	<script src={% static "js/Tools/Tools.js" %}></script>
+	<script src={% static "js/Tools/Error.js" %}></script>
+
+	<!-- Scripts Authentication -->
+	<script src={% static "js/Auth/SignOut.js" %}></script>
+	<script src={% static "js/Auth/2Fa_Events.js" %}></script>
+
+	<script src={% static "js/Auth/SignUp/SignUp.js" %}></script>
+	<script src={% static "js/Auth/SignUp/SignUp_Events.js" %}></script>
+
+	<script src={% static "js/Auth/SignIn/Code_modal.js" %}></script>
+	<script src={% static "js/Auth/SignIn/SignIn.js" %}></script>
+	<script src={% static "js/Auth/SignIn/SignIn_Events.js" %}></script>
+
+	<script src={% static "js/User/Profile_Callback.js" %}></script>
+
+	<script src={% static "js/User/Profile_Events.js" %}></script>
+
+	<script src={% static "js/User/TwoFA_Enable.js" %}></script>
+	<script src={% static "js/User/Avatar_Modal.js" %}></script>
+
+	<script src={% static "js/User/Settings_Callback.js" %}></script>
+
+	<script src={% static "js/User/Parameters_Events.js" %}></script>
+
+	<script src={% static "js/User/Avatar_Modal.js" %}></script>
+
+	<script src={% static "js/User/Settings_Callback.js" %}></script>
+	<script src={% static "js/User/Settings_Events.js" %}></script>
+	<script src={% static "js/User/Settings.js" %}></script>
+
+	<!-- Script Init Modals -->
+	<script src={% static "js/Modals_Init.js" %}></script>
+
+	<!-- Script Home Page -->
+	<script src={% static "js/Home/Header_Events.js" %}></script>
+	<script src={% static "js/Home/Home_Events.js" %}></script>
+
+	<!-- Script main structure -->
+	<script src={% static "js/main.js" %}></script>
+</head>

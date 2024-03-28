@@ -1,0 +1,538 @@
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 60.063em) {
+    /* Styles */
+    
+    #login_title {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: stretch;
+    }
+    
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    #SIGNIN_Form {
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        flex-shrink: 0;
+        padding: 3.125em 8em;
+        margin-block-end: 0;
+    }
+
+    #SIGNIN_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.625rem;
+        align-self: stretch;
+    }
+
+    #SIGNIN_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #SIGNIN_Errors {
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+    }
+
+
+    #SIGNIN_Form p input {
+        height: 3.125rem;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #signin {
+        display: flex;
+        height: 3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #525695;
+        border: none;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #SIGNIN_Auth42 {
+        display: flex;
+        height: 3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #00BABC;
+        border: none;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal; 
+    }
+
+    #forgot_password {
+        color: #FFF;
+        display: flex;
+        align-self: end;
+	cursor:pointer;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+    }
+
+    #SIGNIN_Signup {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+    }
+
+
+    #SIGNIN_Signup b:hover {
+      cursor:pointer;
+    }
+
+
+    #infoSeparator {
+        display: flex;
+        align-items: center; /* Centré verticalement */
+        justify-content: space-between; /* Espacement entre les enfants */
+        width:  100%; /* Largeur complète pour que les lignes s'étendent */
+    }
+
+    #text {
+        order:  1; /* Positionnement du texte au milieu */
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #leftline {
+        order:  0; /* Positionnement de la ligne à gauche */
+        flex:  1; /* Occupation de l'espace disponible */
+        border-top:  1px solid rgb(255,  255,  255); /* Ligne horizontale en haut */
+    }
+
+    #rightline {
+        order:  2; /* Positionnement de la ligne à droite */
+        flex:  1; /* Occupation de l'espace disponible */
+        border-top:  1px solid rgb(255,  255,  255); /* Ligne horizontale en haut */
+    }
+}
+
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+    /* Styles */
+
+    #login_title {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: stretch;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #SIGNIN_Form {
+        display: flex;
+        width: 65%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        flex-shrink: 0;
+    }
+
+    #SIGNIN_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.625rem;
+        align-self: stretch;
+    }
+
+    #SIGNIN_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #SIGNIN_Errors {
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+    }
+
+
+    #SIGNIN_Form p input {
+        height: 3.125rem;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #signin {
+        display: flex;
+        height: 3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #525695;
+        border: none;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #SIGNIN_Auth42 {
+        display: flex;
+        height: 3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #00BABC;
+        border: none;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal; 
+    }
+
+    #forgot_password {
+        color: #FFF;
+        display: flex;
+        align-self: end;
+	    cursor:pointer;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+    }
+
+    #SIGNIN_Signup {
+        color: #FFF;
+        display: flex;
+	    cursor: pointer;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+    }
+
+    #SIGNIN_Signup b:hover {
+      cursor:pointer;
+    }
+
+    #infoSeparator {
+        display: flex;
+        align-items: center; /* Centré verticalement */
+        justify-content: space-between; /* Espacement entre les enfants */
+        width:  100%; /* Largeur complète pour que les lignes s'étendent */
+    }
+
+    #text {
+        order:  1; /* Positionnement du texte au milieu */
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #leftline {
+        order:  0; /* Positionnement de la ligne à gauche */
+        flex:  1; /* Occupation de l'espace disponible */
+        border-top:  1px solid rgb(255,  255,  255); /* Ligne horizontale en haut */
+    }
+
+    #rightline {
+        order:  2; /* Positionnement de la ligne à droite */
+        flex:  1; /* Occupation de l'espace disponible */
+        border-top:  1px solid rgb(255,  255,  255); /* Ligne horizontale en haut */
+    }
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+    /* Styles */
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #login_title {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1.8rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: stretch;
+    }
+
+    #SIGNIN_Form {
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        flex-shrink: 0;
+        max-width: 20em;
+    }
+
+    #SIGNIN_Form > p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.625rem;
+        align-self: stretch;
+    }
+
+    #SIGNIN_Form p label {
+        color: #FFF;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #SIGNIN_Errors {
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+    }
+
+
+    #SIGNIN_Form p input {
+        height: 3.125rem;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #D9D9D9;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        font-family: Kodchasan;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #signin {
+        display: flex;
+        height: 3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #525695;
+        border: none;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #SIGNIN_Auth42 {
+        display: flex;
+        height: 3.125rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 0.625rem;
+        background: #00BABC;
+        border: none;
+
+        /* Body CTA Desktop Text */
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal; 
+    }
+
+    #forgot_password {
+        color: #FFF;
+        display: flex;
+        align-self: end;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+    }
+
+    #SIGNIN_Signup {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+    }
+
+
+    #infoSeparator {
+        display: flex;
+        align-items: center; /* Centré verticalement */
+        justify-content: space-between; /* Espacement entre les enfants */
+        width:  100%; /* Largeur complète pour que les lignes s'étendent */
+    }
+
+    #text {
+        order:  1; /* Positionnement du texte au milieu */
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: #FFF;
+    }
+
+    #leftline {
+        order:  0; /* Positionnement de la ligne à gauche */
+        flex:  1; /* Occupation de l'espace disponible */
+        border-top:  1px solid rgb(255,  255,  255); /* Ligne horizontale en haut */
+    }
+
+    #rightline {
+        order:  2; /* Positionnement de la ligne à droite */
+        flex:  1; /* Occupation de l'espace disponible */
+        border-top:  1px solid rgb(255,  255,  255); /* Ligne horizontale en haut */
+    }
+}

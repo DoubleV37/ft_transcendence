@@ -1,0 +1,28 @@
+{% load static %}
+<!-- Modal -->
+<div class="modal fade" id="AvatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			  <img id="AvatarBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
+		</div>
+		<div class="modal-body">
+      <div id="ModalContent" data-content="AVATAR_CHANGE"></div>
+      <div>
+        <div class="d-flex justify-content-center mb-4">
+            <img id="selectedAvatar" src="{% static 'images/logoIcon.png' %}"
+            class="rounded-circle" style="width: 12em; height: 12em; object-fit: cover;" alt="example placeholder" />
+        </div>
+        <div class="d-flex justify-content-center">
+          <div id="DoubleButton">
+            <button type="button" id="customFileButton" class="SelectButtonLayout ButtonNeon">Choose file</button>
+            <button type="submit" id="submitAvatar" class="SelectButtonLayout ButtonDark">Update</button>
+          </div>
+        </div>
+      </div>
+		</div>
+		<div class="modal-footer">
+		</div>
+		</div>
+	</div>
+</div>
