@@ -30,8 +30,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-	'channels',
-	'bootstrap5',
+    'channels',
+    'bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'apps.Home',
     'apps.Auth',
     'apps.Profile',
-	'apps.Game',
+    'apps.Game',
     'apps.Twofa',
 ]
 
@@ -53,11 +53,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'Project.middleware.UserPermission',
+
+    'Profile.middleware.UserPermission',
 ]
 
 
-ROOT_URLCONF = 'Project.urls'
+ROOT_URLCONF = 'Profile.urls'
 
 TEMPLATES = [
     {
@@ -75,9 +76,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Project.wsgi.application'
+WSGI_APPLICATION = 'Profile.wsgi.application'
 
-ASGI_APPLICATION = 'Project.asgi.application'
+ASGI_APPLICATION = 'Profile.asgi.application'
 
 
 # Database
