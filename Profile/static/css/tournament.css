@@ -1,0 +1,77 @@
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 60.063em) {
+
+    /* Define the animation */
+    @keyframes flowAnimation {
+    from {
+       opacity: 0;
+       transform: translateX(100px);
+    }
+    to {
+       opacity: 1;
+       transform: translateX(0);
+    }
+   }
+   
+   /* Apply the animation to the #content div */
+   .flowAnimation {
+    animation: flowAnimation 0.4s ease-in forwards;
+   }
+
+    /* Define the animation */
+    @keyframes fadeinAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+    }
+    
+    /* Apply the animation to the #content div */
+    .fadeinAnimation {
+    animation: fadeinAnimation 0.4s ease-in forwards;
+    }
+
+}
+
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+
+    /* Define the animation */
+    @keyframes flowAnimation {
+        from {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        }
+        
+    /* Apply the animation to the #content div */
+    .flowAnimation {
+    animation: flowAnimation 0.3s ease-in forwards;
+    }
+
+    /* Define the animation */
+    @keyframes fadeinAnimation{
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+        }
+        
+        /* Apply the animation to the #content div */
+        .fadeinAnimation {
+        animation: fadeinAnimation 0.3s ease-in forwards;
+    }
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+ 
+}

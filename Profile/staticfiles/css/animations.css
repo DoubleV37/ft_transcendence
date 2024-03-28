@@ -1,0 +1,147 @@
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 60.063em) {
+
+    .player-image {
+        width: 2.3em; /* Adjust the size as needed */
+        height: 2.3em; /* Adjust the size as needed */
+        border-radius: 50%; /* Makes the image round */
+        margin-right: 10px; /* Adds some space between the image and the name */
+    }
+    
+    .bracket {
+        display: flex;
+        color: #fff;
+        font-family: kodchasan;
+    }
+    
+    .round {
+        flex: 1;
+        display: flex;
+        margin-left: 1em;
+        margin-right: 1em;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    .match {
+        margin: 15px 0;
+        overflow: hidden;
+    }
+    
+    .team {
+        color: #fff;
+        padding: 10px 8px;
+        background-color: #202532;
+        border: 1px solid #5DC6E8;
+    }
+    
+    .team:nth-child(odd) {
+        border-bottom: none;
+    }
+    
+    #sectionTournament {
+        flex-direction: row;
+        justify-content: center;
+        width: 60em;
+    }
+
+}
+
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+
+    .player-image {
+        width: 2.3em; /* Adjust the size as needed */
+        height: 2.3em; /* Adjust the size as needed */
+        border-radius: 50%; /* Makes the image round */
+        margin-right: 10px; /* Adds some space between the image and the name */
+    }
+    
+    .bracket {
+        display: flex;
+        color: #fff;
+        font-family: kodchasan;
+    }
+    
+    .round {
+        flex: 1;
+        display: flex;
+        margin-left: 1em;
+        margin-right: 1em;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    .match {
+        margin: 15px 0;
+        overflow: hidden;
+    }
+    
+    .team {
+        color: #fff;
+        padding: 10px 8px;
+        background-color: #202532;
+        border: 1px solid #5DC6E8;
+    }
+    
+    .team:nth-child(odd) {
+        border-bottom: none;
+    }
+    
+    #sectionTournament {
+        flex-direction: row;
+        justify-content: center;
+        width: 35em;
+    }
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+
+    .player-image {
+        width: 2.3em; /* Adjust the size as needed */
+        height: 2.3em; /* Adjust the size as needed */
+        border-radius: 50%; /* Makes the image round */
+    }
+    
+    .bracket {
+        display: flex;
+        color: #fff;
+        font-family: kodchasan;
+        font-size: 0.8rem;
+    }
+    
+    .round {
+        flex: 1;
+        display: flex;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    .match {
+        margin: 15px 0;
+        overflow: hidden;
+    }
+    
+    .team {
+        color: #fff;
+        padding: 10px 8px;
+        background-color: #202532;
+        border: 1px solid #5DC6E8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .team:nth-child(odd) {
+        border-bottom: none;
+    }
+    
+    #sectionTournament {
+        flex-direction: row;
+        justify-content: center;
+        width: 90%;
+    }
+}

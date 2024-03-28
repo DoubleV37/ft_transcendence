@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<style>
+	body {
+		background-color: #f2f2f2;
+		display: flex;
+		flex-direction: column;
+	}
+	canvas {
+		border: 2px solid black;
+		background-color: #f2f2f2b0;
+		align-self: center;
+		aspect-ratio: 2/1;
+		width: 90%;
+		max-height: 80%;
+	}
+</style>
+  <body>
+    <center><h1>Hello , Welcome to Pong ! {{request.user}}</h1></center>
+    <!-- <div
+      class="chat__item__container"
+      id="id_chat_item_container"
+      style="font-size: 20px"
+    >
+      <input type="text" id="id_message_send_input" />
+      <button type="submit" id="id_message_send_button">Send Message</button>
+    </div> -->
+
+	<canvas id="MyCanvas">
+		<p>Description of the canvas for those unable to view it.</p>
+	</canvas>
+	<div id="score1div"></div>
+	<div id="score2div"></div>
+
+    <script>
+		const gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/room");
+		gameSocket.onopen = function (e) {
+			console.log("The connection was setup successfully !");
+		};
+		gameSocket.onclose = function (e) {
+			console.log("Something unexpected happened !");
+		};
+		// document.querySelector("#id_message_send_input").focus();
+		// document.querySelector("#id_message_send_input").onkeyup = function (e) {
+		// 	if (e.keyCode == 13) {
+		// 		document.querySelector("#id_message_send_button").click();
+		// 	}
+		// };
+		// document.querySelector("#id_message_send_button").onclick = function (e) {
+		// 	var messageInput = document.querySelector(
+		// 		"#id_message_send_input"
+		// 	).value;
+		// 	gameSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
+		// };
+		var canvas = document.getElementById("MyCanvas");
+		var ctx = canvas.getContext("2d");
+
+
+		var style = getComputedStyle(canvas);
+		var width = parseInt(style.getPropertyValue('width'), 10);
+		var height = parseInt(style.getPropertyValue('height'), 10);
+		canvas.width = width;
+		canvas.height = height;
+		var paddle1Height;
+		var paddle2Height;
+		var ballRadius;
+
+		gameSocket.onmessage = function (e) {
+			const data = JSON.parse(e.data);
+			var score1div = document.getElementById("score1div");
+			score1div.innerHTML = "Score AI : " + data.score1;
+			var score2div = document.getElementById("score2div");
+			score2div.innerHTML = "Score {{request.user}} : " + data.score2;
+			ballRadius = data.ballsize*height*2;
+			paddle1Height = data.paddle1size*height;
+			paddle2Height = data.paddle2size*height;
+			draw(data);
+		};
+
+		addEventListener('resize', () => {
+			style = getComputedStyle(canvas);
+			width = parseInt(style.getPropertyValue('width'), 10);
+			height = parseInt(style.getPropertyValue('height'), 10);
+			canvas.width = width;
+			canvas.height = height;
+		});
+
+		function drawPaddleR(y) {
+			ctx.beginPath();
+			ctx.rect(canvas.width - (canvas.width*50/1200), y*canvas.height-paddle2Height/2, 10, paddle2Height);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		function drawPaddleL(y) {
+			ctx.beginPath();
+			ctx.rect((canvas.width*50/1200) - 10, y*canvas.height-paddle1Height/2, 10, paddle1Height);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		function drawBallXY(x, y) {
+			ctx.beginPath();
+			ctx.arc(x*canvas.width, y*canvas.height, ballRadius, 0, Math.PI*2);
+			ctx.fillStyle = "#FF95DD";
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		function draw(data) {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			drawPaddleR(data.paddleR);
+			drawPaddleL(data.paddleL);
+			drawBallXY(data.ballX, data.ballY);
+		}
+
+		addEventListener('keydown', (e) => {
+			if (e.key === 'ArrowUp') {
+				gameSocket.send(JSON.stringify({ message: "up", username : "{{request.user.username}}" }));
+			}
+			if (e.key === 'ArrowDown') {
+				gameSocket.send(JSON.stringify({ message: "down", username : "{{request.user.username}}" }));
+			}
+		});
+    </script>
+  </body>
+</html>

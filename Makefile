@@ -1,7 +1,7 @@
 all: up
 
 up:
-	if [ ! -d "Django_data/staticfiles" ]; then mkdir -p Django_data/staticfiles; fi
+	if [ ! -d "Profile/staticfiles" ]; then mkdir -p Profile/staticfiles; fi
 	docker compose up --build -d
 
 down:
@@ -23,6 +23,6 @@ site:
 	docker compose restart uvicorn
 
 update:
-	rm -rf `find ./Django_data/ -type f -name "0*"`
+	rm -rf `find ./Profile/ -type f -name "0*"`
 
 .PHONY: up down fclean re fre all stop site update
