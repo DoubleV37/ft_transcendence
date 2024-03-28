@@ -22,7 +22,9 @@
                 console.log('Message received from server:', event.data);
 				data = JSON.parse(event.data);
 				if (data.type == "match_found") {
-					window.location.href = '/';
+					console.log('Match found:', data);
+					socket.close();
+					window.location.href = '/game/'+data.room_name+'/';
 				}
             };
 
