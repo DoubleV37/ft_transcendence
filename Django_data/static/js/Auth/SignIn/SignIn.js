@@ -1,5 +1,4 @@
 async function signIn() {
-
   const formData = new FormData(document.getElementById('SIGNIN_Form'));
 
   try {
@@ -10,17 +9,30 @@ async function signIn() {
 
     const response = await MakeRequest(`${ROUTE.SIGNIN}`, myData);
 
+    if (response.status == 403) {
+      return false;
+    }
     if (response.ok) {
-      return true;
+      const data = await response.json();
+
+      if (data.success == true) {
+	if (data.Twofa == true) {
+	  await changeSection(`${ROUTE.TWOFA_C}`, '#code_2fa', );
+	  TwofaCodeModal['modal'].show();
+	  return '2fa';
+	}
+	else {
+	  return true;
+	}
+      }
+      else {
+	SignIn_UpdateErrors(data.error);
+	document.getElementById('SIGNIN_Form').reset();
+      }
     }
     else {
       if (response.status == 403) {
 	Access_Denied(await response.text());
-      }
-      else {
-	const data = await response.text();
-	SignIn_UpdateErrors(data);
-	document.getElementById('SIGNIN_Form').reset();
       }
       return false;
     }
@@ -29,21 +41,6 @@ async function signIn() {
     console.error('SignIn Errors:', err);
     return false;
   }
-}
-
-function SignIn_JsonForm(myForm) {
-  let formData = new FormData(myForm);
-  let formDataJSON = {};
-
-  formData.forEach(function(value, key) {
-    formDataJSON[key] = value;
-  });
-
-  let myData = {
-    method: 'POST',
-    body: JSON.stringify(formDataJSON),
-  };
-  return myData;
 }
 
 function SignIn_UpdateErrors(errors) {

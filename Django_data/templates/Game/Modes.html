@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+
+<body>
+  {% include "Home/head.html" %}
+  {% include "Home/header.html" %}
+  {% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
+  {% include "Profile/Profile.html" %}
+  {% include "Auth/code_validation.html" %}
+  {% include "Profile/enable_2fa.html" %}<!-- TODO load the modal only if the user is connected -->
+
+	<div id="content">
+		<div id="overlay">
+			<div class="mid midcolumn flowAnimation">
+				<div id="titleContent" data-content="GAME_PARAMETERS"></div>
+				<div class="section">
+					<h1 class="modesTitle remove-bottom-margin">Choose game mode</h1>
+				</div>
+				<div class="section">
+					<p class="bodyText">Quick play:</p>
+						<div class="DoubleButtonSettings">
+							<button id="SELECT_Player" class="MediumButtonLayout left ButtonDark">1 VS. 1</button>
+							<button id="SELECT_ai" class="MediumButtonLayout right ButtonDark">1 VS. AI</button>
+						</div>
+				</div>
+				<div class="section">
+					<p class="bodyText">Custom game:</p>
+						<div class="DoubleButtonSettings">
+							<button id="SELECT_Player" class="MediumButtonLayout left ButtonDark">Join</button>
+							<button id="SELECT_ai" class="MediumButtonLayout right ButtonDark">Create</button>
+						</div>
+				</div>
+				<div class="section">
+					<p class="bodyText">Tournament:</p>
+						<div class="DoubleButtonSettings">
+							<button id="SELECT_Player" class="MediumButtonLayout left ButtonDark">Join</button>
+							<button id="SELECT_ai" class="MediumButtonLayout right ButtonDark">Create</button>
+						</div>
+				</div>
+				<div class="section">
+					<button id="StartButton" class="play-button next"><span class="play">Next</span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+  {% include "Home/footer.html" %}
+</body>
+
+		{% comment %} <script>
+
+				function setViewportHeight() {
+				   // Calculate the viewport height
+				   var vh = window.innerHeight * 0.01;
+				   // Set the height of the #content and .mid elements
+				   document.documentElement.style.setProperty('--vh', `${vh}px`);
+				}
+			   
+				// Listen for the resize event to adjust the height when the window size changes
+				window.addEventListener('resize', setViewportHeight);
+				// Call the function initially to set the height
+				setViewportHeight();
+		
+		</script> {% endcomment %}
+	</body>
+</html>

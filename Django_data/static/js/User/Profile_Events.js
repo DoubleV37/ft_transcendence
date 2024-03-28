@@ -1,14 +1,6 @@
-//  button  //
-//  PROFIL_Settings --- Ongoing//
-//  PROFIL_Skins  //
-
-//  PROFIL_HISTORY //
-//  PROFIL_STATS" //
-//  PROFIL_42Account //
-
 function  profile_SetEvents() {
+  profileModal['active'] = true;
   let element = document.getElementById('PROFIL_Settings');
-
   element.addEventListener('click', profile_SettingsCallBack);
 
   element = document.getElementById('ModalBackArrow');
@@ -28,8 +20,8 @@ function  profile_SetEvents() {
 }
 
 function  profile_DelEvents() {
+  profileModal['active'] = false;
   let element = document.getElementById('PROFIL_Settings');
-
   element.removeEventListener('click', profile_SettingsCallBack);
 
   element = document.getElementById('ModalBackArrow');
@@ -46,42 +38,4 @@ function  profile_DelEvents() {
 
   element = document.getElementById('PROFIL_42Account');
   element.removeEventListener('click', profile_42AccCallBack);
-}
-
-async function  profile_SettingsCallBack() {
-  profileModal.hide();
-  try {
-    await loadPage(`${ROUTE.SETTINGS}`);
-  }
-  catch (err) {
-    console.log(`Error - profile_S: ${err}`);
-  }
-}
-
-function  profile_closeModal() {
-  profileModal.hide();
-}
-
-async function  profile_SkinsCallBack() {
-//  profileModal.hide();
-//  await loadPage(`${ROUTE.}`);
-  console.log("Skins: Do nothing for now");
-}
-
-async function  profile_HistoryCallBack() {
-//  profileModal.hide();
-//  await loadPage(`${ROUTE.}`);
-  console.log("History: Do nothing for now");
-}
-
-async function  profile_StatsCallBack() {
-//  profileModal.hide();
-//  await loadPage(`${ROUTE.}`);
-  console.log("Stats: Do nothing for now");
-}
-
-async function  profile_42AccCallBack() {
-//  profileModal.hide();
-//  await loadPage(`${ROUTE.}`);
-  console.log("42Acc: Do nothing for now");
 }

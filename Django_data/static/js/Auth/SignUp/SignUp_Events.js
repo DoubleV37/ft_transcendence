@@ -4,9 +4,6 @@ function  signup_SetEvents() {
 
   element = document.querySelector("#SIGNUP_signin b");
   element.addEventListener('click', signup_SignInCallBack);
-  //  .
-  //  .
-  //  .
 }
 
 function  signup_DelEvents() {
@@ -15,9 +12,6 @@ function  signup_DelEvents() {
 
   element = document.querySelector("#SIGNUP_signin b");
   element.removeEventListener('click', signup_SignInCallBack);
-  //  .
-  //  .
-  //  .
 }
 
 async function signup_FormCallBack(event) {
