@@ -27,3 +27,16 @@ function  del_current_event() {
       break;
   }
 }
+
+function sleep(ms) {
+ return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function  restore_message(elem_success, elem_failure) {
+  let element = document.getElementById(elem_failure);
+
+  element.innerHTML = ``;
+  element = document.getElementById(elem_success);
+
+  element.innerHTML = ``;
+}

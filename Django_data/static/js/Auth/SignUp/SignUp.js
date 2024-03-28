@@ -8,16 +8,15 @@ async function signUp() {
 	  body: formData
       });
       if (response.status == 403) {
-	Access_Denied(await response.text());
-	return false;
+	 return false;
       }
       const data = await response.json();
 
-      if (data["status"] === 'success') {
+      if (data["success"] === true) {
 	return true;
       }
       else {
-	SignUp_UpdateErrors(data["message"]);
+	SignUp_UpdateErrors(data["error"]);
 	form.reset();
 	return false;
       }
@@ -31,8 +30,12 @@ async function signUp() {
 function SignUp_UpdateErrors(errors) {
   let element = document.getElementById('SIGNUP_Errors');
   element.innerHTML = '';
+  let returnLine = '';
 
+  if (typeof errors !== 'string') {
+    returnLine = '<br>';
+  }
   for (let key in errors) {
-    element.innerHTML += `${errors[key]}<br>`;
+    element.innerHTML += `${errors[key]}${returnLine}`;
   }
 }
