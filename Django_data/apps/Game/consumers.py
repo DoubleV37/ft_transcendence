@@ -1,9 +1,8 @@
+from .models import MatchmakingUser
 import json, asyncio
 from channels.generic.websocket import AsyncWebsocketConsumer
 from .pong import Pong, ai_brain
 from asgiref.sync import sync_to_async
-from django_redis import get_redis_connection
-import threading
 import hashlib
 
 class SoloPongConsumer(AsyncWebsocketConsumer):
@@ -135,11 +134,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			await self.sendMessage()
 			await asyncio.sleep(1/240)
 
-
-matchmaking_pool = set()
-matchmaking_lock = threading.Lock()
-
-
 class MatchmakingPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
 		self.room_name = "matchmaking"
@@ -158,9 +152,6 @@ class MatchmakingPongConsumer(AsyncWebsocketConsumer):
 			# Vérifie si le pool de matchmaking contient deux utilisateurs
 			num = await self.len_pool()
 			await self.send(text_data=str(num))
-			await self.send(text_data=str(self.channel_name))
-			await self.send(text_data=str(self.roomGroupName))
-			await self.send(text_data=str(matchmaking_pool))
 			if await self.len_pool() >= 2:
 				# Récupère les deux utilisateurs du pool
 				users = await self.get_pool_members()
@@ -189,29 +180,25 @@ class MatchmakingPongConsumer(AsyncWebsocketConsumer):
 
 	@sync_to_async
 	def add_to_matchmaking_pool(self):
-		with matchmaking_lock:
-			if self.channel_name not in matchmaking_pool:
-				matchmaking_pool.add(self.channel_name)
+		MatchmakingUser.objects.create(channel_name=self.channel_name)
 
 	@sync_to_async
 	def remove_from_matchmaking_pool(self):
-		with matchmaking_lock:
-			matchmaking_pool.discard(self.channel_name)
+		MatchmakingUser.objects.filter(channel_name=self.channel_name).delete()
 
 	@sync_to_async
 	def len_pool(self):
-		with matchmaking_lock:
-			return len(matchmaking_pool)
+		return MatchmakingUser.objects.count()
 
 	@sync_to_async
 	def get_pool_members(self):
-		two_users = {}
-		with matchmaking_lock:
-			users = list(matchmaking_pool)
-			if len(users) >= 2:
-				two_users = users[:2]
-				matchmaking_pool.difference_update(two_users)
-			return two_users
+		users = MatchmakingUser.objects.all()[:2]
+		user_channel_names = []
+		for user in users:
+			user_channel_names.append(user.channel_name)
+		users.delete()
+		return user_channel_names
+
 
 	async def matchmaking_success(self, event):
 		# Gestionnaire de message pour le type "matchmaking.success"
