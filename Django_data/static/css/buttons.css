@@ -150,13 +150,16 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        margin-bottom: 0.3rem;
     }
 
     #switchCheckLabelTop {
         width: 4em;
         height: 2em;
         border-radius: 0.6em;
+        margin-top: 0;
     }
+
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -325,6 +328,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        margin-bottom: 0.3rem;
     }
 
     #switchCheckLabelTop {
@@ -501,10 +505,10 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        margin-bottom: 0.3rem;
     }
 
     #switchCheckLabelTop {
-        width: 4em;
         height: 2em;
         border-radius: 0.6em;
     }

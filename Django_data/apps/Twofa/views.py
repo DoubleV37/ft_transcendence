@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from django.views.generic import TemplateView, FormView
@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from .models import UserTwoFA
 from .forms import My_2fa, TwoFAForm
 from apps.Auth.models import User
+from apps.Auth.forms import SignInForm
 
 import pyotp
 
@@ -45,7 +46,8 @@ class create_qrcode(TemplateView):
             self.context["qr_code"] = _user.to2fa.generate_qr_code(
                 name=_user.username
             )
-            return render(request, self.template_name, context=self.context)
+            #return render(request, self.template_name, context=self.context)
+            return render(request, 'Profile/enable_2fa.html', context=self.context)
 
     except ValidationError as exc:
         context: dict() = {}
@@ -64,12 +66,13 @@ def enable_2fa(request):
             if _user.to2fa.enable:
                 _user.to2fa.enable = False
                 _user.save()
-                return redirect('/')
-            else:
-                _user.to2fa.enable = True
-                _user.save()
-                return redirect('qrcode')
-    return render(request, 'enable_2fa.html', {'profile_2fa': profile_2fa})
+                # return redirect('/')
+                return JsonResponse({'status': 'return'})
+            _user.to2fa.enable = True
+            _user.save()
+            # return redirect('qrcode')
+            return JsonResponse({'status': 'continue'})
+    return render(request, 'Profile/enable_2fa.html', {'profile_2fa': profile_2fa})
 
 
 # __________________________________________________________________________ #
@@ -81,21 +84,70 @@ class TwoFactorConfirmationView(FormView):
     response: dict() = {}
 
     def get(self, request):
-        return render(request, self.template_name, {'form': self.form})
+        if request.user.is_authenticated is True:
+            logger.info("100% c'est ca")
+            _id = "confirm_2fa"
+            _cancel = "cancel_2fa"
+            _form = "form_2FA"
+            _failure = "failure_2FA"
+            _success = "success_2FA"
+        else:
+            logger.info("The fuuuuuuuck ???") 
+            _id = "code_2fa"
+            _cancel = "cancel_code2fa"
+            _form = "form_2FAcode"
+            _failure = "failure_2FAcode"
+            _success = "success_2FAcode"
+        return render(request, 'Auth/confirm_2fa.html', {'form': self.form,
+                                                         'div_ID': _id,
+                                                         'cancel': _cancel,
+                                                         'form_id': _form,
+                                                         'success': _success,
+                                                         'failure': _failure})
 
     def post(self, request):
         key: str = ''
         self.form = TwoFAForm(request.POST)
-        _user = User.objects.get(username=request.user.username)
-        value = pyotp.TOTP(_user.to2fa.otp_secret).now()
+        _logged = True
 
+        if request.user.is_anonymous is True:
+            _logged = False
+            signin_form = SignInForm(request.POST)
+            if signin_form.is_valid():
+                username = signin_form.cleaned_data['username']
+                password = signin_form.cleaned_data['password']
+                _user = authenticate(request, username=username, password=password)
+                if _user is None:
+                    return JsonResponse({'success': False,
+                                         'logs': 'Bad identificators'})
+            else:
+                return JsonResponse({'success': False,
+                                     'logs': 'Bad identificators'})
+
+        else:
+            _user = User.objects.get(username=request.user.username)
+
+        value = pyotp.TOTP(_user.to2fa.otp_secret).now()
         if self.form.is_valid():
             key = self.form.cleaned_data.get('otp')
+            if key == value:
 
-        if key == value:
-            self.response["success"] = True
-            return JsonResponse(self.response)
-        else:
+                self.response["success"] = True
+                response = JsonResponse(self.response)
+                if _logged is False:
+
+                    login(request, _user)
+                    from apps.Auth.views import create_jwt
+                    jwt_token = create_jwt(_user)
+                    response.set_cookie(key='jwt_token',
+                                        value=str(jwt_token),
+                                        httponly=True,
+                                        secure=True,
+                                        samesite='Lax')
+                return response
             self.response["success"] = False
             self.response["logs"] = "Wrong 2fa code"
             return JsonResponse(self.response)
+        self.response["success"] = False
+        self.response["logs"] = "Something bad happend"
+        return JsonResponse(self.response)

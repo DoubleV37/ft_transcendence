@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href={% static "css/settings.css" %} />
 	<link rel="stylesheet" href={% static "css/modal.css" %} />
 	<link rel="stylesheet" href={% static "css/animations.css" %} />
+	<link rel="stylesheet" href={% static "css/parameters.css" %} />
 
 	<!-- Fav Icon -->
 	<link rel="shortcut icon" type="image/png" href="{% static 'images/favIcon.png' %}" >
@@ -35,14 +36,29 @@
 
 	<!-- Scripts Authentication -->
 	<script src={% static "js/Auth/SignOut.js" %}></script>
+	<script src={% static "js/Auth/2Fa_Events.js" %}></script>
 
 	<script src={% static "js/Auth/SignUp/SignUp.js" %}></script>
 	<script src={% static "js/Auth/SignUp/SignUp_Events.js" %}></script>
 
+	<script src={% static "js/Auth/SignIn/Code_modal.js" %}></script>
 	<script src={% static "js/Auth/SignIn/SignIn.js" %}></script>
 	<script src={% static "js/Auth/SignIn/SignIn_Events.js" %}></script>
 
+	<script src={% static "js/User/Profile_Callback.js" %}></script>
+
 	<script src={% static "js/User/Profile_Events.js" %}></script>
+
+	<script src={% static "js/User/TwoFA_Enable.js" %}></script>
+	<script src={% static "js/User/Avatar_Modal.js" %}></script>
+
+	<script src={% static "js/User/Settings_Callback.js" %}></script>
+
+	<script src={% static "js/User/Parameters_Events.js" %}></script>
+
+	<script src={% static "js/User/Avatar_Modal.js" %}></script>
+
+	<script src={% static "js/User/Settings_Callback.js" %}></script>
 	<script src={% static "js/User/Settings_Events.js" %}></script>
 	<script src={% static "js/User/Settings.js" %}></script>
 
@@ -55,5 +71,4 @@
 
 	<!-- Script main structure -->
 	<script src={% static "js/main.js" %}></script>
-
 </head>
