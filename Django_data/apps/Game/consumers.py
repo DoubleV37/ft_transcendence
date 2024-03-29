@@ -136,8 +136,8 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			await asyncio.sleep(1/240)
 
 
-matchmaking_pool = set()  # Ensemble Python pour stocker les utilisateurs en attente
-matchmaking_lock = threading.Lock()  # Verrou pour protéger l'accès à matchmaking_pool
+matchmaking_pool = set()
+matchmaking_lock = threading.Lock()
 
 
 class MatchmakingPongConsumer(AsyncWebsocketConsumer):
@@ -190,7 +190,8 @@ class MatchmakingPongConsumer(AsyncWebsocketConsumer):
 	@sync_to_async
 	def add_to_matchmaking_pool(self):
 		with matchmaking_lock:
-			matchmaking_pool.add(self.channel_name)
+			if self.channel_name not in matchmaking_pool:
+				matchmaking_pool.add(self.channel_name)
 
 	@sync_to_async
 	def remove_from_matchmaking_pool(self):
