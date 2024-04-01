@@ -1,6 +1,8 @@
 __pycache__
 .idea
-Django_data/staticfiles/*
+Game/staticfiles/*
+Profile/staticfiles/*
 000*
-Django_data/avatars/*
-!Django_data/avatars/ForbiddenDeletion/default.png
+Profile/avatars/*
+!Profile/avatars/ForbiddenDeletion/default.png
+
