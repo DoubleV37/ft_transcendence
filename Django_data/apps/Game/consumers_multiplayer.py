@@ -1,25 +1,23 @@
-import json, asyncio
+import json , asyncio
 from channels.generic.websocket import AsyncWebsocketConsumer
 from .pong import Pong, ai_brain
-from asgiref.sync import sync_to_async
 
-class SoloPongConsumer(AsyncWebsocketConsumer):
+class MultiPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
-		self.roomGroupName = "pong_game"
+		self.roomGroupName = self.scope["url_route"]["kwargs"]["room_name"]
 		await self.channel_layer.group_add(
 			self.roomGroupName ,
 			self.channel_name
 		)
 		await self.accept()
-		self.pong = Pong(1 , 2 , 10)
 
-		asyncio.create_task(self.runGame())
 
-	async def disconnect(self , close_code):
+	async def disconnect(self, close_code):
 		await self.channel_layer.group_discard(
-			self.roomGroupName ,
-			self.channel_layer
+			self.roomGroupName,
+			self.channel_name  # Corrected this line
 		)
+
 
 	async def receive(self, text_data):
 		data = json.loads(text_data)
@@ -29,9 +27,14 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			self.pong.player_pos[1] = self.pong.player_pos[1] - self.pong.player_speed
 		elif message == "down":
 			self.pong.player_pos[1] = self.pong.player_pos[1] + self.pong.player_speed
+		elif message == "start":
+			self.pong = Pong(1 , 2 , 10)
+			asyncio.create_task(self.runGame())
+
 
 	async def sendMessage(self):
-		await self.send(text_data = json.dumps({"paddleL" : self.pong.player_pos[0]/900 ,
+		await self.channel_layer.group_send(
+			self.roomGroupName , json.dumps({"paddleL" : self.pong.player_pos[0]/900 ,
 												"paddleR" : self.pong.player_pos[1]/900 ,
 												"ballX" : self.pong.ball_pos[0]/1200 ,
 												"ballY" : self.pong.ball_pos[1]/900 ,
@@ -40,7 +43,8 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 												"ballsize" : self.pong.ball_size/900 ,
 												"paddle1size" : self.pong.player_size[0]/900 ,
 												"paddle2size" : self.pong.player_size[1]/900 ,
-												"type" : "sendMessage"}))
+												"type" : "sendMessage"})
+		)
 
 	async def runGame(self):
 		while self.pong.running:
@@ -64,4 +68,6 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 				self.pong.update_score(1)
 			await self.sendMessage()
 			await asyncio.sleep(1/240)
+
+
 
