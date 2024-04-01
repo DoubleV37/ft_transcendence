@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
 	'bootstrap5',
+	'channels',
+	'channels_redis',
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
@@ -42,8 +44,6 @@ INSTALLED_APPS = [
 	'apps.Profile',
 	'apps.Game',
 	'apps.Twofa',
-	'channels',
-	'channels_redis',
 ]
 
 MIDDLEWARE = [
