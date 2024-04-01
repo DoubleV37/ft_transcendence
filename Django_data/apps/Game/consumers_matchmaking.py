@@ -1,5 +1,5 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
-import json
+import json , hashlib
 from asgiref.sync import sync_to_async
 from channels.db import database_sync_to_async
 
@@ -27,8 +27,7 @@ class MatchmakingPongConsumer(AsyncWebsocketConsumer):
 				# Récupère les deux utilisateurs du pool
 				users = await self.get_pool_members()
 				# Crée une salle de jeu pour eux
-				# new_room_name = hashlib.sha256(f"{users[0]}{users[1]}".encode()).hexdigest()
-				new_room_name = "caca"
+				new_room_name = hashlib.sha256(f"{users[0]}{users[1]}".encode()).hexdigest()
 				await self.create_game_room(new_room_name, users)
 
 	async def create_game_room(self, room_name, users):
