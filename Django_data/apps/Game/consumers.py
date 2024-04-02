@@ -10,7 +10,7 @@ class PongConsumer(AsyncWebsocketConsumer):
 			self.channel_name
 		)
 		await self.accept()
-		self.pong = Pong(1 , 2 , 10)
+		self.pong = Pong(1 , 20 , 10, True)
 
 		asyncio.create_task(self.runGame())
 
@@ -24,10 +24,10 @@ class PongConsumer(AsyncWebsocketConsumer):
 		data = json.loads(text_data)
 		message = data["message"]
 		username = data["username"]
-		if message == "up":
-			self.pong.player_pos[1] = self.pong.player_pos[1] - self.pong.player_speed
-		elif message == "down":
-			self.pong.player_pos[1] = self.pong.player_pos[1] + self.pong.player_speed
+		if message == "up" and self.pong.player_pos[1] > 0:
+			self.pong.player_pos[1] -= self.pong.player_speed
+		elif message == "down" and self.pong.player_pos[1] < 900:
+			self.pong.player_pos[1] += self.pong.player_speed
 
 	async def sendMessage(self):
 		await self.send(text_data = json.dumps({"paddleL" : self.pong.player_pos[0]/900 ,

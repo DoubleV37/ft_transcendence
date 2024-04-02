@@ -32,7 +32,7 @@ def ai_brain( Pong, player, lvl ):
 
 class Pong():
 
-	def __init__(self, start, point_limit, difficulty):
+	def __init__(self, start, point_limit, difficulty, power):
 		self.running = True
 		self.point = [0, 0]
 		self.point_limit = point_limit
@@ -48,7 +48,7 @@ class Pong():
 			self.ball_speed = [-3, random.uniform(-1, 1)]
 			self.ball_pos = [1100, 450]
 		# powerup
-		self.powerup = True
+		self.powerup = power
 		self.powerup_size = 50
 		self.powerup_time = 0
 		self.powerup_pos = [575, 50]
@@ -67,8 +67,8 @@ class Pong():
 			return
 		self.powerup_pos[1] += self.powerup_speed
 		if self.powerup_time == 0:
-			self.player_size[0] = 100
-			self.player_size[1] = 500
+			self.player_size[0] = 150
+			self.player_size[1] = 150
 			self.powerup_size = 50
 		else :
 			self.powerup_time -= 1
@@ -77,16 +77,16 @@ class Pong():
 			self.powerup_speed *= -1
 		elif self.powerup_pos[0] < self.ball_pos[0] and self.ball_pos[0] < self.powerup_pos[0] + self.powerup_size and self.powerup_pos[1] < self.ball_pos[1] and self.ball_pos[1] < self.powerup_pos[1] + self.powerup_size:
 			self.powerup_pos[1] = 50
-			self.powerup_time = 5 * 240
+			self.powerup_time = 3 * 240
 			self.powerup_size = 0
 			if self.ball_speed[0] > 0:
 				self.powerup_count[0] += 1
-				self.player_size[0] = 150
-				self.player_size[1] = 80
+				self.player_size[0] = 300
+				self.player_size[1] = 150
 			else:
 				self.powerup_count[1] += 1
-				self.player_size[0] = 80
-				self.player_size[1] = 150
+				self.player_size[0] = 150
+				self.player_size[1] = 300
 
 
 	def stats(self, player):

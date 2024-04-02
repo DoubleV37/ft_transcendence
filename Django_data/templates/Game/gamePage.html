@@ -91,7 +91,7 @@
 
 		function drawPaddleR(y) {
 			ctx.beginPath();
-			ctx.rect(canvas.width - (canvas.width*50/1200), y*canvas.height-paddle2Height/2, 10, paddle2Height);
+			ctx.rect(canvas.width - (canvas.width*50/1200), y*canvas.height-paddle2Height/2, canvas.height*25/900, paddle2Height);
 			ctx.fillStyle = "#0095DD";
 			ctx.fill();
 			ctx.closePath();
@@ -99,7 +99,7 @@
 
 		function drawPaddleL(y) {
 			ctx.beginPath();
-			ctx.rect((canvas.width*50/1200) - 10, y*canvas.height-paddle1Height/2, 10, paddle1Height);
+			ctx.rect((canvas.width*50/1200) - (canvas.height*25/900), y*canvas.height-paddle1Height/2, canvas.height*25/900, paddle1Height);
 			ctx.fillStyle = "#0095DD";
 			ctx.fill();
 			ctx.closePath();
@@ -129,13 +129,48 @@
 			drawPowerup(data.powerupY);
 		}
 
-		addEventListener('keydown', (e) => {
-			if (e.key === 'ArrowUp') {
-				gameSocket.send(JSON.stringify({ message: "up", username : "{{request.user.username}}" }));
+		// Keyboard input handling
+		let repeatRateTimer = null;
+		let keyStates = {
+			ArrowUp: false,
+			ArrowDown: false
+		};
+		let isIntervalRunning = false;
+
+
+		// Clear key states on keyup
+		document.addEventListener('keyup', function(e) {
+			keyStates[e.key] = false;
+			if (!keyStates.ArrowUp && !keyStates.ArrowDown) {
+				clearInterval(repeatRateTimer);
+				repeatRateTimer = null;
+				isIntervalRunning = false;
 			}
-			if (e.key === 'ArrowDown') {
-				gameSocket.send(JSON.stringify({ message: "down", username : "{{request.user.username}}" }));
+		});
+
+		// Set key states on keydown
+		document.addEventListener('keydown', function(e) {
+			if (e.key !== 'F5' && !(e.key === 'F5' && e.ctrlKey)) {
+        		e.preventDefault();
+ 		   }
+			if (!isIntervalRunning) {
+				const initialDelay = 17;
+				const repeatInterval = 17;
+
+				const handleKeyPress = () => {
+					if (keyStates['ArrowUp']) {
+						gameSocket.send(JSON.stringify({ message: "up", username: "{{request.user.username}}" }));
+					} else if (keyStates['ArrowDown']) {
+						gameSocket.send(JSON.stringify({ message: "down", username: "{{request.user.username}}" }));
+					}
+				};
+
+				handleKeyPress(); // Trigger initial movement
+
+				repeatRateTimer = setInterval(handleKeyPress, repeatInterval);
+				isIntervalRunning = true;
 			}
+			keyStates[e.key] = true;
 		});
     </script>
   </body>
