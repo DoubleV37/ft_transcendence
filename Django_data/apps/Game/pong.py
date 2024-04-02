@@ -4,7 +4,7 @@ import math
 
 def ai_brain( Pong, player, lvl ):
 
-	# lvl = random.randint( -lvl, lvl )
+	lvl = random.randint( -lvl, lvl )
 	lvl = 0
 	speedx = Pong.ball_speed[0]
 	speedy = Pong.ball_speed[1]
