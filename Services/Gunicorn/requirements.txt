@@ -16,3 +16,4 @@ django-two-factor-auth>=1.10.0
 
 channels-redis
 django-redis
+django-redis-sessions

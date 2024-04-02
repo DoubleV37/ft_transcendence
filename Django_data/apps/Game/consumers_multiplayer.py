@@ -1,21 +1,35 @@
 import json , asyncio
 from channels.generic.websocket import AsyncWebsocketConsumer
-from .pong import Pong, ai_brain
+from .pong import Pong
+from channels.auth import login
 
 class MultiPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
-		self.roomGroupName = self.scope["url_route"]["kwargs"]["room_name"]
+		self.room_name = self.scope['url_route']['kwargs']['room_name']
+		self.room_group_name = 'game_%s' % self.room_name
+		login(self.scope , self.scope["user"])
+
+		try:
+			game = Games.objects.get(idGame=self.room_name)
+			self.user_num = 2
+		except Games.DoesNotExist:
+			game = Games.objects.create(idGame=self.room_name)
+			self.user_num = 1
+			self.pong = Pong(1 , 2 , 10)
+
 		await self.channel_layer.group_add(
-			self.roomGroupName ,
+			self.room_group_name,
 			self.channel_name
 		)
 		await self.accept()
+
+		UserGame.objects.get_or_create(user=self.scope['user'], game=game)
 
 
 	async def disconnect(self, close_code):
 		await self.channel_layer.group_discard(
 			self.roomGroupName,
-			self.channel_name  # Corrected this line
+			self.channel_name
 		)
 
 
@@ -23,14 +37,26 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		data = json.loads(text_data)
 		message = data["message"]
 		username = data["username"]
-		if message == "up":
-			self.pong.player_pos[1] = self.pong.player_pos[1] - self.pong.player_speed
-		elif message == "down":
-			self.pong.player_pos[1] = self.pong.player_pos[1] + self.pong.player_speed
-		elif message == "start":
-			self.pong = Pong(1 , 2 , 10)
-			asyncio.create_task(self.runGame())
-
+		if username != self.scope["user"].username:
+			return
+		if self.user_num == 1:
+			if message == "up":
+				self.pong.player_pos[1] = self.pong.player_pos[1] - self.pong.player_speed
+			elif message == "down":
+				self.pong.player_pos[1] = self.pong.player_pos[1] + self.pong.player_speed
+			elif message == "start":
+				start_num = Games.objects.get(idGame=self.room_name).start_num
+				Games.objects.filter(idGame=self.room_name).update(start_num=start_num+1)
+				if Games.objects.get(idGame=self.room_name).start_num == 2:
+					asyncio.create_task(self.runGame())
+		else:
+			if message == "up":
+				self.pong.player_pos[0] = self.pong.player_pos[0] - self.pong.player_speed
+			elif message == "down":
+				self.pong.player_pos[0] = self.pong.player_pos[0] + self.pong.player_speed
+			elif message == "start":
+				start_num = Games.objects.get(idGame=self.room_name).start_num
+				Games.objects.filter(idGame=self.room_name).update(start_num=start_num+1)
 
 	async def sendMessage(self):
 		await self.channel_layer.group_send(
@@ -48,8 +74,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 
 	async def runGame(self):
 		while self.pong.running:
-			# ia move
-			self.pong.player_pos[0] = ai_brain(self.pong, 1, 20)
 			# ball move
 			self.pong.ball_walk()
 			# paddle bounce
