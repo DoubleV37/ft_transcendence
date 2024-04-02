@@ -1,0 +1,60 @@
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 60.063em) {
+
+
+	.flex-row {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.scoreText {
+		color: #FFF;
+		text-align: center;
+		font-family: Oxanium;
+		font-size: 4rem;
+		font-style: normal;
+		font-weight: 700;
+		line-height: normal;
+	}
+}
+
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+
+	.flex-row {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.scoreText {
+		color: #FFF;
+		text-align: center;
+		font-family: Oxanium;
+		font-size: 4rem;
+		font-style: normal;
+		font-weight: 700;
+		line-height: normal;
+	}
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+
+	.flex-row {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.scoreText {
+		color: #FFF;
+		text-align: center;
+		font-family: Oxanium;
+		font-size: 4rem;
+		font-style: normal;
+		font-weight: 700;
+		line-height: normal;
+	}
+}

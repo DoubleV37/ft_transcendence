@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <style>
 	body {
@@ -6,8 +7,12 @@
 		display: flex;
 		flex-direction: column;
 	}
+
 	canvas {
-		border: 2px solid black;
+		border-top: 2px dashed white;
+		border-bottom: 2px solid white;
+		border-left: 2px solid white;
+		border-right: 2px solid white;
 		background-color: #f2f2f2b0;
 		align-self: center;
 		aspect-ratio: 4/3;
@@ -16,7 +21,46 @@
 	}
 </style>
   <body>
-    <center><h1>Hello , Welcome to Pong ! {{request.user}}</h1></center>
+	{% include "Home/head.html" %}
+	{% include "Home/header.html" %}
+	{% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
+	{% include "Profile/Profile.html" %}
+	{% include "Auth/code_validation.html" %}
+	{% include "Profile/enable_2fa.html" %}<!-- TODO load the modal only if the user is connected -->
+	<div id="content">
+		<div id="overlay">
+			<div class="mid midcolumn flowAnimation">
+				<div id="titleContent" data-content="GAME_PARAMETERS"></div>
+				<div class="section-score">
+					<div class="conteneur">
+						<div class="flex-column">
+							<div id="GAME_user">
+								<img id="HEADER_ProfilePic" class="ProfilePic header-profilePic profilePic-left" src="{{ profil_picture }}" alt="Very basic user"></img>
+								<h1 id="HEADER_username">{{ username }}</h1>
+						  </div>
+						</div>
+
+						<div class="flex-row">
+							<div class="scoreText" id="score1div"></div>
+							<p class="scoreText"> : </p>
+							<div class="scoreText" id="score2div"></div>
+						</div>
+						<div class="flex-column">
+							<div id="GAME_user">
+								<h1 id="HEADER_username">{{ username }}</h1>
+								<img id="HEADER_ProfilePic" class="ProfilePic header-profilePic profilePic-right" src="{{ profil_picture }}" alt="Very basic user"></img>
+						  </div>
+						</div>
+					</div>
+				</div>
+				{% comment %} <div class="section"> {% endcomment %}
+					<canvas id="MyCanvas">
+						<p>Description of the canvas for those unable to view it.</p>
+					</canvas>
+				{% comment %} </div> {% endcomment %}
+			</div>
+		</div>
+	</div>
     <!-- <div
       class="chat__item__container"
       id="id_chat_item_container"
@@ -26,11 +70,11 @@
       <button type="submit" id="id_message_send_button">Send Message</button>
     </div> -->
 
-	<canvas id="MyCanvas">
+	{% comment %} <canvas id="MyCanvas">
 		<p>Description of the canvas for those unable to view it.</p>
 	</canvas>
 	<div id="score1div"></div>
-	<div id="score2div"></div>
+	<div id="score2div"></div> {% endcomment %}
 
     <script>
 		const gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/room");
@@ -67,12 +111,27 @@
 		var powerupY;
 		var powerupsize;
 
+		function drawVerticalDashedBorder() {
+			var middleX = canvas.width / 2;
+			ctx.setLineDash([7, 4]); // Dash of 5 pixels, gap of 15 pixels
+			ctx.lineWidth = 2; // Adjust the line width as needed
+			ctx.strokeStyle = 'white'; // Change the color as needed
+			ctx.beginPath();
+			ctx.moveTo(middleX, 0); // Start at the top middle of the canvas
+			ctx.lineTo(middleX, canvas.height); // End at the bottom middle of the canvas
+			ctx.stroke();
+			ctx.setLineDash([]); // Reset to solid line for other drawings
+		}
+		
+		// Call this function after setting up your canvas and before drawing other elements
+		drawVerticalDashedBorder();
+
 		gameSocket.onmessage = function (e) {
 			const data = JSON.parse(e.data);
 			var score1div = document.getElementById("score1div");
-			score1div.innerHTML = "Score AI : " + data.score1;
+			score1div.innerHTML = data.score1;
 			var score2div = document.getElementById("score2div");
-			score2div.innerHTML = "Score {{request.user}} : " + data.score2;
+			score2div.innerHTML = data.score2;
 			ballRadius = data.ballsize*height*2;
 			paddle1Height = data.paddle1size*height;
 			paddle2Height = data.paddle2size*height;
@@ -105,13 +164,44 @@
 			ctx.closePath();
 		}
 
-		function drawBallXY(x, y) {
+		{% comment %} function drawBallXY(x, y) {
 			ctx.beginPath();
 			ctx.arc(x*canvas.width, y*canvas.height, ballRadius, 0, Math.PI*2);
 			ctx.fillStyle = "#FF95DD";
 			ctx.fill();
 			ctx.closePath();
+		} {% endcomment %}
+
+		let imgSrc = "/static/images/User_Test_Val.jpg";
+		var img = new Image();
+		
+		// Chargez l'image une seule fois au début
+		img.src = imgSrc;
+		
+		function drawBallXY(x, y, img) {
+			var ballX = x * canvas.width;
+			var ballY = y * canvas.height;
+		
+			// Assurez-vous que l'image est chargée avant de la dessiner
+			if (img.complete) {
+				ctx.save();
+				ctx.beginPath();
+				ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+				ctx.clip();
+				ctx.drawImage(img, ballX - ballRadius, ballY - ballRadius, ballRadius * 2, ballRadius * 2);
+				ctx.restore();
+			}
 		}
+		
+		// Utilisez requestAnimationFrame pour le rendu
+		function renderFunction() {
+			// Mettez à jour les coordonnées x et y selon vos besoins
+			drawBallXY(x, y, img);
+			requestAnimationFrame(renderFunction);
+		}
+		
+		// Démarrez le rendu
+		requestAnimationFrame(renderFunction);
 
 		function drawPowerup(y) {
 			ctx.beginPath();
@@ -125,8 +215,9 @@
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			drawPaddleR(data.paddleR);
 			drawPaddleL(data.paddleL);
-			drawBallXY(data.ballX, data.ballY);
+			drawBallXY(data.ballX, data.ballY, img);
 			drawPowerup(data.powerupY);
+			drawVerticalDashedBorder();
 		}
 
 		// Keyboard input handling
@@ -150,7 +241,7 @@
 
 		// Set key states on keydown
 		document.addEventListener('keydown', function(e) {
-			if (e.key !== 'F5' && !(e.key === 'F5' && e.ctrlKey)) {
+			if (e.key !== 'F5' && !(e.key === 'F5' && e.ctrlKey) && e.key !== 'F12') {
         		e.preventDefault();
  		   }
 			if (!isIntervalRunning) {

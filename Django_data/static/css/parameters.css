@@ -15,11 +15,25 @@
     .flex-column {
         display: flex;
         flex-direction: column;
+        justify-content: center;
        }
 
     .section {
         width: 25rem;
         margin-bottom: 1.6rem;
+    }
+
+    .section-score {
+        background-color: #08131E;
+        width: 90%;
+        margin-bottom: none !important;
+        padding-bottom: 0.2em;
+        padding-top: 0.2em;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        border-top: 2px solid white;
+		border-left: 2px solid white;
+		border-right: 2px solid white;
     }
 
     .bodyText {
