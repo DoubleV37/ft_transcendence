@@ -1,0 +1,11 @@
+<html>
+  <div>
+    <p>I'm {{ my_user.username }}</p>
+  </div>
+  <div>
+    Other User:
+    {% for person in toAdd %}
+    <p>{{ person.username }}</p>
+    {% endfor %}
+  </div>
+</html>

@@ -3,7 +3,6 @@ from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from django.views.generic import TemplateView, FormView
-from django.urls import reverse_lazy
 
 from .models import UserTwoFA
 from .forms import My_2fa, TwoFAForm
@@ -46,7 +45,7 @@ class create_qrcode(TemplateView):
             self.context["qr_code"] = _user.to2fa.generate_qr_code(
                 name=_user.username
             )
-            #return render(request, self.template_name, context=self.context)
+            # return render(request, self.template_name, context=self.context)
             return render(request, 'Profile/enable_2fa.html', context=self.context)
 
     except ValidationError as exc:
@@ -92,7 +91,7 @@ class TwoFactorConfirmationView(FormView):
             _failure = "failure_2FA"
             _success = "success_2FA"
         else:
-            logger.info("The fuuuuuuuck ???") 
+            logger.info("The fuuuuuuuck ???")
             _id = "code_2fa"
             _cancel = "cancel_code2fa"
             _form = "form_2FAcode"
@@ -116,7 +115,8 @@ class TwoFactorConfirmationView(FormView):
             if signin_form.is_valid():
                 username = signin_form.cleaned_data['username']
                 password = signin_form.cleaned_data['password']
-                _user = authenticate(request, username=username, password=password)
+                _user = authenticate(
+                    request, username=username, password=password)
                 if _user is None:
                     return JsonResponse({'success': False,
                                          'logs': 'Bad identificators'})
