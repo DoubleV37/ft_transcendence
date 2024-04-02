@@ -1,11 +1,21 @@
 <html>
   <div>
-    <p>I'm {{ my_user.username }}</p>
+    <p>I'm {{ me.username }}</p>
+  </div>
+  <div>
+    My friends list:
+    {% for person in myFriends %}
+      <p>{{ person.username }}</p>
+    {% endfor %}
   </div>
   <div>
     Other User:
     {% for person in toAdd %}
-    <p>{{ person.username }}</p>
+      <form method='post'>
+        {% csrf_token %}
+        {{ person }}
+      <button type="submit" name="{{ person }}">add</button>
+      </form>
     {% endfor %}
   </div>
 </html>
