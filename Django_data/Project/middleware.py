@@ -17,23 +17,23 @@ class UserPermission:
         response = self.get_response(request)
         return response
 
-
     def process_view(self, request, view_func, view_args, view_kwargs):
-        authorised_path = ('/',
-                           '/header',
-                           '/footer',
-                           '/auth/signin/',
-                           '/auth/signup/',
-                           '/auth/jwt/refresh/',
-                           '/2fa/confirm/')
-        logger.info(f"path -> {request.path}")
-        logger.info(f"request =>\n {request}")
+        authorised_path = (
+            "/",
+            "/header",
+            "/footer",
+            "/auth/signin/",
+            "/auth/signup/",
+            "/auth/jwt/refresh/",
+            "/2fa/confirm/",
+        )
+        logger.debug(f"path -> {request.path}")
+        logger.debug(f"request =>\n {request.headers}")
         if request.path in authorised_path:
             response = None
         else:
             response = self.logged_handler(request)
         return response
-
 
     def logged_handler(self, request):
         try:
@@ -41,23 +41,34 @@ class UserPermission:
             if _user.is_anonymous is True:
                 return signin(request)
 
-            encoded_token = request.COOKIES.get('jwt_token')
+            encoded_token = request.COOKIES.get("jwt_token")
             if encoded_token is None:
                 signout(request)
                 return HttpResponse("Unauthorized login Session", status=499)
-            _options = {'verify_exp': True, 'verify_iss': True}
-            jwt.decode(encoded_token, config('DJANGO_SECRET_KEY'),
-                       algorithms=config('HASH'), issuer=config('NAME'),
-                       options=_options)
+            _options = {"verify_exp": True, "verify_iss": True}
+            jwt.decode(
+                encoded_token,
+                config("DJANGO_SECRET_KEY"),
+                algorithms=config("HASH"),
+                issuer=config("NAME"),
+                options=_options,
+            )
             return None
         except jwt.InvalidIssuerError:
-            signout(request)
             logger.error(f" Invalid Issuer : {encoded_token}")
+            signout(request)
+            if "Load" not in request.headers:
+                return signin(request)
             return HttpResponse("Bad Issuer", status=498)
         except jwt.ExpiredSignatureError:
             logger.error(f"expired token {encoded_token}")
+            signout(request)
+            if "Load" not in request.headers:
+                return signin(request)
             return HttpResponse("Expired", status=498)
         except jwt.exceptions.InvalidTokenError:
             logger.error(f"Invalid token : {encoded_token}")
             signout(request)
+            if "Load" not in request.headers:
+                return signin(request)
             return HttpResponse("Bad Token", status=498)
