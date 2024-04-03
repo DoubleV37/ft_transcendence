@@ -92,6 +92,7 @@ class Add_or_remove(TemplateView):
 
             # lst = FriendRequest.objects.get(receiver=me)
             # return add_or_remove_friend(request, request.POST['key'], lst.sender.id)
+            return HttpResponse("<h1>OUAI</h1>")
 
     except Exception as exc:
         pass

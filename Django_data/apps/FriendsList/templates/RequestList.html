@@ -5,12 +5,10 @@
   <div>
     <p>Request friends list:</p>
     {% for person in lst %}
-      {{ person.sender }}
-      <form action="" name="{{ person.sender }}" method="post">
+      <form action="" method="post">
         {% csrf_token %}
+        <label for="key">{{ person.sender }}</label>
         <button type="submit" name="key" value="add">add</button>
-      <form action="" name="{{ person.sender }}" method="post">
-        {% csrf_token %}
         <button type="submit" name="key" value="remove">remove</button>
       </form>
     {% endfor %}
