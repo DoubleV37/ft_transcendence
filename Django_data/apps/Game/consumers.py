@@ -10,7 +10,7 @@ class PongConsumer(AsyncWebsocketConsumer):
 			self.channel_name
 		)
 		await self.accept()
-		self.pong = Pong(1 , 20 , 10, True)
+		self.pong = Pong(2 , 20 , 10, True)
 
 		asyncio.create_task(self.runGame())
 
@@ -41,6 +41,7 @@ class PongConsumer(AsyncWebsocketConsumer):
 												"paddle2size" : self.pong.player_size[1]/900 ,
 												"powerupY" : self.pong.powerup_pos[1]/900 ,
 												"powerupsize" : self.pong.powerup_size/900 ,
+												"time" : self.pong.time ,
 												"type" : "sendMessage"}))
 
 	async def runGame(self):
