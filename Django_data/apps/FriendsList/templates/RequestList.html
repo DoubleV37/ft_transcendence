@@ -1,0 +1,16 @@
+<html>
+  <div>
+    <p>I'm {{ me.username }}</p>
+  </div>
+  <div>
+    <p>Request friends list:</p>
+      {{ lst.sender }}
+      <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" name="key" value="add">add</button>
+      <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" name="key" value="remove">remove</button>
+      </form>
+  </div>
+</html>

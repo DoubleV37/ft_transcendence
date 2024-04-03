@@ -1,5 +1,6 @@
 from django.forms import formset_factory
 from django.shortcuts import redirect, render
+from django.utils.translation.trans_real import receiver
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.views.generic.edit import Form
@@ -18,10 +19,12 @@ def friend_request(request, pk):
     logger.info("")
     logger.info(f"{' friend_request ':~^30}")
     logger.info(f"{sender =}")
+
     recipient = User.objects.get(id=pk)
     logger.info(f"{recipient =}")
+
     model = FriendRequest.objects.get_or_create(
-        sender=request.user, receivers=recipient)
+        sender=request.user, receiver=recipient)
 
     return HttpResponse("<h1>OUAI</h1>")
 #
@@ -42,18 +45,55 @@ def friend_request(request, pk):
 #     return redirect('/Display')
 #
 #
-# def add_or_remove_friend(request, operation, pk):
-#     new_friend = User.objects.get(id=pk)
-#     if operation == 'add':
-#         fq = FriendRequest.objects.get(
-#             sender=new_friend, receivers=request.user)
-#         Friends1.make_friend(request.user, new_friend)
-#         Friends1.make_friend(new_friend, request.user)
-#         fq.delete()
-#     elif operation == 'remove':
-#         Friends1.lose_friend(request.user, new_friend)
-#         Friends1.lose_friend(new_friend, request.user)
-#     return redirect('form4')
+
+
+def add_or_remove_friend(request, operation, pk):
+    new_friend = User.objects.get(id=pk)
+    if operation == 'add':
+        fq = FriendRequest.objects.get(
+            sender=new_friend, receivers=request.user)
+        Friends1.make_friend(request.user, new_friend)
+        Friends1.make_friend(new_friend, request.user)
+        fq.delete()
+    elif operation == 'remove':
+        Friends1.lose_friend(request.user, new_friend)
+        Friends1.lose_friend(new_friend, request.user)
+    return redirect('friends')
+
+
+class Add_or_remove(TemplateView):
+    template_name = "RequestList.html"
+
+    try:
+
+        def get(self, request):
+            me = request.user
+            # new_friend = User.objects.get(id=pk)
+            # lst = FriendRequest.objects.get(
+            #     sender=new_friend, receiver=request.user)
+            lst = FriendRequest.objects.get(receiver=me)
+
+            logger.info(f"{lst.sender = }")
+
+            return render(
+                request, self.template_name,
+                {'me': me, 'lst': lst})
+
+        def post(self, request):
+            me = request.user
+
+            logger.info("")
+            logger.info(f"{' INSIDE POST ':_^20}")
+            logger.info("")
+            logger.info("")
+            logger.info(f"{ request.POST = }")
+            logger.info(f"{ request.POST['key']  = }")
+
+            # lst = FriendRequest.objects.get(receiver=me)
+            # return add_or_remove_friend(request, request.POST['key'], lst.sender.id)
+
+    except Exception as exc:
+        pass
 
 
 class FriendsListView(TemplateView):
@@ -101,18 +141,3 @@ class FriendsListView(TemplateView):
 
     except Exception as exc:
         pass
-
-
-# def create_multiple_photos(request):
-#     PhotoFormSet = formset_factory(forms.PhotoForm, extra=5)
-#     formset = PhotoFormSet()
-#     if request.method == 'POST':
-#         formset = PhotoFormSet(request.POST, request.FILES)
-#         if formset.is_valid():
-#             for form in formset:
-#                 if form.cleaned_data:
-#                     photo = form.save(commit=False)
-#                     photo.uploader = request.user
-#                     photo.save()
-#             return redirect('home')
-#     return render(request, 'blog/create_multiple_photos.html', {'formset': formset})
