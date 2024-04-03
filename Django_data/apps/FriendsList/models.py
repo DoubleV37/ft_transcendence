@@ -1,16 +1,29 @@
 from django.db import models
 from django.conf import settings
-# Create your models here.
+from apps.Auth.models import User
 
 
-class FriendsList(models.Model):
+class Friends1(models.Model):
+    users1 = models.ManyToManyField(User, null=True)
+    current_user = models.ForeignKey(
+        User, related_name='owner', on_delete=models.CASCADE, null=True)
 
-    from_user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name='from_user',
-        on_delete=models.CASCADE
-    )
+    @classmethod
+    def make_friend(cls, current_user, new_friend):
+        friend, create = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.users1.add(new_friend)
 
-    to_user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name='to_user',
-        on_delete=models.CASCADE
-    )
+    @classmethod
+    def lose_friend(cls, current_user, new_friend):
+        friend, create = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.users1.remove(new_friend)
+
+
+class FriendRequest(models.Model):
+    sender = models.ForeignKey(
+        User, null=True, related_name='sender1', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, null=True, on_delete=models.CASCADE)

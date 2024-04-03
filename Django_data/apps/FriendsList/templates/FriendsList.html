@@ -11,10 +11,10 @@
   <div>
     Other User:
     {% for person in toAdd %}
-      <form method='post'>
+      <form action="" method="post">
         {% csrf_token %}
         {{ person }}
-      <button type="submit" name="{{ person }}">add</button>
+      <button type="submit" name="add" value="{{ person }}">add</button>
       </form>
     {% endfor %}
   </div>
