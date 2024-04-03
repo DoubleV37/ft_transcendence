@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 class MatchmakingUser(models.Model):
     channel_name = models.CharField(max_length=255, unique=True)
@@ -21,7 +21,7 @@ class Games(models.Model):
 		return self.idGame
 
 class UserGame(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	game = models.ForeignKey(Games, on_delete=models.CASCADE)
 	score = models.IntegerField(default=0)
 	winner = models.BooleanField(default=False)
