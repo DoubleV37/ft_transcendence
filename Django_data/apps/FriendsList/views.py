@@ -71,9 +71,10 @@ class Add_or_remove(TemplateView):
             # new_friend = User.objects.get(id=pk)
             # lst = FriendRequest.objects.get(
             #     sender=new_friend, receiver=request.user)
-            lst = FriendRequest.objects.get(receiver=me)
+            lst = FriendRequest.objects.all().filter(receiver=me)
 
-            logger.info(f"{lst.sender = }")
+            for p in lst:
+                logger.info(f"{p.sender = }")
 
             return render(
                 request, self.template_name,

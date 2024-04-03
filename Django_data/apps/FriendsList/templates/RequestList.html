@@ -4,13 +4,15 @@
   </div>
   <div>
     <p>Request friends list:</p>
-      {{ lst.sender }}
-      <form action="" method="post">
+    {% for person in lst %}
+      {{ person.sender }}
+      <form action="" name="{{ person.sender }}" method="post">
         {% csrf_token %}
         <button type="submit" name="key" value="add">add</button>
-      <form action="" method="post">
+      <form action="" name="{{ person.sender }}" method="post">
         {% csrf_token %}
         <button type="submit" name="key" value="remove">remove</button>
       </form>
+    {% endfor %}
   </div>
 </html>
