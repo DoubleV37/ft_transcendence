@@ -201,7 +201,7 @@
 		function drawPaddleR(y) {
 			if (imgPaddleR.isInitialized()) {
 				// Calculer les coordonnées exactes pour le dessin du paddle droit
-				let x = canvas.width - (canvas.width * 50 / 1200) - (canvas.height * 25 / 900) + 15;
+				let x = canvas.width - (canvas.width * 50 / 1200) - (canvas.height * 25 / 900) + (canvas.height * 25 / 900); // Prend en compte la largeur du paddle
 				let height = paddle2Height;
 				let width = canvas.height * 25 / 900;
 				let deltaY = y * canvas.height - height / 2;

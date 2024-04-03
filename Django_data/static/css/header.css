@@ -228,6 +228,13 @@
 		cursor: pointer;
 	}
 
+	#GAME_user {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-end;
+		cursor: pointer;
+	}
+
 	#HEADER_username {
 		color: #FFF;
 		font-family: Kodchasan;
@@ -240,6 +247,13 @@
 	.header-profilePic {
 		width: 2.3em;
 		height: 2.3em;
+	}
+
+	.profilePic-left {
+		margin-right: 0.7em;
+	}
+
+	.profilePic-right {
 		margin-left: 0.7em;
 	}
 
@@ -348,6 +362,13 @@
 		background: #525695;
 	}
 
+	#GAME_user {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-end;
+		cursor: pointer;
+	}
+
 	#HEADER_user {
 		display: flex;
 		flex-direction: row;
@@ -361,6 +382,13 @@
 	.header-profilePic {
 		width: 2.3em;
 		height: 2.3em;
+	}
+
+	.profilePic-left {
+		margin-right: 0.7em;
+	}
+
+	.profilePic-right {
 		margin-left: 0.7em;
 	}
 
