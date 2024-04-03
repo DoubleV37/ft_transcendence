@@ -9,15 +9,18 @@
 	}
 
 	canvas {
-		border-top: 2px dashed white;
+		border-top: 2px solid white;
 		border-bottom: 2px solid white;
 		border-left: 2px solid white;
 		border-right: 2px solid white;
-		background-color: #f2f2f2b0;
 		align-self: center;
 		aspect-ratio: 4/3;
 		width: 90%;
 		max-height: 80%;
+		background-image: url({% static 'images/BG_Forest.png' %});
+		background-size: cover; /* Pour couvrir tout le contenu du canvas */
+		background-position: center; /* Pour centrer l'image */
+		z-index: 0;
 	}
 </style>
   <body>
@@ -42,7 +45,7 @@
 
 						<div class="flex-row">
 							<div class="scoreText" id="score1div"></div>
-							<p class="scoreText"> : </p>
+							<p class="scoreText">-</p>
 							<div class="scoreText" id="score2div"></div>
 						</div>
 						<div class="flex-column">
@@ -148,47 +151,100 @@
 			canvas.height = height;
 		});
 
+		// INIT BALL
+		let imgBallSrc = "/static/images/User_Test_Val.jpg";
+		var imgBall = new Image();
+		
+		imgBall.src = imgBallSrc;
+
+		// INIT POWERUP
+		let imgPowerUpSrc = "/static/images/PowerUp.png";
+		var imgPowerUp = new Image();
+		
+		imgPowerUp.src = imgPowerUpSrc;
+
+		// INIT PADDLES
+		function initRotatedImage(imgSrc, isLeftPaddle) {
+			let img = new Image();
+			let tempCanvas = document.createElement('canvas');
+			let initialized = false;
+			let rotation = isLeftPaddle ? Math.PI / 2 : -Math.PI / 2; // Calcul de la rotation en fonction du paddle
+
+			img.onload = function() {
+				tempCanvas.width = img.height;
+				tempCanvas.height = img.width; 
+				
+				let tempCtx = tempCanvas.getContext('2d');
+				tempCtx.translate(tempCanvas.width / 2, tempCanvas.height / 2);
+				tempCtx.rotate(rotation); // Rotation selon le sens du paddle
+				tempCtx.drawImage(img, -img.width / 2, -img.height / 2);
+				
+				initialized = true;
+			};
+			
+			img.src = imgSrc;
+
+			return {
+				canvas: tempCanvas,
+				isInitialized: function() {
+					return initialized;
+				}
+			};
+		}
+
+		let imgSrcPaddleR = "/static/images/Paddle_Grass1.png";
+		let imgPaddleR = initRotatedImage(imgSrcPaddleR, false); // false pour le paddle droit
+
+		let imgSrcPaddleL = "/static/images/Paddle_Grass1.png";
+		let imgPaddleL = initRotatedImage(imgSrcPaddleL, true); // true pour le paddle gauche
+
 		function drawPaddleR(y) {
-			ctx.beginPath();
-			ctx.rect(canvas.width - (canvas.width*50/1200), y*canvas.height-paddle2Height/2, canvas.height*25/900, paddle2Height);
-			ctx.fillStyle = "#0095DD";
-			ctx.fill();
-			ctx.closePath();
+			if (imgPaddleR.isInitialized()) {
+				// Calculer les coordonnées exactes pour le dessin du paddle droit
+				let x = canvas.width - (canvas.width * 50 / 1200) - (canvas.height * 25 / 900) + 15;
+				let height = paddle2Height;
+				let width = canvas.height * 25 / 900;
+				let deltaY = y * canvas.height - height / 2;
+		
+				// Ajuster les coordonnées pour éviter les imprécisions
+				x = Math.floor(x);
+				deltaY = Math.floor(deltaY);
+				width = Math.round(width);
+				height = Math.round(height);
+		
+				ctx.drawImage(imgPaddleR.canvas, x, deltaY, width, height);
+			}
 		}
-
+		
 		function drawPaddleL(y) {
-			ctx.beginPath();
-			ctx.rect((canvas.width*50/1200) - (canvas.height*25/900), y*canvas.height-paddle1Height/2, canvas.height*25/900, paddle1Height);
-			ctx.fillStyle = "#0095DD";
-			ctx.fill();
-			ctx.closePath();
+			if (imgPaddleL.isInitialized()) {
+				// Calculer les coordonnées exactes pour le dessin du paddle gauche
+				let x = (canvas.width * 50 / 1200) - (canvas.height * 25 / 900);
+				let height = paddle1Height;
+				let width = canvas.height * 25 / 900;
+				let deltaY = y * canvas.height - height / 2;
+		
+				// Ajuster les coordonnées pour éviter les imprécisions
+				x = Math.floor(x);
+				deltaY = Math.floor(deltaY);
+				width = Math.round(width);
+				height = Math.round(height);
+		
+				ctx.drawImage(imgPaddleL.canvas, x, deltaY, width, height);
+			}
 		}
 
-		{% comment %} function drawBallXY(x, y) {
-			ctx.beginPath();
-			ctx.arc(x*canvas.width, y*canvas.height, ballRadius, 0, Math.PI*2);
-			ctx.fillStyle = "#FF95DD";
-			ctx.fill();
-			ctx.closePath();
-		} {% endcomment %}
-
-		let imgSrc = "/static/images/User_Test_Val.jpg";
-		var img = new Image();
-		
-		// Chargez l'image une seule fois au début
-		img.src = imgSrc;
-		
-		function drawBallXY(x, y, img) {
+		function drawBallXY(x, y, imgBall) {
 			var ballX = x * canvas.width;
 			var ballY = y * canvas.height;
 		
 			// Assurez-vous que l'image est chargée avant de la dessiner
-			if (img.complete) {
+			if (imgBall.complete) {
 				ctx.save();
 				ctx.beginPath();
 				ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
 				ctx.clip();
-				ctx.drawImage(img, ballX - ballRadius, ballY - ballRadius, ballRadius * 2, ballRadius * 2);
+				ctx.drawImage(imgBall, ballX - ballRadius, ballY - ballRadius, ballRadius * 2, ballRadius * 2);
 				ctx.restore();
 			}
 		}
@@ -196,73 +252,82 @@
 		// Utilisez requestAnimationFrame pour le rendu
 		function renderFunction() {
 			// Mettez à jour les coordonnées x et y selon vos besoins
-			drawBallXY(x, y, img);
+			drawBallXY(x, y, imgBall);
 			requestAnimationFrame(renderFunction);
 		}
 		
 		// Démarrez le rendu
 		requestAnimationFrame(renderFunction);
 
-		function drawPowerup(y) {
-			ctx.beginPath();
-			ctx.rect(canvas.width*575/1200, y*canvas.height, canvas.height*powerupsize, canvas.height*powerupsize);
-			ctx.fillStyle = "#FF95DD";
-			ctx.fill();
-			ctx.closePath();
+		function drawPowerup(y, imgPowerUp) {
+			var powerupX = canvas.width * 575 / 1200;
+			var powerupY = y * canvas.height;
+		
+			// Assurez-vous que l'image est chargée avant de la dessiner
+			if (imgPowerUp.complete) {
+				ctx.save();
+				ctx.beginPath();
+				ctx.rect(powerupX, powerupY, canvas.height * powerupsize, canvas.height * powerupsize);
+				ctx.clip();
+				ctx.drawImage(imgPowerUp, powerupX, powerupY, canvas.height * powerupsize, canvas.height * powerupsize);
+				ctx.restore();
+			}
 		}
 
 		function draw(data) {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			drawVerticalDashedBorder();
 			drawPaddleR(data.paddleR);
 			drawPaddleL(data.paddleL);
-			drawBallXY(data.ballX, data.ballY, img);
-			drawPowerup(data.powerupY);
-			drawVerticalDashedBorder();
+			drawBallXY(data.ballX, data.ballY, imgBall);
+			drawPowerup(data.powerupY, imgPowerUp);
 		}
 
 		// Keyboard input handling
-		let repeatRateTimer = null;
 		let keyStates = {
 			ArrowUp: false,
 			ArrowDown: false
 		};
-		let isIntervalRunning = false;
 
+		let lastUpdate = performance.now();
+
+		// Fonction pour envoyer les données au serveur
+		function sendMovement(direction) {
+			gameSocket.send(JSON.stringify({ message: direction, username: "{{request.user.username}}" }));
+		}
+
+		// Fonction pour mettre à jour le mouvement en fonction du temps écoulé
+		function update() {
+			const now = performance.now();
+			const deltaTime = now - lastUpdate;
+			
+			if (keyStates['ArrowUp']) {
+				sendMovement("up");
+			} else if (keyStates['ArrowDown']) {
+				sendMovement("down");
+			}
+			
+			lastUpdate = now;
+			
+			// Planifiez la prochaine mise à jour
+			requestAnimationFrame(update);
+		}
 
 		// Clear key states on keyup
 		document.addEventListener('keyup', function(e) {
 			keyStates[e.key] = false;
-			if (!keyStates.ArrowUp && !keyStates.ArrowDown) {
-				clearInterval(repeatRateTimer);
-				repeatRateTimer = null;
-				isIntervalRunning = false;
-			}
 		});
 
 		// Set key states on keydown
 		document.addEventListener('keydown', function(e) {
 			if (e.key !== 'F5' && !(e.key === 'F5' && e.ctrlKey) && e.key !== 'F12') {
-        		e.preventDefault();
- 		   }
-			if (!isIntervalRunning) {
-				const initialDelay = 17;
-				const repeatInterval = 17;
-
-				const handleKeyPress = () => {
-					if (keyStates['ArrowUp']) {
-						gameSocket.send(JSON.stringify({ message: "up", username: "{{request.user.username}}" }));
-					} else if (keyStates['ArrowDown']) {
-						gameSocket.send(JSON.stringify({ message: "down", username: "{{request.user.username}}" }));
-					}
-				};
-
-				handleKeyPress(); // Trigger initial movement
-
-				repeatRateTimer = setInterval(handleKeyPress, repeatInterval);
-				isIntervalRunning = true;
+				e.preventDefault();
 			}
 			keyStates[e.key] = true;
 		});
+
+		// Démarrer la boucle de jeu
+		update();
     </script>
   </body>
 </html>
