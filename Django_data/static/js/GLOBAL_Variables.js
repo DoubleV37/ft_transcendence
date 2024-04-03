@@ -1,4 +1,3 @@
-console.log('Hello motherfucker !');
 let currentUrl = window.location.pathname;
 let observer;
 let _2faSignIn = false;
@@ -38,4 +37,5 @@ const ROUTE = {
   "TWOFA_C":"/2fa/confirm/",
   "JWTREFRESH":"/auth/jwt/refresh/",
   "GAME_PARAMETERS":"/game/parameters/",
+  "GAME_MODES":"/game/modes/",
 };

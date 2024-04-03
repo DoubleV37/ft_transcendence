@@ -28,7 +28,6 @@ class UserPermission:
             "/2fa/confirm/",
         )
         logger.debug(f"path -> {request.path}")
-        logger.debug(f"request =>\n {request.headers}")
         if request.path in authorised_path:
             response = None
         else:

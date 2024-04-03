@@ -23,6 +23,9 @@ function  del_current_event() {
     case 'SETTINGS':
       settings_DelEvents();
       break;
+    case 'GAME_MODES':
+      modes_DelEvents();
+      break;
     default:
       break;
   }
