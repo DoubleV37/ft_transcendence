@@ -8,8 +8,8 @@
       <form action="" method="post">
         {% csrf_token %}
         {{ friend_request.from_user }}
-      <button type="submit" name="key" value="add {{ friend_request.from_user.id }}">add</button>
-      <button type="submit" name="key" value="delete {{ friend_request.from_user.id }}">remove</button>
+        <button type="submit" name="key" value="add {{ friend_request.from_user }}">add</button>
+        <button type="submit" name="key" value="delete {{ friend_request.from_user }}">remove</button>
       </form>
     {% endfor %}
   </div>

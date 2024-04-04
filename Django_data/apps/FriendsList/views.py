@@ -114,7 +114,11 @@ class FriendsRequestView(TemplateView):
 
 
 def accept_or_refuse_FQ(request, data: list):
-    friend_request = Friend_Request.objects.get(id=int(data[1]))
+    logger.info(f"{' accept_or_refuse_FQ ':~^20}")
+    logger.info(f"{data = }")
+    friend_request = Friend_Request.objects.get(id=data[1])
+    logger.info(f"{friend_request.to_user = }")
+    logger.info(f"{request.user = }")
     if friend_request.to_user == request.user:
         if data[0] == 'add':
             friend_request.to_user.friends.add(friend_request.from_user)
@@ -126,6 +130,8 @@ def accept_or_refuse_FQ(request, data: list):
             return HttpResponse('friend request not accepted')
         else:
             return HttpResponse('Merde')
+    else:
+        return HttpResponse('Mierda')
 
 
 class Accept_Or_Refuse_View(TemplateView):
@@ -136,23 +142,40 @@ class Accept_Or_Refuse_View(TemplateView):
         def get(self, request):
             me = request.user
             all_friend_request = Friend_Request.objects.all().filter(to_user=me)
+            tmp = User.objects.all()
+
+            for friend_request in all_friend_request:
+                logger.info(f"{friend_request.to_user  = }")
+            for user in tmp:
+                logger.info(f"{user = }, {user.id = }")
 
             return render(
                 request, self.template_name,
                 {'me': me, 'all_friend_request': all_friend_request})
 
         def post(self, request):
-            me = request.user
 
             logger.info("")
             logger.info(f"{' INSIDE POST ':_^20}")
             logger.info(f"{ request.POST = }")
             logger.info(f"{ request.POST['key']  = }")
-            result = str(request.POST['key'])
-            data = list(result.split())
 
+            result = str(request.POST['key'])
+            tmpdata = list(result.split())
+            target = User.objects.get(username=tmpdata[1])
+            _user = request.user
+
+            logger.info(f"{ target  = }")
+            logger.info(f"{ _user  = }")
+
+            tmpid = Friend_Request.objects.get(from_user=target, to_user=_user)
+
+            logger.info(f"{ target.username  = }")
+            logger.info(f"{ tmpid  = }")
+            # logger.info(f"{ tmpid.to_user.id  = }")
+
+            data = [tmpdata[0], tmpid.id]
             logger.info(f"{ data  = }")
-            # return add_or_remove_friend(request, request.POST['key'], lst.sender.id)
             # return HttpResponse("<h1>OUAI</h1>")
             return accept_or_refuse_FQ(request, data)
 
