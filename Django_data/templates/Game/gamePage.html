@@ -152,7 +152,7 @@
 		});
 
 		// INIT BALL
-		let imgBallSrc = "/static/images/User_Test_Val.jpg";
+		let imgBallSrc = "/static/images/logoIcon.png";
 		var imgBall = new Image();
 		
 		imgBall.src = imgBallSrc;
@@ -281,7 +281,42 @@
 			drawPaddleL(data.paddleL);
 			drawBallXY(data.ballX, data.ballY, imgBall);
 			drawPowerup(data.powerupY, imgPowerUp);
+			if (data.ballX < 0.01) {
+				drawImpactAnimation(0, data.ballY * canvas.height);
+			} else if (data.ballX > 0.99) {
+				drawImpactAnimation(canvas.width, data.ballY * canvas.height);
+			}
 		}
+
+		function drawImpactAnimation(x, y) {
+			var radius = 100; // initial radius of the circle
+			var alpha = 1.0; // initial opacity
+		
+			// Define animation loop
+			function animate() {
+		
+				// Draw circle
+				ctx.beginPath();
+				ctx.arc(x, y, radius, 0, Math.PI * 2);
+				ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+				ctx.fill();
+		
+				// Update parameters
+				alpha -= 0.02; // decrease opacity
+				radius += 10; // increase radius for effect
+		
+				// Stop animation when opacity is too low
+				if (alpha > 0) {
+					requestAnimationFrame(animate);
+				}
+			}
+		
+			animate(); // Start animation
+		}
+		
+
+
+		// Exemple de vérification de la condition et déclenchement de l'animation
 
 		// Keyboard input handling
 		let keyStates = {
