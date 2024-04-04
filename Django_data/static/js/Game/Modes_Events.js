@@ -1,4 +1,4 @@
-function modes_SetEvents () {
+function modes_SetEvents() {
   let element = document.getElementById("SELECT_Player");
   element.addEventListener("click", modes_randomMatchmaking);
 
@@ -18,7 +18,7 @@ function modes_SetEvents () {
   element.addEventListener("click", modes_CreateTournament);
 }
 
-function modes_DelEvents () {
+function modes_DelEvents() {
   let element = document.getElementById("SELECT_Player");
   element.removeEventListener("click", modes_randomMatchmaking);
 
@@ -36,28 +36,4 @@ function modes_DelEvents () {
 
   element = document.getElementById("TRNMT_Create");
   element.removeEventListener("click", modes_CreateTournament);
-}
-
-function modes_randomMatchmaking () {
-  console.log("randomMatchmaking: do nothing for now");
-}
-
-function modes_playerVSia () {
-  console.log("playerVSia: do nothing for now");
-}
-
-function modes_ChooseGame () {
-  console.log("ChooseGame: do nothing for now");
-}
-
-function modes_CreateGame () {
-  console.log("CreateGame: do nothing for now");
-}
-
-function modes_ChooseTournament () {
-  console.log("ChooseTournament: do nothing for now");
-}
-
-function modes_CreateTournament () {
-  console.log("CreateTournament: do nothing for now");
 }

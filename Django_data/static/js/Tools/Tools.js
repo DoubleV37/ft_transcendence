@@ -1,30 +1,35 @@
-function  offcanvas_Hide() {
-  const offcanvasElement = document.getElementById('offcanvasNavbar');
+function offcanvas_Hide() {
+  const offcanvasElement = document.getElementById("offcanvasNavbar");
   const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
 
   if (offcanvas) {
-      offcanvas.hide();
+    offcanvas.hide();
   }
 }
 
-function  del_current_event() {
-  const page_name =  document.getElementById('content').getAttribute('data-content');
+function del_current_event() {
+  const page_name = document
+    .getElementById("content")
+    .getAttribute("data-content");
 
   switch (page_name) {
-    case 'HOME_PAGE':
+    case "HOME_PAGE":
       home_DelEvents();
       break;
-    case 'SIGNIN_PAGE':
-      signin_DelEvents(); 
+    case "SIGNIN_PAGE":
+      signin_DelEvents();
       break;
-    case 'SIGNUP_PAGE':
+    case "SIGNUP_PAGE":
       signup_DelEvents();
       break;
-    case 'SETTINGS':
+    case "SETTINGS":
       settings_DelEvents();
       break;
-    case 'GAME_MODES':
+    case "GAME_MODES":
       modes_DelEvents();
+      break;
+    case "GAME_PARAMETERS":
+      parameters_DelEvents();
       break;
     default:
       break;
@@ -32,10 +37,10 @@ function  del_current_event() {
 }
 
 function sleep(ms) {
- return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function  restore_message(elem_success, elem_failure) {
+function restore_message(elem_success, elem_failure) {
   let element = document.getElementById(elem_failure);
 
   element.innerHTML = ``;
