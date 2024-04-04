@@ -38,7 +38,7 @@ class Pong():
 		self.running = True
 		self.time = 0
 		self.engage = start
-		self.engage_time = 500
+		self.engage_time = 1000
 		self.point = [0, 0]
 		self.point_limit = point_limit
 		self.player_pos = [450, 450]
@@ -112,7 +112,7 @@ class Pong():
 			# self.print_stats()
 		self.player_pos[0] = 450
 		self.player_pos[1] = 450
-		self.engage_time = self.time + 500
+		self.engage_time = self.time + 1000
 		if player == 1:
 			self.ball_pos = [100, 450]
 			self.ball_speed = [0,0]
