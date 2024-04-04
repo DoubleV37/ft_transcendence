@@ -6,27 +6,27 @@ from django.shortcuts import render
 from django.views.generic.edit import Form
 import apps.FriendsList.tools as tools
 from apps.Auth.models import User
-from apps.FriendsList.models import FriendRequest, Friends1
+from apps.FriendsList.models import Friend_Request
 from django.http import HttpResponse, JsonResponse
 
 import logging
 logger = logging.getLogger(__name__)
 
 
-def friend_request(request, pk):
-
-    sender = request.user
-    logger.info("")
-    logger.info(f"{' friend_request ':~^30}")
-    logger.info(f"{sender =}")
-
-    recipient = User.objects.get(id=pk)
-    logger.info(f"{recipient =}")
-
-    model = FriendRequest.objects.get_or_create(
-        sender=request.user, receiver=recipient)
-
-    return HttpResponse("<h1>OUAI</h1>")
+# def friend_request(request, pk):
+#
+#     sender = request.user
+#     logger.info("")
+#     logger.info(f"{' friend_request ':~^30}")
+#     logger.info(f"{sender =}")
+#
+#     recipient = User.objects.get(id=pk)
+#     logger.info(f"{recipient =}")
+#
+#     model = FriendRequest.objects.get_or_create(
+#         sender=request.user, receiver=recipient)
+#
+#     return HttpResponse("<h1>OUAI</h1>")
 #
 #
 # def delete_request(request, operation, pk):
@@ -98,7 +98,7 @@ class Add_or_remove(TemplateView):
         pass
 
 
-class FriendsListView(TemplateView):
+class FriendsRequestView(TemplateView):
     template_name = "FriendsList.html"
 
     try:

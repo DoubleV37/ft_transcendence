@@ -21,7 +21,7 @@ class User(AbstractBaseUser):
     refresh_token = models.CharField(max_length=255, null=True, blank=True)
     tournament_name = models.CharField(max_length=50, unique=True, null=False)
 
-    friends = models.ManyToManyField("User", blank=True)
+    friends = models.ManyToManyField("self", blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']

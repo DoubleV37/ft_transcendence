@@ -1,5 +1,4 @@
 from apps.Auth.models import User
-from apps.FriendsList.models import FriendRequest
 
 
 def UserDB(me: User) -> list:
