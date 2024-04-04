@@ -98,30 +98,39 @@ class Add_or_remove(TemplateView):
         pass
 
 
+def send_friend_request(request, userID):
+    from_user = request.user
+    to_user = User.objects.get(id=userID)
+    friend_request, created = Friend_Request.objects.get_or_create(
+        from_user=from_user, to_user=to_user
+    )
+    if created:
+        return HttpResponse('friend request sent')
+    else:
+        return HttpResponse('friend request alwready sent')
+
+
 class FriendsRequestView(TemplateView):
     template_name = "FriendsList.html"
 
     try:
 
         def get(self, request):
-            me = request.user
-            myFriends = tools.myFriends(me)
-            toAdd = tools.UserDB(me)
-            logger.info(f"{toAdd = }")
+            from_user = request.user
+            myFriends = tools.myFriends(from_user)
+            people = tools.UserDB(from_user)
+            logger.info(f"{people = }")
             logger.info(f"{myFriends = }")
-            return render(
-                request, self.template_name,
-                {'me': me,
-                 'toAdd': toAdd,
-                 'myFriends': myFriends,
-                 })
+            return render(request, self.template_name,
+                          {'from_user': from_user, 'people': people,
+                              'myFriends': myFriends, }
+                          )
 
         def post(self, request):
             logger.info("")
             logger.info(f"{' POST FUNCTION ':*^50}")
             logger.info("")
             logger.info(f"{ request.POST  = }")
-            me = request.user
             if request.method == 'POST':
 
                 logger.info("")
@@ -133,7 +142,7 @@ class FriendsRequestView(TemplateView):
                 logger.info(f"{target = }")
                 logger.info(f"{target.id = }")
 
-                friend_request(request, target.id)
+                return send_friend_request(request, target.id)
             # else:
             #         logger.info(f"in else .is_valid() way: {formset = }")
             else:
