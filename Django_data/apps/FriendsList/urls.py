@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('list/', views.FriendsRequestView.as_view(), name='friends'),
-    path('request/', views.Add_or_remove.as_view(), name='requested'),
+    path('request/', views.Accept_Or_Refuse_View.as_view(), name='requested'),
 ]

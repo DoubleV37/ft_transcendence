@@ -61,43 +61,6 @@ def add_or_remove_friend(request, operation, pk):
     return redirect('friends')
 
 
-class Add_or_remove(TemplateView):
-    template_name = "RequestList.html"
-
-    try:
-
-        def get(self, request):
-            me = request.user
-            # new_friend = User.objects.get(id=pk)
-            # lst = FriendRequest.objects.get(
-            #     sender=new_friend, receiver=request.user)
-            lst = FriendRequest.objects.all().filter(receiver=me)
-
-            for p in lst:
-                logger.info(f"{p.sender = }")
-
-            return render(
-                request, self.template_name,
-                {'me': me, 'lst': lst})
-
-        def post(self, request):
-            me = request.user
-
-            logger.info("")
-            logger.info(f"{' INSIDE POST ':_^20}")
-            logger.info("")
-            logger.info("")
-            logger.info(f"{ request.POST = }")
-            logger.info(f"{ request.POST['key']  = }")
-
-            # lst = FriendRequest.objects.get(receiver=me)
-            # return add_or_remove_friend(request, request.POST['key'], lst.sender.id)
-            return HttpResponse("<h1>OUAI</h1>")
-
-    except Exception as exc:
-        pass
-
-
 def send_friend_request(request, userID):
     from_user = request.user
     to_user = User.objects.get(id=userID)
@@ -129,26 +92,69 @@ class FriendsRequestView(TemplateView):
         def post(self, request):
             logger.info("")
             logger.info(f"{' POST FUNCTION ':*^50}")
-            logger.info("")
             logger.info(f"{ request.POST  = }")
             if request.method == 'POST':
 
                 logger.info("")
                 logger.info(f"{' INSIDE POST ':_^20}")
-                logger.info("")
-                logger.info("")
                 logger.info(f"{ request.POST['add']  = }")
+
                 target = User.objects.get(username=request.POST['add'])
+
                 logger.info(f"{target = }")
                 logger.info(f"{target.id = }")
-
                 return send_friend_request(request, target.id)
-            # else:
-            #         logger.info(f"in else .is_valid() way: {formset = }")
             else:
                 logger.info(f"in else method.POST way: ")
 
-            return redirect("/")
+            return HttpResponse("Error")
+
+    except Exception as exc:
+        pass
+
+
+def accept_or_refuse_FQ(request, data: list):
+    friend_request = Friend_Request.objects.get(id=int(data[1]))
+    if friend_request.to_user == request.user:
+        if data[0] == 'add':
+            friend_request.to_user.friends.add(friend_request.from_user)
+            friend_request.from_user.friends.add(friend_request.to_user)
+            friend_request.delete()
+            return HttpResponse('friend request accepted')
+        elif data[0] == 'delete':
+            friend_request.delete()
+            return HttpResponse('friend request not accepted')
+        else:
+            return HttpResponse('Merde')
+
+
+class Accept_Or_Refuse_View(TemplateView):
+    template_name = "RequestList.html"
+
+    try:
+
+        def get(self, request):
+            me = request.user
+            all_friend_request = Friend_Request.objects.all().filter(to_user=me)
+
+            return render(
+                request, self.template_name,
+                {'me': me, 'all_friend_request': all_friend_request})
+
+        def post(self, request):
+            me = request.user
+
+            logger.info("")
+            logger.info(f"{' INSIDE POST ':_^20}")
+            logger.info(f"{ request.POST = }")
+            logger.info(f"{ request.POST['key']  = }")
+            result = str(request.POST['key'])
+            data = list(result.split())
+
+            logger.info(f"{ data  = }")
+            # return add_or_remove_friend(request, request.POST['key'], lst.sender.id)
+            # return HttpResponse("<h1>OUAI</h1>")
+            return accept_or_refuse_FQ(request, data)
 
     except Exception as exc:
         pass
