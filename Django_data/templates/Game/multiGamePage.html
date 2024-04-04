@@ -17,15 +17,6 @@
 </style>
   <body>
     <center><h1>Hello , Welcome to MultiPong ! {{request.user}}</h1></center>
-    <!-- <div
-      class="chat__item__container"
-      id="id_chat_item_container"
-      style="font-size: 20px"
-    >
-      <input type="text" id="id_message_send_input" />
-      <button type="submit" id="id_message_send_button">Send Message</button>
-    </div> -->
-
 	<canvas id="MyCanvas">
 		<p>Description of the canvas for those unable to view it.</p>
 	</canvas>
@@ -60,6 +51,9 @@
 
 		gameSocket.onmessage = function (e) {
 			const data = JSON.parse(e.data);
+			if (data.message === "start") {
+				console.log("Game started !");
+			}
 			var score1div = document.getElementById("score1div");
 			score1div.innerHTML = "Score AI : " + data.score1;
 			var score2div = document.getElementById("score2div");

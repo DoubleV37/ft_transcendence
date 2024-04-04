@@ -4,9 +4,10 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from django.contrib.auth import get_user_model
 from .pong import Pong
-from .models import Games, UserGame
+from .models import Games, UserGame , Pong
 
 class MultiPongConsumer(AsyncWebsocketConsumer):
+
 	async def connect(self):
 		self.room_name = self.scope['url_route']['kwargs']['room_name']
 		self.room_group_name = f'game_{self.room_name}'
@@ -35,7 +36,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		message = data.get("message")
 		if not message:
 			return
-
 		username = self.scope["user"].username
 		if self.user_num == 1:
 			if data.get("username") == username :
@@ -45,27 +45,27 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 					self.pong.player_pos[1] += self.pong.player_speed
 				elif message == "start":
 					await self.start_game()
-			else:
-				if message == "up":
-					await self.send(text_data=json.dumps({"message": "up"}))
-					self.pong.player_pos[0] -= self.pong.player_speed
-				elif message == "down":
-					self.pong.player_pos[0] += self.pong.player_speed
-
 		else:
 			if message == "start":
 				await self.start_game()
+			elif message == "up":
+				await database_sync_to_async(Pong.objects.filter)(idGame=self.room_name).update(paddleL=self.pong.player_pos[0] / 900)
+			elif message == "down":
+				self.game_settings.paddleL = 
+				await database_sync_to_async(Pong.objects.filter)(idGame=self.room_name).update(paddleL=self.)
 
 		# await self.send_game_state()
 
 	async def join_game(self):
 		self.pong = Pong(1 , 2 , 10)
 		try:
-			game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+			self.game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+			self.game_settings = await database_sync_to_async(Pong.objects.get)(idGame=game)
 			self.user_num = 2
 			await self.send(text_data=json.dumps({"message": "start"}))
 		except Games.DoesNotExist:
-			game = await database_sync_to_async(Games.objects.create)(idGame=self.room_name)
+			self.game = await database_sync_to_async(Games.objects.create)(idGame=self.room_name)
+			self.game_settings = await database_sync_to_async(Pong.objects.create)(idGame=game)
 			self.user_num = 1
 		await database_sync_to_async(UserGame.objects.create)(user=self.scope["user"], game=game)
 
@@ -84,8 +84,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 
 
 	async def send_game_state(self):
-		self.pong.ball_pos[0] = 800
-		self.pong.ball_pos[1] = 450
 		await self.channel_layer.group_send(
 			self.room_group_name,
 			{
