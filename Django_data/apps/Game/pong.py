@@ -8,9 +8,7 @@ def ai_brain( Pong, player, lvl ):
 	lvl = 0
 	speedx = Pong.ball_speed[0]
 	speedy = Pong.ball_speed[1]
-	if Pong.engage == 2:
-		return 450
-	if Pong.engage == 1:
+	if speedx == 0:
 		return 450
 	ballx = Pong.ball_pos[0]
 	bally = Pong.ball_pos[1]

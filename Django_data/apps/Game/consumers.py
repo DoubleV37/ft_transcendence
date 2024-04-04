@@ -28,6 +28,8 @@ class PongConsumer(AsyncWebsocketConsumer):
 			self.pong.player_pos[1] -= self.pong.player_speed
 		elif message == "down" and self.pong.player_pos[1] < 900:
 			self.pong.player_pos[1] += self.pong.player_speed
+		elif message == "space" and self.pong.engage > 0:
+			self.pong.engage = 0
 
 	async def sendMessage(self):
 		await self.send(text_data = json.dumps({"paddleL" : self.pong.player_pos[0]/900 ,
