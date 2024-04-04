@@ -11,7 +11,7 @@ def ai_brain( Pong, player, lvl ):
 	if Pong.engage == 2:
 		return 450
 	if Pong.engage == 1:
-		return random.randint( 400, 500 )
+		return 450
 	ballx = Pong.ball_pos[0]
 	bally = Pong.ball_pos[1]
 	if player == 1:
@@ -56,9 +56,9 @@ class Pong():
 			self.ball_pos = [1100, 450]
 		# powerup
 		self.powerup = power
-		self.powerup_size = 50
+		self.powerup_size = 450
 		self.powerup_time = 0
-		self.powerup_pos = [575, 50]
+		self.powerup_pos = [600, 450]
 		self.powerup_speed = .5
 		#stats
 		self.ball_max_speed = [0, 0]
@@ -76,15 +76,15 @@ class Pong():
 		if self.powerup_time == 0:
 			self.player_size[0] = 150
 			self.player_size[1] = 150
-			self.powerup_size = 50
+			self.powerup_size = 450
 		else :
 			self.powerup_time -= 1
 		
-		if self.powerup_pos[1] > 850 or self.powerup_pos[1] < 0:
+		if self.powerup_pos[1] > (900 - (self.powerup_size / 2)) or self.powerup_pos[1] < (self.powerup_size / 2):
 			self.powerup_speed *= -1
-		elif self.powerup_pos[0] < self.ball_pos[0] and self.ball_pos[0] < self.powerup_pos[0] + self.powerup_size and self.powerup_pos[1] < self.ball_pos[1] and self.ball_pos[1] < self.powerup_pos[1] + self.powerup_size:
-			self.powerup_pos[1] = 50
-			self.powerup_time = 3 * 240
+		elif (self.powerup_pos[0] - (self.powerup_size / 2)) < self.ball_pos[0] and self.ball_pos[0] < (self.powerup_pos[0] + (self.powerup_size / 2)) and (self.powerup_pos[1] - (self.powerup_size / 2)) < self.ball_pos[1] and self.ball_pos[1] < (self.powerup_pos[1] + (self.powerup_size / 2)):
+			self.powerup_pos[1] = 450
+			self.powerup_time = 6 * 240
 			self.powerup_size = 0
 			if self.ball_speed[0] > 0:
 				self.powerup_count[0] += 1
@@ -156,8 +156,8 @@ class Pong():
 			self.ball_pos[1] = self.player_pos[1]
 		elif self.engage == 0 and self.ball_speed == [0,0]:
 			if self.ball_pos[0] < 600:
-				self.ball_speed = [ 3, random.choice([-1, 1])]
+				self.ball_speed = [ 3, 0 ]
 			else:
-				self.ball_speed = [ -3, random.choice([-1, 1])]
+				self.ball_speed = [ -3, 0 ]
 		self.ball_pos[0] += self.ball_speed[0]
 		self.ball_pos[1] += self.ball_speed[1]
