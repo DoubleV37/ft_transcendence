@@ -48,10 +48,10 @@ class Pong():
 		self.ball_acceleration = 0.05
 		if start == 1:
 			self.ball_speed = [0,0]
-			self.ball_pos = [70, 450]
+			self.ball_pos = [80, 450]
 		else:
 			self.ball_speed = [0,0]
-			self.ball_pos = [1130, 450]
+			self.ball_pos = [1120, 450]
 		# powerup
 		self.powerup = power
 		self.powerup_size = 75
@@ -114,11 +114,11 @@ class Pong():
 		self.player_pos[1] = 450
 		self.engage_time = self.time + 1000
 		if player == 1:
-			self.ball_pos = [70, 450]
+			self.ball_pos = [80, 450]
 			self.ball_speed = [0,0]
 			self.engage = 1
 		else:
-			self.ball_pos = [1130, 450]
+			self.ball_pos = [1120, 450]
 			self.ball_speed = [0,0]
 			self.engage = 2
 		if self.exchange > self.max_exchange:
@@ -157,8 +157,8 @@ class Pong():
 			self.ball_pos[1] = self.player_pos[1]
 		elif self.engage == 0 and self.ball_speed == [0,0]:
 			if self.ball_pos[0] < 600:
-				self.ball_speed = [ 3, (self.player_pos[0] - 450) / 100 ]
+				self.ball_speed = [ 3, ((self.player_pos[0] - 450) / 100)* -1 ]
 			else:
-				self.ball_speed = [ -3, (self.player_pos[1] - 450) / 100 ]
+				self.ball_speed = [ -3, ((self.player_pos[1] - 450) / 100* -1) ]
 		self.ball_pos[0] += self.ball_speed[0]
 		self.ball_pos[1] += self.ball_speed[1]
