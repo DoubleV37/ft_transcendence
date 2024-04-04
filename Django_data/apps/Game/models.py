@@ -33,7 +33,7 @@ class Pong(models.Model):
 	paddle2size = models.IntegerField(default=0)
 
 	def __str__(self):
-		return self.game.idGame
+		return str(self.idGame.idGame)
 
 class UserGame(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
