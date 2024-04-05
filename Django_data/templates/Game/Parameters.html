@@ -34,7 +34,7 @@
                                                                   <p class="bodyText">Score to win:</p>
                                                                   <div class="quantity">
                                                                           <button class="minus" aria-label="Decrease">&minus;</button>
-                                                                          <input type="number" class="input-box" value="1" min="1" max="10">
+                                                                          <input id="Score" type="number" class="input-box" value="1" min="1" max="10">
                                                                           <button class="plus" aria-label="Increase">&plus;</button>
                                                                   </div>
                                                           </div>
@@ -43,7 +43,7 @@
                                                                   <p class="bodyText">Difficulty:</p>
                                                                   <div class="quantity">
                                                                           <button class="minus" aria-label="Decrease">&minus;</button>
-                                                                          <input type="number" class="input-box" value="1" min="1" max="10">
+                                                                          <input id="Difficulty" type="number" class="input-box" value="1" min="1" max="10">
                                                                           <button class="plus" aria-label="Increase">&plus;</button>
                                                                   </div>
                                                           </div>
@@ -51,7 +51,7 @@
                                                                   <p class="bodyText">Power ups:</p>
                                                                   <div class="form-check form-switch p-0">
                                                                           <div class="d-flex flex-column-reverse gap-1">
-                                                                            <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" {% if enabled == True %}checked{% endif%} />
+                                                                            <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop"/>
                                                                           </div>
                                                                   </div>
                                                           </div>
