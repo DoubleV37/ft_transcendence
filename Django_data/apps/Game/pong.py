@@ -59,10 +59,10 @@ class Pong():
 			self.ball_pos = [1120, 450]
 		# powerup
 		self.powerup = power
-		self.powerup_size = 75
-		self.powerup_time = 0
-		self.powerup_pos = [600, self.powerup_size / 2]
-		self.powerup_speed = .5
+		self.powerup_size = 0
+		self.powerup_time = 3*240
+		self.powerup_pos = [600, 38]
+		self.powerup_speed = 0
 		#stats
 		self.ball_max_speed = [0, 0]
 		self.powerup_count = [0, 0]
@@ -77,17 +77,22 @@ class Pong():
 			return
 		self.powerup_pos[1] += self.powerup_speed
 		if self.powerup_time == 0:
-			self.powerup_count = [0, 0]
 			if self.powerup_speed == 0:
 				self.powerup_speed = 0.5
+			self.powerup_size = 75
+		
+		if self.ball_speed[0] > 0 and self.powerup_time > 0:
+			self.powerup_time -= 1
+
+		if self.powerup_time == 2*240:
+			self.powerup_count = [0, 0]
+
+		if self.powerup_count == [0, 0]:
 			if self.player_size[0] > 150:
 				self.player_size[0] -= .5
 			if self.player_size[1] > 150:
 				self.player_size[1] -= .5
-			self.powerup_size = 75
 		else :
-			if self.ball_speed[0] > 0:
-				self.powerup_time -= 1
 			if self.player_size[0] < 300 and self.powerup_count[0] == 1:
 				self.player_size[0] += 1
 			elif self.player_size[1] < 300 and self.powerup_count[1] == 1:
@@ -98,7 +103,7 @@ class Pong():
 		elif (self.powerup_pos[0] - (self.powerup_size / 2)) < self.ball_pos[0] and self.ball_pos[0] < (self.powerup_pos[0] + (self.powerup_size / 2)) and (self.powerup_pos[1] - (self.powerup_size / 2)) < self.ball_pos[1] and self.ball_pos[1] < (self.powerup_pos[1] + (self.powerup_size / 2)):
 			self.powerup_pos[1] = self.powerup_size / 2
 			self.powerup_speed = 0
-			self.powerup_time = 6 * 240
+			self.powerup_time = 5 * 240
 			self.powerup_size = 0
 			if self.ball_speed[0] > 0:
 				self.powerup_count[0] = 1
