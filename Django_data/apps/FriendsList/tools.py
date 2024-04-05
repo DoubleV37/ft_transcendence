@@ -2,11 +2,53 @@ from apps.Auth.models import User
 from django.http import JsonResponse
 from apps.FriendsList.models import Friend_Request
 
+import logging
+logger = logging.getLogger(__name__)
 
-def UserDB(me: User) -> list:
-    toSort = User.objects.all()
-    toRtrn = [user for user in toSort if user.username != me.username]
-    return toRtrn
+# def userDB(me: User) -> list(User):
+#     toSort = User.objects.all()
+#     toRtrn = [user for user in toSort if user.username != me.username]
+#     return toRtrn
+
+
+# TODO stopped here
+# def buildlist(key: User, all_user: list, friends: lst) -> bool:
+#     if key.
+
+
+def suggestionList(me: User) -> list:
+    lst = list()
+    logger.info("")
+    logger.info("suggestionList")
+    logger.info(f"{me = }")
+    all_user = User.objects.all()
+    friends = me.friends.all()
+    logger.info(f"{friends = }")
+    for user in all_user:
+        for friend in friends:
+            if friend != user and
+        try:
+            logger.info(f"{user = }")
+            test = friends.count(user)
+            logger.info(f"{test = }")
+            if test == 0:
+                if user != me:
+                    lst.append(user)
+        except:
+            logger.info(f"except: {user = }")
+            if user != me:
+                lst.append(user)
+
+    # for person in friends:
+    #     try:
+    #
+    #         if person != user:
+    #             lst.index(user)
+    #     except:
+    #         if user != me:
+    #             lst.append(user)
+    #     # lst = [person for person in friends if user != person]
+    return lst
 
 
 def myFriends(me: User) -> list:

@@ -17,11 +17,14 @@ class FriendsRequestView(TemplateView):
         def get(self, request):
             from_user = request.user
             myFriends = tools.myFriends(from_user)
-            people = tools.UserDB(from_user)
-            return render(request, self.template_name,
-                          {'from_user': from_user, 'people': people,
-                              'myFriends': myFriends, }
-                          )
+            people = tools.suggestionList(from_user)
+            logger.info("")
+            logger.info(f"{' FRV ':~^50}")
+            logger.info(f"{people = }")
+            return render(
+                request, self.template_name,
+                {'from_user': from_user, 'people': people, 'myFriends': myFriends, }
+            )
 
         def post(self, request):
             result = str(request.POST['key'])
@@ -30,8 +33,10 @@ class FriendsRequestView(TemplateView):
 
             if tmp[0].find("add") != -1:
                 return tools.send_friend_request(request, target.id)
+
             elif tmp[0].find("delete") != -1:
                 return tools.delete_friend(request, target)
+
             else:
                 return JsonResponse(
                     {'success': False, 'logs': 'FriendRequestView error'}
