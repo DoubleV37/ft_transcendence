@@ -5,7 +5,11 @@
   <div>
     My friends list:
     {% for person in myFriends %}
-      <p>{{ person.username }}</p>
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ person }}
+      <button type="submit" name="key" value="delete {{ person }}">delete</button>
+      </form>
     {% endfor %}
   </div>
   <div>
@@ -14,7 +18,7 @@
       <form action="" method="post">
         {% csrf_token %}
         {{ person }}
-      <button type="submit" name="add" value="{{ person }}">add</button>
+      <button type="submit" name="key" value="add {{ person }}">add</button>
       </form>
     {% endfor %}
   </div>
