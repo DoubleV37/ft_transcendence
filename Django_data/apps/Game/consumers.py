@@ -48,6 +48,7 @@ class PongConsumer(AsyncWebsocketConsumer):
 
 	async def runGame(self):
 		while self.pong.running:
+			#Calcul deltaT puis appel en boucle du reste
 			# ia move
 			self.pong.player_pos[0] = ai_brain(self.pong, 1, 20)
 			# ball move
