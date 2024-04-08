@@ -1,7 +1,7 @@
 // ----------Run at the load/reload of the website-------------//
 document.addEventListener("DOMContentLoaded", launchWebsite);
 
-async function launchWebsite () {
+async function launchWebsite() {
   const targetNode = document.querySelector("#content");
 
   if (!targetNode) {
@@ -27,7 +27,7 @@ async function launchWebsite () {
   document.removeEventListener("DOMContentLoaded", launchWebsite);
 }
 
-function main_SetFirstsEvents () {
+function main_SetFirstsEvents() {
   const element = document.getElementById("titleContent");
 
   if (!element) {
@@ -38,7 +38,7 @@ function main_SetFirstsEvents () {
 }
 // -----------------------------------------------------------//
 
-function mutationCallBack (mutationsList) {
+function mutationCallBack(mutationsList) {
   for (const mutation of mutationsList) {
     if (mutation.type === "childList") {
       const element = document.getElementById("titleContent");
@@ -51,28 +51,33 @@ function mutationCallBack (mutationsList) {
   }
 }
 
-function launchSectionHandler (element) {
+function launchSectionHandler(element) {
   const elementAttribut = element.getAttribute("data-content");
 
   try {
     switch (elementAttribut) {
-    case "HOME_PAGE":
-      home_SetEvents();
-      break;
-    case "SIGNIN_PAGE":
-      signin_SetEvents();
-      break;
-    case "SIGNUP_PAGE":
-      signup_SetEvents();
-      break;
-    case "SETTINGS":
-      settings_SetEvents();
-      break;
-    case "GAME_PARAMETERS":
-      parameters_SetEvents();
-      break;
-    default:
-      throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
+      case "HOME_PAGE":
+        home_SetEvents();
+        break;
+      case "SIGNIN_PAGE":
+        signin_SetEvents();
+        break;
+      case "SIGNUP_PAGE":
+        signup_SetEvents();
+        break;
+      case "SETTINGS":
+        settings_SetEvents();
+        break;
+      case "GAME_MODES":
+        modes_SetEvents();
+        break;
+      case "GAME_PARAMETERS":
+        parameters_SetEvents();
+        break;
+      default:
+        throw new Error(
+          `launchSectionHandler: Attribute ${elementAttribut} non recognised`,
+        );
     }
   } catch (err) {
     console.error("Error: ", err);
