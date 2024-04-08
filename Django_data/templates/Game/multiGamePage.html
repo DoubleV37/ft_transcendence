@@ -43,6 +43,7 @@
 		var paddle1Height;
 		var paddle2Height;
 		var ballRadius;
+		let opponent = "";
 
 		ready_btn.onclick = function() {
 			gameSocket.send(JSON.stringify({ message: "start", username : "{{request.user}}" }));
@@ -51,11 +52,12 @@
 
 		gameSocket.onmessage = function (e) {
 			const data = JSON.parse(e.data);
-			if (data.message === "start") {
-				console.log("Game started !");
+			if (data.message === "opponent") {
+				opponent = data.opponent;
+				return;
 			}
 			var score1div = document.getElementById("score1div");
-			score1div.innerHTML = "Score AI : " + data.score1;
+			score1div.innerHTML = opponent + " : " + data.score1;
 			var score2div = document.getElementById("score2div");
 			score2div.innerHTML = "Score {{request.user}} : " + data.score2;
 			ballRadius = data.ballsize*height*2;

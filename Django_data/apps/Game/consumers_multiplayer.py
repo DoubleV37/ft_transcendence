@@ -43,10 +43,13 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			self.user_num = 2
 			self.game_settings = await sync_to_async(Pong.objects.get)(idGame=self.game)
 		await sync_to_async(UserGame.objects.create)(user=self.scope["user"], game=self.game)
-			# self.opponent = await database_sync_to_async(
-			# 	lambda: UserGame.objects.filter(game=self.game)
-			# 							.exclude(user=self.scope["user"])
-			# 							.first().user.username)()
+
+	async def set_opponent(self):
+		opponents = await sync_to_async(list)(UserGame.objects.filter(game=self.game))
+		for opponent in opponents:
+			opponent_user = await sync_to_async(lambda: opponent.user)()
+			if opponent_user.username != self.username:
+				return opponent_user
 
 	async def receive(self, text_data):
 		data = json.loads(text_data)
@@ -60,10 +63,14 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 				elif message == "down":
 					self.pong.player_pos[1] += self.pong.player_speed
 				elif message == "start":
+					self.opponent = await self.set_opponent()
+					await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username}))
 					await self.start_game()
 		else:
 			self.game_settings = await database_sync_to_async(Pong.objects.get)(idGame=self.game)
 			if message == "start":
+				self.opponent = await self.set_opponent()
+				await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username}))
 				await self.start_game()
 			elif message == "up":
 				self.pong.player_pos[0] -= self.pong.player_speed
@@ -137,6 +144,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 					"ballsize": self.pong.ball_size / 900,
 					"paddle1size": self.pong.player_size[0] / 900,
 					"paddle2size": self.pong.player_size[1] / 900,
+					"opponent": self.opponent.username,
 				}
 			}
 		)
