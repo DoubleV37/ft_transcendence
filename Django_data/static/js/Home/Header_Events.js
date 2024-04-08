@@ -15,6 +15,9 @@ function  header_SetEvents() {
     element = document.getElementById('HEADER_NavProfile');
     element.addEventListener('click', header_ModProfilCallBack);
 
+    element = document.getElementById('HEADER_NavFriends');
+    element.addEventListener('click', header_ModFriendsCallBack);
+
     element = document.getElementById('HEADER_user');
     element.addEventListener('click', header_ModProfilCallBack);
   }
@@ -49,6 +52,9 @@ function  header_DelEvents() {
 
     element = document.getElementById('HEADER_NavProfile');
     element.removeEventListener('click', header_ModProfilCallBack);
+
+    element = document.getElementById('HEADER_NavFriends');
+    element.removeEventListener('click', header_ModFriendsCallBack);
 
     element = document.getElementById('HEADER_NavSignOut');
     element.removeEventListener('click', header_SignOutCallBack);
@@ -97,6 +103,17 @@ async function  header_ModProfilCallBack() {
     offcanvas_Hide();
     await changeSection(`${ROUTE.PROFILE}`, '#ProfileModal');
     profileModal['modal'].show();
+  }
+  catch (error) {
+    console.log(`Error - header_M: ${error}`);
+  }
+}
+
+async function  header_ModFriendsCallBack() {
+  try {
+    offcanvas_Hide();
+    await changeSection(`${ROUTE.FRIENDS}`, '#FriendsModal');
+    friendsModal['modal'].show();
   }
   catch (error) {
     console.log(`Error - header_M: ${error}`);

@@ -7,6 +7,15 @@ function  modal_ProfileInit() {
   profileModal['modal']._element.addEventListener('hide.bs.modal', profile_DelEvents);
 }
 
+function  modal_FriendsInit() {
+  friendsModal['modal'] = new bootstrap.Modal(document.getElementById('FriendsModal'), {
+    backdrop: true,
+    keyboard: true,
+    focus: true});
+  friendsModal['modal']._element.addEventListener('shown.bs.modal', friends_SetEvents);
+  friendsModal['modal']._element.addEventListener('hide.bs.modal', friends_DelEvents);
+}
+
 function  modal_AvatarInit() {
   avatarModal['modal'] = new bootstrap.Modal(document.getElementById('AvatarModal'), {
     backdrop: true,

@@ -24,6 +24,11 @@ let TwofaCodeModal = {
   'active': false,
 };
 
+let friendsModal = {
+  'modal': null,
+  'active': false,
+};
+
 const ROUTE = {
   "HOME":"/",
   "HEADER":"/header",
@@ -33,6 +38,7 @@ const ROUTE = {
   "SIGNOUT":"/auth/signout/",
   "SETTINGS":"/auth/settings/",
   "PROFILE":"/user/profile/",
+  "FRIENDS":"/friends/list/",
   "TWOFA_E":"/2fa/enable/",
   "TWOFA_Q":"/2fa/qrcode/",
   "TWOFA_C":"/2fa/confirm/",

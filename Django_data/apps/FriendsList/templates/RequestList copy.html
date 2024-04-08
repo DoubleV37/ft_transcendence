@@ -1,0 +1,18 @@
+<html>
+  <div>
+    <p>I'm {{ me.username }}</p>
+  </div>
+  <div>
+    <p>Request friends list:</p>
+
+    {% for friend_request in all_friend_request %}
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ friend_request.from_user }}
+        <button type="submit" name="key" value="add {{ friend_request.from_user }}">add</button>
+        <button type="submit" name="key" value="delete {{ friend_request.from_user }}">remove</button>
+      </form>
+    {% endfor %}
+
+  </div>
+</html>
