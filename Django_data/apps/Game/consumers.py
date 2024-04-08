@@ -11,7 +11,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			self.channel_name
 		)
 		await self.accept()
-		self.pong = Pong(1 , 2 , 10)
+		self.pong = Pong(2 , 20 , 10, True)
 
 		asyncio.create_task(self.runGame())
 
@@ -25,10 +25,12 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		data = json.loads(text_data)
 		message = data["message"]
 		username = data["username"]
-		if message == "up":
-			self.pong.player_pos[1] = self.pong.player_pos[1] - self.pong.player_speed
-		elif message == "down":
-			self.pong.player_pos[1] = self.pong.player_pos[1] + self.pong.player_speed
+		if message == "up" and self.pong.player_pos[1] > 0:
+			self.pong.player_pos[1] -= self.pong.player_speed
+		elif message == "down" and self.pong.player_pos[1] < 900:
+			self.pong.player_pos[1] += self.pong.player_speed
+		elif message == "space" and self.pong.engage > 0:
+			self.pong.engage = 0
 
 	async def sendMessage(self):
 		await self.send(text_data = json.dumps({"paddleL" : self.pong.player_pos[0]/900 ,
@@ -40,14 +42,19 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 												"ballsize" : self.pong.ball_size/900 ,
 												"paddle1size" : self.pong.player_size[0]/900 ,
 												"paddle2size" : self.pong.player_size[1]/900 ,
+												"powerupY" : self.pong.powerup_pos[1]/900 ,
+												"powerupsize" : self.pong.powerup_size/900 ,
+												"time" : self.pong.time ,
 												"type" : "sendMessage"}))
 
 	async def runGame(self):
 		while self.pong.running:
+			#Calcul deltaT puis appel en boucle du reste
 			# ia move
 			self.pong.player_pos[0] = ai_brain(self.pong, 1, 20)
 			# ball move
 			self.pong.ball_walk()
+			self.pong.powerup_run()
 			# paddle bounce
 			if self.pong.ball_pos[0] < 60 and self.pong.ball_speed[0] < 0:
 				self.pong.paddle_bounce(0)
