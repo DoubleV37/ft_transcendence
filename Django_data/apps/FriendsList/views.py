@@ -18,9 +18,6 @@ class FriendsRequestView(TemplateView):
             from_user = request.user
             myFriends = tools.myFriends(from_user)
             people = tools.suggestionList(from_user)
-            logger.info("")
-            logger.info(f"{' FRV ':~^50}")
-            logger.info(f"{people = }")
             return render(
                 request, self.template_name,
                 {'from_user': from_user, 'people': people, 'myFriends': myFriends, }
