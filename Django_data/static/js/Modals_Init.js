@@ -14,6 +14,8 @@ function  modal_FriendsInit() {
     focus: true});
   friendsModal['modal']._element.addEventListener('shown.bs.modal', friends_SetEvents);
   friendsModal['modal']._element.addEventListener('hide.bs.modal', friends_DelEvents);
+  friendsModal['modal']._element.addEventListener('shown.bs.modal', users_SetEvents);
+  friendsModal['modal']._element.addEventListener('hide.bs.modal', users_DelEvents);
 }
 
 function  modal_AvatarInit() {

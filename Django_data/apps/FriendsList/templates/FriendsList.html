@@ -18,10 +18,10 @@
                 <p>I'm {{ from_user.username }}</p>
                 <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}"></img>   
               </div>
-              <div>
+              <div id="FriendList">
                 My friends list:
                 {% for person in myFriends %}
-                  <form action="" id="MyFriends" method="post">
+                  <form action="" id="MyFriends_{{ person }}" method="post">
                     {% csrf_token %}
                     <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>   
                     {{ person }}
@@ -29,10 +29,10 @@
                   </form>
                 {% endfor %}
               </div>
-              <div>
+              <div id="UserList">
                 Other User:
                 {% for person in people %}
-                  <form action="" id="Suggestions" method="post">
+                  <form action="" id="Suggestions_{{ person }}" method="post">
                     {% csrf_token %}
                     {{ person }}
                   <button type="submit" name="key" value="add {{ person }}">add</button>
