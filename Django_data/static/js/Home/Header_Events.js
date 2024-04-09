@@ -57,12 +57,6 @@ function header_DelEvents () {
     element = document.getElementById("HEADER_Signin");
     element.removeEventListener("click", header_SignInCallBack);
 
-    element = document.getElementById("HEADER_NavSignOut");
-    element.removeEventListener("click", header_SignOutCallBack);
-  } else if (IsAuthenticated === "false") {
-    element = document.getElementById("HEADER_Signin");
-    element.removeEventListener("click", header_SignInCallBack);
-
     element = document.getElementById("HEADER_NavSignUp");
     element.addEventListener("click", header_SignUpCallBack);
 

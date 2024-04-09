@@ -1,85 +1,83 @@
 {% load static %}
 
-
-
-
-
 <div class="modal fade" id="FriendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
-        </div>
-        <div class="modal-body">
-          <div id="ModalContent" data-content="PROFILE_PAGE"></div>
-          <div class="ProfilePage modal-profile">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
+      </div>
+      <div class="modal-body">
+        <div class="ProfilePage modal-profile">
+          <div>
+            <p>I'm {{ from_user.username }}</p>
+            <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}"></img>   
+          </div>
+          <div>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#FriendList" aria-expanded="false" aria-controls="">
+              <p><bold>Friends list</bold></p>
+            </button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#UserList" aria-expanded="false" aria-controls="">
+              <p><bold>Others user</bold></p>
+            </button>
 
-              <div>
-                <p>I'm {{ from_user.username }}</p>
-                <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}"></img>   
-              </div>
-              <div id="FriendList">
-                My friends list:
-                {% for person in myFriends %}
-                  <form action="" id="MyFriends_{{ person }}" method="post">
-                    {% csrf_token %}
-                    <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>   
-                    {{ person }}
-                  <button type="submit" name="key" value="delete {{ person }}">delete</button>
-                  </form>
-                {% endfor %}
-              </div>
-              <div id="UserList">
-                Other User:
-                {% for person in people %}
-                  <form action="" id="Suggestions_{{ person }}" method="post">
-                    {% csrf_token %}
-                    {{ person }}
-                  <button type="submit" name="key" value="add {{ person }}">add</button>
-                  </form>
-                {% endfor %}
-              </div>
 
-            <div class="ProfileCardboard modal-profileCardboard">
-              <img class="ProfilePic modal-profilePic" src="{{ profil_picture }}" alt="Very basic user"></img>
-        <div id="UserStatus">
-          <h1 id="username">{{ username }}</h1>
-          <p id="connectStatus">{{ status }}<span class="dotOnline"></span></p>
+            <div class="collapse" id="FriendList"> <!-- search with this -->
+              <div class="card card-body">
+                <ul class="list-group">
+                  {% for person in myFriends %}
+                  <li class="list-group-item"><!-- Loop on this -->
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ person }}
+                        <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>
+                      </button> <!-- Don't need him-->
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                          <button data-content="{{ person.id }}">Profile</button><!-- I want him -->
+                          <form action="" id="MyFriends_{{ person }}" method="post"><!-- I want him too -->
+                            {% csrf_token %}
+                            <button type="submit" name="key" value="delete {{ person }}">Delete</button>
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+
+
+            <div class="collapse" id="UserList">
+              <div class="card card-body">
+                <ul class="list-group">
+                  {% for person in people %}
+                  <li class="list-group-item">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ person }}
+                        <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                          <button data-content="{{ person.id }}">Profile</button>
+                        </li>
+                        <li>
+                          <form action="" id="Suggestions_{{ person }}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="key" value="add {{ person }}">Add</button>
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+          </div>
         </div>
       </div>
-  
-      {% if profile == 'himself' %}
-      <div id="Profile_Type" data-content="himself"></div>
-      <button id="PROFIL_Settings" class="ButtonLayout ButtonNeon">Settings</button>
-      <button id="PROFIL_Skins" class="ButtonLayout ButtonSalmon">Skins</button>
-      {% else %}
-      <div id="Profile_Type" data-content="foreign"></div>
-        <div id="DoubleButton">
-          <button class="MediumButtonLayout left ButtonNeon">Add Friend</button>
-          <button class="MediumButtonLayout right ButtonNeon">Message</button>
-        </div>
-        <button class="ButtonLayout ButtonSalmon">Invite to game</button>
-      {% endif %}
-  
-      <div id ="UserInfo">
-        <div id="leftline"></div>
-        <p id="UserInfoText">User info</p>
-        <div id="rightline"></div>
-      </div>
-      <button id="PROFIL_History" class="ButtonLayout ButtonBlue">History</button>
-      <button id="PROFIL_Stats" class="ButtonLayout ButtonBlue">Stats</button>
-      <button id="PROFIL_42Account" class="ButtonLayout ButtonBlue">42 Account</button>
-  
-      {% if profile == 'foreign' %}
-        <button class="ButtonLayout ButtonDark">Block User</button>
-      {% endif %}
-  
-    </div>
-        </div>
-        <div class="modal-footer"></div>
-      </div>
+      <div class="modal-footer"></div>
     </div>
   </div>
-</html>
-
-
+</div>

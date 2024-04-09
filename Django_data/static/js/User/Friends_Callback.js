@@ -1,31 +1,32 @@
-async function friends_DeleteCallBack(event) {
-
+async function friends_DeleteCallBack (event) {
   event.preventDefault();
   const	response = await deleteFriendSubmit();
 
   if (response == true) {
-    header_DelEvents()
-    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
-    header_SetEvents()
-    await changeSection(`${ROUTE.FRIENDS}`, '#content');
-
+    header_DelEvents();
+    await changeSection(`${ROUTE.HEADER}`, "#Header_content");
+    header_SetEvents();
+    await changeSection(`${ROUTE.FRIENDS}`, "#content");
   }
 }
 
-async function friends_AddCallBack(event) {
-  
+async function friends_AddCallBack (event) {
   event.preventDefault();
   const	response = await addFriendSubmit();
 
   if (response == true) {
-    header_DelEvents()
-    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
-    header_SetEvents()
-    await changeSection(`${ROUTE.FRIENDS}`, '#content');
-
+    header_DelEvents();
+    await changeSection(`${ROUTE.HEADER}`, "#Header_content");
+    header_SetEvents();
+    await changeSection(`${ROUTE.FRIENDS}`, "#content");
   }
 }
 
-function  friends_closeModal() {
-  friendsModal['modal'].hide();
+function friends_closeModal () {
+  friendsModal.modal.hide();
+}
+
+function friends_GoToProfile (event) {
+  const id = event.target.getAttribute("data-content");
+  console.log(`id = ${id}`);
 }
