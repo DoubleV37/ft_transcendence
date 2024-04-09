@@ -188,16 +188,11 @@ def my_settings(request):
 
 
 def refresh_jwt(request):
-    logger.info(request.method)
     if request.method == "GET":
-        logger.info("aled 1")
         user = request.user
-        logger.info("aled 2")
         logger.info(user.refresh_token)
         if user.refresh_token is None:
-            logger.info("aled 3")
             return HttpResponse("Bad Token", status=498)
-        logger.info("aled 4")
         jwt_token = create_jwt(user)
         response = HttpResponse()
         response.set_cookie(
