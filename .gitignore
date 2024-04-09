@@ -4,3 +4,7 @@ Django_data/staticfiles/*
 000*
 Django_data/avatars/*
 !Django_data/avatars/ForbiddenDeletion/default.png
+node_modules
+package.json
+package-lock.json
+.eslintrc.js
