@@ -32,17 +32,17 @@
 		gameSocket.onclose = function (e) {
 			console.log("Something unexpected happened !");
 		};
-		var canvas = document.getElementById("MyCanvas");
-		var ctx = canvas.getContext("2d");
+		let canvas = document.getElementById("MyCanvas");
+		let ctx = canvas.getContext("2d");
 
-		var style = getComputedStyle(canvas);
-		var width = parseInt(style.getPropertyValue('width'), 10);
-		var height = parseInt(style.getPropertyValue('height'), 10);
+		let style = getComputedStyle(canvas);
+		let width = parseInt(style.getPropertyValue('width'), 10);
+		let height = parseInt(style.getPropertyValue('height'), 10);
 		canvas.width = width;
 		canvas.height = height;
-		var paddle1Height;
-		var paddle2Height;
-		var ballRadius;
+		let paddle1Height;
+		let paddle2Height;
+		let ballRadius;
 		let opponent = "";
 
 		ready_btn.onclick = function() {
@@ -56,8 +56,18 @@
 				opponent = data.opponent;
 				return;
 			}
+			if (data.message === "User exited") {
+				console.log("User exited");
+				alert("The opponent ran away in fear!");
+				gameSocket.send(JSON.stringify({ message: "stop", username : "{{request.user}}" }));
+			}
+			if (data.message === "Game stopped") {
+				alert("Game stopped!");
+				gameSocket.close();
+				window.location.href = "/game/matchmaking/";
+			}
 			var score1div = document.getElementById("score1div");
-			score1div.innerHTML = opponent + " : " + data.score1;
+			score1div.innerHTML = "Score " + opponent + " : " + data.score1;
 			var score2div = document.getElementById("score2div");
 			score2div.innerHTML = "Score {{request.user}} : " + data.score2;
 			ballRadius = data.ballsize*height*2;

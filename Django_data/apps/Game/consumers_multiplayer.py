@@ -20,17 +20,43 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		await self.init_db_game()
 
 	async def disconnect(self, close_code):
-		await self.channel_layer.group_discard(
-			self.room_group_name,
-			self.channel_name
-		)
 		try:
 			game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
 			if game.start_num == 2:
 				game.start_num = 19
 				await database_sync_to_async(game.save)()
+				if self.user_num == 1:
+					self.pong.running = False
+					await self.channel_layer.group_send(
+						self.room_group_name,
+						{
+							'type': 'game_stop',
+							'error': {
+								"message": "Game stopped"
+							}
+						}
+					)
+				else:
+					await self.channel_layer.group_send(
+						self.room_group_name,
+						{
+							'type': 'game_stop',
+							'error': {
+								"message": "User exited"
+							}
+						}
+					)
+			elif game.start_num == 0 or game.start_num == 1:
+				user_game = await database_sync_to_async(UserGame.objects.get)(user=self.scope["user"], game=game)
+				await database_sync_to_async(user_game.delete)()
+				if self.user_num == 1:
+					await database_sync_to_async(game.delete)()
 		except Games.DoesNotExist:
 			pass
+		await self.channel_layer.group_discard(
+			self.room_group_name,
+			self.channel_name
+		)
 
 	async def init_db_game(self):
 		self.pong = Pong_game(1 , 2 , 10, 0)
@@ -42,14 +68,18 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		else:
 			self.user_num = 2
 			self.game_settings = await sync_to_async(Pong.objects.get)(idGame=self.game)
+			if self.game.start_num == 19 or self.game.start_num == 2:
+				await self.channel_layer.group_send(
+					self.room_group_name,
+					{
+						'type': 'game_stop',
+						'error': {
+							"message": "Game stopped"
+						}
+					}
+				)
 		await sync_to_async(UserGame.objects.create)(user=self.scope["user"], game=self.game)
 
-	async def set_opponent(self):
-		opponents = await sync_to_async(list)(UserGame.objects.filter(game=self.game))
-		for opponent in opponents:
-			opponent_user = await sync_to_async(lambda: opponent.user)()
-			if opponent_user.username != self.username:
-				return opponent_user
 
 	async def receive(self, text_data):
 		data = json.loads(text_data)
@@ -63,14 +93,21 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 				elif message == "down":
 					self.pong.player_pos[1] += self.pong.player_speed
 				elif message == "start":
-					self.opponent = await self.set_opponent()
-					await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username}))
 					await self.start_game()
+				elif message == "stop":
+					self.pong.running = False
+					await self.channel_layer.group_send(
+						self.room_group_name,
+						{
+							'type': 'game_stop',
+							'error': {
+								"message": "Game stopped"
+							}
+						}
+					)
 		else:
 			self.game_settings = await database_sync_to_async(Pong.objects.get)(idGame=self.game)
 			if message == "start":
-				self.opponent = await self.set_opponent()
-				await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username}))
 				await self.start_game()
 			elif message == "up":
 				self.pong.player_pos[0] -= self.pong.player_speed
@@ -100,7 +137,20 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			while (game.start_num != 2):
 				await asyncio.sleep(1)
 				game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+			self.opponent = await self.set_opponent()
+			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username}))
 			asyncio.create_task(self.run_game())
+		else:
+			self.opponent = await self.set_opponent()
+			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username}))
+
+	async def set_opponent(self):
+		opponents = await sync_to_async(list)(UserGame.objects.filter(game=self.game))
+		for opponent in opponents:
+			opponent_user = await sync_to_async(lambda: opponent.user)()
+			if opponent_user.username != self.username:
+				return opponent_user
+		return None
 
 	async def game_stop(self, event):
 		await self.send(text_data=json.dumps(event['error']))
