@@ -2,44 +2,6 @@ import random
 import math
 
 
-# import time
-# import threading
-
-# # Variables initiales
-# now = time.time()
-# dt = 0
-# last = now
-# step = 1/60 # Taux de rafraîchissement souhaité
-
-# def update(step):
-#     # Ici, vous pouvez mettre le code de mise à jour de votre jeu ou de votre application
-#     pass
-
-# def render(dt):
-#     # Ici, vous pouvez mettre le code de rendu de votre jeu ou de votre application
-#     pass
-
-# def frame():
-#     global now, dt, last
-#     while True:
-#         now = time.time()
-#         dt = dt + min(1, (now - last) / 1000)
-#         while dt > step:
-#             dt = dt - step
-#             update(step)
-#         render(dt)
-#         last = now
-#         time.sleep(step) # Attendre le temps nécessaire pour atteindre le prochain frame
-
-# # Lancement de la boucle d'animation dans un thread séparé
-# animation_thread = threading.Thread(target=frame)
-# animation_thread.start()
-
-# # Boucle principale pour empêcher le programme de se terminer
-# while True:
-#     pass
-
-
 def ai_brain( Pong, player, lvl ):
 
 	if Pong.time % 240 != 0:
