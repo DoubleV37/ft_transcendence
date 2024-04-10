@@ -56,7 +56,6 @@ scrollbar-width: none;
 
 	.modal-body {
 		display: flex;
-		height: 100%;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
@@ -145,7 +144,6 @@ scrollbar-width: none;
 
 	.modal-body {
 		display: flex;
-		height: 100%;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
@@ -274,4 +272,50 @@ scrollbar-width: none;
 		height: 5em;
         width: 5em;
     }
+}
+
+.card-body {
+    flex: 1 1 auto;
+    /* padding: 1rem 0rem; */
+    margin-top: 1em;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 2px solid #5DC6E8;
+    border-radius: 0.25rem;
+}
+
+.list-group {
+    height: 20em;
+    overflow: scroll;
+    scrollbar-width: 2px; /* Standard property for Firefox */
+}
+
+.list-group::-webkit-scrollbar { /* WebKit */
+    width: 2px; /* Adjusts the width of the scrollbar */
+	height: 0; /* Adjusts the width of the scrollbar */
+}
+
+.list-group::-webkit-scrollbar-thumb { /* WebKit */
+    background-color: black; /* Sets the color of the scrollbar thumb */
+    border-radius: 10px; /* Optional: Rounds the corners of the scrollbar thumb */
+}
+
+.btn {
+	width: 100%;
+}
+
+.modal-profileFriendCardboard {
+	margin-bottom: 1em;
+}
+
+.FriendsPage {
+
 }
