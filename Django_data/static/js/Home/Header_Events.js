@@ -51,6 +51,9 @@ function header_DelEvents () {
     element = document.getElementById("HEADER_NavFriends");
     element.removeEventListener("click", header_ModFriendsCallBack);
 
+    element = document.getElementById("HEADER_NavProfile");
+    element.removeEventListener("click", header_ModProfilCallBack);
+
     element = document.getElementById("HEADER_NavSignOut");
     element.removeEventListener("click", header_SignOutCallBack);
   } else if (IsAuthenticated === "false") {
