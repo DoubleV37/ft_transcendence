@@ -8,8 +8,8 @@ async function friends_DeleteCallBack (event) {
 async function friends_AddCallBack (event) {
   event.preventDefault();
   console.log(`target = ${event.target}`);
-  //const response = await addFriendSubmit(event.target);
-
+  const response = await addFriendSubmit(event.target);
+  
 }
 
 function friends_closeModal () {
@@ -19,4 +19,6 @@ function friends_closeModal () {
 function friends_GoToProfile (event) {
   const id = event.target.getAttribute("data-content");
   console.log(`id = ${id}`);
+  changeSection()
+  friendsModal.modal.hide();
 }

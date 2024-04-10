@@ -99,6 +99,7 @@ async function header_ModFriendsCallBack () {
   try {
     offcanvas_Hide();
     await changeSection(`${ROUTE.FRIENDS}`, "#FriendsModal");
+    await changeSection(`${ROUTE.REQUESTS}`, "#RequestList-content");
     friendsModal.modal.show();
   } catch (error) {
     console.log(`Error - header_M: ${error}`);
