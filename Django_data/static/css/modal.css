@@ -101,6 +101,7 @@ scrollbar-width: none;
 		align-items: center;
 		justify-content: flex-start;
 		gap: 1em;
+		font-family: 'Kodchasan';
 	}
 
 	.dropdownButton {
@@ -215,6 +216,7 @@ scrollbar-width: none;
 		align-items: center;
 		justify-content: flex-start;
 		gap: 1em;
+		font-family: 'Kodchasan';
 	}
 
 	.dropdownButton {
@@ -336,6 +338,7 @@ scrollbar-width: none;
 		align-items: center;
 		justify-content: flex-start;
 		gap: 1em;
+		font-family: 'Kodchasan';
 	}
 
 	.dropdownButton {
@@ -414,6 +417,20 @@ scrollbar-width: none;
     background-color: #373d4f;
     border-color: #5DC6E8;
     box-shadow: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: transparent;
+    border-color: #5DC6E8;
+	font-size: 0.95rem;
+	font-family: kodchasan;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: #5DC6E8;
 }
 
 .btn-secondary:hover {
