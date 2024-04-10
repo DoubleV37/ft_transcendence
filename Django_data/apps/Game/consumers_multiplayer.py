@@ -138,11 +138,11 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 				await asyncio.sleep(1)
 				game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
 			self.opponent = await self.set_opponent()
-			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username}))
+			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 1}))
 			asyncio.create_task(self.run_game())
 		else:
 			self.opponent = await self.set_opponent()
-			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username}))
+			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 2}))
 
 	async def set_opponent(self):
 		opponents = await sync_to_async(list)(UserGame.objects.filter(game=self.game))
@@ -174,10 +174,24 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 				self.pong.update_score(1)
 			await self.send_game_state()
 			await asyncio.sleep(1 / 240)
+		await self.save_score()
 
 	async def update_pong(self):
 		self.game_settings = await database_sync_to_async(Pong.objects.get)(idGame=self.game)
 		self.pong.player_pos[0] = self.game_settings.paddleL
+
+	async def save_score(self):
+		game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+		user_game = await database_sync_to_async(UserGame.objects.get)(user=self.scope["user"], game=game)
+		user_game_opp = await database_sync_to_async(UserGame.objects.get)(user=self.opponent, game=game)
+		user_game.score = self.pong.point[1]
+		user_game_opp.score = self.pong.point[0]
+		if self.pong.point[0] > self.pong.point[1]:
+			user_game_opp.winner = True
+		else:
+			user_game.winner = True
+		await database_sync_to_async(user_game.save)()
+		await database_sync_to_async(user_game_opp.save)()
 
 	async def send_game_state(self):
 		await self.channel_layer.group_send(
@@ -185,6 +199,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			{
 				'type': 'game_state',
 				'pong': {
+					"message": "game_state",
 					"paddleL": self.pong.player_pos[0] / 900,
 					"paddleR": self.pong.player_pos[1] / 900,
 					"ballX": self.pong.ball_pos[0] / 1200,
@@ -194,7 +209,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 					"ballsize": self.pong.ball_size / 900,
 					"paddle1size": self.pong.player_size[0] / 900,
 					"paddle2size": self.pong.player_size[1] / 900,
-					"opponent": self.opponent.username,
 				}
 			}
 		)

@@ -44,6 +44,7 @@
 		let paddle2Height;
 		let ballRadius;
 		let opponent = "";
+		let num = 0;
 
 		ready_btn.onclick = function() {
 			gameSocket.send(JSON.stringify({ message: "start", username : "{{request.user}}" }));
@@ -54,6 +55,7 @@
 			const data = JSON.parse(e.data);
 			if (data.message === "opponent") {
 				opponent = data.opponent;
+				num = data.num;
 				return;
 			}
 			if (data.message === "User exited") {
@@ -66,14 +68,22 @@
 				gameSocket.close();
 				window.location.href = "/game/matchmaking/";
 			}
-			var score1div = document.getElementById("score1div");
-			score1div.innerHTML = "Score " + opponent + " : " + data.score1;
-			var score2div = document.getElementById("score2div");
-			score2div.innerHTML = "Score {{request.user}} : " + data.score2;
-			ballRadius = data.ballsize*height*2;
-			paddle1Height = data.paddle1size*height;
-			paddle2Height = data.paddle2size*height;
-			draw(data);
+			if (data.message === "game_state") {
+				let score1div = document.getElementById("score1div");
+				let score2div = document.getElementById("score2div");
+				if (num === 1) {
+					score1div.innerHTML = "Score " + opponent + " : " + data.score1;
+					score2div.innerHTML = "Score {{request.user}} : " + data.score2;
+				}
+				else {
+					score1div.innerHTML = "Score " + opponent + " : " + data.score2;
+					score2div.innerHTML = "Score {{request.user}} : " + data.score1;
+				}
+				ballRadius = data.ballsize*height*2;
+				paddle1Height = data.paddle1size*height;
+				paddle2Height = data.paddle2size*height;
+				draw(data);
+			}
 		};
 
 		addEventListener('resize', () => {
