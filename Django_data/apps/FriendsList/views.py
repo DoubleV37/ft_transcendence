@@ -24,6 +24,7 @@ class FriendsRequestView(TemplateView):
             )
 
         def post(self, request):
+            logger.info(f"{request.POST = }")
             result = str(request.POST['key'])
             tmp = list(result.split())
             target = User.objects.get(username=tmp[1])
@@ -56,6 +57,7 @@ class Accept_Or_Refuse_View(TemplateView):
                 {'me': me, 'all_friend_request': all_friend_request})
 
         def post(self, request):
+            logger.info(f"{request.POST = }")
             result = str(request.POST['key'])
             tmp = list(result.split())
             target = User.objects.get(username=tmp[1])

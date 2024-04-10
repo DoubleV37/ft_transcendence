@@ -2,19 +2,21 @@
   <p><bold>Request</bold></p>
   <ul class="list-group">
     {% for friend_request in all_friend_request %}
-    <li class="requests list-group-item"><!-- CLASS - Required -->
+    <li class="list-group-item" id="Request_{{ friend_request.from_user.id }}"><!-- CLASS - Required -->
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ person }}
-          <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>
+          {{ friend_request.from_user }}
+          <img class="ProfilePic modal-profilePic" src="{{ friend_request.from_user.avatar.url }}"></img>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
-            <form action="" method="post">
+            <button data-content="{{ friend_request.from_user.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+            <form data-id="{{ friend_request.from_user.id }}" action="" onsubmit="return false;" method="post">
               {% csrf_token %}
               {{ friend_request.from_user }}
-              <button type="submit" name="key" value="add {{ friend_request.from_user }}">add</button>
-              <button type="submit" name="key" value="delete {{ friend_request.from_user }}">remove</button>
+              <button type="button" name="key" value="add {{ friend_request.from_user }}" data-select="accept">Accept</button>
+              <button type="button" name="key" value="delete {{ friend_request.from_user }}" data-select="deny">Deny</button>
+              <p></p>
             </form>
           </li>
         </ul>

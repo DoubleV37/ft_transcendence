@@ -24,28 +24,31 @@
             <div class="collapse" id="FriendList"> <!-- ID - Required -->
               <div class="card card-body">
                 <div id="RequestList-content"></div>
-                <p><bold>Friends</bold></p>
-                <ul class="list-group">
-                  {% for person in myFriends %}
-                  <li class="friends list-group-item"><!-- CLASS - Required -->
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ person }}
-                        <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li>
-                          <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-                          <form action="" id="MyFriends_{{ person }}" method="post"><!--FORM - Required -->
-                            {% csrf_token %}
-                            <button type="submit" name="key" value="add {{ person }}">Delete</button><!-- Button - Required -->
-                          </form>
-                        </li>
-                      </ul>
-                    </div>
-                  </li>
-                  {% endfor %}
-                </ul>
+                <div id="FriendList-content">
+                  <p><bold>Friends</bold></p>
+                  <ul class="list-group">
+                    {% for person in myFriends %}
+                    <li class="friends list-group-item" id="Friends_{{ person.id }}"><!-- CLASS - Required -->
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{ person }}
+                          <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li>
+                            <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+                            <form action="" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                              {% csrf_token %}
+                              <button type="submit" name="key" value="delete {{ person }}">Delete</button><!-- Button - Required -->
+                              <p></p>
+                            </form>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
               </div>
             </div>
 
@@ -54,7 +57,7 @@
               <div class="card card-body">
                 <ul class="list-group">
                   {% for person in people %}
-                  <li class="others list-group-item">
+                  <li class="others list-group-item" id="Other_{{ person.id }}">
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ person }}
@@ -63,9 +66,10 @@
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li>
                           <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-                          <form action="" id="Suggestions_{{ person }}" method="post"><!--FORM - Required -->
+                          <form action="" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
                             {% csrf_token %}
-                            <button type="submit" name="key" value="delete {{ person }}">Add</button><!-- Button - Required -->
+                            <button type="submit" name="key" value="add {{ person }}">Add</button><!-- Button - Required -->
+                            <p></p>
                           </form>
                         </li>
                       </ul>
