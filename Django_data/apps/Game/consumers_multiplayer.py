@@ -175,6 +175,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			await self.send_game_state()
 			await asyncio.sleep(1 / 240)
 		await self.save_score()
+		await self.send_game_finish()
 
 	async def update_pong(self):
 		self.game_settings = await database_sync_to_async(Pong.objects.get)(idGame=self.game)
@@ -214,4 +215,23 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		)
 
 	async def game_state(self, event):
+		await self.send(text_data=json.dumps(event['pong']))
+
+	async def send_game_finish(self):
+		winner = self.username
+		if self.pong.point[0] > self.pong.point[1]:
+			winner = self.opponent.username
+		await self.channel_layer.group_send(
+			self.room_group_name,
+			{
+				'type': 'game_finish',
+				'pong':
+				{
+					"message": "Game finished",
+					"winner": winner,
+				}
+			}
+		)
+
+	async def game_finish(self, event):
 		await self.send(text_data=json.dumps(event['pong']))

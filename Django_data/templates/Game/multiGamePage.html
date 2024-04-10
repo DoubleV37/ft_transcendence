@@ -68,6 +68,16 @@
 				gameSocket.close();
 				window.location.href = "/game/matchmaking/";
 			}
+			if (data.message === "Game finished") {
+				if (data.winner === "{{request.user}}") {
+					alert("You won!");
+				}
+				else {
+					alert("You lost!");
+				}
+				gameSocket.close();
+				window.location.href = "/game/matchmaking/";
+			}
 			if (data.message === "game_state") {
 				let score1div = document.getElementById("score1div");
 				let score2div = document.getElementById("score2div");
