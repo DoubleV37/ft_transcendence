@@ -16,10 +16,10 @@
           </div>
           <div>
           <div id="DoubleButton">
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#FriendList" aria-expanded="false" aria-controls="">
+            <button class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#FriendList" aria-expanded="false" aria-controls="">
               <p><bold>Friends list</bold></p>
             </button>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#UserList" aria-expanded="false" aria-controls="">
+            <button class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#UserList" aria-expanded="false" aria-controls="">
               <p><bold>Others user</bold></p>
             </button>
           </div>
@@ -60,17 +60,19 @@
                   {% for person in people %}
                   <li class="list-group-item">
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-flip="false" aria-expanded="false">
+                        <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ person.avatar.url }}"></img>
                         {{ person }}
-                        <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>
                       </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
                         <li>
-                          <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+                        <div id="DoubleButton">
+                          <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
                           <form action="" id="Suggestions_{{ person }}" method="post"><!--FORM - Required -->
                             {% csrf_token %}
-                            <button type="submit" name="key" value="delete {{ person }}">Add</button><!-- Button - Required -->
+                            <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="delete {{ person }}">Add</button><!-- Button - Required -->
                           </form>
+                        </div>
                         </li>
                       </ul>
                     </div>

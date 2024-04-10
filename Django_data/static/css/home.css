@@ -735,7 +735,7 @@ scrollbar-width: none;
 		scrollbar-width: none;
 		position: relative;
 		min-height: 100vh;
-		min-width: fit-content;
+		min-width: 300px;
 	}
 
 	.root {
