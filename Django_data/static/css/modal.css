@@ -349,7 +349,7 @@ scrollbar-width: none;
 		flex-direction: row;
 		background-color: #373d4f;
 		border-color: #5DC6E8;
-		padding: 1em;
+		padding: 1.5em;
 		width: 100%;
 		justify-content: center;
 		/* flex-wrap: nowrap; */
@@ -423,7 +423,7 @@ scrollbar-width: none;
 }
 
 .modal-profileFriendCardboard {
-	margin-bottom: 1em;
+	margin-bottom: 2em;
 }
 
 .FriendsPage {
