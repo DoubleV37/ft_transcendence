@@ -23,6 +23,7 @@ class Games(models.Model):
 class Pong(models.Model):
 	idGame = models.OneToOneField(Games, on_delete=models.CASCADE, primary_key=True)
 	paddleL = models.IntegerField(default=450)
+	engage = models.IntegerField(default=0)
 
 	def __str__(self):
 		return str(self.idGame.idGame)

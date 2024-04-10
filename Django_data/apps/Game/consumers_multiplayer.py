@@ -94,6 +94,8 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 					self.pong.player_pos[1] += self.pong.player_speed
 				elif message == "start":
 					await self.start_game()
+				elif message == "space" and self.pong.engage > 0:
+					self.pong.engage = 0
 				elif message == "stop":
 					self.pong.running = False
 					await self.channel_layer.group_send(
@@ -115,6 +117,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			elif message == "down":
 				self.pong.player_pos[0] += self.pong.player_speed
 				self.game_settings.paddleL = self.pong.player_pos[0]
+
 			await database_sync_to_async(self.game_settings.save)()
 
 	async def start_game(self):
