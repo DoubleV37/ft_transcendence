@@ -21,22 +21,24 @@
             </button>
 
 
-            <div class="collapse" id="FriendList"> <!-- search with this -->
+            <div class="collapse" id="FriendList"> <!-- ID - Required -->
               <div class="card card-body">
+                <div id="RequestList-content"></div>
+                <p><bold>Friends</bold></p>
                 <ul class="list-group">
                   {% for person in myFriends %}
-                  <li class="list-group-item"><!-- Loop on this -->
+                  <li class="list-group-item"><!-- CLASS - Required -->
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ person }}
                         <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>
-                      </button> <!-- Don't need him-->
+                      </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li>
-                          <button data-content="{{ person.id }}">Profile</button><!-- I want him -->
-                          <form action="" id="MyFriends_{{ person }}" method="post"><!-- I want him too -->
+                          <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+                          <form action="" id="MyFriends_{{ person }}" method="post"><!--FORM - Required -->
                             {% csrf_token %}
-                            <button type="submit" name="key" value="delete {{ person }}">Delete</button>
+                            <button type="submit" name="key" value="add {{ person }}">Delete</button><!-- Button - Required -->
                           </form>
                         </li>
                       </ul>
@@ -48,7 +50,7 @@
             </div>
 
 
-            <div class="collapse" id="UserList">
+            <div class="collapse " id="UserList"><!-- ID - Required -->
               <div class="card card-body">
                 <ul class="list-group">
                   {% for person in people %}
@@ -60,12 +62,10 @@
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li>
-                          <button data-content="{{ person.id }}">Profile</button>
-                        </li>
-                        <li>
-                          <form action="" id="Suggestions_{{ person }}" method="post">
+                          <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+                          <form action="" id="Suggestions_{{ person }}" method="post"><!--FORM - Required -->
                             {% csrf_token %}
-                            <button type="submit" name="key" value="add {{ person }}">Add</button>
+                            <button type="submit" name="key" value="delete {{ person }}">Add</button><!-- Button - Required -->
                           </form>
                         </li>
                       </ul>
@@ -74,6 +74,9 @@
                   {% endfor %}
                 </ul>
               </div>
+            </div>
+
+
           </div>
         </div>
       </div>
