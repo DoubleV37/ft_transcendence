@@ -49,8 +49,9 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 
 
 	async def runGame(self):
+		loop = time.time()
 		while self.pong.running:
-			loop = time.time() + 1/240
+			loop += 1/240
 			# ia move
 			self.pong.player_pos[0] = ai_brain(self.pong, 1, 20)
 			# ball move
