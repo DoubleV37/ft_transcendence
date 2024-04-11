@@ -49,7 +49,7 @@ class PongConsumer(AsyncWebsocketConsumer):
 
 	async def runGame(self):
 		while self.pong.running:
-			jpp = time.time() + 1/240
+			loop = time.time() + 1/240
 			# ia move
 			self.pong.player_pos[0] = ai_brain(self.pong, 1, 20)
 			# ball move
@@ -70,4 +70,4 @@ class PongConsumer(AsyncWebsocketConsumer):
 			if self.pong.ball_pos[0] < 0:
 				self.pong.update_score(1)
 			await self.sendMessage()
-			await asyncio.sleep(jpp - time.time())
+			await asyncio.sleep(loop - time.time())
