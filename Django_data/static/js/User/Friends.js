@@ -36,36 +36,22 @@ async function deleteFriendSubmit (form) {
     if (response.status === 403) {
       return false;
     }
-    // Erase the friend from the list and add it to the Other User list //
     const id = form.getAttribute("data-id");
-    const element = document.getElementById(`Friends_${id}`);
-    const newElement = () => {
-      const newNode = document.createElement("li");
-      const node = document.getElementById(`Others_${id}`);
-      const name = node.querySelector("#dropdownMenuButton1").innerHTML;
-      const img = node.querySelector("img").getAttribute("src");
-      const input = form.querySelector("input");
-        
-      `<li class="others list-group-item" id="Others_${id}">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            ${name}
-            <img class="ProfilePic modal-profilePic" src="${img}"></img>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li>
-              <button data-content="${id}">Profile</button>
-              <form action="" data-id="${id}" onsubmit="return false;" method="post">
-                ${input}
-                <button type="submit" name="key" value="add ${name}">Add</button>
-                <p></p>
-              </form>
-            </li>
-          </ul>
-        </div>
-      </li>`;
-    };
 
+    // Remove Current Event //
+    document.getElementById(`Friends_${id}`)
+      .querySelector("button[data-content]")
+      .removeEventListener("click", friends_GoToProfile);
+    form.removeEventListener("submit", deleteFriendSubmit);
+
+    // Erase the friend from the list and add it to the Other User list //
+    const newListElement = friends_CreateNewUserElem(form, id);
+    document.getElementById("UserList").querySelector(".list-group").append(newListElement);
+    document.getElementById(`Friends_${id}`).remove();
+    const newForm = newListElement.querySelector("form");
+    const newButton = newListElement.querySelector("button[data-content]");
+    newForm.addEventListener("submit", friends_AddCallBack);
+    newButton.addEventListener("click", friends_GoToProfile);
     return true;
   } catch (err) {
     console.error("Delete Friend ERROR:", err);
@@ -87,14 +73,31 @@ async function ResponseFriendSubmit (button) {
     if (response.status === 403) {
       return false;
     }
-    // remove the user from the request list and add it to the friend list if accepted //
     const id = form.getAttribute("data-id");
-    const element = document.getElementById(`Request_${id}`);
-    element.remove();
-    if (button.getAttribute("data-select") === "accept") {
-      // Use id in the request //
-      // TODO Make a back request to get the right FriendList form with the good csrf.... //
-    }
+
+    // remove the eventslistener
+    document.getElementById(`Request_${id}`)
+      .querySelector("button[data-content]")
+      .removeEventListener("click", friends_GoToProfile);
+    form.querySelectorAll("button").forEach((button) => {
+      button.removeEventListener("click", ResponseFriendSubmit);
+    });
+   
+    // remove the user from the request list and add it to the friend list if accepted //
+    const type = button.getAttribute("data-select");
+    const func = type === "accept" ? deleteFriendSubmit : addFriendSubmit;
+    const list = type === "accept" ? "FriendList" : "UserList";
+    const attr = type === "accept" ? "friends" : "others";
+    const obj = type === "accept" ? { name: "Friends", type: "delete" } : { name: "Others", type: "add" };
+
+    const newListElement = friends_CreateNewReqElem(form, id, obj);
+    document.getElementById(list).querySelector(`.${attr} list-group`).append(newListElement);
+    document.getElementById(`Request_${id}`).remove();
+    const newForm = newListElement.querySelector("form");
+    const newButton = newListElement.querySelector("button[data-content]");
+
+    newForm.addEventListener("submit", func);
+    newButton.addEventListener("click", friends_GoToProfile);
     return true;
   } catch (err) {
     console.error("Delete Friend ERROR:", err);

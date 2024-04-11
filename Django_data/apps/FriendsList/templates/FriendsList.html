@@ -28,6 +28,7 @@
                   <p><bold>Friends</bold></p>
                   <ul class="list-group">
                     {% for person in myFriends %}
+
                     <li class="friends list-group-item" id="Friends_{{ person.id }}"><!-- CLASS - Required -->
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,7 +38,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li>
                             <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-                            <form action="" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                            <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
                               {% csrf_token %}
                               <button type="submit" name="key" value="delete {{ person }}">Delete</button><!-- Button - Required -->
                               <p></p>
@@ -46,6 +47,7 @@
                         </ul>
                       </div>
                     </li>
+
                     {% endfor %}
                   </ul>
                 </div>
@@ -66,7 +68,7 @@
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li>
                           <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-                          <form action="" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                          <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
                             {% csrf_token %}
                             <button type="submit" name="key" value="add {{ person }}">Add</button><!-- Button - Required -->
                             <p></p>

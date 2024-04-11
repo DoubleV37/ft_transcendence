@@ -122,7 +122,6 @@ async function header_SignOutCallBack () {
   try {
     offcanvas_Hide();
     await MakeRequest(`${ROUTE.SIGNOUT}`);
-    del_current_event(currentUrl);
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
