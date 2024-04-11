@@ -39,3 +39,15 @@ const ROUTE = {
   "JWTREFRESH":"/auth/jwt/refresh/",
   "GAME_PARAMETERS":"/game/parameters/",
 };
+
+// INIT POWERUP
+let imgPowerUpSrc = "/static/images/PowerUp.png";
+var imgPowerUp = new Image();
+
+imgPowerUp.src = imgPowerUpSrc;
+
+// INIT KEYS
+let keyStates = {
+  ArrowUp: false,
+  ArrowDown: false
+};
