@@ -38,6 +38,8 @@ const ROUTE = {
   "TWOFA_C":"/2fa/confirm/",
   "JWTREFRESH":"/auth/jwt/refresh/",
   "GAME_PARAMETERS":"/game/parameters/",
+  "GAME_SOLO":"/game/solo/",
+//   "GAME_ROOM":"/game/", //`${ROUTE.GAME_ROOM}${id...}/`
 };
 
 // INIT POWERUP

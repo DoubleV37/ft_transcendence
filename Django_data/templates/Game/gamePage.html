@@ -6,6 +6,9 @@
 	{% include "Home/header.html" %}
 	{% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
 	{% include "Profile/Profile.html" %}
+	{% include "Auth/code_validation.html" %}
+ 	{% include "Profile/enable_2fa.html" %}
+
 	<div id="content">
 		<div id="overlay">
 			<div class="mid midcolumn flowAnimation">
@@ -63,7 +66,7 @@
 		var powerupY;
 		var powerupsize;
 
-		
+
 		gameSocket.onmessage = function (e) {
 			const data = JSON.parse(e.data);
 			var score1div = document.getElementById("score1div");
@@ -77,34 +80,34 @@
 			powerupsize = data.powerupsize;
 			draw(data);
 		};
-		
+
 		// INIT BALL
 		let imgBallSrc = "/static/images/logoIcon.png";
 		var imgBall = new Image();
-		
+
 		imgBall.src = imgBallSrc;
-		
+
 		// INIT PADDLES
 		function initRotatedImage(imgSrc, isLeftPaddle) {
 			let img = new Image();
 			let tempCanvas = document.createElement('canvas');
 			let initialized = false;
 			let rotation = isLeftPaddle ? Math.PI / 2 : -Math.PI / 2; // Calcul de la rotation en fonction du paddle
-			
+
 			img.onload = function() {
 				tempCanvas.width = img.height;
-				tempCanvas.height = img.width; 
-				
+				tempCanvas.height = img.width;
+
 				let tempCtx = tempCanvas.getContext('2d');
 				tempCtx.translate(tempCanvas.width / 2, tempCanvas.height / 2);
 				tempCtx.rotate(rotation); // Rotation selon le sens du paddle
 				tempCtx.drawImage(img, -img.width / 2, -img.height / 2);
-				
+
 				initialized = true;
 			};
-			
+
 			img.src = imgSrc;
-			
+
 			return {
 				canvas: tempCanvas,
 				isInitialized: function() {
@@ -112,27 +115,27 @@
 				}
 			};
 		}
-		
+
 		let imgSrcPaddleR = "/static/images/Paddle_Grass.png";
 		let imgPaddleR = initRotatedImage(imgSrcPaddleR, false); // false pour le paddle droit
-		
+
 		let imgSrcPaddleL = "/static/images/Paddle_Grass.png";
 		let imgPaddleL = initRotatedImage(imgSrcPaddleL, true); // true pour le paddle gauche
-		
+
 		// Fonction pour envoyer les données au serveur
 		function sendMovement(direction) {
 			gameSocket.send(JSON.stringify({ message: direction, username: "{{request.user.username}}" }));
 		}
 
 		// Fonction pour mettre à jour le mouvement en fonction du temps écoulé
-		function update() {		
+		function update() {
 			if (keyStates['ArrowUp']) {
 				sendMovement("up");
 			} else if (keyStates['ArrowDown']) {
 				sendMovement("down");
 			}
 			else if (keyStates[' '])
-				sendMovement("space");	
+				sendMovement("space");
 			// Planifiez la prochaine mise à jour
 			requestAnimationFrame(update);
 		}

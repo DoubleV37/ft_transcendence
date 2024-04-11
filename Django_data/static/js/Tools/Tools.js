@@ -15,13 +15,17 @@ function  del_current_event() {
       home_DelEvents();
       break;
     case 'SIGNIN_PAGE':
-      signin_DelEvents(); 
+      signin_DelEvents();     
       break;
     case 'SIGNUP_PAGE':
       signup_DelEvents();
       break;
     case 'SETTINGS':
       settings_DelEvents();
+	  break;
+	case 'GAME_SOLO':
+	  console.log('GAME_SOLO OOUT');
+	  game_DelEvents();
       break;
     default:
       break;

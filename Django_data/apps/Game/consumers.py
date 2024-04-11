@@ -16,6 +16,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		asyncio.create_task(self.runGame())
 
 	async def disconnect(self , close_code):
+		self.pong.running = False
 		await self.channel_layer.group_discard(
 			self.roomGroupName ,
 			self.channel_layer

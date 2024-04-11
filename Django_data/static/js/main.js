@@ -61,8 +61,8 @@ function  launchSectionHandler(element) {
   try {
     switch(elementAttribut) {
       case 'HOME_PAGE':
-	home_SetEvents();
-	break ;
+		home_SetEvents();
+		break ;
       case 'SIGNIN_PAGE':
         signin_SetEvents();
         break ;
@@ -71,9 +71,13 @@ function  launchSectionHandler(element) {
         break ;
       case 'SETTINGS':
         settings_SetEvents();
+		break ;
       case 'GAME_PARAMETERS':
         parameters_SetEvents();
-	break ;
+		break ;
+	  case 'GAME_SOLO':
+		game_SetEvents();
+		break ;
       default:
 	throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
     }
