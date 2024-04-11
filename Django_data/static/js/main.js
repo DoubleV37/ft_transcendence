@@ -68,11 +68,16 @@ function launchSectionHandler (element) {
     case "SETTINGS":
       settings_SetEvents();
       break;
+    case "GAME_MODES":
+      modes_SetEvents();
+      break;
     case "GAME_PARAMETERS":
       parameters_SetEvents();
       break;
     default:
-      throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
+      throw new Error(
+        `launchSectionHandler: Attribute ${elementAttribut} non recognised`
+      );
     }
   } catch (err) {
     console.error("Error: ", err);
