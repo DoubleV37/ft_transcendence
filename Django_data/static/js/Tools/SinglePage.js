@@ -52,6 +52,7 @@ async function loadPage (url) {
     currentUrl = url;
     history.pushState({ section: url }, "", url);
   }
+  del_current_event();
   await changeSection(url, "#content");
 }
 

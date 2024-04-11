@@ -10,13 +10,13 @@ function keyDown(e) {
 }
 
 function game_SetEvents() {
-	addEventListener('resize', () => {
-		style = getComputedStyle(canvas);
-		width = parseInt(style.getPropertyValue('width'), 10);
-		height = parseInt(style.getPropertyValue('height'), 10);
-		canvas.width = width;
-		canvas.height = height;
-	});
+	// addEventListener('resize', () => {
+	// 	style = getComputedStyle(canvas);
+	// 	width = parseInt(style.getPropertyValue('width'), 10);
+	// 	height = parseInt(style.getPropertyValue('height'), 10);
+	// 	canvas.width = width;
+	// 	canvas.height = height;
+	// });
 
 	document.addEventListener('keyup', keyUp);
 
@@ -25,13 +25,15 @@ function game_SetEvents() {
 
 function game_DelEvents() {
 	console.log('game_DelEvents');
-	removeEventListener('resize', () => {
-		style = getComputedStyle(canvas);
-		width = parseInt(style.getPropertyValue('width'), 10);
-		height = parseInt(style.getPropertyValue('height'), 10);
-		canvas.width = width;
-		canvas.height = height;
-	});
+	// removeEventListener('resize', () => {
+	// 	style = getComputedStyle(canvas);
+	// 	width = parseInt(style.getPropertyValue('width'), 10);
+	// 	height = parseInt(style.getPropertyValue('height'), 10);
+	// 	canvas.width = width;
+	// 	canvas.height = height;
+	// });
+
+	gameSocket.close();
 
 	document.removeEventListener('keyup', keyUp);
 
