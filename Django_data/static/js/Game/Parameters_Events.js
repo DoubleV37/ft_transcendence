@@ -13,6 +13,12 @@ function parameters_SetEvents () {
   element = document.getElementById("SELECT_ai");
   element.addEventListener("click", parameters_SelectOpponent);
 
+  element = document.getElementById("SELECT_Local");
+  element.addEventListener("click", parameters_SelectType);
+
+  element = document.getElementById("SELECT_Remote");
+  element.addEventListener("click", parameters_SelectType);
+
   element = document.getElementById("StartButton");
   element.addEventListener("click", parameters_StartGame);
 
@@ -32,6 +38,12 @@ function parameters_DelEvents () {
 
   element = document.getElementById("SELECT_ai");
   element.removeEventListener("click", parameters_SelectOpponent);
+
+  element = document.getElementById("SELECT_Local");
+  element.removeEventListener("click", parameters_SelectType);
+
+  element = document.getElementById("SELECT_Remote");
+  element.removeEventListener("click", parameters_SelectType);
 
   element = document.getElementById("StartButton");
   element.removeEventListener("click", parameters_StartGame);

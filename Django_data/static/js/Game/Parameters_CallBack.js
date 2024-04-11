@@ -51,6 +51,23 @@ function parameters_SelectOpponent (event) {
   }
 }
 
+function parameters_SelectType (event) {
+  element = event.target;
+  if (event.target.id === "SELECT_Remote") {
+    if (GameParams.Type !== "remote") {
+      GameParams.Type = "remote";
+      event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
+      document.getElementById("SELECT_Local").setAttribute("class", "MediumButtonLayout left ButtonDark");
+    }
+  } else {
+    if (GameParams.Type !== "local") {
+      GameParams.Type = "local";
+      event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
+      document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout left ButtonDark");
+    }
+  }
+}
+
 function parameters_SetPowerUp (event) {
   if (event.target.checked === true) {
     GameParams.PowerUp = true;
@@ -70,6 +87,13 @@ function parameters_SetPage () {
       .setAttribute("class", "MediumButtonLayout left ButtonNeon");
   } else {
     document.getElementById("SELECT_Player")
+      .setAttribute("class", "MediumButtonLayout left ButtonNeon");
+  }
+  if (GameParams.Type === "remote") {
+    document.getElementById("SELECT_Remote")
+      .setAttribute("class", "MediumButtonLayout left ButtonNeon");
+  } else {
+    document.getElementById("SELECT_Local")
       .setAttribute("class", "MediumButtonLayout left ButtonNeon");
   }
   document.getElementById("Difficulty").setAttribute("value", GameParams.Difficulty);

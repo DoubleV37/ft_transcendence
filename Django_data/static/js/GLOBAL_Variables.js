@@ -25,6 +25,7 @@ let TwofaCodeModal = {
 
 let GameParams = {
   Opponent: "ai",
+  Type: "local",
   Score: 3,
   Difficulty: 5,
   PowerUp: false
