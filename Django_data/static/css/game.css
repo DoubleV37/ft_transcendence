@@ -1,4 +1,20 @@
 /* Desktops and laptops ----------- */
+
+canvas {
+	border-top: 2px solid white;
+	border-bottom: 2px solid white;
+	border-left: 2px solid white;
+	border-right: 2px solid white;
+	align-self: center;
+	aspect-ratio: 4/3;
+	width: 90%;
+	max-height: 80%;
+	background-image: url('/static/images/BG_Forest.png');
+	background-size: cover; /* Pour couvrir tout le contenu du canvas */
+	background-position: center; /* Pour centrer l'image */
+	z-index: 0;
+}
+
 @media only screen and (min-width : 60.063em) {
 
 

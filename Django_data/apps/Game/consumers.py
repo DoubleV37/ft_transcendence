@@ -1,4 +1,4 @@
-import json, asyncio
+import json, asyncio, time
 from channels.generic.websocket import AsyncWebsocketConsumer
 from .pong import Pong, ai_brain
 from asgiref.sync import sync_to_async
@@ -47,9 +47,10 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 												"time" : self.pong.time ,
 												"type" : "sendMessage"}))
 
+
 	async def runGame(self):
 		while self.pong.running:
-			#Calcul deltaT puis appel en boucle du reste
+			loop = time.time() + 1/240
 			# ia move
 			self.pong.player_pos[0] = ai_brain(self.pong, 1, 20)
 			# ball move
@@ -70,5 +71,4 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			if self.pong.ball_pos[0] < 0:
 				self.pong.update_score(1)
 			await self.sendMessage()
-			await asyncio.sleep(1/240)
-
+			await asyncio.sleep(loop - time.time())

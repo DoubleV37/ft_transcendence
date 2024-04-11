@@ -1,28 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-<style>
-	body {
-		background-color: #f2f2f2;
-		display: flex;
-		flex-direction: column;
-	}
-
-	canvas {
-		border-top: 2px solid white;
-		border-bottom: 2px solid white;
-		border-left: 2px solid white;
-		border-right: 2px solid white;
-		align-self: center;
-		aspect-ratio: 4/3;
-		width: 90%;
-		max-height: 80%;
-		background-image: url({% static 'images/BG_Forest.png' %});
-		background-size: cover; /* Pour couvrir tout le contenu du canvas */
-		background-position: center; /* Pour centrer l'image */
-		z-index: 0;
-	}
-</style>
   <body>
 	{% include "Home/head.html" %}
 	{% include "Home/header.html" %}
@@ -54,28 +32,12 @@
 						</div>
 					</div>
 				</div>
-				{% comment %} <div class="section"> {% endcomment %}
 					<canvas id="MyCanvas">
 						<p>Description of the canvas for those unable to view it.</p>
 					</canvas>
-				{% comment %} </div> {% endcomment %}
 			</div>
 		</div>
 	</div>
-    <!-- <div
-      class="chat__item__container"
-      id="id_chat_item_container"
-      style="font-size: 20px"
-    >
-      <input type="text" id="id_message_send_input" />
-      <button type="submit" id="id_message_send_button">Send Message</button>
-    </div> -->
-
-	{% comment %} <canvas id="MyCanvas">
-		<p>Description of the canvas for those unable to view it.</p>
-	</canvas>
-	<div id="score1div"></div>
-	<div id="score2div"></div> {% endcomment %}
 
     <script>
 		const gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/solo");
@@ -85,18 +47,7 @@
 		gameSocket.onclose = function (e) {
 			console.log("Something unexpected happened !");
 		};
-		// document.querySelector("#id_message_send_input").focus();
-		// document.querySelector("#id_message_send_input").onkeyup = function (e) {
-		// 	if (e.keyCode == 13) {
-		// 		document.querySelector("#id_message_send_button").click();
-		// 	}
-		// };
-		// document.querySelector("#id_message_send_button").onclick = function (e) {
-		// 	var messageInput = document.querySelector(
-		// 		"#id_message_send_input"
-		// 	).value;
-		// 	gameSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
-		// };
+
 		var canvas = document.getElementById("MyCanvas");
 		var ctx = canvas.getContext("2d");
 
@@ -112,21 +63,7 @@
 		var powerupY;
 		var powerupsize;
 
-		function drawVerticalDashedBorder() {
-			var middleX = canvas.width / 2;
-			ctx.setLineDash([7, 4]); // Dash of 5 pixels, gap of 15 pixels
-			ctx.lineWidth = 2; // Adjust the line width as needed
-			ctx.strokeStyle = 'white'; // Change the color as needed
-			ctx.beginPath();
-			ctx.moveTo(middleX, 0); // Start at the top middle of the canvas
-			ctx.lineTo(middleX, canvas.height); // End at the bottom middle of the canvas
-			ctx.stroke();
-			ctx.setLineDash([]); // Reset to solid line for other drawings
-		}
 		
-		// Call this function after setting up your canvas and before drawing other elements
-		drawVerticalDashedBorder();
-
 		gameSocket.onmessage = function (e) {
 			const data = JSON.parse(e.data);
 			var score1div = document.getElementById("score1div");
@@ -140,34 +77,20 @@
 			powerupsize = data.powerupsize;
 			draw(data);
 		};
-
-		addEventListener('resize', () => {
-			style = getComputedStyle(canvas);
-			width = parseInt(style.getPropertyValue('width'), 10);
-			height = parseInt(style.getPropertyValue('height'), 10);
-			canvas.width = width;
-			canvas.height = height;
-		});
-
+		
 		// INIT BALL
 		let imgBallSrc = "/static/images/logoIcon.png";
 		var imgBall = new Image();
 		
 		imgBall.src = imgBallSrc;
-
-		// INIT POWERUP
-		let imgPowerUpSrc = "/static/images/PowerUp.png";
-		var imgPowerUp = new Image();
 		
-		imgPowerUp.src = imgPowerUpSrc;
-
 		// INIT PADDLES
 		function initRotatedImage(imgSrc, isLeftPaddle) {
 			let img = new Image();
 			let tempCanvas = document.createElement('canvas');
 			let initialized = false;
 			let rotation = isLeftPaddle ? Math.PI / 2 : -Math.PI / 2; // Calcul de la rotation en fonction du paddle
-
+			
 			img.onload = function() {
 				tempCanvas.width = img.height;
 				tempCanvas.height = img.width; 
@@ -181,7 +104,7 @@
 			};
 			
 			img.src = imgSrc;
-
+			
 			return {
 				canvas: tempCanvas,
 				isInitialized: function() {
@@ -189,179 +112,30 @@
 				}
 			};
 		}
-
+		
 		let imgSrcPaddleR = "/static/images/Paddle_Grass.png";
 		let imgPaddleR = initRotatedImage(imgSrcPaddleR, false); // false pour le paddle droit
-
+		
 		let imgSrcPaddleL = "/static/images/Paddle_Grass.png";
 		let imgPaddleL = initRotatedImage(imgSrcPaddleL, true); // true pour le paddle gauche
-
-		function drawPaddleR(y) {
-			if (imgPaddleR.isInitialized()) {
-				// Calculer les coordonnées exactes pour le dessin du paddle droit
-				let x = canvas.width - (canvas.width * 50 / 1200) - (canvas.height * 25 / 900) + (canvas.height * 25 / 900); // Prend en compte la largeur du paddle
-				let height = paddle2Height;
-				let width = canvas.height * 25 / 900;
-				let deltaY = y * canvas.height - height / 2;
 		
-				// Ajuster les coordonnées pour éviter les imprécisions
-				x = Math.floor(x);
-				deltaY = Math.floor(deltaY);
-				width = Math.round(width);
-				height = Math.round(height);
-		
-				ctx.drawImage(imgPaddleR.canvas, x, deltaY, width, height);
-			}
-		}
-		
-		function drawPaddleL(y) {
-			if (imgPaddleL.isInitialized()) {
-				// Calculer les coordonnées exactes pour le dessin du paddle gauche
-				let x = (canvas.width * 50 / 1200) - (canvas.height * 25 / 900);
-				let height = paddle1Height;
-				let width = canvas.height * 25 / 900;
-				let deltaY = y * canvas.height - height / 2;
-		
-				// Ajuster les coordonnées pour éviter les imprécisions
-				x = Math.floor(x);
-				deltaY = Math.floor(deltaY);
-				width = Math.round(width);
-				height = Math.round(height);
-		
-				ctx.drawImage(imgPaddleL.canvas, x, deltaY, width, height);
-			}
-		}
-
-		function drawBallXY(x, y, imgBall) {
-			var ballX = x * canvas.width;
-			var ballY = y * canvas.height;
-		
-			// Assurez-vous que l'image est chargée avant de la dessiner
-			if (imgBall.complete) {
-				ctx.save();
-				ctx.beginPath();
-				ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-				ctx.clip();
-				ctx.drawImage(imgBall, ballX - ballRadius, ballY - ballRadius, ballRadius * 2, ballRadius * 2);
-				ctx.restore();
-			}
-		}
-		
-		// Utilisez requestAnimationFrame pour le rendu
-		function renderFunction() {
-			// Mettez à jour les coordonnées x et y selon vos besoins
-			drawBallXY(x, y, imgBall);
-			requestAnimationFrame(renderFunction);
-		}
-		
-		// Démarrez le rendu
-		requestAnimationFrame(renderFunction);
-
-		function drawPowerup(y, imgPowerUp) {
-			// 600 - taille du powerup / 2
-			var powerupX = canvas.width * (600 - powerupsize * 900 / 2) / 1200;
-			var powerupY = (y - powerupsize / 2) * canvas.height;
-		
-			// Assurez-vous que l'image est chargée avant de la dessiner
-			if (imgPowerUp.complete) {
-				ctx.save();
-				ctx.beginPath();
-				ctx.rect(powerupX, powerupY, canvas.height * powerupsize, canvas.height * powerupsize);
-				ctx.clip();
-				ctx.drawImage(imgPowerUp, powerupX, powerupY, (canvas.height - 50) * powerupsize, (canvas.height - 50) * powerupsize);
-				ctx.restore();
-			}
-		}
-
-		function draw(data) {
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			drawVerticalDashedBorder();
-			drawPaddleR(data.paddleR);
-			drawPaddleL(data.paddleL);
-			drawBallXY(data.ballX, data.ballY, imgBall);
-			drawPowerup(data.powerupY, imgPowerUp);
-			if (data.ballX < 0.01) {
-				drawImpactAnimation(0, data.ballY * canvas.height);
-			} else if (data.ballX > 0.99) {
-				drawImpactAnimation(canvas.width, data.ballY * canvas.height);
-			}
-		}
-
-		function drawImpactAnimation(x, y) {
-			var radius = 100; // initial radius of the circle
-			var alpha = 1.0; // initial opacity
-		
-			// Define animation loop
-			function animate() {
-		
-				// Draw circle
-				ctx.beginPath();
-				ctx.arc(x, y, radius, 0, Math.PI * 2);
-				ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
-				ctx.fill();
-		
-				// Update parameters
-				alpha -= 0.02; // decrease opacity
-				radius += 10; // increase radius for effect
-		
-				// Stop animation when opacity is too low
-				if (alpha > 0) {
-					requestAnimationFrame(animate);
-				}
-			}
-		
-			animate(); // Start animation
-		}
-		
-
-
-		// Exemple de vérification de la condition et déclenchement de l'animation
-
-		// Keyboard input handling
-		let keyStates = {
-			ArrowUp: false,
-			ArrowDown: false
-		};
-
-		let lastUpdate = performance.now();
-
 		// Fonction pour envoyer les données au serveur
 		function sendMovement(direction) {
 			gameSocket.send(JSON.stringify({ message: direction, username: "{{request.user.username}}" }));
 		}
 
 		// Fonction pour mettre à jour le mouvement en fonction du temps écoulé
-		function update() {
-			const now = performance.now();
-			const deltaTime = now - lastUpdate;
-			
+		function update() {		
 			if (keyStates['ArrowUp']) {
 				sendMovement("up");
 			} else if (keyStates['ArrowDown']) {
 				sendMovement("down");
 			}
 			else if (keyStates[' '])
-				sendMovement("space");
-			
-			lastUpdate = now;
-			
+				sendMovement("space");	
 			// Planifiez la prochaine mise à jour
 			requestAnimationFrame(update);
 		}
-
-		// Clear key states on keyup
-		document.addEventListener('keyup', function(e) {
-			keyStates[e.key] = false;
-		});
-
-		// Set key states on keydown
-		document.addEventListener('keydown', function(e) {
-			if (e.key !== 'F5' && !(e.key === 'F5' && e.ctrlKey) && e.key !== 'F12') {
-				e.preventDefault();
-			}
-			keyStates[e.key] = true;
-		});
-
 		// Démarrer la boucle de jeu
 		update();
     </script>
