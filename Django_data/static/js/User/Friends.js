@@ -8,11 +8,13 @@ async function addFriendSubmit (form) {
       method: "POST",
       body: formData
     });
-    // TODO see with jimmy if it's possible to have a list of pending request
     if (response.status === 403) {
       return false;
     }
-
+    const data = await response.json();
+    const elem = form.querySelector("p");
+    elem.innerHTML = `<bold>${data.logs}</bold>`;
+    button.disabled = true;
     return true;
   } catch (err) {
     console.error("Add Friend ERROR:", err);
@@ -37,8 +39,33 @@ async function deleteFriendSubmit (form) {
     // Erase the friend from the list and add it to the Other User list //
     const id = form.getAttribute("data-id");
     const element = document.getElementById(`Friends_${id}`);
-    element.remove();
-    // TODO Using id, make a back request to get the other user form with good csrf token to make the move //
+    const newElement = () => {
+      const newNode = document.createElement("li");
+      const node = document.getElementById(`Others_${id}`);
+      const name = node.querySelector("#dropdownMenuButton1").innerHTML;
+      const img = node.querySelector("img").getAttribute("src");
+      const input = form.querySelector("input");
+        
+      `<li class="others list-group-item" id="Others_${id}">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            ${name}
+            <img class="ProfilePic modal-profilePic" src="${img}"></img>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+              <button data-content="${id}">Profile</button>
+              <form action="" data-id="${id}" onsubmit="return false;" method="post">
+                ${input}
+                <button type="submit" name="key" value="add ${name}">Add</button>
+                <p></p>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </li>`;
+    };
+
     return true;
   } catch (err) {
     console.error("Delete Friend ERROR:", err);
