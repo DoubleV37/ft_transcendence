@@ -2,9 +2,6 @@ function header_SetEvents () {
   let element = document.getElementById("HEADER_Logo");
   element.addEventListener("click", header_LogoCallback);
 
-  element = document.getElementById("div_logo");
-  element.addEventListener("click", header_LogoCallback);
-
   element = document.getElementById("HEADER_IsAuth");
   const IsAuthenticated = element.getAttribute("data-auth");
 
@@ -35,9 +32,6 @@ function header_DelEvents () {
   let element = document.getElementById("HEADER_Logo");
   element.removeEventListener("click", header_LogoCallback);
 
-  element = document.getElementById("div_logo");
-  element.removeEventListener("click", header_LogoCallback);
-
   element = document.getElementById("HEADER_IsAuth");
   const IsAuthenticated = element.getAttribute("data-auth");
 
@@ -64,9 +58,9 @@ function header_DelEvents () {
   }
 }
 
-function header_LogoCallback () {
+async function header_LogoCallback () {
   try {
-    loadPage(`${ROUTE.HOME}`);
+    await loadPage(`${ROUTE.HOME}`);
     offcanvas_Hide();
   } catch (error) {
     console.log(`Error - header_L: ${error}`);

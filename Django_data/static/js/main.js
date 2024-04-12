@@ -19,10 +19,10 @@ async function launchWebsite () {
   modal_2FaInit();
   modal_AvatarInit();
 
-  main_SetFirstsEvents();
 
   observer = new MutationObserver(mutationCallBack);
   observer.observe(targetNode, config);
+  main_SetFirstsEvents();
 
   document.removeEventListener("DOMContentLoaded", launchWebsite);
 }
@@ -30,6 +30,7 @@ async function launchWebsite () {
 function main_SetFirstsEvents () {
   const element = document.getElementById("titleContent");
 
+  console.log("aled ??");
   if (!element) {
     console.log("Fuck it...");
     return;
@@ -46,12 +47,14 @@ function mutationCallBack (mutationsList) {
       if (!element) {
         continue;
       }
+	  console.log("Come on please, don't detect me 2 child !");
       launchSectionHandler(element);
     }
   }
 }
 
 function launchSectionHandler (element) {
+	console.log("euh ??");
   const elementAttribut = element.getAttribute("data-content");
 
   try {
@@ -75,8 +78,9 @@ function launchSectionHandler (element) {
       parameters_SetEvents();
       break;
 	case 'GAME_SOLO':
+		observer.disconnect();
 	  game_SetEvents();
-		break ;
+	  break ;
     default:
       throw new Error(
         `launchSectionHandler: Attribute ${elementAttribut} non recognised`

@@ -34,6 +34,12 @@ window.addEventListener("popstate", async function (event) {
     return;
   }
   del_current_event();
+  if (document.getElementById("titleContent").getAttribute("data-content") === "GAME_SOLO") {
+	const targetNode = document.querySelector('#content');
+	const config = { childList: true, subtree: true };
+
+	observer.observe(targetNode, config);
+	}
   header_DelEvents();
   await del_modal();
   if (event.state == null) {
@@ -52,7 +58,13 @@ async function loadPage (url) {
     currentUrl = url;
     history.pushState({ section: url }, "", url);
   }
-  del_current_event();
+  if (document.getElementById("titleContent").getAttribute("data-content") === "GAME_SOLO") {
+	const targetNode = document.querySelector('#content');
+	const config = { childList: true, subtree: true };
+
+	observer.observe(targetNode, config);
+	}
+	del_current_event();
   await changeSection(url, "#content");
 }
 

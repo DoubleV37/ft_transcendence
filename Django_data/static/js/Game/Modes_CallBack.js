@@ -2,9 +2,9 @@ function modes_randomMatchmaking() {
   console.log("randomMatchmaking: do nothing for now");
 }
 
-function modes_playerVSia() {
+async function modes_playerVSia() {
 	try {
-		loadPage(`${ROUTE.GAME_SOLO}`);
+		await loadPage(`${ROUTE.GAME_SOLO}`);
 	} catch (error) {
 		console.log(`Error - playerVSia: ${error}`);
 	}
@@ -15,7 +15,6 @@ function modes_ChooseGame() {
 }
 
 async function modes_CreateGame() {
-  del_current_event();
   await loadPage(`${ROUTE.GAME_PARAMETERS}`);
 }
 

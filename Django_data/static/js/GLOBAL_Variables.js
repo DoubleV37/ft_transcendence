@@ -52,7 +52,7 @@ const ROUTE = {
 
 // INIT POWERUP
 let imgPowerUpSrc = "/static/images/PowerUp.png";
-var imgPowerUp = new Image();
+let imgPowerUp = new Image();
 
 imgPowerUp.src = imgPowerUpSrc;
 
@@ -61,3 +61,20 @@ let keyStates = {
   ArrowUp: false,
   ArrowDown: false
 };
+
+// INIT CANVAS
+let gameCanvas = {
+  canvas: null,
+  ctx: null,
+  style: null,
+  width: 0,
+  height: 0,
+  paddle1Height: 0,
+  paddle2Height: 0,
+  powerupY: 0,
+  powerupX: 0,
+  powerupsize: 0,
+  ballRadius: 0
+};
+
+let gameSocket = null;
