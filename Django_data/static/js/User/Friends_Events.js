@@ -1,9 +1,11 @@
-function friends_SetEvents () {
+function friends_SetEvents() {
   friendsModal.active = true;
   const modal = document.getElementById("FriendsModal");
 
   // ----------FriendList -----------//
-  let itemList = modal.querySelector("#FriendList-content").querySelectorAll(".list-group-item");
+  let itemList = modal
+    .querySelector("#FriendList-content")
+    .querySelectorAll(".list-group-item");
 
   itemList.forEach((parentNode) => {
     const profileButton = parentNode.querySelector("[data-content]");
@@ -14,7 +16,9 @@ function friends_SetEvents () {
   });
 
   // ----------User suggestion -----------//
-  itemList = modal.querySelector("#UserList").querySelectorAll(".list-group-item");
+  itemList = modal
+    .querySelector("#UserList")
+    .querySelectorAll(".list-group-item");
 
   itemList.forEach((parentNode) => {
     const profileButton = parentNode.querySelector("[data-content]");
@@ -25,8 +29,19 @@ function friends_SetEvents () {
   });
 
   // ----------Request receive -----------//
-  itemList = modal.querySelector("#RequestList-content").querySelectorAll(".list-group-item");
+  if (
+    modal
+      .querySelector("#RequestList-content")
+      .querySelector(".list-group")
+      .innerHTML.trim() === ""
+  ) {
+    modal.querySelector("#RequestList-content").querySelector("p").innerHTML =
+      "";
+  }
 
+  itemList = modal
+    .querySelector("#RequestList-content")
+    .querySelectorAll(".list-group-item");
   itemList.forEach((parentNode) => {
     const profileButton = parentNode.querySelector("[data-content]");
     const buttonRequest = parentNode.querySelectorAll("[data-select]");
@@ -37,16 +52,23 @@ function friends_SetEvents () {
     });
   });
 
-  modal.querySelector("#ModalBackArrow")
+  modal
+    .querySelector("#ModalBackArrow")
     .addEventListener("click", friends_closeModal);
+
+  modal.querySelectorAll(".btn.btn-primary").forEach((button) => {
+    button.addEventListener("click", friends_CollapseCallback);
+  });
 }
 
-function friends_DelEvents () {
+function friends_DelEvents() {
   friendsModal.active = true;
   const modal = document.getElementById("FriendsModal");
 
   // ----------FriendList -----------//
-  let itemList = modal.querySelector("#FriendList-content").querySelectorAll(".list-group-item");
+  let itemList = modal
+    .querySelector("#FriendList-content")
+    .querySelectorAll(".list-group-item");
 
   itemList.forEach((parentNode) => {
     const profileButton = parentNode.querySelector("[data-content]");
@@ -57,7 +79,9 @@ function friends_DelEvents () {
   });
 
   // ----------User suggestion -----------//
-  itemList = modal.querySelector("#UserList").querySelectorAll(".list-group-item");
+  itemList = modal
+    .querySelector("#UserList")
+    .querySelectorAll(".list-group-item");
 
   itemList.forEach((parentNode) => {
     const profileButton = parentNode.querySelector("[data-content]");
@@ -68,7 +92,9 @@ function friends_DelEvents () {
   });
 
   // ----------Request receive -----------//
-  itemList = modal.querySelector("#RequestList-content").querySelectorAll(".list-group-item");
+  itemList = modal
+    .querySelector("#RequestList-content")
+    .querySelectorAll(".list-group-item");
 
   itemList.forEach((parentNode) => {
     const profileButton = parentNode.querySelector("[data-content]");
@@ -80,6 +106,11 @@ function friends_DelEvents () {
     });
   });
 
-  modal.querySelector("#ModalBackArrow")
+  modal
+    .querySelector("#ModalBackArrow")
     .removeEventListener("click", friends_closeModal);
+
+  modal.querySelectorAll(".btn.btn-primary").forEach((button) => {
+    button.removeEventListener("click", friends_CollapseCallback);
+  });
 }

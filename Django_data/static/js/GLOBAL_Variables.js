@@ -29,6 +29,16 @@ let friendsModal = {
   active: false,
 };
 
+//let friendsCollapse = {
+//  collapse: null,
+//  active: false,
+//};
+//
+//let usersCollapse = {
+//  collapse: null,
+//  active: false,
+//};
+
 const ROUTE = {
   HOME: "/",
   HEADER: "/header",

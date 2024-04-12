@@ -1,6 +1,5 @@
 async function friends_DeleteCallBack (event) {
   event.preventDefault();
-  console.log(`target = ${event.target}`);
   const response = await deleteFriendSubmit(event.target);
 
   if (response === false) {
@@ -14,7 +13,6 @@ async function friends_DeleteCallBack (event) {
 
 async function friends_AddCallBack (event) {
   event.preventDefault();
-  console.log(`target = ${event.target}`);
   const response = await addFriendSubmit(event.target);
 
   if (response === false) {
@@ -28,7 +26,6 @@ async function friends_AddCallBack (event) {
 
 async function friends_ResponseCallBack (event) {
   event.preventDefault();
-  console.log(`target = ${event.target}`);
   const response = await ResponseFriendSubmit(event.target);
 
   if (response === false) {
@@ -50,4 +47,15 @@ async function friends_GoToProfile (event) {
   await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
   friendsModal.modal.hide();
   profileModal.modal.show();
+}
+
+function friends_CollapseCallback (event) {
+  const target =
+    event.target.id === "CollapseFriendList"
+      ? document.getElementById("CollapseUserList")
+      : document.getElementById("CollapseFriendList");
+
+  if (target.getAttribute("aria-expanded") === "true") {
+    target.click();
+  }
 }

@@ -1,4 +1,4 @@
-function friends_CreateNewUserElem(form, id) {
+function friends_CreateNewUserElem (form, id) {
   const newNode = () => {
     const node = document.createElement("li");
     const attr = {
@@ -16,8 +16,7 @@ function friends_CreateNewUserElem(form, id) {
   const name = form.getAttribute("data-name");
   const img = node.querySelector("img").getAttribute("src");
   const newNodeElement = newNode();
-  newNodeElement.innerHTML =
-  `<div class="dropdown">
+  newNodeElement.innerHTML = `<div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         ${name}
         <img class="ProfilePic modal-profilePic" src="${img}"></img>
@@ -33,11 +32,13 @@ function friends_CreateNewUserElem(form, id) {
         </li>
       </ul>
     </div>`;
-  newNodeElement.querySelector("input").replaceWith(form.querySelector("input"));
+  newNodeElement
+    .querySelector("input")
+    .replaceWith(form.querySelector("input"));
   return newNodeElement;
 }
 
-function friends_CreateNewReqElem(form, id, obj) {
+function friends_CreateNewReqElem (form, id, obj) {
   const newNode = () => {
     const node = document.createElement("li");
     const attr = {
@@ -55,8 +56,7 @@ function friends_CreateNewReqElem(form, id, obj) {
   const name = form.getAttribute("data-name");
   const img = node.querySelector("img").getAttribute("src");
   const newNodeElement = newNode();
-  newNodeElement.innerHTML =
-  `<div class="dropdown">
+  newNodeElement.innerHTML = `<div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         ${name}
         <img class="ProfilePic modal-profilePic" src="${img}"></img>
@@ -72,6 +72,8 @@ function friends_CreateNewReqElem(form, id, obj) {
         </li>
       </ul>
     </div>`;
-  newNodeElement.querySelector("input").replaceWith(form.querySelector("input"));
+  newNodeElement
+    .querySelector("input")
+    .replaceWith(form.querySelector("input"));
   return newNodeElement;
 }

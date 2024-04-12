@@ -1,4 +1,4 @@
-async function addFriendSubmit (form) {
+async function addFriendSubmit(form) {
   const formData = new FormData(form);
   const button = form.querySelector("button");
   formData.append(
@@ -9,7 +9,7 @@ async function addFriendSubmit (form) {
   try {
     const response = await MakeRequest(`${ROUTE.FRIENDS}`, {
       method: "POST",
-      body: formData
+      body: formData,
     });
     if (response.status === 403) {
       return false;
@@ -25,7 +25,7 @@ async function addFriendSubmit (form) {
   }
 }
 
-async function deleteFriendSubmit (form) {
+async function deleteFriendSubmit(form) {
   const formData = new FormData(form);
   const button = form.querySelector("button");
   formData.append(
@@ -36,7 +36,7 @@ async function deleteFriendSubmit (form) {
   try {
     const response = await MakeRequest(`${ROUTE.FRIENDS}`, {
       method: "POST",
-      body: formData
+      body: formData,
     });
 
     if (response.status === 403) {
@@ -69,7 +69,7 @@ async function deleteFriendSubmit (form) {
   }
 }
 
-async function ResponseFriendSubmit (button) {
+async function ResponseFriendSubmit(button) {
   const form = button.parentNode;
   const formData = new FormData(form);
   formData.append(
@@ -80,7 +80,7 @@ async function ResponseFriendSubmit (button) {
   try {
     const response = await MakeRequest(`${ROUTE.REQUESTS}`, {
       method: "POST",
-      body: formData
+      body: formData,
     });
 
     if (response.status === 403) {
@@ -99,7 +99,8 @@ async function ResponseFriendSubmit (button) {
 
     // remove the user from the request list and add it to the friend list if accepted //
     const type = button.getAttribute("data-select");
-    const func = type === "accept" ? friends_DeleteCallBack  : friends_AddCallBack;
+    const func =
+      type === "accept" ? friends_DeleteCallBack : friends_AddCallBack;
     const list = type === "accept" ? "FriendList-content" : "UserList";
     const obj =
       type === "accept"
@@ -117,6 +118,16 @@ async function ResponseFriendSubmit (button) {
 
     newForm.addEventListener("submit", func);
     newButton.addEventListener("click", friends_GoToProfile);
+    if (
+      document
+        .getElementById("RequestList-content")
+        .querySelector(".list-group")
+        .innerHTML.trim() === ""
+    ) {
+      document
+        .getElementById("RequestList-content")
+        .querySelector("p").innerHTML = "";
+    }
     return true;
   } catch (err) {
     console.error("Delete Friend ERROR:", err);
