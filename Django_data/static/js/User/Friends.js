@@ -1,7 +1,10 @@
 async function addFriendSubmit (form) {
   const formData = new FormData(form);
   const button = form.querySelector("button");
-  formData.append(`${button.getAttribute("name")}`, `${button.getAttribute("value")}`);
+  formData.append(
+    `${button.getAttribute("name")}`,
+    `${button.getAttribute("value")}`
+  );
 
   try {
     const response = await MakeRequest(`${ROUTE.FRIENDS}`, {
@@ -25,7 +28,10 @@ async function addFriendSubmit (form) {
 async function deleteFriendSubmit (form) {
   const formData = new FormData(form);
   const button = form.querySelector("button");
-  formData.append(`${button.getAttribute("name")}`, `${button.getAttribute("value")}`);
+  formData.append(
+    `${button.getAttribute("name")}`,
+    `${button.getAttribute("value")}`
+  );
 
   try {
     const response = await MakeRequest(`${ROUTE.FRIENDS}`, {
@@ -39,14 +45,18 @@ async function deleteFriendSubmit (form) {
     const id = form.getAttribute("data-id");
 
     // Remove Current Event //
-    document.getElementById(`Friends_${id}`)
+    document
+      .getElementById(`Friends_${id}`)
       .querySelector("button[data-content]")
       .removeEventListener("click", friends_GoToProfile);
     form.removeEventListener("submit", deleteFriendSubmit);
 
     // Erase the friend from the list and add it to the Other User list //
     const newListElement = friends_CreateNewUserElem(form, id);
-    document.getElementById("UserList").querySelector(".list-group").append(newListElement);
+    document
+      .getElementById("UserList")
+      .querySelector(".list-group")
+      .append(newListElement);
     document.getElementById(`Friends_${id}`).remove();
     const newForm = newListElement.querySelector("form");
     const newButton = newListElement.querySelector("button[data-content]");
@@ -62,7 +72,10 @@ async function deleteFriendSubmit (form) {
 async function ResponseFriendSubmit (button) {
   const form = button.parentNode;
   const formData = new FormData(form);
-  formData.append(`${button.getAttribute("name")}`, `${button.getAttribute("value")}`);
+  formData.append(
+    `${button.getAttribute("name")}`,
+    `${button.getAttribute("value")}`
+  );
 
   try {
     const response = await MakeRequest(`${ROUTE.REQUESTS}`, {
@@ -76,22 +89,28 @@ async function ResponseFriendSubmit (button) {
     const id = form.getAttribute("data-id");
 
     // remove the eventslistener
-    document.getElementById(`Request_${id}`)
+    document
+      .getElementById(`Request_${id}`)
       .querySelector("button[data-content]")
       .removeEventListener("click", friends_GoToProfile);
     form.querySelectorAll("button").forEach((button) => {
       button.removeEventListener("click", ResponseFriendSubmit);
     });
-   
+
     // remove the user from the request list and add it to the friend list if accepted //
     const type = button.getAttribute("data-select");
-    const func = type === "accept" ? deleteFriendSubmit : addFriendSubmit;
-    const list = type === "accept" ? "FriendList" : "UserList";
-    const attr = type === "accept" ? "friends" : "others";
-    const obj = type === "accept" ? { name: "Friends", type: "delete" } : { name: "Others", type: "add" };
+    const func = type === "accept" ? friends_DeleteCallBack  : friends_AddCallBack;
+    const list = type === "accept" ? "FriendList-content" : "UserList";
+    const obj =
+      type === "accept"
+        ? { name: "Friends", type: "Delete" }
+        : { name: "Others", type: "Add" };
 
     const newListElement = friends_CreateNewReqElem(form, id, obj);
-    document.getElementById(list).querySelector(`.${attr} list-group`).append(newListElement);
+    document
+      .getElementById(list)
+      .querySelector(".list-group")
+      .append(newListElement);
     document.getElementById(`Request_${id}`).remove();
     const newForm = newListElement.querySelector("form");
     const newButton = newListElement.querySelector("button[data-content]");
