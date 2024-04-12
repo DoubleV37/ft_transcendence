@@ -1,12 +1,14 @@
-import json, asyncio
+import json, asyncio, time
 from channels.generic.websocket import AsyncWebsocketConsumer
 from .pong import Pong, ai_brain
+from asgiref.sync import sync_to_async
 
-class PongConsumer(AsyncWebsocketConsumer):
+class SoloPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
 		self.roomGroupName = "pong_game"
+		self.room_group_name = f'game_{self.roomGroupName}'
 		await self.channel_layer.group_add(
-			self.roomGroupName ,
+			self.room_group_name ,
 			self.channel_name
 		)
 		await self.accept()
@@ -15,9 +17,10 @@ class PongConsumer(AsyncWebsocketConsumer):
 		asyncio.create_task(self.runGame())
 
 	async def disconnect(self , close_code):
+		self.pong.running = False
 		await self.channel_layer.group_discard(
-			self.roomGroupName ,
-			self.channel_layer
+			self.room_group_name ,
+			self.channel_name
 		)
 
 	async def receive(self, text_data):
@@ -32,7 +35,8 @@ class PongConsumer(AsyncWebsocketConsumer):
 			self.pong.engage = 0
 
 	async def sendMessage(self):
-		await self.send(text_data = json.dumps({"paddleL" : self.pong.player_pos[0]/900 ,
+		try :
+			await self.send(text_data = json.dumps({"paddleL" : self.pong.player_pos[0]/900 ,
 												"paddleR" : self.pong.player_pos[1]/900 ,
 												"ballX" : self.pong.ball_pos[0]/1200 ,
 												"ballY" : self.pong.ball_pos[1]/900 ,
@@ -45,10 +49,14 @@ class PongConsumer(AsyncWebsocketConsumer):
 												"powerupsize" : self.pong.powerup_size/900 ,
 												"time" : self.pong.time ,
 												"type" : "sendMessage"}))
+		except Exception as e:
+			print(e)
+
 
 	async def runGame(self):
+		loop = time.time()
 		while self.pong.running:
-			#Calcul deltaT puis appel en boucle du reste
+			loop += 1/240
 			# ia move
 			self.pong.player_pos[0] = ai_brain(self.pong, 1, 20)
 			# ball move
@@ -69,4 +77,4 @@ class PongConsumer(AsyncWebsocketConsumer):
 			if self.pong.ball_pos[0] < 0:
 				self.pong.update_score(1)
 			await self.sendMessage()
-			await asyncio.sleep(1/240)
+			await asyncio.sleep(loop - time.time())
