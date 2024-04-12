@@ -7,18 +7,22 @@
         <img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
       </div>
       <div class="modal-body">
-        <div class="ProfilePage modal-profile">
-          <div>
-            <p>I'm {{ from_user.username }}</p>
-            <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}"></img>   
+        <div class="FriendsPage modal-profile">
+          <div class="ProfileCardboard modal-profileCardboard modal-profileFriendCardboard">
+            <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}" alt="Very basic user"></img>
+            <div id="UserStatus">
+            <h1 id="username">{{ from_user.username }}</h1>
+            </div>
           </div>
           <div>
-            <button id="CollapseFriendList" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#FriendList" aria-expanded="false" aria-controls="">
+          <div id="DoubleButton">
+            <button id="CollapseFriendList" class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#FriendList" aria-expanded="false" aria-controls="">
               <p><bold>Friends list</bold></p>
             </button>
-            <button id="CollapseUserList" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#UserList" aria-expanded="false" aria-controls="">
+            <button id="CollapseUserList" class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#UserList" aria-expanded="false" aria-controls="">
               <p><bold>Others user</bold></p>
             </button>
+          </div>
 
 
             <div class="collapse" id="FriendList"> <!-- ID - Required -->
@@ -28,7 +32,6 @@
                   <p><bold>Friends</bold></p>
                   <ul class="list-group">
                     {% for person in myFriends %}
-
                     <li class="friends list-group-item" id="Friends_{{ person.id }}"><!-- CLASS - Required -->
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,17 +40,18 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li>
-                            <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-                            <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
-                              {% csrf_token %}
-                              <button type="submit" name="key" value="delete {{ person }}">Delete</button><!-- Button - Required -->
-                              <p></p>
-                            </form>
+                            <div id="DoubleButton">
+                              <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+                              <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                                {% csrf_token %}
+                                <button type="submit" name="key" value="delete {{ person }}">Delete</button><!-- Button - Required -->
+                                <p></p>
+                              </form>
+                            </div>
                           </li>
                         </ul>
                       </div>
                     </li>
-
                     {% endfor %}
                   </ul>
                 </div>
@@ -61,18 +65,20 @@
                   {% for person in people %}
                   <li class="others list-group-item" id="Others_{{ person.id }}">
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-flip="false" aria-expanded="false">
+                        <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ person.avatar.url }}"></img>
                         {{ person }}
-                        <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>
                       </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
                         <li>
-                          <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-                          <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
-                            {% csrf_token %}
-                            <button type="submit" name="key" value="add {{ person }}">Add</button><!-- Button - Required -->
-                            <p></p>
-                          </form>
+                          <div id="DoubleButton">
+                            <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+                            <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                              {% csrf_token %}
+                              <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="add {{ person }}">Add</button><!-- Button - Required -->
+                              <p></p>
+                            </form>
+                          </div>
                         </li>
                       </ul>
                     </div>
