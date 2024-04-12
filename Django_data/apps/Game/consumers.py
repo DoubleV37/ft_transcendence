@@ -6,8 +6,9 @@ from asgiref.sync import sync_to_async
 class SoloPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
 		self.roomGroupName = "pong_game"
+		self.room_group_name = f'game_{self.roomGroupName}'
 		await self.channel_layer.group_add(
-			self.roomGroupName ,
+			self.room_group_name ,
 			self.channel_name
 		)
 		await self.accept()
@@ -18,8 +19,8 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 	async def disconnect(self , close_code):
 		self.pong.running = False
 		await self.channel_layer.group_discard(
-			self.roomGroupName ,
-			self.channel_layer
+			self.room_group_name ,
+			self.channel_name
 		)
 
 	async def receive(self, text_data):
@@ -34,7 +35,8 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			self.pong.engage = 0
 
 	async def sendMessage(self):
-		await self.send(text_data = json.dumps({"paddleL" : self.pong.player_pos[0]/900 ,
+		try :
+			await self.send(text_data = json.dumps({"paddleL" : self.pong.player_pos[0]/900 ,
 												"paddleR" : self.pong.player_pos[1]/900 ,
 												"ballX" : self.pong.ball_pos[0]/1200 ,
 												"ballY" : self.pong.ball_pos[1]/900 ,
@@ -47,6 +49,8 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 												"powerupsize" : self.pong.powerup_size/900 ,
 												"time" : self.pong.time ,
 												"type" : "sendMessage"}))
+		except Exception as e:
+			print(e)
 
 
 	async def runGame(self):

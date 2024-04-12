@@ -3,7 +3,11 @@ function modes_randomMatchmaking() {
 }
 
 function modes_playerVSia() {
-  console.log("playerVSia: do nothing for now");
+	try {
+		loadPage(`${ROUTE.GAME_SOLO}`);
+	} catch (error) {
+		console.log(`Error - playerVSia: ${error}`);
+	}
 }
 
 function modes_ChooseGame() {
