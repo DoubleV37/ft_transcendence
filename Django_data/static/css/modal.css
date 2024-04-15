@@ -7,6 +7,10 @@ scrollbar-width: none;
 -ms-overflow-style: none;
 }
 
+.list-group:empty {
+  display: none;
+}
+
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 60.063em) {
     /* Styles */
@@ -367,6 +371,24 @@ scrollbar-width: none;
 }
 
 .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: transparent;
+    background-clip: border-box;
+    border: 1px solid #5DC6E8;
+    border-radius: 0.25rem;
+}
+
+.test-aled {
+    flex: 0 0 auto;
+    /* padding: 1rem 0rem; */
+    margin-top: 2em;
+}
+
+.testa {
     position: relative;
     display: flex;
     flex-direction: column;

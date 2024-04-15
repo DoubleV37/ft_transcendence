@@ -16,44 +16,72 @@
           </div>
           <div>
           <div id="DoubleButton">
-            <button id="CollapseFriendList" class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#FriendList" aria-expanded="false" aria-controls="">
+            <button id="CollapseFriendList" class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#FriendList" aria-expanded="true" aria-controls="FriendList">
               <p><bold>Friends list</bold></p>
             </button>
-            <button id="CollapseUserList" class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#UserList" aria-expanded="false" aria-controls="">
+            <button id="CollapseUserList" class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#UserList" aria-expanded="false" aria-controls="UserList">
               <p><bold>Others user</bold></p>
             </button>
           </div>
 
 
-            <div class="collapse" id="FriendList"> <!-- ID - Required -->
-              <div class="card card-body">
-                <div id="RequestList-content"></div>
-                <div id="FriendList-content">
-                  <p><bold>Friends</bold></p>
-                  <ul class="list-group">
-                    {% for person in myFriends %}
-                    <li class="friends list-group-item" id="Friends_{{ person.id }}"><!-- CLASS - Required -->
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          {{ person }}
-                          <img class="ProfilePic modal-profilePic" src="{{ person.avatar.url }}"></img>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li>
-                            <div id="DoubleButton">
-                              <button data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-                              <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
-                                {% csrf_token %}
-                                <button type="submit" name="key" value="delete {{ person }}">Delete</button><!-- Button - Required -->
-                                <p></p>
-                              </form>
+            <div class="collapse show" id="FriendList"> <!-- ID - Required -->
+              <div class="test-aled testa">
+                <div class="accordion" id="AccordionFriendsRequests">
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button id="AccordionFriends" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#FriendsInAccordion" aria-expanded="true" aria-controls="FriendsInAccordion">
+                        <p><bold>Friends</bold></p
+                      </button>
+                    </h2>
+                    <div class="accordion-collapse collapse show" id="FriendsInAccordion" aria-labelledby="headingOne" data-bs-parent="#accordionExample"> <!-- ID - Required -->
+                      <div class="accordion-body">
+                        {% if myFriends %}
+                        <ul id="FriendList-content" class="list-group">
+                          {% for person in myFriends %}
+                          <li class="friends list-group-item" id="Friends_{{ person.id }}"><!-- CLASS - Required -->
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ person.avatar.url }}"></img>
+                                {{ person }}
+                              </button>
+                              <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                  <div id="DoubleButton">
+                                    <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+                                    <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                                      {% csrf_token %}
+                                      <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="delete {{ person }}">Delete</button><!-- Button - Required -->
+                                      <p></p>
+                                    </form>
+                                  </div>
+                                </li>
+                              </ul>
                             </div>
                           </li>
+                          {% endfor %}
                         </ul>
+                        {% else %}
+                        <ul id="FriendList-content" class="list-group"></ul>
+                        {% endif %}
                       </div>
-                    </li>
-                    {% endfor %}
-                  </ul>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button id="AccordionRequests" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#RequestsInAccordion" aria-expanded="false" aria-controls="RequestsInAccordion">
+                        <p><bold>Requests</bold></p
+                      </button>
+                    </h2>
+                    <div class="accordion-collapse collapse" id="RequestsInAccordion" aria-labelledby="headingTwo" data-bs-parent="#AccordionFriendsRequests"> <!-- ID - Required -->
+                      <div class="accordion-body">
+                        <ul id="RequestList-content" class="list-group"></ul>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -61,6 +89,7 @@
 
             <div class="collapse " id="UserList"><!-- ID - Required -->
               <div class="card card-body">
+                {% if people %}
                 <ul class="list-group">
                   {% for person in people %}
                   <li class="others list-group-item" id="Others_{{ person.id }}">
@@ -85,6 +114,9 @@
                   </li>
                   {% endfor %}
                 </ul>
+                {% else %}
+                <ul class="list-group"></ul>
+                {% endif %}
               </div>
             </div>
 

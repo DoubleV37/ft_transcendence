@@ -18,17 +18,19 @@ function friends_CreateNewUserElem (form, id) {
   const newNodeElement = newNode();
   newNodeElement.innerHTML = `<div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        ${name}
         <img class="ProfilePic modal-profilePic" src="${img}"></img>
+        ${name}
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li>
-          <button data-content="${id}">Profile</button>
-          <form action="" data-id="${id}" onsubmit="return false;" method="post">
-            <input>
-            <button type="submit" name="key" value="add ${name}">Add</button>
-            <p></p>
-          </form>
+          <div id="DoubleButton">
+            <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="${id}">Profile</button>
+            <form action="" data-id="${id}" onsubmit="return false;" method="post">
+              <input>
+              <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="add ${name}">Add</button>
+              <p></p>
+            </form>
+          </div>
         </li>
       </ul>
     </div>`;
@@ -58,17 +60,19 @@ function friends_CreateNewReqElem (form, id, obj) {
   const newNodeElement = newNode();
   newNodeElement.innerHTML = `<div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        ${name}
         <img class="ProfilePic modal-profilePic" src="${img}"></img>
+        ${name}
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li>
-          <button data-content="${id}">Profile</button>
-          <form action="" data-name="${name}" data-id="${id}" onsubmit="return false;" method="post">
-            <input>
-            <button type="submit" name="key" value="${obj.type.toLowerCase()} ${name}">${obj.type}</button>
-            <p></p>
-          </form>
+          <div id="DoubleButton">
+            <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="${id}">Profile</button>
+            <form action="" data-name="${name}" data-id="${id}" onsubmit="return false;" method="post">
+              <input>
+              <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="${obj.type.toLowerCase()} ${name}">${obj.type}</button>
+              <p></p>
+            </form>
+          </div>
         </li>
       </ul>
     </div>`;

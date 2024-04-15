@@ -1,25 +1,28 @@
-<div id="RequestList-content">
-  <p><bold>Request</bold></p>
-  <ul class="list-group">
+  {% if not all_friend_request %}
+  <ul id="RequestList-content" class="list-group"></ul>
+  {% else %}
+  <ul id="RequestList-content" class="list-group">
     {% for friend_request in all_friend_request %}
     <li class="request list-group-item" id="Request_{{ friend_request.from_user.id }}"><!-- CLASS - Required -->
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-flip="false" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ friend_request.from_user.avatar.url }}"></img>
           {{ friend_request.from_user }}
-          <img class="ProfilePic modal-profilePic" src="{{ friend_request.from_user.avatar.url }}"></img>
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
           <li>
-            <button data-content="{{ friend_request.from_user.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-            <form data-name="{{ friend_request.from_user }}" data-id="{{ friend_request.from_user.id }}" action="" onsubmit="return false;" method="post">
-              {% csrf_token %}
-              <button type="button" name="key" value="add {{ friend_request.from_user }}" data-select="accept">Accept</button>
-              <button type="button" name="key" value="delete {{ friend_request.from_user }}" data-select="deny">Deny</button>
-            </form>
+            <div id="DoubleButton">
+              <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ friend_request.from_user.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+              <form data-name="{{ friend_request.from_user }}" data-id="{{ friend_request.from_user.id }}" action="" onsubmit="return false;" method="post">
+                {% csrf_token %}
+                <button class="SelectButtonLayout dropdownButton ButtonNeon" type="button" name="key" value="add {{ friend_request.from_user }}" data-select="accept">Accept</button>
+                <button class="SelectButtonLayout dropdownButton ButtonNeon" type="button" name="key" value="delete {{ friend_request.from_user }}" data-select="deny">Deny</button>
+              </form>
+            </div>
           </li>
         </ul>
       </div>
     </li>
     {% endfor %}
   </ul>
-</div>
+  {% endif %}

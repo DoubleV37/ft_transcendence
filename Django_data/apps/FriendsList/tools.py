@@ -10,6 +10,7 @@ def suggestionList(me: User) -> list:
     all_user = User.objects.all()
     friends = me.friends.all()
     lst = [item for item in all_user if item not in friends and item != me]
+    logger.info(f"lst = ")
     return lst
 
 
