@@ -47,7 +47,7 @@ const ROUTE = {
   GAME_PARAMETERS: "/game/parameters/",
   GAME_MODES: "/game/modes/",
   GAME_SOLO: "/game/solo/",
-  // GAME_MULTI: "/game/matchmaking/",
+  GAME_ONLINE: "/game/matchmaking/",
 //   "GAME_ROOM":"/game/", //`${ROUTE.GAME_ROOM}${id...}/`
 };
 

@@ -6,44 +6,24 @@
     <title>Matchmaking</title>
 </head>
 <body>
-	<h1>Matchmaking {{ request.user }}</h1>
-    <button id="searchBtn">Rechercher un adversaire</button>
+    {% include "Home/head.html" %}
+	{% include "Home/header.html" %}
+	{% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
+	{% include "Profile/Profile.html" %}
+	{% include "Auth/code_validation.html" %}
+ 	{% include "Profile/enable_2fa.html" %}
 
-    <script>
-        // Fonction pour se connecter au WebSocket
-        function connectWebSocket() {
-            const socket = new WebSocket("wss://" + window.location.host + "/wss/game/matchmaking");
+	<div id="content">
+		<div id="overlay">
+			<div class="mid midcolumn flowAnimation">
+				<div id="titleContent" data-content="GAME_ONLINE"></div>
+                <h1>Matchmaking {{ request.user }}</h1>
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+			</div>
+		</div>
+	</div>
 
-            socket.onopen = function(event) {
-                console.log('WebSocket connection established.');
-            };
-
-            socket.onmessage = function(event) {
-                console.log('Message received from server:', event.data);
-				data = JSON.parse(event.data);
-				if (data.type == "match_found") {
-					console.log('Match found:', data);
-					socket.close();
-					window.location.href = '/game/'+data.room_name+'/';
-				}
-            };
-
-            socket.onerror = function(error) {
-                console.error('WebSocket error:', error);
-            };
-
-            socket.onclose = function(event) {
-                console.log('WebSocket connection closed:', event);
-            };
-
-            // Logique pour envoyer une demande de matchmaking
-            document.getElementById('searchBtn').addEventListener('click', function() {
-                socket.send('search');
-            });
-        }
-
-        // Appel de la fonction pour se connecter au WebSocket au chargement de la page
-        connectWebSocket();
-    </script>
 </body>
 </html>

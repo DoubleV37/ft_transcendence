@@ -1,10 +1,9 @@
-function modes_randomMatchmaking() {
-	// try {
-	// 	await loadPage(`${ROUTE.GAME_MULTI}`);
-	// } catch (error) {
-	// 	console.log(`Error - playerVSplayer: ${error}`);
-	// }
-	console.log("Un message d'erreur");
+async function modes_randomMatchmaking() {
+	try {
+		await loadPage(`${ROUTE.GAME_ONLINE}`);
+	} catch (error) {
+		console.log(`Error - playerVSplayer: ${error}`);
+	}
 }
 
 async function modes_playerVSia() {
