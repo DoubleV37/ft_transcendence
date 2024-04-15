@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matchmaking</title>
-</head>
-<body>
-    {% include "Home/head.html" %}
+{% load static %}
+<html>
+	{% include "Home/head.html" %}
+  <body>
 	{% include "Home/header.html" %}
 	{% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
 	{% include "Profile/Profile.html" %}
@@ -20,7 +16,7 @@
                 <h1>Matchmaking {{ request.user }}</h1>
                 <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
-                  </div>
+                </div>
 			</div>
 		</div>
 	</div>

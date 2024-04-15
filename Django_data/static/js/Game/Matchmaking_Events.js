@@ -26,5 +26,8 @@ function matchmaking_SetEvents() {
 		console.log('WebSocket connection closed:', event);
 	};
 
+}
 
+function matchmaking_DelEvents() {
+	gameSocket.close();
 }
