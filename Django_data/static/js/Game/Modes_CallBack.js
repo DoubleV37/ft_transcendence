@@ -1,5 +1,10 @@
 function modes_randomMatchmaking() {
-  console.log("randomMatchmaking: do nothing for now");
+	// try {
+	// 	await loadPage(`${ROUTE.GAME_MULTI}`);
+	// } catch (error) {
+	// 	console.log(`Error - playerVSplayer: ${error}`);
+	// }
+	console.log("Un message d'erreur");
 }
 
 async function modes_playerVSia() {
