@@ -56,7 +56,6 @@ scrollbar-width: none;
 
 	.modal-body {
 		display: flex;
-		height: 100%;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
@@ -93,6 +92,33 @@ scrollbar-width: none;
 		height: 5em;
         width: 5em;
     }
+
+	.dropdown-toggle {
+		white-space: nowrap;
+		/* background: 00000; */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1em;
+		font-family: 'Kodchasan';
+	}
+
+	.dropdownButton {
+		width: 6em;
+	}
+
+	.dropdown-menu.show {
+		display: flex;
+		flex-direction: row;
+		background-color: #373d4f;
+		border-color: #5DC6E8;
+		padding: 2em;
+		width: 100%;
+		justify-content: center;
+		/* flex-wrap: nowrap; */
+	}
+	
 
 }
 
@@ -145,7 +171,6 @@ scrollbar-width: none;
 
 	.modal-body {
 		display: flex;
-		height: 100%;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
@@ -183,6 +208,33 @@ scrollbar-width: none;
         width: 5em;
     }
 
+	.dropdown-toggle {
+		white-space: nowrap;
+		/* background: 00000; */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1em;
+		font-family: 'Kodchasan';
+	}
+
+	.dropdownButton {
+		width: 5em;
+	}
+
+	.dropdown-menu.show {
+		display: flex;
+		flex-direction: row;
+		background-color: #373d4f;
+		border-color: #5DC6E8;
+		padding: 2em;
+		width: 100%;
+		justify-content: center;
+		/* flex-wrap: nowrap; */
+	}
+	
+
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -210,7 +262,7 @@ scrollbar-width: none;
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		width: 100%;
+		max-width: 25em;
 		pointer-events: auto;
 		background-clip: padding-box;
 		background: #151821;
@@ -233,7 +285,6 @@ scrollbar-width: none;
 
 	.modal-body {
 		display: flex;
-		height: 100%;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
@@ -263,7 +314,7 @@ scrollbar-width: none;
 	}
 
 	.modal-profile {
-        width: 65%;
+        width: 85%;
     }
 
 	.modal-profileCardboard {
@@ -271,7 +322,128 @@ scrollbar-width: none;
     }
 
     .modal-profilePic {
-		height: 5em;
-        width: 5em;
+		height: 4em;
+        width: 4em;
     }
+
+	.modal-backdrop {
+		display: none;
+	}
+
+	.dropdown-toggle {
+		white-space: nowrap;
+		/* background: 00000; */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1em;
+		font-family: 'Kodchasan';
+	}
+
+	.dropdownButton {
+		width: 100%;
+		height: 100%;
+		font-size: 0.8rem;
+	}
+
+	.dropdown-menu.show {
+		display: flex;
+		flex-direction: row;
+		background-color: #373d4f;
+		border-color: #5DC6E8;
+		padding: 1.5em;
+		width: 100%;
+		justify-content: center;
+		/* flex-wrap: nowrap; */
+	}
+	
 }
+
+.card-body {
+    flex: 1 1 auto;
+    /* padding: 1rem 0rem; */
+    margin-top: 2em;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: transparent;
+    background-clip: border-box;
+    border: 1px solid #5DC6E8;
+    border-radius: 0.25rem;
+}
+
+.list-group {
+    height: 25em;
+    overflow: scroll;
+    scrollbar-width: 2px; /* Standard property for Firefox */
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.list-group::-webkit-scrollbar { /* WebKit */
+    width: 2px; /* Adjusts the width of the scrollbar */
+	height: 0; /* Adjusts the width of the scrollbar */
+}
+
+.list-group::-webkit-scrollbar-thumb { /* WebKit */
+    background-color: rgb(194, 194, 194); /* Sets the color of the scrollbar thumb */
+    border-radius: 10px; /* Optional: Rounds the corners of the scrollbar thumb */
+}
+
+.btn {
+	width: 100%;
+}
+
+.btn-secondary {
+    background-color: #373d4f;
+}
+
+.btn-secondary:focus {
+    color: #fff;
+    background-color: #373d4f;
+    border-color: #5DC6E8;
+    box-shadow: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: transparent;
+    border-color: #5DC6E8;
+	font-size: 0.95rem;
+	font-family: kodchasan;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: #5DC6E8;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #373d4f;
+    border-color: #5DC6E8;
+}
+
+.modal-profileFriendCardboard {
+	margin-bottom: 2em;
+}
+
+.FriendsPage {
+
+}
+

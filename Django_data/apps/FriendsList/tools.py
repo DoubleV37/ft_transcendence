@@ -31,10 +31,10 @@ def send_friend_request(request, userID):
         from_user=from_user, to_user=to_user
     )
     if created:
-        return JsonResponse({'success': True, 'logs': 'friend request sent'})
+        return JsonResponse({'success': True, 'logs': 'Friend request sent'})
     else:
         return JsonResponse(
-            {'success': True, 'logs': 'friend already request sent'}
+            {'success': True, 'logs': 'Request already send'}
         )
 
 

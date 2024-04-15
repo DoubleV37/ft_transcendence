@@ -31,7 +31,7 @@ class UserPermission:
             "/auth/jwt/refresh/",
             "/2fa/confirm/",
         )
-        logger.info(f"header -> {request.headers}")
+        logger.info(f"path -> {request.path}")
         if request.path in authorised_path:
             response = None
         else:
