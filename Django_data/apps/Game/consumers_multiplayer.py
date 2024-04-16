@@ -10,7 +10,7 @@ from .models import Games, UserGame , Pong
 class MultiPongConsumer(AsyncWebsocketConsumer):
 
 	async def connect(self):
-		self.room_name = self.scope['url_route']['kwargs']['room_name']
+		self.room_name = self.scope['url_route']['kwargs']['room_name'][:-1]
 		self.room_group_name = f'game_{self.room_name}'
 		await self.channel_layer.group_add(
 			self.room_group_name,
@@ -87,26 +87,26 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		if not message:
 			return
 		if self.user_num == 1:
-			if data.get("username") == self.username :
-				if message == "up":
-					self.pong.player_pos[1] -= self.pong.player_speed
-				elif message == "down":
-					self.pong.player_pos[1] += self.pong.player_speed
-				elif message == "start":
-					await self.start_game()
-				elif message == "space" and self.pong.engage > 0:
-					self.pong.engage = 0
-				elif message == "stop":
-					self.pong.running = False
-					await self.channel_layer.group_send(
-						self.room_group_name,
-						{
-							'type': 'game_stop',
-							'error': {
-								"message": "Game stopped"
-							}
+			# if data.get("username") == self.username :
+			if message == "up":
+				self.pong.player_pos[1] -= self.pong.player_speed
+			elif message == "down":
+				self.pong.player_pos[1] += self.pong.player_speed
+			elif message == "start":
+				await self.start_game()
+			elif message == "space" and self.pong.engage > 0:
+				self.pong.engage = 0
+			elif message == "stop":
+				self.pong.running = False
+				await self.channel_layer.group_send(
+					self.room_group_name,
+					{
+						'type': 'game_stop',
+						'error': {
+							"message": "Game stopped"
 						}
-					)
+					}
+				)
 		else:
 			self.game_settings = await database_sync_to_async(Pong.objects.get)(idGame=self.game)
 			if message == "start":

@@ -14,7 +14,7 @@ function matchmaking_SetEvents() {
 		if (data.type == "match_found") {
 			console.log('Match found:', data);
 			gameSocket.close();
-			window.location.href = '/game/'+data.room_name+'/';
+			loadPage(`${ROUTE.GAME_ROOM}${data.room_name}/`);
 		}
 	};
 

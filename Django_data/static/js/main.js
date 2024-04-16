@@ -79,12 +79,16 @@ function launchSectionHandler (element) {
       break;
     case 'GAME_SOLO':
       observer.disconnect();
-      game_SetEvents();
+      game_SetEvents("GAME_SOLO");
       break ;
-    case 'GAME_ONLINE':
+    case 'GAME_MATCH':
       observer.disconnect();
       matchmaking_SetEvents();
       break ;
+	case 'GAME_ROOM':
+	  observer.disconnect();
+	  game_SetEvents("GAME_ROOM");
+	  break;
     default:
       throw new Error(
         `launchSectionHandler: Attribute ${elementAttribut} non recognised`

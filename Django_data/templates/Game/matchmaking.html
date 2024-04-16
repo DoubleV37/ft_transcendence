@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-	{% include "Home/head.html" %}
+  {% include "Home/head.html" %}
   <body>
 	{% include "Home/header.html" %}
 	{% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
@@ -12,14 +12,13 @@
 	<div id="content">
 		<div id="overlay">
 			<div class="mid midcolumn flowAnimation">
-				<div id="titleContent" data-content="GAME_ONLINE"></div>
+				<div id="titleContent" data-content="GAME_MATCH"></div>
                 <h1>Matchmaking {{ request.user }}</h1>
                 <div class="spinner-border" role="status">
-                    <span class="sr-only">Loading...</span>
+                    <span class="sr-only">Searching...</span>
                 </div>
 			</div>
 		</div>
 	</div>
-
-</body>
+  </body>
 </html>

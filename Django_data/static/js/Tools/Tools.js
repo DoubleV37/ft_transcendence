@@ -34,10 +34,10 @@ function del_current_event () {
 	case 'GAME_SOLO':
 	  game_DelEvents();
 	  break;
-	case 'GAME_ONLINE':
+	case 'GAME_MATCH':
 	  matchmaking_DelEvents();
 	  break;
-    default:
+    default:h
       break;
   }
 }

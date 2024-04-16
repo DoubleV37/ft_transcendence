@@ -1,6 +1,6 @@
 async function modes_randomMatchmaking() {
 	try {
-		await loadPage(`${ROUTE.GAME_ONLINE}`);
+		await loadPage(`${ROUTE.GAME_MATCH}`);
 	} catch (error) {
 		console.log(`Error - playerVSplayer: ${error}`);
 	}

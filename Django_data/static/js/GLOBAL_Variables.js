@@ -47,8 +47,8 @@ const ROUTE = {
   GAME_PARAMETERS: "/game/parameters/",
   GAME_MODES: "/game/modes/",
   GAME_SOLO: "/game/solo/",
-  GAME_ONLINE: "/game/matchmaking/",
-//   "GAME_ROOM":"/game/", //`${ROUTE.GAME_ROOM}${id...}/`
+  GAME_MATCH: "/game/matchmaking/",
+  GAME_ROOM:"/game/", //`${ROUTE.GAME_ROOM}${id...}/`
 };
 
 // INIT POWERUP
@@ -72,10 +72,13 @@ let gameCanvas = {
   height: 0,
   paddle1Height: 0,
   paddle2Height: 0,
+  powerup: true,
   powerupY: 0,
   powerupX: 0,
   powerupsize: 0,
-  ballRadius: 0
+  ballRadius: 0,
+  opponent: "",
+  num: 0
 };
 
 let gameSocket = null;
