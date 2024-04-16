@@ -1,9 +1,9 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from apps.Auth.models import User
+
+
 import logging
-
-
 logger = logging.getLogger(__name__)
 
 
@@ -29,7 +29,6 @@ def profile_infos(request, _id=None):
                        'status': _status})
     except User.objects.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Wrong ID'})
-
 
 
 def avatar(request):

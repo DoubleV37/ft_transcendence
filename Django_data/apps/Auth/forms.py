@@ -1,12 +1,10 @@
-import logging
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.hashers import make_password
 from .models import User
-from apps.Twofa.models import UserTwoFA
 
-# Now you can use `hashed_password` to store in your database
+import logging
 logger = logging.getLogger(__name__)
 
 
@@ -54,8 +52,8 @@ class SignInForm(forms.Form):
         help_text=password_validation.password_validators_help_text_html(),
     )
 
-# _____________________________________________________________________________#
-# _SETTINGS FORMS______________________________________________________________#
+# ____________________________________________________________________________#
+# _SETTINGS FORMS_____________________________________________________________#
 
 
 class My_Avatar(forms.ModelForm):
@@ -66,6 +64,7 @@ class My_Avatar(forms.ModelForm):
     def save(self, commit=True, *args, **kwargs):
         instance = super().save(commit=False)
         instance.avatar = self.cleaned_data['avatar']
+        # instance.clean_image
         if commit:
             instance.save()
         return instance

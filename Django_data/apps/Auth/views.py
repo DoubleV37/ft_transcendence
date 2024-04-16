@@ -14,8 +14,6 @@ from .forms import (
     DeleteAvatar,
 )
 from .models import User
-from apps.Twofa.models import UserTwoFA
-from apps.Twofa.forms import My_2fa
 
 import logging
 import datetime
@@ -52,7 +50,7 @@ def signin(request):
     if request.method == "POST":
         form = SignInForm(request.POST)
         logger.info(f"request => \n{request}")
-        data_response: dict() = {}
+        data_response = dict()
         if request.user.is_anonymous is False:
             return JsonResponse(
                 {"success": False, "error": "You are already connected !"}
@@ -104,7 +102,7 @@ def signout(request):
 # _ MY SETTINGS _____________________________________________________________ #
 
 
-def validator_fct(form, button: str, request, response: dict()) -> dict():
+def validator_fct(form, button: str, request, response: dict) -> dict:
     if button in request.POST:
         if form.is_valid():
             form.save()
@@ -127,8 +125,8 @@ def my_settings(request):
         delete_avatar = DeleteAvatar()
         enabled = my_user.to2fa.enable
 
-        response: dict() = {}
-        context: dict() = {
+        response = dict()
+        context = {
             "my_user": my_user,
             "name": name,
             "mail": mail,
@@ -151,7 +149,6 @@ def my_settings(request):
                 if avatar.is_valid():
                     avatar.save()
                     response = {"success": True}
-                    logger.info(f"{' SURCHING THROW BOT ':*^50}")
                 else:
                     response = {"success": False, "logs": "Avatar Error"}
 
@@ -168,12 +165,11 @@ def my_settings(request):
                     response = {"success": False, "logs": "Avatar not deleted"}
 
             response = validator_fct(name, "name_button", request, response)
-            response = validator_fct(t_name, "t_name_button", request, response)
+            response = validator_fct(
+                t_name, "t_name_button", request, response)
             response = validator_fct(pswd, "pswd_button", request, response)
             response = validator_fct(mail, "mail_button", request, response)
 
-            logger.info(f"{' RETURN THROW ':*^50}")
-            logger.info(f"{ response = }")
             return JsonResponse(response)
         return render(request, "Profile/User_Settings.html", context=context)
 
@@ -207,7 +203,8 @@ def refresh_jwt(request):
 
 
 def create_jwt(_user, _type="access"):
-    payload = {"id": _user.id, "username": _user.username, "email": _user.email}
+    payload = {"id": _user.id,
+               "username": _user.username, "email": _user.email}
     secret_key = config("DJANGO_SECRET_KEY")
     algorithm = config("HASH")
     if _type == "access":
