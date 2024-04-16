@@ -7,10 +7,6 @@ scrollbar-width: none;
 -ms-overflow-style: none;
 }
 
-.list-group:empty {
-  display: none;
-}
-
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 60.063em) {
     /* Styles */
@@ -382,22 +378,10 @@ scrollbar-width: none;
     border-radius: 0.25rem;
 }
 
-.test-aled {
+.card-acc {
     flex: 0 0 auto;
     /* padding: 1rem 0rem; */
     margin-top: 2em;
-}
-
-.testa {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: transparent;
-    background-clip: border-box;
-    border: 1px solid #5DC6E8;
-    border-radius: 0.25rem;
 }
 
 .list-group {
@@ -455,6 +439,12 @@ scrollbar-width: none;
     border-color: #5DC6E8;
 }
 
+.btn-primary:focus {
+  color: #fff;
+  background-color: #1b718d;
+  border-color: #fff;
+}
+
 .btn-secondary:hover {
     color: #fff;
     background-color: #373d4f;
@@ -469,3 +459,47 @@ scrollbar-width: none;
 
 }
 
+.accordion-button {
+  font-family: kodchasan;
+  font-size: 1rem;
+  background-color: #1b718d;
+  color: #fff;
+  padding: 0.5rem 0.5rem;
+}
+
+.accordion-button:focus {
+  border-color: #fff;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: #1b718d;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFFFF'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button::after {
+    flex-shrink: 1;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: auto;
+    content: "";
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFFFF'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition: transform .2s ease-in-out;
+}
+
+.accordion-body {
+  background-color: #151821;
+}
+
+.accordion-item {
+  border: none;
+}
+
+.AccordionCSSFriendsRequests {
+  height: 18rem;
+}

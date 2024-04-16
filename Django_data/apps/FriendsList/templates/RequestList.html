@@ -3,7 +3,7 @@
   {% else %}
   <ul id="RequestList-content" class="list-group">
     {% for friend_request in all_friend_request %}
-    <li class="request list-group-item" id="Request_{{ friend_request.from_user.id }}"><!-- CLASS - Required -->
+    <li class="list-group-item" id="Request_{{ friend_request.from_user.id }}"><!-- CLASS - Required -->
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-flip="false" data-bs-toggle="dropdown" aria-expanded="false">
           <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ friend_request.from_user.avatar.url }}"></img>

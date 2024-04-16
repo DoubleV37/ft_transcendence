@@ -54,8 +54,7 @@ async function deleteFriendSubmit(form) {
     // Erase the friend from the list and add it to the Other User list //
     const newListElement = friends_CreateNewUserElem(form, id);
     document
-      .getElementById("UserList")
-      .querySelector(".list-group")
+      .getElementById("UserList-content")
       .append(newListElement);
     document.getElementById(`Friends_${id}`).remove();
     const newForm = newListElement.querySelector("form");
@@ -101,7 +100,7 @@ async function ResponseFriendSubmit(button) {
     const type = button.getAttribute("data-select");
     const func =
       type === "accept" ? friends_DeleteCallBack : friends_AddCallBack;
-    const list = type === "accept" ? "FriendList-content" : "UserList";
+    const list = type === "accept" ? "FriendList-content" : "UserList-content";
     const obj =
       type === "accept"
         ? { name: "Friends", type: "Delete" }
@@ -110,7 +109,6 @@ async function ResponseFriendSubmit(button) {
     const newListElement = friends_CreateNewReqElem(form, id, obj);
     document
       .getElementById(list)
-      .querySelector(".list-group")
       .append(newListElement);
     document.getElementById(`Request_${id}`).remove();
     const newForm = newListElement.querySelector("form");
@@ -118,16 +116,6 @@ async function ResponseFriendSubmit(button) {
 
     newForm.addEventListener("submit", func);
     newButton.addEventListener("click", friends_GoToProfile);
-    if (
-      document
-        .getElementById("RequestList-content")
-        .querySelector(".list-group")
-        .innerHTML.trim() === ""
-    ) {
-      document
-        .getElementById("RequestList-content")
-        .querySelector("p").innerHTML = "";
-    }
     return true;
   } catch (err) {
     console.error("Delete Friend ERROR:", err);

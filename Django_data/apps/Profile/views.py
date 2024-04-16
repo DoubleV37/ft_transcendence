@@ -31,6 +31,5 @@ def profile_infos(request, _id=None):
         return JsonResponse({'success': False, 'error': 'Wrong ID'})
 
 
-
 def avatar(request):
     return render(request, "Profile/Avatar.html")

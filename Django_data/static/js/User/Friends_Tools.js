@@ -2,7 +2,7 @@ function friends_CreateNewUserElem (form, id) {
   const newNode = () => {
     const node = document.createElement("li");
     const attr = {
-      class: "others list-group-item",
+      class: "list-group-item",
       id: `Others_${id}`
     };
     Object.keys(attr).forEach((key) => {
@@ -44,7 +44,7 @@ function friends_CreateNewReqElem (form, id, obj) {
   const newNode = () => {
     const node = document.createElement("li");
     const attr = {
-      class: `${obj.name.toLowerCase()} list-group-item`,
+      class: "list-group-item",
       id: `${obj.name}_${id}`
     };
     Object.keys(attr).forEach((key) => {
