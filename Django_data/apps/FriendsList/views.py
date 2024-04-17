@@ -24,7 +24,6 @@ class FriendsRequestView(TemplateView):
             )
 
         def post(self, request):
-            logger.info(f"{request.POST = }")
             result = str(request.POST['key'])
             tmp = list(result.split())
             target = User.objects.get(username=tmp[1])
