@@ -49,7 +49,6 @@ function friends_SetEvents () {
   modal.querySelectorAll(".btn.btn-primary").forEach((button) => {
     button.addEventListener("click", friends_CollapseCallback);
   });
-
 }
 
 function friends_DelEvents () {
