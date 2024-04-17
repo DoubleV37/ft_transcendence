@@ -88,6 +88,10 @@ scrollbar-width: none;
         width: 100%;
     }
 
+	.modal-profileFriendCardboard {
+		margin-bottom: 2em;
+	}
+
     .modal-profilePic {
 		height: 5em;
         width: 5em;
@@ -189,7 +193,7 @@ scrollbar-width: none;
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: flex-end;
-		padding: 2rem;
+		padding: 1.5rem;
 		border: none;
 		border-bottom-right-radius: calc(0.3rem - 1px);
 		border-bottom-left-radius: calc(0.3rem - 1px);
@@ -202,6 +206,10 @@ scrollbar-width: none;
 	.modal-profileCardboard {
         width: 100%;
     }
+
+	.modal-profileFriendCardboard {
+		margin-bottom: 1.5em;
+	}
 
     .modal-profilePic {
 		height: 5em;
@@ -290,7 +298,7 @@ scrollbar-width: none;
 		align-items: center;
 		flex-shrink: 0;
 		position: relative;
-		padding-top: 1rem;
+		padding-top: 0rem;
 		padding-bottom: 1rem;
 		padding-left: 0rem;
 		padding-right: 0rem;
@@ -307,7 +315,7 @@ scrollbar-width: none;
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: flex-end;
-		padding: 2rem;
+		padding: 1rem;
 		border: none;
 		border-bottom-right-radius: calc(0.3rem - 1px);
 		border-bottom-left-radius: calc(0.3rem - 1px);
@@ -320,6 +328,10 @@ scrollbar-width: none;
 	.modal-profileCardboard {
         width: 100%;
     }
+
+	.modal-profileFriendCardboard {
+		margin-bottom: 1em;
+	}
 
     .modal-profilePic {
 		height: 4em;
@@ -385,7 +397,8 @@ scrollbar-width: none;
 }
 
 .list-group {
-    height: 25em;
+	min-height: 15em;
+    max-height: 20em;
     overflow: scroll;
     scrollbar-width: 2px; /* Standard property for Firefox */
 }
@@ -451,14 +464,6 @@ scrollbar-width: none;
     border-color: #5DC6E8;
 }
 
-.modal-profileFriendCardboard {
-	margin-bottom: 2em;
-}
-
-.FriendsPage {
-
-}
-
 .accordion-button {
   font-family: kodchasan;
   font-size: 1rem;
@@ -500,6 +505,6 @@ scrollbar-width: none;
   border: none;
 }
 
-.AccordionCSSFriendsRequests {
-  height: 18rem;
+#Profile_Type {
+	display: none;
 }
