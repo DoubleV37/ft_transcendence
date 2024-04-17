@@ -455,10 +455,6 @@ scrollbar-width: none;
 	margin-bottom: 2em;
 }
 
-.FriendsPage {
-
-}
-
 .accordion-button {
   font-family: kodchasan;
   font-size: 1rem;
@@ -502,4 +498,16 @@ scrollbar-width: none;
 
 .AccordionCSSFriendsRequests {
   height: 18rem;
+}
+
+.imgrabbit {
+  height: 100%;
+  width: 100%;
+}
+
+#alonetext {
+  font-family: kodchasan;
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
 }

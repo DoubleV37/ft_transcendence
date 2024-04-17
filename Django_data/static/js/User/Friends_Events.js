@@ -7,11 +7,13 @@ function friends_SetEvents () {
 
   if (itemList.innerHTML !== "") {
     itemList.querySelectorAll(".list-group-item").forEach((parentNode) => {
-      const profileButton = parentNode.querySelector("[data-content]");
-      const delFriend = parentNode.querySelector("form");
+      if (parentNode.getAttribute("id") !== "Friends_Empty") {
+        const profileButton = parentNode.querySelector("[data-content]");
+        const delFriend = parentNode.querySelector("form");
 
-      profileButton.addEventListener("click", friends_GoToProfile);
-      delFriend.addEventListener("submit", friends_DeleteCallBack);
+        profileButton.addEventListener("click", friends_GoToProfile);
+        delFriend.addEventListener("submit", friends_DeleteCallBack);
+      }
     });
   }
 
@@ -60,11 +62,13 @@ function friends_DelEvents () {
 
   if (itemList.innerHTML !== "") {
     itemList.querySelectorAll(".list-group-item").forEach((parentNode) => {
-      const profileButton = parentNode.querySelector("[data-content]");
-      const delFriend = parentNode.querySelector("form");
+      if (parentNode.getAttribute("id") !== "Friends_Empty") {
+        const profileButton = parentNode.querySelector("[data-content]");
+        const delFriend = parentNode.querySelector("form");
 
-      profileButton.removeEventListener("click", friends_GoToProfile);
-      delFriend.removeEventListener("submit", friends_DeleteCallBack);
+        profileButton.removeEventListener("click", friends_GoToProfile);
+        delFriend.removeEventListener("submit", friends_DeleteCallBack);
+      }
     });
   }
 

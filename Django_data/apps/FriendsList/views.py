@@ -18,12 +18,9 @@ class FriendsRequestView(TemplateView):
             from_user = request.user
             myFriends = tools.myFriends(from_user)
             people = tools.suggestionList(from_user)
-            size_myFriends = len(myFriends)
-            size_people = len(people)
             return render(
                 request, self.template_name,
-                {'from_user': from_user, 'people': people, 'myFriends': myFriends, 
-                 'size_myFriends': size_myFriends, 'size_people': size_people}
+                {'from_user': from_user, 'people': people, 'myFriends': myFriends,}
             )
 
         def post(self, request):
@@ -55,11 +52,9 @@ class Accept_Or_Refuse_View(TemplateView):
         def get(self, request):
             me = request.user
             all_friend_request = Friend_Request.objects.all().filter(to_user=me)
-            size_request = len(all_friend_request)
             return render(
                 request, self.template_name,
-                {'me': me, 'all_friend_request': all_friend_request,
-                 'size_request': size_request})
+                {'me': me, 'all_friend_request': all_friend_request,})
 
         def post(self, request):
             result = str(request.POST['key'])

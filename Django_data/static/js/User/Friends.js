@@ -61,6 +61,9 @@ async function deleteFriendSubmit(form) {
     const newButton = newListElement.querySelector("button[data-content]");
     newForm.addEventListener("submit", friends_AddCallBack);
     newButton.addEventListener("click", friends_GoToProfile);
+    if (document.getElementById("FriendList-content").querySelectorAll(".list-group-item").length === 1) {
+      document.getElementById("Friends_Empty").hidden = false;
+    }
     return true;
   } catch (err) {
     console.error("Delete Friend ERROR:", err);
@@ -116,6 +119,9 @@ async function ResponseFriendSubmit(button) {
 
     newForm.addEventListener("submit", func);
     newButton.addEventListener("click", friends_GoToProfile);
+    if (document.getElementById("FriendList-content").querySelectorAll(".list-group-item").length > 1) {
+      document.getElementById("Friends_Empty").hidden = true;
+    }
     return true;
   } catch (err) {
     console.error("Delete Friend ERROR:", err);

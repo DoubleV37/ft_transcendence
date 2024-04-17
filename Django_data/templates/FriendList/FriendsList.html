@@ -37,7 +37,6 @@
                     </h2>
                     <div class="accordion-collapse collapse show" id="FriendsInAccordion" aria-labelledby="headingOne" data-bs-parent="#AccordionFriendsRequests"> <!-- ID - Required -->
                       <div class="accordion-body">
-                        {% if myFriends %}
                         <ul id="FriendList-content" class="list-group AccordionCSSFriendsRequests">
                           {% for person in myFriends %}
                           <li class="list-group-item" id="Friends_{{ person.id }}"><!-- CLASS - Required -->
@@ -61,10 +60,17 @@
                             </div>
                           </li>
                           {% endfor %}
+                          {% if myFriends %}
+                          <li class="list-group-item" data-skip="" hidden id="Friends_Empty">
+                          {% else %}
+                          <li class="list-group-item" data-skip="" id="Friends_Empty">
+                          {% endif %}
+                            <div>
+                              <img class="imgrabbit" src="{% static 'images/alone.webp' %}"> 
+                              <p id="alonetext">Find some friends</p> 
+                            </div>
+                          </li>
                         </ul>
-                        {% else %}
-                        <ul id="FriendList-content" class="list-group AccordionCSSFriendsRequests"></ul>
-                        {% endif %}
                       </div>
                     </div>
                   </div>
