@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 class FriendsRequestView(TemplateView):
-    template_name = "FriendsList.html"
+    template_name = "FriendList/FriendsList.html"
 
     try:
 
@@ -48,7 +48,7 @@ class FriendsRequestView(TemplateView):
 
 
 class Accept_Or_Refuse_View(TemplateView):
-    template_name = "RequestList.html"
+    template_name = "FriendList/RequestList.html"
 
     try:
 
@@ -62,7 +62,6 @@ class Accept_Or_Refuse_View(TemplateView):
                  'size_request': size_request})
 
         def post(self, request):
-            logger.info(f"{request.POST = }")
             result = str(request.POST['key'])
             tmp = list(result.split())
             target = User.objects.get(username=tmp[1])

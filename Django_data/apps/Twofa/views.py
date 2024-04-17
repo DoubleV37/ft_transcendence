@@ -84,14 +84,12 @@ class TwoFactorConfirmationView(FormView):
 
     def get(self, request):
         if request.user.is_authenticated is True:
-            logger.info("100% c'est ca")
             _id = "confirm_2fa"
             _cancel = "cancel_2fa"
             _form = "form_2FA"
             _failure = "failure_2FA"
             _success = "success_2FA"
         else:
-            logger.info("The fuuuuuuuck ???")
             _id = "code_2fa"
             _cancel = "cancel_code2fa"
             _form = "form_2FAcode"
