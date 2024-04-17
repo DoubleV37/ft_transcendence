@@ -64,7 +64,6 @@ class My_Avatar(forms.ModelForm):
     def save(self, commit=True, *args, **kwargs):
         instance = super().save(commit=False)
         instance.avatar = self.cleaned_data['avatar']
-        # instance.clean_image
         if commit:
             instance.save()
         return instance

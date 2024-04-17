@@ -7,6 +7,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import MinLengthValidator
 from .validators import validate_file_extension
+# TODO info back function to manage resize of avatar
+# from PIL import Image
 
 
 import logging
@@ -26,6 +28,7 @@ class User(AbstractBaseUser):
         default="ForbiddenDeletion/default.png", null=True, blank=True,
         validators=[validate_file_extension],
     )
+
     backup_avatar = models.ImageField(
         default="ForbiddenDeletion/default.png", null=False
     )
@@ -39,19 +42,17 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
+    IMAGE_MAX_SIZE = (800, 800)
 
     objects = UserManager()
 
-    # TODO function to manage size of avatar
-    # def clean_image(self):
-    #     image = self.avatar
-    #     logger.debug(f"{image.width = }")
-    #     if image:
-    #         if image._size > 4*1024*1024/10000:
-    #             raise ValidationError("Image file too large ( > 4mb )")
-    #         return image
-    #     else:
-    #         raise ValidationError("Couldn't read uploaded image")
+    # TODO info back function to manage resize of avatar
+    # def resize_image(self):
+    #     avatar = Image.open(self.avatar)
+    #     avatar.thumbnail(self.IMAGE_MAX_SIZE)
+    #     # sauvegarde de l’image redimensionnée dans le système de fichiers
+    #     # ce n’est pas la méthode save() du modèle !
+    #     avatar.save(self.avatar.path)
 
     def __str__(self):
         return self.username
@@ -60,6 +61,8 @@ class User(AbstractBaseUser):
         if not self.tournament_name:
             self.tournament_name = slugify(self) + "_t"
         super().save(*args, **kwargs)
+        # TODO info back function to manage resize of avatar
+        # self.resize_image()
 
 
 @ receiver(post_save, sender=User)

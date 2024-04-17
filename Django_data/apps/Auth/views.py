@@ -138,6 +138,7 @@ def my_settings(request):
         }
 
         if request.method == "POST":
+            logger.info(f"{' SETTINGS ':#^20}")
             name = My_Name(request.POST, instance=my_user)
             mail = My_Mail(request.POST, instance=my_user)
             pswd = My_Psswd(request.POST, instance=my_user)
@@ -170,6 +171,7 @@ def my_settings(request):
             response = validator_fct(pswd, "pswd_button", request, response)
             response = validator_fct(mail, "mail_button", request, response)
 
+            logger.info(f"{response = }")
             return JsonResponse(response)
         return render(request, "Profile/User_Settings.html", context=context)
 
