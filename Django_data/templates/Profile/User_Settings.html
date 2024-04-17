@@ -1,5 +1,6 @@
-<html lang="en">
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
 {% include "Home/head.html" %}
   <body>
 	  {% include "Home/header.html" %}
@@ -7,6 +8,11 @@
 	  {% include "Profile/Avatar.html" %}
 	  {% include "Auth/code_validation.html" %}
 	  {% include "Profile/enable_2fa.html" %}
+          {% include "FriendsList.html" %}
+
+    <header>
+      <div id="Header_content"></div>
+    </header> 
 
 	  <div id="content">
 		  <div id="titleContent" data-content="SETTINGS"></div>
