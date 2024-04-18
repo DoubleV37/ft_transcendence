@@ -46,6 +46,10 @@ function modal_AvatarInit () {
     }
   );
   avatarModal.modal._element.addEventListener(
+    "show.bs.modal",
+    avatar_PrepHtml
+  );
+  avatarModal.modal._element.addEventListener(
     "shown.bs.modal",
     avatar_SetEvents
   );

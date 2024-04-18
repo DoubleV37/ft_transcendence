@@ -47,3 +47,19 @@ function restore_message (elem_success, elem_failure) {
   element = document.getElementById(elem_success);
   element.innerHTML = "";
 }
+
+function ValidFileType (file) {
+  const fileTypes = [
+    "image/apng",
+    "image/bmp",
+    "image/gif",
+    "image/jpeg",
+    "image/pjpeg",
+    "image/png",
+    "image/svg+xml",
+    "image/tiff",
+    "image/webp",
+    "image/x-icon"
+  ];
+  return fileTypes.includes(file.type);
+}
