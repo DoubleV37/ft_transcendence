@@ -19,13 +19,6 @@ function init_canvas() {
 	gameCanvas.canvas.height = gameCanvas.height;
 }
 
-function ready_btn(e) {
-	let ready_btn = document.getElementById("ready_btn");
-	gameSocket.send(JSON.stringify({ message: "start"}));
-	ready_btn.disabled = true;
-	console.log("ready");
-}
-
 function game_SetEvents(page_name) {
 	// addEventListener('resize', () => {
 	// 	style = getComputedStyle(canvas);
@@ -52,8 +45,6 @@ function game_SetEvents(page_name) {
 	else if (page_name === "GAME_ROOM") {
 		gameCanvas.powerup = false;
 		gameSocket.addEventListener('message', receive_data_room);
-		// let ready_btn = document.getElementById("ready_btn");
-		// ready_btn.addEventListener("click", ready_btn);
 	}
 
 	document.addEventListener('keyup', keyUp);
