@@ -23,7 +23,7 @@
 
     .ButtonLayout:hover {
         background-color: #1b718d;
-        transform: scale(1.05);
+        transform: scale(1.03);
     }
 
     .ButtonLayout:not(:hover) {
@@ -127,6 +127,11 @@
     .ButtonBlue {
         background: #525695;
         border: none;
+    }
+
+    .ButtonBlue:hover {
+        background-color: #525695;
+        border: solid 1px white;
     }
 
     .ButtonNeon {
@@ -238,7 +243,7 @@
 
     .ButtonLayout:hover {
         background-color: #1b718d;
-        transform: scale(1.05);
+        transform: scale(1.03);
     }
 
     .ButtonLayout:not(:hover) {
@@ -348,6 +353,11 @@
         border: none;
     }
 
+    .ButtonBlue:hover {
+        background-color: #525695;
+        border: solid 1px white;
+    }
+
     .ButtonNeon {
         background: #202532;
         border: 1px solid #5DC6E8; 
@@ -454,7 +464,7 @@
 
     .ButtonLayout:hover {
         background-color: #1b718d;
-        transform: scale(1.05);
+        transform: scale(1.03);
     }
 
     .ButtonLayout:not(:hover) {
@@ -588,6 +598,11 @@
     .ButtonBlue {
         background: #525695;
         border: none;
+    }
+
+    .ButtonBlue:hover {
+        background-color: #525695;
+        border: solid 1px white;
     }
 
     .ButtonNeon {

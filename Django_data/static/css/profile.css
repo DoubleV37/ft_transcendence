@@ -230,7 +230,7 @@
     .ProfilePage {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 1.8rem;
         flex-shrink: 0;
         margin-block-end: 0;
@@ -459,7 +459,7 @@
         display: flex;
         width: 90%;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 2rem;
         flex-shrink: 0;
         max-width: 20em;
