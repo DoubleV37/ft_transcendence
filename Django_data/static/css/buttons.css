@@ -104,6 +104,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .SelectButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .SelectButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
     
     .MediumButtonLayout.right {
@@ -194,6 +204,10 @@
         height: 2em;
         border-radius: 0.6em;
         margin-top: 0;
+    }
+
+    #HEADER_NavSignOut:hover, #AVATAR_Delete:hover {
+        background-color: #1C2026 !important;
     }
 
 }
@@ -408,6 +422,10 @@
         height: 2em;
         border-radius: 0.6em;
     }
+
+    #HEADER_NavSignOut:hover, #AVATAR_Delete:hover {
+        background-color: #1C2026 !important;
+    }
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -619,6 +637,10 @@
     #switchCheckLabelTop {
         height: 2em;
         border-radius: 0.6em;
+    }
+
+    #HEADER_NavSignOut:hover, #AVATAR_Delete:hover {
+        background-color: #1C2026 !important;
     }
     
 }
