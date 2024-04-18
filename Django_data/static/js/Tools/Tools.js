@@ -34,6 +34,12 @@ function del_current_event () {
 	case 'GAME_SOLO':
 	  game_DelEvents();
 	  break;
+	case 'GAME_MATCH':
+	  matchmaking_DelEvents();
+	  break;
+	case 'GAME_ROOM':
+	  game_DelEvents();
+	  break;
     default:
       break;
   }

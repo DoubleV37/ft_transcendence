@@ -42,11 +42,11 @@ class MatchmakingPongConsumer(AsyncWebsocketConsumer):
 		await self.channel_layer.group_discard(self.roomGroupName, users[1])
 
 	async def disconnect(self, close_code):
+		await self.remove_from_matchmaking_pool()
 		await self.channel_layer.group_discard(
 			self.roomGroupName,
 			self.channel_name
 		)
-		await self.remove_from_matchmaking_pool()
 
 	@database_sync_to_async
 	def add_to_matchmaking_pool(self):
