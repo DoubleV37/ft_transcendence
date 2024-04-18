@@ -49,7 +49,6 @@ def signup(request):
 def signin(request):
     if request.method == "POST":
         form = SignInForm(request.POST)
-        logger.info(f"request => \n{request}")
         data_response = dict()
         if request.user.is_anonymous is False:
             return JsonResponse(
@@ -61,7 +60,6 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
 
             if user is not None:
-
                 if user.to2fa.enable:
                     response = JsonResponse({"success": True, "Twofa": True})
                 else:
@@ -171,12 +169,10 @@ def my_settings(request):
             response = validator_fct(pswd, "pswd_button", request, response)
             response = validator_fct(mail, "mail_button", request, response)
 
-            logger.info(f"{response = }")
             return JsonResponse(response)
         return render(request, "Profile/User_Settings.html", context=context)
 
     except Exception as e:
-        logger.debug(f"{' Exception ':~^30}")
         logger.error(f"Exception occurred: {e}")
         return HttpResponse("Exception", status=400)
 
@@ -188,7 +184,6 @@ def my_settings(request):
 def refresh_jwt(request):
     if request.method == "GET":
         user = request.user
-        logger.info(user.refresh_token)
         if user.refresh_token is None:
             return HttpResponse("Bad Token", status=498)
         jwt_token = create_jwt(user)

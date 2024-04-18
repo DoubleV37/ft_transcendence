@@ -17,7 +17,8 @@ logger = logging.getLogger(__name__)
 
 class User(AbstractBaseUser):
     id = models.AutoField(
-        auto_created=True, primary_key=True, unique=True, null=False)
+        auto_created=True, primary_key=True, unique=True, null=False
+    )
     status = models.BooleanField(default=True)
     username = models.CharField(
         max_length=13, validators=[MinLengthValidator(3)], unique=True, null=False)
@@ -39,6 +40,8 @@ class User(AbstractBaseUser):
         max_length=15, validators=[MinLengthValidator(3)],
         unique=True, null=False
     )
+
+    friends = models.ManyToManyField("self", blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']

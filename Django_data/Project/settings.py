@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.Profile',
     'apps.Game',
     'apps.Twofa',
+    'apps.FriendsList',
 ]
 
 MIDDLEWARE = [

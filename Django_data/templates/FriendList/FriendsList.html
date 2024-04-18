@@ -1,0 +1,132 @@
+{% load static %}
+
+<div class="modal fade" id="FriendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
+      </div>
+      <div class="modal-body">
+        <div class="FriendsPage modal-profile">
+          <div class="ProfileCardboard modal-profileCardboard modal-profileFriendCardboard">
+            <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}" alt="Very basic user"></img>
+            <div id="UserStatus">
+            <h1 id="username">{{ from_user.username }}</h1>
+            </div>
+          </div>
+          <div>
+          <div id="DoubleButton">
+            <button id="CollapseFriendList" class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#FriendList" aria-expanded="true" aria-controls="FriendList">
+              <p><bold>Friends list</bold></p>
+            </button>
+            <button id="CollapseUserList" class="btn btn-primary ButtonNeon" type="button" data-bs-toggle="collapse" data-bs-target="#UserList" aria-expanded="false" aria-controls="UserList">
+              <p><bold>Others user</bold></p>
+            </button>
+          </div>
+
+
+            <div class="collapse show" id="FriendList"> <!-- ID - Required -->
+              <div class="card card-acc">
+                <div class="accordion" id="AccordionFriendsRequests">
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button id="AccordionFriends" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#FriendsInAccordion" aria-expanded="true" aria-controls="FriendsInAccordion">
+                        <p><bold>Friends</bold></p>
+                      </button>
+                    </h2>
+                    <div class="accordion-collapse collapse show" id="FriendsInAccordion" aria-labelledby="headingOne" data-bs-parent="#AccordionFriendsRequests"> <!-- ID - Required -->
+                      <div class="accordion-body">
+                        <ul id="FriendList-content" class="list-group AccordionCSSFriendsRequests">
+                          {% for person in myFriends %}
+                          <li class="list-group-item" id="Friends_{{ person.id }}"><!-- CLASS - Required -->
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ person.avatar.url }}"></img>
+                                {{ person }}
+                              </button>
+                              <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                  <div id="DoubleButton">
+                                    <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+                                    <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                                      {% csrf_token %}
+                                      <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="delete {{ person }}">Delete</button><!-- Button - Required -->
+                                      <p></p>
+                                      </form>
+                                    </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                          {% endfor %}
+                          {% if myFriends %}
+                          <li class="list-group-item" data-skip="" hidden id="Friends_Empty">
+                          {% else %}
+                          <li class="list-group-item" data-skip="" id="Friends_Empty">
+                          {% endif %}
+                            <div>
+                              <img class="imgrabbit" src="{% static 'images/alone.webp' %}"> 
+                              <p id="alonetext">Find some friends</p> 
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button id="AccordionRequests" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#RequestsInAccordion" aria-expanded="false" aria-controls="RequestsInAccordion">
+                        <p><bold>Requests</bold></p>
+                      </button>
+                    </h2>
+                    <div class="accordion-collapse collapse" id="RequestsInAccordion" aria-labelledby="headingTwo" data-bs-parent="#AccordionFriendsRequests"> <!-- ID - Required -->
+                      <div class="accordion-body">
+                        <ul id="RequestList-content" class="list-group AccordionCSSFriendsRequests"></ul>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="collapse " id="UserList"><!-- ID - Required -->
+              <div class="card card-body">
+                <ul id="UserList-content" class="list-group">
+                  {% for person in people %}
+                  <li class="list-group-item" id="Others_{{ person.id }}">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-flip="false" aria-expanded="false">
+                        <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ person.avatar.url }}"></img>
+                        {{ person }}
+                      </button>
+                      <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                          <div id="DoubleButton">
+                            <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+                            <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                              {% csrf_token %}
+                              <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="add {{ person }}">Add</button><!-- Button - Required -->
+                              <p></p>
+                            </form>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
