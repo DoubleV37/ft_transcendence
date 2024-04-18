@@ -459,7 +459,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+        transition: transform 0.5s ease;
     }
 
     .ButtonLayout:hover {

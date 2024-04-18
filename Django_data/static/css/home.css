@@ -312,7 +312,16 @@ scrollbar-width: none;
 		border-color: #5DC6E8;
 		border-radius: 0.625rem;
 		background: #202532;
+		transition: transform 0.5s ease;
 	}
+
+	.play-button:hover {
+        transform: scale(1.03);
+    }
+
+    .play-button:not(:hover) {
+        transform: scale(1.0);
+    }
 
 	#SigninButton {
 		display: flex;
@@ -669,7 +678,16 @@ scrollbar-width: none;
 		border-color: #5DC6E8;
 		border-radius: 0.625rem;
 		background: #202532;
+		transition: transform 0.5s ease;
 	}
+
+	.play-button:hover {
+        transform: scale(1.03);
+    }
+
+    .play-button:not(:hover) {
+        transform: scale(1.0);
+    }
 
 	.play {
 		color: #FFF;
@@ -1037,7 +1055,16 @@ scrollbar-width: none;
 		border-color: #5DC6E8;
 		border-radius: 0.625rem;
 		background: #202532;
+		transition: transform 0.5s ease;
 	}
+
+	.play-button:hover {
+        transform: scale(1.03);
+    }
+
+    .play-button:not(:hover) {
+        transform: scale(1.0);
+    }
 
 	.play {
 		color: #FFF;
