@@ -40,14 +40,16 @@ function parameters_SelectOpponent (event) {
     if (GameParams.Opponent !== "player") {
       GameParams.Opponent = "player";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
-      document.getElementById("SELECT_ai").setAttribute("class", "MediumButtonLayout left ButtonDark");
+      document.getElementById("SELECT_ai").setAttribute("class", "MediumButtonLayout left ButtonNeon");
     }
+    document.getElementById("SELECT_Player").setAttribute("class", "MediumButtonLayout left ButtonFocus");
   } else {
     if (GameParams.Opponent !== "ai") {
       GameParams.Opponent = "ai";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
-      document.getElementById("SELECT_Player").setAttribute("class", "MediumButtonLayout left ButtonDark");
+      document.getElementById("SELECT_Player").setAttribute("class", "MediumButtonLayout left ButtonNeon");
     }
+    document.getElementById("SELECT_ai").setAttribute("class", "MediumButtonLayout left ButtonFocus");
   }
 }
 
@@ -57,14 +59,16 @@ function parameters_SelectType (event) {
     if (GameParams.Type !== "remote") {
       GameParams.Type = "remote";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
-      document.getElementById("SELECT_Local").setAttribute("class", "MediumButtonLayout left ButtonDark");
+      document.getElementById("SELECT_Local").setAttribute("class", "MediumButtonLayout left ButtonNeon");
     }
+    document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout left ButtonFocus");
   } else {
     if (GameParams.Type !== "local") {
       GameParams.Type = "local";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
-      document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout left ButtonDark");
+      document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout left ButtonNeon");
     }
+    document.getElementById("SELECT_Local").setAttribute("class", "MediumButtonLayout left ButtonFocus");
   }
 }
 

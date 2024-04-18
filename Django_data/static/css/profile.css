@@ -43,6 +43,18 @@
         border: 2px solid #6c757d;
         object-fit: cover;
     }
+
+    #AVATAR_Change_Pic {
+        transition: transform 0.5s ease;
+    }
+
+    #AVATAR_Change_Pic:hover {
+        transform: scale(1.1);
+    }
+
+    #AVATAR_Change_Pic:not(:hover) {
+        transform: scale(1);
+    }
     
     #UserPictureInfo {
         display: flex;
@@ -91,6 +103,7 @@
         gap: 1.25rem;
         flex-shrink: 0;
     }
+
     #ProfileCardboardMobile {
         display: none;
     }
@@ -239,6 +252,18 @@
         border-radius: 100%;
         border: 2px solid #6c757d;
         object-fit: cover;
+    }
+
+    #AVATAR_Change_Pic {
+        transition: transform 0.5s ease;
+    }
+
+    #AVATAR_Change_Pic:hover {
+        transform: scale(1.1);
+    }
+
+    #AVATAR_Change_Pic:not(:hover) {
+        transform: scale(1);
     }
 
     #UserPictureInfo {
@@ -444,6 +469,18 @@
         border-radius: 100%;
         border: 2px solid #6c757d;
         object-fit: cover;
+    }
+
+    #AVATAR_Change_Pic {
+        transition: transform 0.5s ease;
+    }
+
+    #AVATAR_Change_Pic:hover {
+        transform: scale(1.1);
+    }
+
+    #AVATAR_Change_Pic:not(:hover) {
+        transform: scale(1);
     }
 
     #username {

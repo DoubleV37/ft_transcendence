@@ -18,6 +18,16 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .ButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.05);
+    }
+
+    .ButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .CTA {
@@ -41,6 +51,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .MediumButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .MediumButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout {
@@ -58,6 +78,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .UpdateButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .UpdateButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .SelectButtonLayout {
@@ -102,6 +132,12 @@
     .ButtonDark {
         border: 1px solid #AE473B;
         background: #1C2026;
+    }
+
+    .ButtonFocus {
+        background: #1b718d;
+        border: 2px solid #5DC6E8;
+        font-weight: bold;
     }
 
     .Button42 {
@@ -183,6 +219,16 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .ButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.05);
+    }
+
+    .ButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .CTA {
@@ -206,6 +252,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .MediumButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .MediumButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .SelectButtonLayout {
@@ -241,6 +297,16 @@
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
         position: relative;
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .UpdateButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .UpdateButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout::before {
@@ -281,6 +347,12 @@
     .ButtonDark {
         border: 1px solid #AE473B;
         background: #1C2026;
+    }
+
+    .ButtonFocus {
+        background: #1b718d;
+        border: 2px solid #5DC6E8;
+        font-weight: bold;
     }
 
     .Button42 {
@@ -359,6 +431,16 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .ButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.05);
+    }
+
+    .ButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .CTA {
@@ -382,6 +464,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .MediumButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .MediumButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .SelectButtonLayout {
@@ -417,6 +509,16 @@
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
         position: relative;
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .UpdateButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .UpdateButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout::before {
@@ -483,6 +585,12 @@
     .ButtonDark {
         border: 1px solid #AE473B;
         background: #1C2026;
+    }
+
+    .ButtonFocus {
+        background: #1b718d;
+        border: 2px solid #5DC6E8;
+        font-weight: bold;
     }
 
     .Button42 {
