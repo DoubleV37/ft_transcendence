@@ -20,11 +20,6 @@ def header(request):
         _avatar = _user.avatar.url
         _status = 'online' if _user.status is True else 'offline'
 
-        # TODO debug
-        logger.info(f"{'header':_^20}")
-        logger.info(f"{_avatar = :_^20}")
-        # TODO debug
-
         return render(
             request, 'Home/header.html', {'profil_picture': _avatar,
             'username': _username, 'status': _status}

@@ -15,6 +15,7 @@ async function launchWebsite () {
   header_SetEvents();
 
   modal_ProfileInit();
+  modal_FriendsInit();
   modal_2FaCodeInit();
   modal_2FaInit();
   modal_AvatarInit();

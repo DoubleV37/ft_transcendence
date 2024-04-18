@@ -6,21 +6,27 @@ let error403 = false;
 
 let profileModal = {
   modal: null,
-  active: false
+  active: false,
 };
 
 let avatarModal = {
   modal: null,
-  active: false
+  active: false,
 };
+
 let TwofaModal = {
   modal: null,
-  active: false
+  active: false,
 };
 
 let TwofaCodeModal = {
   modal: null,
-  active: false
+  active: false,
+};
+
+let friendsModal = {
+  modal: null,
+  active: false,
 };
 
 let GameParams = {
@@ -28,7 +34,7 @@ let GameParams = {
   Type: "local",
   Score: 3,
   Difficulty: 5,
-  PowerUp: false
+  PowerUp: false,
 };
 
 const ROUTE = {
@@ -40,6 +46,8 @@ const ROUTE = {
   SIGNOUT: "/auth/signout/",
   SETTINGS: "/auth/settings/",
   PROFILE: "/user/profile/",
+  FRIENDS: "/friends/list/",
+  REQUESTS: "/friends/request/",
   TWOFA_E: "/2fa/enable/",
   TWOFA_Q: "/2fa/qrcode/",
   TWOFA_C: "/2fa/confirm/",

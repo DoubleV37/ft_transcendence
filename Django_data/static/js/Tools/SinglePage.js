@@ -117,4 +117,7 @@ async function del_modal () {
   if (profileModal.active === true) {
     profileModal.modal.hide();
   }
+  if (friendsModal.active === true) {
+    friendsModal.modal.hide();
+  }
 }

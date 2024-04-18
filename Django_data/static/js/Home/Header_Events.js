@@ -12,6 +12,9 @@ function header_SetEvents () {
     element = document.getElementById("HEADER_NavProfile");
     element.addEventListener("click", header_ModProfilCallBack);
 
+    element = document.getElementById("HEADER_NavFriends");
+    element.addEventListener("click", header_ModFriendsCallBack);
+
     element = document.getElementById("HEADER_user");
     element.addEventListener("click", header_ModProfilCallBack);
   } else if (IsAuthenticated === "false") {
@@ -38,6 +41,9 @@ function header_DelEvents () {
   if (IsAuthenticated === "true") {
     element = document.getElementById("HEADER_user");
     element.removeEventListener("click", header_ModProfilCallBack);
+
+    element = document.getElementById("HEADER_NavFriends");
+    element.removeEventListener("click", header_ModFriendsCallBack);
 
     element = document.getElementById("HEADER_NavProfile");
     element.removeEventListener("click", header_ModProfilCallBack);
@@ -86,6 +92,17 @@ async function header_ModProfilCallBack () {
   }
 }
 
+async function header_ModFriendsCallBack () {
+  try {
+    offcanvas_Hide();
+    await changeSection(`${ROUTE.FRIENDS}`, "#FriendsModal");
+    await changeSection(`${ROUTE.REQUESTS}`, "#RequestList-content");
+    friendsModal.modal.show();
+  } catch (error) {
+    console.log(`Error - header_M: ${error}`);
+  }
+}
+
 function header_SignUpCallBack () {
   try {
     loadPage(`${ROUTE.SIGNUP}`);
@@ -99,7 +116,6 @@ async function header_SignOutCallBack () {
   try {
     offcanvas_Hide();
     await MakeRequest(`${ROUTE.SIGNOUT}`);
-    del_current_event(currentUrl);
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
