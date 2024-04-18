@@ -30,19 +30,20 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-	'bootstrap5',
-	'channels',
-	'django.contrib.admin',
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
-	'apps.Home',
-	'apps.Auth',
-	'apps.Profile',
-	'apps.Game',
-	'apps.Twofa',
+    'channels',
+    'bootstrap5',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'apps.Home',
+    'apps.Auth',
+    'apps.Profile',
+    'apps.Game',
+    'apps.Twofa',
+    'apps.FriendsList',
 ]
 
 MIDDLEWARE = [
