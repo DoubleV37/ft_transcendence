@@ -9,7 +9,7 @@ function offcanvas_Hide () {
 
 function del_current_event () {
   const page_name = document
-    .getElementById("content")
+    .getElementById("titleContent")
     .getAttribute("data-content");
 
   switch (page_name) {

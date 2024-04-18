@@ -30,8 +30,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-	'channels',
-	'bootstrap5',
+    'channels',
+    'bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'apps.Home',
     'apps.Auth',
     'apps.Profile',
-	'apps.Game',
+    'apps.Game',
     'apps.Twofa',
+    'apps.FriendsList',
 ]
 
 MIDDLEWARE = [

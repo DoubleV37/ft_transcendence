@@ -17,7 +17,7 @@ def profile_infos(request, _id=None):
             _user = request.user
             _type = 'himself'
         else:
-            _user = User.objects.get(idUser=_id)
+            _user = User.objects.get(id=_id)
             _type = 'foreign'
         _status = 'online' if _user.status is True else 'offline'
         _username = _user.username
@@ -29,7 +29,6 @@ def profile_infos(request, _id=None):
                        'status': _status})
     except User.objects.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Wrong ID'})
-
 
 
 def avatar(request):
