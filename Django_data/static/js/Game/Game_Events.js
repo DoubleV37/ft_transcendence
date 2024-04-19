@@ -35,10 +35,13 @@ function game_SetEvents(page_name) {
 	gameSocket.onopen = function (e) {
 		console.log("The connection was setup successfully !");
 		if (page_name === "GAME_SOLO") {
+			gameCanvas.powerup = true;
 			gameSocket.addEventListener('message', receive_data);
 		}
 		else if (page_name === "GAME_ROOM") {
 			gameCanvas.powerup = false;
+			GameParams.point_limit = 1;
+			gameSocket.send(JSON.stringify(GameParams));
 			gameSocket.addEventListener('message', receive_data_room);
 		}
 
@@ -67,7 +70,6 @@ function game_DelEvents() {
 	// 	canvas.height = height;
 	// });
 
-	console.log('gameSocket', gameSocket);
 	gameSocket.close();
 
 	document.removeEventListener('keyup', keyUp);
