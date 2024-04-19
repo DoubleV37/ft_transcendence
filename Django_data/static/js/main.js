@@ -1,6 +1,6 @@
 // ----------Run at the load/reload of the website-------------//
 document.addEventListener("DOMContentLoaded", launchWebsite);
-
+ 
 async function launchWebsite () {
   const targetNode = document.querySelector("#content");
 
