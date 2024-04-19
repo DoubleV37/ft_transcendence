@@ -26,7 +26,6 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 	async def receive(self, text_data):
 		data = json.loads(text_data)
 		message = data["message"]
-		username = data["username"]
 		if message == "up" and self.pong.player_pos[1] > 0:
 			self.pong.player_pos[1] -= self.pong.player_speed
 		elif message == "down" and self.pong.player_pos[1] < 900:

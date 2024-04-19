@@ -20,14 +20,6 @@ class Games(models.Model):
 	def __str__(self):
 		return self.idGame
 
-class Pong(models.Model):
-	idGame = models.OneToOneField(Games, on_delete=models.CASCADE, primary_key=True)
-	paddleL = models.IntegerField(default=450)
-	engage = models.IntegerField(default=0)
-
-	def __str__(self):
-		return str(self.idGame.idGame)
-
 class UserGame(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	game = models.ForeignKey(Games, on_delete=models.CASCADE)

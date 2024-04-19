@@ -39,27 +39,21 @@ function receive_data_room(e) {
 		gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
-	if (data.message === "Game finished") {
-		if (data.winner === "{{request.user}}") {
-			alert("You won!");
-		}
-		else {
-			alert("You lost!");
-		}
+	if (data.message === "win") {
+		alert("You won!");
+		gameSocket.close();
+		loadPage(ROUTE.GAME_MODES);
+	}
+	if (data.message === "lose") {
+		alert("You lost!");
 		gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
 	if (data.message === "game_state") {
 		let score1div = document.getElementById("score1div");
 		let score2div = document.getElementById("score2div");
-		if (gameCanvas.num === 1) {
-			score1div.innerHTML = data.score1;
-			score2div.innerHTML = data.score2;
-		}
-		else {
-			score1div.innerHTML = data.score2;
-			score2div.innerHTML = data.score1;
-		}
+		score1div.innerHTML = data.score1;
+		score2div.innerHTML = data.score2;
 		gameCanvas.ballRadius = data.ballsize*gameCanvas.height*2;
 		gameCanvas.paddle1Height = data.paddle1size*gameCanvas.height;
 		gameCanvas.paddle2Height = data.paddle2size*gameCanvas.height;
