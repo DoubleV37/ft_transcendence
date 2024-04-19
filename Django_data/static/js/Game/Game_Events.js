@@ -34,14 +34,11 @@ function game_SetEvents(page_name) {
 	init_canvas();
 	gameSocket.onopen = function (e) {
 		console.log("The connection was setup successfully !");
-		// gameSocket.send(JSON.stringify({ message: "start"}));
-		// console.log("GAME_SOCKET: ", gameSocket);
 		if (page_name === "GAME_SOLO") {
 			gameSocket.addEventListener('message', receive_data);
 		}
 		else if (page_name === "GAME_ROOM") {
 			gameCanvas.powerup = false;
-			console.log("GAME_ROOM");
 			gameSocket.addEventListener('message', receive_data_room);
 		}
 
@@ -51,8 +48,12 @@ function game_SetEvents(page_name) {
 		update();
 	};
 	gameSocket.onclose = function (e) {
-		gameSocket.removeEventListener('message', receive_data);
+		if (page_name === "GAME_SOLO")
+			gameSocket.removeEventListener('message', receive_data);
+		else if (page_name === "GAME_ROOM")
+			gameSocket.removeEventListener('message', receive_data_room);
 		console.log("Something unexpected happened !");
+		gameSocket = null;
 	};
 }
 
@@ -66,6 +67,7 @@ function game_DelEvents() {
 	// 	canvas.height = height;
 	// });
 
+	console.log('gameSocket', gameSocket);
 	gameSocket.close();
 
 	document.removeEventListener('keyup', keyUp);
