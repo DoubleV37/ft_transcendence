@@ -149,6 +149,10 @@
         background: #1C2026;
     }
 
+    .ButtonDark:hover {
+      background: #1C2026 !important;
+    }
+
     .ButtonFocus {
         background: #1b718d;
         border: 2px solid #5DC6E8;
@@ -297,6 +301,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .SelectButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .SelectButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout {
@@ -371,6 +385,10 @@
     .ButtonDark {
         border: 1px solid #AE473B;
         background: #1C2026;
+    }
+
+    .ButtonDark:hover {
+      background: #1C2026 !important;
     }
 
     .ButtonFocus {
@@ -518,6 +536,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .SelectButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .SelectButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout {
@@ -618,6 +646,10 @@
     .ButtonDark {
         border: 1px solid #AE473B;
         background: #1C2026;
+    }
+
+    .ButtonDark:hover {
+      background: #1C2026 !important;
     }
 
     .ButtonFocus {

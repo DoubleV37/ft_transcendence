@@ -4,7 +4,6 @@
 
   {% include "Home/head.html" %}
   <body>
-    {% include "Home/header.html" %}
     {% include "Profile/Avatar.html" %}
     {% include "Profile/Profile.html" %}
     {% include "Auth/code_validation.html" %}
@@ -24,11 +23,8 @@
 	    {{ form.as_p }}
 	    <!-- Display area for client-side validation errors -->
 	    <div id="SIGNIN_Errors" style="color: red;"></div>
-	    <div id ="forgot_password">
-	      <p>Forgot password?</p>
-	    </div>
 	    <!-- Submit button triggers client-side validation -->
-	    <button type="submit" class="ButtonLayout ButtonBlue CTA">Sign In</button>
+	    <button id="SignInButton" type="submit" class="ButtonLayout ButtonBlue CTA">Sign In</button>
 	    <div id="SIGNIN_Signup">
 	      <p>Doesn’t have a Pong account ? <b>Create your account</b></p>
 	    </div>

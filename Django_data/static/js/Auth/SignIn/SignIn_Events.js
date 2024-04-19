@@ -4,9 +4,6 @@ function  signin_SetEvents() {
 
   element = document.querySelector("#SIGNIN_Signup b");
   element.addEventListener('click', signin_SignUpCallBack);
-
-  element = document.getElementById('forgot_password');
-  element.addEventListener('click', signin_ForgotPasswdCallBack);
 }
 
 function  signin_DelEvents() {
@@ -15,9 +12,6 @@ function  signin_DelEvents() {
 
   element = document.querySelector("#SIGNIN_Signup b");
   element.removeEventListener('click', signin_SignUpCallBack);
-
-  element = document.getElementById('forgot_password');
-  element.removeEventListener('click', signin_ForgotPasswdCallBack);
 }
 
 async function signin_FormCallBack(event) {

@@ -30,7 +30,7 @@ let friendsModal = {
 };
 
 let GameParams = {
-  Opponent: "ai",
+  Opponent: "player",
   Type: "local",
   Score: 3,
   Difficulty: 5,
