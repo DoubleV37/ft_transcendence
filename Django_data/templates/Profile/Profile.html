@@ -20,14 +20,13 @@
 	  {% if profile == 'himself' %}
 	    <div id="Profile_Type" data-content="himself"></div>
 	    <button id="PROFIL_Settings" class="ButtonLayout ButtonNeon">Settings</button>
-	    <button id="PROFIL_Skins" class="ButtonLayout ButtonSalmon">Skins</button>
+	    <button id="PROFIL_Skins" class="ButtonLayout ButtonNeon">Skins</button>
 	  {% else %}
 	    <div id="Profile_Type" data-content="foreign"></div>
 	    <div id="DoubleButton">
 	      <button class="MediumButtonLayout left ButtonNeon">Add Friend</button>
-	      <button class="MediumButtonLayout right ButtonNeon">Message</button>
+	      <button class="MediumButtonLayout right ButtonDark">Remove Friend</button>
 	    </div>
-	    <button class="ButtonLayout ButtonSalmon">Invite to game</button>
 	  {% endif %}
 
 	  <div id ="UserInfo">
@@ -35,14 +34,11 @@
 	    <p id="UserInfoText">User info</p>
 	    <div id="rightline"></div>
 	  </div>
-	  <button id="PROFIL_History" class="ButtonLayout ButtonBlue">History</button>
-	  <button id="PROFIL_Stats" class="ButtonLayout ButtonBlue">Stats</button>
-	  <button id="PROFIL_42Account" class="ButtonLayout ButtonBlue">42 Account</button>
-
-	  {% if profile == 'foreign' %}
-	    <button class="ButtonLayout ButtonDark">Block User</button>
+	  {% if profile == 'himself' %}
+	  	<button id="PROFIL_Stats" class="ButtonLayout ButtonBlue">Friends</button>
 	  {% endif %}
-
+	  <button id="PROFIL_History" class="ButtonLayout ButtonBlue">Game History</button>
+	  <button id="PROFIL_Stats" class="ButtonLayout ButtonBlue">Player Stats</button>
 	</div>
       </div>
       <div class="modal-footer"></div>
