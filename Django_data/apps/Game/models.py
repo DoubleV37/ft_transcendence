@@ -9,7 +9,7 @@ class MatchmakingUser(models.Model):
 
 class Games(models.Model):
 	idGame = models.CharField(max_length=255, unique=True)
-	start_num = models.IntegerField(default=0)
+	nb_users = models.IntegerField(default=0)
 	running = models.BooleanField(default=False)
 	date = models.DateTimeField(auto_now_add=True)
 	duration = models.IntegerField(default=0)

@@ -23,8 +23,8 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 	async def disconnect(self, close_code):
 		try:
 			game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
-			if game.start_num == 2:
-				game.start_num = 19
+			if game.nb_users == 2:
+				game.nb_users = 19
 				await database_sync_to_async(game.save)()
 				if self.user_num == 1:
 					self.pong.running = False
@@ -47,7 +47,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 							}
 						}
 					)
-			elif game.start_num == 0 or game.start_num == 1:
+			elif game.nb_users == 0 or game.nb_users == 1:
 				user_game = await database_sync_to_async(UserGame.objects.get)(user=self.scope["user"], game=game)
 				await database_sync_to_async(user_game.delete)()
 				if self.user_num == 1:
@@ -67,7 +67,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			self.user_num = 1
 		else:
 			self.user_num = 2
-			if self.game.start_num == 19 or self.game.start_num == 2:
+			if self.game.nb_users == 19 or self.game.nb_users == 2:
 				await self.channel_layer.group_send(
 					self.room_group_name,
 					{
@@ -135,7 +135,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 
 	async def start_game(self):
 		game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
-		if game.start_num == 19:
+		if game.nb_users == 19:
 			await self.channel_layer.group_send(
 				self.room_group_name,
 				{
@@ -146,7 +146,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 				}
 			)
 		if self.user_num == 1 :
-			game.start_num = 2
+			game.nb_users = 2
 			await database_sync_to_async(game.save)()
 			self.opponent = await self.set_opponent()
 			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 1}))
