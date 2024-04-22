@@ -23,8 +23,8 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 	async def disconnect(self, close_code):
 		try:
 			game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
-			if game.start_num == 2:
-				game.start_num = 19
+			if game.nb_users == 2:
+				game.nb_users = 19
 				await database_sync_to_async(game.save)()
 				if self.user_num == 1:
 					self.pong.running = False
@@ -47,7 +47,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 							}
 						}
 					)
-			elif game.start_num == 0 or game.start_num == 1:
+			elif game.nb_users == 0 or game.nb_users == 1:
 				user_game = await database_sync_to_async(UserGame.objects.get)(user=self.scope["user"], game=game)
 				await database_sync_to_async(user_game.delete)()
 				if self.user_num == 1:
@@ -65,11 +65,9 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		self.game, created = await sync_to_async(Games.objects.get_or_create)(idGame=self.room_name)
 		if created:
 			self.user_num = 1
-			# self.game_settings = await sync_to_async(Pong.objects.create)(idGame=self.game)
 		else:
 			self.user_num = 2
-			# self.game_settings = await sync_to_async(Pong.objects.get)(idGame=self.game)
-			if self.game.start_num == 19 or self.game.start_num == 2:
+			if self.game.nb_users == 19 or self.game.nb_users == 2:
 				await self.channel_layer.group_send(
 					self.room_group_name,
 					{
@@ -88,13 +86,14 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		if not message:
 			return
 		if self.user_num == 1:
-			# if data.get("username") == self.username :
+			if message == "settings":
+				self.pong.point_limit = data.get("point_limit")
+				self.pong.paddle_radius = data.get("difficulty")
+				self.pong.powerup = data.get("powerup")
 			if message == "up":
 				self.pong.player_pos[1] -= self.pong.player_speed
 			elif message == "down":
 				self.pong.player_pos[1] += self.pong.player_speed
-			# elif message == "start":
-			# 	await self.start_game()
 			elif message == "space" and self.pong.engage > 0:
 				self.pong.engage = 0
 			elif message == "stop":
@@ -109,8 +108,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 					}
 				)
 		else:
-			# if message == "start":
-			# 	await self.start_game()
 			if message == "up":
 				await self.channel_layer.group_send(
 					self.room_group_name,
@@ -138,7 +135,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 
 	async def start_game(self):
 		game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
-		if game.start_num == 19:
+		if game.nb_users == 19:
 			await self.channel_layer.group_send(
 				self.room_group_name,
 				{
@@ -148,15 +145,9 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 					}
 				}
 			)
-		# start_num = game.start_num
-		# game.start_num = start_num + 1
-		# game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
 		if self.user_num == 1 :
-			game.start_num = 2
+			game.nb_users = 2
 			await database_sync_to_async(game.save)()
-			# while (game.start_num != 2):
-			# 	await asyncio.sleep(1)
-			# 	game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
 			self.opponent = await self.set_opponent()
 			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 1}))
 			asyncio.create_task(self.run_game())
