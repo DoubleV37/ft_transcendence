@@ -30,11 +30,12 @@ let friendsModal = {
 };
 
 let GameParams = {
-  Opponent: "ai",
-  Type: "local",
-  Score: 3,
-  Difficulty: 5,
-  PowerUp: false,
+  message: "settings",
+  opponent: "ai",
+  type: "local",
+  point_limit: 3,
+  difficulty: 5,
+  powerup: false,
 };
 
 const ROUTE = {
