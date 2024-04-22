@@ -39,7 +39,7 @@ def ai_brain( Pong, player, lvl ):
 
 class Pong():
 
-	def __init__(self, start, point_limit, difficulty, power):
+	def __init__(self, point_limit, difficulty, power):
 		self.running = True
 		self.time = 0
 		self.engage = start
@@ -51,7 +51,7 @@ class Pong():
 		self.player_speed = 20
 		self.paddle_radius = difficulty
 		self.ball_acceleration = 0.05
-		if start == 1:
+		if random.randint(0,1) == 0:
 			self.ball_speed = [0,0]
 			self.ball_pos = [80, 450]
 		else:
@@ -80,7 +80,7 @@ class Pong():
 			if self.powerup_speed == 0:
 				self.powerup_speed = 0.5
 			self.powerup_size = 75
-		
+
 		if self.ball_speed[0] > 0 and self.powerup_time > 0:
 			self.powerup_time -= 1
 
@@ -97,7 +97,7 @@ class Pong():
 				self.player_size[0] += 1
 			elif self.player_size[1] < 300 and self.powerup_count[1] == 1:
 				self.player_size[1] += 1
-		
+
 		if self.powerup_pos[1] > (900 - (self.powerup_size / 2)) or self.powerup_pos[1] < (self.powerup_size / 2):
 			self.powerup_speed *= -1
 		elif (self.powerup_pos[0] - (self.powerup_size / 2)) < self.ball_pos[0] and self.ball_pos[0] < (self.powerup_pos[0] + (self.powerup_size / 2)) and (self.powerup_pos[1] - (self.powerup_size / 2)) < self.ball_pos[1] and self.ball_pos[1] < (self.powerup_pos[1] + (self.powerup_size / 2)):

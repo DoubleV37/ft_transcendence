@@ -8,19 +8,19 @@ function init_websocket() {
 	};
 }
 
-function receive_data(e) {
-	const data = JSON.parse(e.data);
-	let score1div = document.getElementById("score1div");
-	score1div.innerHTML = data.score1;
-	let score2div = document.getElementById("score2div");
-	score2div.innerHTML = data.score2;
-	gameCanvas.ballRadius = data.ballsize * gameCanvas.height*2;
-	gameCanvas.paddle1Height = data.paddle1size * gameCanvas.height;
-	gameCanvas.paddle2Height = data.paddle2size * gameCanvas.height;
-	gameCanvas.powerupY = data.powerupY;
-	gameCanvas.powerupsize = data.powerupsize;
-	draw(data);
-}
+// function receive_data(e) {
+// 	const data = JSON.parse(e.data);
+// 	let score1div = document.getElementById("score1div");
+// 	score1div.innerHTML = data.score1;
+// 	let score2div = document.getElementById("score2div");
+// 	score2div.innerHTML = data.score2;
+// 	gameCanvas.ballRadius = data.ballsize * gameCanvas.height*2;
+// 	gameCanvas.paddle1Height = data.paddle1size * gameCanvas.height;
+// 	gameCanvas.paddle2Height = data.paddle2size * gameCanvas.height;
+// 	gameCanvas.powerupY = data.powerupY;
+// 	gameCanvas.powerupsize = data.powerupsize;
+// 	draw(data);
+// }
 
 function receive_data_room(e) {
 	const data = JSON.parse(e.data);

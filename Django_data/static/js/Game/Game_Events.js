@@ -35,6 +35,7 @@ function game_SetEvents(page_name) {
 	gameSocket.onopen = function (e) {
 		console.log("The connection was setup successfully !");
 		if (page_name === "GAME_SOLO") {
+			gameSocket.send(JSON.stringify({ message: "settings", type: "local", point_limit: 3, difficulty: 5, powerup: false}));
 			gameSocket.addEventListener('message', receive_data);
 		}
 		else if (page_name === "GAME_ROOM") {
