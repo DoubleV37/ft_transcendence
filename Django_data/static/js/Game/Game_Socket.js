@@ -8,7 +8,7 @@ function init_websocket() {
 	};
 }
 
-function receive_data_room(e) {
+function receive_data(e) {
 	const data = JSON.parse(e.data);
 	if (data.message === "opponent") {
 		gameCanvas.opponent = data.opponent;

@@ -42,14 +42,14 @@ function game_SetEvents(page_name) {
 			gameSocket.send(JSON.stringify(GameParams));
 		}
 
-		gameSocket.addEventListener('message', receive_data_room);
+		gameSocket.addEventListener('message', receive_data);
 		document.addEventListener('keyup', keyUp);
 		document.addEventListener('keydown', keyDown);
 
 		update();
 	};
 	gameSocket.onclose = function (e) {
-		gameSocket.removeEventListener('message', receive_data_room);
+		gameSocket.removeEventListener('message', receive_data);
 		console.log("Something unexpected happened !");
 		gameSocket = null;
 	};
