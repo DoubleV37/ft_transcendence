@@ -31,7 +31,7 @@ function del_current_event () {
     case "GAME_PARAMETERS":
       parameters_DelEvents();
       break;
-	case 'GAME_SOLO':
+	case 'GAME_LOCAL':
 	  game_DelEvents();
 	  break;
 	case 'GAME_MATCH':

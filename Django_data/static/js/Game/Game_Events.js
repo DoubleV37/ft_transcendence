@@ -31,8 +31,8 @@ function game_SetEvents(page_name) {
 	init_canvas();
 	gameSocket.onopen = function (e) {
 		console.log("The connection was setup successfully !");
-		if (page_name === "GAME_SOLO") {
-			gameSocket.send(JSON.stringify({ message: "settings", type: "ia", point_limit: 3, difficulty: 5, powerup: false}));
+		if (page_name === "GAME_LOCAL") {
+			gameSocket.send(JSON.stringify({ message: "settings", opponent: "ia", type: "local", point_limit: 3, difficulty: 5, powerup: false}));
 			gameSocket.addEventListener('message', receive_data_room);
 		}
 		else if (page_name === "GAME_ROOM") {
@@ -48,8 +48,8 @@ function game_SetEvents(page_name) {
 		update();
 	};
 	gameSocket.onclose = function (e) {
-		if (page_name === "GAME_SOLO")
-			gameSocket.removeEventListener('message', receive_data);
+		if (page_name === "GAME_LOCAL")
+			gameSocket.removeEventListener('message', receive_data_room);
 		else if (page_name === "GAME_ROOM")
 			gameSocket.removeEventListener('message', receive_data_room);
 		console.log("Something unexpected happened !");

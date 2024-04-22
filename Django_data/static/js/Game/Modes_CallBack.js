@@ -8,7 +8,7 @@ async function modes_randomMatchmaking() {
 
 async function modes_playerVSia() {
 	try {
-		await loadPage(`${ROUTE.GAME_SOLO}`);
+		await loadPage(`${ROUTE.GAME_LOCAL}`);
 	} catch (error) {
 		console.log(`Error - playerVSia: ${error}`);
 	}

@@ -77,6 +77,12 @@ function parameters_SetPowerUp (event) {
 }
 
 function parameters_StartGame () {
+  if (GameParams.type === "local") {
+	loadPage(ROUTE.GAME_LOCAL);
+  }
+  else {
+	loadPage(ROUTE.GAME_MATCH);
+  }
   const Params = JSON.stringify(GameParams);
   console.log(Params);
 }

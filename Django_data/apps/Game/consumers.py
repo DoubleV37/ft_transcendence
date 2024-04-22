@@ -37,7 +37,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			self.pong.engage = 0
 		if message == "settings":
 			self.ia = True
-			if data["type"] == "local":
+			if data["opponent"] == "player":
 				self.ia = False
 			self.pong = Pong(data["point_limit"], data["difficulty"], data["powerup"])
 			asyncio.create_task(self.runGame())
