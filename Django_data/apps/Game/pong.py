@@ -37,7 +37,7 @@ class Pong():
 		self.player_pos = [450, 450]
 		self.player_size = [150, 150]
 		self.player_speed = 20
-		self.paddle_radius = difficulty
+		self.paddle_radius = 20 - (difficulty * -1)
 		self.ball_acceleration = 0.05
 		if random.randint(0,1) == 0:
 			self.engage = 1
