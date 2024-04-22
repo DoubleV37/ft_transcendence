@@ -29,9 +29,13 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			self.pong.player_pos[1] -= self.pong.player_speed
 		elif message == "down" and self.pong.player_pos[1] < 900:
 			self.pong.player_pos[1] += self.pong.player_speed
-		elif message == "space" and self.pong.engage > 0:
+		if message == "w" and self.pong.player_pos[0] > 0:
+			self.pong.player_pos[0] -= self.pong.player_speed
+		elif message == "s" and self.pong.player_pos[0] < 900:
+			self.pong.player_pos[0] += self.pong.player_speed
+		if message == "space" and self.pong.engage > 0:
 			self.pong.engage = 0
-		elif message == "settings":
+		if message == "settings":
 			self.ia = True
 			if data["type"] == "local":
 				self.ia = False

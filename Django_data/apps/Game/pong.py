@@ -42,7 +42,6 @@ class Pong():
 	def __init__(self, point_limit, difficulty, power):
 		self.running = True
 		self.time = 0
-		self.engage = start
 		self.engage_time = 1000
 		self.point = [0, 0]
 		self.point_limit = point_limit
@@ -52,9 +51,11 @@ class Pong():
 		self.paddle_radius = difficulty
 		self.ball_acceleration = 0.05
 		if random.randint(0,1) == 0:
+			self.engage = 1
 			self.ball_speed = [0,0]
 			self.ball_pos = [80, 450]
 		else:
+			self.engage = 2
 			self.ball_speed = [0,0]
 			self.ball_pos = [1120, 450]
 		# powerup

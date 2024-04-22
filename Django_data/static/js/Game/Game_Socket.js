@@ -69,11 +69,19 @@ function sendMovement(direction) {
 function update() {
 	if (keyStates['ArrowUp']) {
 		sendMovement("up");
-	} else if (keyStates['ArrowDown']) {
+	}
+	else if (keyStates['ArrowDown']) {
 		sendMovement("down");
 	}
-	else if (keyStates[' '])
+	else if (keyStates[' ']) {
 		sendMovement("space");
+	}
+	if (keyStates['w']) {
+		sendMovement("w");
+	}
+	else if (keyStates['s']) {
+		sendMovement("s");
+	}
 	// Planifiez la prochaine mise à jour
 	requestAnimationFrame(update);
 }

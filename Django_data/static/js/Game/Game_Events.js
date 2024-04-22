@@ -6,9 +6,6 @@ function keyDown(e) {
 	if (e.key !== 'F5' && !(e.key === 'F5' && e.ctrlKey) && e.key !== 'F12') {
 		e.preventDefault();
 	}
-	if (e.key === 'r') {
-		gameSocket.send(JSON.stringify({ message: "start" }));
-	}
 	keyStates[e.key] = true;
 }
 
@@ -35,9 +32,8 @@ function game_SetEvents(page_name) {
 	gameSocket.onopen = function (e) {
 		console.log("The connection was setup successfully !");
 		if (page_name === "GAME_SOLO") {
-			gameSocket.send(JSON.stringify({ message: "settings", type: "local", point_limit: 3, difficulty: 5, powerup: false}));
-			gameCanvas.powerup = true;
-			gameSocket.addEventListener('message', receive_data);
+			gameSocket.send(JSON.stringify({ message: "settings", type: "ia", point_limit: 3, difficulty: 5, powerup: false}));
+			gameSocket.addEventListener('message', receive_data_room);
 		}
 		else if (page_name === "GAME_ROOM") {
 			gameCanvas.powerup = false;
