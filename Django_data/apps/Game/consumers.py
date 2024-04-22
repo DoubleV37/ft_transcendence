@@ -49,6 +49,8 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 						"paddleR" : self.pong.player_pos[1]/900 ,
 						"ballX" : self.pong.ball_pos[0]/1200 ,
 						"ballY" : self.pong.ball_pos[1]/900 ,
+						"ballspeedX" : self.pong.ball_speed[0]/1200 ,
+						"ballspeedY" : self.pong.ball_speed[1]/900 ,
 						"score1" : self.pong.point[0] ,
 						"score2" : self.pong.point[1] ,
 						"ballsize" : self.pong.ball_size/900 ,
