@@ -57,6 +57,10 @@ function receive_data_room(e) {
 		gameCanvas.ballRadius = data.ballsize*gameCanvas.height*2;
 		gameCanvas.paddle1Height = data.paddle1size*gameCanvas.height;
 		gameCanvas.paddle2Height = data.paddle2size*gameCanvas.height;
+		if (gameCanvas.powerup) {
+			gameCanvas.powerupY = data.powerupY;
+			gameCanvas.powerupsize = data.powerupsize;
+		}
 		draw(data);
 	}
 }

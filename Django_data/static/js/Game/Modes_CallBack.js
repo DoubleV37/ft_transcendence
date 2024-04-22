@@ -8,6 +8,11 @@ async function modes_randomMatchmaking() {
 
 async function modes_playerVSia() {
 	try {
+		GameParams.opponent = "ai";
+		GameParams.type = "local";
+		GameParams.point_limit = 3;
+		GameParams.difficulty = 5;
+		GameParams.powerup = true;
 		await loadPage(`${ROUTE.GAME_LOCAL}`);
 	} catch (error) {
 		console.log(`Error - playerVSia: ${error}`);
