@@ -26,6 +26,9 @@ async function launchWebsite () {
   observer.observe(targetNode, config);
 
   document.removeEventListener("DOMContentLoaded", launchWebsite);
+
+  const interval = 3000;
+  setInterval(pingServer, interval);
 }
 
 function main_SetFirstsEvents () {

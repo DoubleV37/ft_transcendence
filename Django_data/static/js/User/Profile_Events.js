@@ -1,35 +1,52 @@
 function profile_SetEvents () {
   profileModal.active = true;
-  let element = document.getElementById("PROFIL_Settings");
-  element.addEventListener("click", profile_SettingsCallBack);
 
-  element = document.getElementById("ModalBackArrow");
-  element.addEventListener("click", profile_closeModal);
+  const type = document.getElementById("Profile_Type").getAttribute("data-content");
+  let element;
 
-  element = document.getElementById("PROFIL_Skins");
-  element.addEventListener("click", profile_SkinsCallBack);
+  if (type === "himself") {
+    element = document.getElementById("PROFIL_Settings");
+    element.addEventListener("click", profile_SettingsCallBack);
+
+    element = document.getElementById("PROFIL_Skins");
+    element.addEventListener("click", profile_SkinsCallBack);
+  } else {
+    element = document.getElementById("Friends_Profile").querySelector("form");
+    element.addEventListener('submit', profile_FriendsButtonCallBack);
+  }
 
   element = document.getElementById("PROFIL_History");
   element.addEventListener("click", profile_HistoryCallBack);
 
   element = document.getElementById("PROFIL_Stats");
   element.addEventListener("click", profile_StatsCallBack);
+
+  element = document.getElementById("ModalBackArrow");
+  element.addEventListener("click", profile_closeModal);
+
 }
 
 function profile_DelEvents () {
   profileModal.active = false;
-  let element = document.getElementById("PROFIL_Settings");
-  element.removeEventListener("click", profile_SettingsCallBack);
 
-  element = document.getElementById("ModalBackArrow");
-  element.removeEventListener("click", profile_closeModal);
+  const type = document.getElementById("Profile_Type").getAttribute("data-content");
+  let element;
 
-  element = document.getElementById("PROFIL_Skins");
-  element.removeEventListener("click", profile_SkinsCallBack);
+  if (type === "himself") {
+    element = document.getElementById("PROFIL_Settings");
+    element.removeEventListener("click", profile_SettingsCallBack);
+
+    element = document.getElementById("PROFIL_Skins");
+    element.removeEventListener("click", profile_SkinsCallBack);
+  } else {
+  }
 
   element = document.getElementById("PROFIL_History");
   element.removeEventListener("click", profile_HistoryCallBack);
 
   element = document.getElementById("PROFIL_Stats");
   element.removeEventListener("click", profile_StatsCallBack);
+
+  element = document.getElementById("ModalBackArrow");
+  element.removeEventListener("click", profile_closeModal);
 }
