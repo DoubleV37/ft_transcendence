@@ -1,6 +1,6 @@
 import json, asyncio, time
 from channels.generic.websocket import AsyncWebsocketConsumer
-from .pong import Pong, ai_brain
+from .pong import Pong#, ai_brain
 from asgiref.sync import sync_to_async
 
 class SoloPongConsumer(AsyncWebsocketConsumer):
