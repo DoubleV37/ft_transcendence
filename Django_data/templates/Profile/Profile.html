@@ -10,23 +10,22 @@
 	<div id="ModalContent" data-content="PROFILE_PAGE"></div>
 	<div class="ProfilePage modal-profile">
 	  <div class="ProfileCardboard modal-profileCardboard">
-	    <img class="ProfilePic modal-profilePic" src="{{ profil_picture }}" alt="Very basic user"></img>
+	    <img class="ProfilePic modal-profilePic" src="{{ avatar }}" alt="Very basic user"></img>
 	    <div id="UserStatus">
-			<h1 id="username">{{ username }}</h1>
-			<p id="connectStatus">{{ status }}<span class="dotOnline"></span></p>
+	      <h1 id="username">{{ username }}</h1>
+              {% if type == 'foreign' %}
+              <p id="connectStatus">{{ status }}<span class="{{ status }}"></span></p>
+              {% endif %}
 	    </div>
 	  </div>
 
-	  {% if profile == 'himself' %}
+	  {% if type == 'himself' %}
 	    <div id="Profile_Type" data-content="himself"></div>
 	    <button id="PROFIL_Settings" class="ButtonLayout ButtonNeon">Settings</button>
 	    <button id="PROFIL_Skins" class="ButtonLayout ButtonNeon">Skins</button>
 	  {% else %}
 	    <div id="Profile_Type" data-content="foreign"></div>
-	    <div id="DoubleButton">
-	      <button class="MediumButtonLayout left ButtonNeon">Add Friend</button>
-	      <button class="MediumButtonLayout right ButtonDark">Remove Friend</button>
-	    </div>
+	    <div id="Friends_Profile"></div>
 	  {% endif %}
 
 	  <div id ="UserInfo">
@@ -34,8 +33,8 @@
 	    <p id="UserInfoText">User info</p>
 	    <div id="rightline"></div>
 	  </div>
-	  {% if profile == 'himself' %}
-	  	<button id="PROFIL_Stats" class="ButtonLayout ButtonBlue">Friends</button>
+	  {% if type == 'himself' %}
+	    <button id="PROFIL_Friends" class="ButtonLayout ButtonBlue">Friends</button>
 	  {% endif %}
 	  <button id="PROFIL_History" class="ButtonLayout ButtonBlue">Game History</button>
 	  <button id="PROFIL_Stats" class="ButtonLayout ButtonBlue">Player Stats</button>

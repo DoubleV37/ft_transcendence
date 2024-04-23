@@ -40,16 +40,19 @@ function parameters_SelectOpponent (event) {
     if (GameParams.Opponent !== "player") {
       GameParams.Opponent = "player";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
-      document.getElementById("SELECT_ai").setAttribute("class", "MediumButtonLayout left ButtonNeon");
+      document.getElementById("SELECT_ai").setAttribute("class", "MediumButtonLayout right ButtonNeon");
     }
     document.getElementById("SELECT_Player").setAttribute("class", "MediumButtonLayout left ButtonFocus");
+      document.getElementById("SELECT_Remote").disabled = false;
   } else {
     if (GameParams.Opponent !== "ai") {
       GameParams.Opponent = "ai";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
       document.getElementById("SELECT_Player").setAttribute("class", "MediumButtonLayout left ButtonNeon");
+      document.getElementById("SELECT_Local").click();
+      document.getElementById("SELECT_Remote").disabled = true;
     }
-    document.getElementById("SELECT_ai").setAttribute("class", "MediumButtonLayout left ButtonFocus");
+    document.getElementById("SELECT_ai").setAttribute("class", "MediumButtonLayout right ButtonFocus");
   }
 }
 
@@ -61,12 +64,12 @@ function parameters_SelectType (event) {
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
       document.getElementById("SELECT_Local").setAttribute("class", "MediumButtonLayout left ButtonNeon");
     }
-    document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout left ButtonFocus");
+    document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout right ButtonFocus");
   } else {
     if (GameParams.Type !== "local") {
       GameParams.Type = "local";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
-      document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout left ButtonNeon");
+      document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout right ButtonNeon");
     }
     document.getElementById("SELECT_Local").setAttribute("class", "MediumButtonLayout left ButtonFocus");
   }
@@ -88,14 +91,16 @@ function parameters_StartGame () {
 function parameters_SetPage () {
   if (GameParams.Opponent === "ai") {
     document.getElementById("SELECT_ai")
-      .setAttribute("class", "MediumButtonLayout left ButtonFocus");
+      .setAttribute("class", "MediumButtonLayout right ButtonFocus");
+    document.getElementById("SELECT_Local").click();
+    document.getElementById("SELECT_Remote").disabled = true;
   } else {
     document.getElementById("SELECT_Player")
       .setAttribute("class", "MediumButtonLayout left ButtonFocus");
   }
   if (GameParams.Type === "remote") {
     document.getElementById("SELECT_Remote")
-      .setAttribute("class", "MediumButtonLayout left ButtonFocus");
+      .setAttribute("class", "MediumButtonLayout right ButtonFocus");
   } else {
     document.getElementById("SELECT_Local")
       .setAttribute("class", "MediumButtonLayout left ButtonFocus");

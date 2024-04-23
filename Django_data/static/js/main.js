@@ -1,6 +1,6 @@
 // ----------Run at the load/reload of the website-------------//
 document.addEventListener("DOMContentLoaded", launchWebsite);
-
+ 
 async function launchWebsite () {
   const targetNode = document.querySelector("#content");
 
@@ -26,6 +26,9 @@ async function launchWebsite () {
   observer.observe(targetNode, config);
 
   document.removeEventListener("DOMContentLoaded", launchWebsite);
+
+  const interval = 3000;
+  setInterval(pingServer, interval);
 }
 
 function main_SetFirstsEvents () {

@@ -21,6 +21,10 @@
         transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
     }
 
+    .FriendCTALayout {
+        width: 100%;
+    }
+
     .ButtonLayout:hover {
         background-color: #1b718d;
         transform: scale(1.03);
@@ -252,6 +256,10 @@
 
     .ButtonLayout:not(:hover) {
         transform: scale(1.0);
+    }
+
+    .FriendCTALayout {
+        width: 100%;
     }
 
     .CTA {
@@ -487,6 +495,10 @@
 
     .ButtonLayout:not(:hover) {
         transform: scale(1.0);
+    }
+
+    .FriendCTALayout {
+        width: 100%;
     }
 
     .CTA {
