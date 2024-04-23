@@ -16,8 +16,14 @@ async function  profile_SkinsCallBack() {
   console.log("Skins: Do nothing for now");
 }
 
-async function  profile_HistoryCallBack() {
-  console.log("History: Do nothing for now");
+function  profile_HistoryCallBack() {
+  document.getElementById("ProfilPage").hidden = true;
+  document.getElementById("ListHistory").hidden = false;
+}
+
+function profile_ReturnToProfile () {
+  document.getElementById("ListHistory").hidden = true;
+  document.getElementById("ProfilPage").hidden = false;
 }
 
 async function  profile_StatsCallBack() {

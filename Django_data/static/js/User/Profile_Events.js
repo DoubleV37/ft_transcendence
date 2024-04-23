@@ -24,6 +24,9 @@ function profile_SetEvents () {
   element = document.getElementById("PROFIL_Stats");
   element.addEventListener("click", profile_StatsCallBack);
 
+  element = document.getElementById("ListHistory").querySelector("img");
+  element.addEventListener("click", profile_ReturnToProfile);
+
   element = document.getElementById("ModalBackArrow");
   element.addEventListener("click", profile_closeModal);
 
@@ -54,6 +57,9 @@ function profile_DelEvents () {
 
   element = document.getElementById("PROFIL_Stats");
   element.removeEventListener("click", profile_StatsCallBack);
+
+  element = document.getElementById("ListHistory").querySelector("img");
+  element.removeEventListener("click", profile_ReturnToProfile);
 
   element = document.getElementById("ModalBackArrow");
   element.removeEventListener("click", profile_closeModal);

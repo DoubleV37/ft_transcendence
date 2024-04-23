@@ -4,43 +4,109 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-	<img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
+        <img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
       </div>
       <div class="modal-body">
-	<div id="ModalContent" data-content="PROFILE_PAGE"></div>
-	<div class="ProfilePage modal-profile">
-	  <div class="ProfileCardboard modal-profileCardboard">
-	    <img class="ProfilePic modal-profilePic" src="{{ avatar }}" alt="Very basic user"></img>
-	    <div id="UserStatus">
-	      <h1 id="username">{{ username }}</h1>
+        <div id="ModalContent" data-content="PROFILE_PAGE"></div>
+        <div id="ProfilPage" class="ProfilePage modal-profile">
+          <div class="ProfileCardboard modal-profileCardboard">
+            <img class="ProfilePic modal-profilePic" src="{{ avatar }}" alt="Very basic user"></img>
+            <div id="UserStatus">
+              <h1 id="username">{{ username }}</h1>
               {% if type == 'foreign' %}
               <p id="connectStatus">{{ status }}<span class="{{ status }}"></span></p>
               {% endif %}
-	    </div>
-	  </div>
+            </div>
+          </div>
+          {% if type == 'himself' %}
+          <div id="Profile_Type" data-content="himself"></div>
+          <button id="PROFIL_Settings" class="ButtonLayout ButtonNeon">Settings</button>
+          <button id="PROFIL_Skins" class="ButtonLayout ButtonNeon">Skins</button>
+          {% else %}
+          <div id="Profile_Type" data-content="foreign"></div>
+          <div id="Friends_Profile"></div>
+          {% endif %}
+          <div id ="UserInfo">
+            <div id="leftline"></div>
+            <p id="UserInfoText">User info</p>
+            <div id="rightline"></div>
+          </div>
+          {% if type == 'himself' %}
+          <button id="PROFIL_Friends" class="ButtonLayout ButtonBlue">Friends</button>
+          {% endif %}
+          <button id="PROFIL_History" class="ButtonLayout ButtonBlue">Game History</button>
+          <button id="PROFIL_Stats" class="ButtonLayout ButtonBlue">Player Stats</button>
 
-	  {% if type == 'himself' %}
-	    <div id="Profile_Type" data-content="himself"></div>
-	    <button id="PROFIL_Settings" class="ButtonLayout ButtonNeon">Settings</button>
-	    <button id="PROFIL_Skins" class="ButtonLayout ButtonNeon">Skins</button>
-	  {% else %}
-	    <div id="Profile_Type" data-content="foreign"></div>
-	    <div id="Friends_Profile"></div>
-	  {% endif %}
-
-	  <div id ="UserInfo">
-	    <div id="leftline"></div>
-	    <p id="UserInfoText">User info</p>
-	    <div id="rightline"></div>
-	  </div>
-	  {% if type == 'himself' %}
-	    <button id="PROFIL_Friends" class="ButtonLayout ButtonBlue">Friends</button>
-	  {% endif %}
-	  <button id="PROFIL_History" class="ButtonLayout ButtonBlue">Game History</button>
-	  <button id="PROFIL_Stats" class="ButtonLayout ButtonBlue">Player Stats</button>
-	</div>
+        </div>
+          {% comment %} SECTION GAME HISTORY {% endcomment %}
+        <div id="ListHistory" class="listHeaderContainer" hidden>
+          <div class="ProfileCardboard modal-profileCardboard">
+            <img class="ProfilePic modal-profilePic" src="{{ avatar }}" alt="Very basic user"></img>
+            <div id="UserStatus">
+              <h1 id="username">{{ username }}</h1>
+              <p id="connectStatus">{{ status }}<span class="dotOnline"></span></p>
+            </div>		
+          </div>
+          <div class="listHeaderContainer">	
+            <h1 class="gameTitle history">Game history</h1>
+          </div>
+          <div class="listItemContainer">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Player 1</th>
+                    <th>Player 2</th>
+                    <th>Game Type</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <!-- Example rows -->
+                  <tr>
+                    <td>Player 1</td>
+                    <td>Player 2</td>
+                    <td>Yes</td>
+                    <td class="button-container"><button class="button ButtonNeon">Stats</button></td>
+                  </tr>
+                  <tr>
+                    <td>Player 1</td>
+                    <td>Player 2</td>
+                    <td>No</td>
+                    <td class="button-container"><button class="button ButtonNeon">Stats</button></td>
+                  </tr>
+                  <tr>
+                    <td>Player 1</td>
+                    <td>Player 2</td>
+                    <td>Yes</td>
+                    <td class="button-container"><button class="button ButtonNeon">Stats</button></td>
+                  </tr>
+                  <tr>
+                    <td>Player</td>
+                    <td>Player 2</td>
+                    <td>No</td>
+                    <td class="button-container"><button class="button ButtonNeon">Stats</button></td>
+                  </tr>
+                  <tr>
+                    <td>Player 1</td>
+                    <td>Player 2</td>
+                    <td>No</td>
+                    <td class="button-container"><button class="button ButtonNeon">Stats</button></td>
+                  </tr>
+                  <tr>
+                    <td>Player 1</td>
+                    <td>Player 2</td>
+                    <td>No</td>
+                    <td class="button-container"><button class="button ButtonNeon">Stats</button></td>
+                  </tr>
+                  <!-- Add more rows as needed -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        {% comment %} End history {% endcomment %}
       </div>
-      <div class="modal-footer"></div>
-    </div>
+    <div class="modal-footer"></div>
   </div>
 </div>
