@@ -685,3 +685,7 @@
     display: inline-block;
   }
 }
+
+#Friends_Profile {
+    width: 100%;
+}
