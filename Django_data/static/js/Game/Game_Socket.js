@@ -35,6 +35,11 @@ function receive_data(e) {
 		gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
+	if (data.message === "game_finish") {
+		alert("GG WP! " + data.winner + " won!");
+		gameSocket.close();
+		loadPage(ROUTE.GAME_MODES);
+	}
 	if (data.message === "game_state") {
 		let score1div = document.getElementById("score1div");
 		let score2div = document.getElementById("score2div");

@@ -86,3 +86,16 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 				self.pong.update_score(1)
 			await self.sendUpdateGame()
 			await asyncio.sleep(loop - time.time())
+		if self.pong.point_limit == self.pong.point[0] or self.pong.point_limit == self.pong.point[1]:
+			await self.send_game_finish()
+
+	async def send_game_finish(self):
+		if self.pong.point[0] > self.pong.point[1] and self.ia:
+			winner = "IA"
+		elif self.pong.point[0] > self.pong.point[1] and not self.ia:
+			winner = "guest"
+		else:
+			winner = self.scope["user"].username
+		await self.send(text_data = json.dumps({
+						"message" : "game_finish" ,
+						"winner" : winner}))
