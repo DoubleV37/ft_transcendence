@@ -109,7 +109,8 @@ function draw(data) {
     drawPaddleR(data.paddleR);
     drawPaddleL(data.paddleL);
     drawBallXY(data.ballX, data.ballY);
-    drawPowerup(data.powerupY);
+	if (gameCanvas.powerup)
+    	drawPowerup(data.powerupY);
     if (data.ballX < 0.01) {
         drawImpactAnimation(0, data.ballY * gameCanvas.canvas.height);
     } else if (data.ballX > 0.99) {

@@ -30,11 +30,12 @@ let friendsModal = {
 };
 
 let GameParams = {
-  Opponent: "player",
-  Type: "local",
-  Score: 3,
-  Difficulty: 5,
-  PowerUp: false,
+  message: "settings",
+  opponent: "ai",
+  type: "local",
+  point_limit: 3,
+  difficulty: 5,
+  powerup: false,
 };
 
 const ROUTE = {
@@ -57,8 +58,8 @@ const ROUTE = {
   GAME_PARAMETERS: "/game/parameters/",
   GAME_MODES: "/game/modes/",
   GAME_SOLO: "/game/solo/",
-  // GAME_MULTI: "/game/matchmaking/",
-//   "GAME_ROOM":"/game/", //`${ROUTE.GAME_ROOM}${id...}/`
+  GAME_MATCH: "/game/matchmaking/",
+  GAME_ROOM:"/game/", //`${ROUTE.GAME_ROOM}${id...}/`
 };
 
 // INIT POWERUP
@@ -82,10 +83,13 @@ let gameCanvas = {
   height: 0,
   paddle1Height: 0,
   paddle2Height: 0,
+  powerup: true,
   powerupY: 0,
   powerupX: 0,
   powerupsize: 0,
-  ballRadius: 0
+  ballRadius: 0,
+  opponent: "",
+  num: 0
 };
 
 let gameSocket = null;

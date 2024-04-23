@@ -66,6 +66,7 @@ function header_DelEvents () {
 
 async function header_LogoCallback () {
   try {
+	del_current_event();
     await loadPage(`${ROUTE.HOME}`);
     offcanvas_Hide();
   } catch (error) {
@@ -116,6 +117,7 @@ async function header_SignOutCallBack () {
   try {
     offcanvas_Hide();
     await MakeRequest(`${ROUTE.SIGNOUT}`);
+    del_current_event();
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();

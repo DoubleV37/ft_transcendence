@@ -36,112 +36,11 @@
 						</div>
 					</div>
 				</div>
-					<canvas id="MyCanvas">
-						<p>Description of the canvas for those unable to view it.</p>
-					</canvas>
+				<canvas id="MyCanvas">
+					<p>Description of the canvas for those unable to view it.</p>
+				</canvas>
 			</div>
 		</div>
 	</div>
-
-    <!-- <script>
-		const gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/solo");
-		gameSocket.onopen = function (e) {
-			console.log("The connection was setup successfully !");
-		};
-		gameSocket.onclose = function (e) {
-			console.log("Something unexpected happened !");
-		};
-
-		var canvas = document.getElementById("MyCanvas");
-		var ctx = canvas.getContext("2d");
-
-
-		var style = getComputedStyle(canvas);
-		var width = parseInt(style.getPropertyValue('width'), 10);
-		var height = parseInt(style.getPropertyValue('height'), 10);
-		canvas.width = width;
-		canvas.height = height;
-		var paddle1Height;
-		var paddle2Height;
-		var ballRadius;
-		var powerupY;
-		var powerupsize;
-
-
-		gameSocket.onmessage = function (e) {
-			const data = JSON.parse(e.data);
-			var score1div = document.getElementById("score1div");
-			score1div.innerHTML = data.score1;
-			var score2div = document.getElementById("score2div");
-			score2div.innerHTML = data.score2;
-			ballRadius = data.ballsize*height*2;
-			paddle1Height = data.paddle1size*height;
-			paddle2Height = data.paddle2size*height;
-			powerupY = data.powerupY;
-			powerupsize = data.powerupsize;
-			draw(data);
-		};
-
-		// INIT BALL
-		let imgBallSrc = "/static/images/logoIcon.png";
-		var imgBall = new Image();
-
-		imgBall.src = imgBallSrc;
-
-		// INIT PADDLES
-		function initRotatedImage(imgSrc, isLeftPaddle) {
-			let img = new Image();
-			let tempCanvas = document.createElement('canvas');
-			let initialized = false;
-			let rotation = isLeftPaddle ? Math.PI / 2 : -Math.PI / 2; // Calcul de la rotation en fonction du paddle
-
-			img.onload = function() {
-				tempCanvas.width = img.height;
-				tempCanvas.height = img.width;
-
-				let tempCtx = tempCanvas.getContext('2d');
-				tempCtx.translate(tempCanvas.width / 2, tempCanvas.height / 2);
-				tempCtx.rotate(rotation); // Rotation selon le sens du paddle
-				tempCtx.drawImage(img, -img.width / 2, -img.height / 2);
-
-				initialized = true;
-			};
-
-			img.src = imgSrc;
-
-			return {
-				canvas: tempCanvas,
-				isInitialized: function() {
-					return initialized;
-				}
-			};
-		}
-
-		let imgSrcPaddleR = "/static/images/Paddle_Grass.png";
-		let imgPaddleR = initRotatedImage(imgSrcPaddleR, false); // false pour le paddle droit
-
-		let imgSrcPaddleL = "/static/images/Paddle_Grass.png";
-		let imgPaddleL = initRotatedImage(imgSrcPaddleL, true); // true pour le paddle gauche
-
-		// Fonction pour envoyer les données au serveur
-		function sendMovement(direction) {
-			gameSocket.send(JSON.stringify({ message: direction, username: "{{request.user.username}}" }));
-		}
-
-		// Fonction pour mettre à jour le mouvement en fonction du temps écoulé
-		function update() {
-			if (keyStates['ArrowUp']) {
-				sendMovement("up");
-			} else if (keyStates['ArrowDown']) {
-				sendMovement("down");
-			}
-			else if (keyStates[' '])
-				sendMovement("space");
-			// Planifiez la prochaine mise à jour
-			requestAnimationFrame(update);
-		}
-		// Démarrer la boucle de jeu
-		update();
-    </script> -->
   </body>
 </html>

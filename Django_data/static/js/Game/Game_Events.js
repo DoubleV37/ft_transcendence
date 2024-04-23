@@ -6,6 +6,9 @@ function keyDown(e) {
 	if (e.key !== 'F5' && !(e.key === 'F5' && e.ctrlKey) && e.key !== 'F12') {
 		e.preventDefault();
 	}
+	if (e.key === 'r') {
+		gameSocket.send(JSON.stringify({ message: "start" }));
+	}
 	keyStates[e.key] = true;
 }
 
@@ -19,7 +22,7 @@ function init_canvas() {
 	gameCanvas.canvas.height = gameCanvas.height;
 }
 
-function game_SetEvents() {
+function game_SetEvents(page_name) {
 	// addEventListener('resize', () => {
 	// 	style = getComputedStyle(canvas);
 	// 	width = parseInt(style.getPropertyValue('width'), 10);
@@ -27,21 +30,34 @@ function game_SetEvents() {
 	// 	canvas.width = width;
 	// 	canvas.height = height;
 	// });
-	gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/solo");
+	gameSocket = new WebSocket("wss://" + window.location.host + "/wss" + window.location.pathname);
 	init_canvas();
 	gameSocket.onopen = function (e) {
 		console.log("The connection was setup successfully !");
+		if (page_name === "GAME_SOLO") {
+			gameCanvas.powerup = true;
+			gameSocket.addEventListener('message', receive_data);
+		}
+		else if (page_name === "GAME_ROOM") {
+			gameCanvas.powerup = false;
+			GameParams.point_limit = 1;
+			gameSocket.send(JSON.stringify(GameParams));
+			gameSocket.addEventListener('message', receive_data_room);
+		}
+
+		document.addEventListener('keyup', keyUp);
+		document.addEventListener('keydown', keyDown);
+
+		update();
 	};
 	gameSocket.onclose = function (e) {
-		gameSocket.removeEventListener('message', receive_data);
+		if (page_name === "GAME_SOLO")
+			gameSocket.removeEventListener('message', receive_data);
+		else if (page_name === "GAME_ROOM")
+			gameSocket.removeEventListener('message', receive_data_room);
 		console.log("Something unexpected happened !");
+		gameSocket = null;
 	};
-
-	gameSocket.addEventListener('message', receive_data);
-	document.addEventListener('keyup', keyUp);
-	document.addEventListener('keydown', keyDown);
-
-	update();
 }
 
 function game_DelEvents() {

@@ -9,7 +9,7 @@ class MatchmakingUser(models.Model):
 
 class Games(models.Model):
 	idGame = models.CharField(max_length=255, unique=True)
-	start_num = models.IntegerField(default=0)
+	nb_users = models.IntegerField(default=0)
 	running = models.BooleanField(default=False)
 	date = models.DateTimeField(auto_now_add=True)
 	duration = models.IntegerField(default=0)
@@ -19,14 +19,6 @@ class Games(models.Model):
 
 	def __str__(self):
 		return self.idGame
-
-class Pong(models.Model):
-	idGame = models.OneToOneField(Games, on_delete=models.CASCADE, primary_key=True)
-	paddleL = models.IntegerField(default=450)
-	engage = models.IntegerField(default=0)
-
-	def __str__(self):
-		return str(self.idGame.idGame)
 
 class UserGame(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
