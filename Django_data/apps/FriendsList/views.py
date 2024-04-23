@@ -26,6 +26,7 @@ class FriendsRequestView(TemplateView):
         def post(self, request):
             result = str(request.POST['key'])
             tmp = list(result.split())
+            logger.info(f"{tmp = }")
             target = User.objects.get(username=tmp[1])
 
             if tmp[0].find("add") != -1:
@@ -74,12 +75,10 @@ def friends_profile(request, _id=None):
     my_user = request.user
     other_user = User.objects.get(id=_id)
     if other_user in my_user.friends.all():
-        logger.info("1 - delete")
         _type = 'delete'
     elif user_requested(my_user, other_user) is True:
         _type = 'request'
     else:
-        logger.info("3 - Add")
         _type = 'add'
     return render(request, 'Profile/Friends_Profile.html',
                   {'type': _type,

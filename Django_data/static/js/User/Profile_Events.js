@@ -10,6 +10,9 @@ function profile_SetEvents () {
 
     element = document.getElementById("PROFIL_Skins");
     element.addEventListener("click", profile_SkinsCallBack);
+
+    element = document.getElementById("PROFIL_Friends");
+    element.addEventListener('click', profile_GotoFriends);
   } else {
     element = document.getElementById("Friends_Profile").querySelector("form");
     element.addEventListener('submit', profile_FriendsButtonCallBack);
@@ -38,7 +41,12 @@ function profile_DelEvents () {
 
     element = document.getElementById("PROFIL_Skins");
     element.removeEventListener("click", profile_SkinsCallBack);
+
+    element = document.getElementById("PROFIL_Friends");
+    element.removeEventListener('click', profile_GotoFriends);
   } else {
+    element = document.getElementById("Friends_Profile").querySelector("form");
+    element.removeEventListener('submit', profile_FriendsButtonCallBack);
   }
 
   element = document.getElementById("PROFIL_History");

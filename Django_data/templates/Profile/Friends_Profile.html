@@ -6,12 +6,12 @@
       <button class="ButtonLayout ButtonNeon" type="submit" name="key" value="delete {{ username }}">Delete</button>
       <p></p>
     {% elif type == 'add' %}
-      <button class="ButtonLayout ButtonNeon" type="submit" name="key" value="add {{ person }}">Add</button>
+      <button class="ButtonLayout ButtonNeon" type="submit" name="key" value="add {{ username }}">Add</button>
       <p></p>
     {% else %}
       <div id="DoubleButton">
-        <button class="SelectButtonLayout ButtonNeon" type="button" name="key" value="add {{ username }}" data-select="accept">Accept</button>
-        <button class="SelectButtonLayout ButtonNeon" type="button" name="key" value="delete {{ username }}" data-select="deny">Deny</button>
+        <button class="SelectButtonLayout ButtonNeon" type="submit" name="key" value="add {{ username }}" data-select="accept">Accept</button>
+        <button class="SelectButtonLayout ButtonNeon" type="submit" name="key" value="delete {{ username }}" data-select="deny">Deny</button>
       </div>
       <p></p>
     {% endif %}

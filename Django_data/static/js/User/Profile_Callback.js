@@ -62,7 +62,7 @@ async function profile_FriendsButtonCallBack (event) {
     } else {
       const id = event.target.getAttribute("data-id");
       event.target.removeEventListener('submit', profile_FriendsButtonCallBack);
-      await changeSection(`${ROUTE.PROFILE}${id}/`, "#Friends_Profile");
+      await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
       const element = document.getElementById("Friends_Profile").querySelector("form");
       element.addEventListener('submit', profile_FriendsButtonCallBack);
     }
@@ -71,4 +71,16 @@ async function profile_FriendsButtonCallBack (event) {
     console.error("ERROR:", err);
     return false;
   }
+}
+
+async function profile_GotoFriends () {
+  try {
+    profileModal['modal'].hide();
+    await changeSection(`${ROUTE.FRIENDS}`, "#FriendsModal");
+    await changeSection(`${ROUTE.REQUESTS}`, "#RequestList-content");
+    friendsModal.modal.show();
+  } catch (error) {
+    console.log(`Error - header_M: ${error}`);
+  }
+
 }
