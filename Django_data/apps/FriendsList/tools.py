@@ -40,7 +40,7 @@ def send_friend_request(request, userID):
         return JsonResponse({'success': True, 'logs': 'Friend request sent'})
     else:
         return JsonResponse(
-            {'success': True, 'logs': 'Request already send'}
+            {'success': True, 'logs': 'Friend request sent!'}
         )
 
 

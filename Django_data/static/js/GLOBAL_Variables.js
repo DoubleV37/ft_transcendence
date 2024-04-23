@@ -30,7 +30,7 @@ let friendsModal = {
 };
 
 let GameParams = {
-  Opponent: "ai",
+  Opponent: "player",
   Type: "local",
   Score: 3,
   Difficulty: 5,
@@ -41,11 +41,13 @@ const ROUTE = {
   HOME: "/",
   HEADER: "/header",
   FOOTER: "/footer",
+  PING: "/auth/ping/",
   SIGNUP: "/auth/signup/",
   SIGNIN: "/auth/signin/",
   SIGNOUT: "/auth/signout/",
   SETTINGS: "/auth/settings/",
   PROFILE: "/user/profile/",
+  FRIENDS_PROFILE: "/friends/profile/",
   FRIENDS: "/friends/list/",
   REQUESTS: "/friends/request/",
   TWOFA_E: "/2fa/enable/",

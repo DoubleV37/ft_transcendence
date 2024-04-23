@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.utils.text import slugify
@@ -20,6 +21,8 @@ class User(AbstractBaseUser):
         default="ForbiddenDeletion/default.png", null=False)
     refresh_token = models.CharField(max_length=255, null=True, blank=True)
     tournament_name = models.CharField(max_length=50, unique=True, null=False)
+    online_data = models.DateTimeField(default=timezone.now)
+    in_game = models.BooleanField(default=False)
 
     friends = models.ManyToManyField("self", blank=True)
 

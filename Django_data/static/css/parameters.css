@@ -52,13 +52,14 @@
 
     .gameTitle {
         color: #FFF;
-        font-family: Kodchasan;
-        font-size: 2rem;
+        font-family: Madness;
+        font-size: 5rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
-        margin-bottom: 1.6rem;
+        border-bottom: #FFF solid 1px;
+        margin-bottom: 1.5rem;
     }
 
     .modesTitle {
@@ -90,7 +91,7 @@
 
     #StartButton {
         width: 100%;
-        margin-top: 0.7rem;
+        margin-top: 1.5rem;
         margin-bottom: -1.6rem;
     }
 
@@ -166,13 +167,12 @@
 
     .gameTitle {
         color: #FFF;
-        font-family: Kodchasan;
-        font-size: 2rem;
+        font-family: Madness;
+        font-size: 5rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
-        margin-bottom: 1.6rem;
     }
 
     .modesTitle {
@@ -282,13 +282,12 @@
 
     .gameTitle {
         color: #FFF;
-        font-family: Kodchasan;
-        font-size: 2rem;
+        font-family: Madness;
+        font-size: 5rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
-        margin-bottom: 1.6rem;
     }
 
     .modesTitle {
