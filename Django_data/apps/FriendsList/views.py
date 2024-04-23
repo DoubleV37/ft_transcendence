@@ -26,7 +26,6 @@ class FriendsRequestView(TemplateView):
         def post(self, request):
             result = str(request.POST['key'])
             tmp = list(result.split())
-            logger.info(f"{tmp = }")
             target = User.objects.get(username=tmp[1])
 
             if tmp[0].find("add") != -1:
