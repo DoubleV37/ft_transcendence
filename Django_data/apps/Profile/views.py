@@ -30,6 +30,10 @@ def profile_infos(request, _id=None):
 def avatar(request):
     return render(request, "Profile/Avatar.html")
 
+def skin(request):
+    if request.method == 'GET':
+        return render(request, "Profile/Skins.html")
+
 def calculate_deltatime(_user):
     if _user.in_game is True:
         return 'ingame'

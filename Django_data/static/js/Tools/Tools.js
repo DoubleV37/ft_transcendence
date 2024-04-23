@@ -31,6 +31,8 @@ function del_current_event () {
   case "GAME_PARAMETERS":
     parameters_DelEvents();
     break;
+  case "SKINS_PAGE":
+      break;
   default:
     break;
   }

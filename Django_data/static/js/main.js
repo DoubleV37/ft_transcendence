@@ -78,6 +78,8 @@ function launchSectionHandler (element) {
     case "GAME_PARAMETERS":
       parameters_SetEvents();
       break;
+    case "SKINS_PAGE":
+        break;
     default:
       throw new Error(
         `launchSectionHandler: Attribute ${elementAttribut} non recognised`
