@@ -2,28 +2,28 @@ import random
 import math
 
 
-# def ai_brain( Pong):
+def ai_brain( Pong):
 
-# 	if Pong.time % 240 != 0:
-# 		return Pong.player_pos[0]
-# 	lvl = random.randint( -20, 20 )
-# 	speedx = Pong.ball_speed[0]
-# 	speedy = Pong.ball_speed[1]
-# 	if speedx == 0:
-# 		if Pong.engage != 1:
-# 			return 450
-# 		Pong.engage = 0
-# 		return 450 
-# 	ballx = Pong.ball_pos[0]
-# 	bally = Pong.ball_pos[1]
-# 	if speedx > 0:
-# 		return 450
-# 	while ballx > 60:
-# 		ballx += speedx
-# 		bally += speedy
-# 		if 5 > bally or bally > 895:
-# 			speedy *= -1
-# 	return bally + lvl
+	if Pong.time % 240 != 0:
+		return Pong.player_pos[0]
+	lvl = random.randint( -20, 20 )
+	speedx = Pong.ball_speed[0]
+	speedy = Pong.ball_speed[1]
+	if speedx == 0:
+		if Pong.engage != 1:
+			return 450
+		Pong.engage = 0
+		return 450 
+	ballx = Pong.ball_pos[0]
+	bally = Pong.ball_pos[1]
+	if speedx > 0:
+		return 450
+	while ballx > 60:
+		ballx += speedx
+		bally += speedy
+		if 5 > bally or bally > 895:
+			speedy *= -1
+	return bally + lvl
 
 
 class Pong():

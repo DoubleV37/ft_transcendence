@@ -38,6 +38,12 @@ let GameParams = {
   powerup: true,
 };
 
+let iaMemory = {
+  pos: 450,
+  target: 450,
+  step: 20
+};
+
 const ROUTE = {
   HOME: "/",
   HEADER: "/header",

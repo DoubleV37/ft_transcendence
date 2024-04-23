@@ -8,6 +8,37 @@ function init_websocket() {
 	};
 }
 
+// ai_town
+function iaBrain(data) {
+	let rand = Math.floor(Math.random() * 41) - 20;
+	let bx = data.ballX * 1200;
+	let by = data.ballY * 900;
+	let sx = data.speedX * 1200;
+	let sy = data.speedY * 900;
+	iaMemory.pos = data.paddleL * 900;
+
+	if (sx === 0) {
+		iaMemory.target = Math.floor(Math.random() * 301) + 300;
+	} else if (sx > 0) {
+		iaMemory.target = 450;
+	} else {
+		while (bx > 60) {
+			bx += sx;
+			by += sy;
+			if (5 > by || by > 895) {
+				sy *= -1;
+			}
+		}
+		iaMemory.target = by + rand;
+	}
+}
+
+function iaMove() {
+
+
+}
+// the end of ia town
+
 function receive_data(e) {
 	const data = JSON.parse(e.data);
 	if (data.message === "opponent") {
@@ -36,7 +67,7 @@ function receive_data(e) {
 		loadPage(ROUTE.GAME_MODES);
 	}
 	if (data.message === "game_finish") {
-		alert("GG WP! " + data.winner + " won!");
+		alert("JPP WP! " + data.winner + " won!");
 		gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
@@ -52,6 +83,8 @@ function receive_data(e) {
 			gameCanvas.powerupY = data.powerupY;
 			gameCanvas.powerupsize = data.powerupsize;
 		}
+		if (GameParams.opponent === "ai" && data.time % 240 === 0) {
+			iaBrain(data);
 		draw(data);
 	}
 }
@@ -59,6 +92,7 @@ function receive_data(e) {
 function sendMovement(direction) {
 	gameSocket.send(JSON.stringify({ message: direction }));
 }
+
 
 // Fonction pour mettre à jour le mouvement en fonction du temps écoulé
 function update() {
@@ -71,11 +105,14 @@ function update() {
 	else if (keyStates[' ']) {
 		sendMovement("space");
 	}
-	if (keyStates['w']) {
+	if (keyStates['w'] && GameParams.opponent !== "ai") {
 		sendMovement("w");
 	}
-	else if (keyStates['s']) {
+	else if (keyStates['s'] && GameParams.opponent !== "ai") {
 		sendMovement("s");
+	}
+	if (GameParams.opponent === "ai") {
+		iaBrain();
 	}
 	// Planifiez la prochaine mise à jour
 	requestAnimationFrame(update);
