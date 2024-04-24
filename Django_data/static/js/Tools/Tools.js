@@ -62,6 +62,7 @@ function ValidFileType (file) {
     "image/x-icon"
   ];
   return fileTypes.includes(file.type);
+}
 
 async function pingServer() {
   try {
