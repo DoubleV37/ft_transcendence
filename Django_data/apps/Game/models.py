@@ -21,6 +21,9 @@ class Games(models.Model):
 	bounce = models.IntegerField(default=0)
 	max_exchange = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.idGame
+
 
 class UserGame(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
