@@ -24,13 +24,12 @@ class User(AbstractBaseUser):
     online_data = models.DateTimeField(default=timezone.now)
     in_game = models.BooleanField(default=False)
 
-    skin_ball = models.ImageField(default="images/skins/ball/Ball1.png",
-                                  null=False)
-    skin_paddle = models.ImageField(default="images/skins/paddle/Paddle1.png",
-                                  null=False)
-    skin_background = models.ImageField(
-            default="images/skins/background/Background1.png",
-            null=False)
+    skin_ball = models.CharField(
+            default="ball1", null=False)
+    skin_paddle = models.CharField(
+            default="paddle1", null=False)
+    skin_background = models.CharField(
+            default="background1", null=False)
 
     friends = models.ManyToManyField("self", blank=True)
 

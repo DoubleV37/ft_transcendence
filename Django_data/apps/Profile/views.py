@@ -32,7 +32,15 @@ def avatar(request):
 
 def skin(request):
     if request.method == 'GET':
-        return render(request, "Profile/Skins.html")
+        _user = request.user
+        list_paddle = ["paddle1", "paddle2", "paddle3"]
+        list_ball = ["ball1", "ball2", "ball3"]
+        list_back = ["background1", "background2", "background3"]
+        context = {}
+        context['paddle'] = list_paddle.index(_user.skin_paddle)
+        context['ball'] = list_ball.index(_user.skin_ball)
+        context['background'] = list_back.index(_user.skin_background)
+        return render(request, "Profile/Skins.html", context)
 
 def calculate_deltatime(_user):
     if _user.in_game is True:

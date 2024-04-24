@@ -29,25 +29,47 @@
                   <div class="SectionLayout SectionGrey">Paddle</div>
                   <div id="paddle" class="carousel slide" data-bs-interval="false">
                     <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#paddle" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#paddle" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#paddle" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% if paddle == 0 %}
+                        <button type="button" data-bs-target="#paddle" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#paddle" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#paddle" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% elif paddle == 1 %}
+                        <button type="button" data-bs-target="#paddle" data-bs-slide-to="0" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#paddle" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#paddle" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% else %}
+                        <button type="button" data-bs-target="#paddle" data-bs-slide-to="0" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#paddle" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#paddle" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
+                      {% endif %}
                     </div>
                     <div class="carousel-inner">
+                      {% if paddle == 0 %}
                       <div class="carousel-item active">
-                        <img src="{% static 'images/skins/paddle/Paddle1.jpg' %}" class="d-block w-100" alt="...">
+                      {% else %}
+                      <div class="carousel-item">
+                      {% endif %}
+                        <img src="{% static 'images/skins/paddle/Paddle1.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
                           <h5 class="SkinName">Paddle1</h5>
                         </div>
                       </div>
+                       {% if paddle == 1 %}
+                      <div class="carousel-item active">
+                      {% else %}
                       <div class="carousel-item">
-                        <img src="{% static 'images/skins/paddle/Paddle2.jpg' %}" class="d-block w-100" alt="...">
+                      {% endif %}
+                       <img src="{% static 'images/skins/paddle/Paddle2.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
                           <h5 class="SkinName">Paddle2</h5>
                         </div>
                       </div>
+                      {% if paddle == 2 %}
+                      <div class="carousel-item active">
+                      {% else %}
                       <div class="carousel-item">
-                        <img src="{% static 'images/skins/paddle/Paddle3.jpg' %}" class="d-block w-100" alt="...">
+                      {% endif %}
+                      <img src="{% static 'images/skins/paddle/Paddle3.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
                           <h5 class="SkinName">Paddle3</h5>
                         </div>
@@ -67,25 +89,47 @@
                   <div class="SectionLayout SectionGrey">Background</div>							
                   <div id="background" class="carousel slide" data-bs-interval="false">
                     <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#background" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#background" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#background" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% if background == 0 %}
+                        <button type="button" data-bs-target="#background" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#background" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#background" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% elif background == 1 %}
+                        <button type="button" data-bs-target="#background" data-bs-slide-to="0" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#background" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#background" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% else %}
+                        <button type="button" data-bs-target="#background" data-bs-slide-to="0" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#background" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#background" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
+                      {% endif %}
                     </div>
                     <div class="carousel-inner">
+                      {% if background == 0 %}
                       <div class="carousel-item active">
-                        <img src="{% static 'images/beren-black-plinthes.jpg' %}" class="d-block w-100" alt="...">
+                      {% else %}
+                      <div class="carousel-item">
+                      {% endif %}
+                        <img src="{% static 'images/skins/background/Background1.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
                           <h5 class="SkinName">Background1</h5>
                         </div>
                       </div>
+                      {% if background == 1 %}
+                      <div class="carousel-item active">
+                      {% else %}
                       <div class="carousel-item">
-                        <img src="{% static 'images/beren-black-plinthes.jpg' %}" class="d-block w-100" alt="...">
+                      {% endif %}
+                        <img src="{% static 'images/skins/background/Background2.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
                           <h5 class="SkinName">Background2</h5>
                         </div>
                       </div>
+                      {% if background == 2 %}
+                      <div class="carousel-item active">
+                      {% else %}
                       <div class="carousel-item">
-                        <img src="{% static 'images/beren-black-plinthes.jpg' %}" class="d-block w-100" alt="...">
+                      {% endif %}
+                        <img src="{% static 'images/skins/background/Background3.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
                           <h5 class="SkinName">Background3</h5>
                         </div>
@@ -105,25 +149,47 @@
                   <div class="SectionLayout SectionGrey">Ball</div>
                   <div id="ball" class="carousel slide" data-bs-interval="false">
                     <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#ball" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#ball" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#ball" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% if ball == 0 %}
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% elif ball == 1 %}
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="0" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% else %}
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="0" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
+                      {% endif %}
                     </div>
                     <div class="carousel-inner">
+                      {% if ball == 0 %}
                       <div class="carousel-item active">
-                        <img src="{% static 'images/beren-black-plinthes.jpg' %}" class="d-block w-100" alt="...">
+                      {% else %}
+                      <div class="carousel-item">
+                      {% endif %}
+                        <img src="{% static 'images/skins/ball/Ball1.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
                           <h5 class="SkinName">Ball1</h5>
                         </div>
                       </div>
+                      {% if ball == 1 %}
+                      <div class="carousel-item active">
+                      {% else %}
                       <div class="carousel-item">
-                        <img src="{% static 'images/beren-black-plinthes.jpg' %}" class="d-block w-100" alt="...">
+                      {% endif %}
+                        <img src="{% static 'images/skins/ball/Ball2.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
                           <h5 class="SkinName">Ball2</h5>
                         </div>
                       </div>
+                      {% if ball == 2 %}
+                      <div class="carousel-item active">
+                      {% else %}
                       <div class="carousel-item">
-                        <img src="{% static 'images/beren-black-plinthes.jpg' %}" class="d-block w-100" alt="...">
+                      {% endif %}
+                        <img src="{% static 'images/skins/ball/Ball3.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
                           <h5 class="SkinName">Ball3</h5>
                         </div>
