@@ -13,7 +13,7 @@ import math
 # 		if Pong.engage != 1:
 # 			return 450
 # 		Pong.engage = 0
-# 		return 450 
+# 		return 450
 # 	ballx = Pong.ball_pos[0]
 # 	bally = Pong.ball_pos[1]
 # 	if speedx > 0:
@@ -130,14 +130,22 @@ class Pong():
 		self.exchange = 0
 
 	def print_stats(self):
-		if self.point[0] > self.point[1]:
-			print("\nPlayer 1 WINS\n")
-		else:
-			print("\nPlayer 2 WINS\n")
-		print("score: ", self.point[0], " - ", self.point[1])
-		print("max speed: ", round(self.ball_max_speed[0] * 10, 1), " - ", round(self.ball_max_speed[1] * 10, 1))
-		print("bounce: ", self.ball_bonce)
-		print("max exchange: ", self.max_exchange)
+		dic_stats = {
+			"score1": self.point[0],
+			"score2": self.point[1],
+			"max_speed": [round(self.ball_max_speed[0] * 10, 1), round(self.ball_max_speed[1] * 10, 1)],
+			"bounce": self.ball_bonce,
+			"max_exchange": self.max_exchange
+		}
+		return dic_stats
+		# if self.point[0] > self.point[1]:
+		# 	print("\nPlayer 1 WINS\n")
+		# else:
+		# 	print("\nPlayer 2 WINS\n")
+		# print("score: ", self.point[0], " - ", self.point[1])
+		# print("max speed: ", round(self.ball_max_speed[0] * 10, 1), " - ", round(self.ball_max_speed[1] * 10, 1))
+		# print("bounce: ", self.ball_bonce)
+		# print("max exchange: ", self.max_exchange)
 
 
 	def paddle_bounce(self, player):

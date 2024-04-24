@@ -16,6 +16,9 @@ class Games(models.Model):
 	pwr_up = models.BooleanField(default=False)
 	nb_rounds = models.IntegerField(default=0)
 	in_tournament = models.BooleanField(default=False)
+	max_speed = models.FloatField(default=0)
+	bounce = models.IntegerField(default=0)
+	max_exchange = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.idGame
