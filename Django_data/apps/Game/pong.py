@@ -2,34 +2,43 @@ import random
 import math
 
 
-def ai_brain( Pong, player, lvl ):
+def ai_brain( Pong):
 
+# 	if Pong.time % 240 != 0:
+# 		return Pong.player_pos[0]
+# 	lvl = random.randint( -20, 20 )
+# 	speedx = Pong.ball_speed[0]
+# 	speedy = Pong.ball_speed[1]
+# 	if speedx == 0:
+# 		if Pong.engage != 1:
+# 			return 450
+# 		Pong.engage = 0
+# 		return 450
+# 	ballx = Pong.ball_pos[0]
+# 	bally = Pong.ball_pos[1]
+# 	if speedx > 0:
+# 		return 450
+# 	while ballx > 60:
+# 		ballx += speedx
+# 		bally += speedy
+# 		if 5 > bally or bally > 895:
+# 			speedy *= -1
+# 	return bally + lvl
 	if Pong.time % 240 != 0:
-		return Pong.player_pos[player - 1]
-	lvl = random.randint( -lvl, lvl )
+		return Pong.player_pos[0]
+	lvl = random.randint( -20, 20 )
 	speedx = Pong.ball_speed[0]
 	speedy = Pong.ball_speed[1]
 	if speedx == 0:
-		if player != Pong.engage:
+		if Pong.engage != 1:
 			return 450
-		else:
-			Pong.engage = 0
-			return 300
+		Pong.engage = 0
+		return 450
 	ballx = Pong.ball_pos[0]
 	bally = Pong.ball_pos[1]
-	if player == 1:
-		if speedx > 0:
-			return 450
-		while ballx > 60:
-			ballx += speedx
-			bally += speedy
-			if 5 > bally or bally > 895:
-				speedy *= -1
-		return bally + lvl
-
-	if speedx < 0:
+	if speedx > 0:
 		return 450
-	while ballx < 1150:
+	while ballx > 60:
 		ballx += speedx
 		bally += speedy
 		if 5 > bally or bally > 895:
@@ -39,22 +48,23 @@ def ai_brain( Pong, player, lvl ):
 
 class Pong():
 
-	def __init__(self, start, point_limit, difficulty, power):
+	def __init__(self, point_limit, difficulty, power):
 		self.running = True
 		self.time = 0
-		self.engage = start
 		self.engage_time = 1000
 		self.point = [0, 0]
 		self.point_limit = point_limit
 		self.player_pos = [450, 450]
 		self.player_size = [150, 150]
 		self.player_speed = 20
-		self.paddle_radius = difficulty
+		self.paddle_radius = 20 - (difficulty * -1)
 		self.ball_acceleration = 0.05
-		if start == 1:
+		if random.randint(0,1) == 0:
+			self.engage = 1
 			self.ball_speed = [0,0]
 			self.ball_pos = [80, 450]
 		else:
+			self.engage = 2
 			self.ball_speed = [0,0]
 			self.ball_pos = [1120, 450]
 		# powerup
@@ -80,7 +90,7 @@ class Pong():
 			if self.powerup_speed == 0:
 				self.powerup_speed = 0.5
 			self.powerup_size = 75
-		
+
 		if self.ball_speed[0] > 0 and self.powerup_time > 0:
 			self.powerup_time -= 1
 
@@ -97,7 +107,7 @@ class Pong():
 				self.player_size[0] += 1
 			elif self.player_size[1] < 300 and self.powerup_count[1] == 1:
 				self.player_size[1] += 1
-		
+
 		if self.powerup_pos[1] > (900 - (self.powerup_size / 2)) or self.powerup_pos[1] < (self.powerup_size / 2):
 			self.powerup_speed *= -1
 		elif (self.powerup_pos[0] - (self.powerup_size / 2)) < self.ball_pos[0] and self.ball_pos[0] < (self.powerup_pos[0] + (self.powerup_size / 2)) and (self.powerup_pos[1] - (self.powerup_size / 2)) < self.ball_pos[1] and self.ball_pos[1] < (self.powerup_pos[1] + (self.powerup_size / 2)):
@@ -140,15 +150,22 @@ class Pong():
 		self.exchange = 0
 
 	def print_stats(self):
-		if self.point[0] > self.point[1]:
-			print("\nPlayer 1 WINS\n")
-		else:
-			print("\nPlayer 2 WINS\n")
-		print("score: ", self.point[0], " - ", self.point[1])
-		print("max speed: ", round(self.ball_max_speed[0] * 10, 1), " - ", round(self.ball_max_speed[1] * 10, 1))
-		print("bounce: ", self.ball_bonce)
-		print("max exchange: ", self.max_exchange)
-
+		dic_stats = {
+			"score1": self.point[0],
+			"score2": self.point[1],
+			"max_speed": [round(self.ball_max_speed[0] * 10, 1), round(self.ball_max_speed[1] * 10, 1)],
+			"bounce": self.ball_bonce,
+			"max_exchange": self.max_exchange
+		}
+		return dic_stats
+		# if self.point[0] > self.point[1]:
+		# 	print("\nPlayer 1 WINS\n")
+		# else:
+		# 	print("\nPlayer 2 WINS\n")
+		# print("score: ", self.point[0], " - ", self.point[1])
+		# print("max speed: ", round(self.ball_max_speed[0] * 10, 1), " - ", round(self.ball_max_speed[1] * 10, 1))
+		# print("bounce: ", self.ball_bonce)
+		# print("max exchange: ", self.max_exchange)
 
 	def paddle_bounce(self, player):
 		if player == 0:
@@ -157,13 +174,14 @@ class Pong():
 				if self.ball_speed[0] > 30:
 					self.ball_speed[0] = 30
 				self.ball_speed[1] = (self.ball_pos[1] - self.player_pos[0]) / self.paddle_radius
+				self.stats(player)
 		else:
 			if 1145 < self.ball_pos[0] < (1145 + ( 2 * self.ball_speed[0])) and self.player_pos[1] - (self.player_size[1] / 2 + 5) < self.ball_pos[1] < self.player_pos[1] + (self.player_size[1] / 2 + 5):
 				self.ball_speed[0] *= -(1 + self.ball_acceleration)
 				if self.ball_speed[0] < -30:
 					self.ball_speed[0] = -30
 				self.ball_speed[1] = (self.ball_pos[1] - self.player_pos[1]) / self.paddle_radius
-		self.stats(player)
+				self.stats(player)
 
 	def ball_walk(self):
 		self.time += 1

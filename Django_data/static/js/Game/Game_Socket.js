@@ -8,21 +8,50 @@ function init_websocket() {
 	};
 }
 
-function receive_data(e) {
-	const data = JSON.parse(e.data);
-	let score1div = document.getElementById("score1div");
-	score1div.innerHTML = data.score1;
-	let score2div = document.getElementById("score2div");
-	score2div.innerHTML = data.score2;
-	gameCanvas.ballRadius = data.ballsize * gameCanvas.height*2;
-	gameCanvas.paddle1Height = data.paddle1size * gameCanvas.height;
-	gameCanvas.paddle2Height = data.paddle2size * gameCanvas.height;
-	gameCanvas.powerupY = data.powerupY;
-	gameCanvas.powerupsize = data.powerupsize;
-	draw(data);
+// ai_town
+function iaBrain(data) {
+	let rand = Math.floor(Math.random() * 41) - 20;
+	let bx = data.ballX * 1200;
+	let by = data.ballY * 900;
+	let sx = data.ballspeedX;
+	let sy = data.ballspeedY;
+	iaMemory.pos = data.paddleL * 900;
+
+	if (sx === 0) {
+		iaMemory.target = Math.floor(Math.random() * 301) + 300;
+		if (bx < 600) {
+			iaMemory.service = true;
+		}
+	} else if (sx > 0) {
+		iaMemory.target = 450;
+	} else {
+		while (bx > 60) {
+			bx += sx;
+			by += sy;
+			if (5 > by || by > 895) {
+				sy *= -1;
+			}
+		}
+		iaMemory.target = by + rand;
+	}
 }
 
-function receive_data_room(e) {
+function iaMove() {
+	if (iaMemory.pos < iaMemory.target - 10) {
+		sendMovement("s");
+		iaMemory.pos += iaMemory.step;
+	} else if (iaMemory.pos > iaMemory.target + 10) {
+		sendMovement("w");
+		iaMemory.pos -= iaMemory.step;
+	}
+	else if (iaMemory.service) {
+		sendMovement("space");
+		iaMemory.service = false;
+	}
+}
+// the end of ia town
+
+function receive_data(e) {
 	const data = JSON.parse(e.data);
 	if (data.message === "opponent") {
 		gameCanvas.opponent = data.opponent;
@@ -49,6 +78,11 @@ function receive_data_room(e) {
 		gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
+	if (data.message === "game_finish") {
+		alert("JPP WP! " + data.winner + " won!");
+		gameSocket.close();
+		loadPage(ROUTE.GAME_MODES);
+	}
 	if (data.message === "game_state") {
 		let score1div = document.getElementById("score1div");
 		let score2div = document.getElementById("score2div");
@@ -57,6 +91,13 @@ function receive_data_room(e) {
 		gameCanvas.ballRadius = data.ballsize*gameCanvas.height*2;
 		gameCanvas.paddle1Height = data.paddle1size*gameCanvas.height;
 		gameCanvas.paddle2Height = data.paddle2size*gameCanvas.height;
+		if (gameCanvas.powerup) {
+			gameCanvas.powerupY = data.powerupY;
+			gameCanvas.powerupsize = data.powerupsize;
+		}
+		if (GameParams.opponent === "ai" && data.time % 240 === 0) {
+			iaBrain(data);
+		}
 		draw(data);
 	}
 }
@@ -65,16 +106,27 @@ function sendMovement(direction) {
 	gameSocket.send(JSON.stringify({ message: direction }));
 }
 
+
 // Fonction pour mettre à jour le mouvement en fonction du temps écoulé
 function update() {
 	if (keyStates['ArrowUp']) {
 		sendMovement("up");
-	} else if (keyStates['ArrowDown']) {
+	}
+	else if (keyStates['ArrowDown']) {
 		sendMovement("down");
 	}
-	else if (keyStates[' '])
+	else if (keyStates[' ']) {
 		sendMovement("space");
+	}
+	if (keyStates['w'] && GameParams.opponent !== "ai") {
+		sendMovement("w");
+	}
+	else if (keyStates['s'] && GameParams.opponent !== "ai") {
+		sendMovement("s");
+	}
+	if (GameParams.opponent === "ai") {
+		iaMove();
+	}
 	// Planifiez la prochaine mise à jour
 	requestAnimationFrame(update);
 }
-

@@ -60,7 +60,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		)
 
 	async def init_db_game(self):
-		self.pong = Pong_game(1 , 2 , 10, 0)
+		self.pong = Pong_game(2 , 10, 0)
 		self.username = self.scope["user"].username
 		self.game, created = await sync_to_async(Games.objects.get_or_create)(idGame=self.room_name)
 		if created:

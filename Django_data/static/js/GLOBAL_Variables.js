@@ -35,7 +35,14 @@ let GameParams = {
   type: "local",
   point_limit: 3,
   difficulty: 5,
-  powerup: false,
+  powerup: true,
+};
+
+let iaMemory = {
+  pos: 450,
+  target: 450,
+  step: 20,
+  service : false
 };
 
 const ROUTE = {
@@ -57,9 +64,9 @@ const ROUTE = {
   JWTREFRESH: "/auth/jwt/refresh/",
   GAME_PARAMETERS: "/game/parameters/",
   GAME_MODES: "/game/modes/",
-  GAME_SOLO: "/game/solo/",
   GAME_MATCH: "/game/matchmaking/",
   GAME_ROOM:"/game/", //`${ROUTE.GAME_ROOM}${id...}/`
+  GAME_LOCAL: "/game/solo/",
 };
 
 // INIT POWERUP

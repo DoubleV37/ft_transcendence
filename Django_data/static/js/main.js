@@ -81,9 +81,9 @@ function launchSectionHandler (element) {
     case "GAME_PARAMETERS":
       parameters_SetEvents();
       break;
-    case 'GAME_SOLO':
+    case 'GAME_LOCAL':
       observer.disconnect();
-      game_SetEvents("GAME_SOLO");
+      game_SetEvents("GAME_LOCAL");
       break ;
     case 'GAME_MATCH':
       observer.disconnect();
