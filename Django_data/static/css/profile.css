@@ -740,7 +740,8 @@ th {
 }
 
 tr:hover {
-    background-color: #202532;
+    /*background-color: #202532;*/
+    background-color: #1b718d;
 }
 
 .listHeaderContainer {
