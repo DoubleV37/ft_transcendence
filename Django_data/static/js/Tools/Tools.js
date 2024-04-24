@@ -62,4 +62,20 @@ function ValidFileType (file) {
     "image/x-icon"
   ];
   return fileTypes.includes(file.type);
+
+async function pingServer() {
+  try {
+    const response = await fetch(`${ROUTE.PING}`, {
+      method: "POST",
+      headers: {
+        "Content-Length": 0
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Network response: ${response.ok}`);
+    }
+  } catch (error) {
+    console.error(`Error: `, error);
+  }
 }

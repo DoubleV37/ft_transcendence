@@ -11,14 +11,14 @@
         </button>
         <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
           <li>
-            <div id="DoubleButton">
-              <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ friend_request.from_user.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-              <form data-name="{{ friend_request.from_user }}" data-id="{{ friend_request.from_user.id }}" action="" onsubmit="return false;" method="post">
-                {% csrf_token %}
+            <button class="SelectButtonLayout dropdownButton ButtonNeon" id="ProfileButton" data-content="{{ friend_request.from_user.id }}">Profile</button><!-- DATA-CONTENT - Required -->
+            <form data-name="{{ friend_request.from_user }}" data-id="{{ friend_request.from_user.id }}" action="" onsubmit="return false;" method="post">
+              {% csrf_token %}
+              <div id="DoubleButton">
                 <button class="SelectButtonLayout dropdownButton ButtonNeon" type="button" name="key" value="add {{ friend_request.from_user }}" data-select="accept">Accept</button>
                 <button class="SelectButtonLayout dropdownButton ButtonNeon" type="button" name="key" value="delete {{ friend_request.from_user }}" data-select="deny">Deny</button>
-              </form>
-            </div>
+              </div>
+            </form>
           </li>
         </ul>
       </div>

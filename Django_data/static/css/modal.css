@@ -354,8 +354,6 @@ scrollbar-width: none;
 	}
 
 	.dropdownButton {
-		width: 100%;
-		height: 100%;
 		font-size: 0.8rem;
 	}
 
@@ -519,4 +517,13 @@ scrollbar-width: none;
 
 #Profile_Type {
 	display: none;
+}
+
+#ProfileButton {
+	width: 100%;
+	margin-bottom: 0.7rem;
+}
+
+.dropdown-menu.show {
+    padding: 0.7em;
 }

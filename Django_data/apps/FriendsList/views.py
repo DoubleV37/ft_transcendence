@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 import apps.FriendsList.tools as tools
 from apps.Auth.models import User
 from apps.FriendsList.models import Friend_Request
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 import logging
 logger = logging.getLogger(__name__)
@@ -66,3 +66,29 @@ class Accept_Or_Refuse_View(TemplateView):
 
     except Exception as exc:
         pass
+
+
+def friends_profile(request, _id=None):
+    if _id is None or request.method != 'GET':
+        return HttpResponse('Wrong Profile', status=400)
+    my_user = request.user
+    other_user = User.objects.get(id=_id)
+    if other_user in my_user.friends.all():
+        _type = 'delete'
+    elif user_requested(my_user, other_user) is True:
+        _type = 'request'
+    else:
+        _type = 'add'
+    return render(request, 'Profile/Friends_Profile.html',
+                  {'type': _type,
+                   'username': other_user.username,
+                   'id': other_user.id})
+
+
+def user_requested(my_user, other_user):
+    requested = {
+        fr.from_user for fr in Friend_Request.objects.filter(to_user=my_user)
+    }
+    if other_user in requested:
+        return True
+    return False

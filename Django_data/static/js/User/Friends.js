@@ -72,7 +72,7 @@ async function deleteFriendSubmit(form) {
 }
 
 async function ResponseFriendSubmit(button) {
-  const form = button.parentNode;
+  const form = button.parentNode.parentNode;
   const formData = new FormData(form);
   formData.append(
     `${button.getAttribute("name")}`,

@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.db.models.fields import validators
@@ -40,6 +41,9 @@ class User(AbstractBaseUser):
         max_length=15, validators=[MinLengthValidator(3)],
         unique=True, null=False
     )
+
+    online_data = models.DateTimeField(default=timezone.now)
+    in_game = models.BooleanField(default=False)
 
     friends = models.ManyToManyField("self", blank=True)
 

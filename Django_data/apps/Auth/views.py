@@ -1,3 +1,4 @@
+from django.utils import timezone
 from decouple import config
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
@@ -182,6 +183,7 @@ def my_settings(request):
 
 
 def refresh_jwt(request):
+    """refresh_jwt handle the refresh of the jwt in the front using the refresh token"""
     if request.method == "GET":
         user = request.user
         if user.refresh_token is None:
@@ -200,6 +202,7 @@ def refresh_jwt(request):
 
 
 def create_jwt(_user, _type="access"):
+    """create_jwt serve to create the simple and the refresh Json web token"""
     payload = {"id": _user.id,
                "username": _user.username, "email": _user.email}
     secret_key = config("DJANGO_SECRET_KEY")
@@ -212,3 +215,12 @@ def create_jwt(_user, _type="access"):
         }
     token = jwt.encode(payload, secret_key, algorithm=algorithm)
     return token
+
+
+def ping_status(request):
+    """ Ping_status serve to update the last date ping of a logged user"""
+    if request.user.is_anonymous is False:
+        _user = request.user
+        setattr(_user, 'online_data', timezone.now())
+        _user.save()
+    return HttpResponse(status=204)
