@@ -13,12 +13,15 @@ function iaBrain(data) {
 	let rand = Math.floor(Math.random() * 41) - 20;
 	let bx = data.ballX * 1200;
 	let by = data.ballY * 900;
-	let sx = data.speedX * 1200;
-	let sy = data.speedY * 900;
+	let sx = data.ballspeedX;
+	let sy = data.ballspeedY;
 	iaMemory.pos = data.paddleL * 900;
 
 	if (sx === 0) {
 		iaMemory.target = Math.floor(Math.random() * 301) + 300;
+		if (bx < 600) {
+			iaMemory.service = true;
+		}
 	} else if (sx > 0) {
 		iaMemory.target = 450;
 	} else {
@@ -36,13 +39,14 @@ function iaBrain(data) {
 function iaMove() {
 	if (iaMemory.pos < iaMemory.target - 10) {
 		sendMovement("s");
-		iaMemory.pos += iaMemory.speed;
+		iaMemory.pos += iaMemory.step;
 	} else if (iaMemory.pos > iaMemory.target + 10) {
 		sendMovement("w");
-		iaMemory.pos -= iaMemory.speed;
+		iaMemory.pos -= iaMemory.step;
 	}
-	else {
-		sendMovement(" ");
+	else if (iaMemory.service) {
+		sendMovement("space");
+		iaMemory.service = false;
 	}
 }
 // the end of ia town
@@ -93,8 +97,8 @@ function receive_data(e) {
 		}
 		if (GameParams.opponent === "ai" && data.time % 240 === 0) {
 			iaBrain(data);
-		draw(data);
 		}
+		draw(data);
 	}
 }
 

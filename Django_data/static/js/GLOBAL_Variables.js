@@ -41,7 +41,8 @@ let GameParams = {
 let iaMemory = {
   pos: 450,
   target: 450,
-  step: 20
+  step: 20,
+  service : false
 };
 
 const ROUTE = {
