@@ -413,18 +413,18 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
     /* Styles */
     #leftcolumn {
         display: flex;
         justify-content: center;
-        width: 18em;
+        width: 22em;
     }
 
     #rightcolumn {
         display: flex;
         justify-content: center;
-        width: 18em;
+        width: 22em;
     }
 
     #Settings {
@@ -438,11 +438,11 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 39.5em;
+        width: 46em;
     }
 
     #headerTextRow {
-        width: 32em;
+        width: 39.4em;
         margin-top: 1em;
     }
 
@@ -518,7 +518,7 @@
 
     #NAME_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 13.5em;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -554,7 +554,7 @@
 
     #MAIL_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 13.5em;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -590,7 +590,7 @@
 
     #PASS_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 13.5em;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -626,7 +626,7 @@
 
     #TNAME_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 13.5em;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -819,7 +819,7 @@
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
     /* Styles */
 
     #leftcolumn {
@@ -839,7 +839,7 @@
         flex-direction: column;
         flex-shrink: 0;
         width: 90%;
-        max-width: 20em;
+        max-width: 25em;
     }
 
     .margin_bottom {
@@ -851,6 +851,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
+
     }
 
     #headerTextRow {

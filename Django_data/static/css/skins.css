@@ -61,12 +61,12 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
 
     .columnSkin {
         display: flex;
         justify-content: center;
-        width: 12.575em;
+        width: 14.7em;
     }
 
     .Skins {
@@ -123,7 +123,7 @@
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
 
     .columnSkin {
         display: flex;
