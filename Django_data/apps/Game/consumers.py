@@ -5,6 +5,7 @@ from channels.db import database_sync_to_async
 from .pong import Pong#, ai_brain
 from .models import Games, UserGame
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 class SoloPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
@@ -119,10 +120,11 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		self.game.duration = self.pong.time / 240
 		self.game.pwr_up = self.pong.powerup
 		self.game.nb_rounds = self.pong.point[0] + self.pong.point[1]
-		self.game.max_speed = dict_stats["max_speed"]
 		self.game.bounce = dict_stats["bounce"]
 		self.game.max_exchange = dict_stats["max_exchange"]
+		self.user_game.max_speed = dict_stats["max_speed"][1]
 		self.user_game.score = dict_stats["score2"]
+		self.opponent_game.max_speed = dict_stats["max_speed"][0]
 		self.opponent_game.score = dict_stats["score1"]
 		if dict_stats["score1"] > dict_stats["score2"]:
 			self.opponent_game.winner = True
