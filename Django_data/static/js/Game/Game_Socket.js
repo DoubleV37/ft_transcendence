@@ -34,8 +34,16 @@ function iaBrain(data) {
 }
 
 function iaMove() {
-
-
+	if (iaMemory.pos < iaMemory.target - 10) {
+		sendMovement("s");
+		iaMemory.pos += iaMemory.speed;
+	} else if (iaMemory.pos > iaMemory.target + 10) {
+		sendMovement("w");
+		iaMemory.pos -= iaMemory.speed;
+	}
+	else {
+		sendMovement(" ");
+	}
 }
 // the end of ia town
 
@@ -86,6 +94,7 @@ function receive_data(e) {
 		if (GameParams.opponent === "ai" && data.time % 240 === 0) {
 			iaBrain(data);
 		draw(data);
+		}
 	}
 }
 
@@ -112,9 +121,8 @@ function update() {
 		sendMovement("s");
 	}
 	if (GameParams.opponent === "ai") {
-		iaBrain();
+		iaMove();
 	}
 	// Planifiez la prochaine mise à jour
 	requestAnimationFrame(update);
 }
-
