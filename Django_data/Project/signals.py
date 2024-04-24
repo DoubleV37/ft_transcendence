@@ -6,6 +6,6 @@ from django.contrib.auth import get_user_model
 def create_placeholder_user(sender, **kwargs):
 	User = get_user_model()
 	if not User.objects.filter(username='Guest').exists():
-		User.objects.create_user(username='Guest', password='guest')
+		User.objects.create(username='Guest', email='guest@guest.fr')
 	if not User.objects.filter(username='IA').exists():
-		User.objects.create_user(username='IA', password='ia')
+		User.objects.create(username='IA', email='ia@ia.fr')
