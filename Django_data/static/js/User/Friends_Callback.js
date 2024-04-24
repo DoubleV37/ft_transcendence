@@ -45,6 +45,7 @@ async function friends_GoToProfile (event) {
   const id = event.target.getAttribute("data-content");
 
   await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
+  await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
   friendsModal.modal.hide();
   profileModal.modal.show();
 }

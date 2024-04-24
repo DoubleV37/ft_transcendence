@@ -76,7 +76,7 @@
 	}
 
 	#HEADER_Signin:hover {
-		background: #525695;
+          background-color: #1b718d;
 	}
 
 	#HEADER_user {
@@ -218,7 +218,7 @@
 	}
 
 	#HEADER_Signin:hover {
-		background: #525695;
+          background-color: #1b718d;
 	}
 
 	#HEADER_user {
@@ -358,8 +358,8 @@
 		line-height: normal;
 	}
 
-	#HEADER_Signin:hover {
-		background: #525695;
+        #HEADER_Signin:hover {
+          background-color: #1b718d;
 	}
 
 	#GAME_user {
