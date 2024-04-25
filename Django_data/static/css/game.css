@@ -1,18 +1,17 @@
 /* Desktops and laptops ----------- */
 
-canvas {
-	align-self: center;
-	aspect-ratio: 4/3;
-	width: 100%;
-	height: 100%;
-	background-image: url('/static/images/BG_Forest.png');
-	background-size: cover; /* Pour couvrir tout le contenu du canvas */
-	background-position: center; /* Pour centrer l'image */
-	z-index: 0;
-}
-
 @media only screen and (min-width : 60.063em) {
 
+	canvas {
+		align-self: center;
+		aspect-ratio: 4/3;
+		width: 100%;
+		height: 100%;
+		background-image: url('/static/images/BG_Forest.png');
+		background-size: cover; /* Pour couvrir tout le contenu du canvas */
+		background-position: center; /* Pour centrer l'image */
+		z-index: 0;
+	}
 
 	.flex-row {
 		display: flex;
@@ -56,11 +55,35 @@ canvas {
 		display: flex;
 		margin-top: -1em;
 		margin-bottom: 1em;
+	}
+
+	#endGameScreen {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		margin-bottom: none !important;
+		padding-bottom: 0.2em;
+		padding-top: 0.2em;
+		padding-left: 15em;
+		padding-right: 15em;
 	}
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
+
+	canvas {
+		align-self: center;
+		aspect-ratio: 4/3;
+		width: 100%;
+		height: 100%;
+		background-image: url('/static/images/BG_Forest.png');
+		background-size: cover; /* Pour couvrir tout le contenu du canvas */
+		background-position: center; /* Pour centrer l'image */
+		z-index: 0;
+	}
 
 	.flex-row {
 		display: flex;
@@ -105,10 +128,35 @@ canvas {
 		margin-top: -1em;
 		margin-bottom: 1em;
 	}
+
+	#endGameScreen {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		margin-bottom: none !important;
+		padding-bottom: 0.2em;
+		padding-top: 0.2em;
+		padding-left: 15em;
+		padding-right: 15em;
+	}
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
+
+	canvas {
+		align-self: center;
+		aspect-ratio: 4/3;
+		width: 100%;
+		height: 100%;
+		background-image: url('/static/images/BG_Forest.png');
+		background-size: cover; /* Pour couvrir tout le contenu du canvas */
+		background-position: center; /* Pour centrer l'image */
+		z-index: 0;
+		border: 1px solid #FFF;
+	}
 
 	.flex-row {
 		display: flex;
@@ -153,6 +201,20 @@ canvas {
 		margin-top: -1em;
 		margin-bottom: 1em;
 	}
+
+	#endGameScreen {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		margin-bottom: none !important;
+		padding-bottom: 5em;
+		padding-top: 5em;
+		padding-left: 15vw;
+		padding-right: 15vw;
+		border: 1px solid #FFF;
+	}
 }
 
 #matchmakingContainer {
@@ -170,25 +232,14 @@ canvas {
 	width: 100%;
 }
 
-#endGameScreen {
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-    width: 50%;
-	height: 100%;
-    margin-bottom: none !important;
-    padding-bottom: 0.2em;
-    padding-top: 0.2em;
-    padding-left: 1.2em;
-    padding-right: 1.2em;
-}
-
 #endGameMessage {
 	color: #FFF;
 	text-align: right;
 	font-family: Kodchasan;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+	margin-top: 2em;
+	margin-bottom: 2em;
 }

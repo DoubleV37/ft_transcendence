@@ -103,7 +103,7 @@ function receive_data(e) {
 
 	if (data.message === "game_finish") {
 		document.getElementById("MyCanvas").hidden = true;
-        endGameMessage.textContent = "GG WP! " + data.winner + " won!";
+        endGameMessage.textContent = data.winner + " won!";
         endGameScreen.style.display = 'flex';
         confirmEndGame.onclick = function() {
 			gameCanvas.inGame = false;
