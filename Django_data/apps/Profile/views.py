@@ -67,7 +67,6 @@ def calculate_deltatime(_user):
 
 def check_skins_request(skins, paddles, balls, backgrounds):
     keys = ['paddle', 'ball', 'background']
-    logger.info(f"{skins = }")
     if all(key in skins for key in keys) is False:
         return False
     if skins['paddle'] not in paddles:
