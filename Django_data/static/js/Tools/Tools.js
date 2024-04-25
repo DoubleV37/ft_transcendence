@@ -32,6 +32,7 @@ function del_current_event () {
     parameters_DelEvents();
     break;
   case "SKINS_PAGE":
+      skins_DelEvents();
       break;
   default:
     break;

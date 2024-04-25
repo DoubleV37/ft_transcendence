@@ -1,6 +1,6 @@
 // ----------Run at the load/reload of the website-------------//
 document.addEventListener("DOMContentLoaded", launchWebsite);
- 
+
 async function launchWebsite () {
   const targetNode = document.querySelector("#content");
 
@@ -79,7 +79,8 @@ function launchSectionHandler (element) {
       parameters_SetEvents();
       break;
     case "SKINS_PAGE":
-        break;
+      skins_SetEvents();
+      break;
     default:
       throw new Error(
         `launchSectionHandler: Attribute ${elementAttribut} non recognised`
