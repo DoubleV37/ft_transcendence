@@ -1,9 +1,0 @@
-from apps.Auth.models import User
-from apps.Game.models import Games, UserGame
-
-
-def myParty(me: User) -> list:
-    allparty = Games.objects.all()
-    parties = [
-        party for party in Games.objects.filter()
-    ]
