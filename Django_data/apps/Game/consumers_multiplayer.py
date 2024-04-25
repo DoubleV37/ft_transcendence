@@ -1,11 +1,11 @@
-import json
-import asyncio
+import json, asyncio, time
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from asgiref.sync import sync_to_async
 from django.contrib.auth import get_user_model
 from .pong import Pong as Pong_game
 from .models import Games, UserGame
+from django.utils import timezone
 
 class MultiPongConsumer(AsyncWebsocketConsumer):
 
@@ -169,7 +169,9 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 	async def run_game(self):
 		if self.user_num == 2:
 			return
+		loop = time.time()
 		while self.pong.running:
+			loop += 1 / 240
 			self.pong.ball_walk()
 			if self.pong.ball_pos[0] < 60 and self.pong.ball_speed[0] < 0:
 				self.pong.paddle_bounce(0)
@@ -182,25 +184,36 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 				self.pong.update_score(0)
 			if self.pong.ball_pos[0] < 0:
 				self.pong.update_score(1)
-			await self.send_game_state()
-			await asyncio.sleep(1 / 240)
-		await self.save_score()
+			await self.sendUpdateGame()
+			await asyncio.sleep(loop - time.time())
+		await self.save_stats()
 		await self.send_game_finish()
 
-	async def save_score(self):
-		game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
-		user_game = await database_sync_to_async(UserGame.objects.get)(user=self.scope["user"], game=game)
-		user_game_opp = await database_sync_to_async(UserGame.objects.get)(user=self.opponent, game=game)
-		user_game.score = self.pong.point[1]
-		user_game_opp.score = self.pong.point[0]
-		if self.pong.point[0] > self.pong.point[1]:
-			user_game_opp.winner = True
+	async def save_stats(self):
+		self.game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+		self.user_game = await database_sync_to_async(UserGame.objects.get)(user=self.scope["user"], game=self.game)
+		self.opponent_game = await database_sync_to_async(UserGame.objects.get)(user=self.opponent, game=self.game)
+		dict_stats = self.pong.print_stats()
+		self.game.running = False
+		self.game.date = timezone.now()
+		self.game.duration = self.pong.time / 240
+		self.game.pwr_up = self.pong.powerup
+		self.game.nb_rounds = self.pong.point[0] + self.pong.point[1]
+		self.game.bounce = dict_stats["bounce"]
+		self.game.max_exchange = dict_stats["max_exchange"]
+		self.user_game.max_speed = dict_stats["max_speed"][1]
+		self.user_game.score = dict_stats["score2"]
+		self.opponent_game.max_speed = dict_stats["max_speed"][0]
+		self.opponent_game.score = dict_stats["score1"]
+		if dict_stats["score1"] > dict_stats["score2"]:
+			self.opponent_game.winner = True
 		else:
-			user_game.winner = True
-		await database_sync_to_async(user_game.save)()
-		await database_sync_to_async(user_game_opp.save)()
+			self.user_game.winner = True
+		await database_sync_to_async(self.game.save)()
+		await database_sync_to_async(self.user_game.save)()
+		await database_sync_to_async(self.opponent_game.save)()
 
-	async def send_game_state(self):
+	async def sendUpdateGame(self):
 		await self.channel_layer.group_send(
 			self.room_group_name,
 			{
@@ -209,13 +222,18 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 					"message": "game_state",
 					"paddleL": self.pong.player_pos[0] / 900,
 					"paddleR": self.pong.player_pos[1] / 900,
-					"ballX": self.pong.ball_pos[0] / 1200,
-					"ballY": self.pong.ball_pos[1] / 900,
-					"score1": self.pong.point[0],
-					"score2": self.pong.point[1],
-					"ballsize": self.pong.ball_size / 900,
 					"paddle1size": self.pong.player_size[0] / 900,
 					"paddle2size": self.pong.player_size[1] / 900,
+					"ballX": self.pong.ball_pos[0] / 1200,
+					"ballY": self.pong.ball_pos[1] / 900,
+					"ballspeedX" : self.pong.ball_speed[0] ,
+					"ballspeedY" : self.pong.ball_speed[1] ,
+					"ballsize": self.pong.ball_size / 900,
+					"score1": self.pong.point[0],
+					"score2": self.pong.point[1],
+					"powerupY" : self.pong.powerup_pos[1]/900 ,
+					"powerupsize" : self.pong.powerup_size/900 ,
+					"time" : self.pong.time
 				}
 			}
 		)
