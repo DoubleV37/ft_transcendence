@@ -26,9 +26,13 @@ class Games(models.Model):
 
 
 class UserGame(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    game = models.ForeignKey(Games, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name="UsertoUserGame",
+        on_delete=models.CASCADE
+    )
+    game = models.ForeignKey(
+        Games, related_name="GamestoUserGame", on_delete=models.CASCADE
+    )
     score = models.IntegerField(default=0)
     max_speed = models.FloatField(default=0)
     winner = models.BooleanField(default=False)
