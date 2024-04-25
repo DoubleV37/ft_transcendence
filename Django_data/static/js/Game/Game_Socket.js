@@ -172,10 +172,10 @@ function update() {
 	else if (keyStates[' ']) {
 		sendMovement("space");
 	}
-	if (keyStates['w'] && GameParams.opponent !== "ai") {
+	if (keyStates['w'] && GameParams.opponent == "player" && GameParams.type == "local") {
 		sendMovement("w");
 	}
-	else if (keyStates['s'] && GameParams.opponent !== "ai") {
+	else if (keyStates['s'] && GameParams.opponent == "player" && GameParams.type == "local") {
 		sendMovement("s");
 	}
 	if (GameParams.opponent === "ai") {
