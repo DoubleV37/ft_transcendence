@@ -99,7 +99,8 @@ let gameCanvas = {
   powerupsize: 0,
   ballRadius: 0,
   opponent: "",
-  num: 0
+  num: 0,
+  inGame: true
 };
 
 //MATCHMAKING SCREEN

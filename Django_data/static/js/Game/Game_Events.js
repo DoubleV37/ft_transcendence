@@ -27,10 +27,22 @@ function game_SetEvents(page_name) {
 	// 	canvas.width = width;
 	// 	canvas.height = height;
 	// });
+
 	gameSocket = new WebSocket("wss://" + window.location.host + "/wss" + window.location.pathname);
 	init_canvas();
 	gameSocket.onopen = function (e) {
 		console.log("The connection was setup successfully !");
+
+		gameCanvas.inGame = true;
+
+		var overlayDiv = document.createElement("div");
+		overlayDiv.id = "overlayDiv";
+		overlayDiv.style.backgroundColor = "rgba(0, 1, 1, 0.75)";
+		overlayDiv.style.height = "100%";
+		overlayDiv.style.width = "100%";
+		overlayDiv.style.position = "absolute";
+		document.getElementById("content").appendChild( overlayDiv );
+
 		if (page_name === "GAME_LOCAL") {
 			console.log(GameParams);
 			gameCanvas.powerup = GameParams.powerup;

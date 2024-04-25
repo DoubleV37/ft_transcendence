@@ -1,14 +1,10 @@
 /* Desktops and laptops ----------- */
 
 canvas {
-	border-top: 2px solid white;
-	border-bottom: 2px solid white;
-	border-left: 2px solid white;
-	border-right: 2px solid white;
 	align-self: center;
 	aspect-ratio: 4/3;
-	width: 90%;
-	max-height: 80%;
+	width: 100%;
+	height: 100%;
 	background-image: url('/static/images/BG_Forest.png');
 	background-size: cover; /* Pour couvrir tout le contenu du canvas */
 	background-position: center; /* Pour centrer l'image */
@@ -167,4 +163,32 @@ canvas {
 #matchmakingDotsContainer {
     display: flex;
 	width: 1.5rem;
+}
+
+#parent {
+	height: 100%;
+	width: 100%;
+}
+
+#endGameScreen {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+    width: 50%;
+	height: 100%;
+    margin-bottom: none !important;
+    padding-bottom: 0.2em;
+    padding-top: 0.2em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+}
+
+#endGameMessage {
+	color: #FFF;
+	text-align: right;
+	font-family: Kodchasan;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
 }

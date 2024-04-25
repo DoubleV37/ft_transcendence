@@ -8,7 +8,7 @@
 		background: #151821;
 		top: 0;
 		position: sticky;
-		z-index: 1;
+		z-index: 6;
 	}
 
 	/* NAVBAR */
@@ -22,6 +22,7 @@
 		grid-template-columns:  1fr  1fr  1fr;
 
 		background: #151821;
+		border-bottom: 1px solid #433f3f;
 	}
 	.container-fluid {
 		display: flex;
@@ -150,7 +151,7 @@
 		background: #151821;
 		top: 0;
 		position: sticky;
-		z-index: 1;
+		z-index: 6;
 	}
 
 	/* NAVBAR */
@@ -164,6 +165,8 @@
 		grid-template-columns:  1fr  1fr  1fr;
 
 		background: #151821;
+		border-bottom: 1px solid #433f3f;
+		z-index: 6;
 	}
 	.container-fluid {
 		display: flex;
@@ -291,7 +294,7 @@
 		background: #151821;
 		top: 0;
 		position: sticky;
-		z-index: 1;
+		z-index: 6;
 	}
 
 	/* NAVBAR */
@@ -305,7 +308,10 @@
 		grid-template-columns:  1fr  1fr  1fr;
 
 		background: #151821;
+		border-bottom: 1px solid #433f3f;
+		z-index: 6;
 	}
+
 	.container-fluid {
 		display: flex;
 		align-items: center;

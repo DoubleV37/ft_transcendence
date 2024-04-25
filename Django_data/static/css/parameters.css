@@ -25,15 +25,13 @@
 
     .section-score {
         background-color: #08131E;
-        width: 90%;
+        width: 100%;
         margin-bottom: none !important;
         padding-bottom: 0.2em;
         padding-top: 0.2em;
         padding-left: 1.2em;
         padding-right: 1.2em;
-        border-top: 2px solid white;
-		border-left: 2px solid white;
-		border-right: 2px solid white;
+        border-bottom: 1px solid white;
     }
 
     .bodyText {
@@ -140,15 +138,13 @@
 
     .section-score {
         background-color: #08131E;
-        width: 90%;
+        width: 100%;
         margin-bottom: none !important;
         padding-bottom: 0.2em;
         padding-top: 0.2em;
         padding-left: 1.2em;
         padding-right: 1.2em;
-        border-top: 2px solid white;
-		border-left: 2px solid white;
-		border-right: 2px solid white;
+        border-bottom: 1px solid white;
     }
 
     .bodyText {
@@ -255,15 +251,13 @@
 
     .section-score {
         background-color: #08131E;
-        width: 90%;
+        width: 100%;
         margin-bottom: none !important;
         padding-bottom: 0.2em;
         padding-top: 0.2em;
         padding-left: 1.2em;
         padding-right: 1.2em;
-        border-top: 2px solid white;
-		border-left: 2px solid white;
-		border-right: 2px solid white;
+        border-bottom: 1px solid white;
     }
 
     .bodyText {

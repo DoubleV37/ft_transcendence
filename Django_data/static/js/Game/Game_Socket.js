@@ -59,17 +59,18 @@ function receive_data(e) {
 
     if (data.message === "User exited") {
         endGameMessage.textContent = "The opponent ran away in fear!";
-        endGameScreen.style.display = 'block';
+        endGameScreen.style.display = 'flex';
         confirmEndGame.onclick = function() {
             gameSocket.send(JSON.stringify({ message: "stop" }));
-            gameSocket.close();
         };
     }
 
 	if (data.message === "Game stopped") {
+		document.getElementById("MyCanvas").hidden = true;
         endGameMessage.textContent = "Game stopped!";
-        endGameScreen.style.display = 'block';
+        endGameScreen.style.display = 'flex';
         confirmEndGame.onclick = function() {
+			gameCanvas.inGame = false;
             gameSocket.close();
             loadPage(ROUTE.GAME_MODES);
 			endGameScreen.style.display = 'none';
@@ -77,9 +78,11 @@ function receive_data(e) {
     }
 
 	if (data.message === "win") {
+		document.getElementById("MyCanvas").hidden = true;
         endGameMessage.textContent = "You won!";
-        endGameScreen.style.display = 'block';
+        endGameScreen.style.display = 'flex';
         confirmEndGame.onclick = function() {
+			gameCanvas.inGame = false;
             gameSocket.close();
             loadPage(ROUTE.GAME_MODES);
 			endGameScreen.style.display = 'none';
@@ -87,9 +90,11 @@ function receive_data(e) {
     }
 
 	if (data.message === "lose") {
+		document.getElementById("MyCanvas").hidden = true;
         endGameMessage.textContent = "You lost!";
-        endGameScreen.style.display = 'block';
+        endGameScreen.style.display = 'flex';
         confirmEndGame.onclick = function() {
+			gameCanvas.inGame = false;
             gameSocket.close();
             loadPage(ROUTE.GAME_MODES);
 			endGameScreen.style.display = 'none';
@@ -97,9 +102,11 @@ function receive_data(e) {
     }
 
 	if (data.message === "game_finish") {
+		document.getElementById("MyCanvas").hidden = true;
         endGameMessage.textContent = "GG WP! " + data.winner + " won!";
-        endGameScreen.style.display = 'block';
+        endGameScreen.style.display = 'flex';
         confirmEndGame.onclick = function() {
+			gameCanvas.inGame = false;
             gameSocket.close();
             loadPage(ROUTE.GAME_MODES);
 			endGameScreen.style.display = 'none';

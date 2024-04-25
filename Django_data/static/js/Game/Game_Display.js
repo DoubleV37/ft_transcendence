@@ -111,9 +111,9 @@ function draw(data) {
     drawBallXY(data.ballX, data.ballY);
 	if (gameCanvas.powerup)
     	drawPowerup(data.powerupY);
-    if (data.ballX < 0.01) {
+    if (data.ballX < 0.01 && gameCanvas.inGame == true) {
         drawImpactAnimation(0, data.ballY * gameCanvas.canvas.height);
-    } else if (data.ballX > 0.99) {
+    } else if (data.ballX > 0.99 && gameCanvas.inGame == true) {
         drawImpactAnimation(gameCanvas.canvas.width, data.ballY * gameCanvas.canvas.height);
     }
 }
