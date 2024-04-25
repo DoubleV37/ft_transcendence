@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-
   {% include "Home/head.html" %}
   <body>
     {% include "Profile/Avatar.html" %}
@@ -43,35 +42,35 @@
                         <button type="button" data-bs-target="#paddle" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
                       {% endif %}
                     </div>
-                    <div class="carousel-inner">
+                    <div id="paddleInner" class="carousel-inner">
                       {% if paddle == 0 %}
-                      <div class="carousel-item active">
+                      <div class="carousel-item active" data-skin="paddleGrass">
                       {% else %}
-                      <div class="carousel-item">
+                      <div class="carousel-item" data-skin="paddleGrass">
                       {% endif %}
-                        <img src="{% static 'images/skins/paddle/Paddle1.png' %}" class="d-block w-100" alt="...">
+                        <img src="{% static 'images/skins/paddle/paddleSelectGrass.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
-                          <h5 class="SkinName">Paddle1</h5>
+                          <h5 class="SkinName">Grass</h5>
                         </div>
                       </div>
                        {% if paddle == 1 %}
-                      <div class="carousel-item active">
+                      <div class="carousel-item active" data-skin="paddleAmethyst">
                       {% else %}
-                      <div class="carousel-item">
+                      <div class="carousel-item" data-skin="paddleAmethyst">
                       {% endif %}
-                       <img src="{% static 'images/skins/paddle/Paddle2.png' %}" class="d-block w-100" alt="...">
+                       <img src="{% static 'images/skins/paddle/paddleSelectAmethyst.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
-                          <h5 class="SkinName">Paddle2</h5>
+                          <h5 class="SkinName">Amethyst</h5>
                         </div>
                       </div>
                       {% if paddle == 2 %}
-                      <div class="carousel-item active">
+                      <div class="carousel-item active" data-skin="paddleSnow">
                       {% else %}
-                      <div class="carousel-item">
+                      <div class="carousel-item" data-skin="paddleSnow">
                       {% endif %}
-                      <img src="{% static 'images/skins/paddle/Paddle3.png' %}" class="d-block w-100" alt="...">
+                      <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
-                          <h5 class="SkinName">Paddle3</h5>
+                          <h5 class="SkinName">Snow</h5>
                         </div>
                       </div>
                     </div>
@@ -79,6 +78,66 @@
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#paddle" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="columnSkin">
+                <div class="Skins">
+                  <div class="SectionLayout SectionGrey">Ball</div>
+                  <div id="ball" class="carousel slide" data-bs-interval="false">
+                    <div class="carousel-indicators">
+                      {% if ball == 0 %}
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% elif ball == 1 %}
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="0" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      {% else %}
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="0" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#ball" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
+                      {% endif %}
+                    </div>
+                    <div id="ballInner" class="carousel-inner">
+                      {% if ball == 0 %}
+                      <div class="carousel-item active" data-skin="ballCat">
+                      {% else %}
+                      <div class="carousel-item" data-skin="ballCat">
+                      {% endif %}
+                        <img src="{% static 'images/skins/ball/ballSelectCat.png' %}" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-md-block">
+                          <h5 class="SkinName">Cat</h5>
+                        </div>
+                      </div>
+                      {% if ball == 1 %}
+                      <div class="carousel-item active" data-skin="ballBlackHole">
+                      {% else %}
+                      <div class="carousel-item" data-skin="ballBlackHole">
+                      {% endif %}
+                        <img src="{% static 'images/skins/ball/ballSelectBlackhole.png' %}" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-md-block">
+                          <h5 class="SkinName">BlackHole</h5>
+                        </div>
+                      </div>
+                      {% if ball == 2 %}
+                      <div class="carousel-item active" data-skin="ballSushi">
+                      {% else %}
+                      <div class="carousel-item" data-skin="ballSushi">
+                      {% endif %}
+                        <img src="{% static 'images/skins/ball/ballSelectSushi.png' %}" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-md-block">
+                          <h5 class="SkinName">Sushi</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#ball" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#ball" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     </button>
                   </div>
@@ -103,35 +162,35 @@
                         <button type="button" data-bs-target="#background" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
                       {% endif %}
                     </div>
-                    <div class="carousel-inner">
+                    <div id="backgroundInner" class="carousel-inner">
                       {% if background == 0 %}
-                      <div class="carousel-item active">
+                      <div class="carousel-item active" data-skin="backgroundForest">
                       {% else %}
-                      <div class="carousel-item">
+                      <div class="carousel-item" data-skin="backgroundForest">
                       {% endif %}
-                        <img src="{% static 'images/skins/background/Background1.png' %}" class="d-block w-100" alt="...">
+                        <img src="{% static 'images/skins/background/backgroundSelectForest.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
-                          <h5 class="SkinName">Background1</h5>
+                          <h5 class="SkinName">Forest</h5>
                         </div>
                       </div>
                       {% if background == 1 %}
-                      <div class="carousel-item active">
+                      <div class="carousel-item active" data-skin="backgroundSpace">
                       {% else %}
-                      <div class="carousel-item">
+                      <div class="carousel-item" data-skin="backgroundSpace">
                       {% endif %}
-                        <img src="{% static 'images/skins/background/Background2.png' %}" class="d-block w-100" alt="...">
+                        <img src="{% static 'images/skins/background/backgroundSelectSpace.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
-                          <h5 class="SkinName">Background2</h5>
+                          <h5 class="SkinName">Space</h5>
                         </div>
                       </div>
                       {% if background == 2 %}
-                      <div class="carousel-item active">
+                      <div class="carousel-item active" data-skin="backgroundLoFi">
                       {% else %}
                       <div class="carousel-item">
                       {% endif %}
-                        <img src="{% static 'images/skins/background/Background3.png' %}" class="d-block w-100" alt="...">
+                        <img src="{% static 'images/skins/background/backgroundSelectLoFi.png' %}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-md-block">
-                          <h5 class="SkinName">Background3</h5>
+                          <h5 class="SkinName">LoFi</h5>
                         </div>
                       </div>
                     </div>
@@ -142,66 +201,6 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     </button>
                   </div> 
-                </div>
-              </div>
-              <div class="columnSkin">
-                <div class="Skins">
-                  <div class="SectionLayout SectionGrey">Ball</div>
-                  <div id="ball" class="carousel slide" data-bs-interval="false">
-                    <div class="carousel-indicators">
-                      {% if ball == 0 %}
-                        <button type="button" data-bs-target="#ball" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#ball" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#ball" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                      {% elif ball == 1 %}
-                        <button type="button" data-bs-target="#ball" data-bs-slide-to="0" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#ball" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#ball" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                      {% else %}
-                        <button type="button" data-bs-target="#ball" data-bs-slide-to="0" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#ball" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#ball" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
-                      {% endif %}
-                    </div>
-                    <div class="carousel-inner">
-                      {% if ball == 0 %}
-                      <div class="carousel-item active">
-                      {% else %}
-                      <div class="carousel-item">
-                      {% endif %}
-                        <img src="{% static 'images/skins/ball/Ball1.png' %}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-md-block">
-                          <h5 class="SkinName">Ball1</h5>
-                        </div>
-                      </div>
-                      {% if ball == 1 %}
-                      <div class="carousel-item active">
-                      {% else %}
-                      <div class="carousel-item">
-                      {% endif %}
-                        <img src="{% static 'images/skins/ball/Ball2.png' %}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-md-block">
-                          <h5 class="SkinName">Ball2</h5>
-                        </div>
-                      </div>
-                      {% if ball == 2 %}
-                      <div class="carousel-item active">
-                      {% else %}
-                      <div class="carousel-item">
-                      {% endif %}
-                        <img src="{% static 'images/skins/ball/Ball3.png' %}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-md-block">
-                          <h5 class="SkinName">Ball3</h5>
-                        </div>
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#ball" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#ball" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>

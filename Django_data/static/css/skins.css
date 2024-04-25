@@ -52,6 +52,7 @@
 
     .carousel {
         margin-bottom: 2em;
+        border: 1px solid #828282
     }
 
     .SkinsSave {
@@ -60,12 +61,12 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
 
     .columnSkin {
         display: flex;
         justify-content: center;
-        width: 12.575em;
+        width: 14.7em;
     }
 
     .Skins {
@@ -113,6 +114,7 @@
 
     .carousel {
         margin-bottom: 2em;
+        border: 1px solid #828282
     }
 
     .SkinsSave {
@@ -121,7 +123,7 @@
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
 
     .columnSkin {
         display: flex;
@@ -175,6 +177,7 @@
     .carousel {
         margin-top: 0.5em;
         margin-bottom: 0.5em;
+        border: 1px solid #828282
     }
 
     .SkinsSave {
@@ -189,4 +192,5 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: -0.1em;
 }
