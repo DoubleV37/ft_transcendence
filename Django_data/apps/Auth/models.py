@@ -24,6 +24,13 @@ class User(AbstractBaseUser):
     online_data = models.DateTimeField(default=timezone.now)
     in_game = models.BooleanField(default=False)
 
+    skin_ball = models.CharField(
+            default="ballCat", null=False)
+    skin_paddle = models.CharField(
+            default="paddleGrass", null=False)
+    skin_background = models.CharField(
+            default="backgroundForest", null=False)
+
     friends = models.ManyToManyField("self", blank=True)
 
     USERNAME_FIELD = 'username'
