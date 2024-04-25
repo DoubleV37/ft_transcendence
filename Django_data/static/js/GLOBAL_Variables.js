@@ -78,7 +78,10 @@ imgPowerUp.src = imgPowerUpSrc;
 // INIT KEYS
 let keyStates = {
   ArrowUp: false,
-  ArrowDown: false
+  ArrowDown: false,
+  w: false,
+  s: false,
+  space: false
 };
 
 // INIT CANVAS

@@ -79,7 +79,7 @@ function receive_data(e) {
 		loadPage(ROUTE.GAME_MODES);
 	}
 	if (data.message === "game_finish") {
-		alert("JPP WP! " + data.winner + " won!");
+		alert("GG WP! " + data.winner + " won!");
 		gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
@@ -118,10 +118,10 @@ function update() {
 	else if (keyStates[' ']) {
 		sendMovement("space");
 	}
-	if (keyStates['w'] && GameParams.opponent !== "ai") {
+	if (keyStates['w'] && GameParams.opponent == "player" && GameParams.type == "local") {
 		sendMovement("w");
 	}
-	else if (keyStates['s'] && GameParams.opponent !== "ai") {
+	else if (keyStates['s'] && GameParams.opponent == "player" && GameParams.type == "local") {
 		sendMovement("s");
 	}
 	if (GameParams.opponent === "ai") {
