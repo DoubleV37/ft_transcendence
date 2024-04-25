@@ -99,4 +99,7 @@ let gameCanvas = {
   num: 0
 };
 
+//MATCHMAKING SCREEN
+let dots = 0;
+
 let gameSocket = null;

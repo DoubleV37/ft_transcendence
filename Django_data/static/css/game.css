@@ -33,6 +33,34 @@ canvas {
 		font-weight: 700;
 		line-height: normal;
 	}
+
+	#matchmakingText {
+
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 2rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		justify-content: center;
+		display: flex;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	}
+	
+	#matchmakingDots {
+	
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 2rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		justify-content: center;
+		display: flex;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	}
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -52,6 +80,34 @@ canvas {
 		font-style: normal;
 		font-weight: 700;
 		line-height: normal;
+	}
+
+	#matchmakingText {
+
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 2rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		justify-content: center;
+		display: flex;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	}
+	
+	#matchmakingDots {
+	
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 2rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		justify-content: center;
+		display: flex;
+		margin-top: -1em;
+		margin-bottom: 1em;
 	}
 }
 
@@ -73,4 +129,42 @@ canvas {
 		font-weight: 700;
 		line-height: normal;
 	}
+
+	#matchmakingText {
+
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 1.2rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		justify-content: center;
+		display: flex;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	}
+	
+	#matchmakingDots {
+	
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 1.2rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		justify-content: center;
+		display: flex;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	}
+}
+
+#matchmakingContainer {
+	display: flex;
+	flex-direction: row;
+}
+
+#matchmakingDotsContainer {
+    display: flex;
+	width: 1.5rem;
 }

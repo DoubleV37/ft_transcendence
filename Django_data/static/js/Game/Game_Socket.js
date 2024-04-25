@@ -52,37 +52,91 @@ function iaMove() {
 // the end of ia town
 
 function receive_data(e) {
-	const data = JSON.parse(e.data);
+    const data = JSON.parse(e.data);
+    const endGameScreen = document.getElementById('endGameScreen');
+    const endGameMessage = document.getElementById('endGameMessage');
+    const confirmEndGame = document.getElementById('confirmEndGame');
+
+    if (data.message === "User exited") {
+        endGameMessage.textContent = "The opponent ran away in fear!";
+        endGameScreen.style.display = 'block';
+        confirmEndGame.onclick = function() {
+            gameSocket.send(JSON.stringify({ message: "stop" }));
+            gameSocket.close();
+        };
+    }
+
+	if (data.message === "Game stopped") {
+        endGameMessage.textContent = "Game stopped!";
+        endGameScreen.style.display = 'block';
+        confirmEndGame.onclick = function() {
+            gameSocket.close();
+            loadPage(ROUTE.GAME_MODES);
+			endGameScreen.style.display = 'none';
+        };
+    }
+
+	if (data.message === "win") {
+        endGameMessage.textContent = "You won!";
+        endGameScreen.style.display = 'block';
+        confirmEndGame.onclick = function() {
+            gameSocket.close();
+            loadPage(ROUTE.GAME_MODES);
+			endGameScreen.style.display = 'none';
+        };
+    }
+
+	if (data.message === "lose") {
+        endGameMessage.textContent = "You lost!";
+        endGameScreen.style.display = 'block';
+        confirmEndGame.onclick = function() {
+            gameSocket.close();
+            loadPage(ROUTE.GAME_MODES);
+			endGameScreen.style.display = 'none';
+        };
+    }
+
+	if (data.message === "game_finish") {
+        endGameMessage.textContent = "GG WP! " + data.winner + " won!";
+        endGameScreen.style.display = 'block';
+        confirmEndGame.onclick = function() {
+            gameSocket.close();
+            loadPage(ROUTE.GAME_MODES);
+			endGameScreen.style.display = 'none';
+        };
+    }
+
 	if (data.message === "opponent") {
 		gameCanvas.opponent = data.opponent;
 		gameCanvas.num = data.num;
 		return;
 	}
-	if (data.message === "User exited") {
-		console.log("User exited");
-		alert("The opponent ran away in fear!");
-		gameSocket.send(JSON.stringify({ message: "stop" }));
-	}
-	if (data.message === "Game stopped") {
-		alert("Game stopped!");
-		gameSocket.close();
-		loadPage(ROUTE.GAME_MODES);
-	}
-	if (data.message === "win") {
-		alert("You won!");
-		gameSocket.close();
-		loadPage(ROUTE.GAME_MODES);
-	}
-	if (data.message === "lose") {
-		alert("You lost!");
-		gameSocket.close();
-		loadPage(ROUTE.GAME_MODES);
-	}
-	if (data.message === "game_finish") {
-		alert("JPP WP! " + data.winner + " won!");
-		gameSocket.close();
-		loadPage(ROUTE.GAME_MODES);
-	}
+	// if (data.message === "User exited") {
+	// 	console.log("User exited");
+	// 	alert("The opponent ran away in fear!");
+	// 	gameSocket.send(JSON.stringify({ message: "stop" }));
+	// }
+	// if (data.message === "Game stopped") {
+	// 	alert("Game stopped!");
+	// 	gameSocket.close();
+	// 	loadPage(ROUTE.GAME_MODES);
+	// }
+	// if (data.message === "win") {
+	// 	alert("You won!");
+	// 	gameSocket.close();
+	// 	loadPage(ROUTE.GAME_MODES);
+	// }
+	// if (data.message === "lose") {
+	// 	alert("You lost!");
+	// 	gameSocket.close();
+	// 	loadPage(ROUTE.GAME_MODES);
+	// }
+	// if (data.message === "game_finish") {
+	// 	alert("GG WP! " + data.winner + " won!");
+	// 	gameSocket.close();
+	// 	loadPage(ROUTE.GAME_MODES);
+	// }
+
 	if (data.message === "game_state") {
 		let score1div = document.getElementById("score1div");
 		let score2div = document.getElementById("score2div");
