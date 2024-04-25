@@ -155,7 +155,7 @@
 		background-size: cover; /* Pour couvrir tout le contenu du canvas */
 		background-position: center; /* Pour centrer l'image */
 		z-index: 0;
-		border: 1px solid #FFF;
+		border: 1px solid #5dc6e8;
 	}
 
 	.flex-row {
@@ -213,7 +213,7 @@
 		padding-top: 5em;
 		padding-left: 15vw;
 		padding-right: 15vw;
-		border: 1px solid #FFF;
+        border: 1px solid #5dc6e8;
 	}
 }
 
