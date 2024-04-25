@@ -100,7 +100,7 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
 
     .conteneur {
         display: flex;
@@ -145,6 +145,8 @@
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
+        border-bottom: #FFF solid 1px;
+        margin-bottom: 1.5rem;
     }
 
     .modesTitle {
@@ -199,7 +201,7 @@
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
  
 
 
@@ -221,6 +223,7 @@
 
     .section {
         width: 90vw;
+        max-width: 28em;
         margin-bottom: 1.6rem;
     }
 

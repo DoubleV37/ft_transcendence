@@ -389,7 +389,7 @@ scrollbar-width: none;
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
     /* Styles */
 
 	body {
@@ -529,7 +529,7 @@ scrollbar-width: none;
 	.mid {
 		display: flex;
 		flex-direction: column;
-		width: 35em;
+		width: 43em;
 		height: 45em;
 		justify-content: center;
 		align-items: center;
@@ -771,7 +771,7 @@ scrollbar-width: none;
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
     /* Styles */	
 	
 	body {
