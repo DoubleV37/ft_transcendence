@@ -1,0 +1,196 @@
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 60.063em) {
+
+    .columnSkin {
+        display: flex;
+        justify-content: center;
+        width: 20em;
+    }
+
+    .Skins {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        flex-shrink: 0;
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    #skinsTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: flex-start;
+        display: flex;
+        width: 70%;
+    }
+
+    #skinsText {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #skinsTextRow {
+        margin-top: 1em;
+        padding-left: 2em;
+        padding-right: 2em;
+        width: 100%;
+    }
+
+    .carousel {
+        margin-bottom: 2em;
+        border: 1px solid #828282
+    }
+
+    .SkinsSave {
+        padding: 2em;
+    }
+}
+
+/* Laptops and tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
+
+    .columnSkin {
+        display: flex;
+        justify-content: center;
+        width: 14.7em;
+    }
+
+    .Skins {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        flex-shrink: 0;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    #skinsTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: flex-start;
+        display: flex;
+        width: 70%;
+    }
+
+    #skinsText {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #skinsTextRow {
+        margin-top: 1em;
+        padding-left: 2em;
+        padding-right: 2em;
+        width: 100%;
+    }
+
+    .carousel {
+        margin-bottom: 2em;
+        border: 1px solid #828282
+    }
+
+    .SkinsSave {
+        padding: 2em;
+    }
+}
+
+/* Smartphones (portrait and landscape) and small tablets ----------- */
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
+
+    .columnSkin {
+        display: flex;
+        justify-content: center;
+        max-width: 90vw;
+    }
+
+    .Skins {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        flex-shrink: 0;
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    #skinsTitle {
+        color: #FFF;
+        font-family: Kodchasan;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: flex-start;
+        display: flex;
+        width: 70%;
+    }
+
+    #skinsText {
+        color: #FFF;
+        display: flex;
+        /* Body text */
+        font-family: Kodchasan;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: left;
+        align-self: start;
+        margin-top: 0.7rem;
+        justify-content: flex-start;
+    }
+
+    #skinsTextRow {
+        margin-top: 1em;
+        padding-left: 2em;
+        padding-right: 2em;
+        max-width: 90vw;
+    }
+
+    .carousel {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        border: 1px solid #828282
+    }
+
+    .SkinsSave {
+        padding: 2em;
+        margin-top: 1.5em;
+    }
+}
+
+.SkinName {
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: -0.1em;
+}

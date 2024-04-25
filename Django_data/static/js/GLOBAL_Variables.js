@@ -55,6 +55,7 @@ const ROUTE = {
   SIGNOUT: "/auth/signout/",
   SETTINGS: "/auth/settings/",
   PROFILE: "/user/profile/",
+  SKINS: "/user/skins/",
   FRIENDS_PROFILE: "/friends/profile/",
   FRIENDS: "/friends/list/",
   REQUESTS: "/friends/request/",
@@ -78,7 +79,10 @@ imgPowerUp.src = imgPowerUpSrc;
 // INIT KEYS
 let keyStates = {
   ArrowUp: false,
-  ArrowDown: false
+  ArrowDown: false,
+  w: false,
+  s: false,
+  space: false
 };
 
 // INIT CANVAS

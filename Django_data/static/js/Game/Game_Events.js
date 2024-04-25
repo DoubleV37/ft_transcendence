@@ -68,6 +68,13 @@ function game_DelEvents() {
 	gameSocket.close();
 
 	document.removeEventListener('keyup', keyUp);
-
 	document.removeEventListener('keydown', keyDown);
+
+	keyStates = {
+		ArrowUp: false,
+		ArrowDown: false,
+		w: false,
+		s: false,
+		space: false
+	};
 }

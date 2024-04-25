@@ -1,6 +1,6 @@
 // ----------Run at the load/reload of the website-------------//
 document.addEventListener("DOMContentLoaded", launchWebsite);
- 
+
 async function launchWebsite () {
   const targetNode = document.querySelector("#content");
 
@@ -19,7 +19,6 @@ async function launchWebsite () {
   modal_2FaCodeInit();
   modal_2FaInit();
   modal_AvatarInit();
-
 
   observer = new MutationObserver(mutationCallBack);
   observer.observe(targetNode, config);
@@ -51,14 +50,14 @@ function mutationCallBack (mutationsList) {
       if (!element) {
         continue;
       }
-	  console.log("Come on please, don't detect me 2 child !");
+      console.log("Come on please, don't detect me 2 child !");
       launchSectionHandler(element);
     }
   }
 }
 
 function launchSectionHandler (element) {
-	console.log("euh ??");
+  console.log("euh ??");
   const elementAttribut = element.getAttribute("data-content");
 
   try {
@@ -81,24 +80,27 @@ function launchSectionHandler (element) {
     case "GAME_PARAMETERS":
       parameters_SetEvents();
       break;
-    case 'GAME_LOCAL':
+    case "GAME_LOCAL":
       observer.disconnect();
       game_SetEvents("GAME_LOCAL");
-      break ;
-    case 'GAME_MATCH':
+      break;
+    case "GAME_MATCH":
       observer.disconnect();
       matchmaking_SetEvents();
-      break ;
-	case 'GAME_ROOM':
-	  observer.disconnect();
-	  game_SetEvents("GAME_ROOM");
-	  break;
+      break;
+    case "GAME_ROOM":
+      observer.disconnect();
+      game_SetEvents("GAME_ROOM");
+      break;
+    case "SKINS_PAGE":
+      skins_SetEvents();
+      break;
     default:
       throw new Error(
         `launchSectionHandler: Attribute ${elementAttribut} non recognised`
       );
     }
-    } catch (err) {
-      console.error("Error: ", err);
-    }
+  } catch (err) {
+    console.error("Error: ", err);
+  }
 }

@@ -1,30 +1,34 @@
-async function  profile_SettingsCallBack() {
+async function profile_SettingsCallBack () {
   try {
     await loadPage(`${ROUTE.SETTINGS}`);
-    profileModal['modal'].hide();
-  }
-  catch (err) {
+    profileModal.modal.hide();
+  } catch (err) {
     console.log(`Error - profile_S: ${err}`);
   }
 }
 
-function  profile_closeModal() {
-  profileModal['modal'].hide();
+function profile_closeModal () {
+  profileModal.modal.hide();
 }
 
-async function  profile_SkinsCallBack() {
-  console.log("Skins: Do nothing for now");
+async function profile_SkinsCallBack () {
+  try {
+    await loadPage(`${ROUTE.SKINS}`);
+    profileModal.modal.hide();
+  } catch (err) {
+    console.log(`Error - profile_S: ${err}`);
+  }
 }
 
-async function  profile_HistoryCallBack() {
+async function profile_HistoryCallBack () {
   console.log("History: Do nothing for now");
 }
 
-async function  profile_StatsCallBack() {
+async function profile_StatsCallBack () {
   console.log("Stats: Do nothing for now");
 }
 
-async function  profile_42AccCallBack() {
+async function profile_42AccCallBack () {
   console.log("42Acc: Do nothing for now");
 }
 
@@ -61,10 +65,10 @@ async function profile_FriendsButtonCallBack (event) {
       button.disabled = true;
     } else {
       const id = event.target.getAttribute("data-id");
-      event.target.removeEventListener('submit', profile_FriendsButtonCallBack);
+      event.target.removeEventListener("submit", profile_FriendsButtonCallBack);
       await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
       const element = document.getElementById("Friends_Profile").querySelector("form");
-      element.addEventListener('submit', profile_FriendsButtonCallBack);
+      element.addEventListener("submit", profile_FriendsButtonCallBack);
     }
     return true;
   } catch (err) {
@@ -75,12 +79,11 @@ async function profile_FriendsButtonCallBack (event) {
 
 async function profile_GotoFriends () {
   try {
-    profileModal['modal'].hide();
+    profileModal.modal.hide();
     await changeSection(`${ROUTE.FRIENDS}`, "#FriendsModal");
     await changeSection(`${ROUTE.REQUESTS}`, "#RequestList-content");
     friendsModal.modal.show();
   } catch (error) {
     console.log(`Error - header_M: ${error}`);
   }
-
 }
