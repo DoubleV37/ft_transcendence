@@ -17,6 +17,9 @@ class HistoryView(TemplateView):
             logger.info(f"{' History ':#^20}")
             parties = tools.party_played(request.user)
             opponents = tools.find_my_opponent(key=parties, me=request.user)
+            ordered_party = tools.ordered_party(
+                opponent_key=opponents, me=request.user
+            )
             return HttpResponse('Ouai')
 
         def post(self, request):
