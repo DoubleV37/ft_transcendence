@@ -25,11 +25,11 @@ class User(AbstractBaseUser):
     in_game = models.BooleanField(default=False)
 
     skin_ball = models.CharField(
-            default="ball1", null=False)
+            default="ballCat", null=False)
     skin_paddle = models.CharField(
-            default="paddle1", null=False)
+            default="paddleGrass", null=False)
     skin_background = models.CharField(
-            default="background1", null=False)
+            default="backgroundForest", null=False)
 
     friends = models.ManyToManyField("self", blank=True)
 
