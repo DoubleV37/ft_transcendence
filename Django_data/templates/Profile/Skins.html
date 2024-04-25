@@ -205,8 +205,12 @@
               </div>
             </div>
             <section>
-              <button id="Save_Skins" class="ButtonLayout ButtonNeon SkinsSave">Save changes</button>
+              <button id="Save_Skins" class="ButtonLayout ButtonNeon SkinsSave">
+                {% csrf_token %}
+                Save changes
+              </button>
             </section>
+            <p id="SkinsMessage"></p>
           </div>
         </div>
       </div>

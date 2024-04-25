@@ -34,8 +34,8 @@ def skin(request):
     list_paddle = ["paddleGrass", "paddleAmethyst", "paddleSnow"]
     list_ball = ["ballCat", "ballBlackHole", "ballSushi"]
     list_back = ["backgroundForest", "backgroundSpace", "backgroundLoFi"]
+    _user = request.user
     if request.method == 'GET':
-        _user = request.user
         context = {}
         context['paddle'] = list_paddle.index(_user.skin_paddle)
         context['ball'] = list_ball.index(_user.skin_ball)
@@ -48,9 +48,9 @@ def skin(request):
             response = JsonResponse({"success": False, "error": "Wrong informations!"})
         else:
             response = JsonResponse({"success": True})
-            _user.skin_ball = skins.ball
-            _user.skin_paddle = skins.paddle
-            _user.skin_background = skins.background
+            _user.skin_ball = skins['ball']
+            _user.skin_paddle = skins['paddle']
+            _user.skin_background = skins['background']
             _user.save()
         return response
 
@@ -67,6 +67,7 @@ def calculate_deltatime(_user):
 
 def check_skins_request(skins, paddles, balls, backgrounds):
     keys = ['paddle', 'ball', 'background']
+    logger.info(f"{skins = }")
     if all(key in skins for key in keys) is False:
         return False
     if skins['paddle'] not in paddles:

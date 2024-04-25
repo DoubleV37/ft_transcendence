@@ -10,7 +10,7 @@ function skins_DelEvents () {
   element.removeEventListener("click", skins_SaveAll);
 }
 
-async function skins_SaveAll () {
+async function skins_SaveAll (event) {
   const paddleItem = document
     .getElementById("paddleInner")
     .querySelector(".carousel-item.active")
@@ -26,12 +26,27 @@ async function skins_SaveAll () {
 
   try {
     const response = await MakeRequest(`${ROUTE.SKINS}`, {
-      method: 'POST',
+      method: "POST",
+      headers: {
+        "X-CSRFToken": event.target.querySelector("input").getAttribute("value")
+      },
+      mode: "same-origin",
       body: JSON.stringify({
         paddle: paddleItem,
         ball: ballItem,
         background: backgroundItem
       })
     });
-    if (!response.ok)
+    const data = await response.json();
+
+    if (data.success === true) {
+      document.getElementById("SkinsMessage").setAttribute("style", "color: green;");
+      document.getElementById("SkinsMessage").innerHTML = "Skins successfully changed!";
+    } else {
+      document.getElementById("SkinsMessage").setAttribute("style", "color: red;");
+      document.getElementById("SkinsMessage").innerHTML = "Something went wrong!";
+    }
+  } catch (err) {
+    console.error("Skins Errors:", err);
+  }
 }
