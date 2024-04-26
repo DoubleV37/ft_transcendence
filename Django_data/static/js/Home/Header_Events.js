@@ -18,6 +18,9 @@ function header_SetEvents () {
     element = document.getElementById("HEADER_user");
     element.addEventListener("click", header_ModProfilCallBack);
   } else if (IsAuthenticated === "false") {
+    element = document.getElementById("HEADER_NavLogo");
+    element.addEventListener("click", header_LogoCallback);
+
     element = document.getElementById("HEADER_Signin");
     element.addEventListener("click", header_SignInCallBack);
 
@@ -54,6 +57,9 @@ function header_DelEvents () {
     element = document.getElementById("HEADER_Signin");
     element.removeEventListener("click", header_SignInCallBack);
 
+    element = document.getElementById("HEADER_NavLogo");
+    element.removeEventListener("click", header_LogoCallback);
+
     element = document.getElementById("HEADER_NavSignUp");
     element.addEventListener("click", header_SignUpCallBack);
 
@@ -66,8 +72,7 @@ function header_DelEvents () {
 
 async function header_LogoCallback () {
   try {
-	del_current_event();
-    await loadPage(`${ROUTE.HOME}`);
+    loadPage(`${ROUTE.HOME}`);
     offcanvas_Hide();
   } catch (error) {
     console.log(`Error - header_L: ${error}`);
@@ -117,7 +122,6 @@ async function header_SignOutCallBack () {
   try {
     offcanvas_Hide();
     await MakeRequest(`${ROUTE.SIGNOUT}`);
-    del_current_event();
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
