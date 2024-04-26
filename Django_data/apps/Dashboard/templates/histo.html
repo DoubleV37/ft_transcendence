@@ -5,11 +5,16 @@
     <table>
       {% for key, items in context.items %}
         <tr>
-          <td> Key: {{ key }} </td>
-
-          <td> me = {{ items.me }} </td>
-          <td> id = {{ items.id }} </td>
-          <td> opponent = {{ items.opponent }} </td>
+          <td> {{ key }} </td>
+          <td> {{ items.me.user.username }} </td>
+          <td> 
+          {% if items.me.winner == True %}
+            winner
+          {% else %}
+            loser
+          {% endif %}
+          </td>
+          <td> {{ items.opponent.user.username }} </td>
         </tr>
       {% endfor %}
     </table>

@@ -31,12 +31,10 @@ def ordered_party(opponent_key: list, me: User) -> dict:
     return ordered
 
 
-def dict_constructor(data: dict) -> dict:
-    logger.debug(f"{' dict_constructor ':~^30}")
+def data_constructor(data: dict) -> dict:
     token = dict()
     index: int = 0
     for item, value in data.items():
-        logger.debug(f"{item = } | {value =}")
         key = 'match ' + str(index)
         token[key] = value
         index = index + 1

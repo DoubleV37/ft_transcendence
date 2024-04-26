@@ -19,7 +19,10 @@ class HistoryView(TemplateView):
             ordered_party = tools.ordered_party(
                 opponent_key=opponents, me=request.user
             )
-            context = tools.dict_constructor(ordered_party)
+            context = tools.data_constructor(ordered_party)
+            for k, items in context.items():
+                if items.get('me') is not None:
+                    logger.debug(f"{items.get('me').winner = }")
             return render(request, self.template_name, {'context': context})
 
         def post(self, request):
