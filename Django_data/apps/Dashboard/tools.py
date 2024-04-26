@@ -20,20 +20,33 @@ def find_my_opponent(key: list, me: User) -> list:
     return opponent
 
 
-def ordered_party(opponent_key: list, me: User) -> list:
-    ordered = list(list())
+# def ordered_party(opponent_key: list, me: User) -> list:
+#     ordered = list(list())
+#     for opponent in opponent_key:
+#         id = opponent.game
+#         myself = UserGame.objects.get(game=id, user=me)
+#         ordered.append([myself, id, opponent])
+#     return ordered
+
+
+def ordered_party(opponent_key: list, me: User) -> dict:
+    ordered = dict(dict())
+    index: int = 0
     for opponent in opponent_key:
         id = opponent.game
         myself = UserGame.objects.get(game=id, user=me)
-        ordered.append([myself, id, opponent])
+        ordered[str(index)] = {'me': myself, 'id': id, 'opponent': opponent}
+        index = index + 1
     return ordered
 
 
-def dict_constructor(data: list) -> dict:
+def dict_constructor(data: dict) -> dict:
+    logger.debug(f"{' dict_constructor ':~^30}")
     token = dict()
     index: int = 0
-    for item in data:
+    for item, value in data.items():
+        logger.debug(f"{item = } | {value =}")
         key = 'match ' + str(index)
-        token[key] = item
+        token[key] = value
         index = index + 1
     return token

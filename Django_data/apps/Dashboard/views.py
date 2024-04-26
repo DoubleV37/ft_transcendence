@@ -23,7 +23,7 @@ class HistoryView(TemplateView):
             # logger.debug(f"{context = }")
             for key, values in context.items():
                 logger.debug(f"{key = }")
-                for value in values:
+                for v, value in values.items():
                     logger.debug(f"{value = }")
             return render(request, self.template_name, {'context': context})
 
