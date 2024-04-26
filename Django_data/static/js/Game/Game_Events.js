@@ -35,13 +35,13 @@ function game_SetEvents(page_name) {
 
 		gameCanvas.inGame = true;
 
-		var overlayDiv = document.createElement("div");
-		overlayDiv.id = "overlayDiv";
-		overlayDiv.style.backgroundColor = "rgba(0, 1, 1, 0.75)";
-		overlayDiv.style.height = "100%";
-		overlayDiv.style.width = "100%";
-		overlayDiv.style.position = "absolute";
-		document.getElementById("content").appendChild( overlayDiv );
+		// var overlayDiv = document.createElement("div");
+		// overlayDiv.id = "overlayDiv";
+		// overlayDiv.style.backgroundColor = "rgba(0, 0, 0, 0.25)";
+		// overlayDiv.style.height = "100%";
+		// overlayDiv.style.width = "100%";
+		// overlayDiv.style.position = "absolute";
+		// document.getElementById("content").appendChild( overlayDiv );
 
 		if (page_name === "GAME_LOCAL") {
 			console.log(GameParams);

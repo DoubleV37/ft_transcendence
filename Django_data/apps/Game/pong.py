@@ -124,14 +124,14 @@ class Pong():
 
 	def paddle_bounce(self, player):
 		if player == 0:
-			if 55 > self.ball_pos[0] > (55 + ( 2 * self.ball_speed[0])) and self.player_pos[0] - (self.player_size[0] / 2 + 5) < self.ball_pos[1] < self.player_pos[0] + (self.player_size[0] / 2 + 5):
+			if 55 > self.ball_pos[0] > (55 + ( 2 * self.ball_speed[0])) and self.player_pos[0] - (self.player_size[0] / 2 + 10) < self.ball_pos[1] < self.player_pos[0] + (self.player_size[0] / 2 + 10):
 				self.ball_speed[0] *= -(1 + self.ball_acceleration)
 				if self.ball_speed[0] > 30:
 					self.ball_speed[0] = 30
 				self.ball_speed[1] = (self.ball_pos[1] - self.player_pos[0]) / self.paddle_radius
 				self.stats(player)
 		else:
-			if 1145 < self.ball_pos[0] < (1145 + ( 2 * self.ball_speed[0])) and self.player_pos[1] - (self.player_size[1] / 2 + 5) < self.ball_pos[1] < self.player_pos[1] + (self.player_size[1] / 2 + 5):
+			if 1145 < self.ball_pos[0] < (1145 + ( 2 * self.ball_speed[0])) and self.player_pos[1] - (self.player_size[1] / 2 + 10) < self.ball_pos[1] < self.player_pos[1] + (self.player_size[1] / 2 + 10):
 				self.ball_speed[0] *= -(1 + self.ball_acceleration)
 				if self.ball_speed[0] < -30:
 					self.ball_speed[0] = -30

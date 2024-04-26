@@ -11,6 +11,8 @@
 		background-size: cover; /* Pour couvrir tout le contenu du canvas */
 		background-position: center; /* Pour centrer l'image */
 		z-index: 0;
+		border-top: none;
+		border-radius: 0em 0em 1em 1em;
 	}
 
 	.flex-row {
@@ -68,6 +70,16 @@
 		padding-top: 0.2em;
 		padding-left: 15em;
 		padding-right: 15em;
+	}
+
+	#GAME_username {
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 1.1em;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		cursor: pointer;
 	}
 }
 
@@ -83,6 +95,8 @@
 		background-size: cover; /* Pour couvrir tout le contenu du canvas */
 		background-position: center; /* Pour centrer l'image */
 		z-index: 0;
+		border-top: none;
+		border-radius: 0em 0em 1em 1em;
 	}
 
 	.flex-row {
@@ -141,6 +155,16 @@
 		padding-left: 15em;
 		padding-right: 15em;
 	}
+
+	#GAME_username {
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 1.1em;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		cursor: pointer;
+	}
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -155,7 +179,7 @@
 		background-size: cover; /* Pour couvrir tout le contenu du canvas */
 		background-position: center; /* Pour centrer l'image */
 		z-index: 0;
-		border: 1px solid #5dc6e8;
+		border-radius: 0em 0em 1em 1em;
 	}
 
 	.flex-row {
@@ -214,6 +238,10 @@
 		padding-left: 15vw;
 		padding-right: 15vw;
         border: 1px solid #5dc6e8;
+	}
+
+	#GAME_username {
+		display: none;
 	}
 }
 
