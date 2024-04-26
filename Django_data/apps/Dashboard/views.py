@@ -20,11 +20,6 @@ class HistoryView(TemplateView):
                 opponent_key=opponents, me=request.user
             )
             context = tools.dict_constructor(ordered_party)
-            # logger.debug(f"{context = }")
-            for key, values in context.items():
-                logger.debug(f"{key = }")
-                for v, value in values.items():
-                    logger.debug(f"{value = }")
             return render(request, self.template_name, {'context': context})
 
         def post(self, request):

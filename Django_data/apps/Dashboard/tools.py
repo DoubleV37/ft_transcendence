@@ -20,15 +20,6 @@ def find_my_opponent(key: list, me: User) -> list:
     return opponent
 
 
-# def ordered_party(opponent_key: list, me: User) -> list:
-#     ordered = list(list())
-#     for opponent in opponent_key:
-#         id = opponent.game
-#         myself = UserGame.objects.get(game=id, user=me)
-#         ordered.append([myself, id, opponent])
-#     return ordered
-
-
 def ordered_party(opponent_key: list, me: User) -> dict:
     ordered = dict(dict())
     index: int = 0

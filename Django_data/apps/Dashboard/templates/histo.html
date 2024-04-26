@@ -6,9 +6,10 @@
       {% for key, items in context.items %}
         <tr>
           <td> Key: {{ key }} </td>
-          <td> me = {{ items['me'] }} </td>
-          <td> id = {{ items['id'] }} </td>
-          <td> opponent = {{ items['opponent'] }} </td>
+
+          <td> me = {{ items.me }} </td>
+          <td> id = {{ items.id }} </td>
+          <td> opponent = {{ items.opponent }} </td>
         </tr>
       {% endfor %}
     </table>
