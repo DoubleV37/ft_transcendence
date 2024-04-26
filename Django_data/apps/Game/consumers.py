@@ -43,6 +43,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		else:
 			self.opponent = await database_sync_to_async(get_user_model().objects.get)(username="Guest")
 		self.opponent_game = await database_sync_to_async(UserGame.objects.create)(user=self.opponent, game=self.game)
+		await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 1, "avatar": self.opponent.avatar.url}))
 
 	async def receive(self, text_data):
 		data = json.loads(text_data)

@@ -72,7 +72,7 @@
 		padding-right: 15em;
 	}
 
-	#GAME_username {
+	.username {
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 1.1em;
@@ -156,7 +156,7 @@
 		padding-right: 15em;
 	}
 
-	#GAME_username {
+	.username {
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 1.1em;
@@ -237,11 +237,11 @@
 		padding-top: 5em;
 		padding-left: 15vw;
 		padding-right: 15vw;
-        border: 1px solid #5dc6e8;
+        border: 1px solid #919191;
 		border-top: none !important;
 	}
 
-	#GAME_username {
+	.username {
 		display: none;
 	}
 }

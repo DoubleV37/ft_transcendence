@@ -115,6 +115,10 @@ function receive_data (e) {
   if (data.message === "opponent") {
     gameCanvas.opponent = data.opponent;
     gameCanvas.num = data.num;
+	const leftPlayer = document.getElementById("GAME_username_left");
+	leftPlayer.innerHTML = data.opponent;
+	const leftPlayerPic = document.getElementById("HEADER_GameProfilePicLeft");
+	leftPlayerPic.setAttribute('src', data.avatar);
     return;
   }
 
