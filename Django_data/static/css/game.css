@@ -238,6 +238,7 @@
 		padding-left: 15vw;
 		padding-right: 15vw;
         border: 1px solid #5dc6e8;
+		border-top: none !important;
 	}
 
 	#GAME_username {
