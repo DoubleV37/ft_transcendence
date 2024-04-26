@@ -39,8 +39,8 @@ scrollbar-width: none;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		
 		flex-grow: 2;
+		overflow: hidden;
 	}
 	
 	/* OFF CANVAS */
