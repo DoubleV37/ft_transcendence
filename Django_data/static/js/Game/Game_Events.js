@@ -39,6 +39,8 @@ function game_SetEvents(page_name) {
 		else if (page_name === "GAME_ROOM") {
 			gameCanvas.powerup = false;
 			GameParams.point_limit = 1;
+			GameParams.type = "remote";
+			GameParams.opponent = "player";
 			gameSocket.send(JSON.stringify(GameParams));
 		}
 
@@ -49,22 +51,29 @@ function game_SetEvents(page_name) {
 		update();
 	};
 	gameSocket.onclose = function (e) {
-		gameSocket.removeEventListener('message', receive_data);
 		console.log("Something unexpected happened !");
-		gameSocket = null;
+		console.log(e);
 	};
 }
 
 function game_DelEvents() {
 	console.log('game_DelEvents');
+	try {
+		if (gameSocket.readyState === WebSocket.OPEN)
+		gameSocket.send(JSON.stringify({ message: "stop"}));
+	}
+	catch (e) {
+		console.log(e);
+	}
 	// removeEventListener('resize', () => {
-	// 	style = getComputedStyle(canvas);
-	// 	width = parseInt(style.getPropertyValue('width'), 10);
-	// 	height = parseInt(style.getPropertyValue('height'), 10);
-	// 	canvas.width = width;
-	// 	canvas.height = height;
-	// });
+		// 	style = getComputedStyle(canvas);
+		// 	width = parseInt(style.getPropertyValue('width'), 10);
+		// 	height = parseInt(style.getPropertyValue('height'), 10);
+		// 	canvas.width = width;
+		// 	canvas.height = height;
+		// });
 
+	gameSocket.removeEventListener('message', receive_data);
 	gameSocket.close();
 
 	document.removeEventListener('keyup', keyUp);

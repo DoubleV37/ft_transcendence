@@ -10,7 +10,7 @@ down:
 stop:
 	docker compose stop
 
-fclean: down
+fclean: down update
 	docker system prune -af --volumes
 	docker volume rm `docker volume ls -q`
 

@@ -65,22 +65,22 @@ function receive_data(e) {
 	}
 	if (data.message === "Game stopped") {
 		alert("Game stopped!");
-		gameSocket.close();
+		// gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
 	if (data.message === "win") {
 		alert("You won!");
-		gameSocket.close();
+		// gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
 	if (data.message === "lose") {
 		alert("You lost!");
-		gameSocket.close();
+		// gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
 	if (data.message === "game_finish") {
 		alert("GG WP! " + data.winner + " won!");
-		gameSocket.close();
+		// gameSocket.close();
 		loadPage(ROUTE.GAME_MODES);
 	}
 	if (data.message === "game_state") {

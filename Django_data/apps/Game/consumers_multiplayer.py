@@ -6,6 +6,9 @@ from django.contrib.auth import get_user_model
 from .pong import Pong as Pong_game
 from .models import Games, UserGame
 from django.utils import timezone
+from channels.exceptions import StopConsumer
+
+import logging
 
 class MultiPongConsumer(AsyncWebsocketConsumer):
 
@@ -21,43 +24,34 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		await self.start_game()
 
 	async def disconnect(self, close_code):
-		try:
-			game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
-			if game.nb_users == 2:
-				game.nb_users = 19
-				await database_sync_to_async(game.save)()
-				if self.user_num == 1:
-					self.pong.running = False
-					await self.channel_layer.group_send(
-						self.room_group_name,
-						{
-							'type': 'game_stop',
-							'error': {
-								"message": "Game stopped"
-							}
-						}
-					)
-				else:
-					await self.channel_layer.group_send(
-						self.room_group_name,
-						{
-							'type': 'game_stop',
-							'error': {
-								"message": "User exited"
-							}
-						}
-					)
-			elif game.nb_users == 0 or game.nb_users == 1:
-				user_game = await database_sync_to_async(UserGame.objects.get)(user=self.scope["user"], game=game)
-				await database_sync_to_async(user_game.delete)()
-				if self.user_num == 1:
-					await database_sync_to_async(game.delete)()
-		except Games.DoesNotExist:
-			pass
+		logging.info("============================disconnect============================")
+		logging.info(self.scope["user"])
+		game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+		if game.nb_users == 2:
+			game.nb_users = 19
+			await database_sync_to_async(game.save)()
+			# if self.user_num == 1:
+			self.pong.running = False
+			await self.channel_layer.group_send(
+				self.room_group_name,
+				{
+					'type': 'game_stop',
+					'error': {
+						"message": "Game stopped"
+					}
+				}
+			)
+		elif game.nb_users == 0 or game.nb_users == 1:
+			user_game = await database_sync_to_async(UserGame.objects.get)(user=self.scope["user"], game=game)
+			await database_sync_to_async(user_game.delete)()
+			if self.user_num == 1:
+				await database_sync_to_async(game.delete)()
+
 		await self.channel_layer.group_discard(
 			self.room_group_name,
 			self.channel_name
 		)
+		raise StopConsumer()
 
 	async def init_db_game(self):
 		self.pong = Pong_game(2 , 10, 0)
@@ -122,6 +116,17 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 					{
 						'type': 'game_message',
 						'message': "2down"
+					}
+				)
+			elif message == "stop":
+				self.pong.running = False
+				await self.channel_layer.group_send(
+					self.room_group_name,
+					{
+						'type': 'game_stop',
+						'error': {
+							"message": "Game stopped"
+						}
 					}
 				)
 
