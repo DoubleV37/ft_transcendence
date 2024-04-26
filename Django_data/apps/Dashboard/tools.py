@@ -27,3 +27,13 @@ def ordered_party(opponent_key: list, me: User) -> list:
         myself = UserGame.objects.get(game=id, user=me)
         ordered.append([myself, id, opponent])
     return ordered
+
+
+def dict_constructor(data: list) -> dict:
+    token = dict()
+    index: int = 0
+    for item in data:
+        key = 'match ' + str(index)
+        token[key] = item
+        index = index + 1
+    return token

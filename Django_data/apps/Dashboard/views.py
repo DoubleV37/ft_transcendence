@@ -14,13 +14,18 @@ class HistoryView(TemplateView):
 
     try:
         def get(self, request):
-            logger.info(f"{' History ':#^20}")
             parties = tools.party_played(request.user)
             opponents = tools.find_my_opponent(key=parties, me=request.user)
             ordered_party = tools.ordered_party(
                 opponent_key=opponents, me=request.user
             )
-            return HttpResponse('Ouai')
+            context = tools.dict_constructor(ordered_party)
+            # logger.debug(f"{context = }")
+            for key, values in context.items():
+                logger.debug(f"{key = }")
+                for value in values:
+                    logger.debug(f"{value = }")
+            return render(request, self.template_name, {'context': context})
 
         def post(self, request):
             pass
