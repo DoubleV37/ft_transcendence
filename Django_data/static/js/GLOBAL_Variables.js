@@ -100,8 +100,12 @@ let gameCanvas = {
   powerupsize: 0,
   ballRadius: 0,
   opponent: "",
-  num: 0
+  num: 0,
+  inGame: true
 };
+
+//MATCHMAKING SCREEN
+let dots = 0;
 
 let gameSocket = null;
 let gameStop = true;

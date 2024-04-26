@@ -52,41 +52,72 @@ function iaMove () {
 
 function receive_data (e) {
   const data = JSON.parse(e.data);
+  const endGameScreen = document.getElementById("endGameScreen");
+  const endGameMessage = document.getElementById("endGameMessage");
+  const confirmEndGame = document.getElementById("confirmEndGame");
+
+  if (data.message === "User exited") {
+    endGameMessage.textContent = "The opponent ran away in fear!";
+    endGameScreen.style.display = "flex";
+    confirmEndGame.onclick = function () {
+      gameSocket.send(JSON.stringify({ message: "stop" }));
+    };
+  }
+
+  if (data.message === "Game stopped") {
+    document.getElementById("MyCanvas").hidden = true;
+    endGameMessage.textContent = "Game stopped!";
+    endGameScreen.style.display = "flex";
+    confirmEndGame.onclick = function () {
+      gameCanvas.inGame = false;
+      gameSocket.close();
+      loadPage(ROUTE.GAME_MODES);
+      endGameScreen.style.display = "none";
+    };
+  }
+
+  if (data.message === "win") {
+    document.getElementById("MyCanvas").hidden = true;
+    endGameMessage.textContent = "You won!";
+    endGameScreen.style.display = "flex";
+    confirmEndGame.onclick = function () {
+      gameCanvas.inGame = false;
+      gameSocket.close();
+      loadPage(ROUTE.GAME_MODES);
+      endGameScreen.style.display = "none";
+    };
+  }
+
+  if (data.message === "lose") {
+    document.getElementById("MyCanvas").hidden = true;
+    endGameMessage.textContent = "You lost!";
+    endGameScreen.style.display = "flex";
+    confirmEndGame.onclick = function () {
+      gameCanvas.inGame = false;
+      gameSocket.close();
+      loadPage(ROUTE.GAME_MODES);
+      endGameScreen.style.display = "none";
+    };
+  }
+
+  if (data.message === "game_finish") {
+    document.getElementById("MyCanvas").hidden = true;
+    endGameMessage.textContent = data.winner + " won!";
+    endGameScreen.style.display = "flex";
+    confirmEndGame.onclick = function () {
+      gameCanvas.inGame = false;
+      gameSocket.close();
+      loadPage(ROUTE.GAME_MODES);
+      endGameScreen.style.display = "none";
+    };
+  }
+
   if (data.message === "opponent") {
     gameCanvas.opponent = data.opponent;
     gameCanvas.num = data.num;
     return;
   }
-  if (data.message === "User exited") {
-    console.log("User exited");
-    alert("The opponent ran away in fear!");
-    gameSocket.send(JSON.stringify({ message: "stop" }));
-    return;
-  }
-  if (data.message === "Game stopped") {
-    alert("Game stopped!");
-    gameSocket.close();
-    loadPage(ROUTE.GAME_MODES);
-    return;
-  }
-  if (data.message === "win") {
-    alert("You won!");
-    gameSocket.close();
-    loadPage(ROUTE.GAME_MODES);
-    return;
-  }
-  if (data.message === "lose") {
-    alert("You lost!");
-    gameSocket.close();
-    loadPage(ROUTE.GAME_MODES);
-    return;
-  }
-  if (data.message === "game_finish") {
-    alert("GG WP! " + data.winner + " won!");
-    gameSocket.close();
-    loadPage(ROUTE.GAME_MODES);
-    return;
-  }
+
   if (data.message === "game_state") {
     const score1div = document.getElementById("score1div");
     const score2div = document.getElementById("score2div");

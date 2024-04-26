@@ -6,8 +6,9 @@ function matchmaking_SetEvents() {
 	gameSocket.onopen = function(event) {
 		console.log('WebSocket connection established.');
 		gameSocket.send('search');
+		addDot();
 	};
-
+	
 	gameSocket.onmessage = function(event) {
 		console.log('Message received from server:', event.data);
 		data = JSON.parse(event.data);
@@ -17,17 +18,33 @@ function matchmaking_SetEvents() {
 			loadPage(`${ROUTE.GAME_ROOM}${data.room_name}/`);
 		}
 	};
-
+	
 	gameSocket.onerror = function(error) {
 		console.error('WebSocket error:', error);
 	};
-
+	
 	gameSocket.onclose = function(event) {
 		console.log('WebSocket connection closed:', event);
 	};
-
+	
 }
 
 function matchmaking_DelEvents() {
 	gameSocket.close();
 }
+
+function addDot() {
+	
+	console.log("DOT=", dots);
+	const titleElement = document.getElementById('matchmakingDots');
+	
+	if (dots < 3) {
+		titleElement.textContent += '.';
+		dots++;
+	} else {
+		titleElement.textContent = titleElement.textContent.slice(0, -3);
+		dots = 0;
+	}
+	setTimeout(addDot, 500);
+}
+

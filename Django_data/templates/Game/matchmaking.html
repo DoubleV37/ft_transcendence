@@ -14,9 +14,15 @@
 		<div id="overlay">
 			<div class="mid midcolumn flowAnimation">
 				<div id="titleContent" data-content="GAME_MATCH"></div>
-                <h1>Matchmaking {{ request.user }}</h1>
+				<img src="{%static 'images/duck-ducky.gif'%}"></img>
+				<div id="matchmakingContainer">
+					<span id="matchmakingText">Looking for opponent</span>
+					<span id="matchmakingDotsContainer">
+					  <span id="matchmakingDots"></span>
+					</span>
+				</div>
                 <div class="spinner-border" role="status">
-                    <span class="sr-only">Searching...</span>
+                    {% comment %} <span class="sr-only">Searching...</span> {% endcomment %}
                 </div>
 			</div>
 		</div>
