@@ -104,3 +104,4 @@ let gameCanvas = {
 };
 
 let gameSocket = null;
+let gameStop = true;
