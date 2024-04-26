@@ -2,9 +2,10 @@
 @media only screen and (min-width : 60.063em) {
 
     .conteneur {
-        display: flex;
-        justify-content: space-between;
-       }
+        display: grid;
+        grid-template-columns: 0.1fr 1fr 0.1fr;
+        justify-items: center;
+    }
        
     .column {
         flex: 1;
@@ -117,9 +118,10 @@
 @media only screen and (min-width : 46.25em) and (max-width : 60em) {
 
     .conteneur {
-        display: flex;
-        justify-content: space-between;
-       }
+        display: grid;
+        grid-template-columns: 0.1fr 1fr 0.1fr;
+        justify-items: center;
+    }
        
     .column {
         flex: 1;
@@ -233,9 +235,10 @@
 
 
     .conteneur {
-        display: flex;
-        justify-content: space-between;
-       }
+        display: grid;
+        grid-template-columns: 0.1fr 1fr 0.1fr;
+        justify-items: center;
+    }
        
     .column {
         flex: 1;
