@@ -16,7 +16,11 @@
 		  <div id="overlay">
 			  <div class="mid midcolumn fadeinAnimation">
 				  <div id="WelcomeScreen">
-					  <div id="titleContent" data-content="HOME_PAGE" data-status="connected"></div>
+					  {% if user.is_authenticated %}
+					  <div id="titleContent" data-content="HOME_PAGE" data-connect="true"></div>
+					  {% else %}
+					  <div id="titleContent" data-content="HOME_PAGE" data-connect="false"></div>
+                                          {% endif %}
 					  <div class="pong">
 						  <img id="pong_img" src="{% static 'images/Pong.png' %}" alt="Pong display image">
 					  </div>

@@ -132,6 +132,14 @@
 		border: none;
 	}
 
+	#HEADER_NavLogo {
+		display: flex;
+		justify-content: center;
+		/* flex-shrink: 0; */
+		background: #15182100;
+		border: none;
+	}
+
 	#logo_placeholder {
 		display: flex;
 		width: 7em;
@@ -273,6 +281,14 @@
 		border: none;
 	}
 
+	#HEADER_NavLogo {
+		display: flex;
+		justify-content: center;
+		/* flex-shrink: 0; */
+		background: #15182100;
+		border: none;
+	}
+
 	#logo_placeholder {
 		display: flex;
 		width: 7em;
@@ -401,6 +417,14 @@
 	}
 
 	#HEADER_Logo {
+		display: flex;
+		justify-content: center;
+		/* flex-shrink: 0; */
+		background: #15182100;
+		border: none;
+	}
+
+	#HEADER_NavLogo {
 		display: flex;
 		justify-content: center;
 		/* flex-shrink: 0; */
