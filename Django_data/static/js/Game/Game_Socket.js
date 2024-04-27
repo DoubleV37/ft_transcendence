@@ -70,7 +70,6 @@ function receive_data (e) {
     endGameScreen.style.display = "flex";
     confirmEndGame.onclick = function () {
       gameCanvas.inGame = false;
-      // gameSocket.close();
       loadPage(ROUTE.GAME_MODES);
       endGameScreen.style.display = "none";
     };
@@ -82,7 +81,6 @@ function receive_data (e) {
     endGameScreen.style.display = "flex";
     confirmEndGame.onclick = function () {
       gameCanvas.inGame = false;
-      // gameSocket.close();
       loadPage(ROUTE.GAME_MODES);
       endGameScreen.style.display = "none";
     };
@@ -94,7 +92,6 @@ function receive_data (e) {
     endGameScreen.style.display = "flex";
     confirmEndGame.onclick = function () {
       gameCanvas.inGame = false;
-      // gameSocket.close();
       loadPage(ROUTE.GAME_MODES);
       endGameScreen.style.display = "none";
     };
@@ -106,7 +103,6 @@ function receive_data (e) {
     endGameScreen.style.display = "flex";
     confirmEndGame.onclick = function () {
       gameCanvas.inGame = false;
-      // gameSocket.close();
       loadPage(ROUTE.GAME_MODES);
       endGameScreen.style.display = "none";
     };
@@ -115,10 +111,18 @@ function receive_data (e) {
   if (data.message === "opponent") {
     gameCanvas.opponent = data.opponent;
     gameCanvas.num = data.num;
-	const leftPlayer = document.getElementById("GAME_username_left");
-	leftPlayer.innerHTML = data.opponent;
-	const leftPlayerPic = document.getElementById("HEADER_GameProfilePicLeft");
-	leftPlayerPic.setAttribute('src', data.avatar);
+	if (gameCanvas.num === 1) {
+		const leftPlayer = document.getElementById("GAME_username_left");
+		leftPlayer.innerHTML = data.opponent;
+		const leftPlayerPic = document.getElementById("HEADER_GameProfilePicLeft");
+		leftPlayerPic.setAttribute('src', data.avatar);
+	}
+	else if (gameCanvas.num === 2){
+		const rightPlayer = document.getElementById("GAME_username_right");
+		rightPlayer.innerHTML = data.opponent;
+		const rightPlayerPic = document.getElementById("HEADER_GameProfilePicRight");
+		rightPlayerPic.setAttribute('src', data.avatar);
+	}
     return;
   }
 

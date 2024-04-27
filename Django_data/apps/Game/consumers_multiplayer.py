@@ -154,11 +154,11 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			game.nb_users = 2
 			await database_sync_to_async(game.save)()
 			self.opponent = await self.set_opponent()
-			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 1}))
+			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 1, "avatar": self.opponent.avatar.url}))
 			asyncio.create_task(self.run_game())
 		else:
 			self.opponent = await self.set_opponent()
-			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 2}))
+			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 2, "avatar": self.opponent.avatar.url}))
 
 	async def set_opponent(self):
 		opponents = await sync_to_async(list)(UserGame.objects.filter(game=self.game))
