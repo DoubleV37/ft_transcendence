@@ -8,4 +8,4 @@ def create_placeholder_user(sender, **kwargs):
 	if not User.objects.filter(username='Guest').exists():
 		User.objects.create(username='Guest', email='guest@guest.fr')
 	if not User.objects.filter(username='IA').exists():
-		User.objects.create(username='IA', email='ia@ia.fr')
+		User.objects.create(username='IA', email='ia@ia.fr', avatar='ForbiddenDeletion/AI_Cat.png')

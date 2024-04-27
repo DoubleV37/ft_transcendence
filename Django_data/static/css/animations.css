@@ -5,7 +5,7 @@
     @keyframes flowAnimation {
     from {
        opacity: 0;
-       transform: translateX(100px);
+       transform: translateX(125px);
     }
     to {
        opacity: 1;
@@ -15,7 +15,7 @@
    
    /* Apply the animation to the #content div */
    .flowAnimation {
-    animation: flowAnimation 0.4s ease-in forwards;
+    animation: flowAnimation 0.5s ease-in forwards;
    }
 
     /* Define the animation */
@@ -30,7 +30,7 @@
     
     /* Apply the animation to the #content div */
     .fadeinAnimation {
-    animation: fadeinAnimation 0.4s ease-in forwards;
+    animation: fadeinAnimation 0.5s ease-in forwards;
     }
 
     @keyframes fadeoutAnimation {
@@ -43,7 +43,7 @@
     }
 
     .fadeoutAnimation {
-        animation: fadeoutAnimation 0.4s ease-out forwards;
+        animation: fadeoutAnimation 0.5s ease-out forwards;
     }
 
 }
@@ -55,7 +55,7 @@
     @keyframes flowAnimation {
         from {
             opacity: 0;
-            transform: translateX(100px);
+            transform: translateX(125px);
         }
         to {
             opacity: 1;
@@ -65,7 +65,7 @@
         
     /* Apply the animation to the #content div */
     .flowAnimation {
-    animation: flowAnimation 0.3s ease-in forwards;
+    animation: flowAnimation 0.5s ease-in forwards;
     }
 
     /* Define the animation */
@@ -80,7 +80,7 @@
         
         /* Apply the animation to the #content div */
         .fadeinAnimation {
-        animation: fadeinAnimation 0.3s ease-in forwards;
+        animation: fadeinAnimation 0.5s ease-in forwards;
     }
 }
 
@@ -99,6 +99,6 @@
     
     /* Apply the animation to the #content div */
     .fadeinAnimation {
-        animation: fadeinAnimation 0.4s ease-in forwards;
+        animation: fadeinAnimation 0.5s ease-in forwards;
     }
 }

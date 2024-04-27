@@ -72,8 +72,7 @@ function header_DelEvents () {
 
 async function header_LogoCallback () {
   try {
-    del_current_event();
-    await loadPage(`${ROUTE.HOME}`);
+    loadPage(`${ROUTE.HOME}`);
     offcanvas_Hide();
   } catch (error) {
     console.log(`Error - header_L: ${error}`);

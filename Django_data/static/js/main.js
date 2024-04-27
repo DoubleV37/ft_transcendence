@@ -33,9 +33,7 @@ async function launchWebsite () {
 function main_SetFirstsEvents () {
   const element = document.getElementById("titleContent");
 
-  console.log("aled ??");
   if (!element) {
-    console.log("Fuck it...");
     return;
   }
   launchSectionHandler(element);
@@ -50,14 +48,12 @@ function mutationCallBack (mutationsList) {
       if (!element) {
         continue;
       }
-      console.log("Come on please, don't detect me 2 child !");
       launchSectionHandler(element);
     }
   }
 }
 
 function launchSectionHandler (element) {
-  console.log("euh ??");
   const elementAttribut = element.getAttribute("data-content");
 
   try {

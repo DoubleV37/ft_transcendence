@@ -35,7 +35,7 @@ let GameParams = {
   type: "local",
   point_limit: 3,
   difficulty: 5,
-  powerup: true,
+  powerup: false,
 };
 
 let iaMemory = {
@@ -94,13 +94,19 @@ let gameCanvas = {
   height: 0,
   paddle1Height: 0,
   paddle2Height: 0,
-  powerup: true,
+  powerup: false,
   powerupY: 0,
   powerupX: 0,
   powerupsize: 0,
   ballRadius: 0,
   opponent: "",
-  num: 0
+  num: 0,
+  inGame: true
 };
 
+//MATCHMAKING SCREEN
+let dots = 0;
+let idDot;
+
 let gameSocket = null;
+let gameStop = true;
