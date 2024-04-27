@@ -58,13 +58,8 @@ function game_SetEvents(page_name) {
 
 function game_DelEvents() {
 	console.log('game_DelEvents');
-	try {
-		if (gameSocket.readyState === WebSocket.OPEN)
+	if (gameSocket.readyState === WebSocket.OPEN)
 		gameSocket.send(JSON.stringify({ message: "stop"}));
-	}
-	catch (e) {
-		console.log(e);
-	}
 	// removeEventListener('resize', () => {
 		// 	style = getComputedStyle(canvas);
 		// 	width = parseInt(style.getPropertyValue('width'), 10);
