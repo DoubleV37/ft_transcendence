@@ -15,6 +15,7 @@
           {% endif %}
           </td>
           <td> {{ items.opponent.user.username }} </td>
+        <td> <a href="{% url 'board' items.id.id %}">stats</a></td>
         </tr>
       {% endfor %}
     </table>
