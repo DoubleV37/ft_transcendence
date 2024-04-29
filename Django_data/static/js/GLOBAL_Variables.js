@@ -29,22 +29,7 @@ let friendsModal = {
   active: false,
 };
 
-let GameParams = {
-  message: "settings",
-  opponent: "ai",
-  type: "local",
-  point_limit: 3,
-  difficulty: 5,
-  powerup: false,
-};
-
-let iaMemory = {
-  pos: 450,
-  target: 450,
-  step: 20,
-  service : false
-};
-
+/*-----------Routes-----------*/
 const ROUTE = {
   HOME: "/",
   HEADER: "/header",
@@ -66,17 +51,49 @@ const ROUTE = {
   GAME_PARAMETERS: "/game/parameters/",
   GAME_MODES: "/game/modes/",
   GAME_MATCH: "/game/matchmaking/",
-  GAME_ROOM:"/game/", //`${ROUTE.GAME_ROOM}${id...}/`
-  GAME_LOCAL: "/game/solo/",
+  GAME_ROOM: "/game/", // `${ROUTE.GAME_ROOM}${id...}/`
+  GAME_LOCAL: "/game/solo/"
 };
 
-// INIT POWERUP
-let imgPowerUpSrc = "/static/images/PowerUp.png";
-let imgPowerUp = new Image();
+/*-----------Game Parameters-----------*/
+let GameParams = {
+  message: "settings",
+  opponent: "ai",
+  type: "local",
+  point_limit: 3,
+  difficulty: 5,
+  powerup: false,
+};
 
-imgPowerUp.src = imgPowerUpSrc;
+let GameInfos = {
+  Ball: {
+    url: "", // img url
+    img: null // img obj
+  },
+  Background: {
+    url: ""
+  },
+  PlayerR: {
+    src: "", // img url
+    canvas: null, // img obj
+    name: ""
+  },
+  PlayerL: {
+    src: "", // img url
+    canvas: null, // img obj
+    name: ""
+  }
+};
 
-// INIT KEYS
+
+let iaMemory = {
+  pos: 450,
+  target: 450,
+  step: 20,
+  service: false
+};
+
+/*----------Key State of game-----------*/
 let keyStates = {
   ArrowUp: false,
   ArrowDown: false,
@@ -85,7 +102,7 @@ let keyStates = {
   space: false
 };
 
-// INIT CANVAS
+/*----------Canvas variables-----------*/
 let gameCanvas = {
   canvas: null,
   ctx: null,
@@ -104,9 +121,15 @@ let gameCanvas = {
   inGame: true
 };
 
-//MATCHMAKING SCREEN
+let imgPowerUpSrc = "/static/images/PowerUp.png";
+let imgPowerUp = new Image();
+
+imgPowerUp.src = imgPowerUpSrc;
+
+/*-----------Matchmaking screen-----------*/
 let dots = 0;
 let idDot;
 
+/*-----------Socket and status Game-----------*/
 let gameSocket = null;
 let gameStop = true;

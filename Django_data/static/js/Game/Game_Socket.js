@@ -38,13 +38,13 @@ function iaBrain (data) {
 
 function iaMove () {
   if (iaMemory.pos < iaMemory.target - 10) {
-    sendMovement("s");
+    gameSocket.send(JSON.stringify({ message: "s" }));
     iaMemory.pos += iaMemory.step;
   } else if (iaMemory.pos > iaMemory.target + 10) {
-    sendMovement("w");
+    gameSocket.send(JSON.stringify({ message: "w" }));
     iaMemory.pos -= iaMemory.step;
   } else if (iaMemory.service) {
-    sendMovement("space");
+    gameSocket.send(JSON.stringify({ message: "space" }));
     iaMemory.service = false;
   }
 }
@@ -52,73 +52,23 @@ function iaMove () {
 
 function receive_data (e) {
   const data = JSON.parse(e.data);
-  const endGameScreen = document.getElementById("endGameScreen");
-  const endGameMessage = document.getElementById("endGameMessage");
-  const confirmEndGame = document.getElementById("confirmEndGame");
-
-  if (data.message === "User exited") {
-    endGameMessage.textContent = "The opponent ran away in fear!";
-    endGameScreen.style.display = "flex";
-    confirmEndGame.onclick = function () {
-      gameSocket.send(JSON.stringify({ message: "stop" }));
-    };
-  }
 
   if (data.message === "Game stopped") {
-    document.getElementById("MyCanvas").hidden = true;
-    endGameMessage.textContent = "Game stopped!";
-    endGameScreen.style.display = "flex";
-    confirmEndGame.onclick = function () {
-      gameCanvas.inGame = false;
-      gameSocket.close();
-      loadPage(ROUTE.GAME_MODES);
-      endGameScreen.style.display = "none";
-    };
+    return EndGame("You lost!");
+  } else if (data.message === "win") {
+    return EndGame("You won!");
+  } else if (data.message === "lose") {
+    return EndGame("You lost!");
+  } else if (data.message === "game_finish") {
+    return EndGame(`${data.winner} won!`);
   }
-
-  if (data.message === "win") {
-    document.getElementById("MyCanvas").hidden = true;
-    endGameMessage.textContent = "You won!";
-    endGameScreen.style.display = "flex";
-    confirmEndGame.onclick = function () {
-      gameCanvas.inGame = false;
-      gameSocket.close();
-      loadPage(ROUTE.GAME_MODES);
-      endGameScreen.style.display = "none";
-    };
-  }
-
-  if (data.message === "lose") {
-    document.getElementById("MyCanvas").hidden = true;
-    endGameMessage.textContent = "You lost!";
-    endGameScreen.style.display = "flex";
-    confirmEndGame.onclick = function () {
-      gameCanvas.inGame = false;
-      gameSocket.close();
-      loadPage(ROUTE.GAME_MODES);
-      endGameScreen.style.display = "none";
-    };
-  }
-
-  if (data.message === "game_finish") {
-    document.getElementById("MyCanvas").hidden = true;
-    endGameMessage.textContent = data.winner + " won!";
-    endGameScreen.style.display = "flex";
-    confirmEndGame.onclick = function () {
-      gameCanvas.inGame = false;
-      gameSocket.close();
-      loadPage(ROUTE.GAME_MODES);
-      endGameScreen.style.display = "none";
-    };
-  }
-
   if (data.message === "opponent") {
     gameCanvas.opponent = data.opponent;
     gameCanvas.num = data.num;
-	const leftPlayer = document.getElementById("GAME_username_left");
-	leftPlayer.innerHTML = data.opponent;
-	const leftPlayerPic = document.getElementById("HEADER_GameProfilePicLeft");
-	leftPlayerPic.setAttribute('src', data.avatar);
+    const leftPlayer = document.getElementById("GAME_username_left");
+    leftPlayer.innerHTML = data.opponent;
+    const leftPlayerPic = document.getElementById("HEADER_GameProfilePicLeft");
+    leftPlayerPic.setAttribute("src", data.avatar);
     return;
   }
 
@@ -141,23 +91,19 @@ function receive_data (e) {
   }
 }
 
-function sendMovement (direction) {
-  gameSocket.send(JSON.stringify({ message: direction }));
-}
-
 // Fonction pour mettre à jour le mouvement en fonction du temps écoulé
 function update () {
   if (keyStates.ArrowUp) {
-    sendMovement("up");
+    gameSocket.send(JSON.stringify({ message: "up" }));
   } else if (keyStates.ArrowDown) {
-    sendMovement("down");
+    gameSocket.send(JSON.stringify({ message: "down" }));
   } else if (keyStates[" "]) {
-    sendMovement("space");
+    gameSocket.send(JSON.stringify({ message: "space" }));
   }
   if (keyStates.w && GameParams.opponent == "player" && GameParams.type == "local") {
-    sendMovement("w");
+    gameSocket.send(JSON.stringify({ message: "w" }));
   } else if (keyStates.s && GameParams.opponent == "player" && GameParams.type == "local") {
-    sendMovement("s");
+    gameSocket.send(JSON.stringify({ message: "s" }));
   }
   if (GameParams.opponent === "ai") {
     iaMove();
@@ -166,4 +112,20 @@ function update () {
   if (gameStop !== true) {
     requestAnimationFrame(update);
   }
+}
+
+function EndGame (message) {
+  const endGameScreen = document.getElementById("endGameScreen");
+  const endGameMessage = document.getElementById("endGameMessage");
+  const confirmEndGame = document.getElementById("confirmEndGame");
+
+  document.getElementById("MyCanvas").hidden = true;
+  endGameMessage.textContent = message;
+  endGameScreen.style.display = "flex";
+  confirmEndGame.onclick = function () {
+    gameCanvas.inGame = false;
+    gameSocket.close();
+    loadPage(ROUTE.GAME_MODES);
+    endGameScreen.style.display = "none";
+  };
 }
