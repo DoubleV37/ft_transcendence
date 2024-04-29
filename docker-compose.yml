@@ -1,7 +1,7 @@
 services:
-  elasticksearch:
-    container_name: elasticksearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.3
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
     restart: always
     ports:
       - "9200:9200"
@@ -17,26 +17,34 @@ services:
 
   logstash:
     container_name: logstash
-    image: docker.elastic.co/logstash/logstash:7.16.3
+    image: docker.elastic.co/logstash/logstash:7.16.1
     restart: always
     volumes:
       - ./Services/Logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     environment:
-      - "ELASTICSEARCH_HOST=elasticksearch"
+      - "ELASTICSEARCH_HOST=elasticsearch"
       - "ELASTICSEARCH_PORT=9200"
     depends_on:
-      - elasticksearch
+      - elasticsearch
+
+  rsyslog:
+    container_name: rsyslog
+    build: Services/Rsyslog
+    restart: always
+    ports:
+      - "514:514"
+      - "514:514/udp"
 
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.16.3
+    image: docker.elastic.co/kibana/kibana:7.16.1
     restart: always
     ports:
       - "5601:5601"
     environment:
-      - "ELASTICSEARCH_HOSTS=http://elasticksearch:9200"
+      - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
     depends_on:
-      - elasticksearch
+      - elasticsearch
 
   gunicorn:
     container_name: gunicorn
