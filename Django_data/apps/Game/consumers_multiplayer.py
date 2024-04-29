@@ -135,6 +135,24 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		elif event['message'] == "2down":
 			self.pong.player_pos[0] += self.pong.player_speed
 
+	async def wait_opponent(self):
+		game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+		while game.nb_users != 2:
+			await asyncio.sleep(1)
+			game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+			if game.nb_users == 19:
+				await self.channel_layer.group_send(
+					self.room_group_name,
+					{
+						'type': 'game_stop',
+						'error': {
+							"message": "Game stopped"
+						}
+					}
+				)
+				return False  # Indique que le jeu est arrêté
+		return True  # Indique que le deuxième joueur a rejoint
+
 	async def start_game(self):
 		game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
 		if game.nb_users == 19:
@@ -148,12 +166,9 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 				}
 			)
 		if self.user_num == 1 :
-			while (game.nb_users != 2):
-				await asyncio.sleep(1)
-				game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
-				if (game.nb_users == 19):
-
-					break
+			enough_users = await self.wait_opponent()
+			if not enough_users:
+				return
 			self.opponent = await self.set_opponent()
 			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 1, "avatar": self.opponent.avatar.url}))
 			asyncio.create_task(self.run_game())
@@ -161,7 +176,11 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			game.nb_users = 2
 			await database_sync_to_async(game.save)()
 			self.opponent = await self.set_opponent()
-			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 2, "avatar": self.opponent.avatar.url}))
+			await self.send(text_data=json.dumps({"message": "opponent",
+												"opponent": self.opponent.username,
+												"num": 2,
+												"avatar": self.opponent.avatar.url,
+												"myname": self.username}))
 
 	async def set_opponent(self):
 		opponents = await sync_to_async(list)(UserGame.objects.filter(game=self.game))

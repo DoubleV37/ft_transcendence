@@ -126,6 +126,8 @@ function receive_data (e) {
 		rightPlayer.innerHTML = data.opponent;
 		const rightPlayerPic = document.getElementById("HEADER_GameProfilePicRight");
 		rightPlayerPic.setAttribute('src', data.avatar);
+		const leftPlayer = document.getElementById("GAME_username_left");
+		leftPlayer.innerHTML = data.myname;
 	}
     return;
   }
