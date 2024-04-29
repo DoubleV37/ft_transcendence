@@ -1,6 +1,3 @@
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
-
 from apps.Auth.models import User
 from apps.Game.models import Games, UserGame
 
@@ -51,6 +48,7 @@ def party_sender(key: int, me: User) -> dict:
         tmp = list(UserGame.objects.filter(game=key).exclude(user=me))
     except:
         raise
+    opponent = None
     for player in tmp:
         if player.user != me:
             opponent = player
