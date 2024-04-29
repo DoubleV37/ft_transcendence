@@ -44,7 +44,7 @@ def data_constructor(data: dict) -> dict:
 def party_sender(key: int, me: User) -> dict:
     game = Games.objects.get(id=key)
     myself = UserGame.objects.get(game=key, user=me)
-    tmp = [item for item in UserGame.objects.filter(game=key)]
+    tmp = list(UserGame.objects.filter(game=key).exclude(user=me))
     for player in tmp:
         if player.user != me:
             opponent = player

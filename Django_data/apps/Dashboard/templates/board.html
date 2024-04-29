@@ -2,11 +2,8 @@
 <html lang="en">
   <body>
     <h1>Board:</h1>
-    <td> GAME:
-    {% for key, items in context.items %}
-        {{ items.game }}</td>
-    <td> me = {{ items.me.user.username }}</td>
-    <td> opponent {{ items.opponent.user.username }}</td>
-    {% endfor %}
+    <td> | GAME: {{ game }} | </td>
+    <td> me = {{ me.user.username }} | </td>
+    <td> opponent = {{ opponent.user.username }} |</td>
   </body>
 </html>

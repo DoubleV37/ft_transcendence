@@ -33,7 +33,7 @@ class BoardView(TemplateView):
 
     def get(self, request, _id: int):
         context = tools.party_sender(key=_id, me=request.user)
-        for k, item in context.items():
-            logger.debug(f"{item = }")
-        return render(request, self.template_name, {'context': context})
-        # return render(request, self.template_name, context=context)
+        return render(request, self.template_name, context=context)
+
+    def post(self, request):
+        pass
