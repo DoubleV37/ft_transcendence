@@ -1,5 +1,6 @@
-<html lang="en">
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
 {% include "Home/head.html" %}
   <body>
 	  {% include "Home/header.html" %}
@@ -7,6 +8,11 @@
 	  {% include "Profile/Avatar.html" %}
 	  {% include "Auth/code_validation.html" %}
 	  {% include "Profile/enable_2fa.html" %}
+          {% include "FriendList/FriendsList.html" %}
+
+    <header>
+      <div id="Header_content"></div>
+    </header> 
 
 	  <div id="content">
 		  <div id="titleContent" data-content="SETTINGS"></div>
@@ -22,26 +28,26 @@
 					<div id="section">
 						<div id="leftcolumn">
 							<div id="Settings">
-								<button class="SectionLayout SectionGrey">Account</button>
+								<div class="SectionLayout SectionGrey">Account</div>
 								<form id="NAME_Form" action="" method='post'>
 									{% csrf_token %}
 									<div class="field-container">
 										{{ name.as_p }}
-										<button class="UpdateButtonLayout ButtonDark" type="submit" name="name_button">Update</button>
+										<button class="UpdateButtonLayout ButtonNeon" type="submit" name="name_button">Update</button>
 									</div>
 								</form>
 								<form id="MAIL_Form" action="" method='post'>
 									{% csrf_token %}
 									<div class="field-container">
 										{{ mail.as_p }}
-										<button class="UpdateButtonLayout ButtonDark" type="submit" name="mail_button">Update</button>
+										<button class="UpdateButtonLayout ButtonNeon" type="submit" name="mail_button">Update</button>
 									</div>
 								</form>
 								<form id="PASS_Form" action="" method='post'>
 									{% csrf_token %}
 									<div class="field-container">
 										{{ pswd.as_p }}
-										<button class="UpdateButtonLayout ButtonDark" type="submit" name="pswd_button">Update</button>
+										<button class="UpdateButtonLayout ButtonNeon" type="submit" name="pswd_button">Update</button>
 									</div>
 								</form>
 								<form id="TWOFA_Form" method="post">
@@ -60,12 +66,12 @@
 						<div id="rightcolumn">
 							<div id="titleContent" data-content="PROFILE_PAGE"></div>
 							<div id="Settings">
-								<button class="SectionLayout SectionGrey">Display</button>
+								<div class="SectionLayout SectionGrey">Display</div>
 								<form id="TNAME_Form" action="" method='post'>
 									{% csrf_token %}
 									<div class="field-container">
 										{{ t_name.as_p }}
-										<button class="UpdateButtonLayout ButtonDark" type="submit" name="t_name_button">Update</button>
+										<button class="UpdateButtonLayout ButtonNeon" type="submit" name="t_name_button">Update</button>
 									</div>
 								</form>
 								<p id="AvatarText">Avatar:</p>
@@ -82,7 +88,7 @@
 								</form>
 								<div class="DoubleButtonSettings">
 									<button id="AVATAR_Change" class="MediumButtonLayout left ButtonNeon">Change</button>
-									<button id="AVATAR_Delete" class="MediumButtonLayout right ButtonNeon">Delete</button>
+									<button id="AVATAR_Delete" class="MediumButtonLayout right ButtonDark">Delete</button>
 								</div>
 							</div>
 						</div>

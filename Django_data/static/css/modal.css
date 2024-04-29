@@ -56,7 +56,6 @@ scrollbar-width: none;
 
 	.modal-body {
 		display: flex;
-		height: 100%;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
@@ -89,15 +88,46 @@ scrollbar-width: none;
         width: 100%;
     }
 
+	.modal-profileFriendCardboard {
+		margin-bottom: 2em;
+	}
+
     .modal-profilePic {
 		height: 5em;
         width: 5em;
     }
 
+	.dropdown-toggle {
+		white-space: nowrap;
+		/* background: 00000; */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1em;
+		font-family: 'Kodchasan';
+	}
+
+	.dropdownButton {
+		width: 6em;
+	}
+
+	.dropdown-menu.show {
+		display: flex;
+		flex-direction: row;
+		background-color: #373d4f;
+		border-color: #5DC6E8;
+		padding: 2em;
+		width: 100%;
+		justify-content: center;
+		/* flex-wrap: nowrap; */
+	}
+	
+
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
     /* Styles */
 
 	/* MODAL WINDOW */
@@ -145,7 +175,6 @@ scrollbar-width: none;
 
 	.modal-body {
 		display: flex;
-		height: 100%;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
@@ -164,7 +193,7 @@ scrollbar-width: none;
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: flex-end;
-		padding: 2rem;
+		padding: 1.5rem;
 		border: none;
 		border-bottom-right-radius: calc(0.3rem - 1px);
 		border-bottom-left-radius: calc(0.3rem - 1px);
@@ -178,15 +207,46 @@ scrollbar-width: none;
         width: 100%;
     }
 
+	.modal-profileFriendCardboard {
+		margin-bottom: 1.5em;
+	}
+
     .modal-profilePic {
 		height: 5em;
         width: 5em;
     }
 
+	.dropdown-toggle {
+		white-space: nowrap;
+		/* background: 00000; */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1em;
+		font-family: 'Kodchasan';
+	}
+
+	.dropdownButton {
+		width: 5em;
+	}
+
+	.dropdown-menu.show {
+		display: flex;
+		flex-direction: row;
+		background-color: #373d4f;
+		border-color: #5DC6E8;
+		padding: 2em;
+		width: 100%;
+		justify-content: center;
+		/* flex-wrap: nowrap; */
+	}
+	
+
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
 
 	/* MODAL WINDOW */
 	.modal-header {
@@ -210,7 +270,7 @@ scrollbar-width: none;
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		width: 100%;
+		max-width: 25em;
 		pointer-events: auto;
 		background-clip: padding-box;
 		background: #151821;
@@ -233,13 +293,12 @@ scrollbar-width: none;
 
 	.modal-body {
 		display: flex;
-		height: 100%;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
 		flex-shrink: 0;
 		position: relative;
-		padding-top: 1rem;
+		padding-top: 0rem;
 		padding-bottom: 1rem;
 		padding-left: 0rem;
 		padding-right: 0rem;
@@ -256,22 +315,215 @@ scrollbar-width: none;
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: flex-end;
-		padding: 2rem;
+		padding: 1rem;
 		border: none;
 		border-bottom-right-radius: calc(0.3rem - 1px);
 		border-bottom-left-radius: calc(0.3rem - 1px);
 	}
 
 	.modal-profile {
-        width: 65%;
+        width: 85%;
     }
 
 	.modal-profileCardboard {
         width: 100%;
     }
 
+	.modal-profileFriendCardboard {
+		margin-bottom: 1em;
+	}
+
     .modal-profilePic {
-		height: 5em;
-        width: 5em;
+		height: 4em;
+        width: 4em;
     }
+
+	.modal-backdrop {
+		display: none;
+	}
+
+	.dropdown-toggle {
+		white-space: nowrap;
+		/* background: 00000; */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1em;
+		font-family: 'Kodchasan';
+	}
+
+	.dropdownButton {
+		font-size: 0.8rem;
+	}
+
+	.dropdown-menu.show {
+		display: flex;
+		flex-direction: row;
+		background-color: #373d4f;
+		border-color: #5DC6E8;
+		padding: 1.5em;
+		width: 100%;
+		justify-content: center;
+		/* flex-wrap: nowrap; */
+	}
+	
+}
+
+.card-body {
+    flex: 1 1 auto;
+    /* padding: 1rem 0rem; */
+    margin-top: 2em;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: transparent;
+    background-clip: border-box;
+    border: 1px solid #5DC6E8;
+    border-radius: 0.25rem;
+}
+
+.card-acc {
+    flex: 0 0 auto;
+    /* padding: 1rem 0rem; */
+    margin-top: 2em;
+}
+
+.list-group {
+	min-height: 15em;
+    max-height: 20em;
+    overflow: scroll;
+    scrollbar-width: 2px; /* Standard property for Firefox */
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.list-group::-webkit-scrollbar { /* WebKit */
+    width: 2px; /* Adjusts the width of the scrollbar */
+	height: 0; /* Adjusts the width of the scrollbar */
+}
+
+.list-group::-webkit-scrollbar-thumb { /* WebKit */
+    background-color: rgb(194, 194, 194); /* Sets the color of the scrollbar thumb */
+    border-radius: 10px; /* Optional: Rounds the corners of the scrollbar thumb */
+}
+
+.btn {
+	width: 100%;
+}
+
+.btn-secondary {
+    background-color: #373d4f;
+}
+
+.btn-secondary:focus {
+    color: #fff;
+    background-color: #373d4f;
+    border-color: #5DC6E8;
+    box-shadow: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: transparent;
+    border-color: #5DC6E8;
+	font-size: 0.95rem;
+	font-family: kodchasan;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: #5DC6E8;
+}
+
+.btn-primary:focus {
+  color: #fff;
+  background-color: #1b718d;
+  border-color: #fff;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #373d4f;
+    border-color: #5DC6E8;
+}
+
+.accordion-button {
+  font-family: kodchasan;
+  font-size: 1rem;
+  background-color: #1b718d;
+  color: #fff;
+  padding: 0.5rem 0.5rem;
+}
+
+.accordion-button:focus {
+  border-color: #fff;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: #1b718d;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFFFF'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button::after {
+    flex-shrink: 1;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: auto;
+    content: "";
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFFFF'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition: transform .2s ease-in-out;
+}
+
+.accordion-body {
+  background-color: #151821;
+}
+
+.accordion-item {
+  border: none;
+}
+
+.imgrabbit {
+  height: 100%;
+  width: 100%;
+}
+
+#alonetext {
+  font-family: kodchasan;
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+#Profile_Type {
+	display: none;
+}
+
+#ProfileButton {
+	width: 100%;
+	margin-bottom: 0.7rem;
+}
+
+.dropdown-menu.show {
+    padding: 0.7em;
 }

@@ -1,13 +1,12 @@
 {% load static %}
 
-{% load bootstrap5 %}
-
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load bootstrap5 %}
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
 	<link rel="stylesheet" href={% static "css/singlepage.css" %}>
 	<link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href={% static "css/home.css" %} />
@@ -19,8 +18,10 @@
 	<link rel="stylesheet" href={% static "css/profile.css" %} />
 	<link rel="stylesheet" href={% static "css/buttons.css" %} />
 	<link rel="stylesheet" href={% static "css/settings.css" %} />
+	<link rel="stylesheet" href={% static "css/skins.css" %} />
 	<link rel="stylesheet" href={% static "css/modal.css" %} />
 	<link rel="stylesheet" href={% static "css/animations.css" %} />
+	<link rel="stylesheet" href={% static "css/tournament.css" %} />
 	<link rel="stylesheet" href={% static "css/parameters.css" %} />
 
 	<!-- Fav Icon -->
@@ -37,30 +38,35 @@
 	<!-- Scripts Authentication -->
 	<script src={% static "js/Auth/SignOut.js" %}></script>
 	<script src={% static "js/Auth/2Fa_Events.js" %}></script>
-
 	<script src={% static "js/Auth/SignUp/SignUp.js" %}></script>
 	<script src={% static "js/Auth/SignUp/SignUp_Events.js" %}></script>
-
 	<script src={% static "js/Auth/SignIn/Code_modal.js" %}></script>
 	<script src={% static "js/Auth/SignIn/SignIn.js" %}></script>
 	<script src={% static "js/Auth/SignIn/SignIn_Events.js" %}></script>
 
-	<script src={% static "js/User/Profile_Callback.js" %}></script>
+	<!-- Scripts User settings/profil -->
+	<script src={% static "js/User/Skins.js" %}></script>
 
+	<script src={% static "js/User/Profile_Callback.js" %}></script>
 	<script src={% static "js/User/Profile_Events.js" %}></script>
+
+	<script src={% static "js/User/Friends_Callback.js" %}></script>
+	<script src={% static "js/User/Friends_Events.js" %}></script>
+	<script src={% static "js/User/Friends_Tools.js" %}></script>
+	<script src={% static "js/User/Friends.js" %}></script>
 
 	<script src={% static "js/User/TwoFA_Enable.js" %}></script>
 	<script src={% static "js/User/Avatar_Modal.js" %}></script>
-
-	<script src={% static "js/User/Settings_Callback.js" %}></script>
-
-	<script src={% static "js/User/Parameters_Events.js" %}></script>
-
-	<script src={% static "js/User/Avatar_Modal.js" %}></script>
-
 	<script src={% static "js/User/Settings_Callback.js" %}></script>
 	<script src={% static "js/User/Settings_Events.js" %}></script>
 	<script src={% static "js/User/Settings.js" %}></script>
+
+	<!-- Scripts Games launching/settings -->
+	<script src={% static "js/Game/Modes_CallBack.js" %}></script>
+	<script src={% static "js/Game/Modes_Events.js" %}></script>
+	<script src={% static "js/Game/Parameters.js" %}></script>
+	<script src={% static "js/Game/Parameters_CallBack.js" %}></script>
+	<script src={% static "js/Game/Parameters_Events.js" %}></script>
 
 	<!-- Script Init Modals -->
 	<script src={% static "js/Modals_Init.js" %}></script>

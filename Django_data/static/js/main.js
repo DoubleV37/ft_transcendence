@@ -15,6 +15,7 @@ async function launchWebsite () {
   header_SetEvents();
 
   modal_ProfileInit();
+  modal_FriendsInit();
   modal_2FaCodeInit();
   modal_2FaInit();
   modal_AvatarInit();
@@ -25,6 +26,9 @@ async function launchWebsite () {
   observer.observe(targetNode, config);
 
   document.removeEventListener("DOMContentLoaded", launchWebsite);
+
+  const interval = 3000;
+  setInterval(pingServer, interval);
 }
 
 function main_SetFirstsEvents () {
@@ -68,11 +72,19 @@ function launchSectionHandler (element) {
     case "SETTINGS":
       settings_SetEvents();
       break;
+    case "GAME_MODES":
+      modes_SetEvents();
+      break;
     case "GAME_PARAMETERS":
       parameters_SetEvents();
       break;
+    case "SKINS_PAGE":
+      skins_SetEvents();
+      break;
     default:
-      throw new Error(`launchSectionHandler: Attribute ${elementAttribut} non recognised`);
+      throw new Error(
+        `launchSectionHandler: Attribute ${elementAttribut} non recognised`
+      );
     }
   } catch (err) {
     console.error("Error: ", err);

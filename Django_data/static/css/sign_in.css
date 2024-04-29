@@ -91,40 +91,8 @@
         line-height: normal;
     }
 
-    #SIGNIN_Auth42 {
-        display: flex;
-        height: 3.125rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #00BABC;
-        border: none;
-
-        /* Body CTA Desktop Text */
-        color: #FFF;
-        font-family: Kodchasan;
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal; 
-    }
-
-    #forgot_password {
-        color: #FFF;
-        display: flex;
-        align-self: end;
-	cursor:pointer;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin-top: -1rem;
-        margin-bottom: 1rem;
+    #SignInButton {
+      margin-top: 0.5rem;
     }
 
     #SIGNIN_Signup {
@@ -182,7 +150,7 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
     /* Styles */
 
     #login_title {
@@ -272,40 +240,8 @@
         line-height: normal;
     }
 
-    #SIGNIN_Auth42 {
-        display: flex;
-        height: 3.125rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #00BABC;
-        border: none;
-
-        /* Body CTA Desktop Text */
-        color: #FFF;
-        font-family: Kodchasan;
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal; 
-    }
-
-    #forgot_password {
-        color: #FFF;
-        display: flex;
-        align-self: end;
-	    cursor:pointer;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin-top: -1rem;
-        margin-bottom: 1rem;
+    #SignInButton {
+      margin-top: 0.5rem;
     }
 
     #SIGNIN_Signup {
@@ -362,7 +298,7 @@
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
     /* Styles */
     p {
         margin-top: 0;
@@ -452,39 +388,8 @@
         line-height: normal;
     }
 
-    #SIGNIN_Auth42 {
-        display: flex;
-        height: 3.125rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        border-radius: 0.625rem;
-        background: #00BABC;
-        border: none;
-
-        /* Body CTA Desktop Text */
-        color: #FFF;
-        font-family: Kodchasan;
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal; 
-    }
-
-    #forgot_password {
-        color: #FFF;
-        display: flex;
-        align-self: end;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin-top: -1rem;
-        margin-bottom: 1rem;
+    #SignInButton {
+      margin-top: 0.5rem;
     }
 
     #SIGNIN_Signup {

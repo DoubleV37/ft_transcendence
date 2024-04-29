@@ -1,576 +1,691 @@
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 60.063em) {
-    /* Styles */
+@media only screen and (min-width: 60.063em) {
+  /* Styles */
 
-    #ModalBackArrow {
+  #ModalBackArrow {
     width: 3rem;
     font-size: 0px;
-	padding: 0;
-	background: transparent;
-	color: transparent;
-	border: none;
-	display: flex;
-	justify-content: flex-end;
-	cursor: pointer;
-    }
+    padding: 0;
+    background: transparent;
+    color: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
 
-    #BackArrowFullscreen {
-        width: 2.5em;
-        position: absolute;
-        top: 2em;
-        right: 2em;
-        display: none;
-    }
+  #BackArrowFullscreen {
+    width: 2.5em;
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    display: none;
+  }
 
-    #DoubleButton {
-        display: flex;
-        width: 100%;
-        align-items: flex-start;
-        gap: 1.25rem; 
-    }
+  #DoubleButton {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
 
-    .ProfilePage {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.8rem;
-        flex-shrink: 0;
-        margin-block-end: 0;
-    }
+  .ProfilePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    flex-shrink: 0;
+    margin-block-end: 0;
+  }
 
-    .ProfilePic {
-        border-radius: 100%;
-        border: 2px solid #6c757d;
-        object-fit: cover;
-    }
-    
-    #UserPictureInfo {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-    }
+  .ProfilePic {
+    border-radius: 100%;
+    border: 2px solid #6c757d;
+    object-fit: cover;
+  }
 
-    #username {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1.875rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
+  #AVATAR_Change_Pic {
+    transition: transform 0.5s ease;
+  }
 
-    #UserInfo {
-        display: flex;
-        align-items: center; /* Centré verticalement */
-        justify-content: space-between; /* Espacement entre les enfants */
-        width:  100%; /* Largeur complète pour que les lignes s'étendent */
-        margin-top: -1rem;
-        margin-bottom: -1rem;
-    }
+  #AVATAR_Change_Pic:hover {
+    transform: scale(1.1);
+  }
 
-    #UserInfoText {
-        order:  1; /* Positionnement du texte au milieu */
-        padding-left: 2rem;
-        padding-right: 2rem;
-        padding-top: 0.7rem;
-        padding-bottom: 0.7rem;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        color: #FFF;
-    }
+  #AVATAR_Change_Pic:not(:hover) {
+    transform: scale(1);
+  }
 
-    .ProfileCardboard {
-        display: flex;
-        height: 5.625rem;
-        align-items: center;
-        gap: 1.25rem;
-        flex-shrink: 0;
-    }
-    #ProfileCardboardMobile {
-        display: none;
-    }
-    
-    #UserStatus {
-        display: flex;
-        height: 4rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
-    
-    #connectStatus {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        display: flex;
-        align-items: center;
-    }
+  #UserPictureInfo {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
 
-    .dotOnline {
-        height: 0.6em;
-        width: 0.6em;
-        margin-top: 0.25em;
-        margin-left: 0.35em;
-        background-color: #25e613;
-        border-radius: 50%;
-        display: inline-block;
-    }
-    
-    #ProfileCardboardFullscreen {
-        display: flex;
-        align-items: center;
-        gap: 1.25rem;
-        flex-shrink: 0;
-        top: 3.4375em;
-        position: sticky;
-        height: 8em;
-        width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
-        background-color: #212529;
-        border-bottom: 1px solid #828282;
-        justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
-    }
+  #username {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 
-    #usernameFullscreen {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1.4rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin-bottom: 0.2em;
-    }
-    
-    #UserPictureInfoFullscreen {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-        position: absolute;
-        left: 2vw;
-    }
+  #UserInfo {
+    display: flex;
+    align-items: center; /* Centré verticalement */
+    justify-content: space-between; /* Espacement entre les enfants */
+    width: 100%; /* Largeur complète pour que les lignes s'étendent */
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+  }
 
-    #UserStatusFullscreen {
-        display: flex;
-        height: 4rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
+  #UserInfoText {
+    order: 1; /* Positionnement du texte au milieu */
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    /* Body text */
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #fff;
+  }
 
-    #connectStatusFullscreen {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
+  .ProfileCardboard {
+    display: flex;
+    height: 5.625rem;
+    align-items: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
+  }
 
-    #ProfilePicFullscreen {
-        border-radius: 100%;
-        width: 5.5em;
-        border: 1px solid #5DC6E8;
-    }
+  #ProfileCardboardMobile {
+    display: none;
+  }
+
+  #UserStatus {
+    display: flex;
+    height: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #connectStatus {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+  }
+
+  .online {
+    height: 0.6em;
+    width: 0.6em;
+    margin-top: 0.25em;
+    margin-left: 0.35em;
+    background-color: #25e613;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .offline {
+    height: 0.6em;
+    width: 0.6em;
+    margin-top: 0.25em;
+    margin-left: 0.35em;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .ingame {
+    height: 0.6em;
+    width: 0.6em;
+    margin-top: 0.25em;
+    margin-left: 0.35em;
+    background-color: purple;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  #ProfileCardboardFullscreen {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
+    top: 3.4375em;
+    position: sticky;
+    height: 8em;
+    width: 100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
+    background-color: #212529;
+    border-bottom: 1px solid #828282;
+    justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
+  }
+
+  #usernameFullscreen {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0.2em;
+  }
+
+  #UserPictureInfoFullscreen {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    position: absolute;
+    left: 2vw;
+  }
+
+  #UserStatusFullscreen {
+    display: flex;
+    height: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #connectStatusFullscreen {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  #ProfilePicFullscreen {
+    border-radius: 100%;
+    width: 5.5em;
+    border: 1px solid #5dc6e8;
+  }
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
-    /* Styles */
+@media only screen and (min-width: 46.25em) and (max-width: 60em) {
+  /* Styles */
 
-    #ModalBackArrow {
+  #ModalBackArrow {
     width: 3rem;
     font-size: 0px;
-	padding: 0;
-	background: transparent;
-	color: transparent;
-	border: none;
-	display: flex;
-	justify-content: flex-end;
-	cursor: pointer;
-    }
+    padding: 0;
+    background: transparent;
+    color: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
 
-    #BackArrowFullscreen {
-        width: 2.5em;
-        position: absolute;
-        top: 1.5em;
-        right: 1.8em;
-        display: none;
-    }
+  #BackArrowFullscreen {
+    width: 2.5em;
+    position: absolute;
+    top: 1.5em;
+    right: 1.8em;
+    display: none;
+  }
 
-    #DoubleButton {
-        display: flex;
-        width: 100%;
-        align-items: flex-start;
-        gap: 1.25rem; 
-    }
+  #DoubleButton {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
 
-    .ProfilePage {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.8rem;
-        flex-shrink: 0;
-        margin-block-end: 0;
-    }
+  .ProfilePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    flex-shrink: 0;
+    margin-block-end: 0;
+  }
 
-    .ProfileCardboard {
-        display: flex;
-        height: 5.625rem;
-        align-items: center;
-        gap: 1.25rem;
-        flex-shrink: 0;
-    }
-    
-    .offcanvas-profile {
-        width: 80%;
-    }
-    
-    .ProfilePic {
-        border-radius: 100%;
-        border: 2px solid #6c757d;
-        object-fit: cover;
-    }
+  .ProfileCardboard {
+    display: flex;
+    height: 5.625rem;
+    align-items: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
+  }
 
-    #UserPictureInfo {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-    }
+  .offcanvas-profile {
+    width: 80%;
+  }
 
-    #username {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1.475rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
+  .ProfilePic {
+    border-radius: 100%;
+    border: 2px solid #6c757d;
+    object-fit: cover;
+  }
 
-    #UserInfo {
-        display: flex;
-        align-items: center; /* Centré verticalement */
-        justify-content: space-between; /* Espacement entre les enfants */
-        width:  100%; /* Largeur complète pour que les lignes s'étendent */
-        margin-top: -1rem;
-        margin-bottom: -1rem;
-    }
+  #AVATAR_Change_Pic {
+    transition: transform 0.5s ease;
+  }
 
-    #UserInfoText {
-        order:  1; /* Positionnement du texte au milieu */
-        padding-left: 2rem;
-        padding-right: 2rem;
-        padding-top: 0.7rem;
-        padding-bottom: 0.7rem;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        color: #FFF;
-    }
+  #AVATAR_Change_Pic:hover {
+    transform: scale(1.1);
+  }
 
-    #ProfileCardboard {
-        display: flex;
-        width: 100%;
-        height: 5.625rem;
-        align-items: center;
-        gap: 1.25rem;
-        flex-shrink: 0;
-    }
+  #AVATAR_Change_Pic:not(:hover) {
+    transform: scale(1);
+  }
 
-    #ProfileCardboardMobile {
-        display: none;
-    }
+  #UserPictureInfo {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
 
-    #UserStatus {
-        display: flex;
-        height: 4rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
+  #username {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1.475rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 
-    #connectStatus {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        display: flex;
-        align-items: center;
-    }
+  #UserInfo {
+    display: flex;
+    align-items: center; /* Centré verticalement */
+    justify-content: space-between; /* Espacement entre les enfants */
+    width: 100%; /* Largeur complète pour que les lignes s'étendent */
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+  }
 
-    .dotOnline {
-        height: 0.6em;
-        width: 0.6em;
-        margin-top: 0.25em;
-        margin-left: 0.35em;
-        background-color: #25e613;
-        border-radius: 50%;
-        display: inline-block;
-    }
+  #UserInfoText {
+    order: 1; /* Positionnement du texte au milieu */
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    /* Body text */
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #fff;
+  }
 
-    #ProfileCardboardFullscreen {
-        display: flex;
-        align-items: center;
-        left: 2.5vw;
-        gap: 1.25rem;
-        flex-shrink: 0;
-        top: 3.4375em;
-        position: sticky;
-        height: 8em;
-        width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
-        background-color: #202532;
-        border-bottom: 1px solid #828282;
-        justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
-    }
+  #ProfileCardboard {
+    display: flex;
+    width: 100%;
+    height: 5.625rem;
+    align-items: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
+  }
 
-    #usernameFullscreen {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1.4rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin-bottom: 0.2em;
-    }
+  #ProfileCardboardMobile {
+    display: none;
+  }
 
-    #UserPictureInfoFullscreen {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-        position: absolute;
-        left: 2vw;
-    }
+  #UserStatus {
+    display: flex;
+    height: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
 
-    #UserStatusFullscreen {
-        display: flex;
-        height: 4rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
+  #connectStatus {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+  }
 
-    #connectStatusFullscreen {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
+  .online {
+    height: 0.6em;
+    width: 0.6em;
+    margin-top: 0.25em;
+    margin-left: 0.35em;
+    background-color: #25e613;
+    border-radius: 50%;
+    display: inline-block;
+  }
 
-    #ProfilePicFullscreen {
-        border-radius: 100%;
-        width: 5.5em;
-        border: 1px solid #5DC6E8;
-    }
+  .offline {
+    height: 0.6em;
+    width: 0.6em;
+    margin-top: 0.25em;
+    margin-left: 0.35em;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .ingame {
+    height: 0.6em;
+    width: 0.6em;
+    margin-top: 0.25em;
+    margin-left: 0.35em;
+    background-color: purple;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  #ProfileCardboardFullscreen {
+    display: flex;
+    align-items: center;
+    left: 2.5vw;
+    gap: 1.25rem;
+    flex-shrink: 0;
+    top: 3.4375em;
+    position: sticky;
+    height: 8em;
+    width: 100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
+    background-color: #202532;
+    border-bottom: 1px solid #828282;
+    justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
+  }
+
+  #usernameFullscreen {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0.2em;
+  }
+
+  #UserPictureInfoFullscreen {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    position: absolute;
+    left: 2vw;
+  }
+
+  #UserStatusFullscreen {
+    display: flex;
+    height: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #connectStatusFullscreen {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  #ProfilePicFullscreen {
+    border-radius: 100%;
+    width: 5.5em;
+    border: 1px solid #5dc6e8;
+  }
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
-    /* Styles */
+@media only screen and (min-width: 1em) and (max-width: 46.25em) {
+  /* Styles */
 
-    #ModalBackArrow {
-    width: 3rem;
+  #ModalBackArrow {
+    width: 2.5rem;
     font-size: 0px;
-	padding: 0;
-	background: transparent;
-	color: transparent;
-	border: none;
-	display: flex;
-	justify-content: flex-end;
-    }
-    
-    #BackArrowMobile {
-        width: 2em;
-        position: absolute;
-        top: 1.2em;
-        right: 1.2em;
-    }
-    
-    #BackArrowFullscreen {
-        width: 2.5em;
-        position: absolute;
-        top: 2rem;
-        right: 1.1rem;
-    }
+    padding: 0;
+    background: transparent;
+    color: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+  }
 
-    #DoubleButton {
-        display: flex;
-        width: 100%;
-        align-items: flex-start;
-        gap: 1.25rem; 
-    }
-    
-    #overlayProfile {
-        content: "";
-        display: flex;
-        top:  0;
-        left:  0;
-        width:  100%;
-        height:  100%;
-        background-color: rgba(28,  32,  38,  0.75); /* Adjust the color and opacity as needed */
-        z-index: -1; /* Ensure the overlay is behind the content */
-    }
+  #BackArrowMobile {
+    width: 2em;
+    position: absolute;
+    top: 1.2em;
+    right: 1.2em;
+  }
 
-    .ProfilePage {
-        display: flex;
-        width: 90%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2rem;
-        flex-shrink: 0;
-        max-width: 20em;
-    }
+  #BackArrowFullscreen {
+    width: 2.5em;
+    position: absolute;
+    top: 2rem;
+    right: 1.1rem;
+  }
 
-    .ProfilePic {
-        border-radius: 100%;
-        border: 2px solid #6c757d;
-        object-fit: cover;
-    }
+  #DoubleButton {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 
-    #username {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1.4rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin-bottom: 0.2em;
-    }
+  #overlayProfile {
+    content: "";
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(
+      28,
+      32,
+      38,
+      0.75
+    ); /* Adjust the color and opacity as needed */
+    z-index: -1; /* Ensure the overlay is behind the content */
+  }
 
-    #UserInfo {
-        display: flex;
-        align-items: center; /* Centré verticalement */
-        justify-content: space-between; /* Espacement entre les enfants */
-        width:  100%; /* Largeur complète pour que les lignes s'étendent */
-        margin-top: -1rem;
-        margin-bottom: -1rem;
-    }
+  .ProfilePage {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    flex-shrink: 0;
+    max-width: 20em;
+  }
 
-    #UserInfoText {
-        order:  1; /* Positionnement du texte au milieu */
-        padding-left: 2rem;
-        padding-right: 2rem;
-        padding-top: 0.7rem;
-        padding-bottom: 0.7rem;
-        /* Body text */
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        color: #FFF;
-    }
+  .ProfilePic {
+    border-radius: 100%;
+    border: 2px solid #6c757d;
+    object-fit: cover;
+  }
 
-    .ProfileCardboard {
-        display: flex;
-        height: 5.625rem;
-        align-items: center;
-        gap: 1.25rem;
-        flex-shrink: 0;
-    }
+  #AVATAR_Change_Pic {
+    transition: transform 0.5s ease;
+  }
 
-    #test {
-        width: 80%;
-    }
+  #AVATAR_Change_Pic:hover {
+    transform: scale(1.1);
+  }
 
-    #UserPictureInfo {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-    }
+  #AVATAR_Change_Pic:not(:hover) {
+    transform: scale(1);
+  }
 
-    #UserStatus {
-        display: flex;
-        height: 4rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
-    
-    #connectStatus {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    
-    #ProfileCardboardFullscreen {
-        display: flex;
-        align-items: center;
-        padding-left: 4vw;
-        gap: 1.25rem;
-        flex-shrink: 0;
-        position: sticky;
-        top: 3.4375em;
-        height: 8em;
-        width:  100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
-        background-color: #202532;
-        border-bottom: 1px solid #828282;
-        justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
-    }
+  #username {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0.2em;
+  }
 
-    #usernameFullscreen {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1.4rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin-bottom: 0.2em;
-    }
+  #UserInfo {
+    display: flex;
+    align-items: center; /* Centré verticalement */
+    justify-content: space-between; /* Espacement entre les enfants */
+    width: 100%; /* Largeur complète pour que les lignes s'étendent */
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+  }
 
-    #UserPictureInfoFullscreen {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-    }
+  #UserInfoText {
+    order: 1; /* Positionnement du texte au milieu */
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    /* Body text */
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #fff;
+  }
 
-    #UserStatusFullscreen {
-        display: flex;
-        height: 4rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
+  .ProfileCardboard {
+    display: flex;
+    height: 5.625rem;
+    align-items: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
+  }
 
-    #connectStatusFullscreen {
-        color: #FFF;
-        text-align: right;
-        font-family: Kodchasan;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
+  #test {
+    width: 80%;
+  }
 
-    #ProfilePicFullscreen {
-        border-radius: 100%;
-        width: 5.5em;
-        border: 1px solid #5DC6E8;
-    }
+  #UserPictureInfo {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
 
+  #UserStatus {
+    display: flex;
+    height: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #connectStatus {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  #ProfileCardboardFullscreen {
+    display: flex;
+    align-items: center;
+    padding-left: 4vw;
+    gap: 1.25rem;
+    flex-shrink: 0;
+    position: sticky;
+    top: 3.4375em;
+    height: 8em;
+    width: 100%; /* Assurez-vous que .cardboard s'étend sur toute la largeur de #content */
+    background-color: #202532;
+    border-bottom: 1px solid #828282;
+    justify-content: space-between; /* Ajoutez cette ligne pour aligner les éléments */
+  }
+
+  #usernameFullscreen {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0.2em;
+  }
+
+  #UserPictureInfoFullscreen {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+  #UserStatusFullscreen {
+    display: flex;
+    height: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #connectStatusFullscreen {
+    color: #fff;
+    text-align: right;
+    font-family: Kodchasan;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  #ProfilePicFullscreen {
+    border-radius: 100%;
+    width: 5.5em;
+    border: 1px solid #5dc6e8;
+  }
+
+  .online {
+    height: 0.6em;
+    width: 0.6em;
+    margin-top: 0.25em;
+    margin-left: 0.35em;
+    background-color: #25e613;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .offline {
+    height: 0.6em;
+    width: 0.6em;
+    margin-top: 0.25em;
+    margin-left: 0.35em;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .ingame {
+    height: 0.6em;
+    width: 0.6em;
+    margin-top: 0.25em;
+    margin-left: 0.35em;
+    background-color: purple;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}
+
+#Friends_Profile {
+    width: 100%;
 }

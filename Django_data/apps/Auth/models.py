@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.utils.text import slugify
@@ -8,7 +9,8 @@ from django.dispatch import receiver
 
 class User(AbstractBaseUser):
     id = models.AutoField(
-        auto_created=True, primary_key=True, unique=True, null=False)
+        auto_created=True, primary_key=True, unique=True, null=False
+    )
     status = models.BooleanField(default=True)
     username = models.CharField(max_length=50, unique=True, null=False)
     email = models.EmailField(max_length=320, unique=True, null=False)
@@ -19,6 +21,17 @@ class User(AbstractBaseUser):
         default="ForbiddenDeletion/default.png", null=False)
     refresh_token = models.CharField(max_length=255, null=True, blank=True)
     tournament_name = models.CharField(max_length=50, unique=True, null=False)
+    online_data = models.DateTimeField(default=timezone.now)
+    in_game = models.BooleanField(default=False)
+
+    skin_ball = models.CharField(
+            default="ballCat", null=False)
+    skin_paddle = models.CharField(
+            default="paddleGrass", null=False)
+    skin_background = models.CharField(
+            default="backgroundForest", null=False)
+
+    friends = models.ManyToManyField("self", blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']

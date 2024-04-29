@@ -1,83 +1,73 @@
 <!DOCTYPE html>
 {% load static %}
 
-<body>
+<html lang="fr">
   {% include "Home/head.html" %}
-  {% include "Home/header.html" %}
-  {% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
-  {% include "Profile/Profile.html" %}
-  {% include "Auth/code_validation.html" %}
-  {% include "Profile/enable_2fa.html" %}<!-- TODO load the modal only if the user is connected -->
+  <body>
+    {% include "Profile/Avatar.html" %}
+    {% include "Profile/Profile.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header>
+          <div id="content">
+                  <div id="overlay">
+                          <div class="mid midcolumn flowAnimation">
+                                  <div id="titleContent" data-content="GAME_PARAMETERS"></div>
+                                  <div class="section">
+                                          <h1 class="gameTitle">Custom game</h1>
+                                  </div>
+                                  <div class="section">
+                                          <p class="bodyText">Opponent type:</p>
+                                                  <div class="DoubleButtonSettings">
+                                                          <button id="SELECT_Player" class="MediumButtonLayout left ButtonNeon">Player</button>
+                                                          <button id="SELECT_ai" class="MediumButtonLayout right ButtonNeon">AI</button>
+                                                  </div>
+                                  </div>
+                                  <div class="section">
+                                          <p class="bodyText">Game type:</p>
+                                                  <div class="DoubleButtonSettings">
+                                                          <button id="SELECT_Local" class="MediumButtonLayout left ButtonNeon">Local</button>
+                                                          <button id="SELECT_Remote" class="MediumButtonLayout right ButtonNeon">Remote</button>
+                                                  </div>
+                                  </div>
+                                  <div class="section">
+                                          <div class="conteneur">
+                                                          <div class="flex-column">
+                                                                  <p class="bodyText">Score to win:</p>
+                                                                  <div class="quantity">
+                                                                          <button class="minus" aria-label="Decrease">&minus;</button>
+                                                                          <input id="Score" type="number" class="input-box" value="1" min="1" max="10">
+                                                                          <button class="plus" aria-label="Increase">&plus;</button>
+                                                                  </div>
+                                                          </div>
 
-	<div id="content">
-		<div id="overlay">
-			<div class="mid midcolumn flowAnimation">
-				<div id="titleContent" data-content="GAME_PARAMETERS"></div>
-				<div class="section">
-					<h1 class="gameTitle">Custom Game</h1>
-					<div class="pong">
-						<img id="pong_img" src="{% static 'images/pong.webp' %}" alt="Pong display image">
-					</div>
-				</div>
-				<div class="section">
-					<p class="bodyText">Opponent type:</p>
-						<div class="DoubleButtonSettings">
-							<button id="SELECT_Player" class="MediumButtonLayout left ButtonDark">Player</button>
-							<button id="SELECT_ai" class="MediumButtonLayout right ButtonDark">AI</button>
-						</div>
-				</div>
-				<div class="section">
-					<div class="conteneur">
-							<div class="flex-column">
-								<p class="bodyText">Score to win:</p>
-								<div class="quantity">
-									<button class="minus" aria-label="Decrease">&minus;</button>
-									<input type="number" class="input-box" value="1" min="1" max="10">
-									<button class="plus" aria-label="Increase">&plus;</button>
-								</div>
-							</div>
-
-							<div class="flex-column">
-								<p class="bodyText">Difficulty:</p>
-								<div class="quantity">
-									<button class="minus" aria-label="Decrease">&minus;</button>
-									<input type="number" class="input-box" value="1" min="1" max="10">
-									<button class="plus" aria-label="Increase">&plus;</button>
-								</div>
-							</div>
-							<div class="flex-column">
-								<p class="bodyText">Power ups:</p>
-								<div class="form-check form-switch p-0">
-									<div class="d-flex flex-column-reverse gap-1">
-									  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" {% if enabled == True %}checked{% endif%} />
-									</div>
-								</div>
-							</div>
-					</div>
-				</div>
-				<div class="section">
-					<button id="StartButton" class="play-button"><span class="play">Create game</span></button>
-				</div>
-			</div>
-		</div>
-	</div>
-  {% include "Home/footer.html" %}
-</body>
-
-		{% comment %} <script>
-
-				function setViewportHeight() {
-				   // Calculate the viewport height
-				   var vh = window.innerHeight * 0.01;
-				   // Set the height of the #content and .mid elements
-				   document.documentElement.style.setProperty('--vh', `${vh}px`);
-				}
-			   
-				// Listen for the resize event to adjust the height when the window size changes
-				window.addEventListener('resize', setViewportHeight);
-				// Call the function initially to set the height
-				setViewportHeight();
-		
-		</script> {% endcomment %}
-	</body>
+                                                          <div class="flex-column">
+                                                                  <p class="bodyText">Difficulty:</p>
+                                                                  <div class="quantity">
+                                                                          <button class="minus" aria-label="Decrease">&minus;</button>
+                                                                          <input id="Difficulty" type="number" class="input-box" value="1" min="1" max="10">
+                                                                          <button class="plus" aria-label="Increase">&plus;</button>
+                                                                  </div>
+                                                          </div>
+                                                          <div class="flex-column">
+                                                                  <p class="bodyText">Power ups:</p>
+                                                                  <div class="form-check form-switch p-0">
+                                                                          <div class="d-flex flex-column-reverse gap-1">
+                                                                            <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop"/>
+                                                                          </div>
+                                                                  </div>
+                                                          </div>
+                                          </div>
+                                  </div>
+                                  <div class="section">
+                                          <button id="StartButton" class="play-button"><span class="play">Start !</span></button>
+                                  </div>
+                          </div>
+                  </div>
+          </div>
+    {% include "Home/footer.html" %}
+  </body>
 </html>

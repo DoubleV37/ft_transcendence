@@ -1,14 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-  {% load static %}
-
   {% include "Home/head.html" %}
   <body>
-    {% include "Home/header.html" %}
     {% include "Profile/Profile.html" %}
     {% include "Profile/Avatar.html" %}
     {% include "Auth/code_validation.html" %}
     {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header> 
+
 
     <div id="content">
 	    {% include "Profile/Profile.html" %}
@@ -20,7 +23,7 @@
 			    {% csrf_token %}
 			    {{ form.as_p }}
 			    <div id="SIGNUP_Errors" style="color: red;"></div>
-			    <button id="btn_signup" type="submit">Sign up!</button>
+			    <button id="btn_signup" class="ButtonLayout ButtonBlue CTA" type="submit">Sign up!</button>
 			    <div id ="SIGNUP_signin">
 				    <p>Already have an account ? <b>Log in</b></p>
 			    </div>

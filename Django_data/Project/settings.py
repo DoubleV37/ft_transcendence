@@ -30,8 +30,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-	'channels',
-	'bootstrap5',
+    'channels',
+    'bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'apps.Home',
     'apps.Auth',
     'apps.Profile',
-	'apps.Game',
+    'apps.Game',
     'apps.Twofa',
+    'apps.FriendsList',
 ]
 
 MIDDLEWARE = [
@@ -142,16 +143,18 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = 'None'
+
 CSRF_TRUSTED_ORIGINS = ["https://localhost:8080"]
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "/"
 
 MEDIA_URL = '/avatars/'
-
 MEDIA_ROOT = BASE_DIR.joinpath('avatars/')
-
 
 AUTH_USER_MODEL = 'Auth.User'
 

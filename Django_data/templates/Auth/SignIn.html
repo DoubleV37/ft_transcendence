@@ -1,14 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-  {% load static %}
 
   {% include "Home/head.html" %}
   <body>
-    {% include "Home/header.html" %}
     {% include "Profile/Avatar.html" %}
     {% include "Profile/Profile.html" %}
     {% include "Auth/code_validation.html" %}
     {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header> 
 
     <div id="content">
       <div id="overlay">
@@ -20,19 +23,10 @@
 	    {{ form.as_p }}
 	    <!-- Display area for client-side validation errors -->
 	    <div id="SIGNIN_Errors" style="color: red;"></div>
-	    <div id ="forgot_password">
-	      <p>Forgot password?</p>
-	    </div>
 	    <!-- Submit button triggers client-side validation -->
-	    <button type="submit" class="ButtonLayout ButtonBlue CTA">Sign In</button>
-	    <div id ="infoSeparator">
-	      <div id="leftline"></div>
-	      <p id="text">Or login with</p>
-	      <div id="rightline"></div>
-	    </div>
-	    <button id="SIGNIN_Auth42" class="ButtonLayout Button42" type="button">42 account</button>
+	    <button id="SignInButton" type="submit" class="ButtonLayout ButtonBlue CTA">Sign In</button>
 	    <div id="SIGNIN_Signup">
-	      <p>Doesn’t have a Pong account ? <b>Create an account</b></p>
+	      <p>Doesn’t have a Pong account ? <b>Create your account</b></p>
 	    </div>
 	  </form>
 	</div>
