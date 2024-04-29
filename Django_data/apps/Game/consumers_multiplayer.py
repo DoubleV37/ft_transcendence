@@ -25,19 +25,18 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
 		if game.nb_users == 2:
 			game.nb_users = 19
-			await database_sync_to_async(game.save)()
-			# if self.user_num == 1:
-			if (self.pong.running):
-				self.pong.running = False
-			await self.channel_layer.group_send(
-				self.room_group_name,
-				{
-					'type': 'game_stop',
-					'error': {
-						"message": "Game stopped"
+			if (game.running == True):
+				game.running = False
+				await self.channel_layer.group_send(
+					self.room_group_name,
+					{
+						'type': 'game_stop',
+						'error': {
+							"message": "Game stopped"
+						}
 					}
-				}
-			)
+				)
+			await database_sync_to_async(game.save)()
 		elif game.nb_users == 0 or game.nb_users == 1:
 			user_game = await database_sync_to_async(UserGame.objects.get)(user=self.scope["user"], game=game)
 			await database_sync_to_async(user_game.delete)()
@@ -86,6 +85,8 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 				self.pong.player_pos[1] += self.pong.player_speed
 			elif message == "space" and self.pong.engage > 0:
 				self.pong.engage = 0
+			elif message == "stopGame":
+				self.pong.running = False
 			elif message == "stop":
 				self.pong.running = False
 				await self.channel_layer.group_send(

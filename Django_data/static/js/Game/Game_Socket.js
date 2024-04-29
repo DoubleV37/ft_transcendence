@@ -68,6 +68,9 @@ function receive_data (e) {
     document.getElementById("MyCanvas").hidden = true;
     endGameMessage.textContent = "Game stopped!";
     endGameScreen.style.display = "flex";
+	if (gameCanvas.num === 1) {
+		gameSocket.send(JSON.stringify({ message: "stopGame"}));
+	}
     confirmEndGame.onclick = function () {
     //   gameCanvas.inGame = false;
       loadPage(ROUTE.GAME_MODES);
