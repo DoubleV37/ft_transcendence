@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponse, render
 from django.views.generic import TemplateView
+from django.http import JsonResponse, HttpResponse
 
 from apps.Game.models import Games, UserGame
 
@@ -32,7 +33,10 @@ class BoardView(TemplateView):
     template_name = "board.html"
 
     def get(self, request, _id: int):
-        context = tools.party_sender(key=_id, me=request.user)
+        try:
+            context = tools.party_sender(key=_id, me=request.user)
+        except Exception as exc:
+            return JsonResponse({'success': False, 'logs': 'Bad permission'})
         return render(request, self.template_name, context=context)
 
     def post(self, request):

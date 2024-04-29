@@ -1,3 +1,6 @@
+from django.shortcuts import render
+from django.http import JsonResponse, HttpResponse
+
 from apps.Auth.models import User
 from apps.Game.models import Games, UserGame
 
@@ -42,9 +45,12 @@ def data_constructor(data: dict) -> dict:
 
 
 def party_sender(key: int, me: User) -> dict:
-    game = Games.objects.get(id=key)
-    myself = UserGame.objects.get(game=key, user=me)
-    tmp = list(UserGame.objects.filter(game=key).exclude(user=me))
+    try:
+        game = Games.objects.get(id=key)
+        myself = UserGame.objects.get(game=key, user=me)
+        tmp = list(UserGame.objects.filter(game=key).exclude(user=me))
+    except:
+        raise
     for player in tmp:
         if player.user != me:
             opponent = player
