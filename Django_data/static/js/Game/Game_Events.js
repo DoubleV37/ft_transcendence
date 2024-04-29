@@ -28,6 +28,7 @@ function game_SetEvents (page_name) {
 	// 	canvas.height = height;
 	// });
 	gameStop = false;
+	gameCanvas.inGame = true;
 	gameSocket = new WebSocket("wss://" + window.location.host + "/wss" + window.location.pathname);
 	gameSocket.addEventListener("open", OpenTest);
 	gameSocket.addEventListener("close", CloseTest);
@@ -67,8 +68,15 @@ function CloseTest () {
 
 function game_DelEvents() {
 	console.log('game_DelEvents');
-	if (gameSocket.readyState === WebSocket.OPEN)
-		gameSocket.send(JSON.stringify({ message: "stop"}));
+	if (gameSocket !== null && gameSocket.readyState === WebSocket.OPEN)
+	{
+		if (gameCanvas.inGame == true)
+		{
+			gameSocket.send(JSON.stringify({ message: "stop"}));
+			gameCanvas.inGame = false;
+		}
+		gameSocket.close();
+	}
 	// removeEventListener('resize', () => {
 		// 	style = getComputedStyle(canvas);
 		// 	width = parseInt(style.getPropertyValue('width'), 10);
@@ -76,8 +84,6 @@ function game_DelEvents() {
 		// 	canvas.width = width;
 		// 	canvas.height = height;
 		// });
-
-	gameSocket.close();
 
 	document.removeEventListener("keyup", keyUp);
 	document.removeEventListener("keydown", keyDown);

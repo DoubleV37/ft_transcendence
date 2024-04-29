@@ -8,8 +8,6 @@ from .models import Games, UserGame
 from django.utils import timezone
 from channels.exceptions import StopConsumer
 
-import logging
-
 class MultiPongConsumer(AsyncWebsocketConsumer):
 
 	async def connect(self):
@@ -24,14 +22,13 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 		await self.start_game()
 
 	async def disconnect(self, close_code):
-		logging.info("============================disconnect============================")
-		logging.info(self.scope["user"])
 		game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
 		if game.nb_users == 2:
 			game.nb_users = 19
 			await database_sync_to_async(game.save)()
 			# if self.user_num == 1:
-			self.pong.running = False
+			if (self.pong.running):
+				self.pong.running = False
 			await self.channel_layer.group_send(
 				self.room_group_name,
 				{
@@ -51,7 +48,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 			self.room_group_name,
 			self.channel_name
 		)
-		raise StopConsumer()
 
 	async def init_db_game(self):
 		self.pong = Pong_game(2 , 10, 0)
@@ -151,12 +147,18 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
 				}
 			)
 		if self.user_num == 1 :
-			game.nb_users = 2
-			await database_sync_to_async(game.save)()
+			while (game.nb_users != 2):
+				await asyncio.sleep(1)
+				game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+				if (game.nb_users == 19):
+
+					break
 			self.opponent = await self.set_opponent()
 			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 1, "avatar": self.opponent.avatar.url}))
 			asyncio.create_task(self.run_game())
 		else:
+			game.nb_users = 2
+			await database_sync_to_async(game.save)()
 			self.opponent = await self.set_opponent()
 			await self.send(text_data=json.dumps({"message": "opponent", "opponent": self.opponent.username, "num": 2, "avatar": self.opponent.avatar.url}))
 
