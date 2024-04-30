@@ -15,12 +15,24 @@ services:
       timeout: 30s
       retries: 3
 
-  logstash:
-    container_name: logstash
+  logstash_nginx:
+    container_name: logstash_nginx
     image: docker.elastic.co/logstash/logstash:7.16.1
     restart: always
     volumes:
-      - ./Services/Logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./Services/Logstash/logstash_nginx.conf:/usr/share/logstash/pipeline/logstash.conf
+    environment:
+      - "ELASTICSEARCH_HOST=elasticsearch"
+      - "ELASTICSEARCH_PORT=9200"
+    depends_on:
+      - elasticsearch
+
+  logstash_gunicorn:
+    container_name: logstash_gunicorn
+    image: docker.elastic.co/logstash/logstash:7.16.1
+    restart: always
+    volumes:
+      - ./Services/Logstash/logstash_gunicorn.conf:/usr/share/logstash/pipeline/logstash.conf
     environment:
       - "ELASTICSEARCH_HOST=elasticsearch"
       - "ELASTICSEARCH_PORT=9200"

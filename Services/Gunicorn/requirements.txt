@@ -14,4 +14,5 @@ djangorestframework_simplejwt>=5.0.0
 django-otp>=0.10.0
 django-two-factor-auth>=1.10.0
 
+python-json-logger
 python-logstash
