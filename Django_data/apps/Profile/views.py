@@ -31,9 +31,9 @@ def avatar(request):
     return render(request, "Profile/Avatar.html")
 
 def skin(request):
-    list_paddle = ["images/skins/paddle/Paddle_Grass.png", "images/skins/paddle/Paddle_Amethyst.png", "images/skins/paddle/Paddle_Snow.png"]
-    list_ball = ["images/skins/ball/Ball_Cat.png", "images/skins/ball/Ball_BlackHole.png", "images/skins/ball/Ball_Sushi.png"]
-    list_back = ["images/skins/background/BG_Forest.png", "images/skins/background/BG_Space.png", "images/skins/background/BG_LoFi.png"]
+    list_paddle = ["/static/images/skins/paddle/Paddle_Grass.png", "/static/images/skins/paddle/Paddle_Amethyst.png", "/static/images/skins/paddle/Paddle_Snow.png"]
+    list_ball = ["/static/images/skins/ball/Ball_Cat.png", "/static/images/skins/ball/Ball_Blackhole.png", "/static/images/skins/ball/Ball_Sushi.png"]
+    list_back = ["/static/images/skins/background/BG_Forest.png", "/static/images/skins/background/BG_Space.png", "/static/images/skins/background/BG_LoFi.png"]
     _user = request.user
     if request.method == 'GET':
         context = {}

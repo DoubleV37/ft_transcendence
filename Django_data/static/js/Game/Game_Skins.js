@@ -1,12 +1,12 @@
-let imgBallSrc = "/static/images/logoIcon.png";
-let imgBall = new Image();
+const imgBallSrc = "/static/images/logoIcon.png";
+const imgBall = new Image();
 imgBall.src = imgBallSrc;
 
-let imgSrcPaddleR = "/static/images/Paddle_Grass.png";
-let imgPaddleR = initRotatedImage(imgSrcPaddleR, false); // false pour le paddle droit
+const imgSrcPaddleR = "/static/images/Paddle_Grass.png";
+const imgPaddleR = initRotatedImage(imgSrcPaddleR, false); // false pour le paddle droit
 
-let imgSrcPaddleL = "/static/images/Paddle_Grass.png";
-let imgPaddleL = initRotatedImage(imgSrcPaddleL, true); // true pour le paddle gauche
+const imgSrcPaddleL = "/static/images/Paddle_Grass.png";
+const imgPaddleL = initRotatedImage(imgSrcPaddleL, true); // true pour le paddle gauche
 
 function initRotatedImage(imgSrc, isLeftPaddle) {
   const img = new Image();
@@ -33,7 +33,7 @@ function initRotatedImage(imgSrc, isLeftPaddle) {
     canvas: tempCanvas,
     isInitialized: function () {
       return initialized;
-    }
+    },
   };
 }
 
@@ -41,8 +41,8 @@ function parseUserInfos(infos) {
   GameInfos.Ball.url = infos.my_ball;
   GameInfos.Background.url = infos.my_background;
   if (infos.num === 1) {
-    GameInfos.PlayerR.srcImg = `/static/${infos.my_avatar}`;
-    GameInfos.PlayerR.srcPaddle = `/static/${infos.my_paddle}`;
+    GameInfos.PlayerR.srcImg = infos.my_avatar;
+    GameInfos.PlayerR.srcPaddle = infos.my_paddle;
     GameInfos.PlayerR.name = infos.my_name;
     GameInfos.PlayerL.srcImg = infos.opponent_avatar;
     GameInfos.PlayerL.srcPaddle = infos.opponent_paddle;
@@ -61,6 +61,15 @@ function setGameScreen() {
   GameInfos.Ball.img = new Image();
   GameInfos.Ball.img.src = GameInfos.Ball.url;
 
-  GameInfos.PlayerR.canvas = initRotatedImage(GameInfos.PlayerR.url, false);
-  GameInfos.PlayerL.canvas = initRotatedImage(GameInfos.PlayerL.url, true);
+  document
+    .getElementById("HEADER_GameProfilePicLeft")
+    .setAttribute("src", GameInfos.PlayerL.srcImg);
+  document
+    .getElementById("HEADER_GameProfilePicRight")
+    .setAttribute("src", GameInfos.PlayerR.srcImg);
+  //document
+  //  .getElementById("MyCanvas")
+  //  .setAttribute("background-image", `url(${GameInfos.background.url})`);
+  GameInfos.PlayerR.canvas = initRotatedImage(GameInfos.PlayerR.srcPaddle, false);
+  GameInfos.PlayerL.canvas = initRotatedImage(GameInfos.PlayerL.srcPaddle, true);
 }

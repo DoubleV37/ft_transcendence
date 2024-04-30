@@ -12,12 +12,12 @@ function drawPaddleR (y) {
     width = Math.round(width);
     height = Math.round(height);
 
-    gameCanvas.ctx.drawImage(GameInfos.PlayerR.canvas, x, deltaY, width, height);
+    gameCanvas.ctx.drawImage(GameInfos.PlayerR.canvas.canvas, x, deltaY, width, height);
   }
 }
 
 function drawPaddleL (y) {
-  if (imgPaddleL.isInitialized()) {
+  if (GameInfos.PlayerL.canvas.isInitialized()) {
     // Calculer les coordonnées exactes pour le dessin du paddle gauche
     let x = (gameCanvas.canvas.width * 50 / 1200) - (gameCanvas.canvas.height * 25 / 900);
     let height = gameCanvas.paddle1Height;
@@ -30,7 +30,7 @@ function drawPaddleL (y) {
     width = Math.round(width);
     height = Math.round(height);
 
-    gameCanvas.ctx.drawImage(imgPaddleL.canvas, x, deltaY, width, height);
+    gameCanvas.ctx.drawImage(GameInfos.PlayerL.canvas.canvas, x, deltaY, width, height);
   }
 }
 

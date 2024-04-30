@@ -24,9 +24,9 @@ class User(AbstractBaseUser):
     online_data = models.DateTimeField(default=timezone.now)
     in_game = models.BooleanField(default=False)
 
-    skin_ball = models.CharField(default="images/skins/ball/Ball_Cat.png", null=False)
-    skin_paddle = models.CharField(default="images/skins/paddle/Paddle_Grass.png", null=False)
-    skin_background = models.CharField(default="images/skins/background/BG_Forest.png", null=False)
+    skin_ball = models.CharField(default="/static/images/skins/ball/Ball_Cat.png", null=False)
+    skin_paddle = models.CharField(default="/static/images/skins/paddle/Paddle_Grass.png", null=False)
+    skin_background = models.CharField(default="/static/images/skins/background/BG_Forest.png", null=False)
 
     friends = models.ManyToManyField("self", blank=True)
 
