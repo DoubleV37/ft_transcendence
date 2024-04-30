@@ -108,6 +108,7 @@ let gameCanvas = {
 
 //MATCHMAKING SCREEN
 let dots = 0;
+let idDot;
 
 let gameSocket = null;
 let gameStop = true;
