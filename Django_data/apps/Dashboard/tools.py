@@ -53,6 +53,7 @@ def party_sender(key: int, me: User) -> dict:
         tmp = list(UserGame.objects.filter(game=key).exclude(user=me))
     except:
         raise
+    opponent = None
     for player in tmp:
         if player.user != me:
             opponent = player
