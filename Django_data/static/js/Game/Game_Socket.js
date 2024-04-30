@@ -56,57 +56,57 @@ function receive_data (e) {
   const endGameMessage = document.getElementById("endGameMessage");
   const confirmEndGame = document.getElementById("confirmEndGame");
 
-  if (data.message === "User exited") {
-    endGameMessage.textContent = "The opponent ran away in fear!";
-    endGameScreen.style.display = "flex";
-    confirmEndGame.onclick = function () {
-      gameSocket.send(JSON.stringify({ message: "stop" }));
-    };
-  }
+//   if (data.message === "User exited") {
+//     endGameMessage.textContent = "The opponent ran away in fear!";
+//     endGameScreen.style.display = "flex";
+//     confirmEndGame.onclick = function () {
+//       gameSocket.send(JSON.stringify({ message: "stop" }));
+//     };
+//   }
 
-  if (data.message === "Game stopped") {
+  if (data.message === "Game stopped" && gameCanvas.inGame === true) {
     document.getElementById("MyCanvas").hidden = true;
     endGameMessage.textContent = "Game stopped!";
     endGameScreen.style.display = "flex";
+	if (gameCanvas.num === 1) {
+		gameSocket.send(JSON.stringify({ message: "stopGame"}));
+	}
     confirmEndGame.onclick = function () {
-      gameCanvas.inGame = false;
-      gameSocket.close();
+    //   gameCanvas.inGame = false;
       loadPage(ROUTE.GAME_MODES);
       endGameScreen.style.display = "none";
     };
   }
 
   if (data.message === "win") {
-    document.getElementById("MyCanvas").hidden = true;
+	  gameCanvas.inGame = false;
+	  document.getElementById("MyCanvas").hidden = true;
     endGameMessage.textContent = "You won!";
     endGameScreen.style.display = "flex";
     confirmEndGame.onclick = function () {
-      gameCanvas.inGame = false;
-      gameSocket.close();
       loadPage(ROUTE.GAME_MODES);
       endGameScreen.style.display = "none";
+	  gameStop = true;
     };
   }
 
   if (data.message === "lose") {
+	gameCanvas.inGame = false;
     document.getElementById("MyCanvas").hidden = true;
     endGameMessage.textContent = "You lost!";
     endGameScreen.style.display = "flex";
     confirmEndGame.onclick = function () {
-      gameCanvas.inGame = false;
-      gameSocket.close();
       loadPage(ROUTE.GAME_MODES);
       endGameScreen.style.display = "none";
     };
   }
 
   if (data.message === "game_finish") {
+	gameCanvas.inGame = false;
     document.getElementById("MyCanvas").hidden = true;
     endGameMessage.textContent = data.winner + " won!";
     endGameScreen.style.display = "flex";
     confirmEndGame.onclick = function () {
-      gameCanvas.inGame = false;
-      gameSocket.close();
       loadPage(ROUTE.GAME_MODES);
       endGameScreen.style.display = "none";
     };
@@ -115,10 +115,20 @@ function receive_data (e) {
   if (data.message === "opponent") {
     gameCanvas.opponent = data.opponent;
     gameCanvas.num = data.num;
-	const leftPlayer = document.getElementById("GAME_username_left");
-	leftPlayer.innerHTML = data.opponent;
-	const leftPlayerPic = document.getElementById("HEADER_GameProfilePicLeft");
-	leftPlayerPic.setAttribute('src', data.avatar);
+	if (gameCanvas.num === 1) {
+		const leftPlayer = document.getElementById("GAME_username_left");
+		leftPlayer.innerHTML = data.opponent;
+		const leftPlayerPic = document.getElementById("HEADER_GameProfilePicLeft");
+		leftPlayerPic.setAttribute('src', data.avatar);
+	}
+	else if (gameCanvas.num === 2){
+		const rightPlayer = document.getElementById("GAME_username_right");
+		rightPlayer.innerHTML = data.opponent;
+		const rightPlayerPic = document.getElementById("HEADER_GameProfilePicRight");
+		rightPlayerPic.setAttribute('src', data.avatar);
+		const leftPlayer = document.getElementById("GAME_username_left");
+		leftPlayer.innerHTML = data.myname;
+	}
     return;
   }
 
