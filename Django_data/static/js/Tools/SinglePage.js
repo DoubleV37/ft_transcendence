@@ -79,7 +79,7 @@ async function MakeRequest (url, request = null) {
     }
     return response;
   } catch (err) {
-    await authError(err.message, url, request);
+    return await authError(err.message, url, request);
   }
 }
 

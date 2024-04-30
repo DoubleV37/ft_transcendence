@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  {% include "Home/head.html" %}
+  <body>
+    {% include "Profile/Avatar.html" %}
+    {% include "Profile/Profile.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header> 
+    <div id="content">
+      <div id="overlay">
+	<div class="mid midcolumn flowAnimation">
+	  <div id="titleContent" data-content="GAMEBOARD_PAGE"></div>
+          <h1>Board:</h1>
+            <td> | GAME: {{ game }} | </td>
+            <td> me = {{ me.user.username }} | </td>
+            <td> opponent = {{ opponent.user.username }} |</td>
+	</div>
+      </div>
+    </div>
+    {% include "Home/footer.html" %}
+  </body>
+</html>

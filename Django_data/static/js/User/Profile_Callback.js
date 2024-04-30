@@ -20,8 +20,35 @@ async function profile_SkinsCallBack () {
   }
 }
 
-async function profile_HistoryCallBack () {
-  console.log("History: Do nothing for now");
+async function  profile_HistoryCallBack() {
+  const id = document.getElementById("username").getAttribute("data-id");
+  await changeSection(`${ROUTE.GAMELIST}${id}/`, "#GameListHistory");
+  document.getElementById("ProfilPage").hidden = true;
+  document.getElementById("ListHistory").hidden = false;
+  
+  const list = document.getElementById("GameListHistory").querySelectorAll("button");
+  if (list != null) {
+    list.forEach( () => {
+      addEventListener("click", goToGameStats);
+    });
+  }
+}
+
+async function goToGameStats (event) {
+  id = event.target.getAttribute("data-gameId");
+  const list = document.getElementById("GameListHistory").querySelectorAll("button");
+  if (list != null) {
+    list.forEach( () => {
+      removeEventListener("click", goToGameStats);
+    });
+  }
+  await loadPage(`${ROUTE.GAMEBOARD}${id}`);
+  profileModal.modal.hide();
+}
+
+function profile_ReturnToProfile () {
+  document.getElementById("ListHistory").hidden = true;
+  document.getElementById("ProfilPage").hidden = false;
 }
 
 async function profile_StatsCallBack () {

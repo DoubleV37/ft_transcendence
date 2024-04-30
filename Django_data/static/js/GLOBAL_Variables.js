@@ -55,6 +55,8 @@ const ROUTE = {
   SIGNOUT: "/auth/signout/",
   SETTINGS: "/auth/settings/",
   PROFILE: "/user/profile/",
+  GAMELIST: "/dash/history/",
+  GAMEBOARD: "/dash/board/",
   SKINS: "/user/skins/",
   FRIENDS_PROFILE: "/friends/profile/",
   FRIENDS: "/friends/list/",
@@ -106,6 +108,7 @@ let gameCanvas = {
 
 //MATCHMAKING SCREEN
 let dots = 0;
+let idDot;
 
 let gameSocket = null;
 let gameStop = true;
