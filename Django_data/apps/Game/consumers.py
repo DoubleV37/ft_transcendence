@@ -39,7 +39,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		self.game = await database_sync_to_async(Games.objects.create)(idGame=self.roomGroupName)
 		self.user_game = await database_sync_to_async(UserGame.objects.create)(user=self.scope["user"], game=self.game)
 		if self.ia:
-			self.opponent = await database_sync_to_async(get_user_model().objects.get)(username="IA")
+			self.opponent = await database_sync_to_async(get_user_model().objects.get)(username="IA-Ochen")
 		else:
 			self.opponent = await database_sync_to_async(get_user_model().objects.get)(username="Guest")
 		self.opponent_game = await database_sync_to_async(UserGame.objects.create)(user=self.opponent, game=self.game)
@@ -137,7 +137,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 
 	async def send_game_finish(self):
 		if self.pong.point[0] > self.pong.point[1] and self.ia:
-			winner = "IA"
+			winner = "IA-Ochen"
 		elif self.pong.point[0] > self.pong.point[1] and not self.ia:
 			winner = "guest"
 		else:

@@ -13,15 +13,133 @@
     </header> 
     <div id="content">
       <div id="overlay">
-	<div class="mid midcolumn flowAnimation">
-	  <div id="titleContent" data-content="GAMEBOARD_PAGE"></div>
-          <h1>Board:</h1>
-            <td> | GAME: {{ game }} | </td>
-            <td> me = {{ me.user.username }} | </td>
-            <td> opponent = {{ opponent.user.username }} |</td>
-	</div>
+      	<div class="mid midcolumn flowAnimation">
+          <div id="titleContent" data-content="GAMEBOARD_PAGE"></div>
+          <div class="section-stats">
+            <h1 class="gameStats">Game Stats</h1>
+          </div>
+                  <div class="section-stats">
+                    <div class="winner-loser">
+                      <span id="WR" class="stats-title">Winner</span>
+                      <span class="stats-title">Loser</span>
+                    </div>
+                    <div class="winner-loser">
+                      <div id="STATS_user">
+                        <img id="HEADER_GameProfilePicLeft" class="ProfilePic header-profilePic profilePic-left" src="{{ profil_picture }}" alt="Very basic user"></img>
+                        <h1 class="username" id="GAME_username_left">{{ me.user.username }}</h1>
+                      </div>
+                      <div id="STATS_user">
+                        <img id="HEADER_GameProfilePicLeft" class="ProfilePic header-profilePic profilePic-left" src="{{ profil_picture }}" alt="Very basic user"></img>
+                        <h1 class="username" id="GAME_username_right">{{ opponent.user.username }}</h1>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="section-stats">
+                    <span class="stats-title">Score</span>
+                  </div>
+                  <div class="content-score">
+                  
+                    <div class="pk-wrapper">
+                      <div id="left" class=" rantangle left">
+                        <span>75</span>
+                      </div>
+                      <div id="right" class="rantangle right">
+                        <span>25</span>
+                      </div>
+                    </div>
+                  
+                  </div>
+
+                  <div class="skills">
+                    <ul class="lines">
+                      <li class="line l--0">
+                        <span class="line__label">
+                          0
+                        </span>
+                      </li>
+                      <li class="line l--25">
+                        <span class="line__label">
+                          25
+                        </span>
+                      </li>
+                      <li class="line l--50">
+                        <span class="line__label">
+                          50
+                        </span>
+                      </li>
+                      <li class="line l--75">
+                        <span class="line__label">
+                          75
+                        </span>
+                      </li>
+                      <li class="line l--100">
+                        <span class="line__label">
+                          100
+                        </span>
+                      </li>
+                    </ul>
+                    
+                    <div class="charts">
+                      <span class="chart__title">Ball : max speed</span>
+                      <div class="chart chart--dev">
+                        <ul class="chart--horiz">
+                          <li class="chart__bar" style="width: 98%;">
+                            <span class="chart__label">
+                              {{ me.user.username }}
+                            </span>
+                          </li>
+                          <li class="chart__bar" style="width: 50%;">
+                            <span class="chart__label">
+                              {{ opponent.user.username }}
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="section-stats">
+                    <span class="stats-title">Wall bounces : 123</span>
+                  </div>
+                  <div class="section-stats">
+                    <span class="stats-title">Max exchanges : 28</span>
+                  </div>
+                  <div class="section-stats">
+                    <span class="stats-title">Duration : 223 seconds</span>
+                  </div>
+          </div>
+        </div>
       </div>
     </div>
     {% include "Home/footer.html" %}
+  <script>
+    const elL = document.getElementById("left");
+    const elR = document.getElementById("right");
+    
+    let scoreL = 3; // Score du joueur de gauche
+    let scoreR = 2; // Score du joueur de droite
+    const totalRounds = 5; // Nombre total de rounds dans la partie
+    
+    // Calculer le pourcentage de progression pour chaque joueur
+    function calculateProgress(score, totalRounds) {
+        return (score / totalRounds) * 100;
+    }
+    
+    // Mettre à jour la barre de progression pour chaque joueur
+    function updateProgressBar(score, progressBarId) {
+        let progressPercentage = calculateProgress(score, totalRounds);
+        progressBarId.style.width = `${progressPercentage}%`;
+    }
+    
+    // Mettre à jour les barres de progression
+    updateProgressBar(scoreL, elL);
+    updateProgressBar(scoreR, elR);
+    
+    // Afficher les scores
+    elL.children[0].innerText = scoreL;
+    elR.children[0].innerText = scoreR;
+  </script>
   </body>
 </html>
+
+
