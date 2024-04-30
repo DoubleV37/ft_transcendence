@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.http import JsonResponse, HttpResponse
 
 from apps.Game.models import Games, UserGame
+from apps.Auth.models import User
 
 import apps.Dashboard.tools as tools
 
@@ -11,13 +12,14 @@ logger = logging.getLogger(__name__)
 
 
 class HistoryView(TemplateView):
-    template_name = "histo.html"
+    template_name = "Profile/GameHistory.html"
 
-    def get(self, request):
-        parties = tools.party_played(request.user)
-        opponents = tools.find_my_opponent(key=parties, me=request.user)
+    def get(self, request, _id: int):
+        target = User.objects.get(id=_id)
+        parties = tools.party_played(target)
+        opponents = tools.find_my_opponent(key=parties, me=target)
         ordered_party = tools.ordered_party(
-            opponent_key=opponents, me=request.user
+            opponent_key=opponents, me=target
         )
         context = tools.data_constructor(ordered_party)
         for k, items in context.items():
@@ -30,7 +32,7 @@ class HistoryView(TemplateView):
 
 
 class BoardView(TemplateView):
-    template_name = "board.html"
+    template_name = "Game/Board.html"
 
     def get(self, request, _id: int):
         try:

@@ -55,6 +55,8 @@ const ROUTE = {
   SIGNOUT: "/auth/signout/",
   SETTINGS: "/auth/settings/",
   PROFILE: "/user/profile/",
+  GAMELIST: "/dash/history/",
+  GAMEBOARD: "/dash/board/",
   SKINS: "/user/skins/",
   FRIENDS_PROFILE: "/friends/profile/",
   FRIENDS: "/friends/list/",
