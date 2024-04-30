@@ -36,11 +36,13 @@ def ordered_party(opponent_key: list, me: User) -> dict:
 
 def data_constructor(data: dict) -> dict:
     token = dict()
-    index: int = 0
-    for item, value in data.items():
-        key = 'match ' + str(index)
-        token[key] = value
-        index = index + 1
+    index: int = len(data) - 1
+    ref: int = 0
+    while index >= 0:
+        key = 'match ' + str(ref)
+        token[key] = data.get(str(index))
+        ref += 1
+        index -= 1
     return token
 
 
