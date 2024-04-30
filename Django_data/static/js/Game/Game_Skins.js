@@ -37,16 +37,23 @@ function initRotatedImage(imgSrc, isLeftPaddle) {
   };
 }
 
-/*function parseUserInfos(infos) {
-  try {
-    GameInfos.Ball.url = infos.ball;
-    GameInfos.Background.url = infos.ball;
-    GameInfos.PlayerR.url = infos.paddleR;
-    GameInfos.PlayerR.name = infos.nameR;
-    GameInfos.PlayerL.url = infos.paddleL;
-    GameInfos.PlayerL.name = infos.nameL;
-  } catch (err) {
-    console.error("Error: ", err);
+function parseUserInfos(infos) {
+  GameInfos.Ball.url = infos.my_ball;
+  GameInfos.Background.url = infos.my_background;
+  if (infos.num === 1) {
+    GameInfos.PlayerR.srcImg = `/static/${infos.my_avatar}`;
+    GameInfos.PlayerR.srcPaddle = `/static/${infos.my_paddle}`;
+    GameInfos.PlayerR.name = infos.my_name;
+    GameInfos.PlayerL.srcImg = infos.opponent_avatar;
+    GameInfos.PlayerL.srcPaddle = infos.opponent_paddle;
+    GameInfos.PlayerL.name = infos.opponent_name;
+  } else {
+    GameInfos.PlayerR.srcImg = infos.opponent_avatar;
+    GameInfos.PlayerR.srcPaddle = infos.opponent_paddle;
+    GameInfos.PlayerR.name = infos.opponent_name;
+    GameInfos.PlayerL.srcImg = infos.my_avatar;
+    GameInfos.PlayerL.srcPaddle = infos.my_paddle;
+    GameInfos.PlayerL.name = infos.my_name;
   }
 }
 
@@ -54,10 +61,6 @@ function setGameScreen() {
   GameInfos.Ball.img = new Image();
   GameInfos.Ball.img.src = GameInfos.Ball.url;
 
-  document
-    .getElementById("MyCanvas")
-    .setAttribute("background-image", `url('${GameInfos.Background.url}')`);
-
   GameInfos.PlayerR.canvas = initRotatedImage(GameInfos.PlayerR.url, false);
   GameInfos.PlayerL.canvas = initRotatedImage(GameInfos.PlayerL.url, true);
-}*/
+}

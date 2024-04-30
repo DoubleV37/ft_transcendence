@@ -1,5 +1,5 @@
 function drawPaddleR (y) {
-  if (imgPaddleR.isInitialized()) {
+  if (GameInfos.PlayerR.canvas.isInitialized()) {
     // Calculer les coordonnées exactes pour le dessin du paddle droit
     let x = gameCanvas.canvas.width - (gameCanvas.canvas.width * 50 / 1200) - (gameCanvas.canvas.height * 25 / 900) + (gameCanvas.canvas.height * 25 / 900); // Prend en compte la largeur du paddle
     let height = gameCanvas.paddle2Height;
@@ -12,7 +12,7 @@ function drawPaddleR (y) {
     width = Math.round(width);
     height = Math.round(height);
 
-    gameCanvas.ctx.drawImage(imgPaddleR.canvas, x, deltaY, width, height);
+    gameCanvas.ctx.drawImage(GameInfos.PlayerR.canvas, x, deltaY, width, height);
   }
 }
 
@@ -39,12 +39,12 @@ function drawBallXY (x, y) {
   const ballY = y * gameCanvas.canvas.height;
 
   // Assurez-vous que l'image est chargée avant de la dessiner
-  if (imgBall.complete) {
+  if (GameInfos.Ball.img.complete) {
     gameCanvas.ctx.save();
     gameCanvas.ctx.beginPath();
     gameCanvas.ctx.arc(ballX, ballY, gameCanvas.ballRadius, 0, Math.PI * 2);
     gameCanvas.ctx.clip();
-    gameCanvas.ctx.drawImage(imgBall, ballX - gameCanvas.ballRadius, ballY - gameCanvas.ballRadius, gameCanvas.ballRadius * 2, gameCanvas.ballRadius * 2);
+    gameCanvas.ctx.drawImage(GameInfos.Ball.img, ballX - gameCanvas.ballRadius, ballY - gameCanvas.ballRadius, gameCanvas.ballRadius * 2, gameCanvas.ballRadius * 2);
     gameCanvas.ctx.restore();
   }
 }

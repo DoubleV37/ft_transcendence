@@ -74,12 +74,14 @@ let GameInfos = {
     url: ""
   },
   PlayerR: {
-    src: "", // img url
+    srcImg: "", // img url
+    srcPaddle: "",// img url
     canvas: null, // img obj
     name: ""
   },
   PlayerL: {
-    src: "", // img url
+    srcImg: "",
+    srcPaddle: "",// img url
     canvas: null, // img obj
     name: ""
   }

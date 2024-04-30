@@ -66,6 +66,7 @@ function receive_data (e) {
     return EndGame(`${data.winner} won!`);
   }
   if (data.message === "opponent") {
+    console.log("hello");
     gameCanvas.opponent = data.opponent;
     gameCanvas.num = data.num;
     if (gameCanvas.num === 1) {

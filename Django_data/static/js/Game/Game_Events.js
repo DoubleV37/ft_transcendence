@@ -31,13 +31,12 @@ function game_DelEvents () {
 }
 
 function SetTheGame (event) {
-  // const data = JSON.parse(event.data);
+  const data = JSON.parse(event.data);
 
-  // Set the differents infos of the Game
-  // Player name, profilePictures, skins ...
-  // if (data.context === "GameInfos") {
-  // parseUserInfos(data);
-  // setGameScreen();
+  parseUserInfos(data);
+  setGameScreen();
+
+  console.log(GameInfos);
   gameSocket.removeEventListener("message", SetTheGame);
   gameSocket.addEventListener("message", receive_data);
   document.addEventListener("keyup", keyUp);
