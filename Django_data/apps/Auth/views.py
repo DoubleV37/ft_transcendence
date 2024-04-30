@@ -137,20 +137,12 @@ def my_settings(request):
         }
 
         if request.method == "POST":
-            logger.info(f"{' SETTINGS ':#^20}")
             name = My_Name(request.POST, instance=my_user)
             mail = My_Mail(request.POST, instance=my_user)
             pswd = My_Psswd(request.POST, instance=my_user)
             avatar = My_Avatar(request.POST, request.FILES, instance=my_user)
             t_name = My_Tournamentname(request.POST, instance=my_user)
             delete_avatar = DeleteAvatar(request.POST)
-
-            if "avatar_button" in request.POST:
-                if avatar.is_valid():
-                    avatar.save()
-                    response = {"success": True}
-                else:
-                    response = {"success": False, "logs": "Avatar Error"}
 
             if "avatar_delete" in request.POST:
                 if delete_avatar.is_valid():
@@ -164,6 +156,9 @@ def my_settings(request):
                 else:
                     response = {"success": False, "logs": "Avatar not deleted"}
 
+            response = validator_fct(
+                avatar, "avatar_button", request, response
+            )
             response = validator_fct(name, "name_button", request, response)
             response = validator_fct(
                 t_name, "t_name_button", request, response)
