@@ -35,12 +35,12 @@ window.addEventListener("popstate", async function (event) {
   }
   del_current_event();
   const elem = document.getElementById("titleContent").getAttribute("data-content");
-  if (elem === "GAME_SOLO" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
-	const targetNode = document.querySelector('#content');
-	const config = { childList: true, subtree: true };
+  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
+    const targetNode = document.querySelector("#content");
+    const config = { childList: true, subtree: true };
 
-	observer.observe(targetNode, config);
-	}
+    observer.observe(targetNode, config);
+  }
   header_DelEvents();
   await del_modal();
   if (event.state == null) {
@@ -60,13 +60,13 @@ async function loadPage (url) {
     history.pushState({ section: url }, "", url);
   }
   const elem = document.getElementById("titleContent").getAttribute("data-content");
-  if (elem === "GAME_SOLO" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
-	const targetNode = document.querySelector('#content');
-	const config = { childList: true, subtree: true };
+  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
+    const targetNode = document.querySelector("#content");
+    const config = { childList: true, subtree: true };
 
-	observer.observe(targetNode, config);
-	}
-	del_current_event();
+    observer.observe(targetNode, config);
+  }
+  del_current_event();
   await changeSection(url, "#content");
 }
 

@@ -83,7 +83,13 @@ function parameters_SetPowerUp (event) {
   }
 }
 
-function parameters_StartGame () {
+async function parameters_StartGame () {
+  if (GameParams.type === "local" || GameParams.opponent === "ai") {
+	await loadPage(ROUTE.GAME_LOCAL);
+  }
+  else {
+	await loadPage(ROUTE.GAME_MATCH);
+  }
   const Params = JSON.stringify(GameParams);
   console.log(Params);
 }

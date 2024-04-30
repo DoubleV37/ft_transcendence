@@ -11,15 +11,16 @@
 	{% include "FriendList/FriendsList.html" %}
 
 	<div id="content">
+
 		<div id="overlay">
-			<div class="mid midcolumn flowAnimation">
-				<div id="titleContent" data-content="GAME_SOLO"></div>
+			<div class="midGame midcolumn flowAnimation">
+				<div id="titleContent" data-content="GAME_LOCAL"></div>
 				<div class="section-score">
 					<div class="conteneur">
 						<div class="flex-column">
 							<div id="GAME_user">
-								<img id="HEADER_ProfilePic" class="ProfilePic header-profilePic profilePic-left" src="{{ profil_picture }}" alt="Very basic user"></img>
-								<h1 id="HEADER_username">{{ username }}</h1>
+								<img id="HEADER_GameProfilePicLeft" class="ProfilePic header-profilePic profilePic-left" src="{{ profil_picture }}" alt="Very basic user"></img>
+								<h1 class="username" id="GAME_username_left"></h1>
 						  </div>
 						</div>
 
@@ -30,17 +31,24 @@
 						</div>
 						<div class="flex-column">
 						<div id="GAME_user">
-								<h1 id="HEADER_username">{{ username }}</h1>
-								<img id="HEADER_ProfilePic" class="ProfilePic header-profilePic profilePic-right" src="{{ profil_picture }}" alt="Very basic user"></img>
+								<h1 class="username" id="GAME_username_right">{{ username }}</h1>
+								<img id="HEADER_GameProfilePicRight" class="ProfilePic header-profilePic profilePic-right" src="{{ profil_picture }}" alt="Very basic user"></img>
 						  </div>
 						</div>
 					</div>
 				</div>
+					<div id="endGameScreen" style="display: none;">
+						<img src="{%static 'images/shiny-charmander-pokemon.gif'%}"></img>
+						<p id="endGameMessage"></p>
+						<button id="confirmEndGame" class="ButtonLayout ButtonNeon">End Game</button>
+					</div>
 				<canvas id="MyCanvas">
 					<p>Description of the canvas for those unable to view it.</p>
 				</canvas>
 			</div>
 		</div>
 	</div>
+
+
   </body>
 </html>

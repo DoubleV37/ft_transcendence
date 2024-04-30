@@ -38,6 +38,13 @@ let GameParams = {
   powerup: false,
 };
 
+let iaMemory = {
+  pos: 450,
+  target: 450,
+  step: 20,
+  service : false
+};
+
 const ROUTE = {
   HOME: "/",
   HEADER: "/header",
@@ -48,6 +55,7 @@ const ROUTE = {
   SIGNOUT: "/auth/signout/",
   SETTINGS: "/auth/settings/",
   PROFILE: "/user/profile/",
+  SKINS: "/user/skins/",
   FRIENDS_PROFILE: "/friends/profile/",
   FRIENDS: "/friends/list/",
   REQUESTS: "/friends/request/",
@@ -57,9 +65,9 @@ const ROUTE = {
   JWTREFRESH: "/auth/jwt/refresh/",
   GAME_PARAMETERS: "/game/parameters/",
   GAME_MODES: "/game/modes/",
-  GAME_SOLO: "/game/solo/",
   GAME_MATCH: "/game/matchmaking/",
   GAME_ROOM:"/game/", //`${ROUTE.GAME_ROOM}${id...}/`
+  GAME_LOCAL: "/game/solo/",
 };
 
 // INIT POWERUP
@@ -71,7 +79,10 @@ imgPowerUp.src = imgPowerUpSrc;
 // INIT KEYS
 let keyStates = {
   ArrowUp: false,
-  ArrowDown: false
+  ArrowDown: false,
+  w: false,
+  s: false,
+  space: false
 };
 
 // INIT CANVAS
@@ -83,13 +94,18 @@ let gameCanvas = {
   height: 0,
   paddle1Height: 0,
   paddle2Height: 0,
-  powerup: true,
+  powerup: false,
   powerupY: 0,
   powerupX: 0,
   powerupsize: 0,
   ballRadius: 0,
   opponent: "",
-  num: 0
+  num: 0,
+  inGame: true
 };
 
+//MATCHMAKING SCREEN
+let dots = 0;
+
 let gameSocket = null;
+let gameStop = true;
