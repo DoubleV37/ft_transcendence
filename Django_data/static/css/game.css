@@ -433,6 +433,10 @@ ul, li {
 	margin-bottom: 1em;
 }
 
+#NbRounds {
+	display: none;
+}
+
 .winner-loser {
 	display: flex;
 	width: 100%;

@@ -41,10 +41,10 @@
                   
                     <div class="pk-wrapper">
                       <div id="left" class=" rantangle left">
-                        <span>75</span>
+                        <span id="score-left">{{ me.score }}</span>
                       </div>
                       <div id="right" class="rantangle right">
-                        <span>25</span>
+                        <span id="score-right">{{ opponent.score }}</span>
                       </div>
                     </div>
                   
@@ -99,14 +99,16 @@
                   </div>
 
                   <div class="section-stats">
-                    <span class="stats-title">Wall bounces : 123</span>
+                    <span class="stats-title">Wall bounces: {{ game.bounce }}</span>
                   </div>
                   <div class="section-stats">
-                    <span class="stats-title">Max exchanges : 28</span>
+                    <span class="stats-title">Max exchanges: {{ game.max_exchange }}</span>
                   </div>
                   <div class="section-stats">
-                    <span class="stats-title">Duration : 223 seconds</span>
+                    <span class="stats-title">Duration: {{ game.duration }} secs</span>
                   </div>
+
+                  <div id="NbRounds">{{ game.nb_rounds }}</div>
           </div>
         </div>
       </div>
@@ -116,28 +118,42 @@
     const elL = document.getElementById("left");
     const elR = document.getElementById("right");
     
-    let scoreL = 3; // Score du joueur de gauche
-    let scoreR = 2; // Score du joueur de droite
-    const totalRounds = 5; // Nombre total de rounds dans la partie
+// Récupération du score du joueur de gauche
+let scoreL = document.getElementById('score-left').textContent;
+// Récupération du score du joueur de droite
+let scoreR = document.getElementById('score-right').textContent;
+
+// Conversion des scores en nombres si nécessaire
+scoreL = parseInt(scoreL, 10);
+scoreR = parseInt(scoreR, 10);
+
+  let totalRounds = document.getElementById('NbRounds').textContent;
+  totalRounds = parseInt(totalRounds, 10);
     
-    // Calculer le pourcentage de progression pour chaque joueur
-    function calculateProgress(score, totalRounds) {
-        return (score / totalRounds) * 100;
-    }
-    
-    // Mettre à jour la barre de progression pour chaque joueur
-    function updateProgressBar(score, progressBarId) {
-        let progressPercentage = calculateProgress(score, totalRounds);
-        progressBarId.style.width = `${progressPercentage}%`;
-    }
-    
-    // Mettre à jour les barres de progression
-    updateProgressBar(scoreL, elL);
-    updateProgressBar(scoreR, elR);
-    
-    // Afficher les scores
-    elL.children[0].innerText = scoreL;
-    elR.children[0].innerText = scoreR;
+  // Calculer le pourcentage de progression pour chaque joueur
+function calculateProgress(score, totalRounds) {
+  // Si le score est 0, retourner 1% pour indiquer une petite progression
+  if (score === 0) {
+      return 5;
+  }
+  // Sinon, calculer le pourcentage normal
+  return (score / totalRounds) * 100;
+}
+
+// Mettre à jour la barre de progression pour chaque joueur
+function updateProgressBar(score, progressBarId) {
+  let progressPercentage = calculateProgress(score, totalRounds);
+  progressBarId.style.width = `${progressPercentage}%`;
+}
+
+// Mettre à jour les barres de progression
+updateProgressBar(scoreL, elL);
+updateProgressBar(scoreR, elR);
+
+// Afficher les scores
+elL.children[0].innerText = scoreL;
+elR.children[0].innerText = scoreR;
+
   </script>
   </body>
 </html>
