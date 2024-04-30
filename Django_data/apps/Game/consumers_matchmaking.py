@@ -50,7 +50,7 @@ class MatchmakingPongConsumer(AsyncWebsocketConsumer):
 
 	@database_sync_to_async
 	def add_to_matchmaking_pool(self):
-		MatchmakingUser.objects.create(channel_name=self.channel_name)
+		MatchmakingUser.objects.create(channel_name=self.channel_name, user=self.scope["user"])
 
 	@database_sync_to_async
 	def remove_from_matchmaking_pool(self):
