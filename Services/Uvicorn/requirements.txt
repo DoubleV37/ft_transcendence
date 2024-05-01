@@ -13,3 +13,4 @@ django-otp>=0.10.0
 django-two-factor-auth>=1.10.0
 
 python-logstash
+python-json-logger

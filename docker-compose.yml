@@ -1,23 +1,22 @@
 services:
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
+    build: Services/Elasticsearch
     restart: always
+    networks:
+      - elastic
     ports:
       - "9200:9200"
       - "9300:9300"
-    environment:
-      - discovery.type=single-node
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     healthcheck:
-      test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -vq '\"status\":\"red'"]
+      test: ["CMD-SHELL", "curl -s https://localhost:9200/_cluster/health | grep -vq '\"status\":\"red'"]
       interval: 30s
       timeout: 30s
       retries: 3
 
   logstash_nginx:
     container_name: logstash_nginx
-    image: docker.elastic.co/logstash/logstash:7.16.1
+    image: docker.elastic.co/logstash/logstash:8.13.2
     restart: always
     volumes:
       - ./Services/Logstash/logstash_nginx.conf:/usr/share/logstash/pipeline/logstash.conf
@@ -29,7 +28,7 @@ services:
 
   logstash_gunicorn:
     container_name: logstash_gunicorn
-    image: docker.elastic.co/logstash/logstash:7.16.1
+    image: docker.elastic.co/logstash/logstash:8.13.2
     restart: always
     volumes:
       - ./Services/Logstash/logstash_gunicorn.conf:/usr/share/logstash/pipeline/logstash.conf
@@ -44,17 +43,17 @@ services:
     build: Services/Rsyslog
     restart: always
     ports:
-      - "514:514"
-      - "514:514/udp"
+      - "5142:5142"
+      - "5142:5142/udp"
 
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.16.1
+    build: Services/Kibana
     restart: always
+    networks:
+      - elastic
     ports:
       - "5601:5601"
-    environment:
-      - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
     depends_on:
       - elasticsearch
 
@@ -144,3 +143,7 @@ volumes:
       type: none
       o: bind
       device: Django_data/avatars
+
+networks:
+  elastic:
+    driver: bridge

@@ -1,0 +1,18 @@
+# elasticsearch.yml
+
+# Nom du cluster auquel le nœud appartient
+cluster.name: my_cluster
+
+discovery.type: single-node
+
+# Nom du nœud
+node.name: node-1
+
+# Chemin d'accès réseau du nœud
+network.host: 0.0.0.0
+
+# Port pour les communications HTTP
+http.port: 9200
+
+# Configuration du logging
+logger.level: info
