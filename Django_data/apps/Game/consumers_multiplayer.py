@@ -7,7 +7,9 @@ from .pong import Pong as Pong_game
 from .models import Games, UserGame
 from django.utils import timezone
 from channels.exceptions import StopConsumer
+import logging
 
+logger = logging.getLogger(__name__)
 
 class MultiPongConsumer(AsyncWebsocketConsumer):
 
@@ -20,10 +22,16 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
         await self.start_game()
 
     async def disconnect(self, close_code):
+        logger.debug(f"{self.scope['user'].username = }")
         game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
+        logger.debug("Hello 0 ?")
+        logger.debug(f"{game.running = }")
+        logger.debug(f"{game.nb_users = }")
         if game.nb_users == 2:
             game.nb_users = 19
+            logger.debug("Hello 1 ?")
             if game.running == True:
+                logger.debug("Hello 2 ?")
                 game.running = False
                 await self.channel_layer.group_send(
                     self.room_group_name,
