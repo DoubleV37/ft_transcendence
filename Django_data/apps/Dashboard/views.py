@@ -5,6 +5,8 @@ from django.http import JsonResponse, HttpResponse
 from apps.Game.models import Games, UserGame
 from apps.Auth.models import User
 
+import apps.Dashboard.tools as tools
+
 import logging
 logger = logging.getLogger(__name__)
 
