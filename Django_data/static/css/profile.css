@@ -758,12 +758,13 @@ tr:hover {
 }
 
 .history {
-    font-size: 4rem !important;
+    font-size: 1.5rem !important;
     border-bottom: none !important;
-    margin-bottom: 1rem !important;
+    margin-bottom: 1.5rem !important;
     line-height: 0.9 !important;
+    font-family: 'Kodchasan' !important;
+    margin-top: 1em !important;
 }
-
 
 .button {
     padding: 4px 8px;

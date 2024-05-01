@@ -92,6 +92,7 @@ function launchSectionHandler (element) {
       skins_SetEvents();
       break;
     case "GAMEBOARD_PAGE":
+      gameboard_SetEvents();
       break;
     default:
       throw new Error(

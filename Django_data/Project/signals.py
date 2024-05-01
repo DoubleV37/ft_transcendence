@@ -7,5 +7,5 @@ def create_placeholder_user(sender, **kwargs):
 	User = get_user_model()
 	if not User.objects.filter(username='Guest').exists():
 		User.objects.create(username='Guest', email='guest@guest.fr')
-	if not User.objects.filter(username='IA').exists():
-		User.objects.create(username='IA', email='ia@ia.fr', avatar='ForbiddenDeletion/AI_Cat.png')
+	if not User.objects.filter(username='IA-Ochen').exists():
+		User.objects.create(username='IA-Ochen', email='ia@ia.fr', avatar='ForbiddenDeletion/AI_Cat.png')
