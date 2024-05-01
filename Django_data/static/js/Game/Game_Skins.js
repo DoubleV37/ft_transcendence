@@ -1,14 +1,4 @@
-const imgBallSrc = "/static/images/logoIcon.png";
-const imgBall = new Image();
-imgBall.src = imgBallSrc;
-
-const imgSrcPaddleR = "/static/images/Paddle_Grass.png";
-const imgPaddleR = initRotatedImage(imgSrcPaddleR, false); // false pour le paddle droit
-
-const imgSrcPaddleL = "/static/images/Paddle_Grass.png";
-const imgPaddleL = initRotatedImage(imgSrcPaddleL, true); // true pour le paddle gauche
-
-function initRotatedImage(imgSrc, isLeftPaddle) {
+function initRotatedImage (imgSrc, isLeftPaddle) {
   const img = new Image();
   let initialized = false;
   const tempCanvas = document.createElement("canvas");
@@ -33,13 +23,14 @@ function initRotatedImage(imgSrc, isLeftPaddle) {
     canvas: tempCanvas,
     isInitialized: function () {
       return initialized;
-    },
+    }
   };
 }
 
-function parseUserInfos(infos) {
+function parseUserInfos (infos) {
   GameInfos.Ball.url = infos.my_ball;
   GameInfos.Background.url = infos.my_background;
+  console.log(infos);
   if (infos.num === 1) {
     GameInfos.PlayerR.srcImg = infos.my_avatar;
     GameInfos.PlayerR.srcPaddle = infos.my_paddle;
@@ -57,7 +48,7 @@ function parseUserInfos(infos) {
   }
 }
 
-function setGameScreen() {
+function setGameScreen () {
   GameInfos.Ball.img = new Image();
   GameInfos.Ball.img.src = GameInfos.Ball.url;
 
@@ -67,9 +58,12 @@ function setGameScreen() {
   document
     .getElementById("HEADER_GameProfilePicRight")
     .setAttribute("src", GameInfos.PlayerR.srcImg);
-  //document
-  //  .getElementById("MyCanvas")
-  //  .setAttribute("background-image", `url(${GameInfos.background.url})`);
+  document
+    .getElementById("GAME_username_left")
+    .innerHTML = GameInfos.PlayerL.name;
+  document
+    .getElementById("GAME_username_right")
+    .innerHTML = GameInfos.PlayerR.name;
   GameInfos.PlayerR.canvas = initRotatedImage(GameInfos.PlayerR.srcPaddle, false);
   GameInfos.PlayerL.canvas = initRotatedImage(GameInfos.PlayerL.srcPaddle, true);
 }

@@ -1,5 +1,4 @@
 function game_SetEvents () {
-  // document.addEventListener('resize', ResizeCanvas);
   gameStop = false;
   gameSocket = new WebSocket("wss://" + window.location.host + "/wss" + window.location.pathname);
   gameSocket.addEventListener("message", SetTheGame);
@@ -36,20 +35,16 @@ function SetTheGame (event) {
   parseUserInfos(data);
   setGameScreen();
 
-  console.log(GameInfos);
   gameSocket.removeEventListener("message", SetTheGame);
   gameSocket.addEventListener("message", receive_data);
   document.addEventListener("keyup", keyUp);
   document.addEventListener("keydown", keyDown);
   update();
-  // }
 }
 
 function OnOpenCallback () {
   console.log("The connection was setup successfully !");
-  // LoadingState = true;
   gameSocket.addEventListener("message", SetTheGame);
-  const name = document.getElementById("titleContent").getAttribute("data-content");
 
   if (window.location.pathname === "/game/solo/") {
     console.log(GameParams);
@@ -93,11 +88,3 @@ function init_canvas () {
   gameCanvas.canvas.width = gameCanvas.width;
   gameCanvas.canvas.height = gameCanvas.height;
 }
-
-// function ResizeCanvas() {
-//  style = getComputedStyle(canvas);
-//  width = parseInt(style.getPropertyValue('width'), 10);
-//  height = parseInt(style.getPropertyValue('height'), 10);
-//  canvas.width = width;
-//  canvas.height = height;
-// }

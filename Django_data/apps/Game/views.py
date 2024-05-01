@@ -32,6 +32,7 @@ def multiGamePage(request, room_name):
         return redirect("/")
     context = {
         "room_name": room_name,
+        "background": request.user.skin_background,
         "username": request.user.username,
         "profil_picture": request.user.avatar.url,
     }
