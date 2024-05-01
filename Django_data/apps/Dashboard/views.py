@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import JsonResponse, HttpResponse
 
@@ -22,13 +22,7 @@ class HistoryView(TemplateView):
             opponent_key=opponents, me=target
         )
         context = tools.data_constructor(ordered_party)
-        for k, items in context.items():
-            if items.get('id') is not None:
-                logger.debug(f"{items.get('id').id = }")
         return render(request, self.template_name, {'context': context})
-
-    def post(self, request):
-        pass
 
 
 class BoardView(TemplateView):
@@ -38,8 +32,5 @@ class BoardView(TemplateView):
         try:
             context = tools.party_sender(key=_id, me=request.user)
         except Exception as exc:
-            return JsonResponse({'success': False, 'logs': 'Bad permission'})
+            return render(request, self.template_name, {'logs': 'error'})
         return render(request, self.template_name, context=context)
-
-    def post(self, request):
-        pass

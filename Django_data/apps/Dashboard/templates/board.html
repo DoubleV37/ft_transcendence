@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <body>
-    <h1>Board:</h1>
-    <td> | GAME: {{ game }} | </td>
-    <td> me = {{ me.user.username }} | </td>
-    <td> opponent = {{ opponent.user.username }} |</td>
+    {% if logs %}
+      <p>Error</p>
+    {% else %}
+      <h1>Board:</h1>
+      <td> | GAME: {{ game }} | </td>
+      <td> me = {{ me.user.username }} | </td>
+      <td> opponent = {{ opponent.user.username }} |</td>
+    {% endif %}
   </body>
 </html>

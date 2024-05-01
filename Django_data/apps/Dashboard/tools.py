@@ -1,6 +1,3 @@
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
-
 from apps.Auth.models import User
 from apps.Game.models import Games, UserGame
 
