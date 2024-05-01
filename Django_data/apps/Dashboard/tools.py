@@ -43,10 +43,28 @@ def data_constructor(data: dict) -> dict:
     return token
 
 
+def otherview(key: int) -> dict:
+    index: bool = True
+    opponent = None
+    myself = None
+    game = Games.objects.get(id=key)
+    tmp = list(UserGame.objects.filter(game=key))
+    for player in tmp:
+        if index:
+            opponent = player
+        else:
+            myself = player
+        index = False
+    return {'me': myself, 'game': game, 'opponent': opponent}
+
+
 def party_sender(key: int, me: User) -> dict:
     try:
         game = Games.objects.get(id=key)
-        myself = UserGame.objects.get(game=key, user=me)
+        try:
+            myself = UserGame.objects.get(game=key, user=me)
+        except:
+            return otherview(key=key)
         tmp = list(UserGame.objects.filter(game=key).exclude(user=me))
     except:
         raise
