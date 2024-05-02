@@ -66,6 +66,7 @@ let GameParams = {
 };
 
 let GameInfos = {
+  num: 0,
   Ball: {
     url: "", // img url
     img: null // img obj

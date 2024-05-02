@@ -27,7 +27,8 @@ function initRotatedImage (imgSrc, isLeftPaddle) {
   };
 }
 
-function parseUserInfos (infos) {
+async function parseUserInfos (infos) {
+  GameInfos.num = infos.num;
   GameInfos.Ball.url = infos.my_ball;
   GameInfos.Background.url = infos.my_background;
   console.log(infos);
@@ -48,7 +49,7 @@ function parseUserInfos (infos) {
   }
 }
 
-function setGameScreen () {
+async function setGameScreen () {
   GameInfos.Ball.img = new Image();
   GameInfos.Ball.img.src = GameInfos.Ball.url;
 

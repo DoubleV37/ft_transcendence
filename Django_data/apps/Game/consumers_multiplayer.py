@@ -11,6 +11,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class MultiPongConsumer(AsyncWebsocketConsumer):
 
     async def connect(self):
@@ -35,7 +36,9 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
                 game.running = False
                 await self.channel_layer.group_send(
                     self.room_group_name,
-                    {"type": "game_stop", "error": {"message": "Game stopped"}},
+                    {"type": "game_stop",
+                     "error": {"message": "Game stopped",
+                               "name": self.scope['user'].username}}
                 )
             await database_sync_to_async(game.save)()
         elif game.nb_users == 0 or game.nb_users == 1:
@@ -56,7 +59,10 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
         )
         if created:
             self.user_num = 1
+            logger.debug(f"{ self.username = } - init_db - 1")
+
         else:
+            logger.debug(f"{ self.username = } - init_db - 2")
             self.user_num = 2
             if self.game.nb_users == 19 or self.game.nb_users == 2:
                 await self.channel_layer.group_send(
@@ -66,6 +72,7 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
         await sync_to_async(UserGame.objects.create)(
             user=self.scope["user"], game=self.game
         )
+        logger.debug(f"{ self.username = } - init_db_game OK")
 
     async def receive(self, text_data):
         data = json.loads(text_data)
@@ -137,12 +144,16 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
                 self.room_group_name,
                 {"type": "game_stop", "error": {"message": "Game stopped"}},
             )
-        my_user = self.scope['user']
+        my_user = self.scope["user"]
         if self.user_num == 1:
+            logger.info(f"{my_user.username = } - start_game - 1")
             enough_users = await self.wait_opponent()
             if not enough_users:
+                logger.info(f"{my_user.username = } - not enough user - 1")
                 return
+            game.nb_users = 2
             self.opponent = await self.set_opponent()
+            logger.info(f"{self.opponent.username = } - opponenent name - 1")
             await self.send(
                 text_data=json.dumps(
                     {
@@ -155,15 +166,18 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
                         "my_ball": my_user.skin_ball,
                         "my_paddle": my_user.skin_paddle,
                         "my_background": my_user.skin_background,
-                        "my_avatar": my_user.avatar.url
+                        "my_avatar": my_user.avatar.url,
                     }
                 )
             )
+            game.running = True
+            await database_sync_to_async(game.save)()
             asyncio.create_task(self.run_game())
         else:
+            logger.info(f"{my_user.username = } - start_game - 2")
             game.nb_users = 2
-            await database_sync_to_async(game.save)()
             self.opponent = await self.set_opponent()
+            logger.info(f"{self.opponent.username = } - opponenent name - 2")
 
             await self.send(
                 text_data=json.dumps(
@@ -177,10 +191,13 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
                         "my_ball": my_user.skin_ball,
                         "my_paddle": my_user.skin_paddle,
                         "my_background": my_user.skin_background,
-                        "my_avatar": my_user.avatar.url
+                        "my_avatar": my_user.avatar.url,
                     }
                 )
             )
+        await database_sync_to_async(game.save)()
+        logger.info(f"{game.nb_users = } - start_game over - nb_users")
+        logger.info(f"{self.opponent.username = } - start_game over")
 
     async def set_opponent(self):
         opponents = await sync_to_async(list)(UserGame.objects.filter(game=self.game))
@@ -194,8 +211,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps(event["error"]))
 
     async def run_game(self):
-        if self.user_num == 2:
-            return
         loop = time.time()
         while self.pong.running:
             loop += 1 / 240

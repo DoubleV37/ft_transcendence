@@ -53,11 +53,15 @@ function iaMove () {
 function receive_data (e) {
   const data = JSON.parse(e.data);
 
-  if (data.message === "Game stopped" && gameCanvas.inGame === true) {
+  console.log(`${data.message}`);
+  if (data.message === "Game stopped") {
+    console.log("Aled - 3 ");
     if (gameCanvas.num === 1) {
+      console.log("Aled - 4 ");
       gameSocket.send(JSON.stringify({ message: "stopGame" }));
     }
-    return EndGame("You lost!");
+    const name = GameInfos.num === 1 ? GameInfos.PlayerL.name : GameInfos.PlayerR.name;
+    return EndGame(`${name} has left the game!`);
   } else if (data.message === "win") {
     return EndGame("You won!");
   } else if (data.message === "lose") {
@@ -65,25 +69,6 @@ function receive_data (e) {
   } else if (data.message === "game_finish") {
     return EndGame(`${data.winner} won!`);
   }
-  if (data.message === "opponent") {
-    gameCanvas.opponent = data.opponent;
-    gameCanvas.num = data.num;
-    if (gameCanvas.num === 1) {
-      const leftPlayer = document.getElementById("GAME_username_left");
-      leftPlayer.innerHTML = data.opponent;
-      const leftPlayerPic = document.getElementById("HEADER_GameProfilePicLeft");
-      leftPlayerPic.setAttribute("src", data.avatar);
-    } else if (gameCanvas.num === 2) {
-      const rightPlayer = document.getElementById("GAME_username_right");
-      rightPlayer.innerHTML = data.opponent;
-      const rightPlayerPic = document.getElementById("HEADER_GameProfilePicRight");
-      rightPlayerPic.setAttribute("src", data.avatar);
-      const leftPlayer = document.getElementById("GAME_username_left");
-      leftPlayer.innerHTML = data.myname;
-    }
-    return;
-  }
-
   if (data.message === "game_state") {
     const score1div = document.getElementById("score1div");
     const score2div = document.getElementById("score2div");
@@ -131,12 +116,14 @@ function EndGame (message) {
   const endGameMessage = document.getElementById("endGameMessage");
   const confirmEndGame = document.getElementById("confirmEndGame");
 
+  if (gameSocket != null) {
+    gameSocket.close();
+  }
   document.getElementById("MyCanvas").hidden = true;
   endGameMessage.textContent = message;
   endGameScreen.style.display = "flex";
   gameCanvas.inGame = false;
   confirmEndGame.onclick = function () {
-    gameSocket.close();
     loadPage(ROUTE.GAME_MODES);
     endGameScreen.style.display = "none";
   };
