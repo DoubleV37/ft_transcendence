@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.utils.text import slugify
 from apps.Twofa.models import UserTwoFA
+from apps.Dashboard.models import GlobalStats
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -25,11 +26,11 @@ class User(AbstractBaseUser):
     in_game = models.BooleanField(default=False)
 
     skin_ball = models.CharField(
-            default="ballCat", null=False)
+        default="ballCat", null=False)
     skin_paddle = models.CharField(
-            default="paddleGrass", null=False)
+        default="paddleGrass", null=False)
     skin_background = models.CharField(
-            default="backgroundForest", null=False)
+        default="backgroundForest", null=False)
 
     friends = models.ManyToManyField("self", blank=True)
 
@@ -51,4 +52,5 @@ class User(AbstractBaseUser):
 def update_profile_signal(sender, instance, created, **kwargs):
     if created:
         UserTwoFA.objects.create(user=instance)
+        GlobalStats.objects.create(user=instance)
     instance.to2fa.save()
