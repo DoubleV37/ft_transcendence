@@ -4,16 +4,16 @@
 server.host: "0.0.0.0"
 
 # Les URLs des instances Elasticsearch à utiliser pour toutes vos requêtes.
-elasticsearch.hosts: ["https://localhost:9200"]
+elasticsearch.hosts: ["https://elasticsearch:9200"]
 
 # Si votre Elasticsearch est protégé par une authentification basique, ces paramètres fournissent
 # le nom d'utilisateur et le mot de passe que le serveur Kibana utilise pour effectuer la maintenance
 # sur l'index Kibana au démarrage. Vos utilisateurs Kibana doivent toujours s'authentifier avec Elasticsearch,
 # qui est proxyé à travers le serveur Kibana.
-elasticsearch.username: "elasticW"
-elasticsearch.password: "1234"
+# elasticsearch.username: "elasticW"
+# elasticsearch.password: "1234"
 
-xpack.security.encryptionKey: "cacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaca"
+# xpack.security.encryptionKey: "cacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaca"
 
 # Configuration de logging
 

@@ -8,6 +8,8 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
+    environment:
+      - ELASTIC_PASSWORD=1234
     healthcheck:
       test: ["CMD-SHELL", "curl -s https://localhost:9200/_cluster/health | grep -vq '\"status\":\"red'"]
       interval: 30s
@@ -35,6 +37,8 @@ services:
     environment:
       - "ELASTICSEARCH_HOST=elasticsearch"
       - "ELASTICSEARCH_PORT=9200"
+      - "ELASTICSEARCH_USER=elastic"
+      - "ELASTICSEARCH_PASSWORD=1234"
     depends_on:
       - elasticsearch
 
