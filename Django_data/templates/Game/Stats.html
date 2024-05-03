@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  {% include "Home/head.html" %}
+  <body>
+    {% include "Profile/Avatar.html" %}
+    {% include "Profile/Profile.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header> 
+    <div id="content">
+      <div id="overlay">
+        <div class="mid midcolumn flowAnimation">
+          <div id="titleContent" data-content="STATS_PAGE"></div>
+          <div class="section-stats">
+            <h1 class="gameStats">Player Stats</h1>
+          </div>
+          
+                  <div class="section-stats">
+                    <span class="stats-title">Winrate: {{ win_rate }}</span>
+                    <img src="{%static 'images/duck-ducky.gif'%}"></img>
+                  </div>
+
+                  <div class="section-stats">
+                    <span class="stats-title">Nb. games played</span>
+                  </div>
+                  <div class="content-score">
+                  
+                    <div class="pk-wrapper">
+                      <div id="left" class=" rantangle left">
+                        <span id="score-left">{{ me.score }}</span>
+                      </div>
+                      <div id="right" class="rantangle right">
+                        <span id="score-right">{{ opponent.score }}</span>
+                      </div>
+                    </div>
+                  
+                  </div>
+
+                  <div class="section-stats">
+                    <span class="stats-title">Victory ratio</span>
+                  </div>
+                  <div class="content-score">
+                  
+                    <div class="pk-wrapper">
+                      <div id="left" class=" rantangle left">
+                        <span id="score-left">{{ me.score }}</span>
+                      </div>
+                      <div id="right" class="rantangle right">
+                        <span id="score-right">{{ opponent.score }}</span>
+                      </div>
+                    </div>
+                  
+                  </div>
+                    
+
+                  {% comment %} <div class="section-stats">
+                    <span class="stats-title">Nb Games: {{ nb_games }} secs</span>
+                  </div>
+                  <div class="section-stats">
+                    <span class="stats-title">regular_games: {{ regular_games }}</span>
+                  </div>
+                  <div class="section-stats">
+                    <span class="stats-title">tournament_games: {{ tournament_games }}</span>
+                  </div>
+                  <div class="section-stats">
+                    <span class="stats-title">victory: {{ victory }} secs</span>
+                  </div>
+                  <div class="section-stats">
+                    <span class="stats-title">defeat: {{ defeat }} secs</span>
+                  </div> {% endcomment %}
+                  <div class="section-stats">
+                    <span class="stats-title">Winned tournaments: {{ tournaments_winned }} secs</span>
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "Home/footer.html" %}
+  </body>
+</html>
+
+

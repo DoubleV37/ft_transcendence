@@ -12,7 +12,7 @@ class Pong():
 		self.player_pos = [450, 450]
 		self.player_size = [150, 150]
 		self.player_speed = 20
-		self.paddle_radius = 20 - (difficulty * -1)
+		self.paddle_radius = 15 - difficulty
 		self.ball_acceleration = 0.05
 		if random.randint(0,1) == 0:
 			self.engage = 1
@@ -108,7 +108,7 @@ class Pong():
 		dic_stats = {
 			"score1": self.point[0],
 			"score2": self.point[1],
-			"max_speed": [round(self.ball_max_speed[0] * 10, 1), round(self.ball_max_speed[1] * 10, 1)],
+			"max_speed": [round(self.ball_max_speed[0] * 5, 1), round(self.ball_max_speed[1] * 5, 1)],
 			"bounce": self.ball_bonce,
 			"max_exchange": self.max_exchange
 		}
@@ -126,15 +126,15 @@ class Pong():
 		if player == 0:
 			if 55 > self.ball_pos[0] > (55 + ( 2 * self.ball_speed[0])) and self.player_pos[0] - (self.player_size[0] / 2 + 10) < self.ball_pos[1] < self.player_pos[0] + (self.player_size[0] / 2 + 10):
 				self.ball_speed[0] *= -(1 + self.ball_acceleration)
-				if self.ball_speed[0] > 30:
-					self.ball_speed[0] = 30
+				if self.ball_speed[0] > 10:
+					self.ball_speed[0] = 10
 				self.ball_speed[1] = (self.ball_pos[1] - self.player_pos[0]) / self.paddle_radius
 				self.stats(player)
 		else:
 			if 1145 < self.ball_pos[0] < (1145 + ( 2 * self.ball_speed[0])) and self.player_pos[1] - (self.player_size[1] / 2 + 10) < self.ball_pos[1] < self.player_pos[1] + (self.player_size[1] / 2 + 10):
 				self.ball_speed[0] *= -(1 + self.ball_acceleration)
-				if self.ball_speed[0] < -30:
-					self.ball_speed[0] = -30
+				if self.ball_speed[0] < -10:
+					self.ball_speed[0] = -10
 				self.ball_speed[1] = (self.ball_pos[1] - self.player_pos[1]) / self.paddle_radius
 				self.stats(player)
 

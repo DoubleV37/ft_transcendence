@@ -87,18 +87,18 @@
                     </ul>
                     
                     <div class="charts">
-                      <span class="chart__title">Ball : max speed</span>
+                      <span class="chart__title">Ball : max speed in QQ*</span>
                       <div class="chart chart--dev">
                         <ul class="chart--horiz">
-                          <li class="chart__bar" style="width: 98%;">
-                            <span class="chart__label">
-                              {{ me.user.username }}
-                            </span>
+                          <span class="chart__label">
+                            {{ me.user.username }} - {{ me.max_speed }}
+                          </span>
+                          <li class="chart__bar" style="width: {{ me.max_speed }}%;">
                           </li>
-                          <li class="chart__bar" style="width: 50%;">
-                            <span class="chart__label">
-                              {{ opponent.user.username }}
-                            </span>
+                          <span class="chart__label">
+                            {{ opponent.user.username }} - {{ opponent.max_speed }}
+                          </span>
+                          <li class="chart__bar" style="width: {{ opponent.max_speed }}%;">
                           </li>
                         </ul>
                       </div>
@@ -113,6 +113,9 @@
                   </div>
                   <div class="section-stats">
                     <span class="stats-title">Duration: {{ game.duration }} secs</span>
+                  </div>
+                  <div class="section-stats">
+                    <span class="stats-legend">*Quantum Quirk (QQ): The peculiar and unpredictable behaviors exhibited by quantum entities within a specific spatial boundary per unit of time.</span>
                   </div>
 
                   <div id="NbRounds">{{ game.nb_rounds }}</div>

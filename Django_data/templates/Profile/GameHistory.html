@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <div id="GameListHistory">
   <div class="listHeaderContainer">	
     <h1 class="gameTitle history">Game history</h1>
   </div>
+  {% if context.items %}
   <div class="listItemContainer">
     <div class="table-container">
       <table>
@@ -15,26 +17,29 @@
             <th>Stats</th>
           </tr>
         </thead>
-        <tbody id="GameListHistory">
-          {% for key, items in context.items %}
-            <tr>
-              <td> {{ items.me.user.username }} </td>
-              <td> {{ items.opponent.user.username }} </td>
-              <td> 
-              {% if items.me.winner == True %}
-                winner
-              {% else %}
-                loser
-              {% endif %}
-              </td>
-              <td class="button-container">
-                <button class="button ButtonNeon" data-gameId="{{items.id.id}}">Stats</button>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <tbody id="GameListHistory">
+            {% for key, items in context.items %}
+                <tr>
+                    <td> {{ items.me.user.username }} </td>
+                    <td> {{ items.opponent.user.username }} </td>
+                    <td> 
+                    {% if items.me.winner == True %}
+                        winner
+                    {% else %}
+                        loser
+                    {% endif %}
+                    </td>
+                    <td class="button-container">
+                        <button class="button ButtonNeon" data-gameId="{{items.id.id}}">Stats</button>
+                    </td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+          {% else %}
+                  <img src="{%static 'images/raccon-bigracc.gif'%}"></img>
+          {% endif %}
 </div>
 </html>

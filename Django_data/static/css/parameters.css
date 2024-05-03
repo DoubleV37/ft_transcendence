@@ -59,7 +59,7 @@
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
-        border-bottom: #FFF solid 1px;
+        border-bottom: #7b7b7b solid 1px;
         margin-bottom: 1.5rem;
     }
 
@@ -174,7 +174,7 @@
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
-        border-bottom: #FFF solid 1px;
+        border-bottom: #7b7b7b solid 1px;
         margin-bottom: 1.5rem;
     }
 
@@ -291,6 +291,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        border-bottom: #7b7b7b solid 1px;
         align-self: stretch;
     }
 
