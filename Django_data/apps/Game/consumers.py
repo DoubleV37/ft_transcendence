@@ -48,7 +48,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
         )
         if self.ia:
             self.opponent = await database_sync_to_async(get_user_model().objects.get)(
-                username="IA"
+                username="IA-Ochen"
             )
         else:
             self.opponent = await database_sync_to_async(get_user_model().objects.get)(
@@ -75,9 +75,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
             )
         )
 
-
-
-   async def receive(self, text_data):
+    async def receive(self, text_data):
         data = json.loads(text_data)
         message = data["message"]
         if message == "up" and self.pong.player_pos[1] > 0:
@@ -181,7 +179,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
         await database_sync_to_async(self.user_game.save)()
         await database_sync_to_async(self.opponent_game.save)()
 
-   async def send_game_finish(self):
+    async def send_game_finish(self):
         if self.pong.point[0] > self.pong.point[1] and self.ia:
             winner = "IA"
         elif self.pong.point[0] > self.pong.point[1] and not self.ia:
