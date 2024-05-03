@@ -3,17 +3,27 @@ function game_SetEvents () {
   gameSocket.addEventListener("message", SetTheGame);
   gameSocket.addEventListener("open", OnOpenCallback);
   gameSocket.addEventListener("close", OnCloseCallback);
+  init_canvas();
 }
 
 function game_DelEvents () {
   console.log("game_DelEvents");
   document.removeEventListener("keyup", keyUp);
   document.removeEventListener("keydown", keyDown);
-  if (gameSocket !== null) {
-    if (gameCanvas.inGame == true) {
-      gameSocket.send(JSON.stringify({ message: "stopGame" }));
-      gameCanvas.inGame = false;
-    }
+  if (loading === true) {
+    gameSocket.removeEventListener("message", SetTheGame);
+    console.log("eh ??");
+  } else {
+    console.log("eh ??????");
+    gameSocket.removeEventListener("message", receive_data);
+  }
+  if (gameCanvas.inGame == true) {
+    console.log("WTF - 2");
+    gameCanvas.inGame = false;
+    gameSocket.send(JSON.stringify({ message: "stop" }));
+    gameSocket.send(JSON.stringify({ message: "stopGame" }));
+    wait_and_close();
+  } else {
     gameSocket.close();
   }
 
@@ -26,15 +36,28 @@ function game_DelEvents () {
   };
 }
 
+async function wait_and_close() {
+  sleep(500);
+  gameSocket.close(1000);
+}
+
 function SetTheGame (event) {
   const data = JSON.parse(event.data);
 
+  loading = true;
   console.log(data.message);
+  gameCanvas.inGame = true
   if (data.message === "Game stopped") {
+    if (deleteEvent === true) {
+      return ;
+    }
     gameSocket.removeEventListener("message", SetTheGame);
     EndGame("You won!\nPlayer has leaved the game");
     console.log('Aled1');
   } else {
+    if (deleteEvent === true) {
+      return ;
+    }
     parseUserInfos(data);
     setGameScreen();
     gameSocket.removeEventListener("message", SetTheGame);
@@ -43,7 +66,7 @@ function SetTheGame (event) {
     document.addEventListener("keydown", keyDown);
     update();
   }
-  init_canvas();
+  loading = false;
 }
 
 function OnOpenCallback () {
@@ -69,7 +92,6 @@ function OnCloseCallback () {
   gameSocket.removeEventListener("close", OnCloseCallback);
 
   console.log("Socket was closed!");
-  gameSocket = null;
   gameStop = true;
 }
 

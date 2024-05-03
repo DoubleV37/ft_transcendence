@@ -49,7 +49,7 @@ function iaMove () {
   }
 }
 // the end of ia town
-
+//
 function receive_data (e) {
   const data = JSON.parse(e.data);
 
@@ -58,10 +58,9 @@ function receive_data (e) {
     console.log("Aled - 3 ");
     if (gameCanvas.num === 1) {
       console.log("Aled - 4 ");
-      gameSocket.send(JSON.stringify({ message: "stopGame" }));
+      gameSocket.send(JSON.stringify({ message: "stop" }));
     }
-    const name = GameInfos.num === 1 ? GameInfos.PlayerL.name : GameInfos.PlayerR.name;
-    return EndGame(`${name} has left the game!`);
+    return EndGame("Game Stopped!");
   } else if (data.message === "win") {
     return EndGame("You won!");
   } else if (data.message === "lose") {
@@ -127,4 +126,5 @@ function EndGame (message) {
     loadPage(ROUTE.GAME_MODES);
     endGameScreen.style.display = "none";
   };
+  gameCanvas.inGame = false;
 }

@@ -129,10 +129,10 @@ let imgPowerUp = new Image();
 
 imgPowerUp.src = imgPowerUpSrc;
 
-/*-----------Matchmaking screen-----------*/
-let dots = 0;
-let idDot;
+let loading = false;
+let deleteEvent = false;
 
 /*-----------Socket and status Game-----------*/
 let gameSocket = null;
+let matchSocket = null;
 let gameStop = true;

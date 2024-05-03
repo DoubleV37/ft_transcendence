@@ -59,6 +59,7 @@ async function loadPage (url) {
     currentUrl = url;
     history.pushState({ section: url }, "", url);
   }
+  del_current_event();
   const elem = document.getElementById("titleContent").getAttribute("data-content");
   if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
     const targetNode = document.querySelector("#content");
@@ -66,7 +67,6 @@ async function loadPage (url) {
 
     observer.observe(targetNode, config);
   }
-  del_current_event();
   await changeSection(url, "#content");
 }
 
