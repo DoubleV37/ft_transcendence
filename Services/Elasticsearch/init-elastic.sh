@@ -19,3 +19,5 @@
 #  "enabled": true
 # }
 # '
+
+# bin/elasticsearch-create-enrollment-token -s kibana > /usr/share/elasticsearch/token_elk
