@@ -2,10 +2,9 @@ function matchmaking_SetEvents () {
   // Fonction pour se connecter au WebSocket
   gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/matchmaking");
 
-  gameSocket.onopen = function (event) {
+  gameSocket.onopen = function () {
     console.log("WebSocket connection established.");
     gameSocket.send("search");
-    idDot = setTimeout(addDot, 500);
   };
 
   gameSocket.onmessage = function (event) {
@@ -14,7 +13,6 @@ function matchmaking_SetEvents () {
     if (data.type == "match_found") {
       console.log("Match found:", data);
       gameSocket.close();
-      clearTimeout(idDot);
       loadPage(`${ROUTE.GAME_ROOM}${data.room_name}/`);
     }
   };
@@ -30,17 +28,4 @@ function matchmaking_SetEvents () {
 
 function matchmaking_DelEvents () {
   gameSocket.close();
-}
-
-function addDot () {
-  console.log("DOT=", dots);
-  const titleElement = document.getElementById("matchmakingDots");
-
-  if (dots < 3) {
-    titleElement.textContent += ".";
-    dots++;
-  } else {
-    titleElement.textContent = titleElement.textContent.slice(0, -3);
-    dots = 0;
-  }
 }
