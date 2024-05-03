@@ -43,7 +43,7 @@ function parameters_SelectOpponent (event) {
       document.getElementById("SELECT_ai").setAttribute("class", "MediumButtonLayout right ButtonNeon");
     }
     document.getElementById("SELECT_Player").setAttribute("class", "MediumButtonLayout left ButtonFocus");
-      document.getElementById("SELECT_Remote").disabled = false;
+    document.getElementById("SELECT_Remote").disabled = false;
   } else {
     if (GameParams.opponent !== "ai") {
       GameParams.opponent = "ai";
@@ -85,13 +85,10 @@ function parameters_SetPowerUp (event) {
 
 async function parameters_StartGame () {
   if (GameParams.type === "local" || GameParams.opponent === "ai") {
-	await loadPage(ROUTE.GAME_LOCAL);
+    await loadPage(ROUTE.GAME_LOCAL);
+  } else {
+    await loadPage(ROUTE.GAME_MATCH);
   }
-  else {
-	await loadPage(ROUTE.GAME_MATCH);
-  }
-  const Params = JSON.stringify(GameParams);
-  console.log(Params);
 }
 
 function parameters_SetPage () {

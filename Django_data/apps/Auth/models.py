@@ -10,32 +10,33 @@ from django.dispatch import receiver
 
 class User(AbstractBaseUser):
     id = models.AutoField(
-        auto_created=True, primary_key=True, unique=True, null=False
-    )
+        auto_created=True, primary_key=True, unique=True, null=False)
     status = models.BooleanField(default=True)
     username = models.CharField(max_length=50, unique=True, null=False)
     email = models.EmailField(max_length=320, unique=True, null=False)
     password = models.CharField(max_length=128, null=False)
     avatar = models.ImageField(
-        default="ForbiddenDeletion/default.png", null=True, blank=True)
+        default="ForbiddenDeletion/default.png", null=True, blank=True
+    )
     backup_avatar = models.ImageField(
-        default="ForbiddenDeletion/default.png", null=False)
+        default="ForbiddenDeletion/default.png", null=False
+    )
     refresh_token = models.CharField(max_length=255, null=True, blank=True)
     tournament_name = models.CharField(max_length=50, unique=True, null=False)
     online_data = models.DateTimeField(default=timezone.now)
     in_game = models.BooleanField(default=False)
 
     skin_ball = models.CharField(
-        default="ballCat", null=False)
+        default="/static/images/skins/ball/Ball_Cat.png", null=False)
     skin_paddle = models.CharField(
-        default="paddleGrass", null=False)
+        default="/static/images/skins/paddle/Paddle_Grass.png", null=False)
     skin_background = models.CharField(
-        default="backgroundForest", null=False)
+        default="/static/images/skins/background/BG_Forest.png", null=False)
 
     friends = models.ManyToManyField("self", blank=True)
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email"]
 
     objects = UserManager()
 
