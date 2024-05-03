@@ -6,11 +6,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def party_played(me: User) -> list:
+def party_played_by(me: User) -> list:
     return [mygame for mygame in UserGame.objects.filter(user=me)]
 
 
-def find_my_opponent(key: list, me: User) -> list:
+def find_opponent(key: list, me: User) -> list:
     key_game_id = [item.game.idGame for item in key]
     all_opponent = UserGame.objects.all()
     opponent = [
@@ -31,7 +31,7 @@ def ordered_party(opponent_key: list, me: User) -> dict:
     return ordered
 
 
-def data_constructor(data: dict) -> dict:
+def populate_context(data: dict) -> dict:
     token = dict()
     index: int = len(data) - 1
     ref: int = 0
@@ -43,7 +43,7 @@ def data_constructor(data: dict) -> dict:
     return token
 
 
-def otherview(key: int) -> dict:
+def not_his_dashboard(key: int) -> dict:
     index: bool = True
     opponent = None
     myself = None
@@ -58,13 +58,13 @@ def otherview(key: int) -> dict:
     return {'me': myself, 'game': game, 'opponent': opponent}
 
 
-def party_sender(key: int, me: User) -> dict:
+def populate_dashboard(key: int, me: User) -> dict:
     try:
         game = Games.objects.get(id=key)
         try:
             myself = UserGame.objects.get(game=key, user=me)
         except:
-            return otherview(key=key)
+            return not_his_dashboard(key=key)
         tmp = list(UserGame.objects.filter(game=key).exclude(user=me))
     except:
         raise
