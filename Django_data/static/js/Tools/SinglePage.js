@@ -87,7 +87,6 @@ async function authError (message, url, request) {
   const _words = message.split(":");
 
   if (_words[0] === "498" && _words[1] === "Expired") {
-    console.log(`status => ${_words[0]}, reason => ${_words[1]}`);
     await fetchSection(`${ROUTE.JWTREFRESH}`);
     return await MakeRequest(url, request);
   } else {
