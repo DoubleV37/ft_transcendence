@@ -63,6 +63,16 @@ services:
     depends_on:
       - postgres
 
+  pong:
+    container_name: pong
+    build: Services/PongServer
+    restart: always
+    volumes:
+      - ./Services/PongServer/ServerFile:/Server
+    depends_on:
+      - nginx
+
+
 volumes:
   postgres_data:
     name: postgres_data

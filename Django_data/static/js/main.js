@@ -12,7 +12,6 @@ async function launchWebsite () {
   const config = { childList: true, subtree: true };
 
   await changeSection(`${ROUTE.HEADER}`, "#Header_content");
-  header_SetEvents();
 
   modal_ProfileInit();
   modal_FriendsInit();
@@ -20,14 +19,14 @@ async function launchWebsite () {
   modal_2FaInit();
   modal_AvatarInit();
 
+  header_SetEvents();
   observer = new MutationObserver(mutationCallBack);
   observer.observe(targetNode, config);
   main_SetFirstsEvents();
 
   document.removeEventListener("DOMContentLoaded", launchWebsite);
 
-  const interval = 3000;
-  setInterval(pingServer, interval);
+  setInterval(pingServer, 3000);
 }
 
 function main_SetFirstsEvents () {

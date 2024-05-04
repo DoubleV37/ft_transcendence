@@ -34,3 +34,31 @@ function modes_ChooseTournament() {
 function modes_CreateTournament() {
   console.log("CreateTournament: do nothing for now");
 }
+
+function MultiTestCallback (event) {
+  event.target.removeEventListener("click", MultiTestCallback);
+  event.target.setAttribute("class", "MediumButtonLayout right ButtonDark");
+
+  const element = document.getElementById("MultiSend");
+  element.setAttribute("class", "MediumButtonLayout right ButtonNeon");
+  // const websocket = new WebSocket("wss://" + window.location.host + "/wss/game/matchmaking");
+
+  // websocket.onopen = () {
+  //   console.log("MultiTest Websocket openned!");
+  //   websocket.send("Client: Connected.");
+  // }
+  // websocket.onclose = () {
+  //   console.log("MultiTest Websocket closed!");
+  //   websocket.send("Client: Closed.");
+  // }
+  // websocket.onerror = () {
+  //   console.log("MultiTest Websocket error!");
+  //   websocket.send("Client: Error.");
+  // }
+  // websocket.onmessage = (event) {
+  //   const data = JSON.parse(event.data);
+  // }
+  element.addEventListener("click", () => {
+    console.log("Client: clicked!");
+  });
+}
