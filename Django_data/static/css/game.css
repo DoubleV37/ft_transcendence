@@ -80,6 +80,28 @@
 		line-height: normal;
 		cursor: pointer;
 	}
+
+	.skills {
+		width: 75%;
+		height: 12em;
+		position: relative;
+		margin-bottom: 1.5em;
+	}
+
+	.content-score {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 3em;
+		width: 75%;
+		padding: 0 0;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	  }
+	
+	  .section-stats {
+		width: 75%;
+	}
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -163,6 +185,28 @@
 		line-height: normal;
 		cursor: pointer;
 	}
+
+	.skills {
+		width: 75%;
+		height: 12em;
+		position: relative;
+		margin-bottom: 1.5em;
+	}
+
+	.content-score {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 3em;
+		width: 75%;
+		padding: 0 0;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	  }
+	
+	  .section-stats {
+		width: 75%;
+	}
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -241,7 +285,31 @@
 	.username {
 		display: none;
 	}
+
+	.skills {
+		width: 80%;
+		height: 12em;
+		position: relative;
+		margin-bottom: 1.5em;
+	}
+
+	.content-score {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 3em;
+		width: 80%;
+		padding: 0 0;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	  }
+	
+	  .section-stats {
+		width: 80%;
+	}
 }
+
+/* MATCHMAKING PAGE */
 
 #matchmakingContainer {
 	display: flex;
@@ -270,7 +338,7 @@
 	margin-bottom: 2em;
 }
 
-/* BALL SPEED */
+/* GAME AND STATS DASHBOARD */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
@@ -279,11 +347,19 @@ body {
  color: #282828;
 }
 
-.skills {
- width: 80%;
- height: 10em;
- position: relative;
- margin-bottom: 1.5em;
+.section-center {
+	display: flex;
+	justify-content: center;
+	margin-top: 3em;
+}
+
+#empty-text {
+	font-family: kodchasan;
+	font-size: 1.2rem;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	color: #FFF;
+	text-align: center;
 }
 
 .lines {
@@ -292,10 +368,10 @@ body {
 }
 
 .line {
- height: 7em;
+ height: 9em;
  width: 2px;
  position: absolute;
- background: rgba(238, 238, 238, 0.6);
+ background: rgb(113 112 112 / 45%);
  top: 2.175em;
 }
 
@@ -420,8 +496,6 @@ ul, li {
  }
 }
 
-/* SCORE */
-
 #STATS_user {
 	display: flex;
 	flex-direction: row;
@@ -449,24 +523,9 @@ ul, li {
 	font-weight: 400;
 	line-height: normal;
 	align-self: stretch;
-	border-bottom: #FFF solid 1px;
-	margin-bottom: 2rem;
+	border-bottom: #616161 solid 1px;
+	margin-bottom: 1rem;
 }
-
-.content-score {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 3em;
-	width: 80%;
-	padding: 0 0;
-	margin-top: -1em;
-	margin-bottom: 1em;
-  }
-
-  .section-stats {
-	width: 80%;
-  }
 
   .stats-title {
     display: block;
@@ -478,6 +537,19 @@ ul, li {
 	margin-bottom: 1em;
 	line-height: normal;
 }
+
+	.stats-legend {
+		display: block;
+		font-weight: bold;
+		opacity: 0;
+		animation: 1s anim-lightspeed-in ease forwards;
+		font-family: 'Kodchasan';
+		font-size: 0.7rem !important;
+		font-weight: lighter !important;
+		color: #FFF;
+		margin-bottom: 0.6em;
+		line-height: normal;
+	}
 
   .avatar {
 	flex-shrink: 0;

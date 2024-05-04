@@ -12,7 +12,9 @@ def populate(key: User) -> dict:
     data = GlobalStats.objects.get(user=key)
     context['win_rate'] = data.win_rate
     context['nb_games'] = data.nb_games
+    context['regular_games'] = data.regular_games
+    context['tournament_games'] = data.tournament_games
     context['victory'] = data.victory
     context['defeat'] = data.defeat
-    context['tournemant_winned'] = data.tournemant_winned
+    context['tournaments_winned'] = data.tournaments_winned
     return context

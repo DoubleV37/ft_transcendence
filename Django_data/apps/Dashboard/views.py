@@ -38,8 +38,9 @@ class BoardView(TemplateView):
 
 
 class GlobalStatsView(TemplateView):
-    template_name = "gs.html"
+    template_name = "Game/Stats.html"
 
-    def get(self, request):
-        context = global_stats.populate(key=request.user)
+    def get(self, request, _id: int):
+        target = User.objects.get(id=_id)
+        context = global_stats.populate(key=target)
         return render(request, self.template_name, context=context)

@@ -14,6 +14,8 @@ class GlobalStats(models.Model):
 
     win_rate = models.FloatField(default=0.0)
     nb_games = models.IntegerField(default=0)
+    regular_games = models.IntegerField(default=0)
+    tournament_games = models.IntegerField(default=0)
     victory = models.IntegerField(default=0)
     defeat = models.IntegerField(default=0)
-    tournemant_winned = models.IntegerField(default=0)
+    tournaments_winned = models.IntegerField(default=0)
