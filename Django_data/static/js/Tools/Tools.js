@@ -28,12 +28,23 @@ function del_current_event () {
   case "GAME_MODES":
     modes_DelEvents();
     break;
+  case "SKINS_PAGE":
+    skins_DelEvents();
+    break;
   case "GAME_PARAMETERS":
     parameters_DelEvents();
     break;
-  case "SKINS_PAGE":
-      skins_DelEvents();
-      break;
+  case "GAME_LOCAL":
+    game_DelEvents();
+    break;
+  case "GAME_MATCH":
+    matchmaking_DelEvents();
+    break;
+  case "GAME_ROOM":
+    game_DelEvents();
+    break;
+  case "GAMEBOARD_PAGE":
+    break;
   default:
     break;
   }
@@ -51,7 +62,7 @@ function restore_message (elem_success, elem_failure) {
   element.innerHTML = "";
 }
 
-async function pingServer() {
+async function pingServer () {
   try {
     const response = await fetch(`${ROUTE.PING}`, {
       method: "POST",
@@ -64,6 +75,6 @@ async function pingServer() {
       throw new Error(`Network response: ${response.ok}`);
     }
   } catch (error) {
-    console.error(`Error: `, error);
+    console.error("Error: ", error);
   }
 }

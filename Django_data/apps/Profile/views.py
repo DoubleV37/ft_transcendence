@@ -24,6 +24,7 @@ def profile_infos(request, _id=None):
         item['status'] = calculate_deltatime(_user)
     item['username'] = _user.username
     item['avatar'] = _user.avatar.url
+    item['id'] = _user.id
     return render(request, 'Profile/Profile.html', item)
 
 
@@ -31,9 +32,9 @@ def avatar(request):
     return render(request, "Profile/Avatar.html")
 
 def skin(request):
-    list_paddle = ["paddleGrass", "paddleAmethyst", "paddleSnow"]
-    list_ball = ["ballCat", "ballBlackHole", "ballSushi"]
-    list_back = ["backgroundForest", "backgroundSpace", "backgroundLoFi"]
+    list_paddle = ["/static/images/skins/paddle/Paddle_Grass.png", "/static/images/skins/paddle/Paddle_Amethyst.png", "/static/images/skins/paddle/Paddle_Snow.png"]
+    list_ball = ["/static/images/skins/ball/Ball_Cat.png", "/static/images/skins/ball/Ball_Blackhole.png", "/static/images/skins/ball/Ball_Sushi.png"]
+    list_back = ["/static/images/skins/background/BG_Forest.png", "/static/images/skins/background/BG_Space.png", "/static/images/skins/background/BG_LoFi.png"]
     _user = request.user
     if request.method == 'GET':
         context = {}
@@ -43,6 +44,7 @@ def skin(request):
         return render(request, "Profile/Skins.html", context)
     if request.method == 'POST':
         skins = json.loads(request.body)
+        logger.info(skins)
         if check_skins_request(skins, list_paddle,
                                list_ball, list_back) is False:
             response = JsonResponse({"success": False, "error": "Wrong informations!"})

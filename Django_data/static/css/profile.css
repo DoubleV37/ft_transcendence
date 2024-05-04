@@ -214,6 +214,16 @@
     width: 5.5em;
     border: 1px solid #5dc6e8;
   }
+
+  /*Table*/
+  th, td {
+      border: 1px solid #7b7b7b;
+      padding: 8px;
+      text-align: left;
+      font-family: Kodchasan;
+      font-size: 1rem;
+      color: #fff;
+  }
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -445,6 +455,16 @@
     border-radius: 100%;
     width: 5.5em;
     border: 1px solid #5dc6e8;
+  }
+
+  /*Table*/
+  th, td {
+      border: 1px solid #7b7b7b;
+      padding: 8px;
+      text-align: left;
+      font-family: Kodchasan;
+      font-size: 0.9rem;
+      color: #fff;
   }
 }
 
@@ -684,8 +704,87 @@
     border-radius: 50%;
     display: inline-block;
   }
+
+  /* Table*/
+  th, td {
+      border: 1px solid #7b7b7b;
+      padding: 8px;
+      text-align: left;
+      font-family: Kodchasan;
+      font-size: 0.7rem;
+      color: #fff;
+  }
 }
 
 #Friends_Profile {
     width: 100%;
+}
+
+/* GAME HISTORY TABLE */
+
+.table-container {
+    max-height: 20em;
+    overflow: scroll;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate; /* Change to separate to allow individual borders */
+    border-spacing: 0; /* Remove spacing between cells */
+}
+
+th {
+    background-color: #151821;
+    position: sticky; /* Make the header sticky */
+    top: 0; /* Position it at the top of the container */
+    z-index: 100; /* Ensure it stays on top of other content */
+    border: 1px solid #7b7b7b; /* Apply right border directly to th */
+}
+
+tr:hover {
+    /*background-color: #202532;*/
+    background-color: #1b718d;
+}
+
+.listHeaderContainer {
+    width: 90%;
+}
+
+.listItemContainer {
+    width: 100%;
+    border: 1px solid #7b7b7b;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.history {
+    font-size: 1.5rem !important;
+    border-bottom: none !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 0.9 !important;
+    font-family: 'Kodchasan' !important;
+    margin-top: 1em !important;
+}
+
+.button {
+    padding: 4px 8px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #1b718d;
+}
+
+.table-container::-webkit-scrollbar { /* WebKit */
+    width: 2px; /* Adjusts the width of the scrollbar */
+	height: 0; /* Adjusts the width of the scrollbar */
+}
+
+.table-container::-webkit-scrollbar-thumb { /* WebKit */
+    background-color: rgb(194, 194, 194); /* Sets the color of the scrollbar thumb */
+    border-radius: 10px; /* Optional: Rounds the corners of the scrollbar thumb */
 }
