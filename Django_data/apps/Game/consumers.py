@@ -1,4 +1,8 @@
-import json, asyncio, time, hashlib, random
+import json
+import asyncio
+import time
+import hashlib
+import random
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 from channels.db import database_sync_to_async
@@ -26,7 +30,8 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
         game_name = "Pong"
 
         random_str = "".join(
-            random.choices("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", k=6)
+            random.choices(
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", k=6)
         )
 
         room_group_name = hashlib.sha256(
@@ -43,7 +48,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
         )
         if self.ia:
             self.opponent = await database_sync_to_async(get_user_model().objects.get)(
-                username="IA"
+                username="IA-Ochen"
             )
         else:
             self.opponent = await database_sync_to_async(get_user_model().objects.get)(
@@ -60,7 +65,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
                     "num": 1,
                     "opponent_name": self.opponent.username,
                     "opponent_paddle": self.opponent.skin_paddle,
-                    "opponent_avatar":self.opponent.avatar.url,
+                    "opponent_avatar": self.opponent.avatar.url,
                     "my_name": my_user.username,
                     "my_ball": my_user.skin_ball,
                     "my_paddle": my_user.skin_paddle,
@@ -87,7 +92,8 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
             self.ia = True
             if data["opponent"] == "player":
                 self.ia = False
-            self.pong = Pong(data["point_limit"], data["difficulty"], data["powerup"])
+            self.pong = Pong(data["point_limit"],
+                             data["difficulty"], data["powerup"])
             await self.init_db_game()
             asyncio.create_task(self.runGame())
 

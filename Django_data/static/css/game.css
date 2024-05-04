@@ -80,6 +80,28 @@
 		line-height: normal;
 		cursor: pointer;
 	}
+
+	.skills {
+		width: 75%;
+		height: 12em;
+		position: relative;
+		margin-bottom: 1.5em;
+	}
+
+	.content-score {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 3em;
+		width: 75%;
+		padding: 0 0;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	  }
+	
+	  .section-stats {
+		width: 75%;
+	}
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -163,6 +185,28 @@
 		line-height: normal;
 		cursor: pointer;
 	}
+
+	.skills {
+		width: 75%;
+		height: 12em;
+		position: relative;
+		margin-bottom: 1.5em;
+	}
+
+	.content-score {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 3em;
+		width: 75%;
+		padding: 0 0;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	  }
+	
+	  .section-stats {
+		width: 75%;
+	}
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -241,7 +285,31 @@
 	.username {
 		display: none;
 	}
+
+	.skills {
+		width: 80%;
+		height: 12em;
+		position: relative;
+		margin-bottom: 1.5em;
+	}
+
+	.content-score {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 3em;
+		width: 80%;
+		padding: 0 0;
+		margin-top: -1em;
+		margin-bottom: 1em;
+	  }
+	
+	  .section-stats {
+		width: 80%;
+	}
 }
+
+/* MATCHMAKING PAGE */
 
 #matchmakingContainer {
 	display: flex;
@@ -269,3 +337,312 @@
 	margin-top: 2em;
 	margin-bottom: 2em;
 }
+
+/* GAME AND STATS DASHBOARD */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+ font-family: "Open Sans", sans-serif;
+ color: #282828;
+}
+
+.section-center {
+	display: flex;
+	justify-content: center;
+	margin-top: 3em;
+}
+
+#empty-text {
+	font-family: kodchasan;
+	font-size: 1.2rem;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	color: #FFF;
+	text-align: center;
+}
+
+.lines {
+ height: 10em;
+ position: relative;
+}
+
+.line {
+ height: 9em;
+ width: 2px;
+ position: absolute;
+ background: rgb(113 112 112 / 45%);
+ top: 2.175em;
+}
+
+.line.l--0 {
+ left: 0;
+}
+
+.line.l--25 {
+ left: 25%;
+}
+
+.line.l--50 {
+ left: 50%;
+}
+
+.line.l--75 {
+ left: 75%;
+}
+
+.line.l--100 {
+ left: calc(100% - 1px);
+}
+
+.line__label {
+ display: block;
+ width: 100px;
+ text-align: center;
+ position: absolute;
+ bottom: -1.5em;
+ right: -50px;
+ font-family: 'Kodchasan';
+ color: #FFF;
+}
+
+.line__label.title {
+ text-transform: uppercase;
+ font-weight: bold;
+ font-family: 'Kodchasan';
+ color: #FFF;
+}
+
+.charts {
+ width: 100%;
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 10;
+}
+
+.chart:not(:first-child) {
+ margin-top: 10px;
+}
+
+.chart__title {
+ display: block;
+ margin: 0 0 10px;
+ font-weight: bold;
+ opacity: 0;
+ animation: 1s anim-lightspeed-in ease forwards;
+ font-family: 'Kodchasan';
+ color: #FFF;
+}
+
+.chart--dev .chart__title {
+ animation-delay: 0.5s;
+}
+
+.chart--prod .chart__title {
+ animation-delay: 3.3s;
+}
+
+.chart--design .chart__title {
+ animation-delay: 4.5s;
+}
+
+.chart--horiz {
+ overflow: hidden;
+}
+
+.chart__bar {
+ height: 30px;
+ margin-bottom: 10px;
+ background: linear-gradient(to left, #4cb8c4, #3cd3ad);
+ border-top-right-radius: 4px;
+ border-bottom-right-radius: 4px;
+ opacity: 0;
+ animation: 1s anim-lightspeed-in ease forwards;
+}
+
+.chart--dev .chart__bar {
+ animation-delay: 0.5s;
+}
+
+.chart--prod .chart__bar {
+ animation-delay: 3.8s;
+}
+
+.chart--design .chart__bar {
+ animation-delay: 5s;
+}
+
+.chart__label {
+ padding-left: 10px;
+ line-height: 30px;
+ font-family: 'Kodchasan';
+ color: white;
+}
+
+ul, li {
+	list-style: none;
+	padding-left: 0rem;
+   }
+
+@keyframes anim-lightspeed-in {
+  0% {
+    transform: translateX(-20%);
+    opacity: 1;
+ }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+ }
+}
+
+#STATS_user {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	cursor: pointer;
+	margin-bottom: 1em;
+}
+
+#NbRounds {
+	display: none;
+}
+
+.winner-loser {
+	display: flex;
+	width: 100%;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.gameStats {
+	color: #FFF;
+	font-family: Madness;
+	font-size: 5rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	align-self: stretch;
+	border-bottom: #616161 solid 1px;
+	margin-bottom: 1rem;
+}
+
+  .stats-title {
+    display: block;
+    font-weight: bold;
+    opacity: 0;
+    animation: 1s anim-lightspeed-in ease forwards;
+    font-family: 'Kodchasan';
+    color: #FFF;
+	margin-bottom: 1em;
+	line-height: normal;
+}
+
+	.stats-legend {
+		display: block;
+		font-weight: bold;
+		opacity: 0;
+		animation: 1s anim-lightspeed-in ease forwards;
+		font-family: 'Kodchasan';
+		font-size: 0.7rem !important;
+		font-weight: lighter !important;
+		color: #FFF;
+		margin-bottom: 0.6em;
+		line-height: normal;
+	}
+
+  .avatar {
+	flex-shrink: 0;
+	position: relative;
+	width: 3em;
+	height: 3em;
+	border-radius: 100%;
+	background: darkgrey;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	z-index: 2;
+	border: 2px solid lightgrey;
+	&.A {
+	  transform: translateX(3px);
+	}
+	&.B {
+	  transform: translateX(-3px);
+	}
+  }
+  .pk-wrapper {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	.rantangle {
+	  height: 1.5em;
+	  color: white;
+	  font-size: 1rem;
+	  &.right {
+		flex-grow: 1;
+		background: linear-gradient(to right, #c57865, #131327);
+		display: flex;
+		align-items: center;justify-content: center;
+		justify-content: center;
+		border-top-right-radius: 0.3em;
+		border-bottom-right-radius: 0.3em;
+		span {
+		  position: absolute;
+		  right: 8px;
+		}
+		&:after {
+		  content: "";
+		  position: absolute;
+		  transform: translate(-5px);
+		  width: 10px;
+		  height: 8px;
+		  border-radius: 100%;
+		  box-shadow: 0px 0px 5px white;
+		  background: linear-gradient(
+			90deg,
+			rgba(255, 255, 255, 0.3) 0%,
+			rgba(255, 255, 255, 0.9) 50%,
+			rgba(255, 255, 255, 0.3) 100%
+		  );
+		}
+		&:before {
+		  content: "";
+		  transform: translate(-4px);
+		  width: 8px;
+		  height: 30px;
+		  background: radial-gradient(
+			  34.75% 41.03% at 50% 50%,
+			  #fff5d3 0%,
+			  rgba(255, 255, 255, 0) 100%
+			),
+			radial-gradient(
+			  25.2% 41.03% at 50% 50%,
+			  #ffffff 0%,
+			  rgba(255, 255, 255, 0) 100%
+			),
+			radial-gradient(
+			  42.66% 50% at 50% 50%,
+			  #ffffff 0%,
+			  rgba(255, 255, 255, 0) 100%
+			);
+		  border-radius: 100%;
+		}
+	  }
+	  &.left {
+		width: 50%;
+		background: linear-gradient(to left, #4cb8c4, #3cd3ad);
+		transition: all 1s ease-out;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-top-left-radius: 0.3em;
+		border-bottom-left-radius: 0.3em;
+		span {
+		  position: relative;
+		  left: 8px;
+		}
+	  }
+	}
+  }

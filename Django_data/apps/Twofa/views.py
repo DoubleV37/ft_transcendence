@@ -26,14 +26,10 @@ def otp_setter(*, user):
 
 
 class create_qrcode(TemplateView):
-    template_name = "setup_2fa.html"
-    context: dict() = {}
+    template_name = 'Profile/enable_2fa.html'
+    context = dict()
 
     try:
-
-        def post(self, request):
-            logout(request)
-            return redirect("/")
 
         def get(self, request):
             _user = request.user
@@ -45,8 +41,7 @@ class create_qrcode(TemplateView):
             self.context["qr_code"] = _user.to2fa.generate_qr_code(
                 name=_user.username
             )
-            # return render(request, self.template_name, context=self.context)
-            return render(request, 'Profile/enable_2fa.html', context=self.context)
+            return render(request, self.template_name, context=self.context)
 
     except ValidationError as exc:
         context: dict() = {}
@@ -65,11 +60,9 @@ def enable_2fa(request):
             if _user.to2fa.enable:
                 _user.to2fa.enable = False
                 _user.save()
-                # return redirect('/')
                 return JsonResponse({'status': 'return'})
             _user.to2fa.enable = True
             _user.save()
-            # return redirect('qrcode')
             return JsonResponse({'status': 'continue'})
     return render(request, 'Profile/enable_2fa.html', {'profile_2fa': profile_2fa})
 
@@ -80,7 +73,7 @@ def enable_2fa(request):
 class TwoFactorConfirmationView(FormView):
     template_name = "confirm_2fa.html"
     form = TwoFAForm()
-    response: dict() = {}
+    response = dict()
 
     def get(self, request):
         if request.user.is_authenticated is True:

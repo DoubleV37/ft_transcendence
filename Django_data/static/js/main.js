@@ -91,6 +91,9 @@ function launchSectionHandler (element) {
     case "SKINS_PAGE":
       skins_SetEvents();
       break;
+    case "GAMEBOARD_PAGE":
+      gameboard_SetEvents();
+      break;
     default:
       throw new Error(
         `launchSectionHandler: Attribute ${elementAttribut} non recognised`

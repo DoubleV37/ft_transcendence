@@ -24,6 +24,7 @@ def profile_infos(request, _id=None):
         item['status'] = calculate_deltatime(_user)
     item['username'] = _user.username
     item['avatar'] = _user.avatar.url
+    item['id'] = _user.id
     return render(request, 'Profile/Profile.html', item)
 
 

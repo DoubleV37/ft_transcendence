@@ -3,12 +3,14 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.utils.text import slugify
 from apps.Twofa.models import UserTwoFA
+from apps.Dashboard.models import GlobalStats
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
 class User(AbstractBaseUser):
-    id = models.AutoField(auto_created=True, primary_key=True, unique=True, null=False)
+    id = models.AutoField(
+        auto_created=True, primary_key=True, unique=True, null=False)
     status = models.BooleanField(default=True)
     username = models.CharField(max_length=50, unique=True, null=False)
     email = models.EmailField(max_length=320, unique=True, null=False)
@@ -24,9 +26,12 @@ class User(AbstractBaseUser):
     online_data = models.DateTimeField(default=timezone.now)
     in_game = models.BooleanField(default=False)
 
-    skin_ball = models.CharField(default="/static/images/skins/ball/Ball_Cat.png", null=False)
-    skin_paddle = models.CharField(default="/static/images/skins/paddle/Paddle_Grass.png", null=False)
-    skin_background = models.CharField(default="/static/images/skins/background/BG_Forest.png", null=False)
+    skin_ball = models.CharField(
+        default="/static/images/skins/ball/Ball_Cat.png", null=False)
+    skin_paddle = models.CharField(
+        default="/static/images/skins/paddle/Paddle_Grass.png", null=False)
+    skin_background = models.CharField(
+        default="/static/images/skins/background/BG_Forest.png", null=False)
 
     friends = models.ManyToManyField("self", blank=True)
 
@@ -48,4 +53,5 @@ class User(AbstractBaseUser):
 def update_profile_signal(sender, instance, created, **kwargs):
     if created:
         UserTwoFA.objects.create(user=instance)
+        GlobalStats.objects.create(user=instance)
     instance.to2fa.save()
