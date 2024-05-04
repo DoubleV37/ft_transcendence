@@ -345,6 +345,21 @@ body {
  color: #282828;
 }
 
+.section-center {
+	display: flex;
+	justify-content: center;
+	margin-top: 3em;
+}
+
+#empty-text {
+	font-family: kodchasan;
+	font-size: 1rem;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	color: #FFF;
+	text-align: center;
+}
+
 .lines {
  height: 10em;
  position: relative;
