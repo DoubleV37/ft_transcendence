@@ -8,6 +8,7 @@ from asgiref.sync import sync_to_async
 from channels.db import database_sync_to_async
 from .pong import Pong  # , ai_brain
 from .models import Games, UserGame
+from apps.Dashboard.models import GlobalStats
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
@@ -177,11 +178,29 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		self.opponent_game.score = dict_stats["score1"]
 		if dict_stats["score1"] > dict_stats["score2"]:
 			self.opponent_game.winner = True
+			await self.update_global_stats(False)
 		else:
 			self.user_game.winner = True
+			await self.update_global_stats(True)
 		await database_sync_to_async(self.game.save)()
 		await database_sync_to_async(self.user_game.save)()
 		await database_sync_to_async(self.opponent_game.save)()
+
+	async def update_global_stats(self, winner):
+		self.toGS = await database_sync_to_async(GlobalStats.objects.get)(user=self.scope["user"])
+		if winner :
+			self.toGS.victory += 1
+		else:
+			self.toGS.defeat += 1
+		self.toGS.nb_games += 1
+		if self.game.in_tournament:
+			self.toGS.tournaments_winned += 1
+		else:
+			self.toGS.regular_games += 1
+		self.toGS.win_rate = (
+			self.toGS.victory / self.toGS.nb_games
+		)
+		await sync_to_async(self.toGS.save)()
 
 	async def send_game_finish(self):
 		if self.pong.point[0] > self.pong.point[1] and self.ia:
