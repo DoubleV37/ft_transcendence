@@ -309,6 +309,8 @@
 	}
 }
 
+/* MATCHMAKING PAGE */
+
 #matchmakingContainer {
 	display: flex;
 	flex-direction: row;
@@ -336,7 +338,7 @@
 	margin-bottom: 2em;
 }
 
-/* BALL SPEED */
+/* GAME AND STATS DASHBOARD */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
@@ -353,7 +355,7 @@ body {
 
 #empty-text {
 	font-family: kodchasan;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	margin-top: 1em;
 	margin-bottom: 1em;
 	color: #FFF;
@@ -493,8 +495,6 @@ ul, li {
     opacity: 1;
  }
 }
-
-/* SCORE */
 
 #STATS_user {
 	display: flex;

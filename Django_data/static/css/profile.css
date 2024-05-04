@@ -217,7 +217,7 @@
 
   /*Table*/
   th, td {
-      border: 1px solid #ddd;
+      border: 1px solid #7b7b7b;
       padding: 8px;
       text-align: left;
       font-family: Kodchasan;
@@ -459,7 +459,7 @@
 
   /*Table*/
   th, td {
-      border: 1px solid #ddd;
+      border: 1px solid #7b7b7b;
       padding: 8px;
       text-align: left;
       font-family: Kodchasan;
@@ -707,7 +707,7 @@
 
   /* Table*/
   th, td {
-      border: 1px solid #ddd;
+      border: 1px solid #7b7b7b;
       padding: 8px;
       text-align: left;
       font-family: Kodchasan;
@@ -719,6 +719,8 @@
 #Friends_Profile {
     width: 100%;
 }
+
+/* GAME HISTORY TABLE */
 
 .table-container {
     max-height: 20em;
@@ -736,7 +738,7 @@ th {
     position: sticky; /* Make the header sticky */
     top: 0; /* Position it at the top of the container */
     z-index: 100; /* Ensure it stays on top of other content */
-    border: 1px solid #ddd; /* Apply right border directly to th */
+    border: 1px solid #7b7b7b; /* Apply right border directly to th */
 }
 
 tr:hover {
@@ -750,7 +752,7 @@ tr:hover {
 
 .listItemContainer {
     width: 100%;
-    border: 1px solid #fff;
+    border: 1px solid #7b7b7b;
 }
 
 .button-container {
