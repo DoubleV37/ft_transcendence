@@ -1,5 +1,4 @@
 function game_SetEvents () {
-  gameStop = false;
   gameSocket = new WebSocket("wss://" + window.location.host + "/wss" + window.location.pathname);
   gameSocket.addEventListener("message", SetTheGame);
   gameSocket.addEventListener("open", OnOpenCallback);
@@ -9,14 +8,19 @@ function game_SetEvents () {
 
 function game_DelEvents () {
   console.log("game_DelEvents");
-  // document.removeEventListener('resize', ResizeCanvas);
   document.removeEventListener("keyup", keyUp);
   document.removeEventListener("keydown", keyDown);
-  if (gameSocket !== null && gameSocket.readyState === WebSocket.OPEN) {
-    if (gameCanvas.inGame == true) {
-      gameSocket.send(JSON.stringify({ message: "stop" }));
-      gameCanvas.inGame = false;
-    }
+  if (loading === true) {
+    gameSocket.removeEventListener("message", SetTheGame);
+  } else {
+    gameSocket.removeEventListener("message", receive_data);
+  }
+  if (gameCanvas.inGame == true) {
+    gameCanvas.inGame = false;
+    gameSocket.send(JSON.stringify({ message: "stop" }));
+    gameSocket.send(JSON.stringify({ message: "stopGame" }));
+    wait_and_close();
+  } else {
     gameSocket.close();
   }
 
@@ -29,20 +33,41 @@ function game_DelEvents () {
   };
 }
 
+async function wait_and_close () {
+  sleep(1000);
+  gameSocket.close(1000);
+}
+
 function SetTheGame (event) {
   const data = JSON.parse(event.data);
 
-  parseUserInfos(data);
-  setGameScreen();
-
-  gameSocket.removeEventListener("message", SetTheGame);
-  gameSocket.addEventListener("message", receive_data);
-  document.addEventListener("keyup", keyUp);
-  document.addEventListener("keydown", keyDown);
-  update();
+  loading = true;
+  console.log(data.message);
+  gameCanvas.inGame = true;
+  if (data.message === "Game stopped") {
+    if (deleteEvent === true) {
+      return;
+    }
+    gameSocket.removeEventListener("message", SetTheGame);
+    EndGame("You won!\nPlayer has leaved the game");
+    console.log("Aled1");
+  } else {
+    if (deleteEvent === true) {
+      return;
+    }
+    parseUserInfos(data);
+    setGameScreen();
+    gameSocket.removeEventListener("message", SetTheGame);
+    gameSocket.addEventListener("message", receive_data);
+    document.addEventListener("keyup", keyUp);
+    document.addEventListener("keydown", keyDown);
+    update();
+  }
+  loading = false;
 }
 
 function OnOpenCallback () {
+  gameStop = false;
   console.log("The connection was setup successfully !");
   gameSocket.addEventListener("message", SetTheGame);
 
@@ -64,7 +89,6 @@ function OnCloseCallback () {
   gameSocket.removeEventListener("close", OnCloseCallback);
 
   console.log("Socket was closed!");
-  gameSocket = null;
   gameStop = true;
 }
 
@@ -87,4 +111,14 @@ function init_canvas () {
   gameCanvas.height = parseInt(gameCanvas.style.getPropertyValue("height"), 10);
   gameCanvas.canvas.width = gameCanvas.width;
   gameCanvas.canvas.height = gameCanvas.height;
+  gameCanvas.paddle1Height = 0,
+  gameCanvas.paddle2Height = 0,
+  gameCanvas.powerup = false,
+  gameCanvas.powerupY = 0,
+  gameCanvas.powerupX = 0,
+  gameCanvas.powerupsize = 0,
+  gameCanvas.ballRadius = 0,
+  gameCanvas.opponent = "",
+  gameCanvas.num = 0,
+  gameCanvas.inGame = true;
 }

@@ -7,6 +7,11 @@ from .pong import Pong as Pong_game
 from .models import Games, UserGame
 from django.utils import timezone
 from channels.exceptions import StopConsumer
+import logging
+import websockets
+import threading
+
+logger = logging.getLogger(__name__)
 
 
 class MultiPongConsumer(AsyncWebsocketConsumer):
@@ -23,21 +28,27 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
         game = await database_sync_to_async(Games.objects.get)(idGame=self.room_name)
         if game.nb_users == 2:
             game.nb_users = 19
-            if game.running == True:
+            if game.running is True:
                 game.running = False
-                await self.channel_layer.group_send(
+                winner = self.opponent.username
+                self.channel_layer.group_send(
                     self.room_group_name,
-                    {"type": "game_stop", "error": {"message": "Game stopped"}},
+                    {
+                        "type": "game_finish",
+                        "pong": {
+                            "message": "Game finished",
+                            "winner": winner,
+                        },
+                    },
                 )
             await database_sync_to_async(game.save)()
-        elif game.nb_users == 0 or game.nb_users == 1:
+        elif game.nb_users in (0, 1):
             user_game = await database_sync_to_async(UserGame.objects.get)(
                 user=self.scope["user"], game=game
             )
             await database_sync_to_async(user_game.delete)()
             if self.user_num == 1:
                 await database_sync_to_async(game.delete)()
-
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
     async def init_db_game(self):
@@ -51,10 +62,14 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
         else:
             self.user_num = 2
             if self.game.nb_users == 19 or self.game.nb_users == 2:
+                user_game = await database_sync_to_async(UserGame.objects.get)(
+                    user=self.scope["user"], game=self.game
+                )
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {"type": "game_stop", "error": {"message": "Game stopped"}},
                 )
+                return
         await sync_to_async(UserGame.objects.create)(
             user=self.scope["user"], game=self.game
         )
@@ -73,8 +88,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
                 self.pong.player_pos[1] -= self.pong.player_speed
             elif message == "down":
                 self.pong.player_pos[1] += self.pong.player_speed
-            elif message == "space" and self.pong.engage > 0:
-                self.pong.engage = 0
             elif message == "stopGame":
                 self.pong.running = False
             elif message == "stop":
@@ -115,6 +128,10 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
                 idGame=self.room_name
             )
             if game.nb_users == 19:
+                logger.info(f"{self.scope['user'].username = } - wait_opponent - 3")
+                user_game = await database_sync_to_async(UserGame.objects.get)(
+                    user=self.scope["user"], game=self.game
+                )
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {"type": "game_stop", "error": {"message": "Game stopped"}},
@@ -129,11 +146,13 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
                 self.room_group_name,
                 {"type": "game_stop", "error": {"message": "Game stopped"}},
             )
-        my_user = self.scope['user']
+        my_user = self.scope["user"]
         if self.user_num == 1:
             enough_users = await self.wait_opponent()
             if not enough_users:
+                logger.info(f"{self.scope['user'].username = } - start_game - 7")
                 return
+            game.nb_users = 2
             self.opponent = await self.set_opponent()
             await self.send(
                 text_data=json.dumps(
@@ -147,16 +166,16 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
                         "my_ball": my_user.skin_ball,
                         "my_paddle": my_user.skin_paddle,
                         "my_background": my_user.skin_background,
-                        "my_avatar": my_user.avatar.url
+                        "my_avatar": my_user.avatar.url,
                     }
                 )
             )
+            game.running = True
+            await database_sync_to_async(game.save)()
             asyncio.create_task(self.run_game())
         else:
             game.nb_users = 2
-            await database_sync_to_async(game.save)()
             self.opponent = await self.set_opponent()
-
             await self.send(
                 text_data=json.dumps(
                     {
@@ -169,16 +188,18 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
                         "my_ball": my_user.skin_ball,
                         "my_paddle": my_user.skin_paddle,
                         "my_background": my_user.skin_background,
-                        "my_avatar": my_user.avatar.url
+                        "my_avatar": my_user.avatar.url,
                     }
                 )
             )
+        await database_sync_to_async(game.save)()
 
     async def set_opponent(self):
         opponents = await sync_to_async(list)(UserGame.objects.filter(game=self.game))
         for opponent in opponents:
             opponent_user = await sync_to_async(lambda: opponent.user)()
             if opponent_user.username != self.username:
+                logger.info(f"{self.scope['user'].username = } - set_opponent - 3")
                 return opponent_user
         return None
 
@@ -186,8 +207,6 @@ class MultiPongConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps(event["error"]))
 
     async def run_game(self):
-        if self.user_num == 2:
-            return
         loop = time.time()
         while self.pong.running:
             loop += 1 / 240
