@@ -13,7 +13,7 @@ class Pong:
         self.player_pos = [450, 450]
         self.player_size = [150, 150]
         self.player_speed = 20
-        self.paddle_radius = 20 - (difficulty * -1)
+        self.paddle_radius = 15 - difficulty
         self.ball_acceleration = 0.05
         if random.randint(0, 1) == 0:
             self.engage = 1
@@ -114,8 +114,8 @@ class Pong:
             "score1": self.point[0],
             "score2": self.point[1],
             "max_speed": [
-                round(self.ball_max_speed[0] * 10, 1),
-                round(self.ball_max_speed[1] * 10, 1),
+                round(self.ball_max_speed[0] * 6, 1),
+                round(self.ball_max_speed[1] * 6, 1),
             ],
             "bounce": self.ball_bonce,
             "max_exchange": self.max_exchange,
