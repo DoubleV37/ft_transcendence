@@ -12,13 +12,10 @@ function game_DelEvents () {
   document.removeEventListener("keydown", keyDown);
   if (loading === true) {
     gameSocket.removeEventListener("message", SetTheGame);
-    console.log("eh ??");
   } else {
-    console.log("eh ??????");
     gameSocket.removeEventListener("message", receive_data);
   }
   if (gameCanvas.inGame == true) {
-    console.log("WTF - 2");
     gameCanvas.inGame = false;
     gameSocket.send(JSON.stringify({ message: "stop" }));
     gameSocket.send(JSON.stringify({ message: "stopGame" }));
@@ -36,8 +33,8 @@ function game_DelEvents () {
   };
 }
 
-async function wait_and_close() {
-  sleep(500);
+async function wait_and_close () {
+  sleep(1000);
   gameSocket.close(1000);
 }
 
@@ -46,17 +43,17 @@ function SetTheGame (event) {
 
   loading = true;
   console.log(data.message);
-  gameCanvas.inGame = true
+  gameCanvas.inGame = true;
   if (data.message === "Game stopped") {
     if (deleteEvent === true) {
-      return ;
+      return;
     }
     gameSocket.removeEventListener("message", SetTheGame);
     EndGame("You won!\nPlayer has leaved the game");
-    console.log('Aled1');
+    console.log("Aled1");
   } else {
     if (deleteEvent === true) {
-      return ;
+      return;
     }
     parseUserInfos(data);
     setGameScreen();
@@ -123,5 +120,5 @@ function init_canvas () {
   gameCanvas.ballRadius = 0,
   gameCanvas.opponent = "",
   gameCanvas.num = 0,
-  gameCanvas.inGame = true
+  gameCanvas.inGame = true;
 }

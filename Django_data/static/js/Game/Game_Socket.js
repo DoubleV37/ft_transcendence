@@ -55,9 +55,7 @@ function receive_data (e) {
 
   console.log(`${data.message}`);
   if (data.message === "Game stopped") {
-    console.log("Aled - 3 ");
     if (gameCanvas.num === 1) {
-      console.log("Aled - 4 ");
       gameSocket.send(JSON.stringify({ message: "stop" }));
     }
     return EndGame("Game Stopped!");
