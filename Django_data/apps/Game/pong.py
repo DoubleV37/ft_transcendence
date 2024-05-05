@@ -93,7 +93,6 @@ class Pong:
         self.point[player] += 1
         if self.point[player] == self.point_limit:
             self.running = False
-            # self.print_stats()
         self.player_pos[0] = 450
         self.player_pos[1] = 450
         self.engage_time = self.time + 1000
@@ -121,14 +120,6 @@ class Pong:
             "max_exchange": self.max_exchange,
         }
         return dic_stats
-        # if self.point[0] > self.point[1]:
-        # 	print("\nPlayer 1 WINS\n")
-        # else:
-        # 	print("\nPlayer 2 WINS\n")
-        # print("score: ", self.point[0], " - ", self.point[1])
-        # print("max speed: ", round(self.ball_max_speed[0] * 10, 1), " - ", round(self.ball_max_speed[1] * 10, 1))
-        # print("bounce: ", self.ball_bonce)
-        # print("max exchange: ", self.max_exchange)
 
     def paddle_bounce(self, player):
         if player == 0:
