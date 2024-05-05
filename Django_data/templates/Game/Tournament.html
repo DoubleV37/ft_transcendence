@@ -1,97 +1,69 @@
-<html lang="en">
+<!doctype html>
 {% load static %}
-{% include "Home/head.html" %}
-<body>
-	  {% include "Home/header.html" %}
-	  {% include "Profile/Profile.html" %}
-	  {% include "Profile/Avatar.html" %}
-	  <div id="content">
-		  <div id="titleContent" data-content="SETTINGS"></div>
-		  <div id="overlayFullscreen">
-			  	<div class="midFullscreen midrow margin_bottom">
-					<div id="sectionTournament">
-						<div class="bracket">
-							<div class="round">
-								<div class="match">
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 1</span>
-									</div>
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 2</span>
-									</div>
-								</div>
-								<div class="match">
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 3</span>
-									</div>
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 4</span>
-									</div>
-								</div>
-								<div class="match">
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 5</span>
-									</div>
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 6</span>
-									</div>
-								</div>
-								<div class="match">
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 7</span>
-									</div>
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 8</span>
-									</div>
-								</div>
-							</div>
-							<div class="round">
-								<div class="match">
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 1</span>
-									</div>
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 2</span>
-									</div>
-								</div>
-								<div class="match">
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 3</span>
-									</div>
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 4</span>
-									</div>
-								</div>
-							</div>
-							<div class="round">
-								<div class="match">
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 1</span>
-									</div>
-									<div class="team">
-										<img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
-										<span>Player 2</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		{% include "Home/footer.html" %}
-</body>
+
+<html lang="fr">
+  {% include "Home/head.html" %}
+  <body>
+    {% include "Profile/Avatar.html" %}
+    {% include "Profile/Profile.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header>
+    <div id="content">
+      <div id="overlay">
+        <div class="mid midcolumn flowAnimation">
+          <div id="titleContent" data-content="TOURNAMENT"></div>
+          <!-- -->
+          <div id="SetTournament">
+            <div class="section">
+              <h1 class="gameTitle">Tournament Parameters</h1>
+            </div>
+            <!--Form about the players username -->
+            <div class="section">
+              <p class="bodyText">Enter player username:</p>
+              <div class="DoubleButtonSettings">
+                <input id="SetPlayer1" class="form-control" type="text" value="Player 1" aria-label="default input example" disabled readonly>
+                <input id="SetPlayer2" class="form-control" type="text" value="" placeholder="Player 2" aria-label="default input example">
+              </div>
+              <div class="DoubleButtonSettings">
+                <input id="SetPlayer3" class="form-control" type="text" value="" placeholder="Player 3" aria-label="default input example">
+                <input id="SetPlayer4" class="form-control" type="text" value="" placeholder="Player 4" aria-label="default input example">
+              </div>
+            </div>
+            <!-- -->
+            <div class="section">
+              <div class="conteneur">
+                <div class="flex-column">
+                  <p class="bodyText">Score to win:</p>
+                  <div class="quantity">
+                    <button class="minus" aria-label="Decrease">&minus;</button>
+                    <input id="Score" type="number" class="input-box" value="1" min="1" max="10"/>
+                    <button class="plus" aria-label="Increase">&plus;</button>
+                  </div>
+                </div>
+                <div class="flex-column">
+                  <p class="bodyText">Power ups:</p>
+                  <div class="form-check form-switch p-0">
+                    <div class="d-flex flex-column-reverse gap-1">
+                      <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="section">
+              <button id="StartButton" class="play-button">
+                <span class="play">Begin !</span>
+              </button>
+            </div>
+          </div>
+          <!-- Other page for the tournament -->
+        </div>
+      </div>
+    </div>
+    {% include "Home/footer.html" %}
+  </body>
 </html>

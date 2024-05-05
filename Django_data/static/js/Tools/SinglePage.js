@@ -35,7 +35,8 @@ window.addEventListener("popstate", async function (event) {
   }
   del_current_event();
   const elem = document.getElementById("titleContent").getAttribute("data-content");
-  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
+  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH"
+    || elem === "GAME_ROOM" || elem === "TOURNAMENT") {
     const targetNode = document.querySelector("#content");
     const config = { childList: true, subtree: true };
 
@@ -61,7 +62,8 @@ async function loadPage (url) {
   }
   del_current_event();
   const elem = document.getElementById("titleContent").getAttribute("data-content");
-  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
+  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH"
+    || elem === "GAME_ROOM" || elem === "TOURNAMENT") {
     const targetNode = document.querySelector("#content");
     const config = { childList: true, subtree: true };
 

@@ -94,6 +94,10 @@ function launchSectionHandler (element) {
     case "GAMEBOARD_PAGE":
       gameboard_SetEvents();
       break;
+    case "TOURNAMENT":
+      observer.disconnect();
+      tournament_SetEvents();
+      break;
     default:
       throw new Error(
         `launchSectionHandler: Attribute ${elementAttribut} non recognised`

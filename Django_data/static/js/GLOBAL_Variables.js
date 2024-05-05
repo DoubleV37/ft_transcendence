@@ -53,8 +53,9 @@ const ROUTE = {
   GAME_PARAMETERS: "/game/parameters/",
   GAME_MODES: "/game/modes/",
   GAME_MATCH: "/game/matchmaking/",
-  GAME_ROOM: "/game/", // `${ROUTE.GAME_ROOM}${id...}/`
-  GAME_LOCAL: "/game/solo/"
+  GAME_ROOM: "/game/",
+  GAME_LOCAL: "/game/solo/",
+  TOURNAMENT: "/game/tournament/"
 };
 
 /*-----------Game Parameters-----------*/

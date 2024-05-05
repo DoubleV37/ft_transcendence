@@ -11,9 +11,6 @@ function modes_SetEvents() {
   element = document.getElementById("GAME_Create");
   element.addEventListener("click", modes_CreateGame);
 
-  element = document.getElementById("TRNMT_Join");
-  element.addEventListener("click", modes_ChooseTournament);
-
   element = document.getElementById("TRNMT_Create");
   element.addEventListener("click", modes_CreateTournament);
 }
@@ -30,9 +27,6 @@ function modes_DelEvents() {
 
   element = document.getElementById("GAME_Create");
   element.removeEventListener("click", modes_CreateGame);
-
-  element = document.getElementById("TRNMT_Join");
-  element.removeEventListener("click", modes_ChooseTournament);
 
   element = document.getElementById("TRNMT_Create");
   element.removeEventListener("click", modes_CreateTournament);

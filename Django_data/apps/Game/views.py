@@ -64,7 +64,3 @@ def gameParameters(request):
 
 def modes(request):
     return render(request, "Game/Modes.html")
-
-
-def tournament(request):
-    return render(request, "Game/Tournament.html")

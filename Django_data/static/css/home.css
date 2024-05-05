@@ -325,9 +325,13 @@ scrollbar-width: none;
 		line-height: normal;
 	}
 
+        #PlayButton {
+          width: 23rem;
+        }
+
 	.play-button {
 		display: flex;
-		width: 28.125rem;
+		width: 100%;
 		height: 4.375rem;
 		justify-content: center;
 		align-items: center;
@@ -724,9 +728,13 @@ scrollbar-width: none;
 		line-height: normal;
 	}
 
+        #PlayButton {
+          width: 23rem;
+        }
+
 	.play-button {
 		display: flex;
-		width: 23rem;
+		width: 100%;
 		height: 4.375rem;
 		justify-content: center;
 		align-items: center;
@@ -1127,8 +1135,13 @@ scrollbar-width: none;
 		line-height: normal;
 	}
 
+        #PlayButton {
+          width: 75%;
+          max-width: 23em;
+        }
+
 	.play-button {
-		width: 75%;
+		width: 100%;
 		height: 4.375rem;
 		padding: 0.625rem;
 
