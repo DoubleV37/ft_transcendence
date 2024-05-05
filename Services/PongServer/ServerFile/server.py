@@ -1,11 +1,10 @@
-""" server.py """
 import asyncio, websockets, jwt, json
 from http.cookies import SimpleCookie
 from decouple import config
 
 CONNECTIONS = dict()
 
-async def register(websocket):
+async def register(websocket, data):
 	header_cookie = websocket.request_headers.get("Cookie")
 	cookie = SimpleCookie(header_cookie)
 	jwtt = cookie.get("jwt_token").value
@@ -16,25 +15,41 @@ async def register(websocket):
 		issuer=config("NAME"),
 		options={"verify_signature": False}
 	)
-	CONNECTIONS[websocket] = dict_user["username"]
+	CONNECTIONS[websocket] = {"user" : dict_user["username"], "data" : data}
 	print("==Client connected")
 	print(CONNECTIONS)
-	try:
-		await websocket.wait_closed()
-	finally:
-		print("CLient disconnected")
-		del CONNECTIONS[websocket]
+
+def check_group(websocket):
+	if len(CONNECTIONS) < 2:
+		return False
+	if CONNECTIONS[websocket]["data"]["type_game"] == "all":
+		pass
+	elif CONNECTIONS[websocket]["data"]["type_game"] == "custom":
+		pass
+	return False
 
 async def handler(websocket):
+	waiting = False
 	while True:
-		try:
-			message = await websocket.recv()
-			if (message == "coucou"): # message settings
-				await register(websocket)
-				await websocket.send("coucou")
-			print(f"==Received message: {message}")
-		except websockets.exceptions.ConnectionClosedError:
-			break
+		if not waiting:
+			print("==Waiting for settings")
+			try:
+				message = await websocket.recv()
+				data = json.loads(message)
+				type_msg = data.get("message")
+				if (type_msg == "settings"):
+					await register(websocket, data)
+					waiting = True
+				print(f"==Received message: {message}")
+			except websockets.exceptions.ConnectionClosedError:
+				break
+		if waiting:
+			print("==Waiting for group")
+			found = check_group(websocket)
+			if found:
+				await websocket.send(json.dumps({"message" : "start"}))
+				break
+			await asyncio.sleep(1)
 
 async def main():
 	print("Server started")

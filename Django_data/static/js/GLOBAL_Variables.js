@@ -65,6 +65,7 @@ let GameParams = {
   point_limit: 3,
   difficulty: 5,
   powerup: false,
+  type_game: "all"
 };
 
 let GameInfos = {
