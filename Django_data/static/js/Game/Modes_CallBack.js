@@ -41,24 +41,26 @@ function MultiTestCallback (event) {
 
   const element = document.getElementById("MultiSend");
   element.setAttribute("class", "MediumButtonLayout right ButtonNeon");
-  // const websocket = new WebSocket("wss://" + window.location.host + "/wss/game/matchmaking");
+  const websocket = new WebSocket("wss://" + window.location.host + "/ws/multi/");
 
-  // websocket.onopen = () {
-  //   console.log("MultiTest Websocket openned!");
-  //   websocket.send("Client: Connected.");
-  // }
-  // websocket.onclose = () {
-  //   console.log("MultiTest Websocket closed!");
-  //   websocket.send("Client: Closed.");
-  // }
-  // websocket.onerror = () {
-  //   console.log("MultiTest Websocket error!");
-  //   websocket.send("Client: Error.");
-  // }
-  // websocket.onmessage = (event) {
-  //   const data = JSON.parse(event.data);
-  // }
+  websocket.onopen = () => {
+    console.log("MultiTest Websocket openned!");
+    websocket.send("Client: Connected.");
+  }
+  websocket.onclose = () => {
+    console.log("MultiTest Websocket closed!");
+    websocket.send("Client: Closed.");
+  }
+  websocket.onerror = () => {
+    console.log("MultiTest Websocket error!");
+    websocket.send("Client: Error.");
+  }
+  websocket.onmessage = (event) => {
+	console.log(event.data);
+    // const data = JSON.parse(event.data);
+  }
   element.addEventListener("click", () => {
     console.log("Client: clicked!");
+	websocket.send("Client: clicked!");
   });
 }

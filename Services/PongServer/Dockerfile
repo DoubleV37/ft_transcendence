@@ -8,4 +8,4 @@ RUN mkdir -p /Server
 
 WORKDIR /Server
 
-CMD ["python3 server.py"]
+CMD ["python3", "-u", "server.py"]
