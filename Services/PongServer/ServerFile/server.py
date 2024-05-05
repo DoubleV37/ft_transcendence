@@ -1,31 +1,45 @@
 """ server.py """
-import asyncio
-import websockets
-import datetime
-import random
+import asyncio, websockets, jwt, json
+from http.cookies import SimpleCookie
+from decouple import config
 
-async def hello(websocket):
-	print("Server connected")
-	name = await websocket.recv()
-	print(f"<<< {name}")
+CONNECTIONS = dict()
 
-	greeting = f"Hello {name}!"
+async def register(websocket):
+	header_cookie = websocket.request_headers.get("Cookie")
+	cookie = SimpleCookie(header_cookie)
+	jwtt = cookie.get("jwt_token").value
+	dict_user = jwt.decode(
+		jwtt,
+		config("DJANGO_SECRET_KEY"),
+		algorithms=config("HASH"),
+		issuer=config("NAME"),
+		options={"verify_signature": False}
+	)
+	CONNECTIONS[websocket] = dict_user["username"]
+	print("==Client connected")
+	print(CONNECTIONS)
+	try:
+		await websocket.wait_closed()
+	finally:
+		print("CLient disconnected")
+		del CONNECTIONS[websocket]
 
-	await websocket.send(greeting)
-	print(f">>> {greeting}")
-
-async def show_time(websocket):
-	print("Server connected")
+async def handler(websocket):
 	while True:
-		message = datetime.datetime.utcnow().isoformat() + "Z"
-		await websocket.send(message)
-		message = await websocket.recv()
-		print(f">>> {message}")
-		await asyncio.sleep(random.random() * 2 + 1)
+		try:
+			message = await websocket.recv()
+			if (message == "coucou"): # message settings
+				await register(websocket)
+				await websocket.send("coucou")
+			print(f"==Received message: {message}")
+		except websockets.exceptions.ConnectionClosedError:
+			break
 
 async def main():
 	print("Server started")
-	async with websockets.serve(show_time, "0.0.0.0", 8765):
+	async with websockets.serve(handler, "0.0.0.0", 8765):
+		# await show_time()
 		await asyncio.Future()  # run forever
 
 if __name__ == "__main__":

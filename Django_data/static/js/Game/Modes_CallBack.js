@@ -61,6 +61,6 @@ function MultiTestCallback (event) {
   }
   element.addEventListener("click", () => {
     console.log("Client: clicked!");
-	websocket.send("Client: clicked!");
+	websocket.send("coucou");
   });
 }

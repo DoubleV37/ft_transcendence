@@ -1,0 +1,4 @@
+pyjwt
+websockets[12.0]
+python-decouple
+

@@ -66,6 +66,7 @@ services:
   pong:
     container_name: pong
     build: Services/PongServer
+    env_file: .env
     restart: always
     volumes:
       - ./Services/PongServer/ServerFile:/Server
