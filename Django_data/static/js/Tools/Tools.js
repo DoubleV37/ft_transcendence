@@ -45,6 +45,8 @@ function del_current_event () {
     break;
   case "GAMEBOARD_PAGE":
     break;
+  case "STATS":
+    break;
   default:
     break;
   }

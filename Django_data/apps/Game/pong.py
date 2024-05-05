@@ -113,8 +113,8 @@ class Pong:
             "score1": self.point[0],
             "score2": self.point[1],
             "max_speed": [
-                round(self.ball_max_speed[0] * 6, 1),
-                round(self.ball_max_speed[1] * 6, 1),
+                round(self.ball_max_speed[0] * 5, 1),
+                round(self.ball_max_speed[1] * 5, 1),
             ],
             "bounce": self.ball_bonce,
             "max_exchange": self.max_exchange,
