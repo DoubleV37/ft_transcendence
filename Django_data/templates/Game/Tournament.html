@@ -18,46 +18,280 @@
           <div id="titleContent" data-content="TOURNAMENT"></div>
           <!-- -->
           <div id="SetTournament">
-            <div class="section">
-              <h1 class="gameTitle">Tournament Parameters</h1>
-            </div>
-            <!--Form about the players username -->
-            <div class="section">
-              <p class="bodyText">Enter player username:</p>
-              <div class="DoubleButtonSettings">
-                <input id="SetPlayer1" class="form-control" type="text" value="Player 1" aria-label="default input example" disabled readonly>
-                <input id="SetPlayer2" class="form-control" type="text" value="" placeholder="Player 2" aria-label="default input example">
-              </div>
-              <div class="DoubleButtonSettings">
-                <input id="SetPlayer3" class="form-control" type="text" value="" placeholder="Player 3" aria-label="default input example">
-                <input id="SetPlayer4" class="form-control" type="text" value="" placeholder="Player 4" aria-label="default input example">
-              </div>
-            </div>
-            <!-- -->
-            <div class="section">
-              <div class="conteneur">
-                <div class="flex-column">
-                  <p class="bodyText">Score to win:</p>
-                  <div class="quantity">
-                    <button class="minus" aria-label="Decrease">&minus;</button>
-                    <input id="Score" type="number" class="input-box" value="1" min="1" max="10"/>
-                    <button class="plus" aria-label="Increase">&plus;</button>
+            <div class="Tournament-content">
+              <h1 class="gameTitle">Tournament</h1>
+              <!--Form about the players username -->
+              <div class="section">
+                <div class="container-fluid">
+                  <h2 class="bodyText">Player username:</h2>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <input id="SetPlayer1" class="form-control" maxlength="20" type="text" value="{{username_tournament}}" aria-label="default input example" disabled readonly>
+                    <input id="SetPlayer3" class="form-control" maxlength="20" type="text" value="" placeholder="Player 3" aria-label="default input example">
+                  </div>
+                  <div class="col">
+                    <input id="SetPlayer2" class="form-control" maxlength="20" type="text" value="" placeholder="Player 2" aria-label="default input example">
+                    <input id="SetPlayer4" class="form-control" maxlength="20" type="text" value="" placeholder="Player 4" aria-label="default input example">
                   </div>
                 </div>
-                <div class="flex-column">
-                  <p class="bodyText">Power ups:</p>
-                  <div class="form-check form-switch p-0">
-                    <div class="d-flex flex-column-reverse gap-1">
-                      <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" />
+              </div>
+              <!-- -->
+              <div class="section skins-tournament">
+                <div class="row">
+                  <div class="col">
+                    <div class="container-fluid">
+                      <h2 class="bodyText">Score to win:</h2>
+                    </div>
+                    <div class="quantity">
+                      <button class="minus" aria-label="Decrease">&minus;</button>
+                      <input id="Score" type="number" class="input-box" value="1" min="1" max="10"/>
+                      <button class="plus" aria-label="Increase">&plus;</button>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="container-fluid">
+                      <h2 class="bodyText">Power Up:</h2>
+                    </div>
+                    <div class="form-check form-switch p-0">
+                      <div class="d-flex flex-column-reverse gap-1">
+                        <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="section">
-              <button id="StartButton" class="play-button">
-                <span class="play">Begin !</span>
-              </button>
+              <!-- Skins selections -->
+              <div id="Skin-tournament">
+                <div class="row">
+                  <div class="col">
+                    <div class="SectionLayout SectionGrey">Ball</div>
+                    <div id="ball" class="carousel slide" data-bs-interval="false">
+                      <div class="carousel-indicators">
+                          <button type="button" data-bs-target="#ball" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                          <button type="button" data-bs-target="#ball" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                          <button type="button" data-bs-target="#ball" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      </div>
+                      <div id="ballInner" class="carousel-inner">
+                        <div class="carousel-item active" data-skin="/static/images/skins/ball/Ball_Cat.png">
+                          <img src="{% static 'images/skins/ball/ballSelectCat.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Cat</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/ball/Ball_Blackhole.png">
+                          <img src="{% static 'images/skins/ball/ballSelectBlackhole.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">BlackHole</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/ball/Ball_Sushi.png">
+                          <img src="{% static 'images/skins/ball/ballSelectSushi.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Sushi</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#ball" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#ball" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="SectionLayout SectionGrey">Background</div>							
+                    <div id="background" class="carousel slide" data-bs-interval="false">
+                      <div class="carousel-indicators">
+                          <button type="button" data-bs-target="#background" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                          <button type="button" data-bs-target="#background" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                          <button type="button" data-bs-target="#background" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      </div>
+                      <div id="backgroundInner" class="carousel-inner">
+                        <div class="carousel-item active" data-skin="/static/images/skins/background/BG_Forest.png">
+                          <img src="{% static 'images/skins/background/backgroundSelectForest.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Forest</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/background/BG_Space.png">
+                          <img src="{% static 'images/skins/background/backgroundSelectSpace.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Space</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/background/BG_LoFi.png">
+                          <img src="{% static 'images/skins/background/backgroundSelectLoFi.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">LoFi</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#background" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#background" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      </button>
+                    </div> 
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="Player1Paddle" class="col">
+                    <div class="SectionLayout SectionGrey">Player 1</div>
+                    <div id="paddle1" class="carousel slide" data-bs-interval="false">
+                      <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#paddle1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#paddle1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#paddle1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      </div>
+                      <div id="paddleInner1" class="carousel-inner">
+                        <div class="carousel-item active" data-skin="/static/images/skins/paddle/Paddle_Grass.png">
+                          <img src="{% static 'images/skins/paddle/paddleSelectGrass.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Grass</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Amethyst.png">
+                          <img src="{% static 'images/skins/paddle/paddleSelectAmethyst.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Amethyst</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Snow.png">
+                        <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Snow</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#paddle1" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#paddle1" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                  <div id="Player2Paddle" class="col">
+                    <div class="SectionLayout SectionGrey">Player 2</div>
+                    <div id="paddle2" class="carousel slide" data-bs-interval="false">
+                      <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#paddle2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#paddle2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#paddle2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      </div>
+                      <div id="paddleInner2" class="carousel-inner">
+                        <div class="carousel-item active" data-skin="/static/images/skins/paddle/Paddle_Grass.png">
+                          <img src="{% static 'images/skins/paddle/paddleSelectGrass.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Grass</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Amethyst.png">
+                          <img src="{% static 'images/skins/paddle/paddleSelectAmethyst.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Amethyst</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Snow.png">
+                        <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Snow</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#paddle2" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#paddle2" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="Player3Paddle" class="col">
+                    <div class="SectionLayout SectionGrey">Player 3</div>
+                    <div id="paddle3" class="carousel slide" data-bs-interval="false">
+                      <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#paddle3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#paddle3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#paddle3" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      </div>
+                      <div id="paddleInner3" class="carousel-inner">
+                        <div class="carousel-item active" data-skin="/static/images/skins/paddle/Paddle_Grass.png">
+                          <img src="{% static 'images/skins/paddle/paddleSelectGrass.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Grass</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Amethyst.png">
+                          <img src="{% static 'images/skins/paddle/paddleSelectAmethyst.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Amethyst</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Snow.png">
+                        <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Snow</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#paddle3" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#paddle3" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                  <div id="Player4Paddle" class="col">
+                    <div class="SectionLayout SectionGrey">Player 4</div>
+                    <div id="paddle4" class="carousel slide" data-bs-interval="false">
+                      <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#paddle4" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#paddle4" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#paddle4" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      </div>
+                      <div id="paddleInner4" class="carousel-inner">
+                        <div class="carousel-item active" data-skin="/static/images/skins/paddle/Paddle_Grass.png">
+                          <img src="{% static 'images/skins/paddle/paddleSelectGrass.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Grass</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Amethyst.png">
+                          <img src="{% static 'images/skins/paddle/paddleSelectAmethyst.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Amethyst</h5>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Snow.png">
+                        <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-md-block">
+                            <h5 class="SkinName">Snow</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#paddle4" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#paddle4" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Start the tournament -->
+              <div class="section">
+                <button id="StartButton" class="play-button">
+                  <span class="play">Begin !</span>
+                </button>
+              </div>
             </div>
           </div>
           <!-- Other page for the tournament -->

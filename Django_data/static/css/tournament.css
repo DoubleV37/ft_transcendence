@@ -42,9 +42,35 @@
     #sectionTournament {
         flex-direction: row;
         justify-content: center;
-        width: 60em;
+        width: 100%;
     }
 
+    #SetTournament {
+      height:100%;
+      margin:0;
+      padding:0;
+      width: 100%;
+      overflow: auto;
+    }
+
+    .tournament-container {
+      display: grid;
+      grid-template-columns: 1.0fr 1.0fr;
+      justify-items: center;
+    }
+
+    .tournament-name-grid {
+      display: grid;
+      grid-template-columns: 1.0fr 1.0fr;
+      grid-template-rows: 1.0fr 1.0fr;
+      align-items: center;
+      row-gap: 15%;
+      column-gap: 5%;
+    }
+
+    .Tournament-content {
+      width: 80%;
+    }
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -92,6 +118,30 @@
         flex-direction: row;
         justify-content: center;
         width: 35em;
+    }
+
+    .tournament-container {
+      display: grid;
+      grid-template-columns: 1.0fr 1.0fr;
+      justify-items: center;
+    }
+
+    .tournament-name-grid {
+      display: grid;
+      grid-template-columns: 1.0fr 1.0fr;
+      grid-template-rows: 1.0fr 1.0fr;
+      justify-items: center;
+      row-gap: 15%;
+      column-gap: 5%;
+    }
+
+    .Skin-tournament {
+      display: grid;
+      grid-template-columns: 200px 200px 200px
+    }
+
+    .Skin-box {
+      height: auto;
     }
 }
 
@@ -143,5 +193,26 @@
         flex-direction: row;
         justify-content: center;
         width: 90%;
+    }
+
+    #SetTournament {
+      height:100%;
+      margin:0;
+      padding:0;
+    }
+
+    .tournament-container {
+      display: grid;
+      grid-template-columns: 1.0fr 1.0fr;
+      justify-items: center;
+    }
+
+    .tournament-name-grid {
+      display: grid;
+      grid-template-columns: 1.0fr 1.0fr;
+      grid-template-rows: 1.0fr 1.0fr;
+      align-items: center;
+      row-gap: 15%;
+      column-gap: 5%;
     }
 }
