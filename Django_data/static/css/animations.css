@@ -5,7 +5,7 @@
     @keyframes flowAnimation {
     from {
        opacity: 0;
-       transform: translateX(100px);
+       transform: translateX(125px);
     }
     to {
        opacity: 1;
@@ -15,7 +15,7 @@
    
    /* Apply the animation to the #content div */
    .flowAnimation {
-    animation: flowAnimation 0.4s ease-in forwards;
+    animation: flowAnimation 0.5s ease-in forwards;
    }
 
     /* Define the animation */
@@ -30,7 +30,7 @@
     
     /* Apply the animation to the #content div */
     .fadeinAnimation {
-    animation: fadeinAnimation 0.4s ease-in forwards;
+    animation: fadeinAnimation 0.5s ease-in forwards;
     }
 
     @keyframes fadeoutAnimation {
@@ -43,19 +43,19 @@
     }
 
     .fadeoutAnimation {
-        animation: fadeoutAnimation 0.4s ease-out forwards;
+        animation: fadeoutAnimation 0.5s ease-out forwards;
     }
 
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
 
     /* Define the animation */
     @keyframes flowAnimation {
         from {
             opacity: 0;
-            transform: translateX(100px);
+            transform: translateX(125px);
         }
         to {
             opacity: 1;
@@ -65,7 +65,7 @@
         
     /* Apply the animation to the #content div */
     .flowAnimation {
-    animation: flowAnimation 0.3s ease-in forwards;
+    animation: flowAnimation 0.5s ease-in forwards;
     }
 
     /* Define the animation */
@@ -80,12 +80,12 @@
         
         /* Apply the animation to the #content div */
         .fadeinAnimation {
-        animation: fadeinAnimation 0.3s ease-in forwards;
+        animation: fadeinAnimation 0.5s ease-in forwards;
     }
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
 
     /* Define the animation */
     @keyframes fadeinAnimation {
@@ -99,6 +99,6 @@
     
     /* Apply the animation to the #content div */
     .fadeinAnimation {
-        animation: fadeinAnimation 0.4s ease-in forwards;
+        animation: fadeinAnimation 0.5s ease-in forwards;
     }
 }

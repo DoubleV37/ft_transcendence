@@ -1,6 +1,6 @@
 // ----------Run at the load/reload of the website-------------//
 document.addEventListener("DOMContentLoaded", launchWebsite);
- 
+
 async function launchWebsite () {
   const targetNode = document.querySelector("#content");
 
@@ -20,10 +20,9 @@ async function launchWebsite () {
   modal_2FaInit();
   modal_AvatarInit();
 
-  main_SetFirstsEvents();
-
   observer = new MutationObserver(mutationCallBack);
   observer.observe(targetNode, config);
+  main_SetFirstsEvents();
 
   document.removeEventListener("DOMContentLoaded", launchWebsite);
 
@@ -35,7 +34,6 @@ function main_SetFirstsEvents () {
   const element = document.getElementById("titleContent");
 
   if (!element) {
-    console.log("Fuck it...");
     return;
   }
   launchSectionHandler(element);
@@ -77,6 +75,24 @@ function launchSectionHandler (element) {
       break;
     case "GAME_PARAMETERS":
       parameters_SetEvents();
+      break;
+    case "GAME_LOCAL":
+      observer.disconnect();
+      game_SetEvents("GAME_LOCAL");
+      break;
+    case "GAME_MATCH":
+      observer.disconnect();
+      matchmaking_SetEvents();
+      break;
+    case "GAME_ROOM":
+      observer.disconnect();
+      game_SetEvents("GAME_ROOM");
+      break;
+    case "SKINS_PAGE":
+      skins_SetEvents();
+      break;
+    case "GAMEBOARD_PAGE":
+      gameboard_SetEvents();
       break;
     default:
       throw new Error(

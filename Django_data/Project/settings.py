@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.Game',
     'apps.Twofa',
     'apps.FriendsList',
+    'apps.Dashboard',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Project.wsgi.application'
-
 ASGI_APPLICATION = 'Project.asgi.application'
 
 
@@ -160,8 +160,13 @@ AUTH_USER_MODEL = 'Auth.User'
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis://redis:6379")],
+            "capacity": 5000,
+            "expiry": 10,
+        },
+    },
 }
 
 LOGGING = {
