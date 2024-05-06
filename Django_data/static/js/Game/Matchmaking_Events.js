@@ -11,6 +11,10 @@ function matchmaking_SetEvents () {
     //console.log("Message received from server:", event.data);
     data = JSON.parse(event.data);
 	console.log(data);
+	if (data.message == "settings") {
+	  console.log("Settings received:", data);
+	  GameParams = data;
+	}
     if (data.message == "match_found") {
       console.log("Match found:", data);
       matchSocket.close();

@@ -4,6 +4,8 @@ from matchmaking import matchmaking_handler
 from game import game_handler
 
 async def handler(websocket, path):
+	print(f"Connection from {websocket.remote_address}")
+	print(f"Path: {path}")
 	if path == "/ws/multi/matchmaking/":
 		await matchmaking_handler(websocket, path)
 	elif path.startswith("/ws/multi/game/"):

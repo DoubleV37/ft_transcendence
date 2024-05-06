@@ -1,4 +1,4 @@
-import asyncio, websockets, jwt, json
+import asyncio, websockets, jwt, json, hashlib
 from http.cookies import SimpleCookie
 from decouple import config
 
@@ -22,9 +22,11 @@ async def matchmaking_handler(websocket, path):
 						print("==Group found==")
 						print(group)
 						for ws in group:
-							await ws[0].send(json.dumps({"message" : "match_found", "room_name" : "room1"}))
+							await ws[0].send(json.dumps(group[0][1]["data"]))
+							room_name = hashlib.sha256(f"{group[0][1]['user']}{group[1][1]['user']}".encode()).hexdigest()
+							await ws[0].send(json.dumps({"message" : "match_found", "room_name" : room_name}))
 					else:
-						print("==Waiting for group==")
+						print("==Waiting for group")
 				print(f"==Received message: {message}")
 			if waiting:
 				print("==Waiting for group alone")
