@@ -1,6 +1,6 @@
 function matchmaking_SetEvents () {
   // Fonction pour se connecter au WebSocket
-  matchSocket = new WebSocket("wss://" + window.location.host + "/ws/multi/");
+  matchSocket = new WebSocket("wss://" + window.location.host + "/ws/multi/matchmaking/");
 
   matchSocket.onopen = function () {
     console.log("WebSocket matchmaking connection established.");
@@ -11,7 +11,7 @@ function matchmaking_SetEvents () {
     //console.log("Message received from server:", event.data);
     data = JSON.parse(event.data);
 	console.log(data);
-    if (data.type == "match_found") {
+    if (data.message == "match_found") {
       console.log("Match found:", data);
       matchSocket.close();
       loadPage(`${ROUTE.GAME_ROOM}${data.room_name}/`);

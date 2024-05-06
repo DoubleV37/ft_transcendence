@@ -47,7 +47,7 @@ function MultiTestCallback (event) {
 
   const element = document.getElementById("MultiSend");
   element.setAttribute("class", "MediumButtonLayout right ButtonNeon");
-  const websocket = new WebSocket("wss://" + window.location.host + "/ws/multi/");
+  const websocket = new WebSocket("wss://" + window.location.host + "/ws/multi/matchmaking/");
 
   websocket.onopen = () => {
     console.log("MultiTest Websocket openned!");

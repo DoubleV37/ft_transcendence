@@ -1,9 +1,12 @@
 function game_SetEvents () {
-  gameSocket = new WebSocket("wss://" + window.location.host + "/wss" + window.location.pathname);
-  gameSocket.addEventListener("message", SetTheGame);
-  gameSocket.addEventListener("open", OnOpenCallback);
-  gameSocket.addEventListener("close", OnCloseCallback);
-  init_canvas();
+	if (window.location.pathname === "/game/solo/")
+		gameSocket = new WebSocket("wss://" + window.location.host + "/wss" + window.location.pathname);
+	else
+		gameSocket = new WebSocket("wss://" + window.location.host + "/ws/multi" + window.location.pathname);
+	gameSocket.addEventListener("message", SetTheGame);
+	gameSocket.addEventListener("open", OnOpenCallback);
+	gameSocket.addEventListener("close", OnCloseCallback);
+	init_canvas();
 }
 
 function game_DelEvents () {
@@ -11,25 +14,25 @@ function game_DelEvents () {
   document.removeEventListener("keyup", keyUp);
   document.removeEventListener("keydown", keyDown);
   if (loading === true) {
-    gameSocket.removeEventListener("message", SetTheGame);
+	gameSocket.removeEventListener("message", SetTheGame);
   } else {
-    gameSocket.removeEventListener("message", receive_data);
+	gameSocket.removeEventListener("message", receive_data);
   }
   if (gameCanvas.inGame == true) {
-    gameCanvas.inGame = false;
-    gameSocket.send(JSON.stringify({ message: "stop" }));
-    gameSocket.send(JSON.stringify({ message: "stopGame" }));
-    wait_and_close();
+	gameCanvas.inGame = false;
+	gameSocket.send(JSON.stringify({ message: "stop" }));
+	gameSocket.send(JSON.stringify({ message: "stopGame" }));
+	wait_and_close();
   } else {
-    gameSocket.close();
+	gameSocket.close();
   }
 
   keyStates = {
-    ArrowUp: false,
-    ArrowDown: false,
-    w: false,
-    s: false,
-    space: false
+	ArrowUp: false,
+	ArrowDown: false,
+	w: false,
+	s: false,
+	space: false
   };
 }
 
@@ -45,23 +48,23 @@ function SetTheGame (event) {
   console.log(data.message);
   gameCanvas.inGame = true;
   if (data.message === "Game stopped") {
-    if (deleteEvent === true) {
-      return;
-    }
-    gameSocket.removeEventListener("message", SetTheGame);
-    EndGame("You won!\nPlayer has leaved the game");
-    console.log("Aled1");
+	if (deleteEvent === true) {
+	  return;
+	}
+	gameSocket.removeEventListener("message", SetTheGame);
+	EndGame("You won!\nPlayer has leaved the game");
+	console.log("Aled1");
   } else {
-    if (deleteEvent === true) {
-      return;
-    }
-    parseUserInfos(data);
-    setGameScreen();
-    gameSocket.removeEventListener("message", SetTheGame);
-    gameSocket.addEventListener("message", receive_data);
-    document.addEventListener("keyup", keyUp);
-    document.addEventListener("keydown", keyDown);
-    update();
+	if (deleteEvent === true) {
+	  return;
+	}
+	parseUserInfos(data);
+	setGameScreen();
+	gameSocket.removeEventListener("message", SetTheGame);
+	gameSocket.addEventListener("message", receive_data);
+	document.addEventListener("keyup", keyUp);
+	document.addEventListener("keydown", keyDown);
+	update();
   }
   loading = false;
 }
@@ -72,13 +75,13 @@ function OnOpenCallback () {
   gameSocket.addEventListener("message", SetTheGame);
 
   if (window.location.pathname === "/game/solo/") {
-    console.log(GameParams);
-    gameCanvas.powerup = GameParams.powerup;
+	console.log(GameParams);
+	gameCanvas.powerup = GameParams.powerup;
   } else {
-    gameCanvas.powerup = false;
-    GameParams.point_limit = 1;
-    GameParams.type = "remote";
-    GameParams.opponent = "player";
+	gameCanvas.powerup = false;
+	GameParams.point_limit = 1;
+	GameParams.type = "remote";
+	GameParams.opponent = "player";
   }
   gameSocket.send(JSON.stringify(GameParams));
 }
@@ -98,7 +101,7 @@ function keyUp (e) {
 
 function keyDown (e) {
   if (e.key !== "F5" && !(e.key === "F5" && e.ctrlKey) && e.key !== "F12") {
-    e.preventDefault();
+	e.preventDefault();
   }
   keyStates[e.key] = true;
 }
