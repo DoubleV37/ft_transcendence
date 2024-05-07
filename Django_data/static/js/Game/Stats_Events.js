@@ -31,6 +31,9 @@ function stats_SetEvents () {
       if (tGames === 0 && rGames != 0) {
           return 5;
       }
+      else if (tGames != 0 && rGames === 0) {
+          return 5;
+      }
       else if (tGames === 0 && rGames === 0) {
           return 50;
       }
@@ -52,6 +55,9 @@ function stats_SetEvents () {
     function calculateProgressWins(tWins, totalWins) {
       // Si le score est 0, retourner 1% pour indiquer une petite progression
       if (tWins === 0 && rWins != 0) {
+          return 5;
+      }
+      else if (tWins != 0 && rWins === 0) {
           return 5;
       }
       else if (tWins === 0 && rWins === 0) {

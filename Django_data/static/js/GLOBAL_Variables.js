@@ -140,7 +140,7 @@ let gameSocket = null;
 let matchSocket = null;
 let gameStop = true;
 
-let victorySrc = "/static/images/penguin-dance.gif";
+let playerVictorySrc = "/static/images/penguin-dance.gif";
 let defeatSrc = "/static/images/shiny-charmander-pokemon.gif";
 let stoppedSrc = "/static/images/ghost-phantom.gif";
-let elseSrc = "/static/images/smolverse-smol.gif";
+let aiVictorySrc = "/static/images/smolverse-smol.gif";

@@ -63,9 +63,13 @@ function receive_data (e) {
     return EndGame("You won!");
   } else if (data.message === "lose") {
     return EndGame("You lost!");
-  } else if (data.message === "game_finish") {
+  } else if (data.message === "game_finish" && GameParams.opponent != "ai") {
     return EndGame(`${data.winner} won!`);
   }
+  else if (data.message === "game_finish" && GameParams.opponent === "ai") {
+  return EndGame("AI-Ochen won!");
+  }
+
   if (data.message === "game_state") {
     const score1div = document.getElementById("score1div");
     const score2div = document.getElementById("score2div");
@@ -128,15 +132,18 @@ function EndGame (message) {
   }
 
   if (message === "You won!") {
-    endGameImage.src = victorySrc;
+    endGameImage.src = playerVictorySrc;
  } else if (message === "You lost!") {
     endGameImage.src = defeatSrc;
  }
   else if (message === "Game Stopped!") {
     endGameImage.src = stoppedSrc;
   }
+  else if (message === "AI-Ochen won!") {
+    endGameImage.src = aiVictorySrc;
+  }
   else {
-    endGameImage.src = elseSrc;
+    endGameImage.src = playerVictorySrc;
   }
 
   document.getElementById("MyCanvas").hidden = true;
