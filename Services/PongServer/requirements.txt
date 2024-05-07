@@ -1,4 +1,5 @@
 pyjwt
+psycopg2-binary
 websockets[12.0]
 python-decouple
 
