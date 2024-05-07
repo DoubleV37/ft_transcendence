@@ -19,68 +19,74 @@
             <h1 class="gameStats">Player Stats</h1>
           </div>
           
-                  <div class="section-stats">
-                    <span class="stats-title">Winrate: {{ win_rate }}</span>
-                    <img src="{%static 'images/duck-ducky.gif'%}"></img>
+                  <div class="section-stats-center">
+                    {% if win_rate >= 0 and win_rate <= 0.33 %}
+                      <span class="WR-title low-ranked">Winrate: {{ win_rate }}</span>
+                      <img class="ranked-gif" src="{%static 'images/sad.gif'%}"></img>
+                    {% elif win_rate > 0.33 and win_rate <= 0.66 %}
+                      <span class="WR-title medium-ranked">Winrate: {{ win_rate }}</span>
+                      <img class="ranked-gif" src="{%static 'images/duck-ducky.gif'%}"></img>
+                    {% elif win_rate > 0.66 and win_rate <= 1 %}
+                      <span class="WR-title high-ranked">Winrate: {{ win_rate }}</span>
+                      <img class="ranked-gif" src="{%static 'images/duck-ducky.gif'%}"></img>
+                    {% endif %}
                   </div>
-
-                  <div class="section-stats">
-                    <span class="stats-title">Nb. games played</span>
-                  </div>
-                  <div class="content-score">
-                  
-                    <div class="pk-wrapper">
-                      <div id="left" class=" rantangle left">
-                        <span id="score-left">{{ me.score }}</span>
-                      </div>
-                      <div id="right" class="rantangle right">
-                        <span id="score-right">{{ opponent.score }}</span>
-                      </div>
-                    </div>
-                  
-                  </div>
-
-                  <div class="section-stats">
-                    <span class="stats-title">Victory ratio</span>
-                  </div>
-                  <div class="content-score">
-                  
-                    <div class="pk-wrapper">
-                      <div id="left" class=" rantangle left">
-                        <span id="score-left">{{ me.score }}</span>
-                      </div>
-                      <div id="right" class="rantangle right">
-                        <span id="score-right">{{ opponent.score }}</span>
-                      </div>
-                    </div>
-                  
-                  </div>
-                    
 
                   {% comment %} <div class="section-stats">
-                    <span class="stats-title">Nb Games: {{ nb_games }} secs</span>
-                  </div>
-                  <div class="section-stats">
-                    <span class="stats-title">regular_games: {{ regular_games }}</span>
-                  </div>
-                  <div class="section-stats">
-                    <span class="stats-title">tournament_games: {{ tournament_games }}</span>
-                  </div>
-                  <div class="section-stats">
-                    <span class="stats-title">victory: {{ victory }} secs</span>
-                  </div>
-                  <div class="section-stats">
-                    <span class="stats-title">defeat: {{ defeat }} secs</span>
+                    <span class="stats-title">Game types:</span>
                   </div> {% endcomment %}
                   <div class="section-stats">
-                    <span class="stats-title">Winned tournaments: {{ tournaments_winned }} secs</span>
+                    <span class="stats-title">Total games played: {{ nb_games }}</span>
                   </div>
+
+                  <div class="section-stats-row">
+                    <span class="stats-title">Regular</span>
+                    <span class="stats-title">Tournament</span>
+                  </div>
+
+                  <div class="content-score">                    
+                    <div class="pk-wrapper">
+                      <div id="left-games" class=" rantangle left">
+                        <span id="regular-games">{{ regular_games }}</span>
+                      </div>
+                      <div id="right-games" class="rantangle right">
+                        <span id="tournament-games">{{ tournament_games }}</span>
+                      </div>
+                    </div>                    
+                  </div>
+
+
+                  <div class="section-stats">
+                    <span class="stats-title">Total Victories: {{ victory }}</span>
+                  </div>
+
+                  <div class="section-stats-row">
+                    <span class="stats-title">Regular</span>
+                    <span class="stats-title">Tournament</span>
+                  </div>
+
+                  {% comment %} <div class="section-stats">
+                    <span class="stats-title">Tournaments Victories: {{ tournaments_winned }}</span>
+                  </div> {% endcomment %}
+                  <div class="content-score">                    
+                    <div class="pk-wrapper">
+                      <div id="left-wins" class=" rantangle left">
+                        <span id="regular-wins">{{ regular_winned }}</span>
+                      </div>
+                      <div id="right-wins" class="rantangle right">
+                        <span id="tournament-wins">{{ tournaments_winned }}</span>
+                      </div>
+                    </div>                    
+                  </div>
+
+                  <div id="NbGames">{{ nb_games }}</div>
+                  <div id="Victories">{{ victory }}</div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    {% include "Home/footer.html" %}
-  </body>
+          {% include "Home/footer.html" %}
+        </body>
 </html>
 
 

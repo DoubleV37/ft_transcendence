@@ -290,7 +290,7 @@
         font-size: 5rem;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
+        line-height: 1;
         border-bottom: #7b7b7b solid 1px;
         align-self: stretch;
     }
