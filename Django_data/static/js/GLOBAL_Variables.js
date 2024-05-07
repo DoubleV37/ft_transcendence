@@ -138,3 +138,8 @@ let deleteEvent = false;
 let gameSocket = null;
 let matchSocket = null;
 let gameStop = true;
+
+let victorySrc = "/static/images/penguin-dance.gif";
+let defeatSrc = "/static/images/shiny-charmander-pokemon.gif";
+let stoppedSrc = "/static/images/penguin-dance.gif";
+let elseSrc = "/static/images/matchmaking.gif";

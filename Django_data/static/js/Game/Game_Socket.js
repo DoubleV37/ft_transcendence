@@ -121,10 +121,24 @@ function EndGame (message) {
   const endGameScreen = document.getElementById("endGameScreen");
   const endGameMessage = document.getElementById("endGameMessage");
   const confirmEndGame = document.getElementById("confirmEndGame");
+  const endGameImage = document.getElementById("endGameImage");
 
   if (gameSocket != null) {
     gameSocket.close();
   }
+
+  if (message === "You won!") {
+    endGameImage.src = victorySrc;
+ } else if (message === "You lost!") {
+    endGameImage.src = defeatSrc;
+ }
+  else if (message === "Game Stopped!") {
+    endGameImage.src = stoppedSrc;
+  }
+  else {
+    endGameImage.src = elseSrc;
+  }
+
   document.getElementById("MyCanvas").hidden = true;
   endGameMessage.textContent = message;
 
@@ -132,7 +146,7 @@ function EndGame (message) {
 
     setTimeout(() => {
       endGameScreen.style.opacity = "1";
-    }, 300);
+    }, 450);
 
   endGameScreen.style.display = "flex";
   gameCanvas.inGame = false;
