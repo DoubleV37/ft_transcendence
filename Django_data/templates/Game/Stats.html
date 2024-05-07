@@ -20,13 +20,13 @@
           </div>
           
                   <div class="section-stats-center">
-                    {% if win_rate >= 0 and win_rate <= 33 %}
+                    {% if win_rate >= 0 and win_rate <= 0.33 %}
                       <span class="WR-title low-ranked">Winrate: {{ win_rate }}</span>
                       <img class="ranked-gif" src="{%static 'images/sad.gif'%}"></img>
-                    {% elif win_rate > 33 and win_rate <= 66 %}
+                    {% elif win_rate > 0.33 and win_rate <= 0.66 %}
                       <span class="WR-title medium-ranked">Winrate: {{ win_rate }}</span>
                       <img class="ranked-gif" src="{%static 'images/duck-ducky.gif'%}"></img>
-                    {% elif win_rate > 66 and win_rate <= 100 %}
+                    {% elif win_rate > 0.66 and win_rate <= 1 %}
                       <span class="WR-title high-ranked">Winrate: {{ win_rate }}</span>
                       <img class="ranked-gif" src="{%static 'images/duck-ducky.gif'%}"></img>
                     {% endif %}
