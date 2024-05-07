@@ -104,6 +104,25 @@
 	  .section-stats {
 		width: 75%;
 	}
+
+	.section-stats-row {
+		width: 75%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.gameStats {
+		color: #FFF;
+		font-family: Madness;
+		font-size: 5rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		align-self: stretch;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1rem;
+	}
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -211,6 +230,25 @@
 	  .section-stats {
 		width: 75%;
 	}
+
+	.section-stats-row {
+		width: 75%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.gameStats {
+		color: #FFF;
+		font-family: Madness;
+		font-size: 5rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		align-self: stretch;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1rem;
+	}
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -313,6 +351,25 @@
 	  .section-stats {
 		width: 80%;
 	}
+
+	.section-stats-row {
+		width: 80%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.gameStats {
+		color: #FFF;
+		font-family: Madness;
+		font-size: 5rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1;
+		align-self: stretch;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1rem;
+	}
 }
 
 /* MATCHMAKING PAGE */
@@ -357,6 +414,83 @@ body {
 	display: flex;
 	justify-content: center;
 	margin-top: 3em;
+}
+
+.section-stats-center {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.WR-title {
+    display: flex;
+	align-items: center;
+    font-weight: bold;
+    opacity: 0;
+    animation: 1s anim-lightspeed-in ease forwards;
+    font-family: 'Kodchasan';
+	line-height: normal;
+	text-align: center;
+	margin-bottom: -1em;
+	margin-top: 1em;
+	font-size: 1.2rem;
+}
+
+.ranked-gif {
+	width: 15em;
+}
+
+.low-ranked {
+    color: #ff3c3c;
+}
+
+.low-ranked::before {
+	content: url('../images/angry-svgrepo-com.svg'); 
+	display: inline-block; /* Allows for width and height settings */
+	width:  1em; /* Adjust the size as needed */
+	height:  1em; /* Adjust the size as needed */
+	margin-right: 0.5rem; /* Adds some space between the icon and the text */
+	vertical-align: top; /* Aligns the icon vertically with the text */
+	background-size: contain; /* Ensures the SVG scales properly */
+	background-repeat: no-repeat; /* Prevents the SVG from repeating */
+}
+
+.medium-ranked {
+	color: #a4aaff;
+}
+
+.medium-ranked::before {
+	content: url('../images/half-rating-star-svgrepo-com.svg');
+	display: inline-block; /* Allows for width and height settings */
+	width:  1em; /* Adjust the size as needed */
+	height:  1em; /* Adjust the size as needed */
+	margin-right: 0.5rem; /* Adds some space between the icon and the text */
+	vertical-align: top; /* Aligns the icon vertically with the text */
+	background-size: contain; /* Ensures the SVG scales properly */
+	background-repeat: no-repeat; /* Prevents the SVG from repeating */
+}
+
+.high-ranked {
+    color: #FFC130;
+}
+
+.high-ranked::before {
+	content: url('../images/WRcrown.svg'); /* Replace with the actual path to your SVG */
+	display: inline-block; /* Allows for width and height settings */
+	width:  1em; /* Adjust the size as needed */
+	height:  1em; /* Adjust the size as needed */
+	margin-right: 0.5rem; /* Adds some space between the icon and the text */
+	vertical-align: top; /* Aligns the icon vertically with the text */
+	background-size: contain; /* Ensures the SVG scales properly */
+	background-repeat: no-repeat; /* Prevents the SVG from repeating */
+}
+
+#NbGames {
+	display: none;
+}
+
+#Victories {
+	display: none;
 }
 
 #empty-text {
@@ -519,18 +653,6 @@ ul, li {
 	width: 100%;
 	align-items: flex-start;
 	justify-content: space-between;
-}
-
-.gameStats {
-	color: #FFF;
-	font-family: Madness;
-	font-size: 5rem;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	align-self: stretch;
-	border-bottom: #616161 solid 1px;
-	margin-bottom: 1rem;
 }
 
   .stats-title {

@@ -54,6 +54,12 @@ function profile_ReturnToProfile () {
 
 async function profile_StatsCallBack () {
   console.log("Stats: Do nothing for now");
+  const id = document.getElementById("username").getAttribute("data-id");
+
+
+  await loadPage(`${ROUTE.STATS}${id}`);
+  profileModal.modal.hide();
+
 }
 
 async function profile_42AccCallBack () {

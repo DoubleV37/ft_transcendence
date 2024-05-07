@@ -42,6 +42,7 @@ const ROUTE = {
   PROFILE: "/user/profile/",
   GAMELIST: "/dash/history/",
   GAMEBOARD: "/dash/board/",
+  STATS: "/dash/stats/",
   SKINS: "/user/skins/",
   FRIENDS_PROFILE: "/friends/profile/",
   FRIENDS: "/friends/list/",
