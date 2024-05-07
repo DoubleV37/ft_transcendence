@@ -79,7 +79,11 @@
                     <h2 class="accordion-header" id="headingTwo">
                         <button id="AccordionRequests" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#RequestsInAccordion" aria-expanded="false" aria-controls="RequestsInAccordion">
                             <p>Requests</p>
+                            {% if not all_friend_request %}
+                            <span id="pending-request-notification" hidden class="notification-dot"></span>
+                            {% else %}
                             <span id="pending-request-notification" class="notification-dot"></span>
+                            {% endif %}
                         </button>
                     </h2>
                 </div>
