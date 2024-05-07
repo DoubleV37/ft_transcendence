@@ -126,6 +126,7 @@
 
 	.ranked-gif {
 		max-width: 15em;
+		margin-bottom: 1em;
 	}
 }
 
@@ -256,6 +257,7 @@
 
 	.ranked-gif {
 		max-width: 15em;
+		margin-bottom: 1em;
 	}
 }
 
@@ -380,7 +382,8 @@
 	}
 
 	.ranked-gif {
-		max-width: 8em;
+		max-width: 10em;
+		margin-bottom: 1em;
 	}
 }
 
