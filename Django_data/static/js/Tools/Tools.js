@@ -43,8 +43,6 @@ function del_current_event () {
   case "GAME_ROOM":
     game_DelEvents();
     break;
-  case "GAMEBOARD_PAGE":
-    break;
   case "STATS":
     break;
   default:
