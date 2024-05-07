@@ -711,7 +711,7 @@ ul, li {
 .rantangle.right {
     flex-grow: 1;
     background: linear-gradient(to right, #c57865, #131327);
-	animation: progressBarAnimation 1.5s ease-in forwards;
+	animation: progressBarAnimation 1s ease-in forwards;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -726,7 +726,7 @@ ul, li {
 .rantangle.left {
     width: 0; /* Définir la largeur initiale à 0 */
     background: linear-gradient(to left, #58c5d1, #3cd3ad);
-    animation: progressBarAnimation 1.5s ease-in forwards;
+    animation: progressBarAnimation 1s ease-in forwards;
     display: flex;
     align-items: center;
     justify-content: center;
