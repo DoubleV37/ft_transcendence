@@ -124,7 +124,7 @@
 		margin-bottom: 1rem;
 	}
 
-	#endGameImage {
+	.ranked-gif {
 		max-width: 15em;
 	}
 }
@@ -254,7 +254,7 @@
 		margin-bottom: 1rem;
 	}
 
-	#endGameImage {
+	.ranked-gif {
 		max-width: 15em;
 	}
 }
@@ -379,7 +379,7 @@
 		margin-bottom: 1rem;
 	}
 
-	#endGameImage {
+	.ranked-gif {
 		max-width: 8em;
 	}
 }
@@ -415,11 +415,15 @@
 
 /* GAME AND STATS DASHBOARD */
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-body {
- font-family: "Open Sans", sans-serif;
- color: #282828;
+@keyframes anim-lightspeed-in {
+	0% {
+	  transform: translateX(-20%);
+	  opacity: 0;
+   }
+	100% {
+	  transform: translateX(0);
+	  opacity: 1;
+   }
 }
 
 .section-center {
@@ -446,10 +450,6 @@ body {
 	margin-bottom: -1em;
 	margin-top: 1em;
 	font-size: 1.2rem;
-}
-
-.ranked-gif {
-	width: 15em;
 }
 
 .low-ranked {
@@ -548,14 +548,13 @@ body {
 }
 
 .line__label {
- display: block;
- width: 100px;
- text-align: center;
- position: absolute;
- bottom: -1.5em;
- right: -50px;
- font-family: 'Kodchasan';
- color: #FFF;
+    display: block;
+    text-align: center;
+    position: absolute;
+    bottom: -1.5em;
+    right: -0.3em;
+    font-family: 'Kodchasan';
+    color: #FFF;
 }
 
 .line__label.title {
@@ -637,16 +636,6 @@ ul, li {
 	padding-left: 0rem;
    }
 
-@keyframes anim-lightspeed-in {
-  0% {
-    transform: translateX(-20%);
-    opacity: 1;
- }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
- }
-}
 
 #STATS_user {
 	display: flex;
@@ -668,14 +657,14 @@ ul, li {
 }
 
 .stats-title {
-display: block;
-font-weight: bold;
-opacity: 0;
-animation: 1s anim-lightspeed-in ease forwards;
-font-family: 'Kodchasan';
-color: #FFF;
-margin-bottom: 1em;
-line-height: normal;
+	display: block;
+	font-weight: bold;
+	opacity: 0;
+	animation: 1s anim-lightspeed-in ease forwards;
+	font-family: 'Kodchasan';
+	color: #FFF;
+	margin-bottom: 1em;
+	line-height: normal;
 }
 
 .stats-legend {
@@ -692,66 +681,72 @@ line-height: normal;
 }
 
 .avatar {
-flex-shrink: 0;
-position: relative;
-width: 3em;
-height: 3em;
-border-radius: 100%;
-background: darkgrey;
-display: flex;
-align-items: center;
-justify-content: center;
-color: white;
-z-index: 2;
-border: 2px solid lightgrey;
-&.A {
-	transform: translateX(3px);
-}
-&.B {
-	transform: translateX(-3px);
-}
+	flex-shrink: 0;
+	position: relative;
+	width: 3em;
+	height: 3em;
+	border-radius: 100%;
+	background: darkgrey;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	z-index: 2;
+	border: 2px solid lightgrey;
 }
 
 .pk-wrapper {
-	position: relative;
-	width: 100%;
-	display: flex;
-	align-items: center;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .rantangle {
     height: 2em;
     color: white;
     font-size: 1rem;
-    display: flex; /* Assurez-vous que le conteneur est un conteneur flex */
-    align-items: center; /* Centrer les éléments enfants verticalement */
-    
-    &.right {
-        flex-grow: 1;
-        background: #c57865;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-top-right-radius: 0.3em;
-        border-bottom-right-radius: 0.3em;
-        span {
-            position: absolute;
-            right: 0.75rem;
-        }
+}
+
+.rantangle.right {
+    flex-grow: 1;
+    background: linear-gradient(to right, #c57865, #131327);
+	animation: progressBarAnimation 1s ease-out forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-top-right-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    span {
+        position: relative;
     }
-    
-    &.left {
-        /* width: 50%; */
-        background: #4cb8c4;
-        transition: all 1s ease-out;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-top-left-radius: 0.3em;
-        border-bottom-left-radius: 0.3em;
-        span {
-            position: absolute;
-            left: 0.75rem;
-        }
+}
+
+.rantangle.left {
+    width: 0; /* Définir la largeur initiale à 0 */
+    background: linear-gradient(to left, #58c5d1, #3cd3ad);
+    animation: progressBarAnimation 1s ease-out forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-top-left-radius: 0.3em;
+    border-bottom-left-radius: 0.3em;
+    span {
+        position: relative;
     }
+}
+
+@keyframes progressBarAnimation {
+    from { width: 0%; }
+    to { width: var(--final-width); }
+}
+
+.values-stats {
+	font-family: Kodchasan;
+	font-size: 0.9rem;
+	color: white;
+	font-weight: normal;
+	text-align: center;
 }
