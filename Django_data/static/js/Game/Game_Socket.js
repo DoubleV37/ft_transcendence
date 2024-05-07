@@ -52,8 +52,6 @@ function iaMove () {
 //
 function receive_data (e) {
   const data = JSON.parse(e.data);
-
-  console.log(`${data.message}`);
   if (data.message === "Game stopped") {
     if (gameCanvas.num === 1) {
       gameSocket.send(JSON.stringify({ message: "stop" }));

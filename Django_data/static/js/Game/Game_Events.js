@@ -53,7 +53,6 @@ function SetTheGame (event) {
 	}
 	gameSocket.removeEventListener("message", SetTheGame);
 	EndGame("You won!\nPlayer has leaved the game");
-	console.log("Aled1");
   } else {
 	if (deleteEvent === true) {
 	  return;
@@ -77,11 +76,6 @@ function OnOpenCallback () {
   if (window.location.pathname === "/game/solo/") {
 	console.log(GameParams);
 	gameCanvas.powerup = GameParams.powerup;
-  } else {
-	gameCanvas.powerup = false;
-	GameParams.point_limit = 1;
-	GameParams.type = "remote";
-	GameParams.opponent = "player";
   }
   gameSocket.send(JSON.stringify(GameParams));
 }
