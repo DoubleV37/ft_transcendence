@@ -127,6 +127,13 @@ function EndGame (message) {
   }
   document.getElementById("MyCanvas").hidden = true;
   endGameMessage.textContent = message;
+
+    endGameScreen.style.opacity = "0";
+
+    setTimeout(() => {
+      endGameScreen.style.opacity = "1";
+    }, 300);
+
   endGameScreen.style.display = "flex";
   gameCanvas.inGame = false;
   confirmEndGame.onclick = function () {

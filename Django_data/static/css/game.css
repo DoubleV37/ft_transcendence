@@ -69,6 +69,8 @@
 		padding-top: 0.2em;
 		padding-left: 15em;
 		padding-right: 15em;
+		opacity: 0;
+		transition: opacity 0.5s ease;
 	}
 
 	.username {
@@ -174,6 +176,8 @@
 		padding-top: 0.2em;
 		padding-left: 15em;
 		padding-right: 15em;
+		opacity: 0;
+		transition: opacity 0.5s ease;
 	}
 
 	.username {
@@ -280,6 +284,8 @@
 		padding-right: 15vw;
         border: 1px solid #919191;
 		border-top: none !important;
+		opacity: 0;
+		transition: opacity 0.5s ease;
 	}
 
 	.username {
