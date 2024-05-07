@@ -798,7 +798,23 @@ tr:hover {
   margin-left: 5px;
   vertical-align: bottom;
   margin-top: 2px;
-}
+  animation: pulseBrightness 2s infinite; /* Applique l'animation 'pulse' qui dure 2 secondes et se répète indéfiniment */
+ }
+ 
+ @keyframes pulseBrightness {
+   0% {
+     transform: scale(1); /* Taille initiale */
+     background-color: red; /* Couleur initiale */
+  }
+   50% {
+     transform: scale(1.2); /* Augmente légèrement la taille */
+     background-color: #ff670f; /* Couleur intermédiaire */
+  }
+   100% {
+     transform: scale(1); /* Retour à la taille initiale */
+     background-color: red; /* Couleur initiale */
+  }
+ }
 
 .margin-b-2 {
   margin-bottom: 2em;
