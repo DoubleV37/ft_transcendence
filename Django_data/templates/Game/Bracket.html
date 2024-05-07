@@ -1,0 +1,64 @@
+<!doctype html>
+{% load static %}
+
+<html lang="fr">
+  {% include "Home/head.html" %}
+  <body>
+    {% include "Profile/Avatar.html" %}
+    {% include "Profile/Profile.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header>
+
+    <div id="content">
+      <div id="titleContent" data-content="BRACKET"></div>
+      <div id="overlay">
+        <!--<div class="midFullscreen midrow margin_bottom">-->
+        <div class="mid midcolumn flowAnimation">
+          <div id="sectionTournament">
+            <div class="bracket">
+              <div class="round">
+                <div class="match" data-match="1">
+                  <div class="team" data-team="1">
+                    <img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
+                    <span>Player 1</span>
+                  </div>
+                  <div class="team" data-team="2">
+                    <img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
+                    <span>Player 2</span>
+                  </div>
+                </div>
+                <div class="match" data-match="2">
+                  <div class="team" data-team="1">
+                    <img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
+                    <span>Player 3</span>
+                  </div>
+                  <div class="team" data-team="2">
+                    <img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
+                    <span>Player 4</span>
+                  </div>
+                </div>
+              </div>
+              <div class="round">
+                <div class="match" data-match="3">
+                  <div class="team" data-team="1">
+                    <img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
+                    <span>Player 1</span>
+                    </div>
+                  <div class="team" data-team="2">
+                    <img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
+                    <span>Player 2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% include "Home/footer.html" %}
+  </body>
+</html>

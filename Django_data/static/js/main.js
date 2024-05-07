@@ -98,6 +98,9 @@ function launchSectionHandler (element) {
       observer.disconnect();
       tournament_SetEvents();
       break;
+    case "BRACKET":
+      bracket_SetEvents();
+      break;
     default:
       throw new Error(
         `launchSectionHandler: Attribute ${elementAttribut} non recognised`

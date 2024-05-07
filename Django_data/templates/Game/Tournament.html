@@ -27,12 +27,12 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <input id="SetPlayer1" class="form-control" maxlength="20" type="text" value="{{username_tournament}}" aria-label="default input example" disabled readonly>
-                    <input id="SetPlayer3" class="form-control" maxlength="20" type="text" value="" placeholder="Player 3" aria-label="default input example">
+                    <input id="SetPlayer1" data-target="Paddle1title" class="form-control" maxlength="20" type="text" value="{{username_tournament}}" aria-label="default input example" disabled readonly>
+                    <input id="SetPlayer3" data-target="Paddle3title" class="form-control" maxlength="20" type="text" value="" placeholder="Player 3" aria-label="default input example">
                   </div>
                   <div class="col">
-                    <input id="SetPlayer2" class="form-control" maxlength="20" type="text" value="" placeholder="Player 2" aria-label="default input example">
-                    <input id="SetPlayer4" class="form-control" maxlength="20" type="text" value="" placeholder="Player 4" aria-label="default input example">
+                    <input id="SetPlayer2" data-target="Paddle2title" class="form-control" maxlength="20" type="text" value="" placeholder="Player 2" aria-label="default input example">
+                    <input id="SetPlayer4" data-target="Paddle4title" class="form-control" maxlength="20" type="text" value="" placeholder="Player 4" aria-label="default input example">
                   </div>
                 </div>
               </div>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="row">
                   <div id="Player1Paddle" class="col">
-                    <div class="SectionLayout SectionGrey">Player 1</div>
+                    <div id="Paddle1title" class="SectionLayout SectionGrey">{{ username_tournament }}</div>
                     <div id="paddle1" class="carousel slide" data-bs-interval="false">
                       <div class="carousel-indicators">
                         <button type="button" data-bs-target="#paddle1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -175,7 +175,7 @@
                     </div>
                   </div>
                   <div id="Player2Paddle" class="col">
-                    <div class="SectionLayout SectionGrey">Player 2</div>
+                    <div id="Paddle2title" class="SectionLayout SectionGrey">Player 2</div>
                     <div id="paddle2" class="carousel slide" data-bs-interval="false">
                       <div class="carousel-indicators">
                         <button type="button" data-bs-target="#paddle2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -213,7 +213,7 @@
                 </div>
                 <div class="row">
                   <div id="Player3Paddle" class="col">
-                    <div class="SectionLayout SectionGrey">Player 3</div>
+                    <div id="Paddle3title" class="SectionLayout SectionGrey">Player 3</div>
                     <div id="paddle3" class="carousel slide" data-bs-interval="false">
                       <div class="carousel-indicators">
                         <button type="button" data-bs-target="#paddle3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -249,7 +249,7 @@
                     </div>
                   </div>
                   <div id="Player4Paddle" class="col">
-                    <div class="SectionLayout SectionGrey">Player 4</div>
+                    <div id="Paddle4title" class="SectionLayout SectionGrey">Player 4</div>
                     <div id="paddle4" class="carousel slide" data-bs-interval="false">
                       <div class="carousel-indicators">
                         <button type="button" data-bs-target="#paddle4" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -290,6 +290,7 @@
               <div class="section">
                 <button id="StartButton" class="play-button">
                   <span class="play">Begin !</span>
+                  <p id="ErrorMessage" class="bodyText" style="color: red;"></p>
                 </button>
               </div>
             </div>

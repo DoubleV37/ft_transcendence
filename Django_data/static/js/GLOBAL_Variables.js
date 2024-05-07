@@ -55,7 +55,8 @@ const ROUTE = {
   GAME_MATCH: "/game/matchmaking/",
   GAME_ROOM: "/game/",
   GAME_LOCAL: "/game/solo/",
-  TOURNAMENT: "/game/tournament/"
+  SET_TOURNAMENT: "/game/tournament/set/",
+  BRACKET_TOURNAMENT: "/game/tournament/bracket/"
 };
 
 /*-----------Game Parameters-----------*/
@@ -140,32 +141,38 @@ let gameSocket = null;
 let matchSocket = null;
 let gameStop = true;
 
-let tournament = {
-  ball: "",
-  back: "",
-  winner: "",
-  P1: {
-    username: "",
-    paddle: "",
-    state: false,
-    vs: ""
-  },
-  P2: {
-    username: "",
-    paddle: "",
-    state: false,
-    vs: ""
-  },
-  P3: {
-    username: "",
-    paddle: "",
-    state: false,
-    vs: ""
-  },
-  P4: {
-    username: "",
-    paddle: "",
-    state: false,
-    vs: ""
-  }
-};
+let tournament = null;
+
+// let tournament = {
+//   ball: "",
+//   back: "",
+//   winner: "",
+//   score: 1,
+//   powerUp: false,
+//   P1: {
+//     username: "",
+//     paddle: "",
+//     winner: false,
+//     vs: ""
+//     round: 1,
+//     match: 
+//   },
+//   P2: {
+//     username: "",
+//     paddle: "",
+//     state: false,
+//     vs: ""
+//   },
+//   P3: {
+//     username: "",
+//     paddle: "",
+//     state: false,
+//     vs: ""
+//   },
+//   P4: {
+//     username: "",
+//     paddle: "",
+//     state: false,
+//     vs: ""
+//   }
+// };

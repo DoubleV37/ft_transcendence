@@ -60,6 +60,10 @@ def tournament(request):
         context['username_tournament'] = request.user.tournament_name
     return render(request, "Game/Tournament.html", context)
 
+def bracket(request):
+    if request.method == "GET":
+        return render(request, "Game/Bracket.html")
+
 
 def gameParameters(request):
     return render(request, "Game/Parameters.html")

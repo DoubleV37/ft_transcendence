@@ -28,5 +28,5 @@ function modes_CreateGame () {
 }
 
 function modes_CreateTournament () {
-  loadPage(`${ROUTE.TOURNAMENT}`);
+  loadPage(`${ROUTE.SET_TOURNAMENT}`);
 }
