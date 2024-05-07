@@ -17,8 +17,11 @@ async def handler(websocket, path):
 
 async def main():
 	print("Server started")
-	async with websockets.serve(handler, "0.0.0.0", 8765):
-		await asyncio.Future()  # run forever
+	try:
+		async with websockets.serve(handler, "0.0.0.0", 8765):
+			await asyncio.Future()  # run forever
+	except Exception as e:
+		print(f"Error: {e}")
 
 if __name__ == "__main__":
 	asyncio.run(main())

@@ -1,4 +1,4 @@
-import asyncio, websockets, jwt, json, hashlib
+import asyncio, websockets, jwt, json, hashlib, random
 from http.cookies import SimpleCookie
 from decouple import config
 
@@ -12,6 +12,7 @@ async def matchmaking_handler(websocket, path):
 			if not waiting:
 				print("==Waiting for settings")
 				message = await websocket.recv()
+				print(f"==Received message: {message}")
 				data = json.loads(message)
 				type_msg = data.get("message")
 				if (type_msg == "settings"):
@@ -21,20 +22,33 @@ async def matchmaking_handler(websocket, path):
 					if found:
 						print("==Group found==")
 						print(group)
+						room_name = generate_room_name(group)
 						for ws in group:
 							await ws[0].send(json.dumps(group[0][1]["data"]))
-							room_name = hashlib.sha256(f"{group[0][1]['user']}{group[1][1]['user']}".encode()).hexdigest()
 							await ws[0].send(json.dumps({"message" : "match_found", "room_name" : room_name}))
-					else:
-						print("==Waiting for group")
-				print(f"==Received message: {message}")
 			if waiting:
 				print("==Waiting for group alone")
 				message = await websocket.recv()
+				print(f"=XXXXX=Received message: {message}")
 		except websockets.exceptions.ConnectionClosed:
 			print("==Client disconnected")
 			del CONNECTIONS[websocket]
 			break
+
+def generate_room_name(group):
+		user1 = group[0][1]["user"]
+		user2 = group[1][1]["user"]
+		game_name = "Pong"
+
+		random_str = "".join(
+			random.choices(
+				"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", k=6)
+		)
+
+		room_name = hashlib.sha256(
+			f"{user1}_{user2}_{game_name}_{random_str}".encode()
+		).hexdigest()
+		return room_name
 
 def check_group(websocket):
 	if len(CONNECTIONS) < 2:
