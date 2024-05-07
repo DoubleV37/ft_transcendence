@@ -85,24 +85,33 @@ function receive_data (e) {
   }
 }
 
-// Fonction pour mettre à jour le mouvement en fonction du temps écoulé
-function update () {
-  if (keyStates.ArrowUp) {
-    gameSocket.send(JSON.stringify({ message: "up" }));
-  } else if (keyStates.ArrowDown) {
-    gameSocket.send(JSON.stringify({ message: "down" }));
-  } else if (keyStates[" "]) {
-    gameSocket.send(JSON.stringify({ message: "space" }));
+let lastFrameTime = 0;
+let targetFrameRate = 60; // j'ai mis 60fps du coup
+
+function update() {
+  const currentTime = performance.now();
+  const deltaTime = currentTime - lastFrameTime;
+
+  // le petit calcul de l'amour
+  if (deltaTime >= 1000 / targetFrameRate) {
+    if (keyStates.ArrowUp) {
+      gameSocket.send(JSON.stringify({ message: "up" }));
+    } else if (keyStates.ArrowDown) {
+      gameSocket.send(JSON.stringify({ message: "down" }));
+    } else if (keyStates[" "]) {
+      gameSocket.send(JSON.stringify({ message: "space" }));
+    }
+    if (keyStates.w && GameParams.opponent == "player" && GameParams.type == "local") {
+      gameSocket.send(JSON.stringify({ message: "w" }));
+    } else if (keyStates.s && GameParams.opponent == "player" && GameParams.type == "local") {
+      gameSocket.send(JSON.stringify({ message: "s" }));
+    }
+    if (GameParams.opponent === "ai") {
+      iaMove();
+    }
+
+    lastFrameTime = currentTime;
   }
-  if (keyStates.w && GameParams.opponent == "player" && GameParams.type == "local") {
-    gameSocket.send(JSON.stringify({ message: "w" }));
-  } else if (keyStates.s && GameParams.opponent == "player" && GameParams.type == "local") {
-    gameSocket.send(JSON.stringify({ message: "s" }));
-  }
-  if (GameParams.opponent === "ai") {
-    iaMove();
-  }
-  // Planifiez la prochaine mise à jour
   if (gameStop !== true) {
     requestAnimationFrame(update);
   }
