@@ -67,7 +67,6 @@ async function loadPage (url) {
     const targetNode = document.querySelector("#content");
     const config = { childList: true, subtree: true };
 
-    console.log("wesh");
     observer.observe(targetNode, config);
   }
   await changeSection(url, "#content");

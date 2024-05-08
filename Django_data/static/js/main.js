@@ -99,6 +99,7 @@ function launchSectionHandler (element) {
       tournament_SetEvents();
       break;
     case "BRACKET":
+      observer.disconnect();
       bracket_SetEvents();
       break;
     default:

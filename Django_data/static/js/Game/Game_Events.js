@@ -42,7 +42,6 @@ function SetTheGame (event) {
   const data = JSON.parse(event.data);
 
   loading = true;
-  console.log(data.message);
   gameCanvas.inGame = true;
   if (data.message === "Game stopped") {
     if (deleteEvent === true) {
@@ -50,7 +49,6 @@ function SetTheGame (event) {
     }
     gameSocket.removeEventListener("message", SetTheGame);
     EndGame("You won!\nPlayer has leaved the game");
-    console.log("Aled1");
   } else {
     if (deleteEvent === true) {
       return;

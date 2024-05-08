@@ -80,7 +80,7 @@ let GameInfos = {
   },
   PlayerR: {
     srcImg: "", // img url
-    srcPaddle: "",// img url
+    srcPaddle: "", // img url
     canvas: null, // img obj
     name: ""
   },
@@ -149,6 +149,7 @@ let tournament = null;
 //   winner: "",
 //   score: 1,
 //   powerUp: false,
+//   match: 1, 2, 3
 //   P1: {
 //     username: "",
 //     paddle: "",
@@ -156,6 +157,7 @@ let tournament = null;
 //     vs: ""
 //     round: 1,
 //     match: 
+//     team: //
 //   },
 //   P2: {
 //     username: "",

@@ -17,8 +17,9 @@
       <div id="titleContent" data-content="BRACKET"></div>
       <div id="overlay">
         <!--<div class="midFullscreen midrow margin_bottom">-->
-        <div class="mid midcolumn flowAnimation">
+        <div id="Bracket" class="mid midcolumn flowAnimation">
           <div id="sectionTournament">
+            <h1 class="gameTitle">Tournament</h1>
             <div class="bracket">
               <div class="round">
                 <div class="match" data-match="1">
@@ -56,6 +57,41 @@
               </div>
             </div>
           </div>
+          <button id="PlayButton" class="play-button">
+            <span class="play"></span>
+          </button>
+        </div>
+        <!-- Game screen here -->
+        <div id="Game" class="midGame midcolumn flowAnimation" hidden>
+          <div class="section-score">
+            <div class="conteneur">
+              <div class="flex-column">
+                <div id="GAME_user">
+                  <img id="HEADER_GameProfilePicLeft" class="ProfilePic header-profilePic profilePic-left" src="{% static 'avatars/ForbiddenDeletion/default.png' %}" alt="Very basic user"></img>
+                  <h1 class="username" id="GAME_username_left"></h1>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="scoreText" id="score1div"></div>
+                <p class="scoreText">-</p>
+                <div class="scoreText" id="score2div"></div>
+              </div>
+              <div class="flex-column">
+                <div id="GAME_user">
+                <h1 class="username" id="GAME_username_right"></h1>
+                <img id="HEADER_GameProfilePicRight" class="ProfilePic header-profilePic profilePic-right" src="{% static 'avatars/ForbiddenDeletion/default.png' %}" alt="Very basic user"></img>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="endGameScreen" style="display: none;">
+          <img src="{%static 'images/shiny-charmander-pokemon.gif'%}"></img>
+          <p id="endGameMessage"></p>
+          <button id="confirmEndGame" class="ButtonLayout ButtonNeon">End Game</button>
+        </div>
+        <canvas style="background: url('')" id="MyCanvas">
+          <p>Description of the canvas for those unable to view it.</p>
+        </canvas>
         </div>
       </div>
     </div>
