@@ -48,12 +48,11 @@ function SetTheGame (event) {
   console.log(data.message);
   gameCanvas.inGame = true;
   if (data.message === "Game stopped") {
-	EndGame("Game already finished!");
 	if (deleteEvent === true) {
 	  return;
 	}
 	gameSocket.removeEventListener("message", SetTheGame);
-	// EndGame("You won!\nPlayer has leaved the game");
+	EndGame("Game already finished!");
   } else {
 	if (deleteEvent === true) {
 	  return;
