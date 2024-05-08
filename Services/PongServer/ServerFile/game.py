@@ -24,14 +24,21 @@ async def game_handler(websocket, game_id):
 			message = await websocket.recv()
 			message = json.loads(message)
 			type_msg = message.get("message")
-			if type_msg == "settings" and GAMES[game_id]["settings"] == None:
+			if type_msg == "settings" and num == 1:
 				GAMES[game_id]["settings"] = message
 				GAMES[game_id]["pong"] = Pong(GAMES[game_id]["settings"]["point_limit"], GAMES[game_id]["settings"]["difficulty"], GAMES[game_id]["settings"]["powerup"])
 				asyncio.create_task(game_routine(game_id, GAMES[game_id]["pong"]))
-			if type_msg == "up":
-				GAMES[game_id]["pong"].player_pos[num - 1] -= GAMES[game_id]["pong"].player_speed
-			if type_msg == "down":
-				GAMES[game_id]["pong"].player_pos[num - 1] += GAMES[game_id]["pong"].player_speed
+			if type_msg == "up" and num == 1:
+				GAMES[game_id]["pong"].player_pos[1] -= GAMES[game_id]["pong"].player_speed
+				# GAMES[game_id]["pong"].player_pos[num - 1] -= GAMES[game_id]["pong"].player_speed
+			if type_msg == "down" and num == 1:
+				GAMES[game_id]["pong"].player_pos[1] += GAMES[game_id]["pong"].player_speed
+			if type_msg == "up" and num == 2:
+				GAMES[game_id]["pong"].player_pos[0] -= GAMES[game_id]["pong"].player_speed
+			if type_msg == "down" and num == 2:
+				GAMES[game_id]["pong"].player_pos[0] += GAMES[game_id]["pong"].player_speed
+			# if type_msg == "down":
+				# GAMES[game_id]["pong"].player_pos[num - 1] += GAMES[game_id]["pong"].player_speed
 	except websockets.exceptions.ConnectionClosed:
 		print("==Client disconnected==")
 		if game_id in GAMES:
