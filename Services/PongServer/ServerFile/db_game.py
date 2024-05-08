@@ -79,10 +79,10 @@ async def save_db(game_id, pong):
 		gameid = cur.fetchone()[0]
 
 		await save_user_game_db(gameid, user1, 1, pong)
-		await update_global_stats(pong.point[0] > pong.point[1], user1, game_id)
+		await update_global_stats(pong.point[0] < pong.point[1], user1, game_id)
 
 		await save_user_game_db(gameid, user2, 2, pong)
-		await update_global_stats(pong.point[1] > pong.point[0], user2, game_id)
+		await update_global_stats(pong.point[1] < pong.point[0], user2, game_id)
 		conn.commit()
 		cur.close()
 		conn.close()
@@ -104,11 +104,11 @@ async def update_global_stats(winner, user, game_id):
 		else:
 			cur.execute("UPDATE \"Dashboard_globalstats\" SET \"defeat\" = %s WHERE \"user_id\" = %s", (row[2] + 1, user[0]))
 		cur.execute("UPDATE \"Dashboard_globalstats\" SET \"nb_games\" = %s WHERE \"user_id\" = %s", (row[3] + 1, user[0]))
-		# if GAMES[game_id]["settings"]["in_tournament"]:
-		# 	cur.execute("UPDATE \"Dashboard_globalstats\" SET \"tournaments_winned\" = %s WHERE \"user_id\" = %s", (row[4] + 1, user[0]))
-		# else:
 		cur.execute("UPDATE \"Dashboard_globalstats\" SET \"regular_games\" = %s WHERE \"user_id\" = %s", (row[5] + 1, user[0]))
 		cur.execute("UPDATE \"Dashboard_globalstats\" SET \"win_rate\" = %s WHERE \"user_id\" = %s", ((row[1] + 1) / (row[3] + 1), user[0]))
+	conn.commit()
+	cur.close()
+	conn.close()
 
 async def get_user_info(username):
 	print("==Get user info==")
