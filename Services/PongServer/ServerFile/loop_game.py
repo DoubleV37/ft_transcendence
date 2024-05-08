@@ -56,6 +56,7 @@ async def game_routine(game_id, pong):
 	while pong.running:
 		loop += 1 / 240
 		pong.ball_walk()
+		pong.powerup_run()
 		if pong.ball_pos[0] < 60 and pong.ball_speed[0] < 0:
 			pong.paddle_bounce(0)
 		elif pong.ball_pos[0] > 1140 and pong.ball_speed[0] > 0:

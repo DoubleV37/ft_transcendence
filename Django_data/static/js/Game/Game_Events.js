@@ -72,11 +72,7 @@ function OnOpenCallback () {
   gameStop = false;
   console.log("The connection was setup successfully !");
   gameSocket.addEventListener("message", SetTheGame);
-
-  if (window.location.pathname === "/game/solo/") {
-	console.log(GameParams);
-	gameCanvas.powerup = GameParams.powerup;
-  }
+  gameCanvas.powerup = GameParams.powerup;
   gameSocket.send(JSON.stringify(GameParams));
 }
 
