@@ -30,3 +30,12 @@ function modes_CreateGame () {
 function modes_CreateTournament () {
   loadPage(`${ROUTE.SET_TOURNAMENT}`);
 }
+
+function modes_ContinueTournament (event) {
+  if (tournament != null) {
+    loadPage(`${ROUTE.BRACKET_TOURNAMENT}`);
+  } else {
+    event.target.setAttribute("class", "MediumButtonLayout right ButtonDark");
+    event.target.disabled = true;
+  }
+}

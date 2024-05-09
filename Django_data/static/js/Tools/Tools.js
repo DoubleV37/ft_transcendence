@@ -43,8 +43,11 @@ function del_current_event () {
   case "GAME_ROOM":
     game_DelEvents();
     break;
-  case "TOURNAMENT-1":
+  case "TOURNAMENT":
     tournament_DelEvents();
+    break;
+  case "BRACKET":
+    bracket_DelEvents();
     break;
   default:
     break;

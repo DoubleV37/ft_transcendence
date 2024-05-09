@@ -1,37 +1,59 @@
-function lauchGame () {
+function launchGame () {
   gameSocket = new WebSocket(
     "wss://" + window.location.host + "/wss" + ROUTE.GAME_LOCAL
   );
-  gameSocket.addEventListener("message", receiveGameMsg);
+
   gameSocket.addEventListener("open", onOpenGame);
   gameSocket.addEventListener("close", onCloseGame);
   document.addEventListener("keyup", keyUp);
   document.addEventListener("keydown", keyDown);
   document.getElementById("Bracket").hidden = true;
   document.getElementById("Game").hidden = false;
+  init_canvas();
+}
+
+function quitGame () {
+  if (gameSocket.readyState === WebSocket.OPEN ||
+      gameSocket.readyState === WebSocket.CONNECTING) {
+    gameSocket.close();
+  }
 }
 
 function onOpenGame () {
   console.log("The connection was setup successfully !");
-  gameSocket.addEventListener("message", SetTheGame);
+  console.log(GameParams);
 
   gameSocket.send(JSON.stringify(GameParams));
+  gameSocket.addEventListener("message", receiveGameMsg);
   gameStop = false;
   updateGame();
 }
 
 function onCloseGame () {
+  console.log("The connection as ended!");
   gameStop = true;
   gameSocket.removeEventListener("message", receiveGameMsg);
   gameSocket.removeEventListener("open", onOpenGame);
   gameSocket.removeEventListener("close", onCloseGame);
   document.removeEventListener("keyup", keyUp);
   document.removeEventListener("keydown", keyDown);
+  keyStates = {
+    ArrowUp: false,
+    ArrowDown: false,
+    w: false,
+    s: false,
+    space: false
+  };
 }
 
 function receiveGameMsg (e) {
   const data = JSON.parse(e.data);
 
+  console.log(data.message);
+  if (gameSocket.readyState === WebSocket.CLOSING ||
+      gameSocket.readyState === WebSocket.CLOSED) {
+    return;
+  }
   if (data.message === "game_state") {
     const score1div = document.getElementById("score1div");
     const score2div = document.getElementById("score2div");
@@ -47,13 +69,8 @@ function receiveGameMsg (e) {
     draw(data);
   }
   if (data.message === "game_finish") {
-    if (data.winner === "guest") {
-      updateMatch(1);
-      endMatch(GameInfos.PlayerL.username);
-    } else {
-      updateMatch(2);
-      endMatch(GameInfos.PlayerL.username);
-    }
+    console.log(data.winner);
+    data.winner === "guest" ? updateMatch(1) : updateMatch(2);
   }
 }
 
@@ -65,21 +82,27 @@ function updateMatch (team) {
       players.push(tournament[`P${i}`]);
     }
   }
-  if (player[0].team !== team) {
+  if (players[0].team !== team) {
     players.reverse();
   }
-  if (tournament.match === "3") {
-    tournament.winner = player[0].team === 1 ? player[0].username : player[1].username;
+  endMatch(players[0].username);
+  if (tournament.match === 3) {
+    tournament.winner = players[0].username;
     players[1].winner = false;
+    players[0].winner = true;
   } else {
     players[1].winner = false;
-    player[0].team = player[0].match === 1 ? 1 : 2;
-    players[0].match = 3;
+    players[0].team = players[0].match === 1 ? 1 : 2;
     futurPlayer = firstPlayerInFinal();
+    console.log(`futur player => ${futurPlayer}`);
     if (futurPlayer !== null) {
-      player[0].vs = futurPlayer.username;
-      futurPlayer.vs = player[0].username;
+      players[0].vs = futurPlayer.username;
+      futurPlayer.vs = players[0].username;
+    } else {
+      players[0].vs = "";
     }
+    players[0].match = 3;
+    tournament.match = tournament.match === 1 ? 2 : 3;
   }
 }
 
@@ -93,21 +116,25 @@ function firstPlayerInFinal () {
 }
 
 function updateGame () {
-  if (keyStates.ArrowUp) {
-    gameSocket.send(JSON.stringify({ message: "up" }));
-  } else if (keyStates.ArrowDown) {
-    gameSocket.send(JSON.stringify({ message: "down" }));
-  } else if (keyStates[" "]) {
-    gameSocket.send(JSON.stringify({ message: "space" }));
+  if (gameSocket.readyState === WebSocket.CLOSED ||
+      gameSocket.readyState === WebSocket.CLOSE) {
+    return ;
   }
-  if (keyStates.w) {
-    gameSocket.send(JSON.stringify({ message: "w" }));
-  } else if (keyStates.s) {
-    gameSocket.send(JSON.stringify({ message: "s" }));
-  }
-  // Planifiez la prochaine mise à jour
   if (gameStop !== true) {
-    requestAnimationFrame(update);
+    if (keyStates.ArrowUp) {
+      gameSocket.send(JSON.stringify({ message: "up" }));
+    } else if (keyStates.ArrowDown) {
+      gameSocket.send(JSON.stringify({ message: "down" }));
+    } else if (keyStates[" "]) {
+      gameSocket.send(JSON.stringify({ message: "space" }));
+    }
+    if (keyStates.w) {
+      gameSocket.send(JSON.stringify({ message: "w" }));
+    } else if (keyStates.s) {
+      gameSocket.send(JSON.stringify({ message: "s" }));
+    }
+    // Planifiez la prochaine mise à jour
+    requestAnimationFrame(updateGame);
   }
 }
 
@@ -126,8 +153,8 @@ function endMatch (message) {
     bracket_SetEvents();
     endGameScreen.style.display = "none";
     document.getElementById("MyCanvas").hidden = false;
-    document.getElementById("Bracket").hidden = true;
-    document.getElementById("Game").hidden = false;
+    document.getElementById("Bracket").hidden = false;
+    document.getElementById("Game").hidden = true;
   };
   gameCanvas.inGame = false;
 }

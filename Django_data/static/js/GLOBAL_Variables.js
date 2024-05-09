@@ -142,39 +142,3 @@ let matchSocket = null;
 let gameStop = true;
 
 let tournament = null;
-
-// let tournament = {
-//   ball: "",
-//   back: "",
-//   winner: "",
-//   score: 1,
-//   powerUp: false,
-//   match: 1, 2, 3
-//   P1: {
-//     username: "",
-//     paddle: "",
-//     winner: false,
-//     vs: ""
-//     round: 1,
-//     match: 
-//     team: //
-//   },
-//   P2: {
-//     username: "",
-//     paddle: "",
-//     state: false,
-//     vs: ""
-//   },
-//   P3: {
-//     username: "",
-//     paddle: "",
-//     state: false,
-//     vs: ""
-//   },
-//   P4: {
-//     username: "",
-//     paddle: "",
-//     state: false,
-//     vs: ""
-//   }
-// };

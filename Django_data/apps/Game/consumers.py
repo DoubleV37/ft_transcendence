@@ -12,6 +12,8 @@ from apps.Dashboard.models import GlobalStats
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
+import logging
+logger = logging.getLogger(__name__)
 
 class SoloPongConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -78,6 +80,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
                 }
             )
         )
+        logger.info(f"ALLO {self.pong =}")
 
     async def receive(self, text_data):
         data = json.loads(text_data)
@@ -159,6 +162,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
             self.pong.point_limit == self.pong.point[0]
             or self.pong.point_limit == self.pong.point[1]
         ):
+            logger.info("HEY")
             await self.send_game_finish()
 
     async def save_stats(self):

@@ -13,6 +13,9 @@ function modes_SetEvents() {
 
   element = document.getElementById("TRNMT_Create");
   element.addEventListener("click", modes_CreateTournament);
+
+  element = document.getElementById("TRNMT_Continue");
+  element.addEventListener("click", modes_ContinueTournament);
 }
 
 function modes_DelEvents() {
@@ -30,4 +33,7 @@ function modes_DelEvents() {
 
   element = document.getElementById("TRNMT_Create");
   element.removeEventListener("click", modes_CreateTournament);
+
+  element = document.getElementById("TRNMT_Continue");
+  element.removeEventListener("click", modes_ContinueTournament);
 }

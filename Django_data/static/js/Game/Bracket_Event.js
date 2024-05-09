@@ -1,12 +1,17 @@
-function bracket_SetEvents () {
-  setTournamentState();
-}
-
-async function setTournamentState () {
+async function bracket_SetEvents () {
   if (tournament === null || tournament === undefined) {
     await loadPage(`${ROUTE.SET_TOURNAMENT}`);
   } else {
     updateBracket();
+  }
+
+}
+
+function bracket_DelEvents () {
+  if (document.getElementById("Bracket").hidden === true) {
+    if (gameSocket.readyState === WebSocket.OPEN ||
+        gameSocket.readyState === WebSocket.CONNECTING)
+      gameSocket.close();
   }
 }
 
@@ -17,13 +22,14 @@ function updateBracket () {
     setMatchInfo();
   }
   setRounds();
+  console.log(tournament);
   const button = document.getElementById("PlayButton");
   if ("winner" in tournament) {
-    button.querySelector("span").innerHTML = "Leave tournament!";
-    console.log("hello?");
-    button.onclick = () => {
-      loadPage(`${ROUTE.SET_TOURNAMENT}`);
-    };
+    //button.querySelector("span").innerHTML = "Leave tournament!";
+    //button.onclick = () => {
+    //  loadPage(`${ROUTE.SET_TOURNAMENT}`);
+    //};
+    endTournament(tournament.winner);
   } else {
     button.querySelector("span").innerHTML = "Launch next round!";
     button.onclick = () => {
@@ -32,17 +38,33 @@ function updateBracket () {
   }
 }
 
+function endTournament (winner) {
+  const Screen = document.getElementById("endTournamentScreen");
+  const Message = document.getElementById("endTournamentMessage");
+  const Confirm = document.getElementById("confirmEndTournament");
+
+  document.getElementById("sectionTournament").hidden = true;
+  Confirm.innerHTML = "Leave tournament";
+  Message.textContent = `${winner} won the tournament!`;
+  Screen.style.display = "flex";
+  Confirm.onclick = function () {
+    Screen.style.display = "none";
+    loadPage(`${ROUTE.SET_TOURNAMENT}`);
+    tournament = null;
+  };
+}
+
 function setGame (playerList) {
   const players = whichPlayer(playerList);
 
   setGameInfo(players);
-  lauchGame();
+  launchGame();
 }
 
 function setGameInfo (players) {
   document
     .getElementById("MyCanvas")
-    .setAttribute("style", `"background: url('${tournament.back}')"`);
+    .setAttribute("style", `background: url('${tournament.back}')`);
   GameInfos.Ball.img = new Image();
   GameInfos.Ball.img.onload = () => {
     const rightName = document.getElementById("GAME_username_right");
@@ -54,12 +76,12 @@ function setGameInfo (players) {
       GameInfos.PlayerR.srcPaddle = players[0].paddle;
       GameInfos.PlayerR.username = players[0].username;
       GameInfos.PlayerL.srcPaddle = players[1].paddle;
-      GameInfos.PlayerL.username = players[1].paddle;
+      GameInfos.PlayerL.username = players[1].username;
     } else {
       rightName.innerHTML = players[0].username;
       leftName.innerHTML = players[0].vs;
       GameInfos.PlayerL.srcPaddle = players[0].paddle;
-      GameInfos.PlayerL.username = players[0].paddle;
+      GameInfos.PlayerL.username = players[0].username;
       GameInfos.PlayerR.srcPaddle = players[1].paddle;
       GameInfos.PlayerR.username = players[1].username;
     }
@@ -75,9 +97,10 @@ function setGameInfo (players) {
   GameInfos.Ball.img.src = tournament.ball;
   GameParams.opponent = "player";
   GameParams.type = "local";
-  GameParams.point_limit = tournament.score;
+  console.log(tournament.score);
+  GameParams.point_limit = parseInt(tournament.score);
   GameParams.powerup = tournament.powerUp;
-  init_canvas();
+  gameCanvas.powerup = GameParams.powerup;
 }
 
 function whichPlayer (playerList) {
@@ -115,7 +138,9 @@ function setOpponent (player, match) {
         ? team.setAttribute("class", "winner")
         : team.setAttribute("class", "team-winner");
   }
-  team.querySelector("span").innerHTML = player.vs;
+  if (player.vs !== "" ) {
+    team.querySelector("span").innerHTML = player.vs;
+  }
 }
 
 function setPlayer (player, match) {
