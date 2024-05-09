@@ -103,6 +103,7 @@ async def update_global_stats(winner, user, game_id):
 		if winner:
 			cur.execute("UPDATE \"Dashboard_globalstats\" SET \"victory\" = %s WHERE \"user_id\" = %s", (row[5] + 1, user[0]))
 			cur.execute("UPDATE \"Dashboard_globalstats\" SET \"win_rate\" = %s WHERE \"user_id\" = %s", ((row[5] + 1) / (row[2] + 1), user[0]))
+			cur.execute("UPDATE \"Dashboard_globalstats\" SET \"victory_player\" = %s WHERE \"user_id\" = %s", (row[8], user[0]))
 		else:
 			cur.execute("UPDATE \"Dashboard_globalstats\" SET \"defeat\" = %s WHERE \"user_id\" = %s", (row[6] + 1, user[0]))
 			cur.execute("UPDATE \"Dashboard_globalstats\" SET \"win_rate\" = %s WHERE \"user_id\" = %s", ((row[5]) / (row[2] + 1), user[0]))
