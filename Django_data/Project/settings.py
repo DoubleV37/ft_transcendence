@@ -170,30 +170,31 @@ CHANNEL_LAYERS = {
 }
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'console': {
+  'version': 1,
+  'disable_existing_loggers': False,
+  'formatters': {
+		'json': {
+			'()': 'pythonjsonlogger.jsonlogger.JsonFormatter',
+			'fmt': '%(asctime)s [%(process)d] [%(levelname)s] %(message)s',
+		},
+  },
+'handlers': {
+        'logstash': {
             'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
+            'class': 'logstash.TCPLogstashHandler',
+            'host': 'logstash_gunicorn',
+            'port': 5959, # Default value: 5959
+            'version': 1, # Version of logstash event schema. Default value: 0 (for backward compatibility of the library)
+            'message_type': 'django',  # 'type' field in logstash message. Default value: 'logstash'.
+            'fqdn': False, # Fully qualified domain name. Default value: false.
+            'tags': ['django.request'], # list of tags. Default: None.
         },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'INFO',
-        },
-        '': {
-            'handlers': ['console'],
+  },
+  'loggers': {
+        'django.request': {
+            'handlers': ['logstash'],
             'level': 'DEBUG',
-            'propagate': False,
-        },
-    },
+            'propagate': True,
+  },
+}
 }
