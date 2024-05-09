@@ -2,6 +2,7 @@ async function profile_SettingsCallBack () {
   try {
     await loadPage(`${ROUTE.SETTINGS}`);
     profileModal.modal.hide();
+    historyprofile = [];
   } catch (err) {
     console.log(`Error - profile_S: ${err}`);
   }
@@ -9,12 +10,14 @@ async function profile_SettingsCallBack () {
 
 function profile_closeModal () {
   profileModal.modal.hide();
+  historyProfile = [];
 }
 
 async function profile_SkinsCallBack () {
   try {
     await loadPage(`${ROUTE.SKINS}`);
     profileModal.modal.hide();
+    historyProfile = [];
   } catch (err) {
     console.log(`Error - profile_S: ${err}`);
   }
@@ -23,10 +26,19 @@ async function profile_SkinsCallBack () {
 async function profile_HistoryCallBack () {
   const id = document.getElementById("username").getAttribute("data-id");
   await changeSection(`${ROUTE.GAMELIST}${id}/`, "#GameListHistory");
+  const list = document.getElementById("GameListHistory").querySelectorAll("button[class]");
+
   document.getElementById("ProfilPage").hidden = true;
   document.getElementById("ListHistory").hidden = false;
 
-  const list = document.getElementById("GameListHistory").querySelectorAll("button[class]");
+  const backArrow = document.getElementById("ModalBackArrow");
+
+  backArrow.style.display = "flex";
+  backArrow.onclick = function () {
+    document.getElementById("ProfilPage").hidden = false;
+    document.getElementById("ListHistory").hidden = true;
+    backArrow.style.display = "none";
+  };
   if (list != null) {
     list.forEach((button) => {
       button.addEventListener("click", goToGameStats);
