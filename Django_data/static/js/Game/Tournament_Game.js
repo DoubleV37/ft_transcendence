@@ -70,7 +70,7 @@ function receiveGameMsg (e) {
   }
   if (data.message === "game_finish") {
     console.log(data.winner);
-    data.winner === "guest" ? updateMatch(1) : updateMatch(2);
+    data.winner === "Guest" ? updateMatch(1) : updateMatch(2);
   }
 }
 
