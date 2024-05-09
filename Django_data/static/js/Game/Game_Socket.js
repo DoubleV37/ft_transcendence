@@ -94,7 +94,11 @@ function update() {
   const currentTime = performance.now();
   const deltaTime = currentTime - lastFrameTime;
 
-  // le petit calcul de l'amour
+  if (gameSocket.readyState === 2 || gameSocket.readyState === 3) {
+  	return ;
+ }
+
+// le petit calcul de l'amour
   if (deltaTime >= 1000 / targetFrameRate) {
     if (keyStates.ArrowUp) {
       gameSocket.send(JSON.stringify({ message: "up" }));
