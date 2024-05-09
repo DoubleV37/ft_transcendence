@@ -113,7 +113,7 @@ async def update_global_stats(winner, user, game_id):
 	conn.close()
 
 async def get_user_info(username):
-	print("==Get user info==")
+	print("==Get user info==", username)
 	config = await take_conf_db()
 	conn = await connect_db(config)
 	cur = conn.cursor()

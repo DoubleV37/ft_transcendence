@@ -15,7 +15,7 @@ def settings(request):
 
 def profile_infos(request, _id=None):
     item = {}
-    if _id is None:
+    if _id is None or request.user.id == _id:
         _user = request.user
         item['type'] = 'himself'
     else:
