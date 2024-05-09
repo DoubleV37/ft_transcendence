@@ -625,13 +625,6 @@ scrollbar-width: none;
 		justify-content: center;
 		flex-grow: 1;
     	align-items: center;
-		/* Pour faire une fenetre */
-		/* width: 60em;
-    	height: 40em; */
-		/* border: 1px solid #5DC6E8;
-		border-radius: 10px;
-		margin-top: 2em;
-		margin-bottom: 2em; */
 	}
 
 	#overlayMobile {
@@ -1222,4 +1215,18 @@ scrollbar-width: none;
 		width: 100%;
 		justify-content: center;
 	}
+}
+
+.Tournament-content::-webkit-scrollbar { /* WebKit */
+    width: 2px; /* Adjusts the width of the scrollbar */
+	height: 0; /* Adjusts the width of the scrollbar */
+}
+
+.Tournament-content::-webkit-scrollbar-thumb { /* WebKit */
+    background-color: rgb(194, 194, 194); /* Sets the color of the scrollbar thumb */
+    border-radius: 10px; /* Optional: Rounds the corners of the scrollbar thumb */
+}
+
+#SetPlayer1, #SetPlayer2 {
+	margin-bottom : 0.5em;
 }
