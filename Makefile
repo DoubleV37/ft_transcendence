@@ -10,7 +10,7 @@ down:
 stop:
 	docker compose stop
 
-fclean: down
+fclean: down update
 	docker system prune -af --volumes
 	docker volume rm `docker volume ls -q`
 
@@ -21,6 +21,7 @@ fre: fclean up
 site:
 	docker compose restart gunicorn
 	docker compose restart uvicorn
+	docker compose restart pong
 
 update:
 	rm -rf `find ./Django_data/ -type f -name "0*"`

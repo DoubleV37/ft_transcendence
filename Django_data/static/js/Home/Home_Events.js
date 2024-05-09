@@ -1,6 +1,6 @@
 function home_SetEvents () {
-  let element = document.getElementById("HEADER_IsAuth");
-  const IsAuthenticated = element.getAttribute("data-auth");
+  let element = document.getElementById("titleContent");
+  const IsAuthenticated = element.getAttribute("data-connect");
 
   if (IsAuthenticated === "false") {
     element = document.getElementById("SigninButton");
@@ -15,8 +15,8 @@ function home_SetEvents () {
 }
 
 function home_DelEvents () {
-  let element = document.getElementById("HEADER_IsAuth");
-  const IsAuthenticated = element.getAttribute("data-auth");
+  let element = document.getElementById("titleContent");
+  const IsAuthenticated = element.getAttribute("data-connect");
 
   if (IsAuthenticated === "false") {
     element = document.getElementById("SigninButton");

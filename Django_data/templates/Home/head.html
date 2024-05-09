@@ -9,6 +9,7 @@
   {% bootstrap_javascript %}
 	<link rel="stylesheet" href={% static "css/singlepage.css" %}>
 	<link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oxanium:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href={% static "css/home.css" %} />
 	<link rel="stylesheet" href={% static "css/header.css" %} />
 	<link rel="stylesheet" href={% static "css/footer.css" %} />
@@ -23,6 +24,7 @@
 	<link rel="stylesheet" href={% static "css/animations.css" %} />
 	<link rel="stylesheet" href={% static "css/tournament.css" %} />
 	<link rel="stylesheet" href={% static "css/parameters.css" %} />
+	<link rel="stylesheet" href={% static "css/game.css" %} />
 
 	<!-- Fav Icon -->
 	<link rel="shortcut icon" type="image/png" href="{% static 'images/favIcon.png' %}" >
@@ -64,9 +66,16 @@
 	<!-- Scripts Games launching/settings -->
 	<script src={% static "js/Game/Modes_CallBack.js" %}></script>
 	<script src={% static "js/Game/Modes_Events.js" %}></script>
-	<script src={% static "js/Game/Parameters.js" %}></script>
 	<script src={% static "js/Game/Parameters_CallBack.js" %}></script>
 	<script src={% static "js/Game/Parameters_Events.js" %}></script>
+
+	<script src={% static "js/Game/Game_Events.js" %}></script>
+	<script src={% static "js/Game/Game_Display.js" %}></script>
+	<script src={% static "js/Game/Game_Skins.js" %}></script>
+	<script src={% static "js/Game/Gameboard_Events.js" %}></script>
+	<script src={% static "js/Game/Stats_Events.js" %}></script>
+	<script src={% static "js/Game/Game_Socket.js" %}></script>
+	<script src={% static "js/Game/Matchmaking_Events.js" %}></script>
 
 	<!-- Script Init Modals -->
 	<script src={% static "js/Modals_Init.js" %}></script>

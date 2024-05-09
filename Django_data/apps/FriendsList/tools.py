@@ -9,12 +9,16 @@ logger = logging.getLogger(__name__)
 def suggestionList(me: User) -> list:
     all_user = User.objects.all()
     friends = me.friends.all()
+    to_exclude = [
+        item for item in User.objects.all()
+        if item.id == 1 or item.id == 2
+    ]
     requested = {
         fr.from_user for fr in Friend_Request.objects.filter(to_user=me)
     }
     lst = [
         item for item in all_user if item not in friends and item != me
-        and item not in requested
+        and item not in requested and item not in to_exclude
     ]
     return lst
 

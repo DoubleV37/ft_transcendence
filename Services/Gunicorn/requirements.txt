@@ -16,3 +16,6 @@ django-two-factor-auth>=1.10.0
 
 python-json-logger
 python-logstash
+
+channels-redis
+django-redis

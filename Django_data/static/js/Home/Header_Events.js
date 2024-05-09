@@ -2,9 +2,6 @@ function header_SetEvents () {
   let element = document.getElementById("HEADER_Logo");
   element.addEventListener("click", header_LogoCallback);
 
-  element = document.getElementById("div_logo");
-  element.addEventListener("click", header_LogoCallback);
-
   element = document.getElementById("HEADER_IsAuth");
   const IsAuthenticated = element.getAttribute("data-auth");
 
@@ -21,6 +18,9 @@ function header_SetEvents () {
     element = document.getElementById("HEADER_user");
     element.addEventListener("click", header_ModProfilCallBack);
   } else if (IsAuthenticated === "false") {
+    element = document.getElementById("HEADER_NavLogo");
+    element.addEventListener("click", header_LogoCallback);
+
     element = document.getElementById("HEADER_Signin");
     element.addEventListener("click", header_SignInCallBack);
 
@@ -36,9 +36,6 @@ function header_SetEvents () {
 
 function header_DelEvents () {
   let element = document.getElementById("HEADER_Logo");
-  element.removeEventListener("click", header_LogoCallback);
-
-  element = document.getElementById("div_logo");
   element.removeEventListener("click", header_LogoCallback);
 
   element = document.getElementById("HEADER_IsAuth");
@@ -60,6 +57,9 @@ function header_DelEvents () {
     element = document.getElementById("HEADER_Signin");
     element.removeEventListener("click", header_SignInCallBack);
 
+    element = document.getElementById("HEADER_NavLogo");
+    element.removeEventListener("click", header_LogoCallback);
+
     element = document.getElementById("HEADER_NavSignUp");
     element.addEventListener("click", header_SignUpCallBack);
 
@@ -70,7 +70,7 @@ function header_DelEvents () {
   }
 }
 
-function header_LogoCallback () {
+async function header_LogoCallback () {
   try {
     loadPage(`${ROUTE.HOME}`);
     offcanvas_Hide();

@@ -1,9 +1,28 @@
-function modes_randomMatchmaking() {
-  console.log("randomMatchmaking: do nothing for now");
+async function modes_randomMatchmaking() {
+	try {
+		GameParams.point_limit = 1;
+		GameParams.type = "remote";
+		GameParams.opponent = "player";
+		GameParams.powerup = false;
+		GameParams.difficulty = 5;
+		GameParams.type_game = "all";
+		await loadPage(`${ROUTE.GAME_MATCH}`);
+	} catch (error) {
+		console.log(`Error - playerVSplayer: ${error}`);
+	}
 }
 
-function modes_playerVSia() {
-  console.log("playerVSia: do nothing for now");
+async function modes_playerVSia() {
+	try {
+		GameParams.opponent = "ai";
+		GameParams.type = "local";
+		GameParams.point_limit = 3;
+		GameParams.difficulty = 5;
+		GameParams.powerup = false;
+		await loadPage(`${ROUTE.GAME_LOCAL}`);
+	} catch (error) {
+		console.log(`Error - playerVSia: ${error}`);
+	}
 }
 
 function modes_ChooseGame() {
@@ -11,7 +30,6 @@ function modes_ChooseGame() {
 }
 
 async function modes_CreateGame() {
-  del_current_event();
   await loadPage(`${ROUTE.GAME_PARAMETERS}`);
 }
 

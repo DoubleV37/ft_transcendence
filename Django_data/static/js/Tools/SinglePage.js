@@ -34,6 +34,13 @@ window.addEventListener("popstate", async function (event) {
     return;
   }
   del_current_event();
+  const elem = document.getElementById("titleContent").getAttribute("data-content");
+  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
+    const targetNode = document.querySelector("#content");
+    const config = { childList: true, subtree: true };
+
+    observer.observe(targetNode, config);
+  }
   header_DelEvents();
   await del_modal();
   if (event.state == null) {
@@ -52,6 +59,14 @@ async function loadPage (url) {
     currentUrl = url;
     history.pushState({ section: url }, "", url);
   }
+  del_current_event();
+  const elem = document.getElementById("titleContent").getAttribute("data-content");
+  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
+    const targetNode = document.querySelector("#content");
+    const config = { childList: true, subtree: true };
+
+    observer.observe(targetNode, config);
+  }
   await changeSection(url, "#content");
 }
 
@@ -64,7 +79,7 @@ async function MakeRequest (url, request = null) {
     }
     return response;
   } catch (err) {
-    await authError(err.message, url, request);
+    return await authError(err.message, url, request);
   }
 }
 
@@ -72,7 +87,6 @@ async function authError (message, url, request) {
   const _words = message.split(":");
 
   if (_words[0] === "498" && _words[1] === "Expired") {
-    console.log(`status => ${_words[0]}, reason => ${_words[1]}`);
     await fetchSection(`${ROUTE.JWTREFRESH}`);
     return await MakeRequest(url, request);
   } else {

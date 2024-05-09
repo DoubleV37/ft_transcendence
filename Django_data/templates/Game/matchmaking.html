@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  {% include "Home/head.html" %}
+  <body>
+	{% include "Home/header.html" %}
+	{% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
+	{% include "Profile/Profile.html" %}
+	{% include "Auth/code_validation.html" %}
+ 	{% include "Profile/enable_2fa.html" %}
+	{% include "FriendList/FriendsList.html" %}
+
+	<div id="content">
+		<div id="overlay">
+			<div class="mid midcolumn flowAnimation">
+				<div id="titleContent" data-content="GAME_MATCH"></div>
+				<img src="{%static 'images/duck-ducky.gif'%}"></img>
+				<div id="matchmakingContainer">
+					<span id="matchmakingText">Looking for opponent</span>
+					<span id="matchmakingDotsContainer">
+					  <span id="matchmakingDots"></span>
+					</span>
+				</div>
+                <div class="spinner-border" role="status">
+                    {% comment %} <span class="sr-only">Searching...</span> {% endcomment %}
+                </div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>

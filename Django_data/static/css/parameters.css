@@ -2,9 +2,10 @@
 @media only screen and (min-width : 60.063em) {
 
     .conteneur {
-        display: flex;
-        justify-content: space-between;
-       }
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 0.5fr;
+        justify-items: center;
+    }
        
     .column {
         flex: 1;
@@ -15,6 +16,7 @@
     .flex-column {
         display: flex;
         flex-direction: column;
+        justify-content: center;
        }
 
     .section {
@@ -22,12 +24,25 @@
         margin-bottom: 1.6rem;
     }
 
+    .section-score {
+        /* background-color: #08131E; */
+        background-image: linear-gradient(to right, #131327, #c57865);
+        width: 100%;
+        margin-bottom: none !important;
+        padding-bottom: 0.2em;
+        padding-top: 0.2em;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        border-bottom: 1px solid #5dc6e8;
+        border-radius: 1em 1em 0 0;
+    }
+
     .bodyText {
         color: #FFF;
         display: flex;
         /* Body text */
         font-family: Kodchasan;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -44,7 +59,7 @@
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
-        border-bottom: #FFF solid 1px;
+        border-bottom: #7b7b7b solid 1px;
         margin-bottom: 1.5rem;
     }
 
@@ -103,9 +118,10 @@
 @media only screen and (min-width : 46.25em) and (max-width : 60em) {
 
     .conteneur {
-        display: flex;
-        justify-content: space-between;
-       }
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 0.5fr;
+        justify-items: center;
+    }
        
     .column {
         flex: 1;
@@ -116,6 +132,7 @@
     .flex-column {
         display: flex;
         flex-direction: column;
+        justify-content: center;
        }
 
     .section {
@@ -123,12 +140,24 @@
         margin-bottom: 1.6rem;
     }
 
+    .section-score {
+        background-image: linear-gradient(to right, #131327, #c57865);
+        width: 100%;
+        margin-bottom: none !important;
+        padding-bottom: 0.2em;
+        padding-top: 0.2em;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        border-bottom: 1px solid #5dc6e8;
+        border-radius: 1em 1em 0 0;
+    }
+
     .bodyText {
         color: #FFF;
         display: flex;
         /* Body text */
         font-family: Kodchasan;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -145,7 +174,7 @@
         font-weight: 400;
         line-height: normal;
         align-self: stretch;
-        border-bottom: #FFF solid 1px;
+        border-bottom: #7b7b7b solid 1px;
         margin-bottom: 1.5rem;
     }
 
@@ -206,9 +235,10 @@
 
 
     .conteneur {
-        display: flex;
-        justify-content: space-between;
-       }
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 0.5fr;
+        justify-items: center;
+    }
        
     .column {
         flex: 1;
@@ -219,6 +249,7 @@
     .flex-column {
         display: flex;
         flex-direction: column;
+        justify-content: center;
        }
 
     .section {
@@ -227,12 +258,24 @@
         margin-bottom: 1.6rem;
     }
 
+    .section-score {
+        background-image: linear-gradient(to right, #131327, #c57865);
+        width: 100%;
+        margin-bottom: none !important;
+        padding-bottom: 0.2em;
+        padding-top: 0.2em;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        border-bottom: 1px solid #919191;
+        border-radius: 1em 1em 0 0;
+    }
+
     .bodyText {
         color: #FFF;
         display: flex;
         /* Body text */
         font-family: Kodchasan;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -247,7 +290,8 @@
         font-size: 5rem;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
+        line-height: 1;
+        border-bottom: #7b7b7b solid 1px;
         align-self: stretch;
     }
 

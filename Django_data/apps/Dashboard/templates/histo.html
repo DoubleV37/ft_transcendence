@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <h1>histo:</h1>
+    <table>
+      {% for key, items in context.items %}
+        <tr>
+          <td> {{ key }} </td>
+          <td> {{ items.me.user.username }} </td>
+          <td> 
+          {% if items.me.winner == True %}
+            winner
+          {% else %}
+            loser
+          {% endif %}
+          </td>
+          <td> {{ items.opponent.user.username }} </td>
+        <td> <a href="{% url 'board' items.id.id %}">stats</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
+

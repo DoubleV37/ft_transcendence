@@ -28,25 +28,25 @@ function increaseValue () {
 
 function updateValue (id, value) {
   if (id === "Difficulty") {
-    GameParams.Difficulty = value;
+    GameParams.difficulty = value;
   } else {
-    GameParams.Score = value;
+    GameParams.point_limit = value;
   }
 }
 
 function parameters_SelectOpponent (event) {
   element = event.target;
   if (event.target.id === "SELECT_Player") {
-    if (GameParams.Opponent !== "player") {
-      GameParams.Opponent = "player";
+    if (GameParams.opponent !== "player") {
+      GameParams.opponent = "player";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
       document.getElementById("SELECT_ai").setAttribute("class", "MediumButtonLayout right ButtonNeon");
     }
     document.getElementById("SELECT_Player").setAttribute("class", "MediumButtonLayout left ButtonFocus");
-      document.getElementById("SELECT_Remote").disabled = false;
+    document.getElementById("SELECT_Remote").disabled = false;
   } else {
-    if (GameParams.Opponent !== "ai") {
-      GameParams.Opponent = "ai";
+    if (GameParams.opponent !== "ai") {
+      GameParams.opponent = "ai";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
       document.getElementById("SELECT_Player").setAttribute("class", "MediumButtonLayout left ButtonNeon");
       document.getElementById("SELECT_Local").click();
@@ -59,15 +59,15 @@ function parameters_SelectOpponent (event) {
 function parameters_SelectType (event) {
   element = event.target;
   if (event.target.id === "SELECT_Remote") {
-    if (GameParams.Type !== "remote") {
-      GameParams.Type = "remote";
+    if (GameParams.type !== "remote") {
+      GameParams.type = "remote";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
       document.getElementById("SELECT_Local").setAttribute("class", "MediumButtonLayout left ButtonNeon");
     }
     document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout right ButtonFocus");
   } else {
-    if (GameParams.Type !== "local") {
-      GameParams.Type = "local";
+    if (GameParams.type !== "local") {
+      GameParams.type = "local";
       event.target.setAttribute("class", "MediumButtonLayout left ButtonNeon");
       document.getElementById("SELECT_Remote").setAttribute("class", "MediumButtonLayout right ButtonNeon");
     }
@@ -77,19 +77,23 @@ function parameters_SelectType (event) {
 
 function parameters_SetPowerUp (event) {
   if (event.target.checked === true) {
-    GameParams.PowerUp = true;
+    GameParams.powerup = true;
   } else {
-    GameParams.PowerUp = false;
+    GameParams.powerup = false;
   }
 }
 
-function parameters_StartGame () {
-  const Params = JSON.stringify(GameParams);
-  console.log(Params);
+async function parameters_StartGame () {
+  if (GameParams.type === "local" || GameParams.opponent === "ai") {
+    await loadPage(ROUTE.GAME_LOCAL);
+  } else {
+	GameParams.type_game = "custom";
+    await loadPage(ROUTE.GAME_MATCH);
+  }
 }
 
 function parameters_SetPage () {
-  if (GameParams.Opponent === "ai") {
+  if (GameParams.opponent === "ai") {
     document.getElementById("SELECT_ai")
       .setAttribute("class", "MediumButtonLayout right ButtonFocus");
     document.getElementById("SELECT_Local").click();
@@ -98,17 +102,17 @@ function parameters_SetPage () {
     document.getElementById("SELECT_Player")
       .setAttribute("class", "MediumButtonLayout left ButtonFocus");
   }
-  if (GameParams.Type === "remote") {
+  if (GameParams.type === "remote") {
     document.getElementById("SELECT_Remote")
       .setAttribute("class", "MediumButtonLayout right ButtonFocus");
   } else {
     document.getElementById("SELECT_Local")
       .setAttribute("class", "MediumButtonLayout left ButtonFocus");
   }
-  document.getElementById("Difficulty").setAttribute("value", GameParams.Difficulty);
-  document.getElementById("Score").setAttribute("value", GameParams.Score);
+  document.getElementById("Difficulty").setAttribute("value", GameParams.difficulty);
+  document.getElementById("Score").setAttribute("value", GameParams.point_limit);
 
-  if (GameParams.PowerUp === true) {
+  if (GameParams.powerup === true) {
     document.getElementById("switchCheckLabelTop").checked = true;
   } else {
     document.getElementById("switchCheckLabelTop").checked = false;

@@ -219,6 +219,11 @@ services:
       timeout:  5s
       retries:  5
 
+  redis:
+    container_name: redis
+    image: redis:6.2.6-alpine
+    restart: always
+
   nginx:
     container_name: nginx
     build: Services/NginxReverseProxy/
@@ -241,3 +246,42 @@ services:
       - "8081:8080"
     depends_on:
       - postgres
+
+  pong:
+    container_name: pong
+    build: Services/PongServer
+    env_file: .env
+    restart: always
+    volumes:
+      - ./Services/PongServer/ServerFile:/Server
+    depends_on:
+      - nginx
+
+
+volumes:
+  postgres_data:
+    name: postgres_data
+
+  django_data:
+    name: django_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data
+
+  django_static:
+    name: django_static
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data/staticfiles
+
+  django_media:
+    name: django_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data/avatars
