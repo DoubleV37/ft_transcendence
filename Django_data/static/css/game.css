@@ -105,6 +105,16 @@
 		width: 75%;
 	}
 
+	.section-stats-header {
+		width: 75%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid white;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1.2em;
+	}
+
 	.section-stats-row {
 		width: 75%;
 		display: flex;
@@ -120,8 +130,6 @@
 		font-weight: 400;
 		line-height: normal;
 		align-self: stretch;
-		border-bottom: #616161 solid 1px;
-		margin-bottom: 1rem;
 	}
 
 	.ranked-gif {
@@ -237,6 +245,16 @@
 		width: 75%;
 	}
 
+	.section-stats-header {
+		width: 75%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid white;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1.2em;
+	}
+
 	.section-stats-row {
 		width: 75%;
 		display: flex;
@@ -252,8 +270,6 @@
 		font-weight: 400;
 		line-height: normal;
 		align-self: stretch;
-		border-bottom: #616161 solid 1px;
-		margin-bottom: 1rem;
 	}
 
 	.ranked-gif {
@@ -370,6 +386,16 @@
 		width: 80%;
 	}
 
+	.section-stats-header {
+		width: 80%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid white;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1.2em;
+	}
+
 	.section-stats-row {
 		width: 80%;
 		display: flex;
@@ -385,8 +411,6 @@
 		font-weight: 400;
 		line-height: 1;
 		align-self: stretch;
-		border-bottom: #616161 solid 1px;
-		margin-bottom: 1rem;
 	}
 
 	.ranked-gif {
