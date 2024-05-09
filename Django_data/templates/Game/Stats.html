@@ -25,10 +25,12 @@
                       <img class="ranked-gif" src="{%static 'images/sad.gif'%}"></img>
                     {% elif win_rate > 0.33 and win_rate <= 0.66 %}
                       <span class="WR-title medium-ranked">Winrate: {{ win_rate }}</span>
+                      <img class="ranked-gif" src="{%static 'images/purple-bat.gif'%}"></img>
+                    {% elif win_rate > 66 and win_rate <= 100 %}
                       <img class="ranked-gif" src="{%static 'images/duck-ducky.gif'%}"></img>
                     {% elif win_rate > 0.66 and win_rate <= 1 %}
                       <span class="WR-title high-ranked">Winrate: {{ win_rate }}</span>
-                      <img class="ranked-gif" src="{%static 'images/duck-ducky.gif'%}"></img>
+                      <img class="ranked-gif" src="{%static 'images/smolverse-smol.gif'%}"></img>
                     {% endif %}
                   </div>
 
@@ -47,10 +49,10 @@
                   <div class="content-score">                    
                     <div class="pk-wrapper">
                       <div id="left-games" class=" rantangle left">
-                        <span id="regular-games">{{ regular_games }}</span>
+                        <span class="values-stats" id="regular-games">{{ regular_games }}</span>
                       </div>
                       <div id="right-games" class="rantangle right">
-                        <span id="tournament-games">{{ tournament_games }}</span>
+                        <span class="values-stats" id="tournament-games">{{ tournament_games }}</span>
                       </div>
                     </div>                    
                   </div>
@@ -71,10 +73,10 @@
                   <div class="content-score">                    
                     <div class="pk-wrapper">
                       <div id="left-wins" class=" rantangle left">
-                        <span id="regular-wins">{{ regular_winned }}</span>
+                        <span class="values-stats" id="regular-wins">{{ regular_winned }}</span>
                       </div>
                       <div id="right-wins" class="rantangle right">
-                        <span id="tournament-wins">{{ tournaments_winned }}</span>
+                        <span class="values-stats" id="tournament-wins">{{ tournaments_winned }}</span>
                       </div>
                     </div>                    
                   </div>

@@ -6,7 +6,7 @@
       <div class="modal-header">
         <img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
       </div>
-      <div class="modal-body">
+      <div class="modal-body margin-b-2">
         <div class="FriendsPage modal-profile">
           <div class="ProfileCardboard modal-profileCardboard modal-profileFriendCardboard">
             <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}" alt="Very basic user"></img>
@@ -77,10 +77,16 @@
 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
-                      <button id="AccordionRequests" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#RequestsInAccordion" aria-expanded="false" aria-controls="RequestsInAccordion">
-                        <p><bold>Requests</bold></p>
-                      </button>
+                        <button id="AccordionRequests" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#RequestsInAccordion" aria-expanded="false" aria-controls="RequestsInAccordion">
+                            <p>Requests</p>
+                            {% if not all_friend_request %}
+                            <span id="pending-request-notification" hidden class="notification-dot"></span>
+                            {% else %}
+                            <span id="pending-request-notification" class="notification-dot"></span>
+                            {% endif %}
+                        </button>
                     </h2>
+                </div>
                     <div class="accordion-collapse collapse" id="RequestsInAccordion" aria-labelledby="headingTwo" data-bs-parent="#AccordionFriendsRequests"> <!-- ID - Required -->
                       <div class="accordion-body">
                         <ul id="RequestList-content" class="list-group AccordionCSSFriendsRequests"></ul>

@@ -61,9 +61,13 @@ function receive_data (e) {
     return EndGame("You won!");
   } else if (data.message === "lose") {
     return EndGame("You lost!");
-  } else if (data.message === "game_finish") {
+  } else if (data.message === "game_finish" && GameParams.opponent != "ai") {
     return EndGame(`${data.winner} won!`);
   }
+  else if (data.message === "game_finish" && GameParams.opponent === "ai") {
+  return EndGame("AI-Ochen won!");
+  }
+
   if (data.message === "game_state") {
     const score1div = document.getElementById("score1div");
     const score2div = document.getElementById("score2div");
@@ -83,24 +87,33 @@ function receive_data (e) {
   }
 }
 
-// Fonction pour mettre à jour le mouvement en fonction du temps écoulé
-function update () {
-  if (keyStates.ArrowUp) {
-    gameSocket.send(JSON.stringify({ message: "up" }));
-  } else if (keyStates.ArrowDown) {
-    gameSocket.send(JSON.stringify({ message: "down" }));
-  } else if (keyStates[" "]) {
-    gameSocket.send(JSON.stringify({ message: "space" }));
+let lastFrameTime = 0;
+let targetFrameRate = 60; // j'ai mis 60fps du coup
+
+function update() {
+  const currentTime = performance.now();
+  const deltaTime = currentTime - lastFrameTime;
+
+  // le petit calcul de l'amour
+  if (deltaTime >= 1000 / targetFrameRate) {
+    if (keyStates.ArrowUp) {
+      gameSocket.send(JSON.stringify({ message: "up" }));
+    } else if (keyStates.ArrowDown) {
+      gameSocket.send(JSON.stringify({ message: "down" }));
+    } else if (keyStates[" "]) {
+      gameSocket.send(JSON.stringify({ message: "space" }));
+    }
+    if (keyStates.w && GameParams.opponent == "player" && GameParams.type == "local") {
+      gameSocket.send(JSON.stringify({ message: "w" }));
+    } else if (keyStates.s && GameParams.opponent == "player" && GameParams.type == "local") {
+      gameSocket.send(JSON.stringify({ message: "s" }));
+    }
+    if (GameParams.opponent === "ai") {
+      iaMove();
+    }
+
+    lastFrameTime = currentTime;
   }
-  if (keyStates.w && GameParams.opponent == "player" && GameParams.type == "local") {
-    gameSocket.send(JSON.stringify({ message: "w" }));
-  } else if (keyStates.s && GameParams.opponent == "player" && GameParams.type == "local") {
-    gameSocket.send(JSON.stringify({ message: "s" }));
-  }
-  if (GameParams.opponent === "ai") {
-    iaMove();
-  }
-  // Planifiez la prochaine mise à jour
   if (gameStop !== true) {
     requestAnimationFrame(update);
   }
@@ -110,12 +123,36 @@ function EndGame (message) {
   const endGameScreen = document.getElementById("endGameScreen");
   const endGameMessage = document.getElementById("endGameMessage");
   const confirmEndGame = document.getElementById("confirmEndGame");
+  const endGameImage = document.getElementById("endGameImage");
 
   if (gameSocket != null) {
     gameSocket.close();
   }
+
+  if (message === "You won!") {
+    endGameImage.src = playerVictorySrc;
+ } else if (message === "You lost!") {
+    endGameImage.src = defeatSrc;
+ }
+  else if (message === "Game Stopped!") {
+    endGameImage.src = stoppedSrc;
+  }
+  else if (message === "AI-Ochen won!") {
+    endGameImage.src = aiVictorySrc;
+  }
+  else {
+    endGameImage.src = playerVictorySrc;
+  }
+
   document.getElementById("MyCanvas").hidden = true;
   endGameMessage.textContent = message;
+
+    endGameScreen.style.opacity = "0";
+
+    setTimeout(() => {
+      endGameScreen.style.opacity = "1";
+    }, 450);
+
   endGameScreen.style.display = "flex";
   gameCanvas.inGame = false;
   confirmEndGame.onclick = function () {

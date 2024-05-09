@@ -18,9 +18,10 @@ class FriendsRequestView(TemplateView):
             from_user = request.user
             myFriends = tools.myFriends(from_user)
             people = tools.suggestionList(from_user)
+            all_friend_request = Friend_Request.objects.all().filter(to_user=from_user)
             return render(
                 request, self.template_name,
-                {'from_user': from_user, 'people': people, 'myFriends': myFriends,}
+                {'from_user': from_user, 'people': people, 'myFriends': myFriends, 'all_friend_request': all_friend_request}
             )
 
         def post(self, request):

@@ -206,7 +206,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		if self.pong.point[0] > self.pong.point[1] and self.ia:
 			winner = "IA"
 		elif self.pong.point[0] > self.pong.point[1] and not self.ia:
-			winner = "guest"
+			winner = "Guest"
 		else:
 			winner = self.scope["user"].username
 		await self.send(
