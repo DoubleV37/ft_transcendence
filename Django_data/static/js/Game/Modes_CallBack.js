@@ -1,5 +1,11 @@
 async function modes_randomMatchmaking() {
 	try {
+		GameParams.point_limit = 1;
+		GameParams.type = "remote";
+		GameParams.opponent = "player";
+		GameParams.powerup = false;
+		GameParams.difficulty = 5;
+		GameParams.type_game = "all";
 		await loadPage(`${ROUTE.GAME_MATCH}`);
 	} catch (error) {
 		console.log(`Error - playerVSplayer: ${error}`);

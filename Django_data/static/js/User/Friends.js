@@ -122,6 +122,9 @@ async function ResponseFriendSubmit(button) {
     if (document.getElementById("FriendList-content").querySelectorAll(".list-group-item").length > 1) {
       document.getElementById("Friends_Empty").hidden = true;
     }
+    if (document.getElementById("RequestList-content").querySelectorAll(".list-group-item").length < 1) {
+      document.getElementById("pending-request-notification").hidden = true;
+    }
     return true;
   } catch (err) {
     console.error("Delete Friend ERROR:", err);

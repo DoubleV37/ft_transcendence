@@ -207,10 +207,10 @@ def create_jwt(_user, _type="access"):
     algorithm = config("HASH")
     if _type == "access":
         time_now = datetime.datetime.utcnow()
-        payload = {
+        payload.update({
             "exp": time_now + datetime.timedelta(hours=4),
             "iss": config("NAME"),
-        }
+        })
     token = jwt.encode(payload, secret_key, algorithm=algorithm)
     return token
 
