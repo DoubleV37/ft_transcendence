@@ -4,14 +4,12 @@ async function bracket_SetEvents () {
   } else {
     updateBracket();
   }
-
 }
 
 function bracket_DelEvents () {
   if (document.getElementById("Bracket").hidden === true) {
     if (gameSocket.readyState === WebSocket.OPEN ||
-        gameSocket.readyState === WebSocket.CONNECTING)
-      gameSocket.close();
+        gameSocket.readyState === WebSocket.CONNECTING) { gameSocket.close(); }
   }
 }
 
@@ -24,15 +22,13 @@ function updateBracket () {
   setRounds();
   const button = document.getElementById("PlayButton");
   if ("winner" in tournament) {
-    //button.querySelector("span").innerHTML = "Leave tournament!";
-    //button.onclick = () => {
-    //  loadPage(`${ROUTE.SET_TOURNAMENT}`);
-    //};
     endTournament(tournament.winner);
   } else {
     button.querySelector("span").innerHTML = "Launch next round!";
     button.onclick = () => {
-      setGame(playerList);
+      const players = whichPlayer(playerList);
+      setGame(players);
+      launchGame();
     };
   }
 }
@@ -51,13 +47,6 @@ function endTournament (winner) {
     loadPage(`${ROUTE.SET_TOURNAMENT}`);
     tournament = null;
   };
-}
-
-function setGame (playerList) {
-  const players = whichPlayer(playerList);
-
-  setGameInfo(players);
-  launchGame();
 }
 
 function setGameInfo (players) {
@@ -98,6 +87,7 @@ function setGameInfo (players) {
   GameParams.type = "local";
   GameParams.point_limit = parseInt(tournament.score);
   GameParams.powerup = tournament.powerUp;
+  GameParams.type_game = "tournament";
   gameCanvas.powerup = GameParams.powerup;
 }
 
@@ -135,7 +125,7 @@ function setOpponent (player, match) {
         ? team.setAttribute("class", "winner")
         : team.setAttribute("class", "team-winner");
   }
-  if (player.vs !== "" ) {
+  if (player.vs !== "") {
     team.querySelector("span").innerHTML = player.vs;
   }
 }
