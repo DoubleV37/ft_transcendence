@@ -42,11 +42,11 @@ function manageWins() {
   const wL = document.getElementById("left-wins");
   const wR = document.getElementById("right-wins");
 
-  let rWins = document.getElementById('regular-wins').textContent;
-  let tWins = document.getElementById('tournament-wins').textContent;
+  let aiWins = document.getElementById('victory_ia').textContent;
+  let playerWins = document.getElementById('victory_player').textContent;
 
-  rWins = parseInt(rWins, 10);
-  tWins = parseInt(tWins, 10);
+  aiWins = parseInt(aiWins, 10);
+  playerWins = parseInt(playerWins, 10);
 
   function calculateProgressWins(Wins, totalWins) {
       if (Wins === 0 && totalWins === 0) {
@@ -63,6 +63,6 @@ function manageWins() {
     progressBarId.style.setProperty('--final-width', `${progressPercentage}%`);
   }
 
-  updateProgressBarWins(rWins, wL);
-  updateProgressBarWins(tWins, wR);
+  updateProgressBarWins(aiWins, wL);
+  updateProgressBarWins(playerWins, wR);
 }
