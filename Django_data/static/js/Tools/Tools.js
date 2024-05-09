@@ -48,7 +48,6 @@ function del_current_event () {
     break;
   case "BRACKET":
     bracket_DelEvents();
-    break;
   default:
     break;
   }

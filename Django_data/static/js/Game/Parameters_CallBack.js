@@ -87,6 +87,7 @@ async function parameters_StartGame () {
   if (GameParams.type === "local" || GameParams.opponent === "ai") {
     await loadPage(ROUTE.GAME_LOCAL);
   } else {
+	GameParams.type_game = "custom";
     await loadPage(ROUTE.GAME_MATCH);
   }
 }

@@ -42,6 +42,7 @@ const ROUTE = {
   PROFILE: "/user/profile/",
   GAMELIST: "/dash/history/",
   GAMEBOARD: "/dash/board/",
+  STATS: "/dash/stats/",
   SKINS: "/user/skins/",
   FRIENDS_PROFILE: "/friends/profile/",
   FRIENDS: "/friends/list/",
@@ -67,6 +68,7 @@ let GameParams = {
   point_limit: 3,
   difficulty: 5,
   powerup: false,
+  type_game: "all"
 };
 
 let GameInfos = {
@@ -142,3 +144,7 @@ let matchSocket = null;
 let gameStop = true;
 
 let tournament = null;
+let playerVictorySrc = "/static/images/penguin-dance.gif";
+let defeatSrc = "/static/images/shiny-charmander-pokemon.gif";
+let stoppedSrc = "/static/images/ghost-phantom.gif";
+let aiVictorySrc = "/static/images/darth-vader.gif";
