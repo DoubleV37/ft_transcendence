@@ -100,6 +100,7 @@ function launchSectionHandler (element) {
     case "BRACKET":
       observer.disconnect();
       bracket_SetEvents();
+        break;
     case "STATS_PAGE":
       stats_SetEvents();
       break;

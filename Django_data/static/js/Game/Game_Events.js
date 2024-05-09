@@ -10,7 +10,6 @@ function game_SetEvents () {
 }
 
 function game_DelEvents () {
-  console.log("game_DelEvents");
   document.removeEventListener("keyup", keyUp);
   document.removeEventListener("keydown", keyDown);
   if (loading === true) {

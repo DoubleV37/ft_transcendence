@@ -13,7 +13,9 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 
 import logging
+
 logger = logging.getLogger(__name__)
+
 
 class SoloPongConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -204,13 +206,13 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
         self.toGS.win_rate = self.toGS.victory / self.toGS.nb_games
         await sync_to_async(self.toGS.save)()
 
-	async def send_game_finish(self):
-		if self.pong.point[0] > self.pong.point[1] and self.ia:
-			winner = "IA"
-		elif self.pong.point[0] > self.pong.point[1] and not self.ia:
-			winner = "Guest"
-		else:
-			winner = self.scope["user"].username
-		await self.send(
-			text_data=json.dumps({"message": "game_finish", "winner": winner})
-		)
+    async def send_game_finish(self):
+        if self.pong.point[0] > self.pong.point[1] and self.ia:
+            winner = "IA"
+        elif self.pong.point[0] > self.pong.point[1] and not self.ia:
+            winner = "Guest"
+        else:
+            winner = self.scope["user"].username
+        await self.send(
+            text_data=json.dumps({"message": "game_finish", "winner": winner})
+        )

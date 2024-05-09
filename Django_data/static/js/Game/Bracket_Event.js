@@ -22,7 +22,6 @@ function updateBracket () {
     setMatchInfo();
   }
   setRounds();
-  console.log(tournament);
   const button = document.getElementById("PlayButton");
   if ("winner" in tournament) {
     //button.querySelector("span").innerHTML = "Leave tournament!";
@@ -97,7 +96,6 @@ function setGameInfo (players) {
   GameInfos.Ball.img.src = tournament.ball;
   GameParams.opponent = "player";
   GameParams.type = "local";
-  console.log(tournament.score);
   GameParams.point_limit = parseInt(tournament.score);
   GameParams.powerup = tournament.powerUp;
   gameCanvas.powerup = GameParams.powerup;
@@ -130,7 +128,6 @@ function setOpponent (player, match) {
     player.team === 1
       ? match.querySelector("div[data-team=\"2\"]")
       : match.querySelector("div[data-team=\"1\"]");
-  console.log(team);
   if ("winner" in player) {
     player.winner
       ? team.setAttribute("class", "team-loser")
@@ -185,7 +182,6 @@ function shufflePlayer (list) {
     j = Math.floor(Math.random() * (i + 1));
     [list[i], list[j]] = [list[j], list[i]];
   }
-  console.log(list);
   return list;
 }
 

@@ -48,7 +48,6 @@ async function BeginTournament () {
   setParametersGame();
   setSkins();
   createTournament();
-  console.log(tournament);
 }
 
 async function createTournament () {

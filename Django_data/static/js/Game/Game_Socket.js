@@ -63,9 +63,8 @@ function receive_data (e) {
     return EndGame("You lost!");
   } else if (data.message === "game_finish" && GameParams.opponent != "ai") {
     return EndGame(`${data.winner} won!`);
-  }
-  else if (data.message === "game_finish" && GameParams.opponent === "ai") {
-  return EndGame("AI-Ochen won!");
+  } else if (data.message === "game_finish" && GameParams.opponent === "ai") {
+    return EndGame("AI-Ochen won!");
   }
 
   if (data.message === "game_state") {
@@ -88,17 +87,17 @@ function receive_data (e) {
 }
 
 let lastFrameTime = 0;
-let targetFrameRate = 60; // j'ai mis 60fps du coup
+const targetFrameRate = 60; // j'ai mis 60fps du coup
 
-function update() {
+function update () {
   const currentTime = performance.now();
   const deltaTime = currentTime - lastFrameTime;
 
   if (gameSocket.readyState === 2 || gameSocket.readyState === 3) {
-  	return ;
- }
+  	return;
+  }
 
-// le petit calcul de l'amour
+  // le petit calcul de l'amour
   if (deltaTime >= 1000 / targetFrameRate) {
     if (keyStates.ArrowUp) {
       gameSocket.send(JSON.stringify({ message: "up" }));
@@ -135,31 +134,28 @@ function EndGame (message) {
 
   if (message === "You won!") {
     endGameImage.src = playerVictorySrc;
- } else if (message === "You lost!") {
+  } else if (message === "You lost!") {
     endGameImage.src = defeatSrc;
- }
-  else if (message === "Game Stopped!") {
+  } else if (message === "Game Stopped!") {
     endGameImage.src = stoppedSrc;
-  }
-  else if (message === "AI-Ochen won!") {
+  } else if (message === "AI-Ochen won!") {
     endGameImage.src = aiVictorySrc;
-  }
-  else {
+  } else {
     endGameImage.src = playerVictorySrc;
   }
 
   document.getElementById("MyCanvas").hidden = true;
   endGameMessage.textContent = message;
 
-    endGameScreen.style.opacity = "0";
+  endGameScreen.style.opacity = "0";
 
-    setTimeout(() => {
-      endGameScreen.style.opacity = "1";
-    }, 450);
+  const id = setTimeout(() => {
+    endGameScreen.style.opacity = "1";
+  }, 450);
 
   endGameScreen.style.display = "flex";
-  gameCanvas.inGame = false;
   confirmEndGame.onclick = function () {
+    clearTimeout(id);
     loadPage(ROUTE.GAME_MODES);
     endGameScreen.style.display = "none";
   };

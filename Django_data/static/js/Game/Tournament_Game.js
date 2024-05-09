@@ -2,7 +2,6 @@ function launchGame () {
   gameSocket = new WebSocket(
     "wss://" + window.location.host + "/wss" + ROUTE.GAME_LOCAL
   );
-
   gameSocket.addEventListener("open", onOpenGame);
   gameSocket.addEventListener("close", onCloseGame);
   document.addEventListener("keyup", keyUp);
@@ -21,7 +20,6 @@ function quitGame () {
 
 function onOpenGame () {
   console.log("The connection was setup successfully !");
-  console.log(GameParams);
 
   gameSocket.send(JSON.stringify(GameParams));
   gameSocket.addEventListener("message", receiveGameMsg);
@@ -49,7 +47,6 @@ function onCloseGame () {
 function receiveGameMsg (e) {
   const data = JSON.parse(e.data);
 
-  console.log(data.message);
   if (gameSocket.readyState === WebSocket.CLOSING ||
       gameSocket.readyState === WebSocket.CLOSED) {
     return;
@@ -69,7 +66,6 @@ function receiveGameMsg (e) {
     draw(data);
   }
   if (data.message === "game_finish") {
-    console.log(data.winner);
     data.winner === "Guest" ? updateMatch(1) : updateMatch(2);
   }
 }
@@ -94,7 +90,6 @@ function updateMatch (team) {
     players[1].winner = false;
     players[0].team = players[0].match === 1 ? 1 : 2;
     futurPlayer = firstPlayerInFinal();
-    console.log(`futur player => ${futurPlayer}`);
     if (futurPlayer !== null) {
       players[0].vs = futurPlayer.username;
       futurPlayer.vs = players[0].username;
@@ -142,14 +137,22 @@ function endMatch (message) {
   const endGameScreen = document.getElementById("endGameScreen");
   const endGameMessage = document.getElementById("endGameMessage");
   const confirmEndGame = document.getElementById("confirmEndGame");
+  const endGameImage = document.getElementById("endGameImage");
 
   if (gameSocket != null) {
     gameSocket.close();
   }
+  endGameImage.src = playerVictorySrc;
   document.getElementById("MyCanvas").hidden = true;
   endGameMessage.textContent = `${message} won the match!`;
+  endGameScreen.style.opacity = "0";
+  const id = setTimeout(() => {
+    endGameScreen.style.opacity = "1";
+  }, 450);
+
   endGameScreen.style.display = "flex";
   confirmEndGame.onclick = function () {
+    clearTimeout(id);
     bracket_SetEvents();
     endGameScreen.style.display = "none";
     document.getElementById("MyCanvas").hidden = false;

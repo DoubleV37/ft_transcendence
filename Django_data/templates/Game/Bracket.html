@@ -61,7 +61,7 @@
             </button>
           </div>
           <div id="endTournamentScreen" style="display: none;">
-            <img src="{%static 'images/shiny-charmander-pokemon.gif'%}"></img>
+            <img class="ranked-gif" id="endGameImage" src="{%static 'images/shiny-charmander-pokemon.gif'%}"></img>
             <p id="endTournamentMessage"></p>
             <button id="confirmEndTournament" class="ButtonLayout ButtonNeon">End Game</button>
           </div>
@@ -90,11 +90,11 @@
           </div>
         </div>
         <div id="endGameScreen" style="display: none;">
-          <img src="{%static 'images/shiny-charmander-pokemon.gif'%}"></img>
+          <img class="ranked-gif" id="endGameImage" src="{%static 'images/shiny-charmander-pokemon.gif'%}"></img>
           <p id="endGameMessage"></p>
           <button id="confirmEndGame" class="ButtonLayout ButtonNeon">End Game</button>
         </div>
-        <canvas style="background: url('')" id="MyCanvas">
+        <canvas style="" id="MyCanvas">
           <p>Description of the canvas for those unable to view it.</p>
         </canvas>
         </div>

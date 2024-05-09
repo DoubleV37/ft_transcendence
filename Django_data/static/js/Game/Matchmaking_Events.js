@@ -8,7 +8,6 @@ function matchmaking_SetEvents () {
   };
 
   matchSocket.onmessage = function (event) {
-    //console.log("Message received from server:", event.data);
     data = JSON.parse(event.data);
 	console.log(data);
 	if (data.message == "settings") {
