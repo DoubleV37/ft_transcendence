@@ -101,7 +101,7 @@ def signout(request):
 # _ MY SETTINGS _____________________________________________________________ #
 
 
-def validator_fct(form, button: str, request, response: dict) -> dict:
+def validator_fct_for(form, button: str, request, response: dict) -> dict:
     if button in request.POST:
         if form.is_valid():
             form.save()
@@ -156,14 +156,17 @@ def my_settings(request):
                 else:
                     response = {"success": False, "logs": "Avatar not deleted"}
 
-            response = validator_fct(
+            response = validator_fct_for(
                 avatar, "avatar_button", request, response
             )
-            response = validator_fct(name, "name_button", request, response)
-            response = validator_fct(
+            response = validator_fct_for(
+                name, "name_button", request, response)
+            response = validator_fct_for(
                 t_name, "t_name_button", request, response)
-            response = validator_fct(pswd, "pswd_button", request, response)
-            response = validator_fct(mail, "mail_button", request, response)
+            response = validator_fct_for(
+                pswd, "pswd_button", request, response)
+            response = validator_fct_for(
+                mail, "mail_button", request, response)
 
             return JsonResponse(response)
         return render(request, "Profile/User_Settings.html", context=context)
