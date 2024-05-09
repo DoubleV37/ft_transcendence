@@ -48,10 +48,10 @@
                   
                     <div class="pk-wrapper">
                       <div id="left" class=" rantangle left">
-                        <span id="score-left">{{ me.score }}</span>
+                        <span class="values-stats" id="score-left">{{ me.score }}</span>
                       </div>
                       <div id="right" class="rantangle right">
-                        <span id="score-right">{{ opponent.score }}</span>
+                        <span class="values-stats" id="score-right">{{ opponent.score }}</span>
                       </div>
                     </div>
                   
@@ -93,12 +93,12 @@
                           <span class="chart__label">
                             {{ me.user.username }} - {{ me.max_speed }}
                           </span>
-                          <li class="chart__bar" style="width: {{ me.max_speed }}%;">
+                          <li class="chart__bar" style="width: {{ me.max_speed }}%">
                           </li>
                           <span class="chart__label">
                             {{ opponent.user.username }} - {{ opponent.max_speed }}
                           </span>
-                          <li class="chart__bar" style="width: {{ opponent.max_speed }}%;">
+                          <li class="chart__bar" style="width: {{ opponent.max_speed }}%">
                           </li>
                         </ul>
                       </div>
