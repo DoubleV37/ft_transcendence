@@ -18,6 +18,20 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .FriendCTALayout {
+        width: 100%;
+    }
+
+    .ButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.03);
+    }
+
+    .ButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .CTA {
@@ -41,6 +55,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .MediumButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .MediumButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout {
@@ -58,6 +82,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .UpdateButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .UpdateButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .SelectButtonLayout {
@@ -69,11 +103,21 @@
         border-radius:  0.625rem;
         color: #FFF;
         font-family: Kodchasan;
-        font-size:  1rem;
+        font-size:  0.9rem;
         font-style: normal;
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .SelectButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .SelectButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
     
     .MediumButtonLayout.right {
@@ -89,6 +133,11 @@
         border: none;
     }
 
+    .ButtonBlue:hover {
+        background-color: #525695;
+        border: solid 1px white;
+    }
+
     .ButtonNeon {
         background: #202532;
         border: 1px solid #5DC6E8; 
@@ -102,6 +151,16 @@
     .ButtonDark {
         border: 1px solid #AE473B;
         background: #1C2026;
+    }
+
+    .ButtonDark:hover {
+      background: #1C2026 !important;
+    }
+
+    .ButtonFocus {
+        background: #1b718d;
+        border: 2px solid #5DC6E8;
+        font-weight: bold;
     }
 
     .Button42 {
@@ -160,10 +219,14 @@
         margin-top: 0;
     }
 
+    #HEADER_NavSignOut:hover, #AVATAR_Delete:hover {
+        background-color: #1C2026 !important;
+    }
+
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
     /* Styles */
 
     .ButtonLayout {
@@ -183,6 +246,20 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .ButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.03);
+    }
+
+    .ButtonLayout:not(:hover) {
+        transform: scale(1.0);
+    }
+
+    .FriendCTALayout {
+        width: 100%;
     }
 
     .CTA {
@@ -206,6 +283,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .MediumButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .MediumButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .SelectButtonLayout {
@@ -217,11 +304,21 @@
         border-radius:  0.625rem;
         color: #FFF;
         font-family: Kodchasan;
-        font-size:  1rem;
+        font-size:  0.9rem;
         font-style: normal;
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .SelectButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .SelectButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout {
@@ -241,6 +338,16 @@
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
         position: relative;
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .UpdateButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .UpdateButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout::before {
@@ -268,6 +375,11 @@
         border: none;
     }
 
+    .ButtonBlue:hover {
+        background-color: #525695;
+        border: solid 1px white;
+    }
+
     .ButtonNeon {
         background: #202532;
         border: 1px solid #5DC6E8; 
@@ -281,6 +393,16 @@
     .ButtonDark {
         border: 1px solid #AE473B;
         background: #1C2026;
+    }
+
+    .ButtonDark:hover {
+      background: #1C2026 !important;
+    }
+
+    .ButtonFocus {
+        background: #1b718d;
+        border: 2px solid #5DC6E8;
+        font-weight: bold;
     }
 
     .Button42 {
@@ -336,10 +458,14 @@
         height: 2em;
         border-radius: 0.6em;
     }
+
+    #HEADER_NavSignOut:hover, #AVATAR_Delete:hover {
+        background-color: #1C2026 !important;
+    }
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
     /* Styles */
 
     .ButtonLayout {
@@ -359,6 +485,20 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        transition: transform 0.5s ease;
+    }
+
+    .ButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.03);
+    }
+
+    .ButtonLayout:not(:hover) {
+        transform: scale(1.0);
+    }
+
+    .FriendCTALayout {
+        width: 100%;
     }
 
     .CTA {
@@ -382,6 +522,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .MediumButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .MediumButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .SelectButtonLayout {
@@ -398,6 +548,16 @@
         font-weight:  400;
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .SelectButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .SelectButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout {
@@ -417,6 +577,16 @@
         line-height: normal;
         padding:  0.5rem  1rem; /* Ajout de padding pour mieux visualiser l'alignement */
         position: relative;
+        transition: transform 0.5s ease; /* Ajouter une transition pour lisser l'effet */
+    }
+
+    .UpdateButtonLayout:hover {
+        background-color: #1b718d;
+        transform: scale(1.1);
+    }
+
+    .UpdateButtonLayout:not(:hover) {
+        transform: scale(1.0);
     }
 
     .UpdateButtonLayout::before {
@@ -470,6 +640,11 @@
         border: none;
     }
 
+    .ButtonBlue:hover {
+        background-color: #525695;
+        border: solid 1px white;
+    }
+
     .ButtonNeon {
         background: #202532;
         border: 1px solid #5DC6E8; 
@@ -483,6 +658,16 @@
     .ButtonDark {
         border: 1px solid #AE473B;
         background: #1C2026;
+    }
+
+    .ButtonDark:hover {
+      background: #1C2026 !important;
+    }
+
+    .ButtonFocus {
+        background: #1b718d;
+        border: 2px solid #5DC6E8;
+        font-weight: bold;
     }
 
     .Button42 {
@@ -511,6 +696,10 @@
     #switchCheckLabelTop {
         height: 2em;
         border-radius: 0.6em;
+    }
+
+    #HEADER_NavSignOut:hover, #AVATAR_Delete:hover {
+        background-color: #1C2026 !important;
     }
     
 }

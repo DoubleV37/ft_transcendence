@@ -3,7 +3,7 @@ python-decouple
 psycopg2-binary
 uvicorn[standard]
 django-bootstrap-v5
-channels
+channels>=4.0.0
 djangorestframework
 
 django-crontab
@@ -11,3 +11,10 @@ pyotp>=2.6.0
 djangorestframework_simplejwt>=5.0.0
 django-otp>=0.10.0
 django-two-factor-auth>=1.10.0
+
+python-logstash
+python-json-logger
+
+channels-redis
+django-redis
+django-redis-sessions

@@ -22,6 +22,8 @@ urlpatterns = [
     path('auth/', include('apps.Auth.urls')),
     path('user/', include('apps.Profile.urls')),
     path('2fa/', include('apps.Twofa.urls')),
-	path('game/', include('apps.Game.urls')),
+    path('game/', include('apps.Game.urls')),
+    path('friends/', include('apps.FriendsList.urls')),
+    path('dash/', include('apps.Dashboard.urls')),
     path('admin/', admin.site.urls),
 ]

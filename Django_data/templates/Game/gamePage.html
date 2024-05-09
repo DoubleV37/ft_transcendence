@@ -1,128 +1,54 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
-<style>
-	body {
-		background-color: #f2f2f2;
-		display: flex;
-		flex-direction: column;
-	}
-	canvas {
-		border: 2px solid black;
-		background-color: #f2f2f2b0;
-		align-self: center;
-		aspect-ratio: 2/1;
-		width: 90%;
-		max-height: 80%;
-	}
-</style>
   <body>
-    <center><h1>Hello , Welcome to Pong ! {{request.user}}</h1></center>
-    <!-- <div
-      class="chat__item__container"
-      id="id_chat_item_container"
-      style="font-size: 20px"
-    >
-      <input type="text" id="id_message_send_input" />
-      <button type="submit" id="id_message_send_button">Send Message</button>
-    </div> -->
+	{% include "Home/head.html" %}
+	{% include "Home/header.html" %}
+	{% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
+	{% include "Profile/Profile.html" %}
+	{% include "Auth/code_validation.html" %}
+ 	{% include "Profile/enable_2fa.html" %}
+	{% include "FriendList/FriendsList.html" %}
 
-	<canvas id="MyCanvas">
-		<p>Description of the canvas for those unable to view it.</p>
-	</canvas>
+	<div id="content">
 
-    <script>
-		const gameSocket = new WebSocket("wss://" + window.location.host + "/wss/game/room");
-		gameSocket.onopen = function (e) {
-			console.log("The connection was setup successfully !");
-		};
-		gameSocket.onclose = function (e) {
-			console.log("Something unexpected happened !");
-		};
-		// document.querySelector("#id_message_send_input").focus();
-		// document.querySelector("#id_message_send_input").onkeyup = function (e) {
-		// 	if (e.keyCode == 13) {
-		// 		document.querySelector("#id_message_send_button").click();
-		// 	}
-		// };
-		// document.querySelector("#id_message_send_button").onclick = function (e) {
-		// 	var messageInput = document.querySelector(
-		// 		"#id_message_send_input"
-		// 	).value;
-		// 	gameSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
-		// };
-		gameSocket.onmessage = function (e) {
-			const data = JSON.parse(e.data);
-			draw(data);
-		};
+		<div id="overlay">
+			<div class="midGame midcolumn flowAnimation">
+				<div id="titleContent" data-content="GAME_LOCAL"></div>
+				<div class="section-score">
+					<div class="conteneur">
+						<div class="flex-column">
+							<div id="GAME_user">
+								<img id="HEADER_GameProfilePicLeft" class="ProfilePic header-profilePic profilePic-left" src="" alt="Very basic user"></img>
+								<h1 class="username" id="GAME_username_left"></h1>
+						  </div>
+						</div>
+
+						<div class="flex-row">
+							<div class="scoreText" id="score1div"></div>
+							<p class="scoreText">-</p>
+							<div class="scoreText" id="score2div"></div>
+						</div>
+						<div class="flex-column">
+						<div id="GAME_user">
+								<h1 class="username" id="GAME_username_right">{{ username }}</h1>
+								<img id="HEADER_GameProfilePicRight" class="ProfilePic header-profilePic profilePic-right" src="" alt="Very basic user"></img>
+						  </div>
+						</div>
+					</div>
+				</div>
+					<div id="endGameScreen" style="display: none;">
+						<img class="ranked-gif" id="endGameImage" src="{%static 'images/shiny-charmander-pokemon.gif'%}"></img>
+						<p id="endGameMessage"></p>
+						<button id="confirmEndGame" class="ButtonLayout ButtonNeon">End Game</button>
+					</div>
+                                        <canvas style="background: url('{{ background }}')" id="MyCanvas">
+					<p>Description of the canvas for those unable to view it.</p>
+				</canvas>
+			</div>
+		</div>
+	</div>
 
 
-
-		var canvas = document.getElementById("MyCanvas");
-		var ctx = canvas.getContext("2d");
-
-
-		const style = getComputedStyle(canvas);
-		const width = parseInt(style.getPropertyValue('width'), 10);
-		const height = parseInt(style.getPropertyValue('height'), 10);
-		canvas.width = width;
-		canvas.height = height;
-
-		var ballRadius = width/20;
-		var paddleHeight = width/10;
-
-		addEventListener('resize', () => {
-			const style = getComputedStyle(canvas);
-			const width = parseInt(style.getPropertyValue('width'), 10);
-			const height = parseInt(style.getPropertyValue('height'), 10);
-			canvas.width = width;
-			canvas.height = height;
-			paddleHeight = width/10;
-			ballRadius = width/20;
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			draw();
-		});
-
-		function drawPaddleR(y) {
-			ctx.beginPath();
-			ctx.rect(canvas.width-15, y*canvas.height-paddleHeight/2, 10, paddleHeight);
-			ctx.fillStyle = "#0095DD";
-			ctx.fill();
-			ctx.closePath();
-		}
-
-		function drawPaddleL(y) {
-			ctx.beginPath();
-			ctx.rect(5, y*canvas.height-paddleHeight/2, 10, paddleHeight);
-			ctx.fillStyle = "#0095DD";
-			ctx.fill();
-			ctx.closePath();
-		}
-
-		function drawBallXY(x, y) {
-			ctx.beginPath();
-			ctx.arc(x*canvas.width, y*canvas.height, ballRadius, 0, Math.PI*2);
-			ctx.fillStyle = "#FF95DD";
-			ctx.fill();
-			ctx.closePath();
-		}
-
-		function draw(data) {
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			// ctx.fillStyle = "rgba(242,242,242,0.50)";
-			// ctx.fillRect(0, 0, canvas.width, canvas.height);
-			drawPaddleR(data.paddleR);
-			drawPaddleL(data.paddleL);
-			drawBallXY(data.ballX, data.ballY);
-		}
-
-		addEventListener('keydown', (e) => {
-			if (e.key === 'ArrowUp') {
-				gameSocket.send(JSON.stringify({ message: "up", username : "{{request.user.username}}" }));
-			}
-			if (e.key === 'ArrowDown') {
-				gameSocket.send(JSON.stringify({ message: "down", username : "{{request.user.username}}" }));
-			}
-		});
-    </script>
   </body>
 </html>

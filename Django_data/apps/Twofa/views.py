@@ -3,7 +3,6 @@ from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from django.views.generic import TemplateView, FormView
-from django.urls import reverse_lazy
 
 from .models import UserTwoFA
 from .forms import My_2fa, TwoFAForm
@@ -27,14 +26,10 @@ def otp_setter(*, user):
 
 
 class create_qrcode(TemplateView):
-    template_name = "setup_2fa.html"
-    context: dict() = {}
+    template_name = 'Profile/enable_2fa.html'
+    context = dict()
 
     try:
-
-        def post(self, request):
-            logout(request)
-            return redirect("/")
 
         def get(self, request):
             _user = request.user
@@ -46,8 +41,7 @@ class create_qrcode(TemplateView):
             self.context["qr_code"] = _user.to2fa.generate_qr_code(
                 name=_user.username
             )
-            #return render(request, self.template_name, context=self.context)
-            return render(request, 'Profile/enable_2fa.html', context=self.context)
+            return render(request, self.template_name, context=self.context)
 
     except ValidationError as exc:
         context: dict() = {}
@@ -66,11 +60,9 @@ def enable_2fa(request):
             if _user.to2fa.enable:
                 _user.to2fa.enable = False
                 _user.save()
-                # return redirect('/')
                 return JsonResponse({'status': 'return'})
             _user.to2fa.enable = True
             _user.save()
-            # return redirect('qrcode')
             return JsonResponse({'status': 'continue'})
     return render(request, 'Profile/enable_2fa.html', {'profile_2fa': profile_2fa})
 
@@ -81,18 +73,16 @@ def enable_2fa(request):
 class TwoFactorConfirmationView(FormView):
     template_name = "confirm_2fa.html"
     form = TwoFAForm()
-    response: dict() = {}
+    response = dict()
 
     def get(self, request):
         if request.user.is_authenticated is True:
-            logger.info("100% c'est ca")
             _id = "confirm_2fa"
             _cancel = "cancel_2fa"
             _form = "form_2FA"
             _failure = "failure_2FA"
             _success = "success_2FA"
         else:
-            logger.info("The fuuuuuuuck ???") 
             _id = "code_2fa"
             _cancel = "cancel_code2fa"
             _form = "form_2FAcode"
@@ -116,7 +106,8 @@ class TwoFactorConfirmationView(FormView):
             if signin_form.is_valid():
                 username = signin_form.cleaned_data['username']
                 password = signin_form.cleaned_data['password']
-                _user = authenticate(request, username=username, password=password)
+                _user = authenticate(
+                    request, username=username, password=password)
                 if _user is None:
                     return JsonResponse({'success': False,
                                          'logs': 'Bad identificators'})

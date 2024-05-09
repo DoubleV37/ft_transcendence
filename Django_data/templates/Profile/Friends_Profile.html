@@ -1,0 +1,17 @@
+{% load static %}
+<div id="Friends_Profile">
+  <form data-type="{{ type }}" data-name="{{ username }}" data-id="{{ id }}" action="" method="post">
+    {% csrf_token %}
+    {% if type == 'delete' %}
+      <button class="ButtonLayout ButtonDark FriendCTALayout" type="submit" name="key" value="delete {{ username }}">Delete</button>
+    {% elif type == 'add' %}
+      <button class="ButtonLayout ButtonNeon FriendCTALayout" type="submit" name="key" value="add {{ username }}">Add</button>
+    {% else %}
+      <div id="DoubleButton">
+        <button class="SelectButtonLayout ButtonNeon FriendCTALayout" type="submit" name="key" value="add {{ username }}" data-select="accept">Accept</button>
+        <button class="SelectButtonLayout ButtonNeon FriendCTALayout" type="submit" name="key" value="delete {{ username }}" data-select="deny">Deny</button>
+      </div>
+      {% endif %}
+      <p id="alonetext"></p>
+  </form>
+</div>

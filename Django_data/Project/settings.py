@@ -30,8 +30,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-	'channels',
-	'bootstrap5',
+    'channels',
+    'bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'apps.Home',
     'apps.Auth',
     'apps.Profile',
-	'apps.Game',
+    'apps.Game',
     'apps.Twofa',
+    'apps.FriendsList',
+    'apps.Dashboard',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Project.wsgi.application'
-
 ASGI_APPLICATION = 'Project.asgi.application'
 
 
@@ -142,50 +143,58 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = 'None'
+
 CSRF_TRUSTED_ORIGINS = ["https://localhost:8080"]
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "/"
 
 MEDIA_URL = '/avatars/'
-
 MEDIA_ROOT = BASE_DIR.joinpath('avatars/')
-
 
 AUTH_USER_MODEL = 'Auth.User'
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis://redis:6379")],
+            "capacity": 5000,
+            "expiry": 10,
+        },
+    },
 }
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'console': {
+  'version': 1,
+  'disable_existing_loggers': False,
+  'formatters': {
+		'json': {
+			'()': 'pythonjsonlogger.jsonlogger.JsonFormatter',
+			'fmt': '%(asctime)s [%(process)d] [%(levelname)s] %(message)s',
+		},
+  },
+'handlers': {
+        'logstash': {
             'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
+            'class': 'logstash.TCPLogstashHandler',
+            'host': 'logstash_gunicorn',
+            'port': 5959, # Default value: 5959
+            'version': 1, # Version of logstash event schema. Default value: 0 (for backward compatibility of the library)
+            'message_type': 'django',  # 'type' field in logstash message. Default value: 'logstash'.
+            'fqdn': False, # Fully qualified domain name. Default value: false.
+            'tags': ['django.request'], # list of tags. Default: None.
         },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'INFO',
-        },
-        '': {
-            'handlers': ['console'],
+  },
+  'loggers': {
+        'django.request': {
+            'handlers': ['logstash'],
             'level': 'DEBUG',
-            'propagate': False,
-        },
-    },
+            'propagate': True,
+  },
+}
 }

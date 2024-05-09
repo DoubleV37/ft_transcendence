@@ -1,4 +1,188 @@
+version: '3.8'
+
+volumes:
+  postgres_data:
+    name: postgres_data
+  django_data:
+    name: django_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data
+  django_static:
+    name: django_static
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data/staticfiles
+  django_media:
+    name: django_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: Django_data/avatars
+  certs:
+    driver: local
+  esdata01:
+    driver: local
+  kibanadata:
+    driver: local
+  logstashdata01:
+    driver: local
+  logstashdata02:
+    driver: local
+
+networks:
+  elastic:
+    name: elastic
+    external: false
+
 services:
+  setup:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs
+      - ./Services/Elasticsearch/setup.sh:/usr/share/elasticsearch/setup.sh
+    user: "0"
+    env_file: .env
+    command: >
+      bash -c '
+        chmod 777 /usr/share/elasticsearch/setup.sh &&
+        /usr/share/elasticsearch/setup.sh
+      '
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f config/certs/es01/es01.crt ]"]
+      interval: 1s
+      timeout: 5s
+      retries: 120
+
+  es01:
+    container_name: es01
+    depends_on:
+      setup:
+        condition: service_healthy
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: elasticsearch
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs
+      - esdata01:/usr/share/elasticsearch/data
+    ports:
+      - ${ES_PORT}:9200
+    environment:
+      - node.name=es01
+      - cluster.name=${CLUSTER_NAME}
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=certs/es01/es01.key
+      - xpack.security.http.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=certs/es01/es01.key
+      - xpack.security.transport.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.license.self_generated.type=${LICENSE}
+    mem_limit: ${ES_MEM_LIMIT}
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s --cacert config/certs/ca/ca.crt https://localhost:9200 | grep -q 'missing authentication credentials'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+
+  logstash_nginx:
+    container_name: logstash_nginx
+    depends_on:
+      es01:
+        condition: service_healthy
+      kibana:
+        condition: service_healthy
+    image: docker.elastic.co/logstash/logstash:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: logstash
+    user: root
+    volumes:
+      - certs:/usr/share/logstash/certs
+      - logstashdata01:/usr/share/logstash/data
+      - "./Services/Logstash/logstash_nginx.conf:/usr/share/logstash/pipeline/logstash.conf:ro"
+    environment:
+      - xpack.monitoring.enabled=false
+      - ELASTIC_USER=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - ELASTIC_HOSTS=https://es01:9200
+
+  logstash_gunicorn:
+    container_name: logstash_gunicorn
+    depends_on:
+      es01:
+        condition: service_healthy
+      kibana:
+        condition: service_healthy
+    image: docker.elastic.co/logstash/logstash:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: logstash
+    user: root
+    volumes:
+      - certs:/usr/share/logstash/certs
+      - logstashdata02:/usr/share/logstash/data
+      - "./Services/Logstash/logstash_gunicorn.conf:/usr/share/logstash/pipeline/logstash.conf:ro"
+    environment:
+      - xpack.monitoring.enabled=false
+      - ELASTIC_USER=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - ELASTIC_HOSTS=https://es01:9200
+
+  rsyslog:
+    container_name: rsyslog
+    build: Services/Rsyslog
+    restart: always
+    ports:
+      - "5142:5142"
+      - "5142:5142/udp"
+
+  kibana:
+    container_name: kibana
+    depends_on:
+      es01:
+        condition: service_healthy
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: kibana
+    volumes:
+      - certs:/usr/share/kibana/config/certs
+      - kibanadata:/usr/share/kibana/data
+    ports:
+      - ${KIBANA_PORT}:5601
+    environment:
+      - SERVERNAME=kibana
+      - ELASTICSEARCH_HOSTS=https://es01:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+      - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca/ca.crt
+      - XPACK_SECURITY_ENCRYPTIONKEY=${ENCRYPTION_KEY}
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=${ENCRYPTION_KEY}
+      - XPACK_REPORTING_ENCRYPTIONKEY=${ENCRYPTION_KEY}
+    mem_limit: ${KB_MEM_LIMIT}
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+
   gunicorn:
     container_name: gunicorn
     build: Services/Gunicorn
@@ -35,6 +219,11 @@ services:
       timeout:  5s
       retries:  5
 
+  redis:
+    container_name: redis
+    image: redis:6.2.6-alpine
+    restart: always
+
   nginx:
     container_name: nginx
     build: Services/NginxReverseProxy/
@@ -49,30 +238,21 @@ services:
       - gunicorn
       - uvicorn
 
-volumes:
-  postgres_data:
-    name: postgres_data
+  adminer:
+    container_name: adminer
+    image: adminer:latest
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
 
-  django_data:
-    name: django_data
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: Django_data
-
-  django_static:
-    name: django_static
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: Django_data/staticfiles
-
-  django_media:
-    name: django_media
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: Django_data/avatars
+  pong:
+    container_name: pong
+    build: Services/PongServer
+    env_file: .env
+    restart: always
+    volumes:
+      - ./Services/PongServer/ServerFile:/Server
+    depends_on:
+      - nginx

@@ -1,6 +1,8 @@
-from django.urls import path , include
-from .consumers import PongConsumer
+from django.urls import path , re_path
+from . import consumers
 
 websocket_urlpatterns = [
-    path("wss/game/room" , PongConsumer.as_asgi()) ,
+	re_path("wss/game/solo" , consumers.SoloPongConsumer.as_asgi()) ,
 ]
+
+

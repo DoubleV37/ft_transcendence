@@ -330,21 +330,21 @@
         background-color:#ffffff;
     }
 
-    #form_2FA {
+    .form_2FA {
         margin-bottom: 1em;
         flex-direction: column;
-        width: 90%;
+        width: 80%;
         display: flex;
     }
 
-    #form_2FA > p {
+    .form_2FA > p {
         justify-content: center;
         flex-direction: column;
         align-items: center;
         align-self: stretch;
     }
 
-    #form_2FA > label {
+    .form_2FA > label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -355,7 +355,7 @@
         align-self: flex-start !important;
     }
 
-    #form_2FA > input {
+    .form_2FA > input {
         height: 3.125rem;
         width: 100%;
         align-self: stretch;
@@ -369,6 +369,13 @@
         font-family: Kodchasan;
         font-size: 1rem;
         border: none;
+    }
+
+    #code_2fa {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     #confirm_2fa {
@@ -406,18 +413,18 @@
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
-@media only screen and (min-width : 36.25em) and (max-width : 60em) {
+@media only screen and (min-width : 46.25em) and (max-width : 60em) {
     /* Styles */
     #leftcolumn {
         display: flex;
         justify-content: center;
-        width: 18em;
+        width: 22em;
     }
 
     #rightcolumn {
         display: flex;
         justify-content: center;
-        width: 18em;
+        width: 22em;
     }
 
     #Settings {
@@ -431,10 +438,11 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+        width: 46em;
     }
 
     #headerTextRow {
-        width: 32em;
+        width: 39.4em;
         margin-top: 1em;
     }
 
@@ -510,7 +518,7 @@
 
     #NAME_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 13.5em;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -546,7 +554,7 @@
 
     #MAIL_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 13.5em;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -582,7 +590,7 @@
 
     #PASS_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 13.5em;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -618,7 +626,7 @@
 
     #TNAME_Form p input {
         height: 3.125rem;
-        width: 10.8em;
+        width: 13.5em;
         align-self: stretch;
         border-radius: 0.625rem;
         background: #D9D9D9;
@@ -729,21 +737,21 @@
         width: 100%;
     }
 
-    #form_2FA {
+    .form_2FA {
         margin-bottom: 1em;
         flex-direction: column;
         width: 90%;
         display: flex;
     }
 
-    #form_2FA > p {
+    .form_2FA > p {
         justify-content: center;
         flex-direction: column;
         align-items: center;
         align-self: stretch;
     }
 
-    #form_2FA > label {
+    .form_2FA > label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -754,7 +762,7 @@
         align-self: flex-start !important;
     }
 
-    #form_2FA > input {
+    .form_2FA > input {
         height: 3.125rem;
         width: 100%;
         align-self: stretch;
@@ -768,6 +776,13 @@
         font-family: Kodchasan;
         font-size: 1rem;
         border: none;
+    }
+
+    #code_2fa {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     #confirm_2fa {
@@ -804,7 +819,7 @@
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
-@media only screen and (min-width : 1em) and (max-width : 36.25em) {
+@media only screen and (min-width : 1em) and (max-width : 46.25em) {
     /* Styles */
 
     #leftcolumn {
@@ -824,7 +839,7 @@
         flex-direction: column;
         flex-shrink: 0;
         width: 90%;
-        max-width: 20em;
+        max-width: 25em;
     }
 
     .margin_bottom {
@@ -836,6 +851,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
+
     }
 
     #headerTextRow {
@@ -1152,21 +1168,21 @@
         width: 100%;
     }
 
-    #form_2FA {
+    .form_2FA {
         margin-bottom: 1em;
         flex-direction: column;
         width: 90%;
         display: flex;
     }
 
-    #form_2FA > p {
+    .form_2FA > p {
         justify-content: center;
         flex-direction: column;
         align-items: center;
         align-self: stretch;
     }
 
-    #form_2FA > label {
+    .form_2FA > label {
         color: #FFF;
         /* Body text */
         font-family: Kodchasan;
@@ -1177,7 +1193,7 @@
         align-self: flex-start !important;
     }
 
-    #form_2FA > input {
+    .form_2FA > input {
         height: 3.125rem;
         width: 100%;
         align-self: stretch;
@@ -1191,6 +1207,13 @@
         font-family: Kodchasan;
         font-size: 1rem;
         border: none;
+    }
+
+    #code_2fa {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     #confirm_2fa {
