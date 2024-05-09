@@ -244,13 +244,24 @@
 
   #ModalCloseWindow {
     width: 3rem;
-    font-size: 0px;
+    margin-left: 1em;
     padding: 0;
     background: transparent;
     color: transparent;
     border: none;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
+  }
+
+  #ModalBackArrow {
+    width: 3rem;
+    padding: 0;
+    background: transparent;
+    color: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-start;
     cursor: pointer;
   }
 
@@ -486,13 +497,24 @@
 
   #ModalCloseWindow {
     width: 2.5rem;
-    font-size: 0px;
+    margin-left: 1em;
     padding: 0;
     background: transparent;
     color: transparent;
     border: none;
     display: flex;
     justify-content: flex-end;
+  }
+
+  #ModalBackArrow {
+    width: 2.5rem;
+    padding: 0;
+    background: transparent;
+    color: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
   }
 
   #BackArrowMobile {
