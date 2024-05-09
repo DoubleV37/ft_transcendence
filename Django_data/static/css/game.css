@@ -339,7 +339,13 @@
 	}
 
 	.username {
-		display: none;
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 0.9em;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		cursor: pointer;
 	}
 
 	.skills {

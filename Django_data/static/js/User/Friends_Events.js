@@ -45,7 +45,7 @@ function friends_SetEvents () {
   }
 
   modal
-    .querySelector("#ModalBackArrow")
+    .querySelector("#ModalCloseWindow")
     .addEventListener("click", friends_closeModal);
 
   modal.querySelectorAll(".btn.btn-primary").forEach((button) => {
@@ -100,7 +100,7 @@ function friends_DelEvents () {
   }
 
   modal
-    .querySelector("#ModalBackArrow")
+    .querySelector("#ModalCloseWindow")
     .removeEventListener("click", friends_closeModal);
 
   modal.querySelectorAll(".btn.btn-primary").forEach((button) => {

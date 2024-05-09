@@ -386,9 +386,17 @@
 
 	#GAME_user {
 		display: flex;
-		flex-direction: row;
-		align-items: flex-end;
+		align-items: center;
 		cursor: pointer;
+		margin-top: 0.5rem;
+	}
+
+	.left {
+		flex-direction: column;
+	}
+
+	.right {
+		flex-direction: column-reverse;
 	}
 
 	#HEADER_user {
@@ -404,14 +412,6 @@
 	.header-profilePic {
 		width: 2.3em;
 		height: 2.3em;
-	}
-
-	.profilePic-left {
-		margin-right: 0.7em;
-	}
-
-	.profilePic-right {
-		margin-left: 0.7em;
 	}
 
 	/* LOGO */

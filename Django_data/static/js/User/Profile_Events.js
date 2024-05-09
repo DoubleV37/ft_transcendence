@@ -27,7 +27,7 @@ function profile_SetEvents () {
   element = document.getElementById("ListHistory").querySelector("img");
   element.addEventListener("click", profile_ReturnToProfile);
 
-  element = document.getElementById("ModalBackArrow");
+  element = document.getElementById("ModalCloseWindow");
   element.addEventListener("click", profile_closeModal);
 
 }
@@ -61,6 +61,6 @@ function profile_DelEvents () {
   element = document.getElementById("ListHistory").querySelector("img");
   element.removeEventListener("click", profile_ReturnToProfile);
 
-  element = document.getElementById("ModalBackArrow");
+  element = document.getElementById("ModalCloseWindow");
   element.removeEventListener("click", profile_closeModal);
 }
