@@ -103,6 +103,8 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
                 self.ia = False
             self.pong = Pong(data["point_limit"], data["difficulty"], data["powerup"])
             await self.init_db_game()
+            if data["type_game"] == "tournament":
+                self.game.in_tournament = True
             asyncio.create_task(self.runGame())
 
     async def sendUpdateGame(self):
@@ -186,9 +188,14 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
         else:
             self.user_game.winner = True
             await self.update_global_stats(True)
-        await database_sync_to_async(self.game.save)()
-        await database_sync_to_async(self.user_game.save)()
-        await database_sync_to_async(self.opponent_game.save)()
+        if self.game.in_tournament is False:
+            await database_sync_to_async(self.game.save)()
+            await database_sync_to_async(self.user_game.save)()
+            await database_sync_to_async(self.opponent_game.save)()
+        else:
+            await database_sync_to_async(self.user_game.delete)()
+            await database_sync_to_async(self.opponent_game.delete)()
+            await database_sync_to_async(self.game.delete)()
 
     async def update_global_stats(self, winner):
         self.toGS = await database_sync_to_async(GlobalStats.objects.get)(

@@ -27,7 +27,7 @@ function updateBracket () {
     button.querySelector("span").innerHTML = "Launch next round!";
     button.onclick = () => {
       const players = whichPlayer(playerList);
-      setGame(players);
+      setGameInfo(players);
       launchGame();
     };
   }
