@@ -2,19 +2,16 @@ function stats_SetEvents () {
   manageGames();
   manageWins();
   const backArrow = document.getElementById("content").querySelector("#ModalBackArrow");
-  console.log("Do i pass here ?");
 
   backArrow.onclick = async function () {
     let id = window.location.pathname.split("/").reverse();
 
-    if (id[0] === "") {
-      id = id[1];
-    } else {
-      id = id[0];
+    const userid = document.getElementById("HEADER_IsAuth").getAttribute("data-id");
+
+    await changeSection(`${ROUTE.PROFILE}${id[1]}/`, "#ProfileModal");
+    if (parseInt(userid) !== parseInt(id[1])) {
+      await changeSection(`${ROUTE.FRIENDS_PROFILE}${id[1]}/`, "#Friends_Profile");
     }
-    // get the id in the jwt cookie
-    await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
-    await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
     profileModal.modal.show();
   };
 }

@@ -19,10 +19,12 @@ def header(request):
         _username = _user.username
         _avatar = _user.avatar.url
         _status = 'online' if _user.status is True else 'offline'
+        _id = _user.id;
 
         return render(
             request, 'Home/header.html', {'profil_picture': _avatar,
-            'username': _username, 'status': _status}
+            'username': _username, 'status': _status,
+            'id': _id}
         )
     return render(request, "Home/header.html")
 
