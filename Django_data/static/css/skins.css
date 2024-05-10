@@ -133,7 +133,7 @@
 
     .Skins {
         display: flex;
-        width: 100%;
+        max-width: 19em;
         flex-direction: column;
         flex-shrink: 0;
         padding-left: 2em;
@@ -171,7 +171,7 @@
         margin-top: 1em;
         padding-left: 2em;
         padding-right: 2em;
-        max-width: 90vw;
+        max-width: 19em;
     }
 
     .carousel {

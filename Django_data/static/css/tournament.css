@@ -100,10 +100,11 @@
     }
     
     #sectionTournament {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        width: 90%;
-        height: 90%;
+        width: 75%;
+        display: flex;
+        gap: 2em;
     }
 
     #SetTournament {
@@ -135,7 +136,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 17em;
+      height: 16em;
     }
 
     .SectionLayoutTournament {
@@ -254,9 +255,11 @@
     }
     
     #sectionTournament {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        width: 35em;
+        width: 75%;
+        display: flex;
+        gap: 2em;
     }
 
     #SetTournament {
@@ -335,7 +338,6 @@
         margin-top: 1.7rem !important;
         font-family: 'Kodchasan' !important;
     }
-    
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -403,9 +405,11 @@
     }
     
     #sectionTournament {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         width: 90%;
+        display: flex;
+        gap: 2em;
     }
 
     #SetTournament {

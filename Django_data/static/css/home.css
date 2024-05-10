@@ -333,9 +333,14 @@ scrollbar-width: none;
 		line-height: normal;
 	}
 
-        #PlayButton {
-          width: 23rem;
-        }
+	#PlayButton {
+		width: 23rem;
+	}
+
+
+	#PlayButtonTournament {
+		width: 23rem;
+	}
 
 	.play-button {
 		display: flex;
@@ -741,9 +746,13 @@ scrollbar-width: none;
 		line-height: normal;
 	}
 
-        #PlayButton {
-          width: 23rem;
-        }
+	#PlayButton {
+		width: 23rem;
+	}
+
+	#PlayButtonTournament {
+		width: 23rem;
+	}
 
 	.play-button {
 		display: flex;
@@ -1160,10 +1169,14 @@ scrollbar-width: none;
 		line-height: normal;
 	}
 
-        #PlayButton {
-          width: 75%;
-          max-width: 23em;
-        }
+	#PlayButton {
+		width: 75%;
+		max-width: 23em;
+	}
+
+	#PlayButtonTournament {
+		width: 100%;
+	}
 
 	.play-button {
 		width: 100%;
