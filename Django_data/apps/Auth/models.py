@@ -9,8 +9,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import MinLengthValidator
 from .validators import validate_file_extension
-# TODO info back function to manage resize of avatar
-# from PIL import Image
 
 
 import logging
@@ -22,7 +20,7 @@ class User(AbstractBaseUser):
         auto_created=True, primary_key=True, unique=True, null=False)
     status = models.BooleanField(default=True)
     username = models.CharField(
-        max_length=13, validators=[MinLengthValidator(3)], unique=True, null=False)
+        max_length=8, validators=[MinLengthValidator(3)], unique=True, null=False)
     email = models.EmailField(max_length=320, unique=True, null=False)
     password = models.CharField(max_length=128, null=False)
 
@@ -38,8 +36,8 @@ class User(AbstractBaseUser):
     refresh_token = models.CharField(max_length=255, null=True, blank=True)
 
     tournament_name = models.CharField(
-        max_length=15, validators=[MinLengthValidator(3)],
-        unique=True, null=False
+        max_length=10, validators=[MinLengthValidator(3)],
+        null=False
     )
 
     online_data = models.DateTimeField(default=timezone.now)
@@ -59,14 +57,6 @@ class User(AbstractBaseUser):
     IMAGE_MAX_SIZE = (800, 800)
 
     objects = UserManager()
-
-    # TODO info back function to manage resize of avatar
-    # def resize_image(self):
-    #     avatar = Image.open(self.avatar)
-    #     avatar.thumbnail(self.IMAGE_MAX_SIZE)
-    #     # sauvegarde de l’image redimensionnée dans le système de fichiers
-    #     # ce n’est pas la méthode save() du modèle !
-    #     avatar.save(self.avatar.path)
 
     def __str__(self):
         return self.username
