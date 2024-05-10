@@ -65,8 +65,6 @@ class User(AbstractBaseUser):
         if not self.tournament_name:
             self.tournament_name = slugify(self) + "_t"
         super().save(*args, **kwargs)
-        # TODO info back function to manage resize of avatar
-        # self.resize_image()
 
 
 @ receiver(post_save, sender=User)
