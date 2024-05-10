@@ -3,13 +3,13 @@ function gameboard_SetEvents () {
   const backArrow = document.getElementById("content").querySelector("#ModalBackArrow");
 
   backArrow.onclick = async function () {
-    let id = window.location.pathname.split("/").reverse();
+    const id = backArrow.getAttribute("data-content");
 
     const userid = document.getElementById("HEADER_IsAuth").getAttribute("data-id");
 
-    await changeSection(`${ROUTE.PROFILE}${id[1]}/`, "#ProfileModal");
-    if (parseInt(userid) !== parseInt(id[1])) {
-      await changeSection(`${ROUTE.FRIENDS_PROFILE}${id[1]}/`, "#Friends_Profile");
+    await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
+    if (userid !== id) {
+      await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
     }
     profileModal.modal.show();
   };
