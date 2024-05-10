@@ -30,22 +30,30 @@
 		</div>
 		<div class="offcanvas-section offcanvas-section-border">
 		  <div id="userStats">
-		    <p id="WR">Win Rate: 1.8</p> <!-- TODO - Put winrate in variable when we have the infos -->
-		    <p id="gamesPlayed">Games played : <b>28</b></p><!-- TODO - Put nbr of games played  in variable when we have the infos -->
-		    <p id="tournamentsPlayed">Tournaments played : <b>2</b></p><!-- TODO - Put tournament played in variable when we have the infos -->
+			{% if win_rate >= 0 and win_rate <= 0.33 %}
+			<span class="WR-title low-ranked">Winrate: {{ win_rate }}</span>
+		  {% elif win_rate > 0.33 and win_rate <= 0.66 %}
+			<span class="WR-title medium-ranked">Winrate: {{ win_rate }}</span>
+		  {% elif win_rate > 0.66 and win_rate <= 1 %}
+			<span class="WR-title high-ranked">Winrate: {{ win_rate }}</span>
+		  {% endif %} <!-- TODO - Put winrate in variable when we have the infos -->
+		    <p id="gamesPlayed">Games played : <b>{{ nb_games }}</b></p><!-- TODO - Put nbr of games played  in variable when we have the infos -->
+		    <p id="tournamentsPlayed">Tournaments played : <b>{{ tournament_games }}</b></p><!-- TODO - Put tournament played in variable when we have the infos -->
 		  </div>
 		</div>
-		<div class="offcanvas-section">
-		  <div class="ProfilePage offcanvas-profile">
-		    <button id="HEADER_NavProfile" type="button" class="ButtonLayout ButtonNeon">Profile</button>
-		    <button id="HEADER_NavFriends" class="ButtonLayout ButtonNeon">Friends</button>
-		  </div>
-		</div>
-		<div class="offcanvas-section offcanvas-section-bottom">
-		  <div class="ProfilePage offcanvas-profile">
-		    <button id="HEADER_NavSignOut" class="ButtonLayout ButtonDark">Sign out</button>
-		  </div>
-		</div>
+		<div class="offcanvas-section d-flex justify-content-evenly flex-column">
+            <div class="offcanvas-section-inner">
+            <div class="ProfilePage offcanvas-profile">
+                <button id="HEADER_NavProfile" type="button" class="ButtonLayout ButtonNeon">Profile</button>
+                <button id="HEADER_NavFriends" class="ButtonLayout ButtonNeon">Friends</button>
+            </div>
+            </div>
+            <div class="offcanvas-section-inner">
+            <div class="ProfilePage offcanvas-profile">
+                <button id="HEADER_NavSignOut" class="ButtonLayout ButtonDark">Sign out</button>
+            </div>
+            </div>
+        </div>
 
 		{% else %}
 
