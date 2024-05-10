@@ -14,53 +14,35 @@
     </header>
     <div id="content">
       <div id="overlay">
-        <div class="mid midcolumn flowAnimation overflow-auto">
+        <div class="mid midcolumn flowAnimation">
           <div id="titleContent" data-content="TOURNAMENT"></div>
           <!-- -->
+          <div class="section width-75">
+            <h1 class="gameStats">Tournament</h1>
+          </div>
+          <div class="section width-75">
+            <div class="container-fluid">
+              <h2 class="bodyText">Player username:</h2>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input id="SetPlayer1" data-target="Paddle1title" class="form-control" maxlength="10" type="text" value="{{username_tournament}}" aria-label="default input example" disabled readonly>
+                <input id="SetPlayer3" data-target="Paddle3title" class="form-control" maxlength="10" type="text" value="" placeholder="Player 3" aria-label="default input example">
+              </div>
+              <div class="col">
+                <input id="SetPlayer2" data-target="Paddle2title" class="form-control" maxlength="10" type="text" value="" placeholder="Player 2" aria-label="default input example">
+                <input id="SetPlayer4" data-target="Paddle4title" class="form-control" maxlength="10" type="text" value="" placeholder="Player 4" aria-label="default input example">
+              </div>
+            </div>
+            <p id="ErrorMessage" class="bodyText" style="color: red;"></p>
+          </div>
           <div id="SetTournament">
-            <div class="Tournament-content">
-              <h1 class="gameTitle">Tournament</h1>
+            <div class="container-fluid">
+              <h2 class="bodyText">Skin selection:</h2>
+            </div>
+            <div class="Tournament-content overflow-auto">
               <!--Form about the players username -->
-              <div class="section">
-                <div class="container-fluid">
-                  <h2 class="bodyText">Player username:</h2>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <input id="SetPlayer1" data-target="Paddle1title" class="form-control" maxlength="10" type="text" value="{{username_tournament}}" aria-label="default input example" disabled readonly>
-                    <input id="SetPlayer3" data-target="Paddle3title" class="form-control" maxlength="10" type="text" value="" placeholder="Player 3" aria-label="default input example">
-                  </div>
-                  <div class="col">
-                    <input id="SetPlayer2" data-target="Paddle2title" class="form-control" maxlength="10" type="text" value="" placeholder="Player 2" aria-label="default input example">
-                    <input id="SetPlayer4" data-target="Paddle4title" class="form-control" maxlength="10" type="text" value="" placeholder="Player 4" aria-label="default input example">
-                  </div>
-                </div>
-              </div>
               <!-- -->
-              <div class="section skins-tournament">
-                <div class="row">
-                  <div class="col">
-                    <div class="container-fluid">
-                      <h2 class="bodyText">Score to win:</h2>
-                    </div>
-                    <div class="quantity">
-                      <button class="minus" aria-label="Decrease">&minus;</button>
-                      <input id="Score" type="number" class="input-box" value="1" min="1" max="10"/>
-                      <button class="plus" aria-label="Increase">&plus;</button>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="container-fluid">
-                      <h2 class="bodyText">Power Up:</h2>
-                    </div>
-                    <div class="form-check form-switch p-0">
-                      <div class="d-flex flex-column-reverse gap-1">
-                        <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <!-- Skins selections -->
               <div id="Skin-tournament">
                 <div class="row">
@@ -71,7 +53,7 @@
                           <button type="button" data-bs-target="#ball" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                           <button type="button" data-bs-target="#ball" data-bs-slide-to="1" aria-label="Slide 2"></button>
                           <button type="button" data-bs-target="#ball" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                      </div>
+                        </div>
                       <div id="ballInner" class="carousel-inner">
                         <div class="carousel-item active" data-skin="/static/images/skins/ball/Ball_Cat.png">
                           <img src="{% static 'images/skins/ball/ballSelectCat.png' %}" class="d-block w-100" alt="...">
@@ -160,7 +142,7 @@
                           </div>
                         </div>
                         <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Snow.png">
-                        <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
+                          <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
                           <div class="carousel-caption d-md-block">
                             <h5 class="SkinName">Snow</h5>
                           </div>
@@ -196,7 +178,7 @@
                           </div>
                         </div>
                         <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Snow.png">
-                        <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
+                          <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
                           <div class="carousel-caption d-md-block">
                             <h5 class="SkinName">Snow</h5>
                           </div>
@@ -270,7 +252,7 @@
                           </div>
                         </div>
                         <div class="carousel-item" data-skin="/static/images/skins/paddle/Paddle_Snow.png">
-                        <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
+                          <img src="{% static 'images/skins/paddle/paddleSelectSnow.png' %}" class="d-block w-100" alt="...">
                           <div class="carousel-caption d-md-block">
                             <h5 class="SkinName">Snow</h5>
                           </div>
@@ -287,14 +269,42 @@
                 </div>
               </div>
               <!-- Start the tournament -->
-              <div class="section">
-                <button id="StartButton" class="play-button">
-                  <span class="play">Begin !</span>
-                  <p id="ErrorMessage" class="bodyText" style="color: red;"></p>
-                </button>
-              </div>
             </div>
           </div>
+          <div class="section width-75 t_options">
+            <div class="row">
+              <div class="conteneur-tournament">
+                <div class="flex-column">
+                        <p class="bodyText">Score to win:</p>
+                        <div class="quantity">
+                                <button class="minus" aria-label="Decrease">&minus;</button>
+                                <input id="Score" type="number" class="input-box" value="1" min="1" max="10">
+                                <button class="plus" aria-label="Increase">&plus;</button>
+                        </div>
+                </div>
+                <div class="flex-column">
+                        <p class="bodyText">Power ups:</p>
+                        <div class="form-check form-switch p-0">
+                                <div class="d-flex flex-column-reverse gap-1">
+                                  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop"/>
+                                </div>
+                        </div>
+                </div>
+                <div class="flex-column mobile-hidden">
+                  <div class="d-flex flex-column-reverse gap-1">
+                    <button id="StartButton" class="SelectButtonLayout ButtonNeon t-button">
+                      <span>Begin !</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="section width-75 mobile-visible">
+              <button id="StartButton" class="SelectButtonLayout ButtonNeon t-button">
+                <span>Begin !</span>
+              </button>
+            </div>
+         
           <!-- Other page for the tournament -->
         </div>
       </div>

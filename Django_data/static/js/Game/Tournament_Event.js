@@ -13,7 +13,7 @@ function tournament_SetEvents () {
     };
   });
   document
-    .getElementById("StartButton")
+    .getElementById("StartTournamentButton")
     .addEventListener("click", BeginTournament);
   const minusBtns = document.querySelectorAll(".minus");
   const plusBtns = document.querySelectorAll(".plus");
@@ -24,7 +24,7 @@ function tournament_SetEvents () {
 
 function tournament_DelEvents () {
   document
-    .getElementById("StartButton")
+    .getElementById("StartTournamentButton")
     .removeEventListener("click", BeginTournament);
   const minusBtns = document.querySelectorAll(".minus");
   const plusBtns = document.querySelectorAll(".plus");

@@ -1,6 +1,45 @@
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 60.063em) {
 
+    .col {
+        width: 15em;
+    }
+
+    .conteneur-tournament {
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+        justify-items: center;
+        margin-top: 1em;
+    }
+
+    .columnSkinTournament {
+        display: flex;
+        justify-content: center;
+        width: 18em;
+    }
+
+    .section-tournament {
+        margin-bottom: 1.6rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid grey;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+        font-family: 'Kodchasan';
+    }
+
+    .no-border {
+        border: none !important;
+    }
+
+    .height-t {
+        height: 3em;
+    }
+
     .player-image {
         width: 2.3em; /* Adjust the size as needed */
         height: 2.3em; /* Adjust the size as needed */
@@ -68,10 +107,9 @@
     }
 
     #SetTournament {
-      height:90%;
       margin:0;
       padding:0;
-      width: 90%;
+      width: 75%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -93,15 +131,16 @@
     }
 
     .Tournament-content {
-      width: 80%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      height: 17em;
     }
 
     .SectionLayoutTournament {
         display: flex;
-        height: 3.125rem;
+        height: 2.525rem;
         justify-content: center;
         align-items: center;
         gap: 0.625rem;
@@ -120,10 +159,61 @@
         border-left: 1px solid #828282;
         border-right: 1px solid #828282;
     }
+
+    .width-75 {
+        width: 75% !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .t-button {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        width: 18em !important;
+        height: 2.750rem !important;
+        margin-top: 1.7rem !important;
+        font-family: 'Kodchasan' !important;
+    }
+    
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 46.25em) and (max-width : 60em) {
+
+
+    .col {
+        width: 14em;
+    }
+
+    .conteneur-tournament {
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+        justify-items: center;
+        margin-top: 1em;
+    }
+
+    .columnSkinTournament {
+        display: flex;
+        justify-content: center;
+        width: 17em;
+    }
+
+    .section-tournament {
+        margin-bottom: 1.6rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid grey;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+        font-family: 'Kodchasan';
+    }
+
+    .no-border {
+        border: none !important;
+    }
 
     .player-image {
         width: 2.3em; /* Adjust the size as needed */
@@ -170,10 +260,9 @@
     }
 
     #SetTournament {
-      height:90%;
       margin:0;
       padding:0;
-      width: 90%;
+      width: 75%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -204,15 +293,16 @@
     }
 
     .Tournament-content {
-      width: 80%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      height: 15em;
     }
 
     .SectionLayoutTournament {
         display: flex;
-        height: 3.125rem;
+        height: 2.525rem;
         justify-content: center;
         align-items: center;
         gap: 0.625rem;
@@ -231,10 +321,45 @@
         border-left: 1px solid #828282;
         border-right: 1px solid #828282;
     }
+
+    .width-75 {
+        width: 75% !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .t-button {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        width: 17em !important;
+        height: 2.750rem !important;
+        margin-top: 1.7rem !important;
+        font-family: 'Kodchasan' !important;
+    }
+    
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
 @media only screen and (min-width : 1em) and (max-width : 46.25em) {
+
+    .col {
+        max-width: 15em;
+    }
+
+    .conteneur-tournament {
+        display: grid;
+        grid-template-columns: 2fr 2fr 2fr;
+        justify-items: start;
+        margin-top: 1em;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+        font-family: 'Kodchasan';
+    }
+
+    .form-check {
+        margin-bottom: 0.95em;
+    }
 
     .player-image {
         width: 2.3em; /* Adjust the size as needed */
@@ -284,7 +409,6 @@
     }
 
     #SetTournament {
-      height:100%;
       margin:0;
       padding:0;
       display: flex;
@@ -294,7 +418,7 @@
 
     .SectionLayoutTournament {
         display: flex;
-        height: 3.125rem;
+        height: 2.525rem;
         justify-content: center;
         align-items: center;
         gap: 0.625rem;
@@ -330,9 +454,21 @@
     }
 
     .Tournament-content {
-      width: 80%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      height: 15em;
+    }
+
+    .mid-tournament {
+        padding: 0 !important;
+    }
+
+    .t-button {
+        margin-top: 1em !important;
+        margin-bottom: -1.6em !important;
+        width: 100% !important;
+        font-family: 'Kodchasan' !important;
     }
 }
