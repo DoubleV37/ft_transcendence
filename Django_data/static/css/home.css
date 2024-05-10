@@ -416,6 +416,10 @@ scrollbar-width: none;
 		font-weight: 400;
 		line-height: normal;
 	}
+
+	.mobile-visible {
+		display: none !important;
+	}
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -811,6 +815,10 @@ scrollbar-width: none;
 		flex-direction: row;
 		width: 100%;
 		justify-content: center;
+	}
+
+	.mobile-visible {
+		display: none !important;
 	}
 }
 
@@ -1215,6 +1223,10 @@ scrollbar-width: none;
 		width: 100%;
 		justify-content: center;
 	}
+
+	.mobile-hidden {
+		display: none !important;
+	}
 }
 
 .Tournament-content::-webkit-scrollbar { /* WebKit */
@@ -1230,3 +1242,4 @@ scrollbar-width: none;
 #SetPlayer1, #SetPlayer2 {
 	margin-bottom : 0.5em;
 }
+
