@@ -13,6 +13,11 @@ function modes_SetEvents() {
 
   element = document.getElementById("TRNMT_Continue");
   element.addEventListener("click", modes_ContinueTournament);
+
+  element = document.getElementById('GAME_Soon')
+  element.addEventListener('click', function() {
+        window.open('https://robertsspaceindustries.com/', '_blank');
+    });
 }
 
 function modes_DelEvents() {
@@ -30,4 +35,9 @@ function modes_DelEvents() {
 
   element = document.getElementById("TRNMT_Continue");
   element.removeEventListener("click", modes_ContinueTournament);
+
+  element = document.getElementById('GAME_Soon')
+  element.removeEventListener('click', function() {
+        window.open('https://robertsspaceindustries.com/', '_blank');
+    });
 }
