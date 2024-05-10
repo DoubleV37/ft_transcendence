@@ -16,6 +16,10 @@ function profile_SetEvents () {
   } else {
     element = document.getElementById("Friends_Profile").querySelector("form");
     element.addEventListener('submit', profile_FriendsButtonCallBack);
+
+    element = document.getElementById("ModalBackArrow");
+    element.style.display = "flex";
+    element.onclick = profile_GotoFriends;
   }
 
   element = document.getElementById("PROFIL_History");
@@ -24,10 +28,7 @@ function profile_SetEvents () {
   element = document.getElementById("PROFIL_Stats");
   element.addEventListener("click", profile_StatsCallBack);
 
-  element = document.getElementById("ListHistory").querySelector("img");
-  element.addEventListener("click", profile_ReturnToProfile);
-
-  element = document.getElementById("ModalBackArrow");
+  element = document.getElementById("ModalCloseWindow");
   element.addEventListener("click", profile_closeModal);
 
 }
@@ -58,9 +59,6 @@ function profile_DelEvents () {
   element = document.getElementById("PROFIL_Stats");
   element.removeEventListener("click", profile_StatsCallBack);
 
-  element = document.getElementById("ListHistory").querySelector("img");
-  element.removeEventListener("click", profile_ReturnToProfile);
-
-  element = document.getElementById("ModalBackArrow");
+  element = document.getElementById("ModalCloseWindow");
   element.removeEventListener("click", profile_closeModal);
 }

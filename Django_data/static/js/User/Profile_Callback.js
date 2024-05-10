@@ -1,32 +1,63 @@
-async function profile_SettingsCallBack () {
+async function profile_SettingsCallBack() {
   try {
     await loadPage(`${ROUTE.SETTINGS}`);
     profileModal.modal.hide();
+    historyprofile = [];
   } catch (err) {
     console.log(`Error - profile_S: ${err}`);
   }
 }
 
-function profile_closeModal () {
+function profile_closeModal() {
   profileModal.modal.hide();
+  historyProfile = [];
 }
 
-async function profile_SkinsCallBack () {
+async function profile_SkinsCallBack() {
   try {
     await loadPage(`${ROUTE.SKINS}`);
     profileModal.modal.hide();
+    historyProfile = [];
   } catch (err) {
     console.log(`Error - profile_S: ${err}`);
   }
 }
 
-async function profile_HistoryCallBack () {
+async function profile_HistoryCallBack() {
   const id = document.getElementById("username").getAttribute("data-id");
   await changeSection(`${ROUTE.GAMELIST}${id}/`, "#GameListHistory");
+  const list = document
+    .getElementById("GameListHistory")
+    .querySelectorAll("button[class]");
+
   document.getElementById("ProfilPage").hidden = true;
   document.getElementById("ListHistory").hidden = false;
 
-  const list = document.getElementById("GameListHistory").querySelectorAll("button[class]");
+  const backArrow = document.getElementById("ModalBackArrow");
+
+  backArrow.style.display = "flex";
+  backArrow.onclick = function () {
+    const id = [
+      parseInt(
+        document.getElementById("HEADER_IsAuth").getAttribute("data-id")
+      ),
+      parseInt(
+        document
+          .getElementById("UserStatus")
+          .querySelector("#username")
+          .getAttribute("data-id")
+      ),
+    ];
+    if (id[0] === id[1]) {
+      document.getElementById("ProfilPage").hidden = false;
+      document.getElementById("ListHistory").hidden = true;
+      backArrow.style.display = "none";
+    } else {
+      backArrow.onclick = profile_GotoFriends;
+    }
+    document.getElementById("ProfilPage").hidden = false;
+    document.getElementById("ListHistory").hidden = true;
+  };
   if (list != null) {
     list.forEach((button) => {
       button.addEventListener("click", goToGameStats);
@@ -34,39 +65,29 @@ async function profile_HistoryCallBack () {
   }
 }
 
-async function goToGameStats (event) {
+async function goToGameStats(event) {
   console.log(`target = ${event.target}`);
   id = event.target.getAttribute("data-gameId");
-  const list = document.getElementById("GameListHistory").querySelectorAll("button");
+  const list = document
+    .getElementById("GameListHistory")
+    .querySelectorAll("button");
   if (list != null) {
     list.forEach((button) => {
       button.removeEventListener("click", goToGameStats);
     });
   }
-  await loadPage(`${ROUTE.GAMEBOARD}${id}`);
+  await loadPage(`${ROUTE.GAMEBOARD}${id}/`);
   profileModal.modal.hide();
 }
 
-function profile_ReturnToProfile () {
-  document.getElementById("ListHistory").hidden = true;
-  document.getElementById("ProfilPage").hidden = false;
-}
-
-async function profile_StatsCallBack () {
-  console.log("Stats: Do nothing for now");
+async function profile_StatsCallBack() {
   const id = document.getElementById("username").getAttribute("data-id");
 
-
-  await loadPage(`${ROUTE.STATS}${id}`);
+  await loadPage(`${ROUTE.STATS}${id}/`);
   profileModal.modal.hide();
-
 }
 
-async function profile_42AccCallBack () {
-  console.log("42Acc: Do nothing for now");
-}
-
-async function profile_FriendsButtonCallBack (event) {
+async function profile_FriendsButtonCallBack(event) {
   event.preventDefault();
 
   const button = event.submitter;
@@ -87,7 +108,7 @@ async function profile_FriendsButtonCallBack (event) {
   try {
     const response = await MakeRequest(route, {
       method: "POST",
-      body: formData
+      body: formData,
     });
     if (response.status === 403) {
       return false;
@@ -101,7 +122,9 @@ async function profile_FriendsButtonCallBack (event) {
       const id = event.target.getAttribute("data-id");
       event.target.removeEventListener("submit", profile_FriendsButtonCallBack);
       await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
-      const element = document.getElementById("Friends_Profile").querySelector("form");
+      const element = document
+        .getElementById("Friends_Profile")
+        .querySelector("form");
       element.addEventListener("submit", profile_FriendsButtonCallBack);
     }
     return true;
@@ -111,7 +134,7 @@ async function profile_FriendsButtonCallBack (event) {
   }
 }
 
-async function profile_GotoFriends () {
+async function profile_GotoFriends() {
   try {
     profileModal.modal.hide();
     await changeSection(`${ROUTE.FRIENDS}`, "#FriendsModal");

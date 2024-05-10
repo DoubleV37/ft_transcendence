@@ -2,7 +2,7 @@
 <header>
   <div id="Header_content">
     {% if user.is_authenticated %}
-      <div id="HEADER_IsAuth" data-auth="true"></div>
+    <div id="HEADER_IsAuth" data-auth="true" data-id="{{ id }}"></div>
     {% else %}
       <div id="HEADER_IsAuth" data-auth="false"></div>
     {% endif %}

@@ -64,7 +64,9 @@ function receive_data (e) {
   } else if (data.message === "game_finish" && GameParams.opponent != "ai") {
     return EndGame(`${data.winner} won!`);
   } else if (data.message === "game_finish" && GameParams.opponent === "ai") {
-    return EndGame("AI-Ochen won!");
+    console.log(data.winner);
+    if (data.winner === "IA") { return EndGame("IA-Ochen won!"); }
+    return EndGame("You won!");
   }
 
   if (data.message === "game_state") {
@@ -138,7 +140,7 @@ function EndGame (message) {
     endGameImage.src = defeatSrc;
   } else if (message === "Game Stopped!") {
     endGameImage.src = stoppedSrc;
-  } else if (message === "AI-Ochen won!") {
+  } else if (message === "IA-Ochen won!") {
     endGameImage.src = aiVictorySrc;
   } else {
     endGameImage.src = playerVictorySrc;
