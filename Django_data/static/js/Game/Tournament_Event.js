@@ -13,8 +13,10 @@ function tournament_SetEvents () {
     };
   });
   document
-    .getElementById("StartTournamentButton")
-    .addEventListener("click", BeginTournament);
+    .querySelectorAll("#StartButton")
+    .forEach( (button) => {
+      button.addEventListener("click", BeginTournament);
+    });
   const minusBtns = document.querySelectorAll(".minus");
   const plusBtns = document.querySelectorAll(".plus");
 
@@ -23,14 +25,17 @@ function tournament_SetEvents () {
 }
 
 function tournament_DelEvents () {
-  document
-    .getElementById("StartTournamentButton")
-    .removeEventListener("click", BeginTournament);
   const minusBtns = document.querySelectorAll(".minus");
   const plusBtns = document.querySelectorAll(".plus");
 
   minusBtns.forEach((btn) => btn.removeEventListener("click", decreaseValue));
   plusBtns.forEach((btn) => btn.removeEventListener("click", increaseValue));
+
+  document
+    .querySelectorAll("#StartButton")
+    .forEach( (button) => {
+      button.removeEventListener("click", BeginTournament);
+    });
 }
 
 async function BeginTournament () {
@@ -55,7 +60,8 @@ async function createTournament () {
   try {
     await changeSection(`${ROUTE.GAME_MATCH}`, "#content");
     document.getElementById("titleContent").setAttribute("data-content", "WAITING");
-    await sleep(2000);
+    document.getElementById("matchmakingText").innerHTML = "Creating tournament...";
+    await sleep(1000);
     await loadPage(`${ROUTE.BRACKET_TOURNAMENT}`);
 
   } catch (err) {
