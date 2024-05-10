@@ -18,8 +18,13 @@ def header(request):
     if _user.is_authenticated is True:
         _username = _user.username
         _avatar = _user.avatar.url
-        _status = 'online' if _user.status is True else 'offline'
-        _id = _user.id;
+        if _user.in_game is True:
+            _status = 'in game'
+        elif _user.status is True:
+            _status = 'online'
+        else:
+            _status = 'offline'
+        _id = _user.id
 
         return render(
             request, 'Home/header.html', {'profil_picture': _avatar,
