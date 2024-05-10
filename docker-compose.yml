@@ -33,11 +33,6 @@ volumes:
   logstashdata02:
     driver: local
 
-networks:
-  elastic:
-    name: elastic
-    external: false
-
 services:
   setup:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
@@ -163,6 +158,8 @@ services:
       - ${KIBANA_PORT}:5601
     environment:
       - SERVERNAME=kibana
+      - SERVER_BASEPATH="/kibana"
+      - SERVER_PUBLICBASEURL=http://localhost:5601/kibana
       - ELASTICSEARCH_HOSTS=https://es01:9200
       - ELASTICSEARCH_USERNAME=kibana_system
       - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
@@ -175,7 +172,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found'",
+          "curl -s -I http://localhost:5601/kibana | grep -q 'HTTP/1.1 302 Found'",
         ]
       interval: 10s
       timeout: 10s
