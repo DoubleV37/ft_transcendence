@@ -9,6 +9,7 @@ function launchGame () {
   document.getElementById("Bracket").hidden = true;
   document.getElementById("Game").hidden = false;
   init_canvas();
+  gameCanvas.powerup = tournament.powerUp;
 }
 
 function quitGame () {

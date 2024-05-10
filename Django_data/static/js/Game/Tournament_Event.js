@@ -14,7 +14,7 @@ function tournament_SetEvents () {
   });
   document
     .querySelectorAll("#StartButton")
-    .forEach( (button) => {
+    .forEach((button) => {
       button.addEventListener("click", BeginTournament);
     });
   const minusBtns = document.querySelectorAll(".minus");
@@ -22,6 +22,14 @@ function tournament_SetEvents () {
 
   minusBtns.forEach((btn) => btn.addEventListener("click", decreaseValue));
   plusBtns.forEach((btn) => btn.addEventListener("click", increaseValue));
+
+  const Swicth = document.getElementById("switchCheckLabelTop");
+  Swicth.onkeyup = function (e) {
+    console.log(e);
+    if (e.key === "Enter") {
+      e.target.checked = e.target.checked === false;
+    }
+  };
 }
 
 function tournament_DelEvents () {
@@ -33,7 +41,7 @@ function tournament_DelEvents () {
 
   document
     .querySelectorAll("#StartButton")
-    .forEach( (button) => {
+    .forEach((button) => {
       button.removeEventListener("click", BeginTournament);
     });
 }
@@ -63,53 +71,53 @@ async function createTournament () {
     document.getElementById("matchmakingText").innerHTML = "Creating tournament...";
     await sleep(1000);
     await loadPage(`${ROUTE.BRACKET_TOURNAMENT}`);
-
   } catch (err) {
     console.error(err);
   }
 }
 
 function setSkins () {
-  tournament['ball'] = document
+  tournament.ball = document
     .getElementById("ballInner")
     .querySelector(".carousel-item.active")
     .getAttribute("data-skin");
-  tournament['back'] = document
+  tournament.back = document
     .getElementById("backgroundInner")
     .querySelector(".carousel-item.active")
     .getAttribute("data-skin");
-  tournament['P1']['paddle'] = document
+  tournament.P1.paddle = document
     .getElementById("paddleInner1")
     .querySelector(".carousel-item.active")
     .getAttribute("data-skin");
-  tournament['P2']['paddle'] = document
+  tournament.P2.paddle = document
     .getElementById("paddleInner2")
     .querySelector(".carousel-item.active")
     .getAttribute("data-skin");
-  tournament['P3']['paddle'] = document
+  tournament.P3.paddle = document
     .getElementById("paddleInner3")
     .querySelector(".carousel-item.active")
     .getAttribute("data-skin");
-  tournament['P4']['paddle'] = document
+  tournament.P4.paddle = document
     .getElementById("paddleInner4")
     .querySelector(".carousel-item.active")
     .getAttribute("data-skin");
 }
 
 function setParametersGame () {
-  tournament['score'] = document.getElementById("Score").value;
-  tournament['powerUp'] = document.getElementById("switchCheckLabelTop").checked;
+  tournament.score = document.getElementById("Score").value;
+  tournament.powerUp = document.getElementById("switchCheckLabelTop").checked;
+  console.log(tournament.powerUp);
 }
 
 function setPlayerUsername (inputs) {
-  tournament['P1'] = {};
-  tournament['P2'] = {};
-  tournament['P3'] = {};
-  tournament['P4'] = {};
-  tournament['P1']['username'] = inputs[0].value;
-  tournament['P2']['username'] = inputs[1].value;
-  tournament['P3']['username'] = inputs[2].value;
-  tournament['P4']['username'] = inputs[3].value;
+  tournament.P1 = {};
+  tournament.P2 = {};
+  tournament.P3 = {};
+  tournament.P4 = {};
+  tournament.P1.username = inputs[0].value;
+  tournament.P2.username = inputs[1].value;
+  tournament.P3.username = inputs[2].value;
+  tournament.P4.username = inputs[3].value;
 }
 
 function checkInputs (inputs) {
