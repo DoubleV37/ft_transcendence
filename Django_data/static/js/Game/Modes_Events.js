@@ -5,9 +5,6 @@ function modes_SetEvents() {
   element = document.getElementById("SELECT_ai");
   element.addEventListener("click", modes_playerVSia);
 
-  element = document.getElementById("GAME_Join");
-  element.addEventListener("click", modes_ChooseGame);
-
   element = document.getElementById("GAME_Create");
   element.addEventListener("click", modes_CreateGame);
 
@@ -24,9 +21,6 @@ function modes_DelEvents() {
 
   element = document.getElementById("SELECT_ai");
   element.removeEventListener("click", modes_playerVSia);
-
-  element = document.getElementById("GAME_Join");
-  element.removeEventListener("click", modes_ChooseGame);
 
   element = document.getElementById("GAME_Create");
   element.removeEventListener("click", modes_CreateGame);
