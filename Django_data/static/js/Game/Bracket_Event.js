@@ -20,7 +20,7 @@ function updateBracket () {
     setMatchInfo();
   }
   setRounds();
-  const button = document.getElementById("PlayButton");
+  const button = document.getElementById("PlayButtonTournament");
   if ("winner" in tournament) {
     endTournament(tournament.winner);
   } else {

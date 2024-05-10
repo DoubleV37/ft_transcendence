@@ -100,10 +100,11 @@
     }
     
     #sectionTournament {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        width: 90%;
-        height: 90%;
+        width: 75%;
+        display: flex;
+        gap: 2em;
     }
 
     #SetTournament {
@@ -254,9 +255,11 @@
     }
     
     #sectionTournament {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        width: 35em;
+        width: 75%;
+        display: flex;
+        gap: 2em;
     }
 
     #SetTournament {
@@ -403,9 +406,11 @@
     }
     
     #sectionTournament {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         width: 90%;
+        display: flex;
+        gap: 2em;
     }
 
     #SetTournament {
