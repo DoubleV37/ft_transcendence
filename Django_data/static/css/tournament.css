@@ -418,7 +418,7 @@
 
     .SectionLayoutTournament {
         display: flex;
-        height: 2.525rem;
+        height: 2.125rem;
         justify-content: center;
         align-items: center;
         gap: 0.625rem;
