@@ -13,10 +13,11 @@
     </header> 
     <div id="content">
       <div id="overlay">
-        <div class="mid midcolumn flowAnimation">
+        <div class="mid midcolumn fadeinAnimation">
           <div id="titleContent" data-content="STATS_PAGE"></div>
-          <div class="section-stats">
-            <h1 class="gameStats">Player Stats</h1>
+          <div class="section-stats-header">
+            <h1 class="gameStats">Player Stats: {{user}}</h1>
+            <img id="ModalBackArrow" src="{% static 'images/BackArrow.svg' %}" alt="Back arrow"></img>
           </div>
           
                   <div class="section-stats-center">
@@ -26,8 +27,6 @@
                     {% elif win_rate > 0.33 and win_rate <= 0.66 %}
                       <span class="WR-title medium-ranked">Winrate: {{ win_rate }}</span>
                       <img class="ranked-gif" src="{%static 'images/purple-bat.gif'%}"></img>
-                    {% elif win_rate > 66 and win_rate <= 100 %}
-                      <img class="ranked-gif" src="{%static 'images/duck-ducky.gif'%}"></img>
                     {% elif win_rate > 0.66 and win_rate <= 1 %}
                       <span class="WR-title high-ranked">Winrate: {{ win_rate }}</span>
                       <img class="ranked-gif" src="{%static 'images/smolverse-smol.gif'%}"></img>

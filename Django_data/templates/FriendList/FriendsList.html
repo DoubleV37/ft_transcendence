@@ -4,12 +4,13 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
+        <img id="ModalBackArrow" src="{% static 'images/BackArrow.svg' %}" alt="Back arrow"></img>
+        <img id="ModalCloseWindow" src="{% static 'images/Arrow.svg' %}" alt="Close window"></img>
       </div>
       <div class="modal-body margin-b-2">
         <div class="FriendsPage modal-profile">
           <div class="ProfileCardboard modal-profileCardboard modal-profileFriendCardboard">
-            <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}" alt="Very basic user"></img>
+            <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}" alt="Yout ptofile picture"></img>
             <div id="UserStatus">
             <h1 id="username">{{ from_user.username }}</h1>
             </div>
@@ -127,11 +128,8 @@
                 </ul>
               </div>
             </div>
-
-
           </div>
         </div>
-      </div>
       <div class="modal-footer"></div>
     </div>
   </div>

@@ -2,6 +2,18 @@
 @media only screen and (min-width: 60.063em) {
   /* Styles */
 
+  #ModalCloseWindow {
+    width: 3rem;
+    margin-left: 1em;
+    padding: 0;
+    background: transparent;
+    color: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
+
   #ModalBackArrow {
     width: 3rem;
     font-size: 0px;
@@ -10,7 +22,7 @@
     color: transparent;
     border: none;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     cursor: pointer;
   }
 
@@ -230,15 +242,26 @@
 @media only screen and (min-width: 46.25em) and (max-width: 60em) {
   /* Styles */
 
-  #ModalBackArrow {
+  #ModalCloseWindow {
     width: 3rem;
-    font-size: 0px;
+    margin-left: 1em;
     padding: 0;
     background: transparent;
     color: transparent;
     border: none;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
+  }
+
+  #ModalBackArrow {
+    width: 3rem;
+    padding: 0;
+    background: transparent;
+    color: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-start;
     cursor: pointer;
   }
 
@@ -472,15 +495,26 @@
 @media only screen and (min-width: 1em) and (max-width: 46.25em) {
   /* Styles */
 
-  #ModalBackArrow {
+  #ModalCloseWindow {
     width: 2.5rem;
-    font-size: 0px;
+    margin-left: 1em;
     padding: 0;
     background: transparent;
     color: transparent;
     border: none;
     display: flex;
     justify-content: flex-end;
+  }
+
+  #ModalBackArrow {
+    width: 2.5rem;
+    padding: 0;
+    background: transparent;
+    color: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
   }
 
   #BackArrowMobile {
