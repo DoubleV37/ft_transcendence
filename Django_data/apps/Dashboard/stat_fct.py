@@ -18,4 +18,5 @@ def populate(key: User) -> dict:
 	context['defeat'] = data.defeat
 	context['victory_ia'] = data.victory_ia
 	context['victory_player'] = data.victory_player
+	context['user'] = key.username
 	return context
