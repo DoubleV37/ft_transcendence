@@ -42,6 +42,20 @@ scrollbar-width: none;
 		flex-grow: 2;
 		overflow: hidden;
 	}
+
+	#content404 {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/404.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		flex-grow: 2;
+		overflow: hidden;
+	}
 	
 	/* OFF CANVAS */
 	
@@ -432,6 +446,20 @@ scrollbar-width: none;
 		display: flex;
 		flex-direction: column;
 		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+
+		flex-grow: 2;
+	}
+
+	#content404 {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/404.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		align-self: stretch;
@@ -838,6 +866,19 @@ scrollbar-width: none;
 		display: flex;
 		flex-direction: column;
 		background: url('../images/background.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		align-self: stretch;
+		align-items: center;
+		/* justify-content: center; */
+		position: relative;
+		flex-grow: 1;
+	}
+
+	#content404 {
+		display: flex;
+		flex-direction: column;
+		background: url('../images/404.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		align-self: stretch;

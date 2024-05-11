@@ -1,23 +1,42 @@
 {% load static %}
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		img{
-		  max-width: 100%;
-		  max-height: 100%;
-		  display: block;
-		}
-		.container{
-		  width: 250px;
-		  border: 5px solid black;
-		}
-	</style>
-    <title>Page not found</title>
-  </head>
+<!DOCTYPE html>
+<html>
+  {% include "Home/head.html" %}
   <body>
-    <img src="{% static "images/404.jpg" %}" alt="404 : Page not found" />
+    {% include "Profile/Avatar.html" %}
+    {% include "Profile/Profile.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header> 
+
+    <div id="content">
+      <div id="titleContent" data-content="ERROR_404_PAGE"></div>
+        <div id="content404">
+          <div id="overlayFullscreen">
+            <div class="midFullscreen midrow margin_bottom">
+              <div id="section">
+                <div id="skinsTextRow">
+                  <h1 id="skinsTitle">404 page not found !</h1>
+                  <p id="skinsText">Congrats, you broke it...</p>
+                  <p id="skinsText" onclick="goBack()" style="cursor: pointer; text-decoration: underline;">Go back</p>
+                </div>
+              </div>
+              <section>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "Home/footer.html" %}
   </body>
 </html>
+
+<script>
+  function goBack() {
+    header_LogoCallback();
+  }
+</script>
