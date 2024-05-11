@@ -100,6 +100,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			self.pong = Pong(data["point_limit"],
 							 data["difficulty"], data["powerup"])
 			await self.init_db_game()
+			# self.game.in_tournament = data["in_tournament"]
 			asyncio.create_task(self.runGame())
 
 	async def sendUpdateGame(self):
@@ -194,12 +195,16 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			self.toGS.defeat += 1
 		self.toGS.nb_games += 1
 		if self.game.in_tournament:
-			self.toGS.tournaments_winned += 1
+			self.toGS.tournament_games += 1
 		else:
 			self.toGS.regular_games += 1
 		self.toGS.win_rate = (
 			self.toGS.victory / self.toGS.nb_games
 		)
+		if self.ia and winner:
+			self.toGS.victory_ia += 1
+		elif not self.ia and winner:
+			self.toGS.victory_player += 1
 		await sync_to_async(self.toGS.save)()
 
 	async def send_game_finish(self):
