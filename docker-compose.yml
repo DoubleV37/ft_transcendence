@@ -32,13 +32,56 @@ volumes:
     driver: local
   logstashdata02:
     driver: local
-
-networks:
-  elastic:
-    name: elastic
-    external: false
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
 
 services:
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.37.9
+    volumes:
+      - ./Services/Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:8.3.3
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+
+  node_exporter:
+    container_name: node_exporter
+    image: quay.io/prometheus/node-exporter:v1.5.0
+    command: '--path.rootfs=/host'
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - /:/host:ro,rslave
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.0
+    container_name: cadvisor
+    command:
+      - '-port=8098'
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    privileged: true
+    restart: unless-stopped
+
   setup:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     volumes:
