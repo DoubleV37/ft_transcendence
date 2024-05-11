@@ -3,10 +3,7 @@ async function friends_DeleteCallBack (event) {
   const response = await deleteFriendSubmit(event.target);
 
   if (response === false) {
-    if (error403 === true) {
-      return;
-    }
-    FriendsModal.modal.hide();
+    friendsModal.modal.hide();
     loadPage(`${ROUTE.HOME}`);
   }
 }
@@ -16,10 +13,7 @@ async function friends_AddCallBack (event) {
   const response = await addFriendSubmit(event.target);
 
   if (response === false) {
-    if (error403 === true) {
-      return;
-    }
-    FriendsModal.modal.hide();
+    friendsModal.modal.hide();
     loadPage(`${ROUTE.HOME}`);
   }
 }
@@ -29,10 +23,7 @@ async function friends_ResponseCallBack (event) {
   const response = await ResponseFriendSubmit(event.target);
 
   if (response === false) {
-    if (error403 === true) {
-      return;
-    }
-    FriendsModal.modal.hide();
+    friendsModal.modal.hide();
     loadPage(`${ROUTE.HOME}`);
   }
 }

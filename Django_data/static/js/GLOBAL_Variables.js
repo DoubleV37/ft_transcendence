@@ -34,6 +34,7 @@ const ROUTE = {
   HOME: "/",
   HEADER: "/header",
   FOOTER: "/footer",
+  ERROR404: "/404",
   PING: "/auth/ping/",
   SIGNUP: "/auth/signup/",
   SIGNIN: "/auth/signin/",

@@ -76,8 +76,8 @@ async function MakeRequest (url, request = null) {
   try {
     const response = await fetchSection(url, request);
 
-    if (response.status === 403) {
-      Access_Denied();
+    if (response.status === 403 || response.status === 404) {
+      Error_Page(response.status);
     }
     return response;
   } catch (err) {

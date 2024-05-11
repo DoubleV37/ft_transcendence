@@ -118,6 +118,10 @@ function setPlayerUsername (inputs) {
   tournament.P2.username = inputs[1].value;
   tournament.P3.username = inputs[2].value;
   tournament.P4.username = inputs[3].value;
+  tournament.P1.img = "/static/images/Player1.png";
+  tournament.P2.img = "/static/images/Player2.png";
+  tournament.P3.img = "/static/images/Player3.png";
+  tournament.P4.img = "/static/images/Player4.png";
 }
 
 function checkInputs (inputs) {

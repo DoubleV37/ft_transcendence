@@ -57,9 +57,13 @@ function setGameInfo (players) {
   GameInfos.Ball.img.onload = () => {
     const rightName = document.getElementById("GAME_username_right");
     const leftName = document.getElementById("GAME_username_left");
+    const rightImg = document.getElementById("HEADER_GameProfilePicRight");
+    const leftImg = document.getElementById("HEADER_GameProfilePicLeft");
 
     if (players[0].team === 1) {
       rightName.innerHTML = players[0].vs;
+      rightImg.setAttribute("src", players[1].img);
+      leftImg.setAttribute("src", players[0].img);
       leftName.innerHTML = players[0].username;
       GameInfos.PlayerR.srcPaddle = players[0].paddle;
       GameInfos.PlayerR.username = players[0].username;
@@ -68,6 +72,8 @@ function setGameInfo (players) {
     } else {
       rightName.innerHTML = players[0].username;
       leftName.innerHTML = players[0].vs;
+      rightImg.setAttribute("src", players[0].img);
+      leftImg.setAttribute("src", players[1].img);
       GameInfos.PlayerL.srcPaddle = players[0].paddle;
       GameInfos.PlayerL.username = players[0].username;
       GameInfos.PlayerR.srcPaddle = players[1].paddle;
@@ -140,6 +146,7 @@ function setPlayer (player, match) {
         : team.setAttribute("class", "team-winner");
   }
   team.querySelector("span").innerHTML = player.username;
+  team.querySelector("img").setAttribute("src", player.img);
 }
 
 function setMatchInfo () {

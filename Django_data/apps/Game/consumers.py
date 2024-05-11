@@ -166,7 +166,6 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
             self.pong.point_limit == self.pong.point[0]
             or self.pong.point_limit == self.pong.point[1]
         ):
-            logger.info("HEY")
             await self.send_game_finish()
 
     async def save_stats(self):
@@ -197,25 +196,25 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
             await database_sync_to_async(self.opponent_game.delete)()
             await database_sync_to_async(self.game.delete)()
 
-	async def update_global_stats(self, winner):
-		self.toGS = await database_sync_to_async(GlobalStats.objects.get)(user=self.scope["user"])
-		if winner :
-			self.toGS.victory += 1
-		else:
-			self.toGS.defeat += 1
-		self.toGS.nb_games += 1
-		if self.game.in_tournament:
-			self.toGS.tournament_games += 1
-		else:
-			self.toGS.regular_games += 1
-		self.toGS.win_rate = (
-			self.toGS.victory / self.toGS.nb_games
-		)
-		if self.ia and winner:
-			self.toGS.victory_ia += 1
-		elif not self.ia and winner:
-			self.toGS.victory_player += 1
-		await sync_to_async(self.toGS.save)()
+    async def update_global_stats(self, winner):
+        self.toGS = await database_sync_to_async(GlobalStats.objects.get)(user=self.scope["user"])
+        if winner:
+        	self.toGS.victory += 1
+        else:
+        	self.toGS.defeat += 1
+        self.toGS.nb_games += 1
+        if self.game.in_tournament:
+        	self.toGS.tournament_games += 1
+        else:
+        	self.toGS.regular_games += 1
+        self.toGS.win_rate = (
+        	self.toGS.victory / self.toGS.nb_games
+        )
+        if self.ia and winner:
+        	self.toGS.victory_ia += 1
+        elif not self.ia and winner:
+        	self.toGS.victory_player += 1
+        await sync_to_async(self.toGS.save)()
 
     async def send_game_finish(self):
         if self.pong.point[0] > self.pong.point[1] and self.ia:

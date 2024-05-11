@@ -20,7 +20,6 @@
           </div>
           <div class="section-stats-header">
             <h1 class="gameStats">Game Stats</h1>
-            <img id="ModalBackArrow" src="{% static 'images/BackArrow.svg' %}" data-content="{{ me.user.id }}" alt="Back arrow"></img>
           </div>
                   <div class="section-stats">
                     {% if me.winner %}
@@ -34,14 +33,14 @@
                         <span id="WR" class="stats-title">Winner</span>
                       </div>
                     {% endif %}
-                    <div class="winner-loser">
+                    <div id="header_stats" class="winner-loser">
                       <div id="STATS_user">
                         <img id="HEADER_GameProfilePicLeft" class="ProfilePic header-profilePic profilePic-left" src="{{ me.user.avatar.url }}" alt="Very basic user"></img>
-                        <h1 class="username" id="GAME_username_left">{{ me.user.username }}</h1>
+                        <h1 class="username" data-content="{{ me.user.id }}" id="GAME_username_left">{{ me.user.username }}</h1>
                       </div>
                       <div id="STATS_user">
                         <img id="HEADER_GameProfilePicLeft" class="ProfilePic header-profilePic profilePic-left" src="{{ opponent.user.avatar.url }}" alt="Very basic user"></img>
-                        <h1 class="username" id="GAME_username_right">{{ opponent.user.username }}</h1>
+                        <h1 class="username" data-content="{{ opponent.user.id }}" id="GAME_username_right">{{ opponent.user.username }}</h1>
                       </div>
                     </div>
                   </div>

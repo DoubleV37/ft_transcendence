@@ -1,18 +1,20 @@
 function gameboard_SetEvents () {
   gameboard_Callbacks();
-  const backArrow = document.getElementById("content").querySelector("#ModalBackArrow");
+  const profil = document.getElementById("header_stats").querySelectorAll("h1");
 
-  backArrow.onclick = async function () {
-    const id = backArrow.getAttribute("data-content");
+  profil.forEach( (profil) => {
+    profil.onclick = async function (e) {
+      const id = e.target.getAttribute("data-content");
 
-    const userid = document.getElementById("HEADER_IsAuth").getAttribute("data-id");
+      const userid = document.getElementById("HEADER_IsAuth").getAttribute("data-id");
 
-    await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
-    if (userid !== id) {
-      await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
-    }
-    profileModal.modal.show();
-  };
+      await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
+      if (userid !== id) {
+       await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
+      }
+      profileModal.modal.show();
+    };
+  });
 }
 
 function gameboard_Callbacks () {

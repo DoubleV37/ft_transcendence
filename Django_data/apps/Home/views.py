@@ -25,14 +25,19 @@ def header(request):
         else:
             _status = 'offline'
         _id = _user.id
+        win_rate = _user.toGS.win_rate
+        nb_games = _user.toGS.nb_games
+        nb_tournament = _user.toGS.tournament_games
 
         return render(
             request, 'Home/header.html', {'profil_picture': _avatar,
             'username': _username, 'status': _status,
-            'id': _id}
-        )
+            'id': _id, 'win_rate': win_rate, 'nb_games': nb_games,
+            'tournament_games': nb_tournament})
     return render(request, "Home/header.html")
 
+def error404(request):
+    return render(request, 'Errors/404.html')
 
 def footer(request):
 	return FooterView.as_view()(request)

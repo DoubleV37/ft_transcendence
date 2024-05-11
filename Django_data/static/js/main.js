@@ -26,7 +26,7 @@ async function launchWebsite () {
 
   document.removeEventListener("DOMContentLoaded", launchWebsite);
 
-  setInterval(pingServer, 3000);
+  setInterval(pingServer, 5000);
 }
 
 function main_SetFirstsEvents () {
