@@ -53,7 +53,10 @@ services:
     container_name: grafana
     image: grafana/grafana:8.3.3
     volumes:
+      - ./Services/Grafana/grafana.ini:/etc/grafana/grafana.ini
       - grafana_data:/var/lib/grafana
+    command:
+      - '--config=/etc/grafana/grafana.ini'
     ports:
       - "3000:3000"
 
