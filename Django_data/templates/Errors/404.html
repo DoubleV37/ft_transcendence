@@ -10,15 +10,32 @@
     {% include "FriendList/FriendsList.html" %}
     <header>
       <div id="Header_content"></div>
-    </header>
-	<div id="content">
-		<div id="overlay">
-	  		<div class="mid midcolumn fadeinAnimation">
-				<div id="titleContent" data-content="404_PAGE"></div>
-    				<img src='{% static "images/404.jpg" %}' alt="404 : Page not found" />
-				</div>
-			</div>
-		</div>
-  	</div>
+    </header> 
+    <div id="content">
+      <div id="titleContent" data-content="ERROR_404_PAGE"></div>
+        <div id="content404">
+          <div id="overlayFullscreen">
+            <div class="midFullscreen midrow margin_bottom">
+              <div id="section">
+                <div id="skinsTextRow">
+                  <h1 id="skinsTitle">404 page not found !</h1>
+                  <p id="skinsText">Congrats, you broke it...</p>
+                  <p id="skinsText" onclick="goBack()" style="cursor: pointer; text-decoration: underline;">Go back</p>
+                </div>
+              </div>
+              <section>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "Home/footer.html" %}
   </body>
 </html>
+
+<script>
+  function goBack() {
+    header_LogoCallback();
+  }
+</script>

@@ -104,6 +104,8 @@ function launchSectionHandler (element) {
     case "STATS_PAGE":
       stats_SetEvents();
       break;
+    case "ERROR_404_PAGE":
+      break;
     default:
       throw new Error(
         `launchSectionHandler: Attribute ${elementAttribut} non recognised`
