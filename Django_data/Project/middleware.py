@@ -32,8 +32,8 @@ class UserPermission:
             "/2fa/confirm/",
             "/auth/ping/",
         )
-        if request.path != "/auth/ping/":
-            logger.debug(f"path -> {request.path}")
+        # if request.path != "/auth/ping/":
+        #     logger.debug(f"path -> {request.path}")
         if request.path in authorised_path:
             response = None
         else:
