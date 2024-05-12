@@ -9,9 +9,11 @@ from global_var import GAMES
 async def send_opponent_info(game_id):
 	print("==Send opponent info==")
 	user1 = await get_user_info(GAMES[game_id]["players"][0][0])
+	print(GAMES[game_id]["players"][1][0])
 	user2 = await get_user_info(GAMES[game_id]["players"][1][0])
 	GAMES[game_id]["player_1"] = user1
 	GAMES[game_id]["player_2"] = user2
+	print("===========oksour ", user2)
 	await set_ingame_status(user1[3], True)
 	await set_ingame_status(user2[3], True)
 	send1 = {

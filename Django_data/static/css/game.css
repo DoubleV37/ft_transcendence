@@ -82,6 +82,11 @@
 		font-weight: 400;
 		line-height: normal;
 		cursor: pointer;
+		text-transform: lowercase;
+	}
+
+	.username::first-letter {
+		text-transform: uppercase;
 	}
 
 	.skills {
@@ -223,7 +228,13 @@
 		font-weight: 400;
 		line-height: normal;
 		cursor: pointer;
+		text-transform: lowercase;
 	}
+
+	.username::first-letter {
+		text-transform: uppercase;
+	}
+
 
 	.skills {
 		width: 75%;
@@ -365,7 +376,13 @@
 		font-weight: 400;
 		line-height: normal;
 		cursor: pointer;
+		text-transform: lowercase;
 	}
+
+	.username::first-letter {
+		text-transform: uppercase;
+	}
+
 
 	.skills {
 		width: 80%;
