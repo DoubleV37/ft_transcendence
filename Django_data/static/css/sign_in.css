@@ -37,6 +37,10 @@
         align-self: stretch;
     }
 
+    #SIGNIN_Form > ul {
+        display: none;
+    }
+
     #SIGNIN_Form p label {
         color: #FFF;
         /* Body text */
@@ -186,6 +190,10 @@
         align-self: stretch;
     }
 
+    #SIGNIN_Form > ul {
+        display: none;
+    }
+
     #SIGNIN_Form p label {
         color: #FFF;
         /* Body text */
@@ -332,6 +340,10 @@
         align-items: flex-start;
         gap: 0.625rem;
         align-self: stretch;
+    }
+
+    #SIGNIN_Form > ul {
+        display: none;
     }
 
     #SIGNIN_Form p label {
