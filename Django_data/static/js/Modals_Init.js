@@ -96,7 +96,3 @@ function modal_2FaCodeInit () {
     signin_DelModalEvents
   );
 }
-
-//function collapse_FriendsLists() {
-//  friendsCollapse.collapse = new bootstrap 
-//}

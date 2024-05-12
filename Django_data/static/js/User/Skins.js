@@ -37,6 +37,9 @@ async function skins_SaveAll (event) {
         background: backgroundItem
       })
     });
+    if (response.status === 403) {
+      return ;
+    }
     const data = await response.json();
 
     if (data.success === true) {

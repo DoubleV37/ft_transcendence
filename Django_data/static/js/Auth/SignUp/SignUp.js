@@ -3,26 +3,24 @@ async function signUp() {
   let formData = new FormData(form);
 
   try {
-      const response = await MakeRequest(`${ROUTE.SIGNUP}`, {
+    const response = await MakeRequest(`${ROUTE.SIGNUP}`, {
 	  method: 'POST',
 	  body: formData
-      });
-      if (response.status == 403) {
-	 return false;
-      }
-      const data = await response.json();
+    });
+    if (response.status === 403 || response.status === 404) {
+	    return false;
+    }
+    const data = await response.json();
 
-      if (data["success"] === true) {
-	return true;
-      }
-      else {
-	SignUp_UpdateErrors(data["error"]);
-	form.reset();
-	return false;
-      }
-  }
-  catch (err) {
-    console.error('SignUp Errors:', err);
+    if (data["success"] === true) {
+	    return true;
+    } else {
+	    SignUp_UpdateErrors(data["error"]);
+	    form.reset();
+	    return false;
+    }
+  } catch (err) {
+    console.error('Sign Up:', err);
     return false;
   }
 }

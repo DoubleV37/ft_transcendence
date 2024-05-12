@@ -1,14 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-{% include "Home/head.html" %}
+  {% include "Home/head.html" %}
   <body>
-	  {% include "Home/header.html" %}
 	  {% include "Profile/Profile.html" %}
 	  {% include "Profile/Avatar.html" %}
 	  {% include "Auth/code_validation.html" %}
 	  {% include "Profile/enable_2fa.html" %}
-      {% include "FriendList/FriendsList.html" %}
+    {% include "FriendList/FriendsList.html" %}
 
     <header>
       <div id="Header_content"></div>
@@ -57,7 +56,7 @@
 								</form>
 								<div class="form-check form-switch p-0">
 									<div class="d-flex flex-column-reverse gap-1">
-									  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" {% if enabled == True %}checked{% endif%} />
+									  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" {% if enabled %}checked{% endif %} />
 									  <label class="form-check-label" for="switchCheckLabelTop">Two-Factor Authentication:</label>
 									</div>
 								</div>

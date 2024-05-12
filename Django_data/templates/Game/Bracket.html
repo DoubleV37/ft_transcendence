@@ -1,0 +1,105 @@
+<!doctype html>
+{% load static %}
+
+<html lang="fr">
+  {% include "Home/head.html" %}
+  <body>
+    {% include "Profile/Avatar.html" %}
+    {% include "Profile/Profile.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header>
+
+    <div id="content">
+      <div id="titleContent" data-content="BRACKET"></div>
+      <div id="overlay">
+        <!--<div class="midFullscreen midrow margin_bottom">-->
+        <div id="Bracket" class="mid midcolumn flowAnimation">
+          <div id="sectionTournament">
+            <h1 class="gameTitle">Tournament</h1>
+            <div class="bracket">
+              <div class="round">
+                <div class="match" data-match="1">
+                  <div class="team" data-team="1">
+                    <img src="/static/images/Player1.png" class="player-image"></img>
+                    <span>Player 1</span>
+                  </div>
+                  <div class="team" data-team="2">
+                    <img src="/static/images/Player2.png" class="player-image"></img>
+                    <span>Player 2</span>
+                  </div>
+                </div>
+                <div class="match" data-match="2">
+                  <div class="team" data-team="1">
+                    <img src="/static/images/Player3.png" class="player-image"></img>
+                    <span>Player 3</span>
+                  </div>
+                  <div class="team" data-team="2">
+                    <img src="/static/images/Player4.png" class="player-image"></img>
+                    <span>Player 4</span>
+                  </div>
+                </div>
+              </div>
+              <div class="round">
+                <div class="match" data-match="3">
+                  <div class="team" data-team="1">
+                    <img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
+                    <span>????</span>
+                    </div>
+                  <div class="team" data-team="2">
+                    <img src="/static/images/User_Test_Val.jpg" class="player-image"></img>
+                    <span>????</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button id="PlayButtonTournament" class="play-button">
+              <span class="play"></span>
+            </button>
+          </div>
+          <div id="endTournamentScreen" style="display: none;">
+            <img class="ranked-gif" id="endGameImage" src="{%static 'images/shiny-charmander-pokemon.gif'%}"></img>
+            <p id="endTournamentMessage"></p>
+            <button id="confirmEndTournament" class="ButtonLayout ButtonNeon">End Game</button>
+          </div>
+        </div>
+        <!-- Game screen here -->
+        <div id="Game" class="midGame midcolumn flowAnimation" hidden>
+          <div class="section-score">
+            <div class="conteneur">
+              <div class="flex-column">
+                <div id="GAME_user">
+                  <img id="HEADER_GameProfilePicLeft" class="ProfilePic header-profilePic profilePic-left" src="" alt="Very basic user"></img>
+                  <h1 class="username" id="GAME_username_left"></h1>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="scoreText" id="score1div"></div>
+                <p class="scoreText">-</p>
+                <div class="scoreText" id="score2div"></div>
+              </div>
+              <div class="flex-column">
+                <div id="GAME_user">
+                <h1 class="username" id="GAME_username_right"></h1>
+                <img id="HEADER_GameProfilePicRight" class="ProfilePic header-profilePic profilePic-right" src="" alt="Very basic user"></img>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="endGameScreen" style="display: none;">
+          <img class="ranked-gif" id="endGameImage" src="{%static 'images/shiny-charmander-pokemon.gif'%}"></img>
+          <p id="endGameMessage"></p>
+          <button id="confirmEndGame" class="ButtonLayout ButtonNeon">End Game</button>
+        </div>
+        <canvas style="" id="MyCanvas">
+          <p>Description of the canvas for those unable to view it.</p>
+        </canvas>
+        </div>
+      </div>
+    </div>
+  {% include "Home/footer.html" %}
+  </body>
+</html>

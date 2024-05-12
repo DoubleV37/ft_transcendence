@@ -104,7 +104,9 @@ async function avatar_FormCallBack (event) {
   event.preventDefault();
   const response = await avatarSubmit();
 
-  if (response === true) {
+  if (response === 403 || response === 404) {
+    avatarModal.modal.hide();
+  } else if (response ==== true) {
     avatar_QuitModal();
     header_DelEvents();
     settings_DelEvents();

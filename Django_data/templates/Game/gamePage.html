@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
+  {% include "Home/head.html" %}
   <body>
-	{% include "Home/head.html" %}
-	{% include "Home/header.html" %}
-	{% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
-	{% include "Profile/Profile.html" %}
-	{% include "Auth/code_validation.html" %}
- 	{% include "Profile/enable_2fa.html" %}
-	{% include "FriendList/FriendsList.html" %}
-
+    {% include "Profile/Avatar.html" %}
+    {% include "Profile/Profile.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header>
 	<div id="content">
-
 		<div id="overlay">
-			<div class="midGame midcolumn flowAnimation">
+			<div class="midGame midcolumn fadeinAnimation">
 				<div id="titleContent" data-content="GAME_LOCAL"></div>
 				<div class="section-score">
 					<div class="conteneur">
 						<div class="flex-column">
-							<div id="GAME_user">
+							<div id="GAME_user" class="left">
 								<img id="HEADER_GameProfilePicLeft" class="ProfilePic header-profilePic profilePic-left" src="" alt="Very basic user"></img>
 								<h1 class="username" id="GAME_username_left"></h1>
-						  </div>
+							</div>
 						</div>
 
 						<div class="flex-row">
@@ -30,10 +30,10 @@
 							<div class="scoreText" id="score2div"></div>
 						</div>
 						<div class="flex-column">
-						<div id="GAME_user">
+							<div id="GAME_user" class="right">
 								<h1 class="username" id="GAME_username_right">{{ username }}</h1>
 								<img id="HEADER_GameProfilePicRight" class="ProfilePic header-profilePic profilePic-right" src="" alt="Very basic user"></img>
-						  </div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -48,7 +48,5 @@
 			</div>
 		</div>
 	</div>
-
-
   </body>
 </html>
