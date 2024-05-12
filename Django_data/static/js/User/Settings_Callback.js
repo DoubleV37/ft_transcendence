@@ -1,5 +1,4 @@
 async function  settings_TwoFaCallBack() {
-  console.log("the fuck ?");
   const form = document.getElementById('TWOFA_Form');
   const formData = new FormData(form);
   const	response = await MakeRequest(`${ROUTE.TWOFA_E}`, {
