@@ -1,4 +1,5 @@
 from django.utils import timezone
+from django.contrib.auth.password_validation import validate_password
 from decouple import config
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
@@ -111,11 +112,24 @@ def validator_fct_for(form, button: str, request, response: dict) -> dict:
     return response
 
 
+def validator_pswrd(form, button: str, request, response: dict) -> dict:
+    if button in request.POST:
+        if form.is_valid():
+            try:
+                validate_password(request.POST['password'])
+                form.save()
+                response = {"success": True}
+            except:
+                response = {"success": False, "logs": f"{button} Error"}
+        else:
+            response = {"success": False, "logs": f"{button} Error"}
+    return response
+
+
 def my_settings(request):
 
     try:
         my_user = User.objects.get(username=request.user.username)
-
         name = My_Name(instance=my_user)
         mail = My_Mail(instance=my_user)
         pswd = My_Psswd(instance=my_user)
@@ -143,7 +157,7 @@ def my_settings(request):
             avatar = My_Avatar(request.POST, request.FILES, instance=my_user)
             t_name = My_Tournamentname(request.POST, instance=my_user)
             delete_avatar = DeleteAvatar(request.POST)
-
+         
             if "avatar_delete" in request.POST:
                 if delete_avatar.is_valid():
                     if my_user.avatar.url.find("ForbiddenDeletion/") == -1:
@@ -163,7 +177,7 @@ def my_settings(request):
                 name, "name_button", request, response)
             response = validator_fct_for(
                 t_name, "t_name_button", request, response)
-            response = validator_fct_for(
+            response = validator_pswrd(
                 pswd, "pswd_button", request, response)
             response = validator_fct_for(
                 mail, "mail_button", request, response)
