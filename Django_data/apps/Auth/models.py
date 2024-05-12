@@ -20,7 +20,7 @@ class User(AbstractBaseUser):
         auto_created=True, primary_key=True, unique=True, null=False)
     status = models.BooleanField(default=True)
     username = models.CharField(
-        max_length=8, validators=[MinLengthValidator(3)], unique=True, null=False)
+        max_length=9, validators=[MinLengthValidator(3)], unique=True, null=False)
     email = models.EmailField(max_length=320, unique=True, null=False)
     password = models.CharField(max_length=128, null=False)
 
@@ -36,7 +36,7 @@ class User(AbstractBaseUser):
     refresh_token = models.CharField(max_length=255, null=True, blank=True)
 
     tournament_name = models.CharField(
-        max_length=10, validators=[MinLengthValidator(3)],
+        max_length=11, validators=[MinLengthValidator(3)],
         null=False
     )
 
