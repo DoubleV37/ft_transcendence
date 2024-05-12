@@ -31,7 +31,6 @@ async function parseUserInfos (infos) {
   GameInfos.num = infos.num;
   GameInfos.Ball.url = infos.my_ball;
   GameInfos.Background.url = infos.my_background;
-  console.log(infos);
   if (infos.num === 1) {
     GameInfos.PlayerR.srcImg = infos.my_avatar;
     GameInfos.PlayerR.srcPaddle = infos.my_paddle;

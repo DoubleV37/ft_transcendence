@@ -26,7 +26,7 @@ async function launchWebsite () {
 
   document.removeEventListener("DOMContentLoaded", launchWebsite);
 
-  setInterval(pingServer, 3000);
+  setInterval(pingServer, 5000);
 }
 
 function main_SetFirstsEvents () {
@@ -93,8 +93,18 @@ function launchSectionHandler (element) {
     case "GAMEBOARD_PAGE":
       gameboard_SetEvents();
       break;
+    case "TOURNAMENT":
+      observer.disconnect();
+      tournament_SetEvents();
+      break;
+    case "BRACKET":
+      observer.disconnect();
+      bracket_SetEvents();
+        break;
     case "STATS_PAGE":
       stats_SetEvents();
+      break;
+    case "ERROR_404_PAGE":
       break;
     default:
       throw new Error(

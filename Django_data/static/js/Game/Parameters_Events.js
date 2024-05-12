@@ -22,8 +22,18 @@ function parameters_SetEvents () {
   element = document.getElementById("StartButton");
   element.addEventListener("click", parameters_StartGame);
 
-  element = document.getElementById("switchCheckLabelTop");
-  element.addEventListener("click", parameters_SetPowerUp);
+  const Swicth = document.getElementById("switchCheckLabelTop");
+  Swicth.onkeyup = function (e) {
+    console.log(e);
+    if (e.key === "Enter") {
+      e.target.checked = e.target.checked === false;
+      if (e.target.checked === true) {
+        GameParams.powerup = true;
+      } else {
+        GameParams.powerup = false;
+      }
+    }
+  };
 }
 
 function parameters_DelEvents () {
@@ -48,6 +58,16 @@ function parameters_DelEvents () {
   element = document.getElementById("StartButton");
   element.removeEventListener("click", parameters_StartGame);
 
-  element = document.getElementById("switchCheckLabelTop");
-  element.removeEventListener("click", parameters_SetPowerUp);
+  const Swicth = document.getElementById("switchCheckLabelTop");
+  Swicth.onkeyup = function (e) {
+    console.log(e);
+    if (e.key === "Enter") {
+      e.target.checked = e.target.checked === false;
+      if (e.target.checked === true) {
+        GameParams.powerup = true;
+      } else {
+        GameParams.powerup = false;
+      }
+    }
+  };
 }

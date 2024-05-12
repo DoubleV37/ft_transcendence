@@ -55,7 +55,14 @@ def modes(request):
 
 
 def tournament(request):
-    return render(request, "Game/Tournament.html")
+    if request.method == "GET":
+        context = {}
+        context['username_tournament'] = request.user.tournament_name
+    return render(request, "Game/Tournament.html", context)
+
+def bracket(request):
+    if request.method == "GET":
+        return render(request, "Game/Bracket.html")
 
 
 def gameParameters(request):
@@ -64,7 +71,3 @@ def gameParameters(request):
 
 def modes(request):
     return render(request, "Game/Modes.html")
-
-
-def tournament(request):
-    return render(request, "Game/Tournament.html")

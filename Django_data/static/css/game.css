@@ -699,7 +699,7 @@ ul, li {
 	animation: 1s anim-lightspeed-in ease forwards;
 	font-family: 'Kodchasan';
 	color: #FFF;
-	margin-bottom: 1em;
+	margin-bottom: 0.7em;
 	line-height: normal;
 }
 
@@ -792,4 +792,10 @@ ul, li {
 	color: white;
 	font-weight: normal;
 	text-align: center;
+}
+
+.board-date {
+	margin-bottom: 0em !important;
+	color: #5DC6E8;
+	font-weight: normal !important;
 }

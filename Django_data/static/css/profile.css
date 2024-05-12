@@ -4,7 +4,6 @@
 
   #ModalCloseWindow {
     width: 3rem;
-    margin-left: 1em;
     padding: 0;
     background: transparent;
     color: transparent;
@@ -78,7 +77,7 @@
     color: #fff;
     text-align: right;
     font-family: Kodchasan;
-    font-size: 1.875rem;
+    font-size: 1.575rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -244,7 +243,6 @@
 
   #ModalCloseWindow {
     width: 3rem;
-    margin-left: 1em;
     padding: 0;
     background: transparent;
     color: transparent;
@@ -329,7 +327,7 @@
     color: #fff;
     text-align: right;
     font-family: Kodchasan;
-    font-size: 1.475rem;
+    font-size: 1.275rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -497,7 +495,6 @@
 
   #ModalCloseWindow {
     width: 2.5rem;
-    margin-left: 1em;
     padding: 0;
     background: transparent;
     color: transparent;
@@ -586,7 +583,7 @@
     color: #fff;
     text-align: right;
     font-family: Kodchasan;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
