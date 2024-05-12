@@ -58,7 +58,8 @@
 		margin-bottom: 1em;
 	}
 
-	#endGameScreen {
+	#endGameScreen, #endTournamentScreen {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -198,7 +199,8 @@
 		margin-bottom: 1em;
 	}
 
-	#endGameScreen {
+	#endGameScreen, #endTournamentScreen {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -337,7 +339,8 @@
 		margin-bottom: 1em;
 	}
 
-	#endGameScreen {
+	#endGameScreen, #endTournamentScreen {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -437,7 +440,7 @@
 	width: 100%;
 }
 
-#endGameMessage {
+#endGameMessage, #endTournamentMessage {
 	color: #FFF;
 	text-align: right;
 	font-family: Kodchasan;

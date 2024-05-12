@@ -37,10 +37,18 @@ function endTournament (winner) {
   const Screen = document.getElementById("endTournamentScreen");
   const Message = document.getElementById("endTournamentMessage");
   const Confirm = document.getElementById("confirmEndTournament");
-
+  
   document.getElementById("sectionTournament").hidden = true;
+
   Confirm.innerHTML = "Leave tournament";
   Message.textContent = `${winner} won the tournament!`;
+
+  Screen.style.opacity = "0";
+
+  const id = setTimeout(() => {
+    Screen.style.opacity = "1";
+  }, 450);
+
   Screen.style.display = "flex";
   Confirm.onclick = function () {
     Screen.style.display = "none";
