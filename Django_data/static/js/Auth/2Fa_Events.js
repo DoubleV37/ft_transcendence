@@ -50,3 +50,12 @@ async function Twofa_EnableSubmit (event) {
     element.innerHTML = "Error: Wrong code submitted. Please try again.";
   }
 }
+
+function Error_Page (code) {
+  if (code === 403) {
+    loadPage(currentUrl);
+  } else {
+    errorCode = true;
+    loadPage(ROUTE.ERROR404);
+  }
+}

@@ -1,4 +1,3 @@
-// BIEN SEPARER EVENEMENTS MODAL ET EVENTS SETTINGS
 function  settings_SetEvents() {
   let element = document.getElementById('AVATAR_Change');
   element.addEventListener('click', settings_ModAvatarCallBack);

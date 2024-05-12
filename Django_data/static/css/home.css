@@ -92,6 +92,14 @@ scrollbar-width: none;
         align-items: center;
     }
 
+	.offcanvas-section-inner {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
 	.offcanvas-section-border {
         border-bottom: 1px solid #828282;
     }
@@ -325,9 +333,18 @@ scrollbar-width: none;
 		line-height: normal;
 	}
 
+	#PlayButton {
+		width: 23rem;
+	}
+
+
+	#PlayButtonTournament {
+		width: 23rem;
+	}
+
 	.play-button {
 		display: flex;
-		width: 28.125rem;
+		width: 100%;
 		height: 4.375rem;
 		justify-content: center;
 		align-items: center;
@@ -412,6 +429,10 @@ scrollbar-width: none;
 		font-weight: 400;
 		line-height: normal;
 	}
+
+	.mobile-visible {
+		display: none !important;
+	}
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -485,6 +506,14 @@ scrollbar-width: none;
 
     .offcanvas-section {
         width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+	.offcanvas-section-inner {
+        width: 100%;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -621,13 +650,6 @@ scrollbar-width: none;
 		justify-content: center;
 		flex-grow: 1;
     	align-items: center;
-		/* Pour faire une fenetre */
-		/* width: 60em;
-    	height: 40em; */
-		/* border: 1px solid #5DC6E8;
-		border-radius: 10px;
-		margin-top: 2em;
-		margin-bottom: 2em; */
 	}
 
 	#overlayMobile {
@@ -724,9 +746,17 @@ scrollbar-width: none;
 		line-height: normal;
 	}
 
+	#PlayButton {
+		width: 23rem;
+	}
+
+	#PlayButtonTournament {
+		width: 23rem;
+	}
+
 	.play-button {
 		display: flex;
-		width: 23rem;
+		width: 100%;
 		height: 4.375rem;
 		justify-content: center;
 		align-items: center;
@@ -811,6 +841,10 @@ scrollbar-width: none;
 		width: 100%;
 		justify-content: center;
 	}
+
+	.mobile-visible {
+		display: none !important;
+	}
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -890,6 +924,14 @@ scrollbar-width: none;
 
     .offcanvas-section {
         width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+	.offcanvas-section-inner {
+        width: 100%;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -1127,8 +1169,17 @@ scrollbar-width: none;
 		line-height: normal;
 	}
 
-	.play-button {
+	#PlayButton {
 		width: 75%;
+		max-width: 23em;
+	}
+
+	#PlayButtonTournament {
+		width: 100%;
+	}
+
+	.play-button {
+		width: 100%;
 		height: 4.375rem;
 		padding: 0.625rem;
 
@@ -1209,4 +1260,23 @@ scrollbar-width: none;
 		width: 100%;
 		justify-content: center;
 	}
+
+	.mobile-hidden {
+		display: none !important;
+	}
 }
+
+.Tournament-content::-webkit-scrollbar { /* WebKit */
+    width: 2px; /* Adjusts the width of the scrollbar */
+	height: 0; /* Adjusts the width of the scrollbar */
+}
+
+.Tournament-content::-webkit-scrollbar-thumb { /* WebKit */
+    background-color: rgb(194, 194, 194); /* Sets the color of the scrollbar thumb */
+    border-radius: 10px; /* Optional: Rounds the corners of the scrollbar thumb */
+}
+
+#SetPlayer1, #SetPlayer2 {
+	margin-bottom : 0.5em;
+}
+

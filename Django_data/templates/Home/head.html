@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="screen-orientation" content="portrait">
   {% load bootstrap5 %}
 
   {% bootstrap_css %}
@@ -77,6 +78,9 @@
 	<script src={% static "js/Game/Game_Socket.js" %}></script>
 	<script src={% static "js/Game/Matchmaking_Events.js" %}></script>
 
+	<script src={% static "js/Game/Tournament_Game.js" %}></script>
+	<script src={% static "js/Game/Tournament_Event.js" %}></script>
+	<script src={% static "js/Game/Bracket_Event.js" %}></script>
 	<!-- Script Init Modals -->
 	<script src={% static "js/Modals_Init.js" %}></script>
 

@@ -7,7 +7,8 @@ urlpatterns = [
 	path("solo/" , views.gamePage, name="solo-game-page"),
  	path("parameters/", views.gameParameters, name="parameters"),
   	path("modes/", views.modes, name="modes"),
-    path("tournament/", views.tournament, name="tournament"),
+    path("tournament/set/", views.tournament, name="tournament"),
+    path("tournament/bracket/", views.bracket, name="bracket"),
 	path("matchmaking/" , views.matchmakingPage, name="matchmaking-page"),
 	path("<str:room_name>/" , views.multiGamePage, name="multiplayer-game-page")
 ]

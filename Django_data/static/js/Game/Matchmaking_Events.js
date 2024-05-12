@@ -1,5 +1,4 @@
 function matchmaking_SetEvents () {
-  // Fonction pour se connecter au WebSocket
   matchSocket = new WebSocket("wss://" + window.location.host + "/ws/multi/matchmaking/");
 
   matchSocket.onopen = function () {
@@ -8,7 +7,6 @@ function matchmaking_SetEvents () {
   };
 
   matchSocket.onmessage = function (event) {
-    //console.log("Message received from server:", event.data);
     data = JSON.parse(event.data);
 	console.log(data);
 	if (data.message == "settings") {

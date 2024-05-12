@@ -5,17 +5,19 @@ function modes_SetEvents() {
   element = document.getElementById("SELECT_ai");
   element.addEventListener("click", modes_playerVSia);
 
-  element = document.getElementById("GAME_Join");
-  element.addEventListener("click", modes_ChooseGame);
-
   element = document.getElementById("GAME_Create");
   element.addEventListener("click", modes_CreateGame);
 
-  element = document.getElementById("TRNMT_Join");
-  element.addEventListener("click", modes_ChooseTournament);
-
   element = document.getElementById("TRNMT_Create");
   element.addEventListener("click", modes_CreateTournament);
+
+  element = document.getElementById("TRNMT_Continue");
+  element.addEventListener("click", modes_ContinueTournament);
+
+  element = document.getElementById('GAME_Soon')
+  element.addEventListener('click', function() {
+        window.open('https://robertsspaceindustries.com/', '_blank');
+    });
 }
 
 function modes_DelEvents() {
@@ -25,15 +27,17 @@ function modes_DelEvents() {
   element = document.getElementById("SELECT_ai");
   element.removeEventListener("click", modes_playerVSia);
 
-  element = document.getElementById("GAME_Join");
-  element.removeEventListener("click", modes_ChooseGame);
-
   element = document.getElementById("GAME_Create");
   element.removeEventListener("click", modes_CreateGame);
 
-  element = document.getElementById("TRNMT_Join");
-  element.removeEventListener("click", modes_ChooseTournament);
-
   element = document.getElementById("TRNMT_Create");
   element.removeEventListener("click", modes_CreateTournament);
+
+  element = document.getElementById("TRNMT_Continue");
+  element.removeEventListener("click", modes_ContinueTournament);
+
+  element = document.getElementById('GAME_Soon')
+  element.removeEventListener('click', function() {
+        window.open('https://robertsspaceindustries.com/', '_blank');
+    });
 }
