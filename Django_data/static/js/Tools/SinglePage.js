@@ -35,7 +35,8 @@ window.addEventListener("popstate", async function (event) {
   }
   del_current_event();
   const elem = document.getElementById("titleContent").getAttribute("data-content");
-  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
+  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" ||
+    elem === "GAME_ROOM" || elem === "TOURNAMENT" || elem === "BRACKET" || elem === "WAITING") {
     const targetNode = document.querySelector("#content");
     const config = { childList: true, subtree: true };
 
@@ -61,7 +62,8 @@ async function loadPage (url) {
   }
   del_current_event();
   const elem = document.getElementById("titleContent").getAttribute("data-content");
-  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" || elem === "GAME_ROOM") {
+  if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" ||
+    elem === "GAME_ROOM" || elem === "TOURNAMENT" || elem === "BRACKET" || elem === "WAITING") {
     const targetNode = document.querySelector("#content");
     const config = { childList: true, subtree: true };
 
@@ -74,8 +76,8 @@ async function MakeRequest (url, request = null) {
   try {
     const response = await fetchSection(url, request);
 
-    if (response.status === 403) {
-      Access_Denied();
+    if (response.status === 403 || response.status === 404) {
+      Error_Page(response.status);
     }
     return response;
   } catch (err) {

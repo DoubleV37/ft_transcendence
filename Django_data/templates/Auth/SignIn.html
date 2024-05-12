@@ -21,9 +21,7 @@
 	    <h1 id="login_title">Login Informations</h1>
 	    {% csrf_token %}
 	    {{ form.as_p }}
-	    <!-- Display area for client-side validation errors -->
 	    <div id="SIGNIN_Errors" style="color: red;"></div>
-	    <!-- Submit button triggers client-side validation -->
 	    <button id="SignInButton" type="submit" class="ButtonLayout ButtonBlue CTA">Sign In</button>
 	    <div id="SIGNIN_Signup">
 	      <p>Doesn’t have a Pong account ? <b>Create your account</b></p>

@@ -212,13 +212,6 @@
         margin-bottom: 0.3rem;
     }
 
-    #switchCheckLabelTop {
-        width: 4em;
-        height: 2em;
-        border-radius: 0.6em;
-        margin-top: 0;
-    }
-
     #HEADER_NavSignOut:hover, #AVATAR_Delete:hover {
         background-color: #1C2026 !important;
     }
@@ -453,12 +446,6 @@
         margin-bottom: 0.3rem;
     }
 
-    #switchCheckLabelTop {
-        width: 4em;
-        height: 2em;
-        border-radius: 0.6em;
-    }
-
     #HEADER_NavSignOut:hover, #AVATAR_Delete:hover {
         background-color: #1C2026 !important;
     }
@@ -691,11 +678,6 @@
         font-weight: 400;
         line-height: normal;
         margin-bottom: 0.3rem;
-    }
-
-    #switchCheckLabelTop {
-        height: 2em;
-        border-radius: 0.6em;
     }
 
     #HEADER_NavSignOut:hover, #AVATAR_Delete:hover {

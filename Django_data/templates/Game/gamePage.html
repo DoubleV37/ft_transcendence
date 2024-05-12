@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
+  {% include "Home/head.html" %}
   <body>
-	{% include "Home/head.html" %}
-	{% include "Home/header.html" %}
-	{% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
-	{% include "Profile/Profile.html" %}
-	{% include "Auth/code_validation.html" %}
- 	{% include "Profile/enable_2fa.html" %}
-	{% include "FriendList/FriendsList.html" %}
-
+    {% include "Profile/Avatar.html" %}
+    {% include "Profile/Profile.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
+    {% include "FriendList/FriendsList.html" %}
+    <header>
+      <div id="Header_content"></div>
+    </header>
 	<div id="content">
 		<div id="overlay">
 			<div class="midGame midcolumn fadeinAnimation">
@@ -47,7 +48,5 @@
 			</div>
 		</div>
 	</div>
-
-
   </body>
 </html>
