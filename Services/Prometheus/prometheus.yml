@@ -12,3 +12,14 @@ scrape_configs:
   - job_name: 'cadvisor'
     static_configs:
       - targets: ['cadvisor:8098']
+groups:
+  - name: alert
+    rules:
+      - alert: HighRequestLatency
+        expr: job:api_http_request_latency_seconds:mean5m{job="prometheus"} > 0.5
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: High request latency on {{ $labels.instance }}
+          description: '{{ $labels.instance }} has a 5-minute request latency above 0.5 seconds ({{ $value }}s)'
