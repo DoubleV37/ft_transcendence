@@ -44,7 +44,7 @@
                             <div class="dropdown">
                               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ person.avatar.url }}"></img>
-                                {{ person }}
+                                {{ person|lower|capfirst }}
                               </button>
                               <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
                                 <li>
@@ -108,7 +108,7 @@
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-flip="false" aria-expanded="false">
                         <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ person.avatar.url }}"></img>
-                        {{ person }}
+                        {{ person|lower|capfirst }}
                       </button>
                       <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
                         <li>

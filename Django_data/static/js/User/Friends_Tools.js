@@ -17,9 +17,7 @@ function friends_CreateNewUserElem (form, id) {
   const img = node.querySelector("img").getAttribute("src");
   const newNodeElement = newNode();
 
-// Transforme le texte de 'name'
   let capitalizedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-  console.log(capitalizedName);
 
   newNodeElement.innerHTML = `<div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

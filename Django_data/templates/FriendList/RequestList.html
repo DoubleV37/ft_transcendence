@@ -7,7 +7,7 @@
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-flip="false" data-bs-toggle="dropdown" aria-expanded="false">
           <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ friend_request.from_user.avatar.url }}"></img>
-          {{ friend_request.from_user }}
+          {{ friend_request.from_user|lower|capfirst }}
         </button>
         <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
           <li>
@@ -26,5 +26,3 @@
     {% endfor %}
   </ul>
   {% endif %}
-
-  
