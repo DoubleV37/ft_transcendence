@@ -1,5 +1,4 @@
 function matchmaking_SetEvents () {
-  // Fonction pour se connecter au WebSocket
   matchSocket = new WebSocket("wss://" + window.location.host + "/ws/multi/matchmaking/");
 
   matchSocket.onopen = function () {

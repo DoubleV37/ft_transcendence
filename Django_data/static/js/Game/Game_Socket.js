@@ -159,6 +159,10 @@ function EndGame (message) {
   confirmEndGame.onclick = function () {
     clearTimeout(id);
     loadPage(ROUTE.GAME_MODES);
+    header_DelEvents();
+    changeSection(`${ROUTE.HEADER}`, "#Header_content");
+    header_SetEvents();
+
     endGameScreen.style.display = "none";
   };
   gameCanvas.inGame = false;

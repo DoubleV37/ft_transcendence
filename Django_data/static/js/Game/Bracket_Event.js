@@ -45,6 +45,9 @@ function endTournament (winner) {
   Confirm.onclick = function () {
     Screen.style.display = "none";
     loadPage(`${ROUTE.SET_TOURNAMENT}`);
+    header_DelEvents();
+    changeSection(`${ROUTE.HEADER}`, "#Header_content");
+    header_SetEvents();
     tournament = null;
   };
 }
