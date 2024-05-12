@@ -69,11 +69,20 @@ services:
     volumes:
       - /:/host:ro,rslave
 
+  postgres_exporter:
+    container_name: postgres_exporter
+    image: wrouesnel/postgres_exporter:latest
+    restart: unless-stopped
+    ports:
+      - "9187:9187"
+    env_file: .env
+
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.47.0
+    image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     command:
       - '-port=8098'
+      - '-enable_metrics=process,cpuLoad,diskIO,cpu'
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
