@@ -17,7 +17,7 @@
 	  </div>
 	  <div class="offcanvas-body">
 	    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-	      <li class="nav-item">
+	    <li class="nav-item">
 		{% if user.is_authenticated %}
 		<div class="offcanvas-section offcanvas-section-border ">
 		  <div class="ProfileCardboard offcanvas-profileCardboard">
@@ -41,16 +41,12 @@
 		</div>
 		<div class="offcanvas-section d-flex justify-content-evenly flex-column">
             <div class="offcanvas-section-inner">
-            <div class="ProfilePage offcanvas-profile">
-                <button id="HEADER_NavProfile" type="button" class="ButtonLayout ButtonNeon">Profile</button>
-                <button id="HEADER_NavFriends" class="ButtonLayout ButtonNeon">Friends</button>
-            </div>
-            </div>
-            <div class="offcanvas-section-inner">
-            <div class="ProfilePage offcanvas-profile">
-                <button id="HEADER_NavSignOut" class="ButtonLayout ButtonDark">Sign out</button>
-            </div>
-            </div>
+				<div class="ProfilePage offcanvas-profile">
+					<button id="HEADER_NavProfile" type="button" class="ButtonLayout ButtonNeon">Profile</button>
+					<button id="HEADER_NavFriends" class="ButtonLayout ButtonNeon">Friends</button>
+					<button id="HEADER_NavSignOut" class="ButtonLayout ButtonDark">Sign out</button>
+				</div>
+        	</div>
         </div>
 
 		{% else %}
@@ -63,7 +59,7 @@
 			</div>
 		  </div>
 		{% endif %}
-	      </li>
+	    </li>
 	    </ul>
 	  </div>
 	</div>
