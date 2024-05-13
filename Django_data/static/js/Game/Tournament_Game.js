@@ -6,6 +6,8 @@ function launchGame () {
   gameSocket.addEventListener("close", onCloseGame);
   document.addEventListener("keyup", keyUp);
   document.addEventListener("keydown", keyDown);
+  document.body.addEventListener("mousedown", mousedown);
+  document.body.addEventListener("mouseup", mouseup);
   document.getElementById("Bracket").hidden = true;
   document.getElementById("Game").hidden = false;
   init_canvas();
@@ -20,8 +22,6 @@ function quitGame () {
 }
 
 function onOpenGame () {
-  console.log("The connection was setup successfully !");
-
   gameSocket.send(JSON.stringify(GameParams));
   gameSocket.addEventListener("message", receiveGameMsg);
   gameStop = false;
@@ -29,13 +29,14 @@ function onOpenGame () {
 }
 
 function onCloseGame () {
-  console.log("The connection as ended!");
   gameStop = true;
   gameSocket.removeEventListener("message", receiveGameMsg);
   gameSocket.removeEventListener("open", onOpenGame);
   gameSocket.removeEventListener("close", onCloseGame);
   document.removeEventListener("keyup", keyUp);
   document.removeEventListener("keydown", keyDown);
+  document.body.removeEventListener("mousedown", mousedown);
+  document.body.removeEventListener("mouseup", mouseup);
   keyStates = {
     ArrowUp: false,
     ArrowDown: false,
@@ -116,22 +117,27 @@ function updateGame () {
       gameSocket.readyState === WebSocket.CLOSE) {
     return ;
   }
-  if (gameStop !== true) {
-    if (keyStates.ArrowUp) {
-      gameSocket.send(JSON.stringify({ message: "up" }));
-    } else if (keyStates.ArrowDown) {
-      gameSocket.send(JSON.stringify({ message: "down" }));
-    } else if (keyStates[" "]) {
-      gameSocket.send(JSON.stringify({ message: "space" }));
+  const currentTime = performance.now();
+  const deltaTime = currentTime - lastFrameTime;
+
+  if (deltaTime >= 1000 / targetFrameRate) {
+    if (gameStop !== true) {
+      if (keyStates.ArrowUp) {
+        gameSocket.send(JSON.stringify({ message: "up" }));
+      } else if (keyStates.ArrowDown) {
+        gameSocket.send(JSON.stringify({ message: "down" }));
+      } else if (keyStates[" "]) {
+        gameSocket.send(JSON.stringify({ message: "space" }));
+      }
+      if (keyStates.w) {
+        gameSocket.send(JSON.stringify({ message: "w" }));
+      } else if (keyStates.s) {
+        gameSocket.send(JSON.stringify({ message: "s" }));
+      }
     }
-    if (keyStates.w) {
-      gameSocket.send(JSON.stringify({ message: "w" }));
-    } else if (keyStates.s) {
-      gameSocket.send(JSON.stringify({ message: "s" }));
-    }
-    // Planifiez la prochaine mise à jour
-    requestAnimationFrame(updateGame);
+    lastFrameTime = currentTime;
   }
+  requestAnimationFrame(updateGame);
 }
 
 function endMatch (message) {

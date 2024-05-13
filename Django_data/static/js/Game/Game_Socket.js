@@ -1,3 +1,4 @@
+
 function init_websocket () {
   // Create WebSocket connection.
   gameSocket.onopen = function (e) {
@@ -8,48 +9,6 @@ function init_websocket () {
   };
 }
 
-// ai_town
-function iaBrain (data) {
-  const rand = Math.floor(Math.random() * 41) - 20;
-  let bx = data.ballX * 1200;
-  let by = data.ballY * 900;
-  const sx = data.ballspeedX;
-  let sy = data.ballspeedY;
-  iaMemory.pos = data.paddleL * 900;
-
-  if (sx === 0) {
-    iaMemory.target = Math.floor(Math.random() * 301) + 300;
-    if (bx < 600) {
-      iaMemory.service = true;
-    }
-  } else if (sx > 0) {
-    iaMemory.target = 450;
-  } else {
-    while (bx > 60) {
-      bx += sx;
-      by += sy;
-      if (by < 5 || by > 895) {
-        sy *= -1;
-      }
-    }
-    iaMemory.target = by + rand;
-  }
-}
-
-function iaMove () {
-  if (iaMemory.pos < iaMemory.target - 10) {
-    gameSocket.send(JSON.stringify({ message: "s" }));
-    iaMemory.pos += iaMemory.step;
-  } else if (iaMemory.pos > iaMemory.target + 10) {
-    gameSocket.send(JSON.stringify({ message: "w" }));
-    iaMemory.pos -= iaMemory.step;
-  } else if (iaMemory.service) {
-    gameSocket.send(JSON.stringify({ message: "space" }));
-    iaMemory.service = false;
-  }
-}
-// the end of ia town
-//
 function receive_data (e) {
   const data = JSON.parse(e.data);
   if (data.message === "Game stopped") {
@@ -64,7 +23,6 @@ function receive_data (e) {
   } else if (data.message === "game_finish" && GameParams.opponent != "ai") {
     return EndGame(`${data.winner} won!`);
   } else if (data.message === "game_finish" && GameParams.opponent === "ai") {
-    console.log(data.winner);
     if (data.winner === "IA") { return EndGame("IA-Ochen won!"); }
     return EndGame("You won!");
   }
@@ -88,9 +46,6 @@ function receive_data (e) {
   }
 }
 
-let lastFrameTime = 0;
-const targetFrameRate = 60; // j'ai mis 60fps du coup
-
 function update () {
   const currentTime = performance.now();
   const deltaTime = currentTime - lastFrameTime;
@@ -99,7 +54,6 @@ function update () {
   	return;
   }
 
-  // le petit calcul de l'amour
   if (deltaTime >= 1000 / targetFrameRate) {
     if (keyStates.ArrowUp) {
       gameSocket.send(JSON.stringify({ message: "up" }));
@@ -156,11 +110,11 @@ function EndGame (message) {
   }, 450);
 
   endGameScreen.style.display = "flex";
-  confirmEndGame.onclick = function () {
+  confirmEndGame.onclick = async function () {
     clearTimeout(id);
-    loadPage(ROUTE.GAME_MODES);
+    await loadPage(ROUTE.GAME_MODES);
     header_DelEvents();
-    changeSection(`${ROUTE.HEADER}`, "#Header_content");
+    await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
 
     endGameScreen.style.display = "none";
