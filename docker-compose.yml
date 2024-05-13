@@ -43,11 +43,10 @@ services:
     image: prom/prometheus:latest
     volumes:
       - ./Services/Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./Services/Prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-    ports:
-      - "9090:9090"
 
   grafana:
     container_name: grafana
@@ -68,31 +67,6 @@ services:
     restart: unless-stopped
     volumes:
       - /:/host:ro,rslave
-
-  postgres_exporter:
-    container_name: postgres_exporter
-    image: wrouesnel/postgres_exporter:latest
-    restart: unless-stopped
-    ports:
-      - "9187:9187"
-    env_file: .env
-
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
-    container_name: cadvisor
-    command:
-      - '-port=8098'
-      - '-enable_metrics=process,cpuLoad,diskIO,cpu'
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk/:/dev/disk:ro
-    devices:
-      - /dev/kmsg
-    privileged: true
-    restart: unless-stopped
 
   setup:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
