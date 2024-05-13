@@ -8,7 +8,7 @@
     .conteneur-tournament {
         display: grid;
         grid-template-columns: 1fr 1fr 2fr;
-        justify-items: center;
+        justify-items: start;
         margin-top: 1em;
     }
 
@@ -171,7 +171,6 @@
         margin-bottom: 0 !important;
         width: 18em !important;
         height: 2.750rem !important;
-        margin-top: 1.7rem !important;
         font-family: 'Kodchasan' !important;
     }
     
@@ -188,7 +187,7 @@
     .conteneur-tournament {
         display: grid;
         grid-template-columns: 1fr 1fr 2fr;
-        justify-items: center;
+        justify-items: start;
         margin-top: 1em;
     }
 
@@ -349,7 +348,6 @@
         margin-bottom: 0 !important;
         width: 17em !important;
         height: 2.750rem !important;
-        margin-top: 1.7rem !important;
         font-family: 'Kodchasan' !important;
     }
 }
@@ -363,7 +361,7 @@
 
     .conteneur-tournament {
         display: grid;
-        grid-template-columns: 2fr 2fr 2fr;
+        grid-template-columns: 2fr 2fr;
         justify-items: start;
         margin-top: 1em;
     }
