@@ -249,6 +249,20 @@
         background-color: #202532;
         border: 1px solid #5DC6E8;
     }
+
+    .team-loser {
+        color: #fff;
+        padding: 10px 8px;
+        background-color: #202532;
+        border: 1px solid #AE473B;
+    }
+
+    .team-winner {
+        color: #fff;
+        padding: 10px 8px;
+        background-color: #202532;
+        border: 1px solid #40FD14;
+    }
     
     .team:nth-child(odd) {
         border-bottom: none;
@@ -395,6 +409,26 @@
         padding: 10px 8px;
         background-color: #202532;
         border: 1px solid #5DC6E8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-loser {
+        color: #fff;
+        padding: 10px 8px;
+        background-color: #202532;
+        border: 1px solid #AE473B;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-winner {
+        color: #fff;
+        padding: 10px 8px;
+        background-color: #202532;
+        border: 1px solid #40FD14;
         display: flex;
         flex-direction: column;
         align-items: center;

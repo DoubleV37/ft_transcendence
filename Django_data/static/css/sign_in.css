@@ -37,6 +37,10 @@
         align-self: stretch;
     }
 
+    #SIGNIN_Form > ul {
+        display: none;
+    }
+
     #SIGNIN_Form p label {
         color: #FFF;
         /* Body text */
@@ -130,7 +134,7 @@
         padding-bottom: 0.7rem;
         /* Body text */
         font-family: Kodchasan;
-        font-size: 1rem;
+        font-size: 2rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -184,6 +188,10 @@
         align-items: flex-start;
         gap: 0.625rem;
         align-self: stretch;
+    }
+
+    #SIGNIN_Form > ul {
+        display: none;
     }
 
     #SIGNIN_Form p label {
@@ -332,6 +340,10 @@
         align-items: flex-start;
         gap: 0.625rem;
         align-self: stretch;
+    }
+
+    #SIGNIN_Form > ul {
+        display: none;
     }
 
     #SIGNIN_Form p label {

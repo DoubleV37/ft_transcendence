@@ -47,6 +47,10 @@
         line-height: normal;
     }
 
+    #SIGNUP_Form > ul {
+        display: none;
+    }
+
     #SIGNUP_Errors {
         /* Body text */
         font-family: Kodchasan;
@@ -153,6 +157,10 @@
         align-items: flex-start;
         gap: 0.625rem;
         align-self: stretch;
+    }
+
+    #SIGNUP_Form > ul {
+        display: none;
     }
 
     #SIGNUP_Form p label {
@@ -264,6 +272,10 @@
         align-items: flex-start;
         gap: 0.625rem;
         align-self: stretch;
+    }
+
+    #SIGNUP_Form > ul {
+        display: none;
     }
 
     #SIGNUP_Form p label {
