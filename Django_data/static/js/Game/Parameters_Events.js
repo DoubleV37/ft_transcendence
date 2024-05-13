@@ -57,15 +57,5 @@ function parameters_DelEvents () {
   element = document.getElementById("StartButton");
   element.removeEventListener("click", parameters_StartGame);
 
-  const Switch = document.getElementById("switchCheckLabelTop");
-  Switch.onkeyup = function (e) {
-    if (e.key === "Enter") {
-      e.target.checked = e.target.checked === false;
-      if (e.target.checked === true) {
-        GameParams.powerup = true;
-      } else {
-        GameParams.powerup = false;
-      }
-    }
-  };
+  GameParams.powerup = document.getElementById("switchCheckLabelTop").checked;
 }

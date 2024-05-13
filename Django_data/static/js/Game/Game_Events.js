@@ -111,7 +111,7 @@ function whichMove (e, value) {
   const vLine = rect.x + rect.width / 2;
   const hLine = rect.y + rect.height / 2;
   if (pos.x < vLine - 1 && pos.y < hLine - 1) {
-    keyStates['w'] = value; 
+    keyStates['w'] = value;
   } else if (pos.x < vLine - 1 && pos.y > hLine + 1) {
     keyStates['s'] = value;
   } else if (pos.x > vLine + 1 && pos.y < hLine - 1) {
@@ -139,7 +139,7 @@ function init_canvas () {
   gameCanvas.canvas.height = gameCanvas.height;
   gameCanvas.paddle1Height = 0,
   gameCanvas.paddle2Height = 0,
-  gameCanvas.powerup = false,
+  gameCanvas.powerup = GameParams.powerup,
   gameCanvas.powerupY = 0,
   gameCanvas.powerupX = 0,
   gameCanvas.powerupsize = 0,

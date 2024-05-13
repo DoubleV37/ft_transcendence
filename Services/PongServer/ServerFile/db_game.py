@@ -9,7 +9,6 @@ from global_var import GAMES
 # =======  db  =======
 
 async def take_conf_db():
-	print("==Take config DB==")
 	config_db = {}
 	config_db["host"] = config("POSTGRES_HOST")
 	config_db["database"] = config("POSTGRES_DB")
@@ -19,19 +18,15 @@ async def take_conf_db():
 	return config_db
 
 async def connect_db(config_db):
-	print("==Connect DB==")
 	conn = None
 	try:
 		# connect to the PostgreSQL server
-		print('Connecting to the PostgreSQL database...')
 		conn = psycopg2.connect(**config_db)
-		print('Connected')
 		return conn
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
 
 async def save_game_db(game_id, pong):
-	print("==Save game DB==")
 	config = await take_conf_db()
 	conn = await connect_db(config)
 	cur = conn.cursor()
@@ -44,10 +39,8 @@ async def save_game_db(game_id, pong):
 	conn.commit()
 	cur.close()
 	conn.close()
-	print("==Game saved==")
 
 async def save_user_game_db(gameid, user, num, pong):
-	print("==Save user game DB==")
 	config = await take_conf_db()
 	conn = await connect_db(config)
 	cur = conn.cursor()
@@ -67,7 +60,6 @@ async def save_user_game_db(gameid, user, num, pong):
 	conn.close()
 
 async def save_db(game_id, pong):
-	print("==Save DB==")
 	user1 = GAMES[game_id]["player_1"]
 	user2 = GAMES[game_id]["player_2"]
 	if len(GAMES[game_id]["players"]) == 2:
@@ -92,7 +84,6 @@ async def save_db(game_id, pong):
 
 
 async def update_global_stats(winner, user, game_id):
-	print("==Update global stats==")
 	config = await take_conf_db()
 	conn = await connect_db(config)
 	cur = conn.cursor()
@@ -114,7 +105,6 @@ async def update_global_stats(winner, user, game_id):
 	conn.close()
 
 async def get_user_info(username):
-	print("==Get user info==", username)
 	config = await take_conf_db()
 	conn = await connect_db(config)
 	cur = conn.cursor()
@@ -125,7 +115,6 @@ async def get_user_info(username):
 	return row
 
 async def set_ingame_status(username, status):
-	print("==Set in game status==")
 	config = await take_conf_db()
 	conn = await connect_db(config)
 	cur = conn.cursor()

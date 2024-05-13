@@ -10,9 +10,7 @@ async def matchmaking_handler(websocket, path):
 	while True:
 		try:
 			if not waiting:
-				print("==Waiting for settings")
 				message = await websocket.recv()
-				print(f"==Received message: {message}")
 				data = json.loads(message)
 				type_msg = data.get("message")
 				if (type_msg == "settings"):
@@ -20,18 +18,14 @@ async def matchmaking_handler(websocket, path):
 					waiting = True
 					found, group = check_group(websocket)
 					if found:
-						print("==Group found==")
 						print(group)
 						room_name = generate_room_name(group)
 						for ws in group:
 							await ws[0].send(json.dumps(group[0][1]["data"]))
 							await ws[0].send(json.dumps({"message" : "match_found", "room_name" : room_name}))
 			if waiting:
-				print("==Waiting for group alone")
 				message = await websocket.recv()
-				print(f"=XXXXX=Received message: {message}")
 		except websockets.exceptions.ConnectionClosed:
-			print("==Client disconnected")
 			del CONNECTIONS[websocket]
 			break
 
@@ -83,5 +77,3 @@ async def register(websocket, data):
 		options={"verify_signature": False}
 	)
 	CONNECTIONS[websocket] = {"user" : dict_user["username"], "data" : data}
-	print("==Client connected")
-	print(CONNECTIONS)
