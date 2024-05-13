@@ -75,7 +75,7 @@ async function header_LogoCallback () {
     loadPage(`${ROUTE.HOME}`);
     offcanvas_Hide();
   } catch (error) {
-    console.log(`Error - header_L: ${error}`);
+    console.error("Header:", error);
   }
 }
 
@@ -84,7 +84,7 @@ function header_SignInCallBack () {
     loadPage(`${ROUTE.SIGNIN}`);
     offcanvas_Hide();
   } catch (error) {
-    console.log(`Error - header_S: ${error}`);
+    console.error("Header:", error);
   }
 }
 
@@ -94,7 +94,7 @@ async function header_ModProfilCallBack () {
     await changeSection(`${ROUTE.PROFILE}`, "#ProfileModal");
     profileModal.modal.show();
   } catch (error) {
-    console.log(`Error - header_M: ${error}`);
+    console.error("Header:", error);
   }
 }
 
@@ -105,7 +105,7 @@ async function header_ModFriendsCallBack () {
     await changeSection(`${ROUTE.REQUESTS}`, "#RequestList-content");
     friendsModal.modal.show();
   } catch (error) {
-    console.log(`Error - header_M: ${error}`);
+    console.error("Header:", error);
   }
 }
 
@@ -114,7 +114,7 @@ function header_SignUpCallBack () {
     loadPage(`${ROUTE.SIGNUP}`);
     offcanvas_Hide();
   } catch (error) {
-    console.log(`Error - header_SU: ${error}`);
+    console.error("Header:", error);
   }
 }
 
@@ -127,6 +127,6 @@ async function header_SignOutCallBack () {
     header_SetEvents();
     await loadPage(`${ROUTE.HOME}`);
   } catch (error) {
-    console.log(`Error - header_SO: ${error}`);
+    console.error("Header:", error);
   }
 }

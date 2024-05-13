@@ -4,7 +4,7 @@ async function profile_SettingsCallBack() {
     profileModal.modal.hide();
     historyprofile = [];
   } catch (err) {
-    console.log(`Error - profile_S: ${err}`);
+    console.error("Profile:", err);
   }
 }
 
@@ -19,7 +19,7 @@ async function profile_SkinsCallBack() {
     profileModal.modal.hide();
     historyProfile = [];
   } catch (err) {
-    console.log(`Error - profile_S: ${err}`);
+    console.error("Profile:", err);
   }
 }
 
@@ -66,7 +66,6 @@ async function profile_HistoryCallBack() {
 }
 
 async function goToGameStats(event) {
-  console.log(`target = ${event.target}`);
   id = event.target.getAttribute("data-gameId");
   const list = document
     .getElementById("GameListHistory")
@@ -129,7 +128,7 @@ async function profile_FriendsButtonCallBack(event) {
     }
     return true;
   } catch (err) {
-    console.error("ERROR:", err);
+    console.error("Error:", err);
     return false;
   }
 }
@@ -141,6 +140,6 @@ async function profile_GotoFriends() {
     await changeSection(`${ROUTE.REQUESTS}`, "#RequestList-content");
     friendsModal.modal.show();
   } catch (error) {
-    console.log(`Error - header_M: ${error}`);
+		console.error("header:", error);
   }
 }

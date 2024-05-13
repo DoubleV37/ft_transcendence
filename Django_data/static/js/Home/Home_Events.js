@@ -34,7 +34,7 @@ function home_PlayCallBack () {
   try {
     loadPage(`${ROUTE.GAME_MODES}`);
   } catch (error) {
-    console.log(`Error - home_P: ${error}`);
+    console.error("Home:", error);
   }
 }
 
@@ -42,7 +42,7 @@ function home_SigninCallBack () {
   try {
     loadPage(`${ROUTE.SIGNIN}`);
   } catch (error) {
-    console.log(`Error - home_S: ${error}`);
+    console.error("Home:", error);
   }
 }
 
@@ -50,6 +50,6 @@ function home_SignupCallBack () {
   try {
     loadPage(`${ROUTE.SIGNUP}`);
   } catch (error) {
-    console.log(`Error - home_S: ${error}`);
+    console.error("Home:", error);
   }
 }
