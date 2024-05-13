@@ -6,8 +6,8 @@ function launchGame () {
   gameSocket.addEventListener("close", onCloseGame);
   document.addEventListener("keyup", keyUp);
   document.addEventListener("keydown", keyDown);
-  document.body.addEventListener("mousedown", mousedown);
-  document.body.addEventListener("mouseup", mouseup);
+  document.body.addEventListener("touchstart", touchDown);
+  document.body.addEventListener("touchend", touchUp);
   document.getElementById("Bracket").hidden = true;
   document.getElementById("Game").hidden = false;
   init_canvas();
@@ -35,8 +35,8 @@ function onCloseGame () {
   gameSocket.removeEventListener("close", onCloseGame);
   document.removeEventListener("keyup", keyUp);
   document.removeEventListener("keydown", keyDown);
-  document.body.removeEventListener("mousedown", mousedown);
-  document.body.removeEventListener("mouseup", mouseup);
+  document.body.addEventListener("touchstart", touchDown);
+  document.body.addEventListener("touchend", touchUp);
   keyStates = {
     ArrowUp: false,
     ArrowDown: false,
