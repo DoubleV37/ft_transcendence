@@ -1,14 +1,3 @@
-
-function init_websocket () {
-  // Create WebSocket connection.
-  gameSocket.onopen = function (e) {
-    console.log("The connection was setup successfully !");
-  };
-  gameSocket.onclose = function (e) {
-    console.log("Something unexpected happened !");
-  };
-}
-
 function receive_data (e) {
   const data = JSON.parse(e.data);
   if (data.message === "Game stopped") {
