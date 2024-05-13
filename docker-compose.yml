@@ -238,8 +238,6 @@ services:
     env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval:  5s
@@ -269,8 +267,6 @@ services:
     container_name: adminer
     image: adminer:latest
     restart: always
-    ports:
-      - "8081:8080"
     depends_on:
       - postgres
 
