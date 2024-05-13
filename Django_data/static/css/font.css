@@ -4,3 +4,88 @@
 	font-weight: normal;
 	font-style: normal;
   }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-bold-webfont.woff2') format('woff2');
+	font-weight:bold;
+	font-style:normal;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-bolditalic-webfont.woff2') format('woff2');
+	font-weight:bold;
+	font-style:italic;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-extralight-webfont.woff2') format('woff2');
+	font-weight:200;
+	font-style:normal;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-extralightitalic-webfont.woff2') format('woff2');
+	font-weight:200;
+	font-style:italic;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-italic-webfont.woff2') format('woff2');
+	font-weight:normal;
+	font-style:italic;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-light-webfont.woff2') format('woff2');
+	font-weight:300;
+	font-style:normal;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-lightitalic-webfont.woff2') format('woff2');
+	font-weight:300;
+	font-style:italic;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-medium-webfont.woff2') format('woff2');
+	font-weight:500;
+	font-style:normal;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('kodchasan-mediumitalic-webfont.woff2') format('woff2');
+	font-weight:500;
+	font-style:italic;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-regular-webfont.woff2') format('woff2');
+	font-weight:normal;
+	font-style:normal;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-semibold-webfont.woff2') format('woff2');
+	font-weight:600;
+	font-style:normal;
+  }
+
+  @font-face {
+	font-family:'Kodchasan';
+    src: url('../fonts/kodchasan-semibolditalic-webfont.woff2') format('woff2');
+	font-weight:600;
+	font-style:italic;
+  }
+

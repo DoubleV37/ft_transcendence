@@ -6,7 +6,7 @@ all: up
 
 up: env
 	if [ ! -d "Django_data/staticfiles" ]; then mkdir -p Django_data/staticfiles; fi
-	docker compose up gunicorn uvicorn postgres redis nginx adminer pong rsyslog prometheus node_exporter grafana --build -d
+	docker compose up --build -d
 
 elkup:
 	docker compose up setup es01 logstash_nginx logstash_gunicorn rsyslog kibana --build -d

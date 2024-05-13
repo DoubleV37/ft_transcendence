@@ -366,6 +366,15 @@
 		opacity: 0;
 		transition: opacity 0.5s ease;
 		border-radius: 1em;
+		border-top-left-radius: 0em !important; 
+		border-top-right-radius: 0em !important;
+		border-top: none !important;
+	}
+
+	#endTournamentScreen {
+		border-top-left-radius: 1em !important; 
+		border-top-right-radius: 1em !important;
+		border: 1px solid #cf911f !important;
 	}
 
 	.username {

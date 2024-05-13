@@ -26,13 +26,13 @@ async def game_handler(websocket, game_id):
 				GAMES[game_id]["settings"] = message
 				GAMES[game_id]["pong"] = Pong(GAMES[game_id]["settings"]["point_limit"], GAMES[game_id]["settings"]["difficulty"], GAMES[game_id]["settings"]["powerup"])
 				asyncio.create_task(game_routine(game_id, GAMES[game_id]["pong"]))
-			if type_msg == "up" and num == 1:
+			if type_msg == "up" and num == 1 and GAMES[game_id]["pong"].player_pos[1] > 0:
 				GAMES[game_id]["pong"].player_pos[1] -= GAMES[game_id]["pong"].player_speed
-			if type_msg == "down" and num == 1:
+			if type_msg == "down" and num == 1 and GAMES[game_id]["pong"].player_pos[1] < 900:
 				GAMES[game_id]["pong"].player_pos[1] += GAMES[game_id]["pong"].player_speed
-			if type_msg == "up" and num == 2:
+			if type_msg == "up" and num == 2 and GAMES[game_id]["pong"].player_pos[0] > 0:
 				GAMES[game_id]["pong"].player_pos[0] -= GAMES[game_id]["pong"].player_speed
-			if type_msg == "down" and num == 2:
+			if type_msg == "down" and num == 2 and GAMES[game_id]["pong"].player_pos[0] < 900:
 				GAMES[game_id]["pong"].player_pos[0] += GAMES[game_id]["pong"].player_speed
 	except websockets.exceptions.ConnectionClosed:
 		print("==Client disconnected==")
