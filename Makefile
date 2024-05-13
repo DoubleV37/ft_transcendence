@@ -4,6 +4,7 @@ env:
 	@if [ ! -f "$(HOME)/.env" ]; then \
 		echo "Please create a.env file in your home directory" && exit 1 ; \
 	else \
+		echo "Copying .env file from $(HOME)/.env" ; \
 		cp $(HOME)/.env . ; \
 		sed -i -e "s/target/$(shell hostname -i)/g" .env ; \
 	fi
