@@ -25,7 +25,7 @@ def header(request):
         else:
             _status = 'offline'
         _id = _user.id
-        win_rate = _user.toGS.win_rate
+        win_rate = round(_user.toGS.win_rate, 2)
         nb_games = _user.toGS.nb_games
         nb_tournament = _user.toGS.tournament_games
 

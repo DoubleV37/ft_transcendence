@@ -1,3 +1,4 @@
+
 function init_websocket () {
   // Create WebSocket connection.
   gameSocket.onopen = function (e) {
@@ -22,7 +23,6 @@ function receive_data (e) {
   } else if (data.message === "game_finish" && GameParams.opponent != "ai") {
     return EndGame(`${data.winner} won!`);
   } else if (data.message === "game_finish" && GameParams.opponent === "ai") {
-    console.log(data.winner);
     if (data.winner === "IA") { return EndGame("IA-Ochen won!"); }
     return EndGame("You won!");
   }
@@ -46,9 +46,6 @@ function receive_data (e) {
   }
 }
 
-let lastFrameTime = 0;
-const targetFrameRate = 60; // j'ai mis 60fps du coup
-
 function update () {
   const currentTime = performance.now();
   const deltaTime = currentTime - lastFrameTime;
@@ -57,7 +54,6 @@ function update () {
   	return;
   }
 
-  // le petit calcul de l'amour
   if (deltaTime >= 1000 / targetFrameRate) {
     if (keyStates.ArrowUp) {
       gameSocket.send(JSON.stringify({ message: "up" }));
@@ -114,11 +110,11 @@ function EndGame (message) {
   }, 450);
 
   endGameScreen.style.display = "flex";
-  confirmEndGame.onclick = function () {
+  confirmEndGame.onclick = async function () {
     clearTimeout(id);
-    loadPage(ROUTE.GAME_MODES);
+    await loadPage(ROUTE.GAME_MODES);
     header_DelEvents();
-    changeSection(`${ROUTE.HEADER}`, "#Header_content");
+    await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
 
     endGameScreen.style.display = "none";
