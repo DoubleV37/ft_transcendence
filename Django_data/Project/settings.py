@@ -149,7 +149,7 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SAMESITE = 'None'
 
-IP = os.getenv("HOSTNAME").split(" ")[0]
+IP = os.getenv("HOSTNAME")
 
 CSRF_TRUSTED_ORIGINS = ["https://localhost:8080", f"https://{IP}:8080"]
 

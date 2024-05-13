@@ -1,8 +1,13 @@
 all: up
 
 env:
-	cp ~/.env .
-	sed -i -e "s/target/$(shell hostname -I | awk '{print $1}')/g" .env
+	@if [ ! -f "$(HOME)/.env" ]; then \
+		echo "Please create a.env file in your home directory" && exit 1 ; \
+	else \
+		echo "Copying .env file from $(HOME)/.env" ; \
+		cp $(HOME)/.env . ; \
+		sed -i -e "s/target/$(shell hostname -i)/g" .env ; \
+	fi
 
 up: env
 	if [ ! -d "Django_data/staticfiles" ]; then mkdir -p Django_data/staticfiles; fi
@@ -43,4 +48,4 @@ site: env
 update:
 	rm -rf `find ./Django_data/ -type f -name "0*"`
 
-.PHONY: up down fclean re fre all stop site update elkup elkdown elkclean elkfre
+.PHONY: up down fclean re fre all stop site update elkup elkdown elkclean elkfre env
