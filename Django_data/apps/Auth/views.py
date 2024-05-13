@@ -1,4 +1,5 @@
 from django.utils import timezone
+from django.contrib.auth.password_validation import validate_password
 from decouple import config
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
@@ -15,8 +16,6 @@ from .forms import (
     DeleteAvatar,
 )
 from .models import User
-from apps.Twofa.models import UserTwoFA
-from apps.Twofa.forms import My_2fa
 
 import logging
 import datetime
@@ -52,7 +51,7 @@ def signup(request):
 def signin(request):
     if request.method == "POST":
         form = SignInForm(request.POST)
-        data_response: dict() = {}
+        data_response = dict()
         if request.user.is_anonymous is False:
             return JsonResponse(
                 {"success": False, "error": "You are already connected !"}
@@ -103,7 +102,7 @@ def signout(request):
 # _ MY SETTINGS _____________________________________________________________ #
 
 
-def validator_fct(form, button: str, request, response: dict()) -> dict():
+def validator_fct_for(form, button: str, request, response: dict) -> dict:
     if button in request.POST:
         if form.is_valid():
             form.save()
@@ -113,11 +112,24 @@ def validator_fct(form, button: str, request, response: dict()) -> dict():
     return response
 
 
+def validator_pswrd(form, button: str, request, response: dict) -> dict:
+    if button in request.POST:
+        if form.is_valid():
+            try:
+                validate_password(request.POST['password'])
+                form.save()
+                response = {"success": True}
+            except:
+                response = {"success": False, "logs": f"{button} Error"}
+        else:
+            response = {"success": False, "logs": f"{button} Error"}
+    return response
+
+
 def my_settings(request):
 
     try:
         my_user = User.objects.get(username=request.user.username)
-
         name = My_Name(instance=my_user)
         mail = My_Mail(instance=my_user)
         pswd = My_Psswd(instance=my_user)
@@ -126,8 +138,8 @@ def my_settings(request):
         delete_avatar = DeleteAvatar()
         enabled = my_user.to2fa.enable
 
-        response: dict() = {}
-        context: dict() = {
+        response = dict()
+        context = {
             "my_user": my_user,
             "name": name,
             "mail": mail,
@@ -145,14 +157,7 @@ def my_settings(request):
             avatar = My_Avatar(request.POST, request.FILES, instance=my_user)
             t_name = My_Tournamentname(request.POST, instance=my_user)
             delete_avatar = DeleteAvatar(request.POST)
-
-            if "avatar_button" in request.POST:
-                if avatar.is_valid():
-                    avatar.save()
-                    response = {"success": True}
-                else:
-                    response = {"success": False, "logs": "Avatar Error"}
-
+         
             if "avatar_delete" in request.POST:
                 if delete_avatar.is_valid():
                     if my_user.avatar.url.find("ForbiddenDeletion/") == -1:
@@ -165,10 +170,17 @@ def my_settings(request):
                 else:
                     response = {"success": False, "logs": "Avatar not deleted"}
 
-            response = validator_fct(name, "name_button", request, response)
-            response = validator_fct(t_name, "t_name_button", request, response)
-            response = validator_fct(pswd, "pswd_button", request, response)
-            response = validator_fct(mail, "mail_button", request, response)
+            response = validator_fct_for(
+                avatar, "avatar_button", request, response
+            )
+            response = validator_fct_for(
+                name, "name_button", request, response)
+            response = validator_fct_for(
+                t_name, "t_name_button", request, response)
+            response = validator_pswrd(
+                pswd, "pswd_button", request, response)
+            response = validator_fct_for(
+                mail, "mail_button", request, response)
 
             return JsonResponse(response)
         return render(request, "Profile/User_Settings.html", context=context)
@@ -203,7 +215,8 @@ def refresh_jwt(request):
 
 def create_jwt(_user, _type="access"):
     """create_jwt serve to create the simple and the refresh Json web token"""
-    payload = {"id": _user.id, "username": _user.username, "email": _user.email}
+    payload = {"id": _user.id,
+               "username": _user.username, "email": _user.email}
     secret_key = config("DJANGO_SECRET_KEY")
     algorithm = config("HASH")
     if _type == "access":
