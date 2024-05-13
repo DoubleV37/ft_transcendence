@@ -51,6 +51,7 @@ function endTournament (winner) {
 
   Screen.style.display = "flex";
   Confirm.onclick = async function () {
+    clearTimeout(id);
     Screen.style.display = "none";
     await loadPage(`${ROUTE.SET_TOURNAMENT}`);
     header_DelEvents();
