@@ -1,6 +1,10 @@
+env:
+	cp ~/.env .
+	sed -i -e "s/target/$(shell hostname -I | awk '{print $1}')/g" .env
+
 all: up
 
-up:
+up: env
 	if [ ! -d "Django_data/staticfiles" ]; then mkdir -p Django_data/staticfiles; fi
 	docker compose up gunicorn uvicorn postgres redis nginx adminer pong rsyslog prometheus node_exporter grafana --build -d
 
@@ -31,7 +35,7 @@ re: stop up
 
 fre: fclean up
 
-site:
+site: env
 	docker compose restart gunicorn
 	docker compose restart uvicorn
 	docker compose restart pong

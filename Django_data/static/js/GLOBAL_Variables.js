@@ -131,6 +131,7 @@ let gameCanvas = {
   inGame: true
 };
 
+let multi = false;
 let lastFrameTime = 0;
 const targetFrameRate = 90;
 

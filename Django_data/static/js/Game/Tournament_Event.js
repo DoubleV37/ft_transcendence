@@ -47,11 +47,12 @@ function tournament_DelEvents () {
 
 async function BeginTournament () {
   const inputs = [
-    document.getElementById("SetPlayer1"),
-    document.getElementById("SetPlayer2"),
-    document.getElementById("SetPlayer3"),
-    document.getElementById("SetPlayer4")
+    document.getElementById("SetPlayer1").value.trim(),
+    document.getElementById("SetPlayer2").value.trim(),
+    document.getElementById("SetPlayer3").value.trim(),
+    document.getElementById("SetPlayer4").value.trim()
   ];
+  console.log(inputs);
   if (checkInputs(inputs) === false) {
     return;
   }
@@ -112,10 +113,10 @@ function setPlayerUsername (inputs) {
   tournament.P2 = {};
   tournament.P3 = {};
   tournament.P4 = {};
-  tournament.P1.username = inputs[0].value;
-  tournament.P2.username = inputs[1].value;
-  tournament.P3.username = inputs[2].value;
-  tournament.P4.username = inputs[3].value;
+  tournament.P1.username = inputs[0];
+  tournament.P2.username = inputs[1];
+  tournament.P3.username = inputs[2];
+  tournament.P4.username = inputs[3];
   tournament.P1.img = "/static/images/Player1.png";
   tournament.P2.img = "/static/images/Player2.png";
   tournament.P3.img = "/static/images/Player3.png";
@@ -146,7 +147,7 @@ function areUsernamesEmpty (inputs) {
   const len = inputs.length;
 
   for (let i = 0; i < len; i++) {
-    value = inputs[i].value.trim();
+    value = inputs[i];
     if (!value) {
       return true;
     }
@@ -158,8 +159,8 @@ function areUsernamesUnique (inputs) {
   const values = {};
   const len = inputs.length;
   for (let i = 0; i < len; i++) {
-    if (!values[inputs[i].value]) {
-      values[inputs[i].value] = true;
+    if (!values[inputs[i]]) {
+      values[inputs[i]] = true;
     } else {
       return false;
     }

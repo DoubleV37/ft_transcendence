@@ -1,6 +1,6 @@
 async function modes_randomMatchmaking() {
 	try {
-		GameParams.point_limit = 1;
+		GameParams.point_limit = 3;
 		GameParams.type = "remote";
 		GameParams.opponent = "player";
 		GameParams.powerup = false;
