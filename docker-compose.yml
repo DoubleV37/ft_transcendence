@@ -32,8 +32,42 @@ volumes:
     driver: local
   logstashdata02:
     driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
 
 services:
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - ./Services/Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./Services/Prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    volumes:
+      - ./Services/Grafana/grafana.ini:/etc/grafana/grafana.ini
+      - grafana_data:/var/lib/grafana
+    command:
+      - '--config=/etc/grafana/grafana.ini'
+    ports:
+      - "3000:3000"
+
+  node_exporter:
+    container_name: node_exporter
+    image: quay.io/prometheus/node-exporter:v1.5.0
+    command: '--path.rootfs=/host'
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - /:/host:ro,rslave
+
   setup:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     volumes:

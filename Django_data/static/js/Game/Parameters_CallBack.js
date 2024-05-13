@@ -75,14 +75,6 @@ function parameters_SelectType (event) {
   }
 }
 
-function parameters_SetPowerUp (event) {
-  if (event.target.checked === true) {
-    GameParams.powerup = true;
-  } else {
-    GameParams.powerup = false;
-  }
-}
-
 async function parameters_StartGame () {
   if (GameParams.type === "local" || GameParams.opponent === "ai") {
     await loadPage(ROUTE.GAME_LOCAL);

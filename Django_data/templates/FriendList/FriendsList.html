@@ -4,12 +4,13 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
+        <img id="ModalBackArrow" src="{% static 'images/BackArrow.svg' %}" alt="Back arrow"></img>
+        <img id="ModalCloseWindow" src="{% static 'images/Arrow.svg' %}" alt="Close window"></img>
       </div>
       <div class="modal-body margin-b-2">
         <div class="FriendsPage modal-profile">
           <div class="ProfileCardboard modal-profileCardboard modal-profileFriendCardboard">
-            <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}" alt="Very basic user"></img>
+            <img class="ProfilePic modal-profilePic" src="{{ from_user.avatar.url }}" alt="Yout ptofile picture"></img>
             <div id="UserStatus">
             <h1 id="username">{{ from_user.username }}</h1>
             </div>
@@ -25,7 +26,7 @@
           </div>
 
 
-            <div class="collapse show" id="FriendList"> <!-- ID - Required -->
+            <div class="collapse show" id="FriendList">
               <div class="card card-acc">
                 <div class="accordion" id="AccordionFriendsRequests">
 
@@ -35,11 +36,11 @@
                         <p><bold>Friends</bold></p>
                       </button>
                     </h2>
-                    <div class="accordion-collapse collapse show" id="FriendsInAccordion" aria-labelledby="headingOne" data-bs-parent="#AccordionFriendsRequests"> <!-- ID - Required -->
+                    <div class="accordion-collapse collapse show" id="FriendsInAccordion" aria-labelledby="headingOne" data-bs-parent="#AccordionFriendsRequests">
                       <div class="accordion-body">
                         <ul id="FriendList-content" class="list-group AccordionCSSFriendsRequests">
                           {% for person in myFriends %}
-                          <li class="list-group-item" id="Friends_{{ person.id }}"><!-- CLASS - Required -->
+                          <li class="list-group-item" id="Friends_{{ person.id }}">
                             <div class="dropdown">
                               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ person.avatar.url }}"></img>
@@ -48,10 +49,10 @@
                               <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
                                 <li>
                                   <div id="DoubleButton">
-                                    <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-                                    <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                                    <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button>
+                                    <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post">
                                       {% csrf_token %}
-                                      <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="delete {{ person }}">Delete</button><!-- Button - Required -->
+                                      <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="delete {{ person }}">Delete</button>
                                       <p></p>
                                       </form>
                                     </div>
@@ -87,7 +88,7 @@
                         </button>
                     </h2>
                 </div>
-                    <div class="accordion-collapse collapse" id="RequestsInAccordion" aria-labelledby="headingTwo" data-bs-parent="#AccordionFriendsRequests"> <!-- ID - Required -->
+                    <div class="accordion-collapse collapse" id="RequestsInAccordion" aria-labelledby="headingTwo" data-bs-parent="#AccordionFriendsRequests">
                       <div class="accordion-body">
                         <ul id="RequestList-content" class="list-group AccordionCSSFriendsRequests"></ul>
                       </div>
@@ -99,7 +100,7 @@
             </div>
 
 
-            <div class="collapse " id="UserList"><!-- ID - Required -->
+            <div class="collapse " id="UserList">
               <div class="card card-body">
                 <ul id="UserList-content" class="list-group">
                   {% for person in people %}
@@ -112,10 +113,10 @@
                       <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
                         <li>
                           <div id="DoubleButton">
-                            <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-                            <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post"><!--FORM - Required -->
+                            <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button>
+                            <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post">
                               {% csrf_token %}
-                              <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="add {{ person }}">Add</button><!-- Button - Required -->
+                              <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="add {{ person }}">Add</button>
                               <p></p>
                             </form>
                           </div>
@@ -127,11 +128,8 @@
                 </ul>
               </div>
             </div>
-
-
           </div>
         </div>
-      </div>
       <div class="modal-footer"></div>
     </div>
   </div>

@@ -105,6 +105,16 @@
 		width: 75%;
 	}
 
+	.section-stats-header {
+		width: 75%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid white;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1.2em;
+	}
+
 	.section-stats-row {
 		width: 75%;
 		display: flex;
@@ -120,8 +130,6 @@
 		font-weight: 400;
 		line-height: normal;
 		align-self: stretch;
-		border-bottom: #616161 solid 1px;
-		margin-bottom: 1rem;
 	}
 
 	.ranked-gif {
@@ -237,6 +245,16 @@
 		width: 75%;
 	}
 
+	.section-stats-header {
+		width: 75%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid white;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1.2em;
+	}
+
 	.section-stats-row {
 		width: 75%;
 		display: flex;
@@ -252,8 +270,6 @@
 		font-weight: 400;
 		line-height: normal;
 		align-self: stretch;
-		border-bottom: #616161 solid 1px;
-		margin-bottom: 1rem;
 	}
 
 	.ranked-gif {
@@ -339,7 +355,13 @@
 	}
 
 	.username {
-		display: none;
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 0.9em;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		cursor: pointer;
 	}
 
 	.skills {
@@ -364,6 +386,16 @@
 		width: 80%;
 	}
 
+	.section-stats-header {
+		width: 80%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid white;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1.2em;
+	}
+
 	.section-stats-row {
 		width: 80%;
 		display: flex;
@@ -379,8 +411,6 @@
 		font-weight: 400;
 		line-height: 1;
 		align-self: stretch;
-		border-bottom: #616161 solid 1px;
-		margin-bottom: 1rem;
 	}
 
 	.ranked-gif {
@@ -669,7 +699,7 @@ ul, li {
 	animation: 1s anim-lightspeed-in ease forwards;
 	font-family: 'Kodchasan';
 	color: #FFF;
-	margin-bottom: 1em;
+	margin-bottom: 0.7em;
 	line-height: normal;
 }
 
@@ -762,4 +792,10 @@ ul, li {
 	color: white;
 	font-weight: normal;
 	text-align: center;
+}
+
+.board-date {
+	margin-bottom: 0em !important;
+	color: #5DC6E8;
+	font-weight: normal !important;
 }

@@ -18,9 +18,7 @@ async function signin_FormCallBack (event) {
   event.preventDefault();
   const	response = await signIn();
 
-  if (response === "2fa") {
-
-  } else if (response == true) {
+  if (response == true) {
     signin_DelEvents();
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");

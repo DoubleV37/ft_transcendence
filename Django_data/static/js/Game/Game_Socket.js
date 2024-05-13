@@ -1,14 +1,3 @@
-function init_websocket () {
-  // Create WebSocket connection.
-  gameSocket.onopen = function (e) {
-    console.log("The connection was setup successfully !");
-  };
-  gameSocket.onclose = function (e) {
-    console.log("Something unexpected happened !");
-  };
-}
-
-// ai_town
 function iaBrain (data) {
   const rand = Math.floor(Math.random() * 41) - 20;
   let bx = data.ballX * 1200;
@@ -48,8 +37,7 @@ function iaMove () {
     iaMemory.service = false;
   }
 }
-// the end of ia town
-//
+
 function receive_data (e) {
   const data = JSON.parse(e.data);
   if (data.message === "Game stopped") {
@@ -63,9 +51,9 @@ function receive_data (e) {
     return EndGame("You lost!");
   } else if (data.message === "game_finish" && GameParams.opponent != "ai") {
     return EndGame(`${data.winner} won!`);
-  }
-  else if (data.message === "game_finish" && GameParams.opponent === "ai") {
-  return EndGame("AI-Ochen won!");
+  } else if (data.message === "game_finish" && GameParams.opponent === "ai") {
+    if (data.winner === "IA") { return EndGame("IA-Ochen won!"); }
+    return EndGame("You won!");
   }
 
   if (data.message === "game_state") {
@@ -87,18 +75,14 @@ function receive_data (e) {
   }
 }
 
-let lastFrameTime = 0;
-let targetFrameRate = 60; // j'ai mis 60fps du coup
-
-function update() {
+function update () {
   const currentTime = performance.now();
   const deltaTime = currentTime - lastFrameTime;
 
   if (gameSocket.readyState === 2 || gameSocket.readyState === 3) {
-  	return ;
- }
+  	return;
+  }
 
-// le petit calcul de l'amour
   if (deltaTime >= 1000 / targetFrameRate) {
     if (keyStates.ArrowUp) {
       gameSocket.send(JSON.stringify({ message: "up" }));
@@ -135,32 +119,33 @@ function EndGame (message) {
 
   if (message === "You won!") {
     endGameImage.src = playerVictorySrc;
- } else if (message === "You lost!") {
+  } else if (message === "You lost!") {
     endGameImage.src = defeatSrc;
- }
-  else if (message === "Game Stopped!") {
+  } else if (message === "Game Stopped!") {
     endGameImage.src = stoppedSrc;
-  }
-  else if (message === "AI-Ochen won!") {
+  } else if (message === "IA-Ochen won!") {
     endGameImage.src = aiVictorySrc;
-  }
-  else {
+  } else {
     endGameImage.src = playerVictorySrc;
   }
 
   document.getElementById("MyCanvas").hidden = true;
   endGameMessage.textContent = message;
 
-    endGameScreen.style.opacity = "0";
+  endGameScreen.style.opacity = "0";
 
-    setTimeout(() => {
-      endGameScreen.style.opacity = "1";
-    }, 450);
+  const id = setTimeout(() => {
+    endGameScreen.style.opacity = "1";
+  }, 450);
 
   endGameScreen.style.display = "flex";
-  gameCanvas.inGame = false;
-  confirmEndGame.onclick = function () {
-    loadPage(ROUTE.GAME_MODES);
+  confirmEndGame.onclick = async function () {
+    clearTimeout(id);
+    await loadPage(ROUTE.GAME_MODES);
+    header_DelEvents();
+    await changeSection(`${ROUTE.HEADER}`, "#Header_content");
+    header_SetEvents();
+
     endGameScreen.style.display = "none";
   };
   gameCanvas.inGame = false;

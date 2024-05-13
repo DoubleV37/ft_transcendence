@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
   {% include "Home/head.html" %}
   <body>
@@ -15,15 +15,13 @@
 
     <div id="content">
       <div id="overlay">
-	<div class="mid midcolumn flowAnimation">
+	<div class="mid midcolumn fadeinAnimation">
 	  <div id="titleContent" data-content="SIGNIN_PAGE"></div>
 	  <form id="SIGNIN_Form" action="">
 	    <h1 id="login_title">Login Informations</h1>
 	    {% csrf_token %}
 	    {{ form.as_p }}
-	    <!-- Display area for client-side validation errors -->
 	    <div id="SIGNIN_Errors" style="color: red;"></div>
-	    <!-- Submit button triggers client-side validation -->
 	    <button id="SignInButton" type="submit" class="ButtonLayout ButtonBlue CTA">Sign In</button>
 	    <div id="SIGNIN_Signup">
 	      <p>Doesn’t have a Pong account ? <b>Create your account</b></p>

@@ -34,6 +34,7 @@ const ROUTE = {
   HOME: "/",
   HEADER: "/header",
   FOOTER: "/footer",
+  ERROR404: "/404",
   PING: "/auth/ping/",
   SIGNUP: "/auth/signup/",
   SIGNIN: "/auth/signin/",
@@ -54,8 +55,10 @@ const ROUTE = {
   GAME_PARAMETERS: "/game/parameters/",
   GAME_MODES: "/game/modes/",
   GAME_MATCH: "/game/matchmaking/",
-  GAME_ROOM: "/game/", // `${ROUTE.GAME_ROOM}${id...}/`
-  GAME_LOCAL: "/game/solo/"
+  GAME_ROOM: "/game/",
+  GAME_LOCAL: "/game/solo/",
+  SET_TOURNAMENT: "/game/tournament/set/",
+  BRACKET_TOURNAMENT: "/game/tournament/bracket/"
 };
 
 /*-----------Game Parameters-----------*/
@@ -80,7 +83,7 @@ let GameInfos = {
   },
   PlayerR: {
     srcImg: "", // img url
-    srcPaddle: "",// img url
+    srcPaddle: "", // img url
     canvas: null, // img obj
     name: ""
   },
@@ -128,6 +131,9 @@ let gameCanvas = {
   inGame: true
 };
 
+let lastFrameTime = 0;
+const targetFrameRate = 90;
+
 let imgPowerUpSrc = "/static/images/PowerUp.png";
 let imgPowerUp = new Image();
 
@@ -141,6 +147,7 @@ let gameSocket = null;
 let matchSocket = null;
 let gameStop = true;
 
+let tournament = null;
 let playerVictorySrc = "/static/images/penguin-dance.gif";
 let defeatSrc = "/static/images/shiny-charmander-pokemon.gif";
 let stoppedSrc = "/static/images/ghost-phantom.gif";

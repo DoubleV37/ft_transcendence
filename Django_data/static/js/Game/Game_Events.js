@@ -7,12 +7,16 @@ function game_SetEvents () {
 	gameSocket.addEventListener("open", OnOpenCallback);
 	gameSocket.addEventListener("close", OnCloseCallback);
 	init_canvas();
+
+  document.body.addEventListener("mousedown", mousedown);
+  document.body.addEventListener("mouseup", mouseup);
 }
 
 function game_DelEvents () {
-  console.log("game_DelEvents");
   document.removeEventListener("keyup", keyUp);
   document.removeEventListener("keydown", keyDown);
+  document.body.removeEventListener("mousedown", mousedown);
+  document.body.removeEventListener("mouseup", mouseup);
   if (loading === true) {
 	gameSocket.removeEventListener("message", SetTheGame);
   } else {
@@ -45,7 +49,6 @@ function SetTheGame (event) {
   const data = JSON.parse(event.data);
 
   loading = true;
-  console.log(data.message);
   gameCanvas.inGame = true;
   if (data.message === "Game stopped") {
 	if (deleteEvent === true) {
@@ -70,7 +73,6 @@ function SetTheGame (event) {
 
 function OnOpenCallback () {
   gameStop = false;
-  console.log("The connection was setup successfully !");
   gameSocket.addEventListener("message", SetTheGame);
   gameCanvas.powerup = GameParams.powerup;
   gameSocket.send(JSON.stringify(GameParams));
@@ -81,7 +83,6 @@ function OnCloseCallback () {
   gameSocket.removeEventListener("open", OnOpenCallback);
   gameSocket.removeEventListener("close", OnCloseCallback);
 
-  console.log("Socket was closed!");
   gameStop = true;
 }
 
@@ -91,9 +92,41 @@ function keyUp (e) {
 
 function keyDown (e) {
   if (e.key !== "F5" && !(e.key === "F5" && e.ctrlKey) && e.key !== "F12") {
-	e.preventDefault();
+	  e.preventDefault();
   }
   keyStates[e.key] = true;
+}
+
+function mouseup (e) {
+  whichMove(e, false);
+}
+
+function mousedown (e) {
+  whichMove(e, true);
+}
+
+function whichMove (e, value) {
+  const rect = document.body.getBoundingClientRect();
+  const pos = getMousePosition(e, rect);
+  const vLine = rect.x + rect.width / 2;
+  const hLine = rect.y + rect.height / 2;
+  if (pos.x < vLine - 1 && pos.y < hLine - 1) {
+    keyStates['w'] = value; 
+  } else if (pos.x < vLine - 1 && pos.y > hLine + 1) {
+    keyStates['s'] = value;
+  } else if (pos.x > vLine + 1 && pos.y < hLine - 1) {
+    keyStates['ArrowUp'] = value;
+  } else if (pos.x > vLine + 1 && pos.y > hLine + 1) {
+    keyStates['ArrowDown'] = value;
+  }
+}
+
+function getMousePosition (e, rect) {
+  const pos = {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top
+  }
+  return pos;
 }
 
 function init_canvas () {
