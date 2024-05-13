@@ -181,13 +181,13 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
         self.user_game.score = dict_stats["score2"]
         self.opponent_game.max_speed = dict_stats["max_speed"][0]
         self.opponent_game.score = dict_stats["score1"]
-        if dict_stats["score1"] > dict_stats["score2"]:
-            self.opponent_game.winner = True
-            await self.update_global_stats(False)
-        else:
-            self.user_game.winner = True
-            await self.update_global_stats(True)
         if self.game.in_tournament is False:
+			if dict_stats["score1"] > dict_stats["score2"]:
+				self.opponent_game.winner = True
+				await self.update_global_stats(False)
+			else:
+				self.user_game.winner = True
+				await self.update_global_stats(True)
             await database_sync_to_async(self.game.save)()
             await database_sync_to_async(self.user_game.save)()
             await database_sync_to_async(self.opponent_game.save)()
