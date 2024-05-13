@@ -56,8 +56,6 @@ services:
       - grafana_data:/var/lib/grafana
     command:
       - '--config=/etc/grafana/grafana.ini'
-    ports:
-      - "3000:3000"
 
   node_exporter:
     container_name: node_exporter
@@ -173,9 +171,6 @@ services:
     container_name: rsyslog
     build: Services/Rsyslog
     restart: always
-    ports:
-      - "5142:5142"
-      - "5142:5142/udp"
 
   kibana:
     container_name: kibana
