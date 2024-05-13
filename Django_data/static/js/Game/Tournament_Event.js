@@ -25,7 +25,6 @@ function tournament_SetEvents () {
 
   const Swicth = document.getElementById("switchCheckLabelTop");
   Swicth.onkeyup = function (e) {
-    console.log(e);
     if (e.key === "Enter") {
       e.target.checked = e.target.checked === false;
     }
@@ -106,7 +105,6 @@ function setSkins () {
 function setParametersGame () {
   tournament.score = document.getElementById("Score").value;
   tournament.powerUp = document.getElementById("switchCheckLabelTop").checked;
-  console.log(tournament.powerUp);
 }
 
 function setPlayerUsername (inputs) {
@@ -163,8 +161,8 @@ function areUsernamesUnique (inputs) {
     if (!values[inputs[i].value]) {
       values[inputs[i].value] = true;
     } else {
-      return false; // Duplicate found
+      return false;
     }
   }
-  return true; // All usernames are unique
+  return true;
 }

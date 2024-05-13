@@ -131,6 +131,9 @@ let gameCanvas = {
   inGame: true
 };
 
+let lastFrameTime = 0;
+const targetFrameRate = 90;
+
 let imgPowerUpSrc = "/static/images/PowerUp.png";
 let imgPowerUp = new Image();
 

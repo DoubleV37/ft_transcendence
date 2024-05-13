@@ -42,11 +42,11 @@ function endTournament (winner) {
   Confirm.innerHTML = "Leave tournament";
   Message.textContent = `${winner} won the tournament!`;
   Screen.style.display = "flex";
-  Confirm.onclick = function () {
+  Confirm.onclick = async function () {
     Screen.style.display = "none";
-    loadPage(`${ROUTE.SET_TOURNAMENT}`);
+    await loadPage(`${ROUTE.SET_TOURNAMENT}`);
     header_DelEvents();
-    changeSection(`${ROUTE.HEADER}`, "#Header_content");
+    await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
     tournament = null;
   };
@@ -68,19 +68,19 @@ function setGameInfo (players) {
       rightImg.setAttribute("src", players[1].img);
       leftImg.setAttribute("src", players[0].img);
       leftName.innerHTML = players[0].username;
-      GameInfos.PlayerR.srcPaddle = players[0].paddle;
-      GameInfos.PlayerR.username = players[0].username;
-      GameInfos.PlayerL.srcPaddle = players[1].paddle;
-      GameInfos.PlayerL.username = players[1].username;
+      GameInfos.PlayerR.srcPaddle = players[1].paddle;
+      GameInfos.PlayerR.username = players[1].username;
+      GameInfos.PlayerL.srcPaddle = players[0].paddle;
+      GameInfos.PlayerL.username = players[0].username;
     } else {
       rightName.innerHTML = players[0].username;
       leftName.innerHTML = players[0].vs;
       rightImg.setAttribute("src", players[0].img);
       leftImg.setAttribute("src", players[1].img);
-      GameInfos.PlayerL.srcPaddle = players[0].paddle;
-      GameInfos.PlayerL.username = players[0].username;
-      GameInfos.PlayerR.srcPaddle = players[1].paddle;
-      GameInfos.PlayerR.username = players[1].username;
+      GameInfos.PlayerL.srcPaddle = players[1].paddle;
+      GameInfos.PlayerL.username = players[1].username;
+      GameInfos.PlayerR.srcPaddle = players[0].paddle;
+      GameInfos.PlayerR.username = players[0].username;
     }
     GameInfos.PlayerR.canvas = initRotatedImage(
       GameInfos.PlayerR.srcPaddle,

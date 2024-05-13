@@ -1,14 +1,3 @@
-function init_websocket () {
-  // Create WebSocket connection.
-  gameSocket.onopen = function (e) {
-    console.log("The connection was setup successfully !");
-  };
-  gameSocket.onclose = function (e) {
-    console.log("Something unexpected happened !");
-  };
-}
-
-// ai_town
 function iaBrain (data) {
   const rand = Math.floor(Math.random() * 41) - 20;
   let bx = data.ballX * 1200;
@@ -48,8 +37,7 @@ function iaMove () {
     iaMemory.service = false;
   }
 }
-// the end of ia town
-//
+
 function receive_data (e) {
   const data = JSON.parse(e.data);
   if (data.message === "Game stopped") {
@@ -64,7 +52,6 @@ function receive_data (e) {
   } else if (data.message === "game_finish" && GameParams.opponent != "ai") {
     return EndGame(`${data.winner} won!`);
   } else if (data.message === "game_finish" && GameParams.opponent === "ai") {
-    console.log(data.winner);
     if (data.winner === "IA") { return EndGame("IA-Ochen won!"); }
     return EndGame("You won!");
   }
@@ -88,9 +75,6 @@ function receive_data (e) {
   }
 }
 
-let lastFrameTime = 0;
-const targetFrameRate = 60; // j'ai mis 60fps du coup
-
 function update () {
   const currentTime = performance.now();
   const deltaTime = currentTime - lastFrameTime;
@@ -99,7 +83,6 @@ function update () {
   	return;
   }
 
-  // le petit calcul de l'amour
   if (deltaTime >= 1000 / targetFrameRate) {
     if (keyStates.ArrowUp) {
       gameSocket.send(JSON.stringify({ message: "up" }));
@@ -156,11 +139,11 @@ function EndGame (message) {
   }, 450);
 
   endGameScreen.style.display = "flex";
-  confirmEndGame.onclick = function () {
+  confirmEndGame.onclick = async function () {
     clearTimeout(id);
-    loadPage(ROUTE.GAME_MODES);
+    await loadPage(ROUTE.GAME_MODES);
     header_DelEvents();
-    changeSection(`${ROUTE.HEADER}`, "#Header_content");
+    await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
 
     endGameScreen.style.display = "none";
