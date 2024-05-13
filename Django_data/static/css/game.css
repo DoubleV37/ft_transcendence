@@ -58,7 +58,8 @@
 		margin-bottom: 1em;
 	}
 
-	#endGameScreen {
+	#endGameScreen, #endTournamentScreen {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -81,6 +82,11 @@
 		font-weight: 400;
 		line-height: normal;
 		cursor: pointer;
+		text-transform: lowercase;
+	}
+
+	.username::first-letter {
+		text-transform: uppercase;
 	}
 
 	.skills {
@@ -198,7 +204,8 @@
 		margin-bottom: 1em;
 	}
 
-	#endGameScreen {
+	#endGameScreen, #endTournamentScreen {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -221,7 +228,13 @@
 		font-weight: 400;
 		line-height: normal;
 		cursor: pointer;
+		text-transform: lowercase;
 	}
+
+	.username::first-letter {
+		text-transform: uppercase;
+	}
+
 
 	.skills {
 		width: 75%;
@@ -303,7 +316,7 @@
 		color: #FFF;
 		text-align: center;
 		font-family: Oxanium;
-		font-size: 3rem;
+		font-size: 2rem;
 		font-style: normal;
 		font-weight: 700;
 		line-height: normal;
@@ -337,7 +350,8 @@
 		margin-bottom: 1em;
 	}
 
-	#endGameScreen {
+	#endGameScreen, #endTournamentScreen {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -348,21 +362,27 @@
 		padding-top: 5em;
 		padding-left: 15vw;
 		padding-right: 15vw;
-        border: 1px solid #919191;
-		border-top: none !important;
+		border: 1px solid #cf911f;
 		opacity: 0;
 		transition: opacity 0.5s ease;
+		border-radius: 1em;
 	}
 
 	.username {
 		color: #FFF;
 		font-family: Kodchasan;
-		font-size: 0.9em;
+		font-size: 0.8em;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
 		cursor: pointer;
+		text-transform: lowercase;
 	}
+
+	.username::first-letter {
+		text-transform: uppercase;
+	}
+
 
 	.skills {
 		width: 80%;
@@ -437,7 +457,7 @@
 	width: 100%;
 }
 
-#endGameMessage {
+#endGameMessage, #endTournamentMessage {
 	color: #FFF;
 	text-align: right;
 	font-family: Kodchasan;

@@ -447,6 +447,12 @@ scrollbar-width: none;
 	.mobile-visible {
 		display: none !important;
 	}
+
+	.WR-offcanvas {
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		font-size: 1.1rem !important;
+	}
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */
@@ -873,6 +879,12 @@ scrollbar-width: none;
 	.mobile-visible {
 		display: none !important;
 	}
+
+	.WR-offcanvas {
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		font-size: 1.1rem !important;
+	}
 }
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
@@ -1249,7 +1261,7 @@ scrollbar-width: none;
 
 	#SigninButton {
 		display: flex;
-		width: 8.5rem;
+		width: 6.5rem;
 		height: 4.375rem;
 		justify-content: center;
 		align-items: center;
@@ -1273,7 +1285,7 @@ scrollbar-width: none;
 
 	#SignupButton {
 		display: flex;
-		width: 8.5rem;
+		width: 6.5rem;
 		height: 4.375rem;
 		justify-content: center;
 		align-items: center;
@@ -1305,16 +1317,22 @@ scrollbar-width: none;
 	.mobile-hidden {
 		display: none !important;
 	}
+
+	.WR-offcanvas {
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		font-size: 1.1rem !important;
+	}
 }
 
-.Tournament-content::-webkit-scrollbar { /* WebKit */
-    width: 2px; /* Adjusts the width of the scrollbar */
-	height: 0; /* Adjusts the width of the scrollbar */
+.Tournament-content::-webkit-scrollbar {
+    width: 2px;
+	height: 0;
 }
 
-.Tournament-content::-webkit-scrollbar-thumb { /* WebKit */
-    background-color: rgb(194, 194, 194); /* Sets the color of the scrollbar thumb */
-    border-radius: 10px; /* Optional: Rounds the corners of the scrollbar thumb */
+.Tournament-content::-webkit-scrollbar-thumb {
+    background-color: rgb(194, 194, 194);
+    border-radius: 10px;
 }
 
 #SetPlayer1, #SetPlayer2 {
