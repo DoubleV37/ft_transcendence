@@ -92,6 +92,9 @@ async function header_ModProfilCallBack () {
   try {
     offcanvas_Hide();
     await changeSection(`${ROUTE.PROFILE}`, "#ProfileModal");
+    if (profileModal.modal === null) {
+      modal_ProfileInit();
+    }
     profileModal.modal.show();
   } catch (error) {
     console.error("Header:", error);

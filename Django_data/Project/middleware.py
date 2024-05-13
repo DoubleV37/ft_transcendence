@@ -32,8 +32,6 @@ class UserPermission:
             "/2fa/confirm/",
             "/auth/ping/",
         )
-        # if request.path != "/auth/ping/":
-        #     logger.debug(f"path -> {request.path}")
         if request.path in authorised_path:
             response = None
         else:
@@ -46,11 +44,13 @@ class UserPermission:
         try:
             _user = request.user
             if _user.is_anonymous is True:
+                logger.error("Anonymous session")
                 return HttpResponse("Not connected", status=498)
 
             encoded_token = request.COOKIES.get("jwt_token")
             if encoded_token is None:
                 signout(request)
+                logger.error(f"Unauthorized login Session")
                 return HttpResponse("Unauthorized login Session", status=498)
             _options = {"verify_exp": True, "verify_iss": True}
             jwt.decode(

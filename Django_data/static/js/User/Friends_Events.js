@@ -51,9 +51,13 @@ function friends_SetEvents () {
   modal.querySelector("#ModalBackArrow").onclick = async function () {
     const userid = document.getElementById("HEADER_IsAuth").getAttribute("data-id");
 
-    await changeSection(`${ROUTE.PROFILE}${userid}/`, "#ProfileModal");
-    friendsModal['modal'].hide();
-    profileModal['modal'].show();
+    try {
+      await changeSection(`${ROUTE.PROFILE}${userid}/`, "#ProfileModal");
+      friendsModal['modal'].hide();
+      profileModal['modal'].show();
+    } catch (err) {
+      console.error("Error:", err);
+    }
   };
 
   modal.querySelectorAll(".btn.btn-primary").forEach((button) => {

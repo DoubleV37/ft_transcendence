@@ -13,7 +13,7 @@ async function launchWebsite () {
 
   await changeSection(`${ROUTE.HEADER}`, "#Header_content");
 
-  modal_ProfileInit();
+
   modal_FriendsInit();
   modal_2FaCodeInit();
   modal_2FaInit();
@@ -26,7 +26,7 @@ async function launchWebsite () {
 
   document.removeEventListener("DOMContentLoaded", launchWebsite);
 
-  setInterval(pingServer, 5000);
+  setInterval(pingServer, 1000);
 }
 
 function main_SetFirstsEvents () {

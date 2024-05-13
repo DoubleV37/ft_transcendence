@@ -11,9 +11,13 @@ async function  settings_TwoFaCallBack() {
   const data = await response.json();
 
   if (data.status === 'continue') {
-    await changeSection(`${ROUTE.TWOFA_Q}`, '#TwofaModal');
-    await changeSection(`${ROUTE.TWOFA_C}`, '#confirm_2fa');
-    TwofaModal['modal'].show();
+    try {
+      await changeSection(`${ROUTE.TWOFA_Q}`, '#TwofaModal');
+      await changeSection(`${ROUTE.TWOFA_C}`, '#confirm_2fa');
+      TwofaModal['modal'].show();
+    } catch (err) {
+      console.error("Error:", err);
+    }
   }
 }
 
@@ -22,10 +26,14 @@ async function name_FormCallBack(event) {
   const	response = await nameSubmit();
 
   if (response === true) {
-    header_DelEvents()
-    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
-    header_SetEvents()
-    await changeSection(`${ROUTE.SETTINGS}`, '#content');
+    try {
+      header_DelEvents()
+      await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+      header_SetEvents()
+      await changeSection(`${ROUTE.SETTINGS}`, '#content');
+    } catch (err) {
+      console.error("Error:", err);
+    }
 
   }
 }
@@ -36,9 +44,13 @@ async function mail_FormCallBack(event) {
 
   if (response === true) {
     header_DelEvents()
-    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
-    header_SetEvents()
-    await changeSection(`${ROUTE.SETTINGS}`, '#content');
+    try {
+      await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+      header_SetEvents()
+      await changeSection(`${ROUTE.SETTINGS}`, '#content');
+    } catch (err) {
+      console.error("Error:", err);
+    }
   }
 }
 
@@ -60,9 +72,13 @@ async function tname_FormCallBack(event) {
 
   if (response === true) {
     header_DelEvents()
-    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
-    header_SetEvents()
-    await changeSection(`${ROUTE.SETTINGS}`, '#content');
+    try {
+      await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+      header_SetEvents()
+      await changeSection(`${ROUTE.SETTINGS}`, '#content');
+    } catch (err) {
+      console.error("Error:", err);
+    }
 
   }
 }
@@ -73,10 +89,13 @@ async function del_avatar_FormCallBack(event) {
 
   if (response == true) {
     header_DelEvents()
-    await changeSection(`${ROUTE.HEADER}`, '#Header_content');
-    header_SetEvents()
-    await changeSection(`${ROUTE.SETTINGS}`, '#content');
-
+    try {
+      await changeSection(`${ROUTE.HEADER}`, '#Header_content');
+      header_SetEvents()
+      await changeSection(`${ROUTE.SETTINGS}`, '#content');
+    } catch (err) {
+      console.error("Error:", err);
+    }
   }
 }
 

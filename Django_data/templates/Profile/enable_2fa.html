@@ -7,7 +7,7 @@
       <div class="modal-body modal-body-2FA">
 	      <div id="ModalContent" data-content="TwoFa_ENABLE"></div>
 	      <div class="d-flex justify-content-center mb-4">
-	        <form id="TWOFA_modal" action="" method="post">
+	        <form autocomplete="on" id="TWOFA_modal" action="" method="post">
 		        {% csrf_token %}
 
 		        {% if otp %}

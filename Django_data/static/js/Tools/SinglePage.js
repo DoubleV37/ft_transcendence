@@ -48,8 +48,12 @@ window.addEventListener("popstate", async function (event) {
     await changeSection(`${ROUTE.HOME}`, "#content");
     currentUrl = `${ROUTE.HOME}`;
   } else {
-    await changeSection(event.state.section, "#content");
-    currentUrl = event.state.section;
+    try {
+      await changeSection(event.state.section, "#content");
+      currentUrl = event.state.section;
+    } catch (err) {
+      console.error("Error:", err);
+    }
   }
   await changeSection(`${ROUTE.HEADER}`, "#Header_content");
   header_SetEvents();

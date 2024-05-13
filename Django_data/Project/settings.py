@@ -199,7 +199,7 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
   },
-}
+  }
 }
 
 # LOGGING = {

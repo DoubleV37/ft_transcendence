@@ -112,6 +112,10 @@ async function avatar_FormCallBack (event) {
     settings_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
-    await changeSection(`${ROUTE.SETTINGS}`, "#content");
+    try {
+      await changeSection(`${ROUTE.SETTINGS}`, "#content");
+    } catch (err) {
+      console.error("Error:", err);
+    }
   }
 }

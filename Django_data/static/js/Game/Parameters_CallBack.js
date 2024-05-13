@@ -76,11 +76,15 @@ function parameters_SelectType (event) {
 }
 
 async function parameters_StartGame () {
-  if (GameParams.type === "local" || GameParams.opponent === "ai") {
-    await loadPage(ROUTE.GAME_LOCAL);
-  } else {
-	GameParams.type_game = "custom";
-    await loadPage(ROUTE.GAME_MATCH);
+  try {
+    if (GameParams.type === "local" || GameParams.opponent === "ai") {
+      await loadPage(ROUTE.GAME_LOCAL);
+    } else {
+    GameParams.type_game = "custom";
+      await loadPage(ROUTE.GAME_MATCH);
+    }
+  } catch (err) {
+    console.error("Error:", err);
   }
 }
 

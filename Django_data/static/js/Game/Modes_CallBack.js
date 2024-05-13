@@ -26,16 +26,28 @@ async function modes_playerVSia () {
 }
 
 function modes_CreateGame () {
-  loadPage(`${ROUTE.GAME_PARAMETERS}`);
+  try {
+    loadPage(`${ROUTE.GAME_PARAMETERS}`);
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
 function modes_CreateTournament () {
-  loadPage(`${ROUTE.SET_TOURNAMENT}`);
+  try {
+    loadPage(`${ROUTE.SET_TOURNAMENT}`);
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
 function modes_ContinueTournament (event) {
   if (tournament != null) {
-    loadPage(`${ROUTE.BRACKET_TOURNAMENT}`);
+    try {
+      loadPage(`${ROUTE.BRACKET_TOURNAMENT}`);
+    } catch (err) {
+      console.error("Error:", err);
+    }
   } else {
     event.target.setAttribute("class", "MediumButtonLayout right ButtonDark");
     event.target.disabled = true;

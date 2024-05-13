@@ -8,11 +8,18 @@ function stats_SetEvents () {
 
     const userid = document.getElementById("HEADER_IsAuth").getAttribute("data-id");
 
-    await changeSection(`${ROUTE.PROFILE}${id[1]}/`, "#ProfileModal");
-    if (parseInt(userid) !== parseInt(id[1])) {
-      await changeSection(`${ROUTE.FRIENDS_PROFILE}${id[1]}/`, "#Friends_Profile");
+    try {
+      await changeSection(`${ROUTE.PROFILE}${id[1]}/`, "#ProfileModal");
+      if (profileModal.modal === null) {
+        modal_ProfileInit();
+      }
+      if (parseInt(userid) !== parseInt(id[1])) {
+        await changeSection(`${ROUTE.FRIENDS_PROFILE}${id[1]}/`, "#Friends_Profile");
+      }
+      profileModal.modal.show();
+    } catch (err) {
+      console.error("Error:", err);
     }
-    profileModal.modal.show();
   };
 }
 

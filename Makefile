@@ -1,8 +1,8 @@
+all: up
+
 env:
 	cp ~/.env .
 	sed -i -e "s/target/$(shell hostname -I | awk '{print $1}')/g" .env
-
-all: up
 
 up: env
 	if [ ! -d "Django_data/staticfiles" ]; then mkdir -p Django_data/staticfiles; fi

@@ -1,6 +1,10 @@
 async function bracket_SetEvents () {
   if (tournament === null || tournament === undefined) {
-    await loadPage(`${ROUTE.SET_TOURNAMENT}`);
+    try {
+      await loadPage(`${ROUTE.SET_TOURNAMENT}`);
+    } catch (err) {
+      console.error("Error:", err);
+    }
   } else {
     updateBracket();
   }
@@ -53,7 +57,11 @@ function endTournament (winner) {
   Confirm.onclick = async function () {
     clearTimeout(id);
     Screen.style.display = "none";
-    await loadPage(`${ROUTE.SET_TOURNAMENT}`);
+    try {
+      await loadPage(`${ROUTE.SET_TOURNAMENT}`);
+    } catch (err) {
+      console.error("Error:", err);
+    }
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();

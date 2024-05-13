@@ -10,10 +10,6 @@ import json
 logger = logging.getLogger(__name__)
 
 
-def settings(request):
-    return render(request, "Profile/Settings.html")
-
-
 def profile_infos(request, _id=None):
     item = {}
     if _id is None or request.user.id == _id:

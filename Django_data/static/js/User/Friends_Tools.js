@@ -28,7 +28,7 @@ function friends_CreateNewUserElem (form, id) {
         <li>
           <div id="DoubleButton">
             <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="${id}">Profile</button>
-            <form action="" data-id="${id}" onsubmit="return false;" method="post">
+            <form autocomplete="on" action="" data-id="${id}" onsubmit="return false;" method="post">
               <input>
               <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="add ${capitalizedName}">Add</button>
               <p></p>
@@ -73,7 +73,7 @@ function friends_CreateNewReqElem (form, id, obj) {
         <li>
           <div id="DoubleButton">
             <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="${id}">Profile</button>
-            <form action="" data-name="${name}" data-id="${id}" onsubmit="return false;" method="post">
+            <form autocomplete="on" action="" data-name="${name}" data-id="${id}" onsubmit="return false;" method="post">
               <input>
               <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="${obj.type.toLowerCase()} ${capitalizedName}">${obj.type}</button>
               <p></p>
