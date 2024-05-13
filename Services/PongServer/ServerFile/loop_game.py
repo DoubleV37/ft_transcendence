@@ -7,9 +7,7 @@ from global_var import GAMES
 # =======  game  =======
 
 async def send_opponent_info(game_id):
-	print("==Send opponent info==")
 	user1 = await get_user_info(GAMES[game_id]["players"][0][0])
-	print(GAMES[game_id]["players"][1][0])
 	user2 = await get_user_info(GAMES[game_id]["players"][1][0])
 	GAMES[game_id]["player_1"] = user1
 	GAMES[game_id]["player_2"] = user2
@@ -44,16 +42,12 @@ async def send_opponent_info(game_id):
 
 
 async def game_routine(game_id, pong):
-	print("===Game routine===")
 	while len(GAMES[game_id]["players"]) < 2:
-		print("==Waiting for player==")
 		await asyncio.sleep(1)
 	GAMES[game_id]["nb_players"] = 19
 	await send_opponent_info(game_id)
 	pong.running = True
 	loop = time.time()
-	print("===Game started===")
-	print(pong.powerup)
 	while pong.running:
 		loop += 1 / 240
 		pong.ball_walk()
@@ -74,7 +68,6 @@ async def game_routine(game_id, pong):
 		await asyncio.sleep(loop - time.time())
 	await save_db(game_id, pong)
 	await send_game_finish(game_id, pong)
-	print("===Game finished===")
 
 async def send_update_game(game_id, pong):
 	data = {

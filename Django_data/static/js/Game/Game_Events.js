@@ -160,7 +160,7 @@ function init_canvas () {
   gameCanvas.canvas.height = gameCanvas.height;
   gameCanvas.paddle1Height = 0,
   gameCanvas.paddle2Height = 0,
-  gameCanvas.powerup = false,
+  gameCanvas.powerup = GameParams.powerup,
   gameCanvas.powerupY = 0,
   gameCanvas.powerupX = 0,
   gameCanvas.powerupsize = 0,
