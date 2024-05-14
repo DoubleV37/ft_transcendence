@@ -1,24 +1,17 @@
-<div id={{ div_ID  }}>  
+<div id="{{ div_ID  }}">  
   {% if form.non_field_errors %}
     {% for error in form.non_field_errors %}
-      <p class="errornote">
-	{{ error }}
-      </p>
+    <p class="errornote">{{ error }}</p>
     {% endfor %}
   {% endif %}
-
-  <form id={{ form_id }} class="form_2FA" action="" method="post">
+  <form autocomplete="on" id="{{ form_id }}" class="form_2FA" action="" method="post">
     {% csrf_token %}
-
     <p id="otp">Please enter your Authenticator code:</p>
     {{ form.otp.errors }}
     {{ form.otp.label_tag }} {{ form.otp }}
-
-    <!--<div class="submit-row">-->
     <button type="submit" class="SelectButtonLayout ButtonNeon" value="Submit">Submit</button>
-    <!--</div>-->
   </form>
-  <button class="SelectButtonLayout ButtonDark form_2FA" id={{ cancel }}>Cancel</button>
+  <button class="SelectButtonLayout ButtonDark form_2FA" id="{{ cancel }}">Cancel</button>
   <div id={{ success }} style="color: green;"></div>
   <div id={{ failure }} style="color: red;"></div>
 </div>

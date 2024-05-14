@@ -1,11 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
   {% include "Home/head.html" %}
   <body>
+    <div class="modal fade" id="ProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"></div>
     {% include "Profile/Avatar.html" %}
-    {% include "Profile/Profile.html" %}
     {% include "Auth/code_validation.html" %}
     {% include "Profile/enable_2fa.html" %}
     {% include "FriendList/FriendsList.html" %}
@@ -15,15 +15,13 @@
 
     <div id="content">
       <div id="overlay">
-	<div class="mid midcolumn flowAnimation">
+	<div class="mid midcolumn fadeinAnimation">
 	  <div id="titleContent" data-content="SIGNIN_PAGE"></div>
-	  <form id="SIGNIN_Form" action="">
+	  <form autocomplete="on" id="SIGNIN_Form" action="">
 	    <h1 id="login_title">Login Informations</h1>
 	    {% csrf_token %}
 	    {{ form.as_p }}
-	    <!-- Display area for client-side validation errors -->
 	    <div id="SIGNIN_Errors" style="color: red;"></div>
-	    <!-- Submit button triggers client-side validation -->
 	    <button id="SignInButton" type="submit" class="ButtonLayout ButtonBlue CTA">Sign In</button>
 	    <div id="SIGNIN_Signup">
 	      <p>Doesn’t have a Pong account ? <b>Create your account</b></p>

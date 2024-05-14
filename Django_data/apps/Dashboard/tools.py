@@ -60,14 +60,19 @@ def not_his_dashboard(key: int) -> dict:
 
 def populate_dashboard(key: int, me: User) -> dict:
     try:
+        # try to get a valid game id
         game = Games.objects.get(id=key)
         try:
+            # try to get UserGame linked to id game sent. (Owner Games)
             myself = UserGame.objects.get(game=key, user=me)
         except:
+            # throwing means populate other user's dashboard
             return not_his_dashboard(key=key)
         tmp = list(UserGame.objects.filter(game=key).exclude(user=me))
     except:
+        # Bad id_game sent
         raise
+    # way of function which User sent want to populate his own dashboard
     opponent = None
     for player in tmp:
         if player.user != me:

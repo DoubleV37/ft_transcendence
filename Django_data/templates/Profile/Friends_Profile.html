@@ -1,6 +1,7 @@
 {% load static %}
+<!DOCTYPE html>
 <div id="Friends_Profile">
-  <form data-type="{{ type }}" data-name="{{ username }}" data-id="{{ id }}" action="" method="post">
+  <form autocomplete="on" data-type="{{ type }}" data-name="{{ username }}" data-id="{{ id }}" action="" method="post">
     {% csrf_token %}
     {% if type == 'delete' %}
       <button class="ButtonLayout ButtonDark FriendCTALayout" type="submit" name="key" value="delete {{ username }}">Delete</button>

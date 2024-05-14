@@ -12,6 +12,10 @@ from apps.Dashboard.models import GlobalStats
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class SoloPongConsumer(AsyncWebsocketConsumer):
 	async def connect(self):
@@ -35,8 +39,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		game_name = "Pong"
 
 		random_str = "".join(
-			random.choices(
-				"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", k=6)
+			random.choices("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", k=6)
 		)
 
 		room_group_name = hashlib.sha256(
@@ -62,7 +65,7 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		self.opponent_game = await database_sync_to_async(UserGame.objects.create)(
 			user=self.opponent, game=self.game
 		)
-		my_user = self.scope['user']
+		my_user = self.scope["user"]
 		await self.send(
 			text_data=json.dumps(
 				{
@@ -75,10 +78,11 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 					"my_ball": my_user.skin_ball,
 					"my_paddle": my_user.skin_paddle,
 					"my_background": my_user.skin_background,
-					"my_avatar": my_user.avatar.url
+					"my_avatar": my_user.avatar.url,
 				}
 			)
 		)
+		logger.info(f"ALLO {self.pong =}")
 
 	async def receive(self, text_data):
 		data = json.loads(text_data)
@@ -97,9 +101,10 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 			self.ia = True
 			if data["opponent"] == "player":
 				self.ia = False
-			self.pong = Pong(data["point_limit"],
-							 data["difficulty"], data["powerup"])
+			self.pong = Pong(data["point_limit"], data["difficulty"], data["powerup"])
 			await self.init_db_game()
+			if data["type_game"] == "tournament":
+				self.game.in_tournament = True
 			asyncio.create_task(self.runGame())
 
 	async def sendUpdateGame(self):
@@ -176,30 +181,39 @@ class SoloPongConsumer(AsyncWebsocketConsumer):
 		self.user_game.score = dict_stats["score2"]
 		self.opponent_game.max_speed = dict_stats["max_speed"][0]
 		self.opponent_game.score = dict_stats["score1"]
-		if dict_stats["score1"] > dict_stats["score2"]:
-			self.opponent_game.winner = True
-			await self.update_global_stats(False)
+		if self.game.in_tournament is False:
+			if dict_stats["score1"] > dict_stats["score2"]:
+				self.opponent_game.winner = True
+				await self.update_global_stats(False)
+			else:
+				self.user_game.winner = True
+				await self.update_global_stats(True)
+			await database_sync_to_async(self.game.save)()
+			await database_sync_to_async(self.user_game.save)()
+			await database_sync_to_async(self.opponent_game.save)()
 		else:
-			self.user_game.winner = True
-			await self.update_global_stats(True)
-		await database_sync_to_async(self.game.save)()
-		await database_sync_to_async(self.user_game.save)()
-		await database_sync_to_async(self.opponent_game.save)()
+			await database_sync_to_async(self.user_game.delete)()
+			await database_sync_to_async(self.opponent_game.delete)()
+			await database_sync_to_async(self.game.delete)()
 
 	async def update_global_stats(self, winner):
 		self.toGS = await database_sync_to_async(GlobalStats.objects.get)(user=self.scope["user"])
-		if winner :
+		if winner:
 			self.toGS.victory += 1
 		else:
 			self.toGS.defeat += 1
 		self.toGS.nb_games += 1
 		if self.game.in_tournament:
-			self.toGS.tournaments_winned += 1
+			self.toGS.tournament_games += 1
 		else:
 			self.toGS.regular_games += 1
 		self.toGS.win_rate = (
 			self.toGS.victory / self.toGS.nb_games
 		)
+		if self.ia and winner:
+			self.toGS.victory_ia += 1
+		elif not self.ia and winner:
+			self.toGS.victory_player += 1
 		await sync_to_async(self.toGS.save)()
 
 	async def send_game_finish(self):

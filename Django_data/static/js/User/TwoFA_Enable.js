@@ -17,16 +17,20 @@ function  Twofa_DelModalEvents() {
 }
 
 async function	Twofa_CancelSubmit() {
-    let form = document.getElementById('form_2FA');
-    let formData = new FormData(form);
+  let form = document.getElementById('form_2FA');
+  let formData = new FormData(form);
 
-    await MakeRequest(`${ROUTE.TWOFA_E}`, {
-      method: 'POST',
-      body: formData
-    });
-    TwofaModal['modal'].hide();
-    settings_DelEvents();
+  await MakeRequest(`${ROUTE.TWOFA_E}`, {
+    method: 'POST',
+    body: formData
+  });
+  TwofaModal['modal'].hide();
+  settings_DelEvents();
+  try {
     changeSection(`${ROUTE.SETTINGS}`, `#content`);
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
 async function  Twofa_EnableSubmit(event) {
@@ -35,22 +39,30 @@ async function  Twofa_EnableSubmit(event) {
 
   const form = document.getElementById('form_2FA');
   const formData = new FormData(form);
-  const	response = await MakeRequest(`${ROUTE.TWOFA_C}`, {
-    method: 'POST',
-    body: formData
-  });
-  const data = await response.json();
+  try {
+    const	response = await MakeRequest(`${ROUTE.TWOFA_C}`, {
+      method: 'POST',
+      body: formData
+    });
+    if (response.status === 403) {
+      TwofaModal.modal.hide();
+      return ;
+    }
+    const data = await response.json();
 
-  if (data.success == true) {
-    let element = document.getElementById('success_2FA');
+    if (data.success === true) {
+      let element = document.getElementById('success_2FA');
 
-    element.innerHTML = `2FA authentication successfully enabled.`;
-    await sleep(2000);
-    TwofaModal['modal'].hide();
-  }
-  else {
-    let element = document.getElementById('failure_2FA');
+      element.innerHTML = `2FA authentication successfully enabled.`;
+      document.getElementById("TwofaModal").querySelector("#cancel_2fa").disabled = true;
+      await sleep(1000);
+      TwofaModal['modal'].hide();
+    } else {
+      let element = document.getElementById('failure_2FA');
 
-    element.innerHTML = `Error: Wrong code submitted. Please try again.`;
+      element.innerHTML = `Error: Wrong code submitted. Please try again.`;
+    }
+  } catch (err) {
+    console.error("2FA Error: ", err);
   }
 }

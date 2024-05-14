@@ -45,8 +45,20 @@ function friends_SetEvents () {
   }
 
   modal
-    .querySelector("#ModalBackArrow")
+    .querySelector("#ModalCloseWindow")
     .addEventListener("click", friends_closeModal);
+
+  modal.querySelector("#ModalBackArrow").onclick = async function () {
+    const userid = document.getElementById("HEADER_IsAuth").getAttribute("data-id");
+
+    try {
+      await changeSection(`${ROUTE.PROFILE}${userid}/`, "#ProfileModal");
+      friendsModal['modal'].hide();
+      profileModal['modal'].show();
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  };
 
   modal.querySelectorAll(".btn.btn-primary").forEach((button) => {
     button.addEventListener("click", friends_CollapseCallback);
@@ -100,7 +112,7 @@ function friends_DelEvents () {
   }
 
   modal
-    .querySelector("#ModalBackArrow")
+    .querySelector("#ModalCloseWindow")
     .removeEventListener("click", friends_closeModal);
 
   modal.querySelectorAll(".btn.btn-primary").forEach((button) => {

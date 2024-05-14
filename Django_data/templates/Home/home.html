@@ -4,9 +4,9 @@
   {%include "Home/head.html" %}
 
   <body>
-    {% include "Profile/Avatar.html" %} <!-- TODO load the modal only if the user is connected -->
-    {% include "Profile/Profile.html" %}<!-- TODO load the modal only if the user is connected -->
-    {% include "Profile/enable_2fa.html" %}<!-- TODO load the modal only if the user is connected -->
+    <div class="modal fade" id="ProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"></div>
+    {% include "Profile/Avatar.html" %} 
+    {% include "Profile/enable_2fa.html" %}
     {% include "FriendList/FriendsList.html" %}
     {% include "Auth/code_validation.html" %}
     <header>

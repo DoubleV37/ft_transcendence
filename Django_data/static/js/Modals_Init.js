@@ -46,6 +46,10 @@ function modal_AvatarInit () {
     }
   );
   avatarModal.modal._element.addEventListener(
+    "show.bs.modal",
+    avatar_PrepHtml
+  );
+  avatarModal.modal._element.addEventListener(
     "shown.bs.modal",
     avatar_SetEvents
   );
@@ -92,7 +96,3 @@ function modal_2FaCodeInit () {
     signin_DelModalEvents
   );
 }
-
-//function collapse_FriendsLists() {
-//  friendsCollapse.collapse = new bootstrap 
-//}

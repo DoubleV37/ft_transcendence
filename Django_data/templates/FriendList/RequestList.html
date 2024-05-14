@@ -3,16 +3,16 @@
   {% else %}
   <ul id="RequestList-content" class="list-group">
     {% for friend_request in all_friend_request %}
-    <li class="list-group-item" id="Request_{{ friend_request.from_user.id }}"><!-- CLASS - Required -->
+    <li class="list-group-item" id="Request_{{ friend_request.from_user.id }}">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-flip="false" data-bs-toggle="dropdown" aria-expanded="false">
           <img class="ProfilePic modal-profilePic .modal-profileFriendCardboard" src="{{ friend_request.from_user.avatar.url }}"></img>
-          {{ friend_request.from_user }}
+          {{ friend_request.from_user|lower|capfirst }}
         </button>
         <ul class="dropdown-menu fadeinAnimation" aria-labelledby="dropdownMenuButton1">
           <li>
-            <button class="SelectButtonLayout dropdownButton ButtonNeon" id="ProfileButton" data-content="{{ friend_request.from_user.id }}">Profile</button><!-- DATA-CONTENT - Required -->
-            <form data-name="{{ friend_request.from_user }}" data-id="{{ friend_request.from_user.id }}" action="" onsubmit="return false;" method="post">
+            <button class="SelectButtonLayout dropdownButton ButtonNeon" id="ProfileButton" data-content="{{ friend_request.from_user.id }}">Profile</button>
+            <form autocomplete="on" data-name="{{ friend_request.from_user }}" data-id="{{ friend_request.from_user.id }}" action="" onsubmit="return false;" method="post">
               {% csrf_token %}
               <div id="DoubleButton">
                 <button class="SelectButtonLayout dropdownButton ButtonNeon" type="button" name="key" value="add {{ friend_request.from_user }}" data-select="accept">Accept</button>

@@ -1,18 +1,31 @@
 function game_SetEvents () {
-	if (window.location.pathname === "/game/solo/")
+	if (window.location.pathname === "/game/solo/") {
 		gameSocket = new WebSocket("wss://" + window.location.host + "/wss" + window.location.pathname);
-	else
+  } else {
 		gameSocket = new WebSocket("wss://" + window.location.host + "/ws/multi" + window.location.pathname);
+    multi = true;
+  }
 	gameSocket.addEventListener("message", SetTheGame);
 	gameSocket.addEventListener("open", OnOpenCallback);
 	gameSocket.addEventListener("close", OnCloseCallback);
 	init_canvas();
+
+  document.body.addEventListener("touchstart", touchDown);
+  document.body.addEventListener("touchend", touchUp);
+  document.addEventListener('contextmenu', context);
+}
+
+function context (e) {
+  e.preventDefault();
 }
 
 function game_DelEvents () {
-  console.log("game_DelEvents");
   document.removeEventListener("keyup", keyUp);
   document.removeEventListener("keydown", keyDown);
+  document.body.removeEventListener("touchstart", touchDown);
+  document.body.removeEventListener("touchend", touchUp);
+  document.removeEventListener('contextmenu', context);
+
   if (loading === true) {
 	gameSocket.removeEventListener("message", SetTheGame);
   } else {
@@ -45,7 +58,6 @@ function SetTheGame (event) {
   const data = JSON.parse(event.data);
 
   loading = true;
-  console.log(data.message);
   gameCanvas.inGame = true;
   if (data.message === "Game stopped") {
 	if (deleteEvent === true) {
@@ -70,7 +82,6 @@ function SetTheGame (event) {
 
 function OnOpenCallback () {
   gameStop = false;
-  console.log("The connection was setup successfully !");
   gameSocket.addEventListener("message", SetTheGame);
   gameCanvas.powerup = GameParams.powerup;
   gameSocket.send(JSON.stringify(GameParams));
@@ -81,8 +92,8 @@ function OnCloseCallback () {
   gameSocket.removeEventListener("open", OnOpenCallback);
   gameSocket.removeEventListener("close", OnCloseCallback);
 
-  console.log("Socket was closed!");
   gameStop = true;
+  multi = false;
 }
 
 function keyUp (e) {
@@ -91,9 +102,64 @@ function keyUp (e) {
 
 function keyDown (e) {
   if (e.key !== "F5" && !(e.key === "F5" && e.ctrlKey) && e.key !== "F12") {
-	e.preventDefault();
+	  e.preventDefault();
   }
   keyStates[e.key] = true;
+}
+
+function touchUp (e) {
+  const rect = document.body.getBoundingClientRect();
+  if (e.changedTouches && e.changedTouches.length > 0) {
+    const touches = e.changedTouches[0];
+    pos = getTouchesPosition(touches, rect);
+    const vLine = rect.x + rect.width / 2;
+    if (pos.x > vLine + 1) {
+      keyStates['ArrowUp'] = false;
+      keyStates['ArrowDown'] = false;
+    } else {
+      keyStates['w'] = false; 
+      keyStates['s'] = false; 
+    }
+  }
+}
+
+function touchDown (e) {
+  whichMove(e, true);
+}
+
+function whichMove (e, value) {
+  const rect = document.body.getBoundingClientRect();
+  if (e.changedTouches && e.changedTouches.length > 0) {
+    const touches = e.changedTouches[0]
+    pos = getTouchesPosition(touches, rect);
+    const vLine = rect.x + rect.width / 2;
+    const hLine = rect.y + rect.height / 2;
+    if (multi === true) {
+      if (pos.y < hLine - 1) {
+        keyStates['ArrowUp'] = value;
+      } else {
+        keyStates['ArrowDown'] = value;
+      }
+    } else {
+      if (pos.x < vLine - 1 && pos.y < hLine - 1) {
+        keyStates['w'] = value; 
+      } else if (pos.x < vLine - 1 && pos.y > hLine + 1) {
+        keyStates['s'] = value;
+      } else if (pos.x > vLine + 1 && pos.y < hLine - 1) {
+        keyStates['ArrowUp'] = value;
+      } else if (pos.x > vLine + 1 && pos.y > hLine + 1) {
+        keyStates['ArrowDown'] = value;
+      }
+    }
+  }
+}
+
+function getTouchesPosition (touches, rect) {
+  const pos = {
+    x: touches.clientX - rect.left,
+    y: touches.clientY - rect.top
+  }
+  return pos;
 }
 
 function init_canvas () {
@@ -106,7 +172,7 @@ function init_canvas () {
   gameCanvas.canvas.height = gameCanvas.height;
   gameCanvas.paddle1Height = 0,
   gameCanvas.paddle2Height = 0,
-  gameCanvas.powerup = false,
+  gameCanvas.powerup = GameParams.powerup,
   gameCanvas.powerupY = 0,
   gameCanvas.powerupX = 0,
   gameCanvas.powerupsize = 0,

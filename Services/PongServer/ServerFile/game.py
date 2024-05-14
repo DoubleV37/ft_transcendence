@@ -24,15 +24,16 @@ async def game_handler(websocket, game_id):
 			type_msg = message.get("message")
 			if type_msg == "settings" and num == 1:
 				GAMES[game_id]["settings"] = message
+				print(GAMES[game_id]["settings"])
 				GAMES[game_id]["pong"] = Pong(GAMES[game_id]["settings"]["point_limit"], GAMES[game_id]["settings"]["difficulty"], GAMES[game_id]["settings"]["powerup"])
 				asyncio.create_task(game_routine(game_id, GAMES[game_id]["pong"]))
-			if type_msg == "up" and num == 1:
+			if type_msg == "up" and num == 1 and GAMES[game_id]["pong"].player_pos[1] > 0:
 				GAMES[game_id]["pong"].player_pos[1] -= GAMES[game_id]["pong"].player_speed
-			if type_msg == "down" and num == 1:
+			if type_msg == "down" and num == 1 and GAMES[game_id]["pong"].player_pos[1] < 900:
 				GAMES[game_id]["pong"].player_pos[1] += GAMES[game_id]["pong"].player_speed
-			if type_msg == "up" and num == 2:
+			if type_msg == "up" and num == 2 and GAMES[game_id]["pong"].player_pos[0] > 0:
 				GAMES[game_id]["pong"].player_pos[0] -= GAMES[game_id]["pong"].player_speed
-			if type_msg == "down" and num == 2:
+			if type_msg == "down" and num == 2 and GAMES[game_id]["pong"].player_pos[0] < 900:
 				GAMES[game_id]["pong"].player_pos[0] += GAMES[game_id]["pong"].player_speed
 	except websockets.exceptions.ConnectionClosed:
 		print("==Client disconnected==")
@@ -44,11 +45,9 @@ async def game_handler(websocket, game_id):
 					break
 			if len(GAMES[game_id]["players"]) == 0 and GAMES[game_id]["nb_players"] == 2:
 				del GAMES[game_id]
-				print("==Game deleted==")
 			elif len(GAMES[game_id]["players"]) == 1 and GAMES[game_id]["nb_players"] == 2:
 				await GAMES[game_id]["players"][0][1].send(json.dumps({"message" : "Game stopped"}))
 		if websocket in CONNECTIONS_GAMES:
-			print("++++++DELETE++++++")
 			del CONNECTIONS_GAMES[websocket]
 
 # =======  connection  =======
@@ -75,12 +74,9 @@ async def register_game(websocket, game_id):
 			return False
 		GAMES[game_id]["players"].append((dict_user["username"], websocket))
 		GAMES[game_id]["nb_players"] += 1
-		print("==Player added==")
 	else:
 		await websocket.ping()
 		GAMES[game_id] = {"players" : [(dict_user["username"], websocket)], "settings" : None, "nb_players" : 1}
-		print("==Game created==" + str(game_id))
-	print("==Client connected==")
 	return True
 
 

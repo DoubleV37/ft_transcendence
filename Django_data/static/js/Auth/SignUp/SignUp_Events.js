@@ -24,6 +24,5 @@ async function signup_FormCallBack(event) {
 }
 
 async function signup_SignInCallBack() {
-    signup_DelEvents();
     await loadPage(`${ROUTE.SIGNIN}`);
 }

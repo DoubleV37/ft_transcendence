@@ -3,10 +3,7 @@ async function friends_DeleteCallBack (event) {
   const response = await deleteFriendSubmit(event.target);
 
   if (response === false) {
-    if (error403 === true) {
-      return;
-    }
-    FriendsModal.modal.hide();
+    friendsModal.modal.hide();
     loadPage(`${ROUTE.HOME}`);
   }
 }
@@ -16,10 +13,7 @@ async function friends_AddCallBack (event) {
   const response = await addFriendSubmit(event.target);
 
   if (response === false) {
-    if (error403 === true) {
-      return;
-    }
-    FriendsModal.modal.hide();
+    friendsModal.modal.hide();
     loadPage(`${ROUTE.HOME}`);
   }
 }
@@ -29,10 +23,7 @@ async function friends_ResponseCallBack (event) {
   const response = await ResponseFriendSubmit(event.target);
 
   if (response === false) {
-    if (error403 === true) {
-      return;
-    }
-    FriendsModal.modal.hide();
+    friendsModal.modal.hide();
     loadPage(`${ROUTE.HOME}`);
   }
 }
@@ -43,11 +34,17 @@ function friends_closeModal () {
 
 async function friends_GoToProfile (event) {
   const id = event.target.getAttribute("data-content");
-
-  await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
-  await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
-  friendsModal.modal.hide();
-  profileModal.modal.show();
+  try {
+    await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
+    if (profileModal.modal === null) {
+      modal_ProfileInit();
+    }
+    await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
+    friendsModal.modal.hide();
+    profileModal.modal.show();
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
 function friends_CollapseCallback (event) {

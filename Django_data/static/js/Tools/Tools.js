@@ -43,8 +43,11 @@ function del_current_event () {
   case "GAME_ROOM":
     game_DelEvents();
     break;
-  case "STATS":
+  case "TOURNAMENT":
+    tournament_DelEvents();
     break;
+  case "BRACKET":
+    bracket_DelEvents();
   default:
     break;
   }
@@ -60,6 +63,16 @@ function restore_message (elem_success, elem_failure) {
 
   element = document.getElementById(elem_success);
   element.innerHTML = "";
+}
+
+function ValidFileType (file) {
+  const fileTypes = [
+    "image/gif",
+    "image/jpeg",
+    "image/png",
+    "image/jpg"
+  ];
+  return fileTypes.includes(file.type);
 }
 
 async function pingServer () {

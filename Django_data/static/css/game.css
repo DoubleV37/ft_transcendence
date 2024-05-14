@@ -43,9 +43,9 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	}
-	
+
 	#matchmakingDots {
-	
+
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 2rem;
@@ -58,7 +58,8 @@
 		margin-bottom: 1em;
 	}
 
-	#endGameScreen {
+	#endGameScreen, #endTournamentScreen {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -81,6 +82,11 @@
 		font-weight: 400;
 		line-height: normal;
 		cursor: pointer;
+		text-transform: lowercase;
+	}
+
+	.username::first-letter {
+		text-transform: uppercase;
 	}
 
 	.skills {
@@ -100,9 +106,19 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	  }
-	
+
 	  .section-stats {
 		width: 75%;
+	}
+
+	.section-stats-header {
+		width: 75%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid white;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1.2em;
 	}
 
 	.section-stats-row {
@@ -120,8 +136,6 @@
 		font-weight: 400;
 		line-height: normal;
 		align-self: stretch;
-		border-bottom: #616161 solid 1px;
-		margin-bottom: 1rem;
 	}
 
 	.ranked-gif {
@@ -175,9 +189,9 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	}
-	
+
 	#matchmakingDots {
-	
+
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 2rem;
@@ -190,7 +204,8 @@
 		margin-bottom: 1em;
 	}
 
-	#endGameScreen {
+	#endGameScreen, #endTournamentScreen {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -213,7 +228,13 @@
 		font-weight: 400;
 		line-height: normal;
 		cursor: pointer;
+		text-transform: lowercase;
 	}
+
+	.username::first-letter {
+		text-transform: uppercase;
+	}
+
 
 	.skills {
 		width: 75%;
@@ -232,9 +253,19 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	  }
-	
+
 	  .section-stats {
 		width: 75%;
+	}
+
+	.section-stats-header {
+		width: 75%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid white;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1.2em;
 	}
 
 	.section-stats-row {
@@ -252,8 +283,6 @@
 		font-weight: 400;
 		line-height: normal;
 		align-self: stretch;
-		border-bottom: #616161 solid 1px;
-		margin-bottom: 1rem;
 	}
 
 	.ranked-gif {
@@ -287,7 +316,7 @@
 		color: #FFF;
 		text-align: center;
 		font-family: Oxanium;
-		font-size: 3rem;
+		font-size: 2rem;
 		font-style: normal;
 		font-weight: 700;
 		line-height: normal;
@@ -306,9 +335,9 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	}
-	
+
 	#matchmakingDots {
-	
+
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 1.2rem;
@@ -321,7 +350,8 @@
 		margin-bottom: 1em;
 	}
 
-	#endGameScreen {
+	#endGameScreen, #endTournamentScreen {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -332,15 +362,36 @@
 		padding-top: 5em;
 		padding-left: 15vw;
 		padding-right: 15vw;
-        border: 1px solid #919191;
-		border-top: none !important;
+		border: 1px solid #cf911f;
 		opacity: 0;
 		transition: opacity 0.5s ease;
+		border-radius: 1em;
+		border-top-left-radius: 0em !important;
+		border-top-right-radius: 0em !important;
+		border-top: none !important;
+	}
+
+	#endTournamentScreen {
+		border-top-left-radius: 1em !important;
+		border-top-right-radius: 1em !important;
+		border: 1px solid #cf911f !important;
 	}
 
 	.username {
-		display: none;
+		color: #FFF;
+		font-family: Kodchasan;
+		font-size: 0.8em;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		cursor: pointer;
+		text-transform: lowercase;
 	}
+
+	.username::first-letter {
+		text-transform: uppercase;
+	}
+
 
 	.skills {
 		width: 80%;
@@ -359,9 +410,19 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	  }
-	
+
 	  .section-stats {
 		width: 80%;
+	}
+
+	.section-stats-header {
+		width: 80%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid white;
+		border-bottom: #616161 solid 1px;
+		margin-bottom: 1.2em;
 	}
 
 	.section-stats-row {
@@ -379,8 +440,6 @@
 		font-weight: 400;
 		line-height: 1;
 		align-self: stretch;
-		border-bottom: #616161 solid 1px;
-		margin-bottom: 1rem;
 	}
 
 	.ranked-gif {
@@ -407,7 +466,7 @@
 	width: 100%;
 }
 
-#endGameMessage {
+#endGameMessage, #endTournamentMessage {
 	color: #FFF;
 	text-align: right;
 	font-family: Kodchasan;
@@ -463,14 +522,14 @@
 }
 
 .low-ranked::before {
-	content: url('../images/angry-svgrepo-com.svg'); 
-	display: inline-block; /* Allows for width and height settings */
-	width:  1em; /* Adjust the size as needed */
-	height:  1em; /* Adjust the size as needed */
-	margin-right: 0.5rem; /* Adds some space between the icon and the text */
-	vertical-align: top; /* Aligns the icon vertically with the text */
-	background-size: contain; /* Ensures the SVG scales properly */
-	background-repeat: no-repeat; /* Prevents the SVG from repeating */
+	content: url('../images/angry-svgrepo-com.svg');
+	display: inline-block;
+	width:  1em;
+	height:  1em;
+	margin-right: 0.5rem;
+	vertical-align: top;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .medium-ranked {
@@ -479,13 +538,13 @@
 
 .medium-ranked::before {
 	content: url('../images/half-rating-star-svgrepo-com.svg');
-	display: inline-block; /* Allows for width and height settings */
-	width:  1em; /* Adjust the size as needed */
-	height:  1em; /* Adjust the size as needed */
-	margin-right: 0.5rem; /* Adds some space between the icon and the text */
-	vertical-align: top; /* Aligns the icon vertically with the text */
-	background-size: contain; /* Ensures the SVG scales properly */
-	background-repeat: no-repeat; /* Prevents the SVG from repeating */
+	display: inline-block;
+	width:  1em;
+	height:  1em;
+	margin-right: 0.5rem;
+	vertical-align: top;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .high-ranked {
@@ -493,14 +552,15 @@
 }
 
 .high-ranked::before {
-	content: url('../images/WRcrown.svg'); /* Replace with the actual path to your SVG */
-	display: inline-block; /* Allows for width and height settings */
-	width:  1em; /* Adjust the size as needed */
-	height:  1em; /* Adjust the size as needed */
-	margin-right: 0.5rem; /* Adds some space between the icon and the text */
-	vertical-align: top; /* Aligns the icon vertically with the text */
-	background-size: contain; /* Ensures the SVG scales properly */
-	background-repeat: no-repeat; /* Prevents the SVG from repeating */
+	content: url('../images/WRcrown.svg');
+	display: inline-block;
+	width:  1em;
+	height:  1em;
+	margin-right: 0.5rem;
+	vertical-align: top;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-bottom: 0.5em;
 }
 
 #NbGames {
@@ -669,7 +729,7 @@ ul, li {
 	animation: 1s anim-lightspeed-in ease forwards;
 	font-family: 'Kodchasan';
 	color: #FFF;
-	margin-bottom: 1em;
+	margin-bottom: 0.7em;
 	line-height: normal;
 }
 
@@ -762,4 +822,10 @@ ul, li {
 	color: white;
 	font-weight: normal;
 	text-align: center;
+}
+
+.board-date {
+	margin-bottom: 0em !important;
+	color: #5DC6E8;
+	font-weight: normal !important;
 }

@@ -96,7 +96,7 @@ scrollbar-width: none;
 		height: 5em;
         width: 5em;
     }
-
+	
 	.dropdown-toggle {
 		white-space: nowrap;
 		/* background: 00000; */
@@ -122,8 +122,6 @@ scrollbar-width: none;
 		justify-content: center;
 		/* flex-wrap: nowrap; */
 	}
-	
-
 }
 
 /* Laptops and tablets (portrait and landscape) ----------- */

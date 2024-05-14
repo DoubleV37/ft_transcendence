@@ -1,6 +1,6 @@
 async function modes_randomMatchmaking() {
 	try {
-		GameParams.point_limit = 1;
+		GameParams.point_limit = 3;
 		GameParams.type = "remote";
 		GameParams.opponent = "player";
 		GameParams.powerup = false;
@@ -8,35 +8,48 @@ async function modes_randomMatchmaking() {
 		GameParams.type_game = "all";
 		await loadPage(`${ROUTE.GAME_MATCH}`);
 	} catch (error) {
-		console.log(`Error - playerVSplayer: ${error}`);
+		console.error("Matchmaking:", error);
 	}
 }
 
-async function modes_playerVSia() {
-	try {
-		GameParams.opponent = "ai";
-		GameParams.type = "local";
-		GameParams.point_limit = 3;
-		GameParams.difficulty = 5;
-		GameParams.powerup = false;
-		await loadPage(`${ROUTE.GAME_LOCAL}`);
-	} catch (error) {
-		console.log(`Error - playerVSia: ${error}`);
-	}
+async function modes_playerVSia () {
+  try {
+    GameParams.opponent = "ai";
+    GameParams.type = "local";
+    GameParams.point_limit = 3;
+    GameParams.difficulty = 5;
+    GameParams.powerup = false;
+    await loadPage(`${ROUTE.GAME_LOCAL}`);
+  } catch (error) {
+		console.error("Matchmaking:", error);
+  }
 }
 
-function modes_ChooseGame() {
-  console.log("ChooseGame: do nothing for now");
+function modes_CreateGame () {
+  try {
+    loadPage(`${ROUTE.GAME_PARAMETERS}`);
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
-async function modes_CreateGame() {
-  await loadPage(`${ROUTE.GAME_PARAMETERS}`);
+function modes_CreateTournament () {
+  try {
+    loadPage(`${ROUTE.SET_TOURNAMENT}`);
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
-function modes_ChooseTournament() {
-  console.log("ChooseTournament: do nothing for now");
-}
-
-function modes_CreateTournament() {
-  console.log("CreateTournament: do nothing for now");
+function modes_ContinueTournament (event) {
+  if (tournament != null) {
+    try {
+      loadPage(`${ROUTE.BRACKET_TOURNAMENT}`);
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  } else {
+    event.target.setAttribute("class", "MediumButtonLayout right ButtonDark");
+    event.target.disabled = true;
+  }
 }

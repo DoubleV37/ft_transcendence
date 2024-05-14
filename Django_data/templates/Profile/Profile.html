@@ -1,16 +1,18 @@
 {% load static %}
+<!DOCTYPE html>
 <!-- Modal -->
 <div class="modal fade" id="ProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <img id="ModalBackArrow" src="{% static 'images/Arrow.svg' %}" alt="Shitty back arrow"></img>
+        <img id="ModalBackArrow" src="{% static 'images/BackArrow.svg' %}" alt="Back arrow" style="display: none;"></img>
+        <img id="ModalCloseWindow" src="{% static 'images/Arrow.svg' %}" alt="Close window"></img>
       </div>
       <div class="modal-body">
         <div id="ModalContent" data-content="PROFILE_PAGE"></div>
         <div id="ProfilPage" class="ProfilePage modal-profile">
           <div class="ProfileCardboard modal-profileCardboard">
-            <img class="ProfilePic modal-profilePic" src="{{ avatar }}" alt="Very basic user"></img>
+            <img class="ProfilePic modal-profilePic" src="{{ avatar }}" alt="Your profile picture"></img>
             <div id="UserStatus">
               <h1 id="username" data-id="{{ id }}">{{ username }}</h1>
               {% if type == 'foreign' %}
@@ -36,9 +38,7 @@
           {% endif %}
           <button id="PROFIL_History" class="ButtonLayout ButtonBlue">Game History</button>
           <button id="PROFIL_Stats" class="ButtonLayout ButtonBlue">Player Stats</button>
-
         </div>
-          {% comment %} SECTION GAME HISTORY {% endcomment %}
         <div id="ListHistory" class="listHeaderContainer" hidden>
           <div class="ProfileCardboard modal-profileCardboard">
             <img class="ProfilePic modal-profilePic" src="{{ avatar }}" alt="Very basic user"></img>
@@ -49,9 +49,8 @@
           </div>
           <div id="GameListHistory"></div>
         </div>
-        {% comment %} End history {% endcomment %}
       </div>
-    <div class="modal-footer"></div>
+      <div class="modal-footer"></div>
+    </div>
   </div>
-</div>
 </div>

@@ -38,20 +38,27 @@ async function	signin_Code2FACallBack (event) {
 
   const	response = await confirm_2FA_SignIn();
 
-  if (response == true) {
+  if (response === 403 || response === 404) {
+    TwofaCodeModal.modal.hide();
+  } else if (response === true) {
     const element = document.getElementById("success_2FAcode");
 
     element.innerHTML = "2FA authentication succeed.";
+    document.getElementById("cancel_code2fa").disabled = true;
     await sleep(1000);
     TwofaCodeModal.modal.hide();
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
-    loadPage(`${ROUTE.HOME}`);
+    try {
+      loadPage(`${ROUTE.HOME}`);
+    } catch (err) {
+      console.error("Error:", err);
+    }
   } else {
     const element = document.getElementById("failure_2FAcode");
 
-    element.innerHTML = "Error: Wrong code submitted. Please try again.";
+    element.innerHTML = "Wrong code! Please try again.";
   }
 }
 
@@ -72,6 +79,9 @@ async function	confirm_2FA_SignIn () {
     method: "POST",
     body: CombinedForm
   });
+  if (response.status === 403 || response.status === 404) {
+    return 403;
+  }
   const data = await response.json();
 
   return data.success;

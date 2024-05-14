@@ -12,7 +12,7 @@ async function addFriendSubmit(form) {
       body: formData,
     });
     if (response.status === 403) {
-      return false;
+      return false; 
     }
     const data = await response.json();
     const elem = form.querySelector("p");

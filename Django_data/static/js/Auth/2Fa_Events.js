@@ -24,7 +24,11 @@ async function	Twofa_CancelSubmit () {
   Twofa_DelModalEvents();
   TwofaModal.hide();
   settings_DelEvents();
-  changeSection(`${ROUTE.SETTINGS}`, "#content");
+  try {
+    changeSection(`${ROUTE.SETTINGS}`, "#content");
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
 async function Twofa_EnableSubmit (event) {
@@ -48,5 +52,18 @@ async function Twofa_EnableSubmit (event) {
     const element = document.getElementById("failure_2FA");
 
     element.innerHTML = "Error: Wrong code submitted. Please try again.";
+  }
+}
+
+function Error_Page (code) {
+  try {
+    if (code === 403) {
+      loadPage(currentUrl);
+    } else {
+      errorCode = true;
+      loadPage(ROUTE.ERROR404);
+    }
+  } catch (err) {
+    console.error("Error:", err);
   }
 }

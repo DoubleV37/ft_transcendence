@@ -1,4 +1,5 @@
 {% load static %}
+<!DOCTYPE html>
 <!-- Modal -->
 <div class="modal fade" id="AvatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -13,6 +14,7 @@
             <img id="selectedAvatar" src="{% static 'images/logoIcon.png' %}"
             class="rounded-circle" style="width: 12em; height: 12em; object-fit: cover;" alt="example placeholder" />
         </div>
+        <p id="ErrorAvatar" style="color: red;"></p>
         <div class="d-flex justify-content-center">
           <div id="DoubleButton">
             <button type="button" id="customFileButton" class="SelectButtonLayout ButtonNeon">Choose file</button>

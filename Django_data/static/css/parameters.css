@@ -48,7 +48,7 @@
         line-height: normal;
         text-align: left;
         align-self: start;
-        margin-bottom: 0.7rem;
+        margin-bottom: 0.75rem;
     }
 
     .gameTitle {
@@ -98,7 +98,7 @@
 
     #switchCheckLabelTop {
         width: 5.3em;
-        height: 2.6em;
+        height: 2.5em;
         border-radius: 0.7em;
         margin-top: 0;
         border-color: #5dc6e8;
@@ -163,7 +163,7 @@
         line-height: normal;
         text-align: left;
         align-self: start;
-        margin-bottom: 0.7rem;
+        margin-bottom: 0.75rem;
     }
 
     .gameTitle {
@@ -213,7 +213,7 @@
 
     #switchCheckLabelTop {
         width: 5.3em;
-        height: 2.6em;
+        height: 2.5em;
         border-radius: 0.7em;
         margin-top: 0;
         border-color: #5dc6e8;
@@ -249,7 +249,7 @@
     .flex-column {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
        }
 
     .section {
