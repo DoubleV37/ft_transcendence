@@ -8,11 +8,18 @@ function gameboard_SetEvents () {
 
       const userid = document.getElementById("HEADER_IsAuth").getAttribute("data-id");
 
-      await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
-      if (userid !== id) {
-       await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
+      try {
+        await changeSection(`${ROUTE.PROFILE}${id}/`, "#ProfileModal");
+        if (profileModal.modal === null) {
+          modal_ProfileInit();
+        }
+        if (userid !== id) {
+        await changeSection(`${ROUTE.FRIENDS_PROFILE}${id}/`, "#Friends_Profile");
+        }
+        profileModal.modal.show();
+      } catch (err) {
+        console.error("Error:", err);
       }
-      profileModal.modal.show();
     };
   });
 }

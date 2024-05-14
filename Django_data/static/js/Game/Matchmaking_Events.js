@@ -12,7 +12,11 @@ function matchmaking_SetEvents () {
 	}
     if (data.message == "match_found") {
       matchSocket.close();
-      loadPage(`${ROUTE.GAME_ROOM}${data.room_name}/`);
+      try {
+        loadPage(`${ROUTE.GAME_ROOM}${data.room_name}/`);
+      } catch (err) {
+        console.error("Error:", err);
+      }
     }
   };
 

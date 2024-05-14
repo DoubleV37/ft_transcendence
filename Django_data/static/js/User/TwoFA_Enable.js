@@ -17,16 +17,20 @@ function  Twofa_DelModalEvents() {
 }
 
 async function	Twofa_CancelSubmit() {
-    let form = document.getElementById('form_2FA');
-    let formData = new FormData(form);
+  let form = document.getElementById('form_2FA');
+  let formData = new FormData(form);
 
-    await MakeRequest(`${ROUTE.TWOFA_E}`, {
-      method: 'POST',
-      body: formData
-    });
-    TwofaModal['modal'].hide();
-    settings_DelEvents();
+  await MakeRequest(`${ROUTE.TWOFA_E}`, {
+    method: 'POST',
+    body: formData
+  });
+  TwofaModal['modal'].hide();
+  settings_DelEvents();
+  try {
     changeSection(`${ROUTE.SETTINGS}`, `#content`);
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
 async function  Twofa_EnableSubmit(event) {

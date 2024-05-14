@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from apps.Auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 import logging
 logger = logging.getLogger(__name__)
@@ -14,6 +14,9 @@ class FooterView(TemplateView):
 
 
 def header(request):
+  if request.method == "GET":
+    if "Load" not in request.headers:
+      return redirect("/")
     _user = request.user
     if _user.is_authenticated is True:
         _username = _user.username
@@ -37,10 +40,13 @@ def header(request):
     return render(request, "Home/header.html")
 
 def error404(request):
-    return render(request, 'Errors/404.html')
+  return render(request, 'Errors/404.html')
 
 def footer(request):
-	return FooterView.as_view()(request)
+  if request.method == "GET":
+    if "Load" not in request.headers:
+      return redirect("/")
+    return FooterView.as_view()(request)
 
 
 def home(request):

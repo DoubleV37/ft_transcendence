@@ -25,43 +25,47 @@ async function profile_SkinsCallBack() {
 
 async function profile_HistoryCallBack() {
   const id = document.getElementById("username").getAttribute("data-id");
-  await changeSection(`${ROUTE.GAMELIST}${id}/`, "#GameListHistory");
-  const list = document
-    .getElementById("GameListHistory")
-    .querySelectorAll("button[class]");
+  try {
+    await changeSection(`${ROUTE.GAMELIST}${id}/`, "#GameListHistory");
+    const list = document
+      .getElementById("GameListHistory")
+      .querySelectorAll("button[class]");
 
-  document.getElementById("ProfilPage").hidden = true;
-  document.getElementById("ListHistory").hidden = false;
+    document.getElementById("ProfilPage").hidden = true;
+    document.getElementById("ListHistory").hidden = false;
 
-  const backArrow = document.getElementById("ModalBackArrow");
+    const backArrow = document.getElementById("ModalBackArrow");
 
-  backArrow.style.display = "flex";
-  backArrow.onclick = function () {
-    const id = [
-      parseInt(
-        document.getElementById("HEADER_IsAuth").getAttribute("data-id")
-      ),
-      parseInt(
-        document
-          .getElementById("UserStatus")
-          .querySelector("#username")
-          .getAttribute("data-id")
-      ),
-    ];
-    if (id[0] === id[1]) {
+    backArrow.style.display = "flex";
+    backArrow.onclick = function () {
+      const id = [
+        parseInt(
+          document.getElementById("HEADER_IsAuth").getAttribute("data-id")
+        ),
+        parseInt(
+          document
+            .getElementById("UserStatus")
+            .querySelector("#username")
+            .getAttribute("data-id")
+        ),
+      ];
+      if (id[0] === id[1]) {
+        document.getElementById("ProfilPage").hidden = false;
+        document.getElementById("ListHistory").hidden = true;
+        backArrow.style.display = "none";
+      } else {
+        backArrow.onclick = profile_GotoFriends;
+      }
       document.getElementById("ProfilPage").hidden = false;
       document.getElementById("ListHistory").hidden = true;
-      backArrow.style.display = "none";
-    } else {
-      backArrow.onclick = profile_GotoFriends;
+    };
+    if (list != null) {
+      list.forEach((button) => {
+        button.addEventListener("click", goToGameStats);
+      });
     }
-    document.getElementById("ProfilPage").hidden = false;
-    document.getElementById("ListHistory").hidden = true;
-  };
-  if (list != null) {
-    list.forEach((button) => {
-      button.addEventListener("click", goToGameStats);
-    });
+  } catch (err) {
+    console.error("Error:", err);
   }
 }
 
@@ -75,14 +79,22 @@ async function goToGameStats(event) {
       button.removeEventListener("click", goToGameStats);
     });
   }
-  await loadPage(`${ROUTE.GAMEBOARD}${id}/`);
+  try {
+    await loadPage(`${ROUTE.GAMEBOARD}${id}/`);
+  } catch (err) {
+    console.error("Error:", err);
+  }
   profileModal.modal.hide();
 }
 
 async function profile_StatsCallBack() {
   const id = document.getElementById("username").getAttribute("data-id");
 
-  await loadPage(`${ROUTE.STATS}${id}/`);
+  try {
+    await loadPage(`${ROUTE.STATS}${id}/`);
+  } catch (err) {
+    console.error("Error:", err);
+  }
   profileModal.modal.hide();
 }
 

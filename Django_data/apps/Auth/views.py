@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.contrib.auth.password_validation import validate_password
 from decouple import config
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, authenticate, logout
 
@@ -92,10 +92,13 @@ def signin(request):
 
 
 def signout(request):
+  if request.method == "POST":
     logout(request)
     response = HttpResponse(status=200)
     response.delete_cookie("jwt_token")
     return response
+  else:
+    return redirect("/")
 
 
 # ___________________________________________________________________________ #
@@ -196,6 +199,8 @@ def my_settings(request):
 
 def refresh_jwt(request):
     """refresh_jwt handle the refresh of the jwt in the front using the refresh token"""
+    if "Load" not in request.headers:
+      return redirect("/")
     if request.method == "GET":
         user = request.user
         if user.refresh_token is None:
@@ -231,8 +236,12 @@ def create_jwt(_user, _type="access"):
 
 def ping_status(request):
     """ Ping_status serve to update the last date ping of a logged user"""
-    if request.user.is_anonymous is False:
-        _user = request.user
-        setattr(_user, 'online_data', timezone.now())
-        _user.save()
-    return HttpResponse(status=204)
+    if request.method == "GET":
+      if "Load" not in request.headers:
+        return redirect("/")
+    if request.method == "POST":
+      if request.user.is_anonymous is False:
+          _user = request.user
+          _user.online_data = timezone.now()
+          _user.save()
+      return HttpResponse(status=204)

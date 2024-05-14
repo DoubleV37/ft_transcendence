@@ -4,7 +4,7 @@
     <p class="errornote">{{ error }}</p>
     {% endfor %}
   {% endif %}
-  <form id="{{ form_id }}" class="form_2FA" action="" method="post">
+  <form autocomplete="on" id="{{ form_id }}" class="form_2FA" action="" method="post">
     {% csrf_token %}
     <p id="otp">Please enter your Authenticator code:</p>
     {{ form.otp.errors }}

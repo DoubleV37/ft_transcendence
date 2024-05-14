@@ -3,7 +3,7 @@
 <html lang="en">
   {% include "Home/head.html" %}
   <body>
-    {% include "Profile/Profile.html" %}
+    <div class="modal fade" id="ProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"></div>
     {% include "Profile/Avatar.html" %}
     {% include "Auth/code_validation.html" %}
     {% include "Profile/enable_2fa.html" %}
@@ -17,7 +17,7 @@
 	    <div id="overlay">
 	    <div class="mid midcolumn fadeinAnimation">
 	    <div id="titleContent" data-content="SIGNUP_PAGE"></div>
-		    <form id="SIGNUP_Form" method="post" action="/auth/signup/">
+		    <form autocomplete="on" id="SIGNUP_Form" method="post" action="">
 			    <h1 id ="signupTitle">Account creation</h1>
 			    {% csrf_token %}
 			    {{ form.as_p }}

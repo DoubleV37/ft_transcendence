@@ -48,18 +48,18 @@ window.addEventListener("popstate", async function (event) {
     await changeSection(`${ROUTE.HOME}`, "#content");
     currentUrl = `${ROUTE.HOME}`;
   } else {
-    await changeSection(event.state.section, "#content");
-    currentUrl = event.state.section;
+    try {
+      await changeSection(event.state.section, "#content");
+      currentUrl = event.state.section;
+    } catch (err) {
+      console.error("Error:", err);
+    }
   }
   await changeSection(`${ROUTE.HEADER}`, "#Header_content");
   header_SetEvents();
 });
 
 async function loadPage (url) {
-  if (url !== currentUrl) {
-    currentUrl = url;
-    history.pushState({ section: url }, "", url);
-  }
   del_current_event();
   const elem = document.getElementById("titleContent").getAttribute("data-content");
   if (elem === "GAME_LOCAL" || elem === "GAME_MATCH" ||
@@ -68,6 +68,10 @@ async function loadPage (url) {
     const config = { childList: true, subtree: true };
 
     observer.observe(targetNode, config);
+  }
+  if (url !== currentUrl) {
+    currentUrl = url;
+    history.pushState({ section: url }, "", url);
   }
   await changeSection(url, "#content");
 }

@@ -50,7 +50,7 @@
                                 <li>
                                   <div id="DoubleButton">
                                     <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button>
-                                    <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post">
+                                    <form autocomplete="on" action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post">
                                       {% csrf_token %}
                                       <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="delete {{ person }}">Delete</button>
                                       <p></p>
@@ -114,7 +114,7 @@
                         <li>
                           <div id="DoubleButton">
                             <button class="SelectButtonLayout dropdownButton ButtonNeon" data-content="{{ person.id }}">Profile</button>
-                            <form action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post">
+                            <form autocomplete="on" action="" data-name="{{ person }}" data-id="{{ person.id }}" onsubmit="return false;" method="post">
                               {% csrf_token %}
                               <button class="SelectButtonLayout dropdownButton ButtonNeon" type="submit" name="key" value="add {{ person }}">Add</button>
                               <p></p>

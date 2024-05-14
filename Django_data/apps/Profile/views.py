@@ -1,7 +1,7 @@
 from django.utils import timezone
 from datetime import timedelta
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from apps.Auth.models import User
 
 
@@ -10,11 +10,10 @@ import json
 logger = logging.getLogger(__name__)
 
 
-def settings(request):
-    return render(request, "Profile/Settings.html")
-
-
 def profile_infos(request, _id=None):
+  if request.method == "GET":
+    if "Load" not in request.headers:
+      return redirect("/")
     item = {}
     if _id is None or request.user.id == _id:
         _user = request.user
@@ -30,6 +29,9 @@ def profile_infos(request, _id=None):
 
 
 def avatar(request):
+  if request.method == "GET":
+    if "Load" not in request.headers:
+      return redirect("/")
     return render(request, "Profile/Avatar.html")
 
 
@@ -69,7 +71,7 @@ def calculate_deltatime(_user):
     current_time = timezone.now()
     last_time_ping = _user.online_data
     delta_time = current_time - last_time_ping
-    if delta_time > timedelta(seconds=3):
+    if delta_time > timedelta(seconds=5):
         return 'offline'
     return 'online'
 

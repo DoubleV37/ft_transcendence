@@ -24,7 +24,11 @@ async function	Twofa_CancelSubmit () {
   Twofa_DelModalEvents();
   TwofaModal.hide();
   settings_DelEvents();
-  changeSection(`${ROUTE.SETTINGS}`, "#content");
+  try {
+    changeSection(`${ROUTE.SETTINGS}`, "#content");
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
 async function Twofa_EnableSubmit (event) {
@@ -52,10 +56,14 @@ async function Twofa_EnableSubmit (event) {
 }
 
 function Error_Page (code) {
-  if (code === 403) {
-    loadPage(currentUrl);
-  } else {
-    errorCode = true;
-    loadPage(ROUTE.ERROR404);
+  try {
+    if (code === 403) {
+      loadPage(currentUrl);
+    } else {
+      errorCode = true;
+      loadPage(ROUTE.ERROR404);
+    }
+  } catch (err) {
+    console.error("Error:", err);
   }
 }

@@ -101,7 +101,11 @@ function EndGame (message) {
   endGameScreen.style.display = "flex";
   confirmEndGame.onclick = async function () {
     clearTimeout(id);
-    await loadPage(ROUTE.GAME_MODES);
+    try {
+      await loadPage(ROUTE.GAME_MODES);
+    } catch (err) {
+      console.error("Error:", err);
+    }
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();

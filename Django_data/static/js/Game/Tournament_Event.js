@@ -52,7 +52,6 @@ async function BeginTournament () {
     document.getElementById("SetPlayer3").value.trim(),
     document.getElementById("SetPlayer4").value.trim()
   ];
-  console.log(inputs);
   if (checkInputs(inputs) === false) {
     return;
   }

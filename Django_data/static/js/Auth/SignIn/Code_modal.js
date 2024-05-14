@@ -50,7 +50,11 @@ async function	signin_Code2FACallBack (event) {
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();
-    loadPage(`${ROUTE.HOME}`);
+    try {
+      loadPage(`${ROUTE.HOME}`);
+    } catch (err) {
+      console.error("Error:", err);
+    }
   } else {
     const element = document.getElementById("failure_2FAcode");
 

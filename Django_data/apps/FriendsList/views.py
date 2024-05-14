@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 import apps.FriendsList.tools as tools
 from apps.Auth.models import User
@@ -15,14 +15,16 @@ class FriendsRequestView(TemplateView):
     try:
 
         def get(self, request):
-            from_user = request.user
-            myFriends = tools.myFriends(from_user)
-            people = tools.suggestionList(from_user)
-            all_friend_request = Friend_Request.objects.all().filter(to_user=from_user)
-            return render(
-                request, self.template_name,
-                {'from_user': from_user, 'people': people, 'myFriends': myFriends, 'all_friend_request': all_friend_request}
-            )
+          if "Load" not in request.headers:
+            return redirect("/")
+          from_user = request.user
+          myFriends = tools.myFriends(from_user)
+          people = tools.suggestionList(from_user)
+          all_friend_request = Friend_Request.objects.all().filter(to_user=from_user)
+          return render(
+              request, self.template_name,
+              {'from_user': from_user, 'people': people, 'myFriends': myFriends, 'all_friend_request': all_friend_request}
+          )
 
         def post(self, request):
             result = str(request.POST['key'])
@@ -50,11 +52,13 @@ class Accept_Or_Refuse_View(TemplateView):
     try:
 
         def get(self, request):
-            me = request.user
-            all_friend_request = Friend_Request.objects.all().filter(to_user=me)
-            return render(
-                request, self.template_name,
-                {'me': me, 'all_friend_request': all_friend_request,})
+          if "Load" not in request.headers:
+            return redirect("/")
+          me = request.user
+          all_friend_request = Friend_Request.objects.all().filter(to_user=me)
+          return render(
+              request, self.template_name,
+              {'me': me, 'all_friend_request': all_friend_request,})
 
         def post(self, request):
             result = str(request.POST['key'])
@@ -70,8 +74,9 @@ class Accept_Or_Refuse_View(TemplateView):
 
 
 def friends_profile(request, _id=None):
-    if _id is None or request.method != 'GET':
-        return HttpResponse('Wrong Profile', status=400)
+  if request.method == "GET":
+    if "Load" not in request.headers:
+      return redirect("/")
     my_user = request.user
     other_user = User.objects.get(id=_id)
     if other_user in my_user.friends.all():

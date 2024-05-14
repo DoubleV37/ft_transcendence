@@ -126,6 +126,7 @@ async function avatarSubmit() {
       return true;
     }
 	  myForm.reset();
+    document.getElementById("ErrorAvatar").innerHTML = 'Error on submit!';
 	  return false;
   } catch (err) {
     console.error('Avatar Errors:', err);

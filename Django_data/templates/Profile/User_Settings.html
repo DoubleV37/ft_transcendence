@@ -3,97 +3,96 @@
 <html lang="en">
   {% include "Home/head.html" %}
   <body>
-	  {% include "Profile/Profile.html" %}
-	  {% include "Profile/Avatar.html" %}
-	  {% include "Auth/code_validation.html" %}
-	  {% include "Profile/enable_2fa.html" %}
+    <div class="modal fade" id="ProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"></div>
+    {% include "Profile/Avatar.html" %}
+    {% include "Auth/code_validation.html" %}
+    {% include "Profile/enable_2fa.html" %}
     {% include "FriendList/FriendsList.html" %}
-
     <header>
-      <div id="Header_content"></div>
+     <div id="Header_content"></div>
     </header> 
 
-	  <div id="content">
-		  <div id="titleContent" data-content="SETTINGS"></div>
-		  <div id="overlayFullscreen">
-			  <div class="midFullscreen midrow margin_bottom">
-				  <img id="AVATAR_Change_Pic" class="ProfilePic settings-profilePic" src="{{ my_user.avatar.url }}"></img>
-				  <div id="section">
-					  <div id="headerTextRow">
-						  <h1 id="settingsTitle">Settings</h1>
-						  <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
-						</div>
-					</div>
-					<div id="section">
-						<div id="leftcolumn">
-							<div id="Settings">
-								<div class="SectionLayout SectionGrey">Account</div>
-								<form id="NAME_Form" action="" method='post'>
-									{% csrf_token %}
-									<div class="field-container">
-										{{ name.as_p }}
-										<button class="UpdateButtonLayout ButtonNeon" type="submit" name="name_button">Update</button>
-									</div>
-								</form>
-								<form id="MAIL_Form" action="" method='post'>
-									{% csrf_token %}
-									<div class="field-container">
-										{{ mail.as_p }}
-										<button class="UpdateButtonLayout ButtonNeon" type="submit" name="mail_button">Update</button>
-									</div>
-								</form>
-								<form id="PASS_Form" action="" method='post'>
-									{% csrf_token %}
-									<div class="field-container">
-										{{ pswd.as_p }}
-										<button class="UpdateButtonLayout ButtonNeon" type="submit" name="pswd_button">Update</button>
-									</div>
-								</form>
-								<form id="TWOFA_Form" method="post">
-								  {% csrf_token %}
-								  {{ profile_2fa.as_p }}
-								  <button type="submit">Enable</button>
-								</form>
-								<div class="form-check form-switch p-0">
-									<div class="d-flex flex-column-reverse gap-1">
-									  <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" {% if enabled %}checked{% endif %} />
-									  <label class="form-check-label" for="switchCheckLabelTop">Two-Factor Authentication:</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="rightcolumn">
-							<div id="Settings">
-								<div class="SectionLayout SectionGrey">Display</div>
-								<form id="TNAME_Form" action="" method='post'>
-									{% csrf_token %}
-									<div class="field-container">
-										{{ t_name.as_p }}
-										<button class="UpdateButtonLayout ButtonNeon" type="submit" name="t_name_button">Update</button>
-									</div>
-								</form>
-								<p id="AvatarText">Avatar:</p>
-								<form id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
-									{% csrf_token %}
-									{{ avatar.as_p }}
-									<!-- Le bouton ci dessous est caché et set juste à référencer le submit du formulaire -->
-									<button class="UpdateButtonLayout ButtonDark" type="submit" id='avatar_button_hidden'>Update</button>
-								</form>
-								<form id="DEL_AVATAR_Form" method="post">
-									{{ delete_avatar }}
-									{% csrf_token %}
-									<button type="submit" name="avatar_delete" id='del_avatar_button_hidden'>Delete Avatar</button>
-								</form>
-								<div class="DoubleButtonSettings">
-									<button id="AVATAR_Change" class="MediumButtonLayout left ButtonNeon">Change</button>
-									<button id="AVATAR_Delete" class="MediumButtonLayout right ButtonDark">Delete</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		{% include "Home/footer.html" %}
-	</body>
+    <div id="content">
+      <div id="titleContent" data-content="SETTINGS"></div>
+      <div id="overlayFullscreen">
+        <div class="midFullscreen midrow margin_bottom">
+          <img id="AVATAR_Change_Pic" class="ProfilePic settings-profilePic" src="{{ my_user.avatar.url }}"></img>
+          <div id="section">
+            <div id="headerTextRow">
+              <h1 id="settingsTitle">Settings</h1>
+              <p id="settingsText">Here you can manage and update your account details, display name and profile picture</p>
+            </div>
+          </div>
+          <div id="section">
+            <div id="leftcolumn">
+              <div id="Settings">
+                <div class="SectionLayout SectionGrey">Account</div>
+                <form autocomplete="on" id="NAME_Form" action="" method='post'>
+                  {% csrf_token %}
+                  <div class="field-container">
+                    {{ name.as_p }}
+                    <button class="UpdateButtonLayout ButtonNeon" type="submit" name="name_button">Update</button>
+                  </div>
+                </form>
+                <form autocomplete="on" id="MAIL_Form" action="" method='post'>
+                  {% csrf_token %}
+                  <div class="field-container">
+                    {{ mail.as_p }}
+                    <button class="UpdateButtonLayout ButtonNeon" type="submit" name="mail_button">Update</button>
+                  </div>
+                </form>
+                <form autocomplete="on" id="PASS_Form" action="" method='post'>
+                  {% csrf_token %}
+                  <div class="field-container">
+                    {{ pswd.as_p }}
+                    <button class="UpdateButtonLayout ButtonNeon" type="submit" name="pswd_button">Update</button>
+                  </div>
+                </form>
+                <form autocomplete="on" id="TWOFA_Form" method="post">
+                  {% csrf_token %}
+                  {{ profile_2fa.as_p }}
+                  <button type="submit">Enable</button>
+                </form>
+                <div class="form-check form-switch p-0">
+                  <div class="d-flex flex-column-reverse gap-1">
+                    <input class="form-check-input ms-0" type="checkbox" role="switch" id="switchCheckLabelTop" {% if enabled %}checked{% endif %} />
+                    <label class="form-check-label" for="switchCheckLabelTop">Two-Factor Authentication:</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="rightcolumn">
+              <div id="Settings">
+                <div class="SectionLayout SectionGrey">Display</div>
+                <form autocomplete="on" id="TNAME_Form" action="" method='post'>
+                  {% csrf_token %}
+                  <div class="field-container">
+                    {{ t_name.as_p }}
+                    <button class="UpdateButtonLayout ButtonNeon" type="submit" name="t_name_button">Update</button>
+                  </div>
+                </form>
+                <p id="AvatarText">Avatar:</p>
+                <form autocomplete="on" id="AVATAR_Form" action="" method='post' enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ avatar.as_p }}
+                  <!-- Le bouton ci dessous est caché et set juste à référencer le submit du formulaire -->
+                  <button class="UpdateButtonLayout ButtonDark" type="submit" id='avatar_button_hidden'>Update</button>
+                </form>
+                <form autocomplete="on" id="DEL_AVATAR_Form" method="post">
+                  {{ delete_avatar }}
+                  {% csrf_token %}
+                  <button type="submit" name="avatar_delete" id='del_avatar_button_hidden'>Delete Avatar</button>
+                </form>
+                <div class="DoubleButtonSettings">
+                  <button id="AVATAR_Change" class="MediumButtonLayout left ButtonNeon">Change</button>
+                  <button id="AVATAR_Delete" class="MediumButtonLayout right ButtonDark">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "Home/footer.html" %}
+  </body>
 </html>

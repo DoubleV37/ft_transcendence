@@ -1,15 +1,4 @@
-<!--<html>
-
-  <form method="post">
-    {% csrf_token %}
-    {{ profile_2fa.as_p }}
-      <button type="submite">Enable</button>
-  </form>
-
-</html>
--->
 {% load static %}
-
 <div class="modal fade" id="2faModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -19,7 +8,7 @@
       <div class="modal-body">
 	<div id="ModalContent" data-content="AVATAR_CHANGE"></div>
 	  <div class="d-flex justify-content-center mb-4">
-	      <form method="post">
+	      <form autocomplete="on" method="post">
 		{% csrf_token %}
 		{{ profile_2fa.as_p }}
 		  <button type="submite">Enable</button>
