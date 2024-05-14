@@ -1,7 +1,7 @@
 :root::-webkit-scrollbar{
 	display: none;
   }
-  
+
 :root {
 scrollbar-width: none;
 -ms-overflow-style: none;
@@ -28,7 +28,7 @@ scrollbar-width: none;
 		min-height: 100vh;
 	}
 
-	
+
 	#content {
 		display: flex;
 		flex-direction: column;
@@ -56,13 +56,13 @@ scrollbar-width: none;
 		flex-grow: 2;
 		overflow: hidden;
 	}
-	
+
 	/* OFF CANVAS */
-	
+
 	.pe-3 {
 		padding-right: 0rem!important;
 	}
-	
+
 	.nav-item {
 		display: flex;
 		justify-content: center;
@@ -138,7 +138,7 @@ scrollbar-width: none;
         width:  1em; /* Adjust the size as needed */
         height:  1em; /* Adjust the size as needed */
         margin-right: 0.5rem; /* Adds some space between the icon and the text */
-        vertical-align: top; /* Aligns the icon vertically with the text */
+        vertical-align: sub; /* Aligns the icon vertically with the text */
         background-size: contain; /* Ensures the SVG scales properly */
         background-repeat: no-repeat; /* Prevents the SVG from repeating */
     }
@@ -578,7 +578,7 @@ scrollbar-width: none;
         width:  1em; /* Adjust the size as needed */
         height:  1em; /* Adjust the size as needed */
         margin-right: 0.5rem; /* Adds some space between the icon and the text */
-        vertical-align: top; /* Aligns the icon vertically with the text */
+        vertical-align: sub; /* Aligns the icon vertically with the text */
         background-size: contain; /* Ensures the SVG scales properly */
         background-repeat: no-repeat; /* Prevents the SVG from repeating */
     }
@@ -889,8 +889,8 @@ scrollbar-width: none;
 
 /* Smartphones (portrait and landscape) and small tablets ----------- */
 @media only screen and (min-width : 1em) and (max-width : 46.25em) {
-    /* Styles */	
-	
+    /* Styles */
+
 	body {
 		display: flex;
 		flex-direction: column;
@@ -1015,7 +1015,7 @@ scrollbar-width: none;
         width:  1em; /* Adjust the size as needed */
         height:  1em; /* Adjust the size as needed */
         margin-right: 0.5rem; /* Adds some space between the icon and the text */
-        vertical-align: top; /* Aligns the icon vertically with the text */
+        vertical-align: sub; /* Aligns the icon vertically with the text */
         background-size: contain; /* Ensures the SVG scales properly */
         background-repeat: no-repeat; /* Prevents the SVG from repeating */
     }

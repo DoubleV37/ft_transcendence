@@ -43,9 +43,9 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	}
-	
+
 	#matchmakingDots {
-	
+
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 2rem;
@@ -106,7 +106,7 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	  }
-	
+
 	  .section-stats {
 		width: 75%;
 	}
@@ -189,9 +189,9 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	}
-	
+
 	#matchmakingDots {
-	
+
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 2rem;
@@ -253,7 +253,7 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	  }
-	
+
 	  .section-stats {
 		width: 75%;
 	}
@@ -335,9 +335,9 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	}
-	
+
 	#matchmakingDots {
-	
+
 		color: #FFF;
 		font-family: Kodchasan;
 		font-size: 1.2rem;
@@ -366,13 +366,13 @@
 		opacity: 0;
 		transition: opacity 0.5s ease;
 		border-radius: 1em;
-		border-top-left-radius: 0em !important; 
+		border-top-left-radius: 0em !important;
 		border-top-right-radius: 0em !important;
 		border-top: none !important;
 	}
 
 	#endTournamentScreen {
-		border-top-left-radius: 1em !important; 
+		border-top-left-radius: 1em !important;
 		border-top-right-radius: 1em !important;
 		border: 1px solid #cf911f !important;
 	}
@@ -410,7 +410,7 @@
 		margin-top: -1em;
 		margin-bottom: 1em;
 	  }
-	
+
 	  .section-stats {
 		width: 80%;
 	}
@@ -522,14 +522,14 @@
 }
 
 .low-ranked::before {
-	content: url('../images/angry-svgrepo-com.svg'); 
-	display: inline-block; /* Allows for width and height settings */
-	width:  1em; /* Adjust the size as needed */
-	height:  1em; /* Adjust the size as needed */
-	margin-right: 0.5rem; /* Adds some space between the icon and the text */
-	vertical-align: top; /* Aligns the icon vertically with the text */
-	background-size: contain; /* Ensures the SVG scales properly */
-	background-repeat: no-repeat; /* Prevents the SVG from repeating */
+	content: url('../images/angry-svgrepo-com.svg');
+	display: inline-block;
+	width:  1em;
+	height:  1em;
+	margin-right: 0.5rem;
+	vertical-align: top;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .medium-ranked {
@@ -538,13 +538,13 @@
 
 .medium-ranked::before {
 	content: url('../images/half-rating-star-svgrepo-com.svg');
-	display: inline-block; /* Allows for width and height settings */
-	width:  1em; /* Adjust the size as needed */
-	height:  1em; /* Adjust the size as needed */
-	margin-right: 0.5rem; /* Adds some space between the icon and the text */
-	vertical-align: top; /* Aligns the icon vertically with the text */
-	background-size: contain; /* Ensures the SVG scales properly */
-	background-repeat: no-repeat; /* Prevents the SVG from repeating */
+	display: inline-block;
+	width:  1em;
+	height:  1em;
+	margin-right: 0.5rem;
+	vertical-align: top;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .high-ranked {
@@ -552,14 +552,15 @@
 }
 
 .high-ranked::before {
-	content: url('../images/WRcrown.svg'); /* Replace with the actual path to your SVG */
-	display: inline-block; /* Allows for width and height settings */
-	width:  1em; /* Adjust the size as needed */
-	height:  1em; /* Adjust the size as needed */
-	margin-right: 0.5rem; /* Adds some space between the icon and the text */
-	vertical-align: top; /* Aligns the icon vertically with the text */
-	background-size: contain; /* Ensures the SVG scales properly */
-	background-repeat: no-repeat; /* Prevents the SVG from repeating */
+	content: url('../images/WRcrown.svg');
+	display: inline-block;
+	width:  1em;
+	height:  1em;
+	margin-right: 0.5rem;
+	vertical-align: top;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-bottom: 0.5em;
 }
 
 #NbGames {
