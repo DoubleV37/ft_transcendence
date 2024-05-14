@@ -19,15 +19,21 @@ class FriendsRequestView(TemplateView):
             myFriends = tools.myFriends(from_user)
             people = tools.suggestionList(from_user)
             all_friend_request = Friend_Request.objects.all().filter(to_user=from_user)
+            logger.debug(f"{from_user = }\n {people = }\n {myFriends = }\n {all_friend_request = }")
             return render(
                 request, self.template_name,
                 {'from_user': from_user, 'people': people, 'myFriends': myFriends, 'all_friend_request': all_friend_request}
             )
 
+        # TODO logger to delete
         def post(self, request):
+            logger.debug(f"{request.POST = }")
             result = str(request.POST['key'])
+            logger.debug(f"{result = }")
             tmp = list(result.split())
+            logger.debug(f"{tmp = }")
             target = User.objects.get(username=tmp[1])
+            logger.debug(f"{target = }")
 
             if tmp[0].find("add") != -1:
                 return tools.send_friend_request(request, target.id)
@@ -59,9 +65,9 @@ class Accept_Or_Refuse_View(TemplateView):
         def post(self, request):
             result = str(request.POST['key'])
             tmp = list(result.split())
-            target = User.objects.get(username=tmp[1])
+            target = User.objects.get_object_or_404(username=tmp[1])
             _user = request.user
-            frid = Friend_Request.objects.get(from_user=target, to_user=_user)
+            frid = Friend_Request.objects.get_object_or_404(from_user=target, to_user=_user)
             data = [tmp[0], frid.id]
             return tools.accept_or_refuse_FQ(request, data)
 
@@ -73,7 +79,7 @@ def friends_profile(request, _id=None):
     if _id is None or request.method != 'GET':
         return HttpResponse('Wrong Profile', status=400)
     my_user = request.user
-    other_user = User.objects.get(id=_id)
+    other_user = User.objects.get_object_or_404(id=_id)
     if other_user in my_user.friends.all():
         _type = 'delete'
     elif user_requested(my_user, other_user) is True:

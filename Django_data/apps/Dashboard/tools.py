@@ -25,7 +25,7 @@ def ordered_party(opponent_key: list, me: User) -> dict:
     index: int = 0
     for opponent in opponent_key:
         id = opponent.game
-        myself = UserGame.objects.get(game=id, user=me)
+        myself = UserGame.objects.get_object_or_404(game=id, user=me)
         ordered[str(index)] = {'me': myself, 'id': id, 'opponent': opponent}
         index = index + 1
     return ordered
@@ -37,7 +37,7 @@ def populate_context(data: dict) -> dict:
     ref: int = 0
     while index >= 0:
         key = 'match ' + str(ref)
-        token[key] = data.get(str(index))
+        token[key] = data.get_object_or_404(str(index))
         ref += 1
         index -= 1
     return token
@@ -47,7 +47,7 @@ def not_his_dashboard(key: int) -> dict:
     index: bool = True
     opponent = None
     myself = None
-    game = Games.objects.get(id=key)
+    game = Games.objects.get_object_or_404(id=key)
     tmp = list(UserGame.objects.filter(game=key))
     for player in tmp:
         if index:

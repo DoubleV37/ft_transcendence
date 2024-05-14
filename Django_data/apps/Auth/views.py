@@ -129,7 +129,7 @@ def validator_pswrd(form, button: str, request, response: dict) -> dict:
 def my_settings(request):
 
     try:
-        my_user = User.objects.get(username=request.user.username)
+        my_user = User.objects.get_object_or_404(username=request.user.username)
         name = My_Name(instance=my_user)
         mail = My_Mail(instance=my_user)
         pswd = My_Psswd(instance=my_user)

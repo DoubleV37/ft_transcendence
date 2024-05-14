@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 def populate(key: User) -> dict:
 	context = dict()
-	data = GlobalStats.objects.get(user=key)
+	data = GlobalStats.objects.get_object_or_404(user=key)
 	context['win_rate'] = round(data.win_rate, 2)
 	context['nb_games'] = data.nb_games
 	context['regular_games'] = data.regular_games
