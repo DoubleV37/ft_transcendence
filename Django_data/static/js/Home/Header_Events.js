@@ -124,7 +124,9 @@ function header_SignUpCallBack () {
 async function header_SignOutCallBack () {
   try {
     offcanvas_Hide();
-    await MakeRequest(`${ROUTE.SIGNOUT}`);
+    await MakeRequest(`${ROUTE.SIGNOUT}`, {
+      method: 'POST'
+    });
     header_DelEvents();
     await changeSection(`${ROUTE.HEADER}`, "#Header_content");
     header_SetEvents();

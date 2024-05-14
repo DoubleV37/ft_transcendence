@@ -30,22 +30,21 @@ class create_qrcode(TemplateView):
     context = dict()
 
     try:
+      def get(self, request):
+        if "Load" not in request.headers:
+          return redirect("/")
+        _user = request.user
 
-        def get(self, request):
-            _user = request.user
+        _user2fa = otp_setter(user=_user)
+        otp_secret = _user2fa.otp_secret
 
-            _user2fa = otp_setter(user=_user)
-            otp_secret = _user2fa.otp_secret
-
-            self.context["otp"] = otp_secret
-            self.context["qr_code"] = _user.to2fa.generate_qr_code(
-                name=_user.username
-            )
-            return render(request, self.template_name, context=self.context)
+        self.context["otp"] = otp_secret
+        self.context["qr_code"] = _user.to2fa.generate_qr_code(name=_user.username)
+        return render(request, self.template_name, context=self.context)
 
     except ValidationError as exc:
-        context: dict() = {}
-        context["form_errors"] = exc.messages
+      context: dict() = {}
+      context["form_errors"] = exc.messages
 
 
 # __________________________________________________________________________ #
@@ -64,7 +63,10 @@ def enable_2fa(request):
             _user.to2fa.enable = True
             _user.save()
             return JsonResponse({'status': 'continue'})
-    return render(request, 'Profile/enable_2fa.html', {'profile_2fa': profile_2fa})
+    if request.method == "GET":
+      if "Load" not in request.headers:
+        return redirect("/")
+      return render(request, 'Profile/enable_2fa.html', {'profile_2fa': profile_2fa})
 
 
 # __________________________________________________________________________ #
@@ -76,24 +78,26 @@ class TwoFactorConfirmationView(FormView):
     response = dict()
 
     def get(self, request):
-        if request.user.is_authenticated is True:
-            _id = "confirm_2fa"
-            _cancel = "cancel_2fa"
-            _form = "form_2FA"
-            _failure = "failure_2FA"
-            _success = "success_2FA"
-        else:
-            _id = "code_2fa"
-            _cancel = "cancel_code2fa"
-            _form = "form_2FAcode"
-            _failure = "failure_2FAcode"
-            _success = "success_2FAcode"
-        return render(request, 'Auth/confirm_2fa.html', {'form': self.form,
-                                                         'div_ID': _id,
-                                                         'cancel': _cancel,
-                                                         'form_id': _form,
-                                                         'success': _success,
-                                                         'failure': _failure})
+      if "Load" not in request.headers:
+        return redirect("/")
+      if request.user.is_authenticated is True:
+          _id = "confirm_2fa"
+          _cancel = "cancel_2fa"
+          _form = "form_2FA"
+          _failure = "failure_2FA"
+          _success = "success_2FA"
+      else:
+          _id = "code_2fa"
+          _cancel = "cancel_code2fa"
+          _form = "form_2FAcode"
+          _failure = "failure_2FAcode"
+          _success = "success_2FAcode"
+      return render(request, 'Auth/confirm_2fa.html', {'form': self.form,
+                                                        'div_ID': _id,
+                                                        'cancel': _cancel,
+                                                        'form_id': _form,
+                                                        'success': _success,
+                                                        'failure': _failure})
 
     def post(self, request):
         key: str = ''

@@ -5,6 +5,7 @@ import jwt
 from decouple import config
 from django.http import HttpResponse
 from apps.Auth.views import signin, signout
+from django.shortcuts import redirect
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +46,7 @@ class UserPermission:
             _user = request.user
             if _user.is_anonymous is True:
                 logger.error("Anonymous session")
-                return HttpResponse("Not connected", status=498)
+                return redirect("/")
 
             encoded_token = request.COOKIES.get("jwt_token")
             if encoded_token is None:
