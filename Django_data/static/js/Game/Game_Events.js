@@ -108,7 +108,19 @@ function keyDown (e) {
 }
 
 function touchUp (e) {
-  whichMove(e, false);
+  const rect = document.body.getBoundingClientRect();
+  if (e.changedTouches && e.changedTouches.length > 0) {
+    const touches = e.changedTouches[0];
+    pos = getTouchesPosition(touches, rect);
+    const vLine = rect.x + rect.width / 2;
+    if (pos.x > vLine + 1) {
+      keyStates['ArrowUp'] = false;
+      keyStates['ArrowDown'] = false;
+    } else {
+      keyStates['w'] = false; 
+      keyStates['s'] = false; 
+    }
+  }
 }
 
 function touchDown (e) {
